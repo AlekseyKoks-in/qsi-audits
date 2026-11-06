@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"9f3b8d12-9473-49de-9ebb-9f2f640f8653\",\"content_sha256\":\"967ff3502b91c3f489ae4dc96bfd80d7f227c73a45038ab60ffb4c654876bd06\",\"files_sha256\":{\"html\":\"9c0a6f0c2994aa20166a60f8f769a344eac69ec36c31a6b8d0dfec1a6706c597\",\"json\":\"60b7f5c30b32e38747a0ba61346673bba7b752291702412b72a232b1a2900399\",\"md\":\"5ad419c2100b1e3f4973fcc0f377b082ae36d48149d0f66c3e4c85d2d91ab1a3\",\"pdf\":\"e87c1cd031dd182c4e7f06e87ad16c3da092965693f1e67c2f87c2109501360d\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"fabric-lib-go @ f8b4f4a833e4\",\"report_id\":\"5be6e324-0ea7-4e94-b9c9-8279c1b3bcb4\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-11-06T10:15:18+00:00\",\"version\":1}",
+  "signature": "FF1dLTTYld/MiYFqwQNv9QaWBYpRsFHLus3Gw+UklfRuSQLuMSCb0UlotJ0lozDUpv351JvgURTLwK8tHqLADw=="
+}

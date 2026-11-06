@@ -1,0 +1,3970 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:496b4ed3-ded6-42b2-b44c-8ab0805f6347",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-06T15:25:02Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "QSI",
+          "version": "1.3.0"
+        }
+      ]
+    },
+    "component": {
+      "type": "application",
+      "name": "canton @ 4eab7a047040"
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "38b28c71-9229-4d72-8ad4-639a9a1b724e",
+      "name": "AES-128",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-tls/src/main/scala/com/daml/tls/TlsConfig.scala:30"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-tls/src/main/scala/com/daml/tls/TlsConfig.scala#L30"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "aes-128"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "parameterSetIdentifier": "AES-128",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.1.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "bb6a04b5-74d8-4fe4-b397-914224b8bf73",
+      "name": "AES-128",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/app-base/src/main/scala/com/digitalasset/canton/admin/api/client/data/crypto/Encryption.scala:78"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/app-base/src/main/scala/com/digitalasset/canton/admin/api/client/data/crypto/Encryption.scala#L78"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "aes-128"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "parameterSetIdentifier": "AES-128",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.1.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "8f3ee4cc-19c8-434b-923a-275b99053b6a",
+      "name": "AES-128",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/config/CryptoProvider.scala:101"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/config/CryptoProvider.scala#L101"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "aes-128"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "parameterSetIdentifier": "AES-128",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.1.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6c4e1442-9eac-48ea-a277-a42a912b7db2",
+      "name": "AES-128",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/CryptoKeyValidation.scala:75"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/CryptoKeyValidation.scala#L75"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "aes-128"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "parameterSetIdentifier": "AES-128",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.1.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6f03034d-d95c-4882-8474-bae6a9e09f78",
+      "name": "AES-128",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Encryption.scala:509"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Encryption.scala#L509"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "aes-128"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "parameterSetIdentifier": "AES-128",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.1.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "307a04b4-aa8e-4569-9559-b9eace328e3e",
+      "name": "AES-128",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePureCrypto.scala:245"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePureCrypto.scala#L245"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (12 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "aes-128"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "parameterSetIdentifier": "AES-128",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.1.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "416dfc0c-1b1c-4f85-9f03-9b3112b6a849",
+      "name": "AES-128",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/signer/SyncCryptoSignerWithSessionKeys.scala:16"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/signer/SyncCryptoSignerWithSessionKeys.scala#L16"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "aes-128"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "parameterSetIdentifier": "AES-128",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.1.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2be5e1f8-51d6-4c67-9506-91c6d40fab9b",
+      "name": "AES-128",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/verifier/SyncCryptoVerifier.scala:21"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/verifier/SyncCryptoVerifier.scala#L21"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "aes-128"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "parameterSetIdentifier": "AES-128",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 1
+        },
+        "oid": "2.16.840.1.101.3.4.1.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "aa700170-8225-48d4-8b6a-4f57b9830da9",
+      "name": "BLAKE2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/lib/Blake2b/src/main/java/org/bouncycastle/crypto/digests/canton/Blake2bDigest.java:130"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/lib/Blake2b/src/main/java/org/bouncycastle/crypto/digests/canton/Blake2bDigest.java#L130"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "blake2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4a761867-0eb8-4641-9c35-ac1f14e39c24",
+      "name": "BLAKE3",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/common/src/main/scala/com/digitalasset/canton/crypto/LtHash16Blake3.scala:174"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/common/src/main/scala/com/digitalasset/canton/crypto/LtHash16Blake3.scala#L174"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "blake3"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "165c644f-a0cc-4e7e-ba25-8abb1d5fb78b",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/app-base/src/main/scala/com/digitalasset/canton/admin/api/client/data/crypto/Encryption.scala:57"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/app-base/src/main/scala/com/digitalasset/canton/admin/api/client/data/crypto/Encryption.scala#L57"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c92eff2a-9204-4d6a-8168-2a6ea6130a67",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/config/CryptoProvider.scala:81"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/config/CryptoProvider.scala#L81"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "caee9db3-8c6e-434e-a303-87343b53dae3",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Encryption.scala:380"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Encryption.scala#L380"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ec1c4def-a6d2-4886-bf26-3da7b1378a8a",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/kms/aws/AwsKms.scala:335"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/kms/aws/AwsKms.scala#L335"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5f20c329-3fd1-40dd-8f24-67934fc5f6f9",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/kms/driver/v1/KmsDriverSpecsConverter.scala:37"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/kms/driver/v1/KmsDriverSpecsConverter.scala#L37"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "7e8ca9c4-cbb1-4aa4-9c1a-641673254c17",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/kms/gcp/GcpKms.scala:388"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/kms/gcp/GcpKms.scala#L388"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "dddcc1fc-94fc-4c70-af63-931cd012476c",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePureCrypto.scala:42"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePureCrypto.scala#L42"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (14 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "601546a8-9dd3-49a4-b9a6-381814d7a973",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JceSecurityProvider.scala:10"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JceSecurityProvider.scala#L10"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c2d5d906-75cc-45bb-a53c-36aece3e652c",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/kms-driver-api/src/main/scala/com/digitalasset/canton/crypto/kms/driver/api/v1/KmsDriverSpecs.scala:68"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/kms-driver-api/src/main/scala/com/digitalasset/canton/crypto/kms/driver/api/v1/KmsDriverSpecs.scala#L68"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a7180fb6-ffbf-4aad-96a1-633a432f7500",
+      "name": "ECDH",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/microbench/src/main/scala/com/digitalasset/canton/AsymmetricEncryptionBenchmark.scala:13"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/microbench/src/main/scala/com/digitalasset/canton/AsymmetricEncryptionBenchmark.scala#L13"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdh"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "aa1d59fb-9324-4286-8c30-5c7993c3a137",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/crypto/src/main/scala/com/daml/crypto/MessageSignaturePrototype.scala:54"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/crypto/src/main/scala/com/daml/crypto/MessageSignaturePrototype.scala#L54"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "52797b33-6275-40e0-8d1b-69bce08ecc97",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/crypto/src/main/scala/com/daml/crypto/MessageSignaturePrototypeUtil.scala:30"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/crypto/src/main/scala/com/daml/crypto/MessageSignaturePrototypeUtil.scala#L30"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b12d5aad-7c2b-4a3f-875e-4f9f5f9f5104",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:100"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L100"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg ES256"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ES256",
+          "curve": "P-256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.3.1.7"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "58614792-867d-40d1-962f-dc0875ce433a",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:106"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L106"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg ES384"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ES384",
+          "curve": "P-384",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.34"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3cf71fe1-fb86-4319-a32f-9ede5c676dbb",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:112"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L112"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg ES512"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ES512",
+          "curve": "P-521",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 256,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.35"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1976cea8-e9b7-402b-beca-64f535e20004",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/CryptoKeyValidation.scala:196"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/CryptoKeyValidation.scala#L196"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "263cdc7b-f30c-43a9-b1f9-ebf18e6ff7f4",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Encryption.scala:291"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Encryption.scala#L291"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "P-256",
+          "curve": "P-256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.3.1.7"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5ca7804c-8af6-4672-b490-4a70f85b46b8",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Signing.scala:1010"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Signing.scala#L1010"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3d69f468-dbc3-49b1-8d08-3185b3a9acb5",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Signing.scala:1141"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Signing.scala#L1141"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d29c3537-1b76-46fc-a6c0-0955c7dabc23",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Signing.scala:988"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Signing.scala#L988"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "P-256",
+          "curve": "P-256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.3.1.7"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "416167f2-5c47-43dd-a253-d65aa0d81931",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JceJwks.scala:156"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JceJwks.scala#L156"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1375adc7-297f-4388-8c0b-27a85ed9a310",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePrivateCrypto.scala:138"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePrivateCrypto.scala#L138"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "fa7c4555-8883-4169-bb29-90a4aa90efea",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/daml-lf/data/src/main/scala/com/digitalasset/daml/lf/data/support/crypto/MessageSignatureUtil.scala:31"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/daml-lf/data/src/main/scala/com/digitalasset/daml/lf/data/support/crypto/MessageSignatureUtil.scala#L31"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5fa4078c-a2a8-4160-9f6f-321773badaab",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/daml-lf/data/src/main/scala/com/digitalasset/daml/lf/data/support/crypto/MessageSignatureUtil.scala:32"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/daml-lf/data/src/main/scala/com/digitalasset/daml/lf/data/support/crypto/MessageSignatureUtil.scala#L32"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b3499884-19bb-464a-9b28-f3ec7bde137a",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/daml-lf/interpreter/src/main/scala/com/digitalasset/daml/lf/speedy/SBuiltinFun.scala:820"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/daml-lf/interpreter/src/main/scala/com/digitalasset/daml/lf/speedy/SBuiltinFun.scala#L820"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e2537805-400e-4143-acac-2d06a0a54f15",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala:228"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala#L228"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg ES256"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ES256",
+          "curve": "P-256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.3.1.7"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "46606261-49f9-4f79-bf70-fabee392c530",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala:241"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala#L241"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg ES384"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ES384",
+          "curve": "P-384",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.34"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1c68c7d9-9651-45b8-a5a8-4183ea72a50e",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:116"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L116"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg EdDSA"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "EdDSA",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3f0f9e39-099b-4cda-af14-3cd447a4ff31",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala:215"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala#L215"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg EdDSA"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "EdDSA",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "9476f8cf-34f4-4204-bac6-24bfd5a93fc3",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/crypto/src/jmh/scala/com/daml/crypto/MacPrototypeBenchmark.scala:28"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/crypto/src/jmh/scala/com/daml/crypto/MacPrototypeBenchmark.scala#L28"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "HMAC-SHA-256",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        },
+        "oid": "1.2.840.113549.2.9"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2b6fcc77-a12a-49f6-a6d1-836d22469e03",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/crypto/src/main/scala/com/daml/crypto/MacPrototype.scala:44"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/crypto/src/main/scala/com/daml/crypto/MacPrototype.scala#L44"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "HMAC-SHA-256",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        },
+        "oid": "1.2.840.113549.2.9"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2e358745-29c2-4ec1-844e-3a8e489405b6",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:38"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L38"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg HS256"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "HS256",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        },
+        "oid": "1.2.840.113549.2.9"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a0048bd9-9e73-45a3-a5b9-9da38319af34",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/CryptoApi.scala:175"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/CryptoApi.scala#L175"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "bb1ed065-3ad7-4edf-a294-8bd5d8ff1561",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Hmac.scala:18"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Hmac.scala#L18"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (32 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "546eb10c-86f7-465b-b4a1-174706e61839",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Hmac.scala:29"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Hmac.scala#L29"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "HMAC-SHA-256",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        },
+        "oid": "1.2.840.113549.2.9"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "93926b43-d561-46b7-99dc-6469bfd7ea8f",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Salt.scala:45"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Salt.scala#L45"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (11 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "30130bff-31cd-49a8-b3e8-805ae75f1e22",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/SynchronizerCryptoPureApi.scala:136"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/SynchronizerCryptoPureApi.scala#L136"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "bec9ea95-7e61-4dce-bdfe-fedbf6dca1fa",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePureCrypto.scala:16"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePureCrypto.scala#L16"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ce28c710-38b3-4291-93ff-5d4619a5175b",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/common/src/main/scala/com/digitalasset/canton/protocol/ContractIdSuffixer.scala:6"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/common/src/main/scala/com/digitalasset/canton/protocol/ContractIdSuffixer.scala#L6"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ee96bbc2-9dd0-4702-81cf-b2e9b699a9f2",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/common/src/main/scala/com/digitalasset/canton/protocol/ContractSalt.scala:46"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/common/src/main/scala/com/digitalasset/canton/protocol/ContractSalt.scala#L46"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "538a63c9-8bc2-43c2-80de-8505d72a24d6",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/common/src/main/scala/com/digitalasset/canton/protocol/UnicumGenerator.scala:7"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/common/src/main/scala/com/digitalasset/canton/protocol/UnicumGenerator.scala#L7"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0cb4c9bf-39ab-4207-b034-abff07b5d241",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/common/src/main/scala/com/digitalasset/canton/util/ContractValidator.scala:9"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/common/src/main/scala/com/digitalasset/canton/util/ContractValidator.scala#L9"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c805b335-1250-451a-ab01-d8be89b680f4",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/daml-lf/transaction/src/main/scala/com/digitalasset/daml/lf/crypto/Hash.scala:596"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/daml-lf/transaction/src/main/scala/com/digitalasset/daml/lf/crypto/Hash.scala#L596"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "HMAC-SHA-256",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        },
+        "oid": "1.2.840.113549.2.9"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1b3b14d4-60e9-4780-b40e-eb7b21746b1b",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/ledger-api-bench-tool/src/main/scala/com/digitalasset/canton/ledger/api/benchtool/AuthorizationHelper.scala:40"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger-api-bench-tool/src/main/scala/com/digitalasset/canton/ledger/api/benchtool/AuthorizationHelper.scala#L40"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg HS256"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "HS256",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        },
+        "oid": "1.2.840.113549.2.9"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4556a2ab-b1d1-4667-9afb-522eff734aa2",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/reassignment/UnassignmentRequest.scala:8"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/reassignment/UnassignmentRequest.scala#L8"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "af98b7d2-6a45-45ce-b248-d180eb4c8a8f",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/submission/NextGenTransactionTreeFactory.scala:13"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/submission/NextGenTransactionTreeFactory.scala#L13"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "7fdb50c2-5d1a-4696-99f2-b4cd6635011c",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/submission/TransactionConfirmationRequestFactory.scala:635"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/submission/TransactionConfirmationRequestFactory.scala#L635"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c802b3e8-d57c-441b-9f1d-d58cac3d05bc",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/submission/TransactionTreeFactory.scala:8"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/submission/TransactionTreeFactory.scala#L8"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c6847fc9-607c-4d96-b921-e53d59075601",
+      "name": "HMAC",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/validation/ModelConformanceChecker.scala:13"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/participant/src/main/scala/com/digitalasset/canton/participant/protocol/validation/ModelConformanceChecker.scala#L13"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "hmac"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "cryptoFunctions": [
+            "tag"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c631c1a9-a897-40a1-90cc-7df5e4150f6b",
+      "name": "IDEA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "classical_weakness"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "legacy"
+        },
+        {
+          "name": "qsi:location",
+          "value": "scripts/ci/todo_refs.py:55"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/scripts/ci/todo_refs.py#L55"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "idea"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "block-cipher",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e7ff47d8-9272-40bc-b534-bd7f7f7874f3",
+      "name": "Keccak-256",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/error/groups/CommandExecutionErrors.scala:1035"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/error/groups/CommandExecutionErrors.scala#L1035"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "keccak-256"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "Keccak-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "00e0e511-70fa-454c-88ff-729acf810b2f",
+      "name": "ML-DSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "pqc"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/app-base/src/main/scala/com/digitalasset/canton/admin/api/client/data/crypto/Signing.scala:53"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/app-base/src/main/scala/com/digitalasset/canton/admin/api/client/data/crypto/Signing.scala#L53"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ml-dsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ML-DSA-65",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 3
+        },
+        "oid": "2.16.840.1.101.3.4.3.18"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "9c4a8816-cfb5-4533-a6fd-3b3e33735b53",
+      "name": "ML-DSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "pqc"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/Signing.scala:1020"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/Signing.scala#L1020"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ml-dsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ML-DSA-65",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 3
+        },
+        "oid": "2.16.840.1.101.3.4.3.18"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "92804dce-6a84-4cc3-a289-d2c6bbc6bde3",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:59"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L59"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg RS256"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "RS256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d84f65f2-acd2-4dcf-b5ec-d48da52cc1bf",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-jwt/src/main/scala/com/daml/jwt/KeyUtils.scala:110"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/KeyUtils.scala#L110"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg RS256"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "RS256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "950e3b6f-452c-431f-a47b-e49907b70cc7",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "base/daml-jwt/src/main/scala/com/daml/jwt/KeyUtils.scala:78"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/KeyUtils.scala#L78"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "cbf601bb-9861-48ae-bddc-e7064fbdb2d2",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePrivateCrypto.scala:249"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePrivateCrypto.scala#L249"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "7a28a748-9d61-44a3-8059-1854d8d8b023",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/ledger/ledger-api-tools/src/main/scala/com/digitalasset/canton/ledger/api/auth/Main.scala:123"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-tools/src/main/scala/com/digitalasset/canton/ledger/api/auth/Main.scala#L123"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg RS256"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "RS256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d828913f-8e3d-4a20-b821-4569fe632e23",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "performance/src/main/console/tls/participant.crt (line 1) — localhost"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "X.509 certificate public key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "434b8db9-2b0c-4b8a-a67f-6525c1d5bbf5",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "performance/src/main/console/tls/synchronizer.crt (line 1) — localhost"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "X.509 certificate public key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0d067ad5-ae0c-42c0-a058-e0899bf28392",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "scripts/ci/select_rota.py:184"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/scripts/ci/select_rota.py#L184"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "JOSE/JWT alg RS256"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "RS256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1d8270fd-74b4-475c-b1a1-17cacfe98d50",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/deterministic/encryption/SP800HashDRBGSecureRandom.scala:43"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/deterministic/encryption/SP800HashDRBGSecureRandom.scala#L43"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b60d5b0f-ae32-4fa0-8021-b18a97500882",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "community/base/src/main/scala/com/digitalasset/canton/crypto/deterministic/encryption/SP800HashDRBGSecureRandom.scala:90"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/base/src/main/scala/com/digitalasset/canton/crypto/deterministic/encryption/SP800HashDRBGSecureRandom.scala#L90"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f0ef1a5a-abc0-45d8-aebb-0a9331e5a2fd",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "performance/src/main/console/tls/participant.crt (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "certificate signature hash"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "afdeee72-3975-4f18-b230-a20689994283",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "performance/src/main/console/tls/synchronizer.crt (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "certificate signature hash"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "771d6bff-6cbf-4c1c-969c-163ea5058756",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "project/Z3.scala:31"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/project/Z3.scala#L31"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6223da82-5b85-4e91-ad9e-0221fa085eec",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "scripts/ci/collect_flake_evidence.py:398"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/scripts/ci/collect_flake_evidence.py#L398"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "93a0568c-fda5-4b4d-a48f-56a38a51905c",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "scripts/ci/select_rota.py:194"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/scripts/ci/select_rota.py#L194"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    }
+  ]
+}

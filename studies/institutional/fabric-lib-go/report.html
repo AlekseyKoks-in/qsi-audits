@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security &amp; Post-Quantum Readiness Audit Report — fabric-lib-go @ f8b4f4a833e4</title>
+<style>
+  :root {
+    --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
+    --critical: #b42318; --high: #d1440c; --medium: #b54708; --low: #2e7d32; --info: #475467;
+  }
+  @page {
+    size: A4; margin: 22mm 18mm 20mm 18mm;
+    @top-left { content: "fabric-lib-go @ f8b4f4a833e4 · Security \26  Post-Quantum Readiness Audit Report"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · 967ff3502b91"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-left { content: "This report presents automated and documented analysis results for the stated scope. It is not a legal opinion…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+  }
+  @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
+  * { box-sizing: border-box; }
+  html { font-family: Inter, "DejaVu Sans", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+  body { margin: 0; background: #fff; }
+  @media screen { body { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; } }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-top: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h4 { font-size: 10pt; margin: 10pt 0 4pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  section.chapter { break-before: page; }
+  @media screen { section.chapter { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 24px; } }
+  .cover { page: cover; height: 297mm; padding: 32mm 22mm; display: flex; flex-direction: column; justify-content: space-between;
+           background: linear-gradient(160deg, #0b1220 0%, #12223f 55%, #1b3a6b 100%); color: #f5f5f7; }
+  @media screen { .cover { height: auto; min-height: 520px; border-radius: 20px; padding: 48px; } }
+  .cover .brand { font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: #9fb4d9; }
+  .cover h1 { font-size: 28pt; font-weight: 700; margin: 14mm 0 6mm; max-width: 150mm; }
+  .cover .project { font-size: 16pt; color: #dbe5f5; }
+  .cover table { color: #dbe5f5; font-size: 9pt; border-collapse: collapse; }
+  .cover td { padding: 3pt 14pt 3pt 0; vertical-align: top; }
+  .cover td:first-child { color: #9fb4d9; }
+  .triage { border-left: 3pt solid var(--accent); background: var(--soft); padding: 6pt 9pt; border-radius: 4pt; }
+  .demo { display: inline-block; margin-top: 6mm; padding: 3pt 8pt; border: 1px solid #f5c26b; color: #f5c26b; border-radius: 6pt; font-size: 9pt; }
+  .toc ol { padding-left: 16pt; columns: 2; column-gap: 24pt; }
+  .toc li { margin-bottom: 3pt; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  table.data { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 8.6pt; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding: 4pt 6pt; }
+  table.data td { border-bottom: 1px solid var(--line); padding: 4pt 6pt; vertical-align: top; word-break: break-word; }
+  table.data tr { break-inside: avoid; }
+  .kpis { display: flex; gap: 8pt; margin: 8pt 0 14pt; flex-wrap: wrap; }
+  .kpi { flex: 1 1 0; min-width: 70pt; background: var(--soft); border-radius: 10pt; padding: 9pt 10pt; }
+  .kpi .v { font-size: 18pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  .sev { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; font-weight: 600; color: #fff; white-space: nowrap; }
+  .sev-critical { background: var(--critical); } .sev-high { background: var(--high); } .sev-medium { background: var(--medium); }
+  .sev-low { background: var(--low); } .sev-info { background: var(--info); }
+  .tag { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; background: var(--soft); color: var(--muted); margin-right: 3pt; }
+  .tag.pre { background: #fff4e5; color: #8a4b00; }
+  .bar { height: 6pt; background: var(--soft); border-radius: 3pt; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .finding { border: 1px solid var(--line); border-radius: 12pt; padding: 10pt 12pt; margin: 0 0 12pt; break-inside: auto; }
+  .finding header { display: flex; justify-content: space-between; gap: 8pt; align-items: baseline; break-after: avoid; }
+  .finding .fid { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; color: var(--muted); }
+  .finding h3 { margin: 2pt 0 6pt; font-size: 11.5pt; }
+  dl.meta { display: grid; grid-template-columns: 30% 70%; gap: 2pt 8pt; margin: 0 0 8pt; font-size: 8.6pt; }
+  dl.meta dt { color: var(--muted); } dl.meta dd { margin: 0; word-break: break-word; }
+  pre { background: #0f172a; color: #e2e8f0; font-family: "DejaVu Sans Mono", monospace; font-size: 7.4pt; padding: 7pt 9pt; border-radius: 8pt;
+        white-space: pre-wrap; word-break: break-all; margin: 4pt 0 8pt; }
+  .ev-meta { font-size: 7.4pt; color: var(--muted); }
+  .note { background: var(--soft); border-radius: 10pt; padding: 8pt 10pt; font-size: 8.8pt; color: #3a3a3c; margin: 8pt 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">Quantum Security Intelligence</div>
+    <h1>Security &amp; Post-Quantum Readiness Audit Report</h1>
+    <div class="project">fabric-lib-go @ f8b4f4a833e4 · Hyperledger Fabric (LF Decentralized Trust) — public repository (passive review)</div>
+  </div>
+  <table>
+    <tr><td>Organization</td><td>QSI</td></tr>
+    <tr><td>Report date</td><td>2026-11-06 10:15 UTC</td></tr>
+    <tr><td>Report version</td><td>1</td></tr>
+    <tr><td>Audit run</td><td>9f3b8d12-9473-49de-9ebb-9f2f640f8653 · Document audit · 2026-11-06 10:15 UTC</td></tr>
+    <tr><td>Analyzer engine</td><td>qsi-engine 1.3.0</td></tr>
+    <tr><td>Risk profile</td><td>Crypto exchange, custodian or wallet</td></tr>
+    <tr><td>Content SHA-256</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">967ff3502b91c3f489ae4dc96bfd80d7f227c73a45038ab60ffb4c654876bd06</td></tr>
+<tr><td>Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+</div>
+
+<section class="toc chapter">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#executive_summary">Executive summary</a></li>
+    <li><a href="#scope">Scope and boundaries</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#assets">Assets examined and not examined</a></li>
+    <li><a href="#architecture">Architecture overview</a></li>
+    <li><a href="#posture">Overall security posture</a></li>
+    <li><a href="#summary_by_severity">Findings by severity</a></li>
+    <li><a href="#details">Detailed findings</a></li>
+    <li><a href="#evidence">Evidence</a></li>
+    <li><a href="#pq">Post-quantum assessment</a></li>
+    <li><a href="#limitations">Limitations and assumptions</a></li>
+    <li><a href="#plan">Remediation plan</a></li>
+    <li><a href="#priorities">Priorities for 30, 60 and 90 days</a></li>
+    <li><a href="#retests">Verification after remediation</a></li>
+    <li><a href="#tools">Tools used</a></li>
+    <li><a href="#references">Sources and normative documents</a></li>
+    <li><a href="#appendices">Appendices</a></li>
+  </ol>
+  <p class="note">This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.</p>
+</section>
+
+<section class="chapter" id="executive_summary">
+  <h2>Executive summary</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">11</div><div class="l">Findings in total</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Critical</span></div></div>
+    <div class="kpi"><div class="v">1</div><div class="l"><span class="sev sev-high">High</span></div></div>
+    <div class="kpi"><div class="v">3</div><div class="l"><span class="sev sev-medium">Medium</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-low">Low</span></div></div>
+  </div>
+  <table class="data">
+    <tr><th>Classification</th><th>Count</th></tr>
+<tr><td>Confirmed technical vulnerability</td><td>0</td></tr><tr><td>Known vulnerable component</td><td>8</td></tr><tr><td>Confirmed configuration error</td><td>0</td></tr><tr><td>Potential cryptographic risk</td><td>0</td></tr><tr><td>Long-term post-quantum risk</td><td>3</td></tr><tr><td>Improvement recommendation</td><td>0</td></tr><tr><td>Insufficient data</td><td>0</td></tr>  </table>
+  <h3>Top 5</h3>
+  <table class="data">
+    <tr><th>ID</th><th>Severity</th><th>Detailed findings</th><th>Priority score</th></tr>
+<tr><td>QSI-2026-17514</td><td><span class="sev sev-high">High</span></td><td>google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)</td><td>50.2</td></tr><tr><td>QSI-2026-17511</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable ECDSA: role not determined (10 file(s)) <span class="tag pre">preliminary</span></td><td>34.2</td></tr><tr><td>QSI-2026-17512</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable Ed25519: role not determined (6 file(s)) <span class="tag pre">preliminary</span></td><td>34.2</td></tr><tr><td>QSI-2026-17513</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable RSA: role not determined (6 file(s)) <span class="tag pre">preliminary</span></td><td>34.2</td></tr><tr><td>QSI-2026-17515</td><td><span class="sev sev-info">Info</span></td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating) <span class="tag pre">preliminary</span></td><td>17.8</td></tr>  </table>
+  <p class="note">Mosca&#39;s inequality (x + y &gt; z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
+<p class="note"><strong>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.</strong> Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p></section>
+
+<section class="chapter" id="scope">
+  <h2>Scope and boundaries</h2>
+  <p><strong>Mode:</strong> Document audit</p>
+<p><strong>Repository:</strong> <a href="https://github.com/hyperledger/fabric-lib-go">https://github.com/hyperledger/fabric-lib-go</a> @ <span class="small">f8b4f4a833e4140a4d006fc2e0a46823952b5f1c</span> — evidence links open the lines at this commit.</p>  <h3>Supplied inputs</h3>
+  <p>67 files, 263295 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.</p>
+</section>
+
+<section class="chapter" id="methodology">
+  <h2>Methodology</h2>
+  <p>The audit was performed by the QSI engine 1.3.0. Each analyzer emits facts (rule, parameters, evidence); finding texts are generated from the rule catalog. Methodology sources are listed under "Sources and normative documents".</p>
+  <p>Prioritization uses an explainable weighted model (severity, exploitability, exposure, confidentiality/integrity/availability impact weighted by the "Crypto exchange, custodian or wallet" profile, asset criticality, urgency, ease of remediation) with a confidence multiplier. CVSS v3.1 is applied only to technical vulnerabilities with a defined vector. Long-term quantum risks use Mosca's inequality; their severity is capped at Medium and they are never presented as exploitable vulnerabilities.</p>
+  <p>Finding classes: confirmed technical vulnerability; known vulnerable component (a dependency version named in an advisory; whether the affected code is reachable is assessed separately, and a component confirmed by review becomes a vulnerability); confirmed configuration error; potential cryptographic risk; long-term post-quantum risk; improvement recommendation; insufficient data. Heuristic findings are marked preliminary; analyst decisions are shown next to the findings.</p>
+  <h3>Coverage of checks</h3>
+  <table class="data"><tr><th>Area</th><th>Status</th><th>Count</th><th>Examples</th></tr>
+<tr><td>source_code</td><td>checked</td><td>65</td><td class="small">bccsp/aesopts.go: 82 lines scanned with 16 rule patterns and 266 registry patterns; bccsp/bccsp.go: 134 lines scanned with 16 rule patterns and 266 registry patterns; bccsp/ecdsaopts.go: 49 lines scanned with 16 rule patterns and 266 registry patterns</td></tr><tr><td>dependencies</td><td>checked</td><td>2</td><td class="small">go.mod: 41 dependencies parsed (41 pinned); tools/go.mod: 5 dependencies parsed (5 pinned)</td></tr><tr><td>entropy</td><td>checked</td><td>1</td><td class="small">random-number generation: 65 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)</td></tr><tr><td>osv_advisories</td><td>checked</td><td>1</td><td class="small">42 pinned packages queried at OSV.dev; 2 affected</td></tr>  </table>
+  <p class="note">Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key.</p>
+</section>
+
+<section class="chapter" id="assets">
+  <h2>Assets examined and not examined</h2>
+  <p><strong>Supplied inputs:</strong> 69 (input files: C)</p>
+</section>
+
+<section class="chapter" id="architecture">
+  <h2>Architecture overview</h2>
+  <p>Static review of the source tree fabric-lib-go at f8b4f4a833e4140a4d006fc2e0a46823952b5f1c. 67 files analysed; of 150 files, 63 are test, fuzzing, benchmark or example code and were left out, 20 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/settings.yml, .github/workflows/build.yml, .github/workflows/schedule.yml, .gitignore, CODEOWNERS. 1581 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner&#39;s systems.</p>
+</section>
+
+<section class="chapter" id="posture">
+  <h2>Overall security posture</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">88</div><div class="l">Indicative posture index (0–100)</div></div>
+    <div class="kpi"><div class="v">64.9%</div><div class="l">Quantum-vulnerable share of inventory</div></div>
+    <div class="kpi"><div class="v">37</div><div class="l">Cryptographic inventory</div></div>
+  </div>
+  <p class="note">Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits.</p>
+</section>
+
+<section class="chapter" id="summary_by_severity">
+  <h2>Findings by severity</h2>
+  <table class="data">
+  <tr><td style="width:22%"><span class="sev sev-critical">Critical</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-high">High</span></td><td style="width:8%">1</td>
+  <td><div class="bar"><span style="width: 14.3%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-medium">Medium</span></td><td style="width:8%">3</td>
+  <td><div class="bar"><span style="width: 42.9%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Low</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Info</span></td><td style="width:8%">7</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  </table>
+  <table class="data"><tr><th>ID</th><th>Detailed findings</th><th>Classification</th><th>Severity</th><th>Confidence</th></tr>
+<tr><td>QSI-2026-17514</td><td>google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-high">High</span></td><td>Medium</td></tr><tr><td>QSI-2026-17511</td><td>Quantum-vulnerable ECDSA: role not determined (10 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-17512</td><td>Quantum-vulnerable Ed25519: role not determined (6 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-17513</td><td>Quantum-vulnerable RSA: role not determined (6 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-17515</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-17516</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-17517</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-17518</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-17519</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-17520</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-17521</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr>  </table>
+</section>
+
+<section class="chapter" id="details">
+  <h2>Detailed findings</h2>
+  <article class="finding" id="QSI-2026-17514">
+    <header><span class="fid">QSI-2026-17514 · DEP-KNOWN-ADVISORY</span><span><span class="sev sev-high">High</span></span></header>
+    <h3>google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)</h3>
+    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Medium</span></p>
+    <p>OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The advisory lists only unexported functions (google.golang.org/grpc/internal/transport.http2Server.HandleStreams, google.golang.org/grpc/internal/transport.http2Server.operateHeaders, google.golang.org/grpc/internal/xds/server.RouteAndProcess), which code outside the package cannot call by name, so reachability was not determined.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:Go/google.golang.org/grpc@v1.83.1</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>50.2 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Depends on whether the vulnerable code path is reachable in your application.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GHSA-2v4p-qf9q-27wj</pre>
+    <h4 id="ev-QSI-2026-17514">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj">OSV.dev GHSA-2v4p-qf9q-27wj</a> · line 19 · SHA-256 3566bf539cd1bed7…</div>
+      <pre>{&#34;id&#34;: &#34;GHSA-2v4p-qf9q-27wj&#34;, &#34;aliases&#34;: [&#34;CVE-2026-84445&#34;, &#34;GO-2026-6443&#34;], &#34;modified&#34;: &#34;2026-09-25T18:00:05.270054427Z&#34;, &#34;summary&#34;: &#34;gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers&#34;, &#34;severity&#34;: [{&#34;type&#34;: &#34;CVSS_V4&#34;, &#34;score&#34;: &#34;CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X&#34;}], &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.</p>
+    <h4>Recommendation</h4><p>Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e).</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+<p class="small muted">OSV advisory GHSA-2v4p-qf9q-27wj</p>  </article>
+  <article class="finding" id="QSI-2026-17511">
+    <header><span class="fid">QSI-2026-17511 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+    <h3>Quantum-vulnerable ECDSA: role not determined (10 file(s))</h3>
+    <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>14 reference(s) to ECDSA across 10 file(s), e.g. bccsp/pkcs11/ecdsakey.go:19. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>source-code:ECDSA:general</dd>
+      <dt>Data source</dt><dd>bccsp/pkcs11/ecdsakey.go</dd>
+      <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
+      <dt>Analyzer</dt><dd>source_code 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>34.2 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+<dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → migration would finish too late under this scenario</dd>    </dl>
+    <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
+    <h4>Reproduction steps</h4><pre>Open bccsp/pkcs11/ecdsakey.go:19 and inspect the quoted lines; the evidence lists further files.</pre>
+    <h4 id="ev-QSI-2026-17511">Evidence</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/ecdsakey.go#L19">bccsp/pkcs11/ecdsakey.go</a> · line 19 · SHA-256 87680e3cf321a1d9… · File 41b35f8b4e01edc5…</div>
+      <pre>   18 | import (
+   19 | 	&#34;crypto/ecdsa&#34;
+   20 | 	&#34;crypto/x509&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L11">bccsp/pkcs11/pkcs11.go</a> · line 11 · SHA-256 8da8b0c88ebe0194… · File 98a15788cd8cdca1…</div>
+      <pre>   10 | 	&#34;context&#34;
+   11 | 	&#34;crypto/ecdsa&#34;
+   12 | 	&#34;crypto/elliptic&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L330">bccsp/pkcs11/pkcs11.go</a> · line 330 · SHA-256 c46c43f1ab599be0… · File 98a15788cd8cdca1…</div>
+      <pre>  329 | 	if csp.softVerify {
+  330 | 		return ecdsa.Verify(k.pub, digest, r, s), nil
+  331 | 	}</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L19">bccsp/sw/ecdsa.go</a> · line 19 · SHA-256 1515eca1cc78dc2b… · File f0d2594a515e856b…</div>
+      <pre>   18 | import (
+   19 | 	&#34;crypto/ecdsa&#34;
+   20 | 	&#34;crypto/rand&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L28">bccsp/sw/ecdsa.go</a> · line 28 · SHA-256 5e03fc2ced291506… · File f0d2594a515e856b…</div>
+      <pre>   27 | func signECDSA(k *ecdsa.PrivateKey, digest []byte, opts bccsp.SignerOpts) ([]byte, error) {
+   28 | 	r, s, err := ecdsa.Sign(rand.Reader, k, digest)
+   29 | 	if err != nil {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L56">bccsp/sw/ecdsa.go</a> · line 56 · SHA-256 cc80b9b87564d0ae… · File f0d2594a515e856b…</div>
+      <pre>   55 | 
+   56 | 	return ecdsa.Verify(k, digest, r, s), nil
+   57 | }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsakey.go#L19">bccsp/sw/ecdsakey.go</a> · line 19 · SHA-256 da30811132376f30… · File 194f71f7e0d952ec…</div>
+      <pre>   18 | import (
+   19 | 	&#34;crypto/ecdsa&#34;
+   20 | 	&#34;crypto/elliptic&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L11">bccsp/sw/fileks.go</a> · line 11 · SHA-256 e5b44015f00ef128… · File a0c92a6cfdcba39b…</div>
+      <pre>   10 | 	&#34;bytes&#34;
+   11 | 	&#34;crypto/ecdsa&#34;
+   12 | 	&#34;crypto/ed25519&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keyderiv.go#L20">bccsp/sw/keyderiv.go</a> · line 20 · SHA-256 9f85b73ac6ec1422… · File fb6673a63d52fa58…</div>
+      <pre>   19 | import (
+   20 | 	&#34;crypto/ecdsa&#34;
+   21 | 	&#34;crypto/hmac&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L10">bccsp/sw/keygen.go</a> · line 10 · SHA-256 7983932d009be78f… · File 51177e8239b008e1…</div>
+      <pre>    9 | import (
+   10 | 	&#34;crypto/ecdsa&#34;
+   11 | 	&#34;crypto/ed25519&#34;</pre>
+    <h4>Limitations of the check</h4><p class="small">This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.</p>
+    <h4>Recommendation</h4><p>Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.</p>
+    <h4>Retest procedure</h4><p>Re-run the inventory after refactoring.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-17512">
+    <header><span class="fid">QSI-2026-17512 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+    <h3>Quantum-vulnerable Ed25519: role not determined (6 file(s))</h3>
+    <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>39 reference(s) to Ed25519 across 6 file(s), e.g. bccsp/sw/ed25519.go:15. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>source-code:Ed25519:general</dd>
+      <dt>Data source</dt><dd>bccsp/sw/ed25519.go</dd>
+      <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
+      <dt>Analyzer</dt><dd>source_code 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>34.2 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+<dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → migration would finish too late under this scenario</dd>    </dl>
+    <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
+    <h4>Reproduction steps</h4><pre>Open bccsp/sw/ed25519.go:15 and inspect the quoted lines; the evidence lists further files.</pre>
+    <h4 id="ev-QSI-2026-17512">Evidence</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L15">bccsp/sw/ed25519.go</a> · line 15 · SHA-256 be962610d24d0e25… · File 071a175c9ce2398e…</div>
+      <pre>   14 | func signED25519(k *ed25519.PrivateKey, msg []byte, opts bccsp.SignerOpts) ([]byte, error) {
+   15 | 	signature := ed25519.Sign(*k, msg)
+   16 | 	return signature, nil</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L20">bccsp/sw/ed25519.go</a> · line 20 · SHA-256 aa94dd71ac249c87… · File 071a175c9ce2398e…</div>
+      <pre>   19 | func verifyED25519(k *ed25519.PublicKey, signature, msg []byte, opts bccsp.SignerOpts) (bool, error) {
+   20 | 	return ed25519.Verify(*k, msg, signature), nil
+   21 | }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L23">bccsp/sw/ed25519.go</a> · line 23 · SHA-256 6f33081caebdef55… · File 071a175c9ce2398e…</div>
+      <pre>   22 | 
+   23 | type ed25519Signer struct{}
+   24 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L18">bccsp/sw/ed25519key.go</a> · line 18 · SHA-256 c161f2e6d9d89ebe… · File 5fd0b8364abab17d…</div>
+      <pre>   17 | 
+   18 | type ed25519PrivateKey struct {
+   19 | 	privKey *ed25519.PrivateKey</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L24">bccsp/sw/ed25519key.go</a> · line 24 · SHA-256 ee921a0dccc1f590… · File 5fd0b8364abab17d…</div>
+      <pre>   23 | // if this operation is allowed.
+   24 | func (k *ed25519PrivateKey) Bytes() ([]byte, error) {
+   25 | 	return nil, errors.New(&#34;Not supported.&#34;)</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L29">bccsp/sw/ed25519key.go</a> · line 29 · SHA-256 488f2f75c771d7f1… · File 5fd0b8364abab17d…</div>
+      <pre>   28 | // SKI returns the subject key identifier of this key.
+   29 | func (k *ed25519PrivateKey) SKI() []byte {
+   30 | 	if k.privKey == nil {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L147">bccsp/sw/fileks.go</a> · line 147 · SHA-256 1cfe306c77e7f769… · File a0c92a6cfdcba39b…</div>
+      <pre>  146 | 		case ed25519.PrivateKey:
+  147 | 			return &amp;ed25519PrivateKey{&amp;k}, nil
+  148 | 		case *rsa.PrivateKey:</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L164">bccsp/sw/fileks.go</a> · line 164 · SHA-256 749ebaa93ccb6808… · File a0c92a6cfdcba39b…</div>
+      <pre>  163 | 		case ed25519.PublicKey:
+  164 | 			return &amp;ed25519PublicKey{&amp;k}, nil
+  165 | 		case *rsa.PublicKey:</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L198">bccsp/sw/fileks.go</a> · line 198 · SHA-256 070f2f8ff0382634… · File a0c92a6cfdcba39b…</div>
+      <pre>  197 | 
+  198 | 	case *ed25519PrivateKey:
+  199 | 		err = ks.storePrivateKey(hex.EncodeToString(k.SKI()), kk.privKey)</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L36">bccsp/sw/keygen.go</a> · line 36 · SHA-256 07b0787395320c0d… · File 51177e8239b008e1…</div>
+      <pre>   35 | func (kg *ed25519KeyGenerator) KeyGen(opts bccsp.KeyGenOpts) (bccsp.Key, error) {
+   36 | 	_, privKey, err := ed25519.GenerateKey(rand.Reader)
+   37 | 	if err != nil {</pre>
+    <h4>Limitations of the check</h4><p class="small">This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.</p>
+    <h4>Recommendation</h4><p>Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.</p>
+    <h4>Retest procedure</h4><p>Re-run the inventory after refactoring.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-17513">
+    <header><span class="fid">QSI-2026-17513 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+    <h3>Quantum-vulnerable RSA: role not determined (6 file(s))</h3>
+    <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>7 reference(s) to RSA across 6 file(s), e.g. bccsp/sw/fileks.go:13. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>source-code:RSA:general</dd>
+      <dt>Data source</dt><dd>bccsp/sw/fileks.go</dd>
+      <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
+      <dt>Analyzer</dt><dd>source_code 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>34.2 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+<dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → migration would finish too late under this scenario</dd>    </dl>
+    <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
+    <h4>Reproduction steps</h4><pre>Open bccsp/sw/fileks.go:13 and inspect the quoted lines; the evidence lists further files.</pre>
+    <h4 id="ev-QSI-2026-17513">Evidence</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L13">bccsp/sw/fileks.go</a> · line 13 · SHA-256 768ee06b9c3e2ed1… · File a0c92a6cfdcba39b…</div>
+      <pre>   12 | 	&#34;crypto/ed25519&#34;
+   13 | 	&#34;crypto/rsa&#34;
+   14 | 	&#34;encoding/hex&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L14">bccsp/sw/keygen.go</a> · line 14 · SHA-256 364e7ffecee10ae3… · File 51177e8239b008e1…</div>
+      <pre>   13 | 	&#34;crypto/rand&#34;
+   14 | 	&#34;crypto/rsa&#34;
+   15 | 	&#34;fmt&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L62">bccsp/sw/keygen.go</a> · line 62 · SHA-256 b7bba74d01f03eef… · File 51177e8239b008e1…</div>
+      <pre>   61 | func (kg *rsaKeyGenerator) KeyGen(opts bccsp.KeyGenOpts) (bccsp.Key, error) {
+   62 | 	lowLevelKey, err := rsa.GenerateKey(rand.Reader, int(kg.length))
+   63 | 	if err != nil {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keyimport.go#L12">bccsp/sw/keyimport.go</a> · line 12 · SHA-256 7318348444f9d7d1… · File 573e238eea23ae85…</div>
+      <pre>   11 | 	&#34;crypto/ed25519&#34;
+   12 | 	&#34;crypto/rsa&#34;
+   13 | 	&#34;crypto/x509&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keys.go#L15">bccsp/sw/keys.go</a> · line 15 · SHA-256 070992b7bb94b0db… · File cd0a974ae8900553…</div>
+      <pre>   14 | 	&#34;crypto/rand&#34;
+   15 | 	&#34;crypto/rsa&#34;
+   16 | 	&#34;crypto/x509&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/rsa.go#L11">bccsp/sw/rsa.go</a> · line 11 · SHA-256 a77c4604bea38eaa… · File e3112f8c38642c19…</div>
+      <pre>   10 | 	&#34;crypto/rand&#34;
+   11 | 	&#34;crypto/rsa&#34;
+   12 | 	&#34;errors&#34;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/rsakey.go#L10">bccsp/sw/rsakey.go</a> · line 10 · SHA-256 5e8f30d23b521293… · File 93838157dd6a4eca…</div>
+      <pre>    9 | import (
+   10 | 	&#34;crypto/rsa&#34;
+   11 | 	&#34;crypto/sha256&#34;</pre>
+    <h4>Limitations of the check</h4><p class="small">This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.</p>
+    <h4>Recommendation</h4><p>Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.</p>
+    <h4>Retest procedure</h4><p>Re-run the inventory after refactoring.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-17515">
+    <header><span class="fid">QSI-2026-17515 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)</h3>
+    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>17.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6603</pre>
+    <h4 id="ev-QSI-2026-17515">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6603">OSV.dev GO-2026-6603</a> · line 46 · SHA-256 9e43850e0da48e9d…</div>
+      <pre>{&#34;id&#34;: &#34;GO-2026-6603&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-78659&#34;, &#34;CVE-2026-78659&#34;], &#34;modified&#34;: &#34;2026-10-16T09:55:47.068117441Z&#34;, &#34;summary&#34;: &#34;HTTP/2 server memory exhaustion due to Trailer headers in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.</p>
+    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+<p class="small muted">OSV advisory GO-2026-6603</p>  </article>
+  <article class="finding" id="QSI-2026-17516">
+    <header><span class="fid">QSI-2026-17516 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)</h3>
+    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.58.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.Transport.NewClientConn, golang.org/x/net/http2.Transport.RoundTrip, golang.org/x/net/http2.Transport.RoundTripOpt, golang.org/x/net/http2.clientConnPool.GetClientConn, golang.org/x/net/http2.clientConnReadLoop.handleResponse, golang.org/x/net/http2.noDialClientConnPool.GetClientConn …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>17.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6610</pre>
+    <h4 id="ev-QSI-2026-17516">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6610">OSV.dev GO-2026-6610</a> · line 46 · SHA-256 1b823e53f2709379…</div>
+      <pre>{&#34;id&#34;: &#34;GO-2026-6610&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-78660&#34;, &#34;CVE-2026-78660&#34;], &#34;modified&#34;: &#34;2026-10-16T09:56:04.364467528Z&#34;, &#34;summary&#34;: &#34;HTTP/2 transport accepts malformed framing-related headers in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.</p>
+    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+<p class="small muted">OSV advisory GO-2026-6610</p>  </article>
+  <article class="finding" id="QSI-2026-17517">
+    <header><span class="fid">QSI-2026-17517 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)</h3>
+    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.58.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ClientConn.addStreamLocked, golang.org/x/net/http2.ConfigureServer …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>17.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6611</pre>
+    <h4 id="ev-QSI-2026-17517">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6611">OSV.dev GO-2026-6611</a> · line 46 · SHA-256 c9b9f78637131224…</div>
+      <pre>{&#34;id&#34;: &#34;GO-2026-6611&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-78669&#34;, &#34;CVE-2026-78669&#34;], &#34;modified&#34;: &#34;2026-10-16T09:55:38.952277866Z&#34;, &#34;summary&#34;: &#34;Excessive CPU consumption from repeated initial window changes in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.</p>
+    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+<p class="small muted">OSV advisory GO-2026-6611</p>  </article>
+  <article class="finding" id="QSI-2026-17518">
+    <header><span class="fid">QSI-2026-17518 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)</h3>
+    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.58.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>17.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6612</pre>
+    <h4 id="ev-QSI-2026-17518">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6612">OSV.dev GO-2026-6612</a> · line 46 · SHA-256 1471910f88c9bbf8…</div>
+      <pre>{&#34;id&#34;: &#34;GO-2026-6612&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-78663&#34;, &#34;CVE-2026-78663&#34;], &#34;modified&#34;: &#34;2026-10-16T09:55:54.129082194Z&#34;, &#34;summary&#34;: &#34;Double flow control refund on HTTP/2 server streams in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.</p>
+    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+<p class="small muted">OSV advisory GO-2026-6612</p>  </article>
+  <article class="finding" id="QSI-2026-17519">
+    <header><span class="fid">QSI-2026-17519 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)</h3>
+    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>17.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6617</pre>
+    <h4 id="ev-QSI-2026-17519">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6617">OSV.dev GO-2026-6617</a> · line 46 · SHA-256 b948c88d959bc789…</div>
+      <pre>{&#34;id&#34;: &#34;GO-2026-6617&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-97032&#34;, &#34;CVE-2026-97032&#34;], &#34;modified&#34;: &#34;2026-10-16T09:55:57.350751224Z&#34;, &#34;summary&#34;: &#34;HTTP/2 server crash due to HPACK encoder race in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.</p>
+    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+<p class="small muted">OSV advisory GO-2026-6617</p>  </article>
+  <article class="finding" id="QSI-2026-17520">
+    <header><span class="fid">QSI-2026-17520 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)</h3>
+    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.58.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Parse, golang.org/x/net/html.ParseFragment, golang.org/x/net/html.ParseFragmentWithOptions, golang.org/x/net/html.ParseWithOptions, golang.org/x/net/html.parser.addText, golang.org/x/net/html.parser.fosterParent …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>17.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6860</pre>
+    <h4 id="ev-QSI-2026-17520">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6860">OSV.dev GO-2026-6860</a> · line 46 · SHA-256 1f106c45371219ba…</div>
+      <pre>{&#34;id&#34;: &#34;GO-2026-6860&#34;, &#34;aliases&#34;: [&#34;CVE-2026-78661&#34;], &#34;modified&#34;: &#34;2026-10-27T21:30:04.890809062Z&#34;, &#34;summary&#34;: &#34;Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.</p>
+    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+<p class="small muted">OSV advisory GO-2026-6860</p>  </article>
+  <article class="finding" id="QSI-2026-17521">
+    <header><span class="fid">QSI-2026-17521 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)</h3>
+    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.58.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.3.0 · 2026-11-06 10:15 UTC</dd>
+      <dt>Priority score</dt><dd>17.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6866</pre>
+    <h4 id="ev-QSI-2026-17521">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6866">OSV.dev GO-2026-6866</a> · line 46 · SHA-256 102267a016bc5eef…</div>
+      <pre>{&#34;id&#34;: &#34;GO-2026-6866&#34;, &#34;aliases&#34;: [&#34;CVE-2026-97045&#34;], &#34;modified&#34;: &#34;2026-10-27T21:45:08.978077289Z&#34;, &#34;summary&#34;: &#34;Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.</p>
+    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+<p class="small muted">OSV advisory GO-2026-6866</p>  </article>
+</section>
+
+<section class="chapter" id="evidence">
+  <h2>Evidence</h2>
+  <table class="data"><tr><th>ID</th><th>Type</th><th>Data source</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-17514">QSI-2026-17514</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj">OSV.dev GHSA-2v4p-qf9q-27wj</a> (line 19)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3566bf539cd1bed726145fc02332a18308f9a065bb8b992c0e44deb9ec44221a</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/ecdsakey.go#L19">bccsp/pkcs11/ecdsakey.go</a> (line 19)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">87680e3cf321a1d927f748c94e56fef66319eb13e2554469b4d613e55886927b</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L11">bccsp/pkcs11/pkcs11.go</a> (line 11)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8da8b0c88ebe01946640787c08a65d84eb065c628bc69992d0bd8b7d1eda1ff8</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L330">bccsp/pkcs11/pkcs11.go</a> (line 330)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c46c43f1ab599be0dc6777bac06d578b05466bf53f5527162b89cacfcc3b671c</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L19">bccsp/sw/ecdsa.go</a> (line 19)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1515eca1cc78dc2b7c4fde09c0aa059dc7c5a6a53519f5c1b42098f4eadc395d</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L28">bccsp/sw/ecdsa.go</a> (line 28)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5e03fc2ced291506b09bf90d810db18d327d592f8781b028b97d572b077c587c</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L56">bccsp/sw/ecdsa.go</a> (line 56)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cc80b9b87564d0ae70ba183543c926e98984365178ee8a10c6384959a648b188</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsakey.go#L19">bccsp/sw/ecdsakey.go</a> (line 19)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">da30811132376f3039c613505f0d52458e1593d43e0280ad13aaf57389cf7c73</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L11">bccsp/sw/fileks.go</a> (line 11)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e5b44015f00ef128ab2f3d1c4f1dee7dcd77a13dd2b3391fad9bc2ecb9c49ae6</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keyderiv.go#L20">bccsp/sw/keyderiv.go</a> (line 20)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9f85b73ac6ec142259370ca9358f25e99f4a2d13e133f7ddee639c918ed9af9b</td></tr><tr><td><a href="#ev-QSI-2026-17511">QSI-2026-17511</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L10">bccsp/sw/keygen.go</a> (line 10)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7983932d009be78f478f371ae58c3f86b9f6b72f687b9ed011a4aee4ad95d71d</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L15">bccsp/sw/ed25519.go</a> (line 15)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">be962610d24d0e25089b18a267e417de6efea2a91e686d6803d7a04d54b8cb0c</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L20">bccsp/sw/ed25519.go</a> (line 20)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">aa94dd71ac249c8771fc540b4bc0ae1102dafe73a0a1f2722a94d7ba614d5d79</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L23">bccsp/sw/ed25519.go</a> (line 23)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6f33081caebdef556a3b8c3fe6eeca1f1c206bd80023c04d0dd16a68a6634e70</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L18">bccsp/sw/ed25519key.go</a> (line 18)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c161f2e6d9d89ebe1d96be52c121110e7611fbcf8cb5872b5816d483a91b9152</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L24">bccsp/sw/ed25519key.go</a> (line 24)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ee921a0dccc1f590e41024cdb8f552d96e7e79860fc51361bdd9e7282a296bd9</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L29">bccsp/sw/ed25519key.go</a> (line 29)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">488f2f75c771d7f192ac75a4d1524cd88cad84dc34abaa8f25806c126cb56d58</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L147">bccsp/sw/fileks.go</a> (line 147)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1cfe306c77e7f7694c28b313f33d969f772a0285e232590afa48e1c614905b2c</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L164">bccsp/sw/fileks.go</a> (line 164)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">749ebaa93ccb680875e11da118e180004d476946a6c4e4bcacbc5ac6dc3056b6</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L198">bccsp/sw/fileks.go</a> (line 198)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">070f2f8ff0382634eed998627dc8b68a8775020445d49702f7472219ea427e14</td></tr><tr><td><a href="#ev-QSI-2026-17512">QSI-2026-17512</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L36">bccsp/sw/keygen.go</a> (line 36)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">07b0787395320c0dcb325ee82d4a64a304cd8fc2872374aa7dd3cfc78e7191c7</td></tr><tr><td><a href="#ev-QSI-2026-17513">QSI-2026-17513</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L13">bccsp/sw/fileks.go</a> (line 13)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">768ee06b9c3e2ed1d6af2ed858f328bdd5acdddaccbe6d3c2ecd30aebb1ab1d7</td></tr><tr><td><a href="#ev-QSI-2026-17513">QSI-2026-17513</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L14">bccsp/sw/keygen.go</a> (line 14)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">364e7ffecee10ae3b8e624ca22f247d6c912d5e4981f71e890c23ab5677cf5dd</td></tr><tr><td><a href="#ev-QSI-2026-17513">QSI-2026-17513</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L62">bccsp/sw/keygen.go</a> (line 62)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b7bba74d01f03eef780ca8edc8d8f543670a53cc919dc442239153bb3820145c</td></tr><tr><td><a href="#ev-QSI-2026-17513">QSI-2026-17513</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keyimport.go#L12">bccsp/sw/keyimport.go</a> (line 12)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7318348444f9d7d18c85c7efbf08d2965e7d68412a40ee459b218cde70685d97</td></tr><tr><td><a href="#ev-QSI-2026-17513">QSI-2026-17513</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keys.go#L15">bccsp/sw/keys.go</a> (line 15)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">070992b7bb94b0dbc8e66fb1b57b459fe619fa742bac22418518a3f923a61864</td></tr><tr><td><a href="#ev-QSI-2026-17513">QSI-2026-17513</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/rsa.go#L11">bccsp/sw/rsa.go</a> (line 11)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a77c4604bea38eaadc0ee9cf5c192333b6ac97a6a6ab944dce48ee75a086b6a3</td></tr><tr><td><a href="#ev-QSI-2026-17513">QSI-2026-17513</a></td><td>file_excerpt</td><td><a href="https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/rsakey.go#L10">bccsp/sw/rsakey.go</a> (line 10)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5e8f30d23b521293b331ecad3ad4d4d3b8072be834d89f4c17cd5a1a5cad919a</td></tr><tr><td><a href="#ev-QSI-2026-17515">QSI-2026-17515</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6603">OSV.dev GO-2026-6603</a> (line 46)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9e43850e0da48e9d00589cc2bffb372f39ec5e5a280f2f4b04520a91328fd703</td></tr><tr><td><a href="#ev-QSI-2026-17516">QSI-2026-17516</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6610">OSV.dev GO-2026-6610</a> (line 46)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1b823e53f27093797b8a7909032006e1f0f818f04118ad593a4641236392faa9</td></tr><tr><td><a href="#ev-QSI-2026-17517">QSI-2026-17517</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6611">OSV.dev GO-2026-6611</a> (line 46)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c9b9f78637131224c5d4073e44c47b7cce490fc5526e3d6b0697b43bc85cab2f</td></tr><tr><td><a href="#ev-QSI-2026-17518">QSI-2026-17518</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6612">OSV.dev GO-2026-6612</a> (line 46)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1471910f88c9bbf8395a304fd82510f61567373756002de8bcdc3fbe305890cb</td></tr><tr><td><a href="#ev-QSI-2026-17519">QSI-2026-17519</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6617">OSV.dev GO-2026-6617</a> (line 46)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b948c88d959bc78948c7e3b7a746ac4da179933798e9735d02870080906cfc96</td></tr><tr><td><a href="#ev-QSI-2026-17520">QSI-2026-17520</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6860">OSV.dev GO-2026-6860</a> (line 46)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28</td></tr><tr><td><a href="#ev-QSI-2026-17521">QSI-2026-17521</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6866">OSV.dev GO-2026-6866</a> (line 46)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42</td></tr>  </table>
+</section>
+
+<section class="chapter" id="pq">
+  <h2>Post-quantum assessment</h2>
+  <table class="data">
+    <tr><th></th><th>Key establishment (x = how long data must stay confidential; harvest now, decrypt later)</th><th>Signatures (x = how long signatures/keys must stay trusted)</th></tr>
+    <tr><th>Data/key lifetime x</th><td>10</td><td>10</td></tr>
+    <tr><th>Migration time y</th><td>5</td><td>5</td></tr>
+    <tr><th>Assumed years to CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>7 → migration would finish too late under this scenario</td><td>7 → migration would finish too late under this scenario</td></tr>
+  </table>
+<p class="note">Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client&#39;s figures; with the client&#39;s actual lifetimes the verdict can change.</p>  <h3>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography</h3>
+  <p><strong>Next step:</strong> Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p>
+  <p class="note">Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests.</p>
+  <h3>What the quantum-vulnerable algorithms do</h3>
+  <table class="data"><tr><th>Role</th><th>Algorithms (files)</th><th>ID</th><th>First step</th></tr>
+<tr><td><strong>role not determined</strong></td><td>ECDSA (10), Ed25519 (6), RSA (6)</td><td class="small"><a href="#QSI-2026-17511">QSI-2026-17511</a>, <a href="#QSI-2026-17512">QSI-2026-17512</a>, <a href="#QSI-2026-17513">QSI-2026-17513</a></td><td class="small">Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility</td></tr>  </table>
+  <p class="note">Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today.</p>
+  <p class="note">z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
+  <table class="data"><tr><th>Quantum status</th><th>Count</th></tr>
+<tr><td>reduced margin (Grover), approved</td><td>4</td></tr><tr><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>9</td></tr><tr><td>vulnerable (Shor)</td><td>24</td></tr>  </table>
+  <p><strong>Detailed findings:</strong> QSI-2026-17511, QSI-2026-17512, QSI-2026-17513</p>
+  <h3>PQC readiness questionnaire</h3>
+<p class="muted">No readiness questionnaire was completed for this project.</p>  <h3>Quantum algorithms relevant to this inventory</h3>
+  <table class="data"><tr><th>Quantum algorithm</th><th>Effect</th><th>Inventoried algorithms (rows)</th><th>What it means for this audit</th></tr>
+<tr><td>Shor&#39;s algorithm — factoring<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>breaks</td>
+    <td>RSA (6)</td><td class="small">Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures.</td></tr><tr><td>Shor&#39;s algorithm — elliptic-curve discrete logarithms<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>breaks</td>
+    <td>ECDSA (10), Ed25519 (8)</td><td class="small">Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.</td></tr><tr><td>Grover&#39;s algorithm — key search and preimages<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>weakens (larger keys restore the margin)</td>
+    <td>HMAC (2), SHA-2 (9), SHA-3 (2)</td><td class="small">Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.</td></tr><tr><td>Brassard–Høyer–Tapp — collision search<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>weakens (larger keys restore the margin)</td>
+    <td>SHA-2 (9), SHA-3 (2)</td><td class="small">256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.</td></tr>  </table>
+  <p class="note">Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments.</p>
+</section>
+
+<section class="chapter" id="limitations">
+  <h2>Limitations and assumptions</h2>
+  <ul>
+    <li>This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.</li>
+    <li>z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="plan">
+  <h2>Remediation plan</h2>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17514 · P2 · 30 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Upgrade google.golang.org/grpc to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e).</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>low</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443).</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17515 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>low</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17516 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>low</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17517 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>low</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17518 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>low</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17519 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>low</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17520 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>low</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17521 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>low</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17511 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <h3>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
+      <dt>Expected outcome</dt><dd>Every usage has an owner, a lifetime and a migration path.</dd>
+      <dt>Complexity</dt><dd>medium</dd>
+<dt>Dependencies</dt><dd>Access to system owners.</dd><dt>Side effects</dt><dd>None (documentation and design work).</dd>      <dt>Tests before change</dt><dd>Confirm the inventory entry matches the deployed configuration.</dd>
+      <dt>Tests after change</dt><dd>Inventory review signed off by the system owner.</dd>
+      <dt>Closure criteria</dt><dd>Inventory entry with owner, lifetime and target algorithm exists.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17512 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <h3>Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
+      <dt>Expected outcome</dt><dd>Every usage has an owner, a lifetime and a migration path.</dd>
+      <dt>Complexity</dt><dd>medium</dd>
+<dt>Dependencies</dt><dd>Access to system owners.</dd><dt>Side effects</dt><dd>None (documentation and design work).</dd>      <dt>Tests before change</dt><dd>Confirm the inventory entry matches the deployed configuration.</dd>
+      <dt>Tests after change</dt><dd>Inventory review signed off by the system owner.</dd>
+      <dt>Closure criteria</dt><dd>Inventory entry with owner, lifetime and target algorithm exists.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17513 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <h3>Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
+      <dt>Expected outcome</dt><dd>Every usage has an owner, a lifetime and a migration path.</dd>
+      <dt>Complexity</dt><dd>medium</dd>
+<dt>Dependencies</dt><dd>Access to system owners.</dd><dt>Side effects</dt><dd>None (documentation and design work).</dd>      <dt>Tests before change</dt><dd>Confirm the inventory entry matches the deployed configuration.</dd>
+      <dt>Tests after change</dt><dd>Inventory review signed off by the system owner.</dd>
+      <dt>Closure criteria</dt><dd>Inventory entry with owner, lifetime and target algorithm exists.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17511 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
+      <dt>Expected outcome</dt><dd>The asset uses a NIST-standardized post-quantum or hybrid algorithm.</dd>
+      <dt>Complexity</dt><dd>high</dd>
+<dt>Dependencies</dt><dd>Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.</dd><dt>Side effects</dt><dd>Larger keys/signatures, possible performance and compatibility impact.</dd>      <dt>Tests before change</dt><dd>Interoperability tests in a staging environment.</dd>
+      <dt>Tests after change</dt><dd>Verify the negotiated/used algorithm on the production asset.</dd>
+      <dt>Closure criteria</dt><dd>Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17512 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
+      <dt>Expected outcome</dt><dd>The asset uses a NIST-standardized post-quantum or hybrid algorithm.</dd>
+      <dt>Complexity</dt><dd>high</dd>
+<dt>Dependencies</dt><dd>Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.</dd><dt>Side effects</dt><dd>Larger keys/signatures, possible performance and compatibility impact.</dd>      <dt>Tests before change</dt><dd>Interoperability tests in a staging environment.</dd>
+      <dt>Tests after change</dt><dd>Verify the negotiated/used algorithm on the production asset.</dd>
+      <dt>Closure criteria</dt><dd>Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-17513 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
+      <dt>Expected outcome</dt><dd>The asset uses a NIST-standardized post-quantum or hybrid algorithm.</dd>
+      <dt>Complexity</dt><dd>high</dd>
+<dt>Dependencies</dt><dd>Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.</dd><dt>Side effects</dt><dd>Larger keys/signatures, possible performance and compatibility impact.</dd>      <dt>Tests before change</dt><dd>Interoperability tests in a staging environment.</dd>
+      <dt>Tests after change</dt><dd>Verify the negotiated/used algorithm on the production asset.</dd>
+      <dt>Closure criteria</dt><dd>Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="chapter" id="priorities">
+  <h2>Priorities for 30, 60 and 90 days</h2>
+  <h3>30 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td>P2</td><td>QSI-2026-17514</td><td>Upgrade google.golang.org/grpc to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e).</td><td class="small">root-cause fix</td></tr>  </table>
+  <h3>60 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td>P3</td><td>QSI-2026-17515</td><td>Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-17516</td><td>Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-17517</td><td>Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-17518</td><td>Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-17519</td><td>Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-17520</td><td>Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-17521</td><td>Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.</td><td class="small">root-cause fix</td></tr>  </table>
+  <h3>90 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td>P3</td><td>QSI-2026-17511</td><td>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P3</td><td>QSI-2026-17512</td><td>Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P3</td><td>QSI-2026-17513</td><td>Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P4</td><td>QSI-2026-17511</td><td>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr><tr><td>P4</td><td>QSI-2026-17512</td><td>Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr><tr><td>P4</td><td>QSI-2026-17513</td><td>Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr>  </table>
+</section>
+
+<section class="chapter" id="retests">
+  <h2>Verification after remediation</h2>
+  <table class="data"><tr><th>ID</th><th>Retest procedure</th></tr>
+<tr><td>QSI-2026-17514</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-17511</td><td>Re-run the inventory after refactoring.</td></tr><tr><td>QSI-2026-17512</td><td>Re-run the inventory after refactoring.</td></tr><tr><td>QSI-2026-17513</td><td>Re-run the inventory after refactoring.</td></tr><tr><td>QSI-2026-17515</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-17516</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-17517</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-17518</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-17519</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-17520</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-17521</td><td>Re-run the dependency scan after upgrading.</td></tr>  </table>
+</section>
+
+<section class="chapter" id="tools">
+  <h2>Tools used</h2>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.2.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.3.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.3.0</td></tr><tr><td>source_code</td><td>1.4.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.3.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+</section>
+
+<section class="chapter" id="references">
+  <h2>Sources and normative documents</h2>
+  <p class="small muted">Reviewed: 2026-10-13</p>
+  <ol class="small"><li>A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <a href="https://eprint.iacr.org/2017/847">https://eprint.iacr.org/2017/847</a> <span class="muted">(peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)</span></li><li>C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <a href="https://eprint.iacr.org/2026/280">https://eprint.iacr.org/2026/280</a> <span class="muted">(revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)</span></li><li>C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917) — arXiv. <a href="https://arxiv.org/abs/2505.15917">https://arxiv.org/abs/2505.15917</a> <span class="muted">(preprint (2025-05-21): &lt; 1 million noisy qubits, &lt; 1 week, 0.1% gate error, 1 µs surface-code cycle)</span></li><li>C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <a href="https://doi.org/10.22331/q-2021-04-15-433">https://doi.org/10.22331/q-2021-04-15-433</a> <span class="muted">(peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)</span></li><li>C. Zalka — Grover&#39;s quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <a href="https://doi.org/10.1103/PhysRevA.60.2746">https://doi.org/10.1103/PhysRevA.60.2746</a> <span class="muted">(peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <a href="https://cr.yp.to/hash/collisioncost-20090823.pdf">https://cr.yp.to/hash/collisioncost-20090823.pdf</a> <span class="muted">(paper dated 2009-08-23)</span></li><li>D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <a href="https://arxiv.org/abs/2306.08585">https://arxiv.org/abs/2306.08585</a> <span class="muted">(preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN &#39;98; arXiv:quant-ph/9705002) — Springer / arXiv. <a href="https://arxiv.org/abs/quant-ph/9705002">https://arxiv.org/abs/quant-ph/9705002</a> <span class="muted">(peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)</span></li><li>J. Proos, C. Zalka — Shor&#39;s discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information &amp; Computation. <a href="https://doi.org/10.26421/QIC3.4-3">https://doi.org/10.26421/QIC3.4-3</a> <span class="muted">(peer-reviewed article)</span></li><li>L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <a href="https://doi.org/10.1145/237814.237866">https://doi.org/10.1145/237814.237866</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <a href="https://arxiv.org/abs/1603.09383">https://arxiv.org/abs/1603.09383</a> <span class="muted">(peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <a href="https://arxiv.org/abs/1706.06752">https://arxiv.org/abs/1706.06752</a> <span class="muted">(peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/final">https://csrc.nist.gov/pubs/ir/8547/final</a> <span class="muted">(final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)</span></li><li>NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)">https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)</a> <span class="muted">(security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)</span></li><li>OSV advisory GHSA-2v4p-qf9q-27wj — OSV.dev. <a href="https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj">https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj</a> <span class="muted">(modified 2026-09-25T18:00:05.270054427Z)</span></li><li>OSV advisory GO-2026-6603 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6603">https://osv.dev/vulnerability/GO-2026-6603</a> <span class="muted">(modified 2026-10-16T09:55:47.068117441Z)</span></li><li>OSV advisory GO-2026-6610 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6610">https://osv.dev/vulnerability/GO-2026-6610</a> <span class="muted">(modified 2026-10-16T09:56:04.364467528Z)</span></li><li>OSV advisory GO-2026-6611 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6611">https://osv.dev/vulnerability/GO-2026-6611</a> <span class="muted">(modified 2026-10-16T09:55:38.952277866Z)</span></li><li>OSV advisory GO-2026-6612 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6612">https://osv.dev/vulnerability/GO-2026-6612</a> <span class="muted">(modified 2026-10-16T09:55:54.129082194Z)</span></li><li>OSV advisory GO-2026-6617 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6617">https://osv.dev/vulnerability/GO-2026-6617</a> <span class="muted">(modified 2026-10-16T09:55:57.350751224Z)</span></li><li>OSV advisory GO-2026-6860 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6860">https://osv.dev/vulnerability/GO-2026-6860</a> <span class="muted">(modified 2026-10-27T21:30:04.890809062Z)</span></li><li>OSV advisory GO-2026-6866 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6866">https://osv.dev/vulnerability/GO-2026-6866</a> <span class="muted">(modified 2026-10-27T21:45:08.978077289Z)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <a href="https://arxiv.org/abs/2603.28846">https://arxiv.org/abs/2603.28846</a> <span class="muted">(preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with &lt; 1200 logical qubits and &lt; 90 M Toffoli gates (or &lt; 1450 and &lt; 70 M); &lt; 500,000 physical qubits at 10^-3 error, minutes)</span></li><li>S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <a href="https://arxiv.org/abs/1910.01700">https://arxiv.org/abs/1910.01700</a> <span class="muted">(peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)</span></li></ol>
+</section>
+
+<section class="chapter" id="appendices">
+  <h2>Appendices</h2>
+  <h3>A. Cryptographic inventory</h3>
+  <table class="data"><tr><th>Algorithm</th><th>Parameter</th><th>Quantum status</th><th>Classical status</th><th>Count</th><th>Locations</th><th>Examples</th></tr>
+<tr><td>HMAC</td><td></td><td>reduced margin (Grover), approved</td><td>acceptable</td><td>2</td><td>2</td><td class="small">bccsp/opts.go:53; bccsp/sw/keyderiv.go:21</td></tr><tr><td>SHA-2</td><td>SHA-512</td><td>reduced margin (Grover), approved</td><td>acceptable</td><td>2</td><td>2</td><td class="small">bccsp/sw/conf.go:13; bccsp/sw/new.go:13</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td><td>7</td><td>7</td><td class="small">bccsp/pkcs11/pkcs11.go:13; bccsp/sw/aeskey.go:19; bccsp/sw/conf.go:11</td></tr><tr><td>SHA-3</td><td></td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td><td>2</td><td>2</td><td class="small">bccsp/sw/conf.go:12; bccsp/sw/new.go:12</td></tr><tr><td>ECDSA</td><td></td><td>vulnerable (Shor)</td><td>acceptable</td><td>10</td><td>10</td><td class="small">bccsp/pkcs11/ecdsakey.go:19; bccsp/pkcs11/pkcs11.go:11; bccsp/sw/ecdsa.go:19</td></tr><tr><td>Ed25519</td><td>Ed25519</td><td>vulnerable (Shor)</td><td>acceptable</td><td>8</td><td>8</td><td class="small">bccsp/sw/ed25519.go:15; bccsp/sw/ed25519.go:23; bccsp/sw/ed25519key.go:18</td></tr><tr><td>RSA</td><td></td><td>vulnerable (Shor)</td><td>acceptable</td><td>6</td><td>6</td><td class="small">bccsp/sw/fileks.go:13; bccsp/sw/keygen.go:14; bccsp/sw/keyimport.go:12</td></tr>  </table>
+  <p class="note">Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key.</p>
+  <h3>B. JSON</h3>
+  <p class="small">qsi.report/1 · SHA-256 967ff3502b91c3f489ae4dc96bfd80d7f227c73a45038ab60ffb4c654876bd06</p>
+  <h3>C. Input files</h3>
+  <table class="data"><tr><th>File</th><th>Size</th><th>SHA-256</th><th>Redactions</th></tr>
+<tr><td>bccsp/aesopts.go</td><td>2596</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ca0493dd6054d092027e94af3901048adc01f16192de79807d30c85378b78543</td><td>0</td></tr><tr><td>bccsp/bccsp.go</td><td>4212</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">82df76a75ee87e4324e9c13879bc87aa471c84db6e7d689efee6174a274ff4da</td><td>0</td></tr><tr><td>bccsp/ecdsaopts.go</td><td>1499</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ed667e09393298574ad06ed64fd2cb47d855adbceca018c0d23b24654679b649</td><td>0</td></tr><tr><td>bccsp/factory/factory.go</td><td>2478</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a24b6d7c7ddad62bbc52aee8c7b01fb9f3a4601ef2ed943ddb84451273e08b99</td><td>0</td></tr><tr><td>bccsp/factory/nopkcs11.go</td><td>1880</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">24e6532515f4ff707d8b385cf73c4a16f3d279a782a85191b3a23772dbe07c40</td><td>0</td></tr><tr><td>bccsp/factory/opts.go</td><td>452</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">504596b431861eb308f783f1a6cb026a81f45f8f0e712411e2a9eb08ccc6cafa</td><td>0</td></tr><tr><td>bccsp/factory/pkcs11.go</td><td>2645</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5264fbdf04137dfb54051eef9278ee7df1692e8a3c5da4c4b54b8f2f2f14f5ac</td><td>0</td></tr><tr><td>bccsp/factory/pkcs11factory.go</td><td>1453</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c3ff2ec1dd00121e599cbccd98dce463d1cdbf22c113d0a924969ffe78eac559</td><td>0</td></tr><tr><td>bccsp/factory/swfactory.go</td><td>2196</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d08d9a5961a76c2ded743dde029d20da7644a6fb329e3f27e95db53f2652360c</td><td>0</td></tr><tr><td>bccsp/hashopts.go</td><td>1861</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">29171b614a86730605c063fe1b05ca4abae7dbdb55765d15eb528371fc97f180</td><td>0</td></tr><tr><td>bccsp/keystore.go</td><td>1197</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">07eea30ab3a8cc6f2b94fb686cb158b64c27d95339c1603fe4153531a1e5b39c</td><td>0</td></tr><tr><td>bccsp/opts.go</td><td>10150</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ed73949f83ce35e62e2d29bc2263b6b4e730e24f7e7e81582a32fd6b14c0c606</td><td>0</td></tr><tr><td>bccsp/pkcs11/conf.go</td><td>1330</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1cc57eb00ecafb06d5c6d4ff8dea228eae6ed6b50f935c71451d5fa62d2bec06</td><td>0</td></tr><tr><td>bccsp/pkcs11/ecdsakey.go</td><td>2564</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">41b35f8b4e01edc52825fc73e1041ce296e6fc1d979622d7b437424f72160bd9</td><td>0</td></tr><tr><td>bccsp/pkcs11/pkcs11.go</td><td>27875</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">98a15788cd8cdca171d2c662f6e2eece206a5d8adc91994f75ddd67ffc6bbd4b</td><td>0</td></tr><tr><td>bccsp/rsaopts.go</td><td>1866</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2a90bd507977049cd6a43eca3597569935c3f114c227ba1000dcf1113f3c4543</td><td>0</td></tr><tr><td>bccsp/signer/signer.go</td><td>2574</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1806b0e0b2a4dc08d34a1285eeef7349b6a20bcdfa555363cdee4bf281bea41d</td><td>0</td></tr><tr><td>bccsp/sw/aes.go</td><td>5947</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">25e0c5cb3d867fa8c92f38a5e42c346538da18798f229934c0c00755fc4c057d</td><td>0</td></tr><tr><td>bccsp/sw/aeskey.go</td><td>1741</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">08b6095ec603d320e7839a36859404474eb443e640dc12c06718bb7cc5931dea</td><td>0</td></tr><tr><td>bccsp/sw/conf.go</td><td>1593</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">abcd19356cf759f0688ee38889e90bfd8ba8fc6a3b4608eb50653dde9b13e177</td><td>0</td></tr><tr><td>bccsp/sw/dummyks.go</td><td>1532</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f6d1bc4e721f58f5471f5aef3659e3ba46fc822306d0093d556ede2df66dcb10</td><td>0</td></tr><tr><td>bccsp/sw/ecdsa.go</td><td>2224</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f0d2594a515e856b310d5ff9ab4169d5c0a0f61fc24942e3d46e2500f928e02b</td><td>0</td></tr><tr><td>bccsp/sw/ecdsakey.go</td><td>3024</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">194f71f7e0d952ec3b87a50b5287d7bd139cb41941d75cd260e2e54ab8b01ff3</td><td>0</td></tr><tr><td>bccsp/sw/ed25519.go</td><td>1208</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">071a175c9ce2398e741a262d24325b73260f7d87ea7be622eebb9f505880d580</td><td>0</td></tr><tr><td>bccsp/sw/ed25519key.go</td><td>2555</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5fd0b8364abab17d1378f6aba697ce2ffc0f47138f2d02056b75dd9178e9b158</td><td>0</td></tr><tr><td>bccsp/sw/fileks.go</td><td>11165</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db</td><td>0</td></tr><tr><td>bccsp/sw/hash.go</td><td>923</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b5b4f1a45b5e2f3fd10d4e505ffa08ed1a087d6e9336af29357e11ceb10b4e0c</td><td>0</td></tr><tr><td>bccsp/sw/impl.go</td><td>9978</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e86e5b101dcb085adbd489099d8566e0207e30265537f77ece063d71d0201eb0</td><td>0</td></tr><tr><td>bccsp/sw/internals.go</td><td>3357</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">855ba254295b233c474266690c944f8b5f0c425070fdcee8e5b72652d8d211d5</td><td>0</td></tr><tr><td>bccsp/sw/keyderiv.go</td><td>4131</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fb6673a63d52fa58cdb93b3e75aeb88faf2c2c91ac3e29de9acd7f519f8ac418</td><td>0</td></tr><tr><td>bccsp/sw/keygen.go</td><td>1545</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4</td><td>0</td></tr><tr><td>bccsp/sw/keyimport.go</td><td>6380</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">573e238eea23ae85576a43554db460121e1ac8666fafebb84138326deedd0f25</td><td>0</td></tr><tr><td>bccsp/sw/keys.go</td><td>11408</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cd0a974ae8900553a3f4828afcbbdd30cd479b75a51bc1723d369220e739fe3c</td><td>0</td></tr><tr><td>bccsp/sw/new.go</td><td>5934</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fb412076a0df7836edb4a8823024134f0151607cbc8d6ac6ce27597d1cdb1c2e</td><td>0</td></tr><tr><td>bccsp/sw/rsa.go</td><td>1552</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3112f8c38642c19ebbb5a18c26ce471ec9fd56fae78909c4ff216d5216d2c42</td><td>0</td></tr><tr><td>bccsp/sw/rsakey.go</td><td>2754</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">93838157dd6a4eca5ecf566fa365064df1afa290b08829ae97074ccfcd473de1</td><td>0</td></tr><tr><td>bccsp/utils/ecdsa.go</td><td>2568</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4d39accb8acba4c0041942b921c3a501e15926b19900e6ca8e5980bd5c863660</td><td>0</td></tr><tr><td>common/flogging/core.go</td><td>3184</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ae5cbaeec703dceb5601ac4e5cf77c6c725ce02c6b1edc537d7b3bb9fc843196</td><td>0</td></tr><tr><td>common/flogging/fabenc/color.go</td><td>530</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d32969c9dc25fa3a22acc28f2c289657433b5c06f154be3348cc8766d5ffa933</td><td>0</td></tr><tr><td>common/flogging/fabenc/encoder.go</td><td>3957</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">93ee108897c7c6dba06842927ae1701dc4dffaaea6983e0dd6f845702001cf36</td><td>0</td></tr><tr><td>common/flogging/fabenc/formatter.go</td><td>8861</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bf6d5b76ee67a4d227fca209207f85ad41fc627de4450f8bd0f601f961d63c32</td><td>0</td></tr><tr><td>common/flogging/floggingtest/logger.go</td><td>5246</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">62d66823c89e6e9d93e5fe2712517ae65fa801885d0c4a4393931aae2f89568e</td><td>0</td></tr><tr><td>common/flogging/global.go</td><td>1876</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d7b8402851c29934800911208966e44d8ff8c64056c7b6bdbaf91f9460931128</td><td>0</td></tr><tr><td>common/flogging/httpadmin/fakes/logging.go</td><td>4440</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">01ef7790f685bbd3884afc1e80e8e562ed54aa773b4f902bac5245e56c459e8f</td><td>0</td></tr><tr><td>common/flogging/httpadmin/spec.go</td><td>1860</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">73f3e5e5344a6f6efeb3e669f496e9010906eb2d0a36f663b266a695250a4483</td><td>0</td></tr><tr><td>common/flogging/levels.go</td><td>1565</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">aff982968eb7cf75d91c3320aba1889201187cfe4da94f10b022ebcd7eaba20a</td><td>0</td></tr><tr><td>common/flogging/loggerlevels.go</td><td>4891</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d9ae711ddec04454937fb5c0197e90a6602af38f3dfef6d10fc27a2fcdd0a9fe</td><td>0</td></tr><tr><td>common/flogging/logging.go</td><td>5924</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c24bcf1be2c7c246a8463974d5abff4b2768bf2bbdfbe4dd86ae706b832f044a</td><td>0</td></tr><tr><td>common/flogging/metrics/observer.go</td><td>1249</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a9a75918b8b3ae94742ef39785c1ca947153374ca58abdd83368fb50623aa79d</td><td>0</td></tr><tr><td>common/flogging/zap.go</td><td>5211</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0e1f06d541eed96918d47136c5d09d7a90ff64929ec223017446de85ccb929c3</td><td>0</td></tr><tr><td>common/metrics/cmd/gendoc/main.go</td><td>1641</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0c47cc05ac4e472b424c81945358ac1cc07d21f2304610e7825ccd5ae96b7305</td><td>0</td></tr><tr><td>common/metrics/disabled/provider.go</td><td>947</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cf31485e6ce257ecc591b9a79336a2e0fac078d4aa54565b9a3ae5c6670c4f7c</td><td>0</td></tr><tr><td>common/metrics/gendoc/options.go</td><td>4968</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5d004d5bdc385491ccf26e12fa1e5fdd7b43348acc7b9ab16a5b53e7e3ca184b</td><td>0</td></tr><tr><td>common/metrics/gendoc/table.go</td><td>8899</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">893d08a5996bbc4a7d21c649ab44259d9d402373e2c56654ef9395cab9160b54</td><td>0</td></tr><tr><td>common/metrics/metricsfakes/counter.go</td><td>3624</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4768783f78325d4c6590f4cd719a53ab3c61dd906a0dfc978f75622d7b1b9969</td><td>0</td></tr><tr><td>common/metrics/metricsfakes/gauge.go</td><td>4434</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4a82092ced01547f3ad4d6abf1028a7afd1542ae133909d3ba3cf726e59d4b5c</td><td>0</td></tr><tr><td>common/metrics/metricsfakes/histogram.go</td><td>3774</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ba7ca9aa1b4df78de4f5528e97e12708b9a42332dabd1ea9cd385abd5971697f</td><td>0</td></tr><tr><td>common/metrics/metricsfakes/provider.go</td><td>7331</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">482bdc8f1de53bdcb3553c204a0cc0eae65d0478aa209c563d1e26c9de637ed1</td><td>0</td></tr><tr><td>common/metrics/namer/namer.go</td><td>3213</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">269783a19cec93d1023653757d9880d2b688d2e8736663a002c1af0ac10e7899</td><td>0</td></tr><tr><td>common/metrics/prometheus/provider.go</td><td>1720</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">af19837203d17535cdb8f0f73e3b31ee64b59f74c1aff603f2c787f1853638ef</td><td>0</td></tr><tr><td>common/metrics/provider.go</td><td>6241</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2e302c1f8f336fdeaa892bbb046dbfb96d9e535004d0fe964785946e495cda8c</td><td>0</td></tr><tr><td>common/metrics/statsd/goruntime/collector.go</td><td>4381</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7a72e9edfd4a4c7073d7890e38ec4a4994b187722e5429742b6893825db17e06</td><td>0</td></tr><tr><td>common/metrics/statsd/goruntime/metrics.go</td><td>3003</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c361fb329763628f27925de1d41e8ae1084293a6c30ddf57109f9fd690ee45e1</td><td>0</td></tr><tr><td>common/metrics/statsd/provider.go</td><td>2835</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cc796d42a6f65cf46919a3ba217bcca739d42e0aaae470c258d4cfadae0bb219</td><td>0</td></tr><tr><td>go.mod</td><td>1877</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f0b24cd1313a8979feb1f5e48251b2ee4ad8ad0a6c993c8f52ea581c39e41e5d</td><td>0</td></tr><tr><td>healthz/checker.go</td><td>4918</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bec07fbe52e60910b0fc85149ea4f9b5e502f7e29ea3ad37a61f2dbf795a8d28</td><td>0</td></tr><tr><td>tools/go.mod</td><td>348</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7b34cca11276a6eb65b446751aa74d984045b3e2fee742b56c25cfae62b3d5b5</td><td>0</td></tr>  </table>
+</section>
+</body>
+</html>

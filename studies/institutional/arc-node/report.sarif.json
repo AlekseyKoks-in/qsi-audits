@@ -1,0 +1,3637 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
+          "rules": [
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "rmcp 1.4.0 is affected by GHSA-33f5-2c5q-wgwj (CVE-2026-63127)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "8.2"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports GHSA-33f5-2c5q-wgwj (CVE-2026-63127) for crates.io package rmcp at version 1.4.0: RMCP: Missing Resource Field Validation in OAuth Protected Resource Metadata Discovery. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (2.0.0). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+              },
+              "help": {
+                "text": "OSV.dev reports GHSA-33f5-2c5q-wgwj (CVE-2026-63127) for crates.io package rmcp at version 1.4.0: RMCP: Missing Resource Field Validation in OAuth Protected Resource Metadata Discovery. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (2.0.0). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-33f5-2c5q-wgwj"
+            },
+            {
+              "id": "CODE-HARDCODED-SECRET",
+              "name": "CodeHardcodedSecret",
+              "shortDescription": {
+                "text": "Possible hard-coded secret in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "1 secret-like value(s) of type hex_private_key_32b (first at line 21). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "1 secret-like value(s) of type hex_private_key_32b (first at line 21). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
+              "id": "SOL-DELEGATECALL",
+              "name": "SolDelegatecall",
+              "shortDescription": {
+                "text": "delegatecall usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "delegatecall at line 234. (related: SWC-112) Restrict delegatecall targets to trusted, immutable implementations. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "help": {
+                "text": "delegatecall at line 234. (related: SWC-112) Restrict delegatecall targets to trusted, immutable implementations. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "SOL-ECRECOVER",
+              "name": "SolEcrecover",
+              "shortDescription": {
+                "text": "Raw ecrecover usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "ecrecover at line 148. (related: SWC-117/SWC-121) Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "help": {
+                "text": "ecrecover at line 148. (related: SWC-117/SWC-121) Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "1 reference(s) to Ed25519 across 1 file(s), e.g. crates/signer/src/local.rs:26. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "1 reference(s) to Ed25519 across 1 file(s), e.g. crates/signer/src/local.rs:26. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "SOL-FLOATING-PRAGMA",
+              "name": "SolFloatingPragma",
+              "shortDescription": {
+                "text": "Floating pragma (^0.8.29) in 29 file(s)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "improvement"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "pragma ^0.8.29 in 29 file(s), first at contracts/scripts/Addresses.sol:17. (related: SWC-103) Pin the compiler version used in testing. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "help": {
+                "text": "pragma ^0.8.29 in 29 file(s), first at contracts/scripts/Addresses.sol:17. (related: SWC-103) Pin the compiler version used in testing. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "DEP-ADVISORY-UNRATED",
+              "name": "DepAdvisoryUnrated",
+              "shortDescription": {
+                "text": "anyhow 1.0.102 is affected by RUSTSEC-2026-0190 (no severity rating)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports RUSTSEC-2026-0190 for crates.io package anyhow at version 1.0.102: Unsoundness in `Error::downcast_mut()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (anyhow::Error::downcast_mut); anyhow comes in through other dependencies, which may still call them. Triage the advisory; upgrade to a fixed version (1.0.103) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+              },
+              "help": {
+                "text": "OSV.dev reports RUSTSEC-2026-0190 for crates.io package anyhow at version 1.0.102: Unsoundness in `Error::downcast_mut()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (anyhow::Error::downcast_mut); anyhow comes in through other dependencies, which may still call them. Triage the advisory; upgrade to a fixed version (1.0.103) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0190"
+            },
+            {
+              "id": "SOL-ADMIN-FUNCTIONS",
+              "name": "SolAdminFunctions",
+              "shortDescription": {
+                "text": "Privileged administrative functions in contracts/src/Denylist.sol: addDenylister, removeDenylister"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "Functions guarded by owner/role modifiers: addDenylister, removeDenylister. (related: —) Use a multisig/timelock for admin roles and document them. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "help": {
+                "text": "Functions guarded by owner/role modifiers: addDenylister, removeDenylister. (related: —) Use a multisig/timelock for admin roles and document them. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "DEP-ADVISORY-DEV",
+              "name": "DepAdvisoryDev",
+              "shortDescription": {
+                "text": "1 advisories in 1 development or build-only crates.io package(s)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev lists 1 advisories (0 rated high or critical) for 1 crates.io package(s) that only development or build tooling pulls in (Cargo.lock): e.g. scc@2.4.0 [dev]: RUSTSEC-2026-0205. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller."
+              },
+              "help": {
+                "text": "OSV.dev lists 1 advisories (0 rated high or critical) for 1 crates.io package(s) that only development or build tooling pulls in (Cargo.lock): e.g. scc@2.4.0 [dev]: RUSTSEC-2026-0205. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller."
+              },
+              "helpUri": "https://osv.dev/"
+            },
+            {
+              "id": "DEP-ADVISORY-INFORMATIONAL",
+              "name": "DepAdvisoryInformational",
+              "shortDescription": {
+                "text": "bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev lists RUSTSEC-2025-0141 for crates.io package bincode at version 1.3.3 as informational (unmaintained): Bincode is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones. Plan a move to a maintained alternative, or record the decision to keep it. Advisory data comes from OSV.dev at the recorded time."
+              },
+              "help": {
+                "text": "OSV.dev lists RUSTSEC-2025-0141 for crates.io package bincode at version 1.3.3 as informational (unmaintained): Bincode is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones. Plan a move to a maintained alternative, or record the decision to keep it. Advisory data comes from OSV.dev at the recorded time."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2025-0141"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "rmcp 1.4.0 is affected by GHSA-33f5-2c5q-wgwj (CVE-2026-63127) (dependency: crates.io/rmcp@1.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "33c9904ae32ebc10b0b90da3c061fd42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19526",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "rmcp 1.4.0 is affected by GHSA-9pj6-vhgr-3mwh (CVE-2026-63128) (dependency: crates.io/rmcp@1.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "07dca20236d01874844ce3e7e9a05564"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19528",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CODE-HARDCODED-SECRET",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Possible hard-coded secret in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "711ba6782d6d6ee5a726452aaddd467f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19441",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
+                },
+                "region": {
+                  "startLine": 21
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "hickory-proto 0.25.2 is affected by GHSA-3v94-mw7p-v465 (RUSTSEC-2026-0118) (dependency: crates.io/hickory-proto@0.25.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9ffe114562276776ff080d53d17fa024"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19499",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "hickory-resolver 0.25.2 is affected by GHSA-5j98-2g5x-46v6 (CVE-2026-93657) (dependency: crates.io/hickory-resolver@0.25.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "41ff3c56a29f16b4cb348d0782e97e2d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19501",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "libp2p-quic 0.13.0 is affected by GHSA-5hq8-qhww-jm7q (CVE-2026-61544) (dependency: crates.io/libp2p-quic@0.13.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1e3d86ba73d10da99d6fcce7d4ecced8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19505",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.75 is affected by GHSA-8c75-8mhr-p7r9 (CVE-2026-41678) (dependency: crates.io/openssl@0.10.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "03a6f0a6cee994007876d30d23ac7ee2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19508",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.75 is affected by GHSA-ghm9-cr32-g9qj (CVE-2026-41681) (dependency: crates.io/openssl@0.10.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0933c38dbc506192441b5e32db4caefe"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19509",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.75 is affected by GHSA-hppc-g8h3-xhp3 (CVE-2026-41898) (dependency: crates.io/openssl@0.10.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "420f79409eb5af40269803a25708bd3a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19510",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.75 is affected by GHSA-pqf5-4pqq-29f5 (CVE-2026-41676) (dependency: crates.io/openssl@0.10.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "137148b4c898a24cd968b7d3f677caed"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19512",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.75 is affected by GHSA-xp3w-r5p5-63rr (CVE-2026-42327) (dependency: crates.io/openssl@0.10.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "755363ff9b962e864cbfb3fd9b3ce15e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19514",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0340 (dependency: crates.io/quinn-proto@0.11.15)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2ed65c778f0c0a1523657d6d874be13d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19522",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0341 (dependency: crates.io/quinn-proto@0.11.15)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "43f00660c70e2f072efb71f9b0041e21"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19523",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "delegatecall usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ad79da14254f980f0ac5b7d8f80c044f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19449",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
+                },
+                "region": {
+                  "startLine": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "delegatecall usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6a83979fd412860defa199847a143841"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19465",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol"
+                },
+                "region": {
+                  "startLine": 97
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "delegatecall usage in contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6faf9d21aef9c35e70069d3dce8238e0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19472",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
+                },
+                "region": {
+                  "startLine": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "delegatecall usage in contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "83af49fd2237672140fca3666a864d16"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19484",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol"
+                },
+                "region": {
+                  "startLine": 97
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "jsonwebtoken 9.3.1 is affected by GHSA-h395-gr6q-cpjc (CVE-2026-25537) (dependency: crates.io/jsonwebtoken@9.3.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7e224d1c63a6a5ebbf76b94e741e0e22"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19504",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "rmcp 1.4.0 is affected by GHSA-9g45-5xwm-f3wc (CVE-2026-64684) (dependency: crates.io/rmcp@1.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b1788cacfbfbb73f3c724e1bbb7975d7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19527",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.8"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "rmcp 1.4.0 is affected by GHSA-c9xm-49cp-xcr9 (dependency: crates.io/rmcp@1.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2189d656f2f4af17c46b2162df9e087f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19529",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "serde_with 3.16.1 is affected by GHSA-7gcf-g7xr-8hxj (dependency: crates.io/serde_with@3.16.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19536",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "tar 0.4.45 is affected by GHSA-3pv8-6f4r-ffg2 (dependency: crates.io/tar@0.4.45)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e670838caa3c6871cbba6c50a36ebda3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19537",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ECRECOVER",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Raw ecrecover usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d4cd0bd42e1034a52cb9f702dbe4e7a1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19466",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+                },
+                "region": {
+                  "startLine": 148
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ECRECOVER",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Raw ecrecover usage in contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c6206fc4c8d3e496f2d46458fc198bb5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19485",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+                },
+                "region": {
+                  "startLine": 148
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19421",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19422",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: role not determined (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19420",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: role not determined (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19423",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "block-buffer 0.12.0 is affected by GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.12.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19490",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "cmov 0.5.2 is affected by GHSA-3rjw-m598-pq24 (CVE-2026-50185) (dependency: crates.io/cmov@0.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7d38026e1304bdceecb5f2c55aff6973"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19491",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "hickory-proto 0.25.2 is affected by GHSA-q2qq-hmj6-3wpp (RUSTSEC-2026-0119) (dependency: crates.io/hickory-proto@0.25.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7add4ce5bace9984e4fa9126622305de"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19500",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "hickory-resolver 0.25.2 is affected by GHSA-6f2x-v7q7-m7m5 (dependency: crates.io/hickory-resolver@0.25.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "236aacbe0ce8036f351f8f6fb3cb5a90"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19502",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "openssl 0.10.75 is affected by GHSA-phqj-4mhp-q6mq (CVE-2026-45784) (dependency: crates.io/openssl@0.10.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ebe3fea6258d403ad92ebc5496b5fe3b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19511",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "openssl 0.10.75 is affected by GHSA-xv59-967r-8726 (CVE-2026-44662) (dependency: crates.io/openssl@0.10.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3096cda12577b6c6e8c68fb518737710"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19515",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "opentelemetry_sdk 0.31.0 is affected by GHSA-w9wp-h8wv-79jx (CVE-2026-48504) (dependency: crates.io/opentelemetry_sdk@0.31.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ffbbd8dc8e63311151df5aa3dad0af14"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19516",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "rustls 0.23.36 is affected by GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285) (dependency: crates.io/rustls@0.23.36)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ce4c6575359cf9d153f43bb6f325a231"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19530",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "rustls 0.23.36 is affected by GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) (dependency: crates.io/rustls@0.23.36)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c2c7f55f264ba1c2b08a407506bcb98f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19531",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097) (dependency: crates.io/rand@0.8.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "de9d6880ad9a2af6ca3b69562ca270b4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19525",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (^0.8.29) in 29 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0bfdcb20d878189ffbdfbcd8249420c3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19411",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (^0.8.20) in 336 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b5106ab77ad2ab496f2b2c3a7c47b8a3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19424",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (^0.8.26) in 12 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cc94a3bbc2bdbe29ceb90e29eddead98"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19429",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (^0.8.24) in 70 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ad4c91f080f8598ca456c14e76fe5ad3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19430",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (^0.8.22) in 11 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e0defcfd7d918e64bce05dffca382b42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19440",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (>=0.8.0 <0.9.0) in 6 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "57f820cc63d788ddb1a36d487beca9e6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19442",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (>=0.8.4) in 22 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "693c145cd88da837e8808f4dc9d2384e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19445",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (>=0.4.16) in 24 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "128f2a1c6cc8a667eb679c7821f98323"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19448",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (>=0.6.2) in 44 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "96f0840f5dba383b5f2c1b8739749ec2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19459",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (>=0.5.0) in 28 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8d830756f0a91a611fb00dc1fd662727"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19460",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (>=0.4.11) in 4 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ec4b561717a1e86d91f18e1a58231c95"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19461",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (^0.8.21) in 2 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f8f4be5a45d673b7271ad308142e1c7b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19462",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Floating pragma (>=0.6.9) in 2 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5fa1ee8b8e65f424462f633c031061ec"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19467",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "openssl 0.10.75 is affected by GHSA-xmgf-hq76-4vx2 (CVE-2026-41677) (dependency: crates.io/openssl@0.10.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "43eeea5cb851368e9dc81a2f2fc1edbd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19513",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rustls 0.23.36 is affected by GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) (dependency: crates.io/rustls@0.23.36)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0c214321e3e7ce2b7c0a2531f71801b7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19533",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.7"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rustls 0.23.36 is affected by GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348) (dependency: crates.io/rustls@0.23.36)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d4c7cf2a81d03919d11f20e7dc08e38b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19532",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.7"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "anyhow 1.0.102 is affected by RUSTSEC-2026-0190 (no severity rating) (dependency: crates.io/anyhow@1.0.102)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19486",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "bitmaps 3.2.1 is affected by RUSTSEC-2025-0167 (no severity rating) (dependency: crates.io/bitmaps@3.2.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3185a02e448e74da6653bf7316dd240a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19488",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating) (dependency: crates.io/crypto-bigint@0.5.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19493",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "ctutils 0.4.0 is affected by RUSTSEC-2026-0385 (no severity rating) (dependency: crates.io/ctutils@0.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19494",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "event-listener 5.4.1 is affected by RUSTSEC-2026-0221 (no severity rating) (dependency: crates.io/event-listener@5.4.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f179e31043c775ec7d3bc61eae1ee9e2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19496",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "git2 0.20.4 is affected by RUSTSEC-2026-0183 (no severity rating) (dependency: crates.io/git2@0.20.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4372919ad75ea6b36e82875954842120"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19497",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "git2 0.20.4 is affected by RUSTSEC-2026-0184 (no severity rating) (dependency: crates.io/git2@0.20.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "94a1884d76a8e4e1f3cdeb6bd0c0e5c5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19498",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "imbl-sized-chunks 0.1.3 is affected by RUSTSEC-2026-0292 (no severity rating) (dependency: crates.io/imbl-sized-chunks@0.1.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "41ae157d62a7dc5bd2c77178800c1137"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19503",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "libz-sys 1.1.23 is affected by RUSTSEC-2026-0418 (no severity rating) (dependency: crates.io/libz-sys@1.1.23)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "131155ea58c3e2fbe4aa192d418e1a3b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19506",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "lru 0.16.3 is affected by RUSTSEC-2026-0253 (no severity rating) (dependency: crates.io/lru@0.16.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a99cb340246a5baec640a7f8aa0fb8b1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19507",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0338 (no severity rating) (dependency: crates.io/quinn-proto@0.11.15)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d3ca7fccd21f67bd5f8f9561c7543a2c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19520",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0339 (no severity rating) (dependency: crates.io/quinn-proto@0.11.15)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "654eafedce8c5c17c2ce41da18ded4ea"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19521",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0342 (no severity rating) (dependency: crates.io/quinn-proto@0.11.15)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "39f30a2a3ec7f5404ef71baf0e11c67a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19524",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "rustls-webpki 0.103.13 is affected by RUSTSEC-2026-0382 (CVE-2026-111943) (no severity rating) (dependency: crates.io/rustls-webpki@0.103.13)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ba8434a29ae02f313b720c0655582a47"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19535",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/src/Denylist.sol: addDenylister, removeDenylister"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dcffad3620e3ae68145cd69678bad314"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19412",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/src/Denylist.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/src/common/roles/Pausable.sol: updatePauser"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dce79eee6f8b4e275c2f96a4a7172fe3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19413",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/src/common/roles/Pausable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/src/protocol-config/roles/Controller.sol: updateController"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9303dd1ed17372bffa9b7087876947c4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19414",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/src/protocol-config/roles/Controller.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/src/proxy/AdminUpgradeableProxy.sol: upgradeTo, upgradeToAndCall, changeAdmin"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f700e4378920646c301f880806be23ae"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19415",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/src/proxy/AdminUpgradeableProxy.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/src/validator-manager/PermissionedValidatorManager.sol: transferRegistryOwner, acceptRegistryOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e841690e3d3a457c1e74a55d65858e13"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19416",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/src/validator-manager/PermissionedValidatorManager.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/src/validator-manager/ValidatorRegistry.sol: registerValidator, activateValidator, removeValidator, updateValidatorVotingPower"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b9f2e60aff63a580edaee6a89ef9d395"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19417",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/src/validator-manager/ValidatorRegistry.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/src/validator-manager/roles/Controller.sol: configureController, removeController, updateVotingPowerLimit"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "bdd0428e861c327966ce92d70f1e2a6d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19418",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/src/validator-manager/roles/Controller.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/src/validator-manager/roles/ValidatorRegisterer.sol: addValidatorRegisterer, removeValidatorRegisterer"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "20977c5637abd289e2ba67ac2525a261"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19419",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/src/validator-manager/roles/ValidatorRegisterer.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "14e03955aa13040e49cef5f4f9cc900e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19425",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "348fe292d8e1a7f77bcd6ac7d32508b4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19426",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ccfa14f93a4db5635ccc7a4b409a0951"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19427",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2ff82d3f6dc6cf34fc0ec55b7694eff2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19428",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "980633dc7ac7cf12aed1e1a43addd30a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19431",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c9ed5951b2f72c379d14caaa972eee6c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19432",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol: setProposalGuardian"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7c6939bfca410c9b208df5303827c0d5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19433",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1369dd25aa0e10a7d48a7a67853ed990"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19434",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0baff6ff30769c74a3e39212def681a3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19435",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a0a10f2d56415c634e4eddad781ea533"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19436",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "87a0ef55a62051b1d91f889565c2850b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19437",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5c02f1a71993a7cbb49de2c3c6fb0f31"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19438",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol: updateSuperQuorumNumerator"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45cb149fcf004dd921da9d5885d4a13a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19439",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1810ea6eec22adcb4d6f42fd5a479c8e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19443",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "bc09caf020fcc4e865fdf87ddd7f23c8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19444",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9f0c45903786838f72fcba933c72fe9e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19446",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c027e913f910d58a99a70c844cfff11b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19447",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "794a515aa00a229083e21bcd331084f7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19450",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf154d999dcd058bf042cf08248b2b4f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19451",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "77a6851702ce8f524017a9df776b3c76"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19452",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0cd232baf52b5b65be7263b5c5aa6e7e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19453",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0546650664dd252b5782821fca1f58a3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19454",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0f2f5d5719740c98a0e6695bfd8a9007"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19455",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fdc99088f8fa25018286d6decf703bc2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19456",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6f90f99a6994dad7b14f92a2f0b3bbc8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19457",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "48bb28408ea046060a15159de458248f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19458",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a511339bcd940406446dcfa50d315ed5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19463",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "51e575ad203791c6bd2a38e08c4565de"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19464",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "42f454ccaf1999f9b9c13c4ffa984dfe"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19468",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1b470877f482e26d856c413ad260fb29"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19469",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5ec0ff8b04a564814a68b541401f56d5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19470",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "739b6770de0ea17c49a13d92d89a8feb"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19471",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "270c92185b00c6c00db658de44801d68"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19473",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "70ddbba4f5660ffad5f799e5ebb450d2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19474",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b6988a3180e5a804b3ba3f7dcf9cda46"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19475",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6885c1bc541aab70846256134ecf416d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19476",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ed0cb3e33a88571705ad2bc8667b3274"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19477",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9198a625b78e9f28b2290b7240507cc7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19478",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "69d5a412120b430c5319acad67459176"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19479",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c18a8a6b761ab487f606db71c7ea74c2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19480",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7f5acf8be15a2c739a30fdf4457776de"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19481",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6d55eed61a6302a666dc4b5e362783ca"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19482",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3f9e60a283ef93821bc97892b0a07809"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19483",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "tokio 1.52.3 is affected by RUSTSEC-2026-0386 (no severity rating) (dependency: crates.io/tokio@1.52.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0f94b12e7ce6cd766918bf059898ddff"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19538",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "1 advisories in 1 development or build-only crates.io package(s) (dependencies: crates.io:non-runtime)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19539",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained) (dependency: crates.io/bincode@1.3.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19487",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "bitmaps 3.2.1: informational advisory RUSTSEC-2026-0247 (unmaintained) (dependency: crates.io/bitmaps@3.2.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cd678ee5ed2549029e338d1037efc634"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19489",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "core2 0.4.0: informational advisory RUSTSEC-2026-0105 (unmaintained) (dependency: crates.io/core2@0.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c39206121833cacff3e0ad23bb8b2a4e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19492",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained) (dependency: crates.io/derivative@2.2.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19495",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained) (dependency: crates.io/paste@1.0.15)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19517",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "pin-utils 0.1.0: informational advisory RUSTSEC-2026-0441 (unmaintained) (dependency: crates.io/pin-utils@0.1.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0f6b97d0b6d3267281e6db41b755fba8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19518",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "proc-macro-error2 2.0.1: informational advisory RUSTSEC-2026-0173 (unmaintained) (dependency: crates.io/proc-macro-error2@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8412cde0bf828d754dd3b306bfe8c506"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19519",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "rustls-pemfile 2.2.0: informational advisory RUSTSEC-2025-0134 (unmaintained) (dependency: crates.io/rustls-pemfile@2.2.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8e847c69df82b32bee45f465b3270533"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19534",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/arc-node @ 6e764023ee65/a58a0714-a9d2-41d4-b96d-7e3809f2d534"
+      },
+      "properties": {
+        "qsiContentSha256": "2cb1f259975c8af684ffa81af50b3a9c029ff2d5a6375299ede323d6502412cd",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-11-06T15:31:12.566434+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "6e764023ee6515fe70573e123ed2db912a7207b4",
+          "repositoryUri": "https://github.com/circlefin/arc-node"
+        }
+      ]
+    }
+  ]
+}

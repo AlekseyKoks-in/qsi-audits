@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"ab2a7138-099f-4102-a6ca-533220ad3fb9\",\"content_sha256\":\"09dd82bf776b5adb6af7367e5cccfe5b259eb10fde085b2eef6d9bb38f43d5c6\",\"files_sha256\":{\"html\":\"a30e54003c9e8c7f831d919de219651322defd879ab740f5b96048f31e2b3d2f\",\"json\":\"f12db797b3714a845feacdfdc4f8b6d21070f724bf7039aea15d16add4573b60\",\"md\":\"75bc5d3b76833dd8f24c072398976d1e6f2b02d6e68f3582c2c9c52d144aada9\",\"pdf\":\"a196f09bd2e5fb322b58b79cfe878832c7127a505a9c2a684fb662e96f74fc40\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"corda @ 80033580ecfd\",\"report_id\":\"3f7d8a2e-e8ec-484e-a3f5-35d64b7e1ad1\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-11-06T15:39:10+00:00\",\"version\":1}",
+  "signature": "I325ONNCnpWlm62B9aiyZU6OtjqK4j8gs3zFLbTYVryCuKTItX1O2fYI6+/F16IVWgPSfjtwitSQTQfgv4yGCQ=="
+}

@@ -236,6 +236,13 @@ implementations and was corrected before publication. Totals moved from 3,924 / 
 hybrid rows from 12 to **14**. `nitro` again keeps its published bundle (different tree). Before-states and
 logs are in the archive of this run.
 
+## Institutional ledgers and bank-facing platforms
+
+A separate study, kept out of the totals above: Canton, Arc, Hyperledger Fabric and Besu, Corda and the Open Bank
+Project, seven signed bundles in `studies/institutional/`. Canton already signs with ML-DSA-65 and Arc verifies
+SLH-DSA, but none of the seven encrypts with ML-KEM in its own code; Fabric gets hybrid TLS only from the Go
+toolchain's default. See [reports/INSTITUTIONAL-LEDGERS-2026-11-06.md](reports/INSTITUTIONAL-LEDGERS-2026-11-06.md).
+
 ## A federal mandate now describes this method
 
 OMB **M-26-15** of 24 June 2026 asks agencies to build "a dynamic, continuously updated inventory of all

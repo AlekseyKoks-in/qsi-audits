@@ -1,0 +1,3804 @@
+{
+  "content_sha256": "967ff3502b91c3f489ae4dc96bfd80d7f227c73a45038ab60ffb4c654876bd06",
+  "schema": "qsi.report/1",
+  "language": "en",
+  "generated_at": "2026-11-06T10:15:11.403927+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "481c7ea0-6c17-4102-b5e2-b1350b890d0f",
+    "name": "fabric-lib-go @ f8b4f4a833e4",
+    "client_name": "Hyperledger Fabric (LF Decentralized Trust)",
+    "description": "Static review of the source tree fabric-lib-go at f8b4f4a833e4140a4d006fc2e0a46823952b5f1c. 67 files analysed; of 150 files, 63 are test, fuzzing, benchmark or example code and were left out, 20 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/settings.yml, .github/workflows/build.yml, .github/workflows/schedule.yml, .gitignore, CODEOWNERS. 1581 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "9f3b8d12-9473-49de-9ebb-9f2f640f8653",
+    "mode": "document",
+    "title": "Document audit: fabric-lib-go",
+    "status": "completed",
+    "engine_version": "1.3.0",
+    "started_at": "2026-11-06T10:15:05.550854+00:00",
+    "finished_at": "2026-11-06T10:15:11.278384+00:00",
+    "risk_profile": "crypto_exchange",
+    "risk_profile_name": "Crypto exchange, custodian or wallet",
+    "parameters": {
+      "ref": "f8b4f4a833e4140a4d006fc2e0a46823952b5f1c",
+      "language": "en",
+      "repo_url": "https://github.com/hyperledger/fabric-lib-go",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "bccsp/aesopts.go",
+      "size": 2596,
+      "sha256": "ca0493dd6054d092027e94af3901048adc01f16192de79807d30c85378b78543",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/bccsp.go",
+      "size": 4212,
+      "sha256": "82df76a75ee87e4324e9c13879bc87aa471c84db6e7d689efee6174a274ff4da",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/ecdsaopts.go",
+      "size": 1499,
+      "sha256": "ed667e09393298574ad06ed64fd2cb47d855adbceca018c0d23b24654679b649",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/factory/factory.go",
+      "size": 2478,
+      "sha256": "a24b6d7c7ddad62bbc52aee8c7b01fb9f3a4601ef2ed943ddb84451273e08b99",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/factory/nopkcs11.go",
+      "size": 1880,
+      "sha256": "24e6532515f4ff707d8b385cf73c4a16f3d279a782a85191b3a23772dbe07c40",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/factory/opts.go",
+      "size": 452,
+      "sha256": "504596b431861eb308f783f1a6cb026a81f45f8f0e712411e2a9eb08ccc6cafa",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/factory/pkcs11.go",
+      "size": 2645,
+      "sha256": "5264fbdf04137dfb54051eef9278ee7df1692e8a3c5da4c4b54b8f2f2f14f5ac",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/factory/pkcs11factory.go",
+      "size": 1453,
+      "sha256": "c3ff2ec1dd00121e599cbccd98dce463d1cdbf22c113d0a924969ffe78eac559",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/factory/swfactory.go",
+      "size": 2196,
+      "sha256": "d08d9a5961a76c2ded743dde029d20da7644a6fb329e3f27e95db53f2652360c",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/hashopts.go",
+      "size": 1861,
+      "sha256": "29171b614a86730605c063fe1b05ca4abae7dbdb55765d15eb528371fc97f180",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/keystore.go",
+      "size": 1197,
+      "sha256": "07eea30ab3a8cc6f2b94fb686cb158b64c27d95339c1603fe4153531a1e5b39c",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/opts.go",
+      "size": 10150,
+      "sha256": "ed73949f83ce35e62e2d29bc2263b6b4e730e24f7e7e81582a32fd6b14c0c606",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/pkcs11/conf.go",
+      "size": 1330,
+      "sha256": "1cc57eb00ecafb06d5c6d4ff8dea228eae6ed6b50f935c71451d5fa62d2bec06",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/pkcs11/ecdsakey.go",
+      "size": 2564,
+      "sha256": "41b35f8b4e01edc52825fc73e1041ce296e6fc1d979622d7b437424f72160bd9",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/pkcs11/pkcs11.go",
+      "size": 27875,
+      "sha256": "98a15788cd8cdca171d2c662f6e2eece206a5d8adc91994f75ddd67ffc6bbd4b",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/rsaopts.go",
+      "size": 1866,
+      "sha256": "2a90bd507977049cd6a43eca3597569935c3f114c227ba1000dcf1113f3c4543",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/signer/signer.go",
+      "size": 2574,
+      "sha256": "1806b0e0b2a4dc08d34a1285eeef7349b6a20bcdfa555363cdee4bf281bea41d",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/aes.go",
+      "size": 5947,
+      "sha256": "25e0c5cb3d867fa8c92f38a5e42c346538da18798f229934c0c00755fc4c057d",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/aeskey.go",
+      "size": 1741,
+      "sha256": "08b6095ec603d320e7839a36859404474eb443e640dc12c06718bb7cc5931dea",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/conf.go",
+      "size": 1593,
+      "sha256": "abcd19356cf759f0688ee38889e90bfd8ba8fc6a3b4608eb50653dde9b13e177",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/dummyks.go",
+      "size": 1532,
+      "sha256": "f6d1bc4e721f58f5471f5aef3659e3ba46fc822306d0093d556ede2df66dcb10",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/ecdsa.go",
+      "size": 2224,
+      "sha256": "f0d2594a515e856b310d5ff9ab4169d5c0a0f61fc24942e3d46e2500f928e02b",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/ecdsakey.go",
+      "size": 3024,
+      "sha256": "194f71f7e0d952ec3b87a50b5287d7bd139cb41941d75cd260e2e54ab8b01ff3",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/ed25519.go",
+      "size": 1208,
+      "sha256": "071a175c9ce2398e741a262d24325b73260f7d87ea7be622eebb9f505880d580",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/ed25519key.go",
+      "size": 2555,
+      "sha256": "5fd0b8364abab17d1378f6aba697ce2ffc0f47138f2d02056b75dd9178e9b158",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/fileks.go",
+      "size": 11165,
+      "sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/hash.go",
+      "size": 923,
+      "sha256": "b5b4f1a45b5e2f3fd10d4e505ffa08ed1a087d6e9336af29357e11ceb10b4e0c",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/impl.go",
+      "size": 9978,
+      "sha256": "e86e5b101dcb085adbd489099d8566e0207e30265537f77ece063d71d0201eb0",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/internals.go",
+      "size": 3357,
+      "sha256": "855ba254295b233c474266690c944f8b5f0c425070fdcee8e5b72652d8d211d5",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/keyderiv.go",
+      "size": 4131,
+      "sha256": "fb6673a63d52fa58cdb93b3e75aeb88faf2c2c91ac3e29de9acd7f519f8ac418",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/keygen.go",
+      "size": 1545,
+      "sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/keyimport.go",
+      "size": 6380,
+      "sha256": "573e238eea23ae85576a43554db460121e1ac8666fafebb84138326deedd0f25",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/keys.go",
+      "size": 11408,
+      "sha256": "cd0a974ae8900553a3f4828afcbbdd30cd479b75a51bc1723d369220e739fe3c",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/new.go",
+      "size": 5934,
+      "sha256": "fb412076a0df7836edb4a8823024134f0151607cbc8d6ac6ce27597d1cdb1c2e",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/rsa.go",
+      "size": 1552,
+      "sha256": "e3112f8c38642c19ebbb5a18c26ce471ec9fd56fae78909c4ff216d5216d2c42",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/sw/rsakey.go",
+      "size": 2754,
+      "sha256": "93838157dd6a4eca5ecf566fa365064df1afa290b08829ae97074ccfcd473de1",
+      "redactions": 0
+    },
+    {
+      "name": "bccsp/utils/ecdsa.go",
+      "size": 2568,
+      "sha256": "4d39accb8acba4c0041942b921c3a501e15926b19900e6ca8e5980bd5c863660",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/core.go",
+      "size": 3184,
+      "sha256": "ae5cbaeec703dceb5601ac4e5cf77c6c725ce02c6b1edc537d7b3bb9fc843196",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/fabenc/color.go",
+      "size": 530,
+      "sha256": "d32969c9dc25fa3a22acc28f2c289657433b5c06f154be3348cc8766d5ffa933",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/fabenc/encoder.go",
+      "size": 3957,
+      "sha256": "93ee108897c7c6dba06842927ae1701dc4dffaaea6983e0dd6f845702001cf36",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/fabenc/formatter.go",
+      "size": 8861,
+      "sha256": "bf6d5b76ee67a4d227fca209207f85ad41fc627de4450f8bd0f601f961d63c32",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/floggingtest/logger.go",
+      "size": 5246,
+      "sha256": "62d66823c89e6e9d93e5fe2712517ae65fa801885d0c4a4393931aae2f89568e",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/global.go",
+      "size": 1876,
+      "sha256": "d7b8402851c29934800911208966e44d8ff8c64056c7b6bdbaf91f9460931128",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/httpadmin/fakes/logging.go",
+      "size": 4440,
+      "sha256": "01ef7790f685bbd3884afc1e80e8e562ed54aa773b4f902bac5245e56c459e8f",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/httpadmin/spec.go",
+      "size": 1860,
+      "sha256": "73f3e5e5344a6f6efeb3e669f496e9010906eb2d0a36f663b266a695250a4483",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/levels.go",
+      "size": 1565,
+      "sha256": "aff982968eb7cf75d91c3320aba1889201187cfe4da94f10b022ebcd7eaba20a",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/loggerlevels.go",
+      "size": 4891,
+      "sha256": "d9ae711ddec04454937fb5c0197e90a6602af38f3dfef6d10fc27a2fcdd0a9fe",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/logging.go",
+      "size": 5924,
+      "sha256": "c24bcf1be2c7c246a8463974d5abff4b2768bf2bbdfbe4dd86ae706b832f044a",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/metrics/observer.go",
+      "size": 1249,
+      "sha256": "a9a75918b8b3ae94742ef39785c1ca947153374ca58abdd83368fb50623aa79d",
+      "redactions": 0
+    },
+    {
+      "name": "common/flogging/zap.go",
+      "size": 5211,
+      "sha256": "0e1f06d541eed96918d47136c5d09d7a90ff64929ec223017446de85ccb929c3",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/cmd/gendoc/main.go",
+      "size": 1641,
+      "sha256": "0c47cc05ac4e472b424c81945358ac1cc07d21f2304610e7825ccd5ae96b7305",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/disabled/provider.go",
+      "size": 947,
+      "sha256": "cf31485e6ce257ecc591b9a79336a2e0fac078d4aa54565b9a3ae5c6670c4f7c",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/gendoc/options.go",
+      "size": 4968,
+      "sha256": "5d004d5bdc385491ccf26e12fa1e5fdd7b43348acc7b9ab16a5b53e7e3ca184b",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/gendoc/table.go",
+      "size": 8899,
+      "sha256": "893d08a5996bbc4a7d21c649ab44259d9d402373e2c56654ef9395cab9160b54",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/metricsfakes/counter.go",
+      "size": 3624,
+      "sha256": "4768783f78325d4c6590f4cd719a53ab3c61dd906a0dfc978f75622d7b1b9969",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/metricsfakes/gauge.go",
+      "size": 4434,
+      "sha256": "4a82092ced01547f3ad4d6abf1028a7afd1542ae133909d3ba3cf726e59d4b5c",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/metricsfakes/histogram.go",
+      "size": 3774,
+      "sha256": "ba7ca9aa1b4df78de4f5528e97e12708b9a42332dabd1ea9cd385abd5971697f",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/metricsfakes/provider.go",
+      "size": 7331,
+      "sha256": "482bdc8f1de53bdcb3553c204a0cc0eae65d0478aa209c563d1e26c9de637ed1",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/namer/namer.go",
+      "size": 3213,
+      "sha256": "269783a19cec93d1023653757d9880d2b688d2e8736663a002c1af0ac10e7899",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/prometheus/provider.go",
+      "size": 1720,
+      "sha256": "af19837203d17535cdb8f0f73e3b31ee64b59f74c1aff603f2c787f1853638ef",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/provider.go",
+      "size": 6241,
+      "sha256": "2e302c1f8f336fdeaa892bbb046dbfb96d9e535004d0fe964785946e495cda8c",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/statsd/goruntime/collector.go",
+      "size": 4381,
+      "sha256": "7a72e9edfd4a4c7073d7890e38ec4a4994b187722e5429742b6893825db17e06",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/statsd/goruntime/metrics.go",
+      "size": 3003,
+      "sha256": "c361fb329763628f27925de1d41e8ae1084293a6c30ddf57109f9fd690ee45e1",
+      "redactions": 0
+    },
+    {
+      "name": "common/metrics/statsd/provider.go",
+      "size": 2835,
+      "sha256": "cc796d42a6f65cf46919a3ba217bcca739d42e0aaae470c258d4cfadae0bb219",
+      "redactions": 0
+    },
+    {
+      "name": "go.mod",
+      "size": 1877,
+      "sha256": "f0b24cd1313a8979feb1f5e48251b2ee4ad8ad0a6c993c8f52ea581c39e41e5d",
+      "redactions": 0
+    },
+    {
+      "name": "healthz/checker.go",
+      "size": 4918,
+      "sha256": "bec07fbe52e60910b0fc85149ea4f9b5e502f7e29ea3ad37a61f2dbf795a8d28",
+      "redactions": 0
+    },
+    {
+      "name": "tools/go.mod",
+      "size": 348,
+      "sha256": "7b34cca11276a6eb65b446751aa74d984045b3e2fee742b56c25cfae62b3d5b5",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 67,
+    "bytes": 263295,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "source_code",
+      "detail": "bccsp/aesopts.go: 82 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/bccsp.go: 134 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/ecdsaopts.go: 49 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/factory/factory.go: 94 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/factory/nopkcs11.go: 84 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/factory/opts.go: 24 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/factory/pkcs11.go: 119 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/factory/pkcs11factory.go: 64 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/factory/swfactory.go: 73 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/hashopts.go: 66 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/keystore.go: 34 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/opts.go: 361 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/pkcs11/conf.go: 44 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/pkcs11/ecdsakey.go: 97 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/pkcs11/pkcs11.go: 930 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/rsaopts.go: 70 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/signer/signer.go: 85 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/aes.go: 221 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/aeskey.go: 64 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/conf.go: 75 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/dummyks.go: 48 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/ecdsa.go: 75 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/ecdsakey.go: 117 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/ed25519.go: 40 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/ed25519key.go: 109 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/fileks.go: 464 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/hash.go: 37 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/impl.go: 340 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/internals.go: 94 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/keyderiv.go: 150 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/keygen.go: 68 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/keyimport.go: 215 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/keys.go: 468 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/new.go: 120 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/rsa.go: 62 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/sw/rsakey.go: 124 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "bccsp/utils/ecdsa.go: 106 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/core.go: 124 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/fabenc/color.go: 39 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/fabenc/encoder.go: 125 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/fabenc/formatter.go: 294 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/floggingtest/logger.go: 242 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/global.go: 84 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/httpadmin/fakes/logging.go: 174 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/httpadmin/spec.go: 83 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/levels.go: 68 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/loggerlevels.go: 175 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/logging.go: 243 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/metrics/observer.go: 50 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/flogging/zap.go: 105 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/cmd/gendoc/main.go: 79 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/disabled/provider.go: 39 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/gendoc/options.go: 220 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/gendoc/table.go: 372 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/metricsfakes/counter.go: 148 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/metricsfakes/gauge.go: 186 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/metricsfakes/histogram.go: 148 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/metricsfakes/provider.go: 256 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/namer/namer.go: 146 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/prometheus/provider.go: 77 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/provider.go: 169 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/statsd/goruntime/collector.go: 130 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/statsd/goruntime/metrics.go: 43 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "common/metrics/statsd/provider.go: 128 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "go.mod: 41 dependencies parsed (41 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "healthz/checker.go: 170 lines scanned with 16 rule patterns and 266 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "tools/go.mod: 5 dependencies parsed (5 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "entropy",
+      "detail": "random-number generation: 65 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "42 pinned packages queried at OSV.dev; 2 affected",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 65,
+      "rows": 65,
+      "examples": [
+        "bccsp/aesopts.go: 82 lines scanned with 16 rule patterns and 266 registry patterns",
+        "bccsp/bccsp.go: 134 lines scanned with 16 rule patterns and 266 registry patterns",
+        "bccsp/ecdsaopts.go: 49 lines scanned with 16 rule patterns and 266 registry patterns"
+      ]
+    },
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "go.mod: 41 dependencies parsed (41 pinned)",
+        "tools/go.mod: 5 dependencies parsed (5 pinned)"
+      ]
+    },
+    {
+      "area": "entropy",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "random-number generation: 65 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "42 pinned packages queried at OSV.dev; 2 affected"
+      ]
+    }
+  ],
+  "not_checked": [],
+  "not_checked_grouped": [],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "42 pinned packages queried at OSV.dev; 2 affected",
+      "bccsp/aesopts.go",
+      "bccsp/bccsp.go",
+      "bccsp/ecdsaopts.go",
+      "bccsp/factory/factory.go",
+      "bccsp/factory/nopkcs11.go",
+      "bccsp/factory/opts.go",
+      "bccsp/factory/pkcs11.go",
+      "bccsp/factory/pkcs11factory.go",
+      "bccsp/factory/swfactory.go",
+      "bccsp/hashopts.go",
+      "bccsp/keystore.go",
+      "bccsp/opts.go",
+      "bccsp/pkcs11/conf.go",
+      "bccsp/pkcs11/ecdsakey.go",
+      "bccsp/pkcs11/pkcs11.go",
+      "bccsp/rsaopts.go",
+      "bccsp/signer/signer.go",
+      "bccsp/sw/aes.go",
+      "bccsp/sw/aeskey.go",
+      "bccsp/sw/conf.go",
+      "bccsp/sw/dummyks.go",
+      "bccsp/sw/ecdsa.go",
+      "bccsp/sw/ecdsakey.go",
+      "bccsp/sw/ed25519.go",
+      "bccsp/sw/ed25519key.go",
+      "bccsp/sw/fileks.go",
+      "bccsp/sw/hash.go",
+      "bccsp/sw/impl.go",
+      "bccsp/sw/internals.go",
+      "bccsp/sw/keyderiv.go",
+      "bccsp/sw/keygen.go",
+      "bccsp/sw/keyimport.go",
+      "bccsp/sw/keys.go",
+      "bccsp/sw/new.go",
+      "bccsp/sw/rsa.go",
+      "bccsp/sw/rsakey.go",
+      "bccsp/utils/ecdsa.go",
+      "common/flogging/core.go",
+      "common/flogging/fabenc/color.go",
+      "common/flogging/fabenc/encoder.go",
+      "common/flogging/fabenc/formatter.go",
+      "common/flogging/floggingtest/logger.go",
+      "common/flogging/global.go",
+      "common/flogging/httpadmin/fakes/logging.go",
+      "common/flogging/httpadmin/spec.go",
+      "common/flogging/levels.go",
+      "common/flogging/loggerlevels.go",
+      "common/flogging/logging.go",
+      "common/flogging/metrics/observer.go",
+      "common/flogging/zap.go",
+      "common/metrics/cmd/gendoc/main.go",
+      "common/metrics/disabled/provider.go",
+      "common/metrics/gendoc/options.go",
+      "common/metrics/gendoc/table.go",
+      "common/metrics/metricsfakes/counter.go",
+      "common/metrics/metricsfakes/gauge.go",
+      "common/metrics/metricsfakes/histogram.go",
+      "common/metrics/metricsfakes/provider.go",
+      "common/metrics/namer/namer.go",
+      "common/metrics/prometheus/provider.go",
+      "common/metrics/provider.go",
+      "common/metrics/statsd/goruntime/collector.go",
+      "common/metrics/statsd/goruntime/metrics.go",
+      "common/metrics/statsd/provider.go",
+      "go.mod",
+      "healthz/checker.go",
+      "random-number generation",
+      "tools/go.mod"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 1,
+      "medium": 3,
+      "low": 0,
+      "info": 7
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 8,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 3,
+      "improvement": 0,
+      "insufficient_data": 0
+    },
+    "total": 11,
+    "posture_index": 88,
+    "pq_vulnerable_share": 64.9,
+    "inventory_total": 37,
+    "inventory_by_quantum_status": {
+      "grover_margin": 4,
+      "grover_reduced": 9,
+      "vulnerable_shor": 24
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 37,
+        "vulnerable_shor": 24
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "f1a46bd4-7d1f-4967-bb36-4d194c9354f3",
+      "public_id": "QSI-2026-17514",
+      "rule_id": "DEP-KNOWN-ADVISORY",
+      "title": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)",
+      "description": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The advisory lists only unexported functions (google.golang.org/grpc/internal/transport.http2Server.HandleStreams, google.golang.org/grpc/internal/transport.http2Server.operateHeaders, google.golang.org/grpc/internal/xds/server.RouteAndProcess), which code outside the package cannot call by name, so reachability was not determined.",
+      "impact": "Depends on whether the vulnerable code path is reachable in your application.",
+      "recommendation": "Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e).",
+      "retest": "Re-run the dependency scan after upgrading.",
+      "limitations": "Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.",
+      "method": "OSV.dev querybatch API lookup of the exact declared version.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-2v4p-qf9q-27wj",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "high",
+      "confidence": "medium",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "reachability": "unknown",
+      "affected_asset": "dependency:Go/google.golang.org/grpc@v1.83.1",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.210095+00:00",
+      "risk_score": 50.2,
+      "risk_breakdown": {
+        "score": 50.2,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.46,
+          "urgency": 1.0,
+          "exposure": 0.5,
+          "severity": 0.8,
+          "exploitability": 0.5
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 62.7,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 9.2,
+          "urgency": 10.0,
+          "exposure": 7.5,
+          "severity": 20.0,
+          "exploitability": 10.0
+        },
+        "confidence_multiplier": 0.8
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "GHSA-2v4p-qf9q-27wj",
+          "url": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj",
+          "title": "OSV advisory GHSA-2v4p-qf9q-27wj",
+          "status": "modified 2026-09-25T18:00:05.270054427Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GHSA-2v4p-qf9q-27wj",
+          "location": "line 19",
+          "content": "{\"id\": \"GHSA-2v4p-qf9q-27wj\", \"aliases\": [\"CVE-2026-84445\", \"GO-2026-6443\"], \"modified\": \"2026-09-25T18:00:05.270054427Z\", \"summary\": \"gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X\"}], \"declared_in_manifest\": true}",
+          "content_sha256": "3566bf539cd1bed726145fc02332a18308f9a065bb8b992c0e44deb9ec44221a",
+          "source_sha256": null,
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.225747+00:00",
+          "url": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Upgrade google.golang.org/grpc to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e).",
+          "rationale": "Eliminates the root cause described in the finding.",
+          "expected_outcome": "The weakness is no longer present on re-test.",
+          "priority": "P2",
+          "horizon_days": 30,
+          "complexity": "low",
+          "dependencies": "Change window and owner approval.",
+          "side_effects": "Possible API changes.",
+          "pre_tests": "Reproduce the finding using the documented steps.",
+          "post_tests": "Re-run the retest procedure from the finding.",
+          "closure_criteria": "Dependency scan no longer reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443).",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "71fddbc0-665f-4bf6-9d8a-a5a02bcf35d7",
+      "public_id": "QSI-2026-17511",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDSA: role not determined (10 file(s))",
+      "description": "14 reference(s) to ECDSA across 10 file(s), e.g. bccsp/pkcs11/ecdsakey.go:19. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open bccsp/pkcs11/ecdsakey.go:19 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDSA:general",
+      "data_source": "bccsp/pkcs11/ecdsakey.go",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.167377+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/pkcs11/ecdsakey.go",
+          "location": "line 19",
+          "content": "   18 | import (\n   19 | \t\"crypto/ecdsa\"\n   20 | \t\"crypto/x509\"",
+          "content_sha256": "87680e3cf321a1d927f748c94e56fef66319eb13e2554469b4d613e55886927b",
+          "source_sha256": "41b35f8b4e01edc52825fc73e1041ce296e6fc1d979622d7b437424f72160bd9",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182694+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/ecdsakey.go#L19"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/pkcs11/pkcs11.go",
+          "location": "line 11",
+          "content": "   10 | \t\"context\"\n   11 | \t\"crypto/ecdsa\"\n   12 | \t\"crypto/elliptic\"",
+          "content_sha256": "8da8b0c88ebe01946640787c08a65d84eb065c628bc69992d0bd8b7d1eda1ff8",
+          "source_sha256": "98a15788cd8cdca171d2c662f6e2eece206a5d8adc91994f75ddd67ffc6bbd4b",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182702+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L11"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/pkcs11/pkcs11.go",
+          "location": "line 330",
+          "content": "  329 | \tif csp.softVerify {\n  330 | \t\treturn ecdsa.Verify(k.pub, digest, r, s), nil\n  331 | \t}",
+          "content_sha256": "c46c43f1ab599be0dc6777bac06d578b05466bf53f5527162b89cacfcc3b671c",
+          "source_sha256": "98a15788cd8cdca171d2c662f6e2eece206a5d8adc91994f75ddd67ffc6bbd4b",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182705+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L330"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ecdsa.go",
+          "location": "line 19",
+          "content": "   18 | import (\n   19 | \t\"crypto/ecdsa\"\n   20 | \t\"crypto/rand\"",
+          "content_sha256": "1515eca1cc78dc2b7c4fde09c0aa059dc7c5a6a53519f5c1b42098f4eadc395d",
+          "source_sha256": "f0d2594a515e856b310d5ff9ab4169d5c0a0f61fc24942e3d46e2500f928e02b",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182709+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L19"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ecdsa.go",
+          "location": "line 28",
+          "content": "   27 | func signECDSA(k *ecdsa.PrivateKey, digest []byte, opts bccsp.SignerOpts) ([]byte, error) {\n   28 | \tr, s, err := ecdsa.Sign(rand.Reader, k, digest)\n   29 | \tif err != nil {",
+          "content_sha256": "5e03fc2ced291506b09bf90d810db18d327d592f8781b028b97d572b077c587c",
+          "source_sha256": "f0d2594a515e856b310d5ff9ab4169d5c0a0f61fc24942e3d46e2500f928e02b",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182712+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L28"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ecdsa.go",
+          "location": "line 56",
+          "content": "   55 | \n   56 | \treturn ecdsa.Verify(k, digest, r, s), nil\n   57 | }",
+          "content_sha256": "cc80b9b87564d0ae70ba183543c926e98984365178ee8a10c6384959a648b188",
+          "source_sha256": "f0d2594a515e856b310d5ff9ab4169d5c0a0f61fc24942e3d46e2500f928e02b",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182716+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L56"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ecdsakey.go",
+          "location": "line 19",
+          "content": "   18 | import (\n   19 | \t\"crypto/ecdsa\"\n   20 | \t\"crypto/elliptic\"",
+          "content_sha256": "da30811132376f3039c613505f0d52458e1593d43e0280ad13aaf57389cf7c73",
+          "source_sha256": "194f71f7e0d952ec3b87a50b5287d7bd139cb41941d75cd260e2e54ab8b01ff3",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182719+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsakey.go#L19"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/fileks.go",
+          "location": "line 11",
+          "content": "   10 | \t\"bytes\"\n   11 | \t\"crypto/ecdsa\"\n   12 | \t\"crypto/ed25519\"",
+          "content_sha256": "e5b44015f00ef128ab2f3d1c4f1dee7dcd77a13dd2b3391fad9bc2ecb9c49ae6",
+          "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182722+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L11"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/keyderiv.go",
+          "location": "line 20",
+          "content": "   19 | import (\n   20 | \t\"crypto/ecdsa\"\n   21 | \t\"crypto/hmac\"",
+          "content_sha256": "9f85b73ac6ec142259370ca9358f25e99f4a2d13e133f7ddee639c918ed9af9b",
+          "source_sha256": "fb6673a63d52fa58cdb93b3e75aeb88faf2c2c91ac3e29de9acd7f519f8ac418",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182730+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keyderiv.go#L20"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/keygen.go",
+          "location": "line 10",
+          "content": "    9 | import (\n   10 | \t\"crypto/ecdsa\"\n   11 | \t\"crypto/ed25519\"",
+          "content_sha256": "7983932d009be78f478f371ae58c3f86b9f6b72f687b9ed011a4aee4ad95d71d",
+          "source_sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.182734+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L10"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "f2fa2528-b6de-4fa7-8bb7-aa2799a042ee",
+      "public_id": "QSI-2026-17512",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable Ed25519: role not determined (6 file(s))",
+      "description": "39 reference(s) to Ed25519 across 6 file(s), e.g. bccsp/sw/ed25519.go:15. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open bccsp/sw/ed25519.go:15 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Ed25519:general",
+      "data_source": "bccsp/sw/ed25519.go",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.178784+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ed25519.go",
+          "location": "line 15",
+          "content": "   14 | func signED25519(k *ed25519.PrivateKey, msg []byte, opts bccsp.SignerOpts) ([]byte, error) {\n   15 | \tsignature := ed25519.Sign(*k, msg)\n   16 | \treturn signature, nil",
+          "content_sha256": "be962610d24d0e25089b18a267e417de6efea2a91e686d6803d7a04d54b8cb0c",
+          "source_sha256": "071a175c9ce2398e741a262d24325b73260f7d87ea7be622eebb9f505880d580",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200159+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L15"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ed25519.go",
+          "location": "line 20",
+          "content": "   19 | func verifyED25519(k *ed25519.PublicKey, signature, msg []byte, opts bccsp.SignerOpts) (bool, error) {\n   20 | \treturn ed25519.Verify(*k, msg, signature), nil\n   21 | }",
+          "content_sha256": "aa94dd71ac249c8771fc540b4bc0ae1102dafe73a0a1f2722a94d7ba614d5d79",
+          "source_sha256": "071a175c9ce2398e741a262d24325b73260f7d87ea7be622eebb9f505880d580",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200167+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L20"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ed25519.go",
+          "location": "line 23",
+          "content": "   22 | \n   23 | type ed25519Signer struct{}\n   24 | ",
+          "content_sha256": "6f33081caebdef556a3b8c3fe6eeca1f1c206bd80023c04d0dd16a68a6634e70",
+          "source_sha256": "071a175c9ce2398e741a262d24325b73260f7d87ea7be622eebb9f505880d580",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200170+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L23"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ed25519key.go",
+          "location": "line 18",
+          "content": "   17 | \n   18 | type ed25519PrivateKey struct {\n   19 | \tprivKey *ed25519.PrivateKey",
+          "content_sha256": "c161f2e6d9d89ebe1d96be52c121110e7611fbcf8cb5872b5816d483a91b9152",
+          "source_sha256": "5fd0b8364abab17d1378f6aba697ce2ffc0f47138f2d02056b75dd9178e9b158",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200173+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L18"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ed25519key.go",
+          "location": "line 24",
+          "content": "   23 | // if this operation is allowed.\n   24 | func (k *ed25519PrivateKey) Bytes() ([]byte, error) {\n   25 | \treturn nil, errors.New(\"Not supported.\")",
+          "content_sha256": "ee921a0dccc1f590e41024cdb8f552d96e7e79860fc51361bdd9e7282a296bd9",
+          "source_sha256": "5fd0b8364abab17d1378f6aba697ce2ffc0f47138f2d02056b75dd9178e9b158",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200177+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L24"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/ed25519key.go",
+          "location": "line 29",
+          "content": "   28 | // SKI returns the subject key identifier of this key.\n   29 | func (k *ed25519PrivateKey) SKI() []byte {\n   30 | \tif k.privKey == nil {",
+          "content_sha256": "488f2f75c771d7f192ac75a4d1524cd88cad84dc34abaa8f25806c126cb56d58",
+          "source_sha256": "5fd0b8364abab17d1378f6aba697ce2ffc0f47138f2d02056b75dd9178e9b158",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200180+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L29"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/fileks.go",
+          "location": "line 147",
+          "content": "  146 | \t\tcase ed25519.PrivateKey:\n  147 | \t\t\treturn &ed25519PrivateKey{&k}, nil\n  148 | \t\tcase *rsa.PrivateKey:",
+          "content_sha256": "1cfe306c77e7f7694c28b313f33d969f772a0285e232590afa48e1c614905b2c",
+          "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200183+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L147"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/fileks.go",
+          "location": "line 164",
+          "content": "  163 | \t\tcase ed25519.PublicKey:\n  164 | \t\t\treturn &ed25519PublicKey{&k}, nil\n  165 | \t\tcase *rsa.PublicKey:",
+          "content_sha256": "749ebaa93ccb680875e11da118e180004d476946a6c4e4bcacbc5ac6dc3056b6",
+          "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200186+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L164"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/fileks.go",
+          "location": "line 198",
+          "content": "  197 | \n  198 | \tcase *ed25519PrivateKey:\n  199 | \t\terr = ks.storePrivateKey(hex.EncodeToString(k.SKI()), kk.privKey)",
+          "content_sha256": "070f2f8ff0382634eed998627dc8b68a8775020445d49702f7472219ea427e14",
+          "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200189+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L198"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/keygen.go",
+          "location": "line 36",
+          "content": "   35 | func (kg *ed25519KeyGenerator) KeyGen(opts bccsp.KeyGenOpts) (bccsp.Key, error) {\n   36 | \t_, privKey, err := ed25519.GenerateKey(rand.Reader)\n   37 | \tif err != nil {",
+          "content_sha256": "07b0787395320c0dcb325ee82d4a64a304cd8fc2872374aa7dd3cfc78e7191c7",
+          "source_sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.200192+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L36"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "7f0f0247-e075-45fd-acbb-b3edb4d0c4b7",
+      "public_id": "QSI-2026-17513",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable RSA: role not determined (6 file(s))",
+      "description": "7 reference(s) to RSA across 6 file(s), e.g. bccsp/sw/fileks.go:13. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open bccsp/sw/fileks.go:13 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:RSA:general",
+      "data_source": "bccsp/sw/fileks.go",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.196634+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "unspecified",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/fileks.go",
+          "location": "line 13",
+          "content": "   12 | \t\"crypto/ed25519\"\n   13 | \t\"crypto/rsa\"\n   14 | \t\"encoding/hex\"",
+          "content_sha256": "768ee06b9c3e2ed1d6af2ed858f328bdd5acdddaccbe6d3c2ecd30aebb1ab1d7",
+          "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.213682+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L13"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/keygen.go",
+          "location": "line 14",
+          "content": "   13 | \t\"crypto/rand\"\n   14 | \t\"crypto/rsa\"\n   15 | \t\"fmt\"",
+          "content_sha256": "364e7ffecee10ae3b8e624ca22f247d6c912d5e4981f71e890c23ab5677cf5dd",
+          "source_sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.213690+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L14"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/keygen.go",
+          "location": "line 62",
+          "content": "   61 | func (kg *rsaKeyGenerator) KeyGen(opts bccsp.KeyGenOpts) (bccsp.Key, error) {\n   62 | \tlowLevelKey, err := rsa.GenerateKey(rand.Reader, int(kg.length))\n   63 | \tif err != nil {",
+          "content_sha256": "b7bba74d01f03eef780ca8edc8d8f543670a53cc919dc442239153bb3820145c",
+          "source_sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.213694+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L62"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/keyimport.go",
+          "location": "line 12",
+          "content": "   11 | \t\"crypto/ed25519\"\n   12 | \t\"crypto/rsa\"\n   13 | \t\"crypto/x509\"",
+          "content_sha256": "7318348444f9d7d18c85c7efbf08d2965e7d68412a40ee459b218cde70685d97",
+          "source_sha256": "573e238eea23ae85576a43554db460121e1ac8666fafebb84138326deedd0f25",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.213698+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keyimport.go#L12"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/keys.go",
+          "location": "line 15",
+          "content": "   14 | \t\"crypto/rand\"\n   15 | \t\"crypto/rsa\"\n   16 | \t\"crypto/x509\"",
+          "content_sha256": "070992b7bb94b0dbc8e66fb1b57b459fe619fa742bac22418518a3f923a61864",
+          "source_sha256": "cd0a974ae8900553a3f4828afcbbdd30cd479b75a51bc1723d369220e739fe3c",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.213701+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keys.go#L15"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/rsa.go",
+          "location": "line 11",
+          "content": "   10 | \t\"crypto/rand\"\n   11 | \t\"crypto/rsa\"\n   12 | \t\"errors\"",
+          "content_sha256": "a77c4604bea38eaadc0ee9cf5c192333b6ac97a6a6ab944dce48ee75a086b6a3",
+          "source_sha256": "e3112f8c38642c19ebbb5a18c26ce471ec9fd56fae78909c4ff216d5216d2c42",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.213704+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/rsa.go#L11"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/sw/rsakey.go",
+          "location": "line 10",
+          "content": "    9 | import (\n   10 | \t\"crypto/rsa\"\n   11 | \t\"crypto/sha256\"",
+          "content_sha256": "5e8f30d23b521293b331ecad3ad4d4d3b8072be834d89f4c17cd5a1a5cad919a",
+          "source_sha256": "93838157dd6a4eca5ecf566fa365064df1afa290b08829ae97074ccfcd473de1",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.213707+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/rsakey.go#L10"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "b88c6c63-3cad-4e2a-8243-a8dac61b5dc6",
+      "public_id": "QSI-2026-17515",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)",
+      "description": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
+      "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
+      "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
+      "retest": "Re-run the dependency scan after upgrading.",
+      "limitations": "Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.",
+      "method": "OSV.dev querybatch API lookup of the exact declared version.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GO-2026-6603",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.222700+00:00",
+      "risk_score": 17.8,
+      "risk_breakdown": {
+        "score": 17.8,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.05,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 34.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 1.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "GO-2026-6603",
+          "url": "https://osv.dev/vulnerability/GO-2026-6603",
+          "title": "OSV advisory GO-2026-6603",
+          "status": "modified 2026-10-16T09:55:47.068117441Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GO-2026-6603",
+          "location": "line 46",
+          "content": "{\"id\": \"GO-2026-6603\", \"aliases\": [\"BIT-golang-2026-78659\", \"CVE-2026-78659\"], \"modified\": \"2026-10-16T09:55:47.068117441Z\", \"summary\": \"HTTP/2 server memory exhaustion due to Trailer headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "9e43850e0da48e9d00589cc2bffb372f39ec5e5a280f2f4b04520a91328fd703",
+          "source_sha256": null,
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.235547+00:00",
+          "url": "https://osv.dev/vulnerability/GO-2026-6603"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+          "rationale": "Eliminates the root cause described in the finding.",
+          "expected_outcome": "The weakness is no longer present on re-test.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Change window and owner approval.",
+          "side_effects": "Possible API changes.",
+          "pre_tests": "Reproduce the finding using the documented steps.",
+          "post_tests": "Re-run the retest procedure from the finding.",
+          "closure_criteria": "Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "38eaee7a-a738-4bcd-bab4-5c3a80117f11",
+      "public_id": "QSI-2026-17516",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)",
+      "description": "OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.58.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.Transport.NewClientConn, golang.org/x/net/http2.Transport.RoundTrip, golang.org/x/net/http2.Transport.RoundTripOpt, golang.org/x/net/http2.clientConnPool.GetClientConn, golang.org/x/net/http2.clientConnReadLoop.handleResponse, golang.org/x/net/http2.noDialClientConnPool.GetClientConn …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
+      "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
+      "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
+      "retest": "Re-run the dependency scan after upgrading.",
+      "limitations": "Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.",
+      "method": "OSV.dev querybatch API lookup of the exact declared version.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GO-2026-6610",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.231773+00:00",
+      "risk_score": 17.8,
+      "risk_breakdown": {
+        "score": 17.8,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.05,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 34.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 1.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "GO-2026-6610",
+          "url": "https://osv.dev/vulnerability/GO-2026-6610",
+          "title": "OSV advisory GO-2026-6610",
+          "status": "modified 2026-10-16T09:56:04.364467528Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GO-2026-6610",
+          "location": "line 46",
+          "content": "{\"id\": \"GO-2026-6610\", \"aliases\": [\"BIT-golang-2026-78660\", \"CVE-2026-78660\"], \"modified\": \"2026-10-16T09:56:04.364467528Z\", \"summary\": \"HTTP/2 transport accepts malformed framing-related headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "1b823e53f27093797b8a7909032006e1f0f818f04118ad593a4641236392faa9",
+          "source_sha256": null,
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.242786+00:00",
+          "url": "https://osv.dev/vulnerability/GO-2026-6610"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+          "rationale": "Eliminates the root cause described in the finding.",
+          "expected_outcome": "The weakness is no longer present on re-test.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Change window and owner approval.",
+          "side_effects": "Possible API changes.",
+          "pre_tests": "Reproduce the finding using the documented steps.",
+          "post_tests": "Re-run the retest procedure from the finding.",
+          "closure_criteria": "Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "2fea3952-74bb-4085-bf12-e20d47409502",
+      "public_id": "QSI-2026-17517",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)",
+      "description": "OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.58.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ClientConn.addStreamLocked, golang.org/x/net/http2.ConfigureServer …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
+      "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
+      "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
+      "retest": "Re-run the dependency scan after upgrading.",
+      "limitations": "Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.",
+      "method": "OSV.dev querybatch API lookup of the exact declared version.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GO-2026-6611",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.240385+00:00",
+      "risk_score": 17.8,
+      "risk_breakdown": {
+        "score": 17.8,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.05,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 34.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 1.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "GO-2026-6611",
+          "url": "https://osv.dev/vulnerability/GO-2026-6611",
+          "title": "OSV advisory GO-2026-6611",
+          "status": "modified 2026-10-16T09:55:38.952277866Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GO-2026-6611",
+          "location": "line 46",
+          "content": "{\"id\": \"GO-2026-6611\", \"aliases\": [\"BIT-golang-2026-78669\", \"CVE-2026-78669\"], \"modified\": \"2026-10-16T09:55:38.952277866Z\", \"summary\": \"Excessive CPU consumption from repeated initial window changes in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "c9b9f78637131224c5d4073e44c47b7cce490fc5526e3d6b0697b43bc85cab2f",
+          "source_sha256": null,
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.250650+00:00",
+          "url": "https://osv.dev/vulnerability/GO-2026-6611"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+          "rationale": "Eliminates the root cause described in the finding.",
+          "expected_outcome": "The weakness is no longer present on re-test.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Change window and owner approval.",
+          "side_effects": "Possible API changes.",
+          "pre_tests": "Reproduce the finding using the documented steps.",
+          "post_tests": "Re-run the retest procedure from the finding.",
+          "closure_criteria": "Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "9dd8baa8-cebc-4eaa-9e84-c0e6292b742c",
+      "public_id": "QSI-2026-17518",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)",
+      "description": "OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.58.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
+      "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
+      "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
+      "retest": "Re-run the dependency scan after upgrading.",
+      "limitations": "Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.",
+      "method": "OSV.dev querybatch API lookup of the exact declared version.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GO-2026-6612",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.246912+00:00",
+      "risk_score": 17.8,
+      "risk_breakdown": {
+        "score": 17.8,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.05,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 34.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 1.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "GO-2026-6612",
+          "url": "https://osv.dev/vulnerability/GO-2026-6612",
+          "title": "OSV advisory GO-2026-6612",
+          "status": "modified 2026-10-16T09:55:54.129082194Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GO-2026-6612",
+          "location": "line 46",
+          "content": "{\"id\": \"GO-2026-6612\", \"aliases\": [\"BIT-golang-2026-78663\", \"CVE-2026-78663\"], \"modified\": \"2026-10-16T09:55:54.129082194Z\", \"summary\": \"Double flow control refund on HTTP/2 server streams in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "1471910f88c9bbf8395a304fd82510f61567373756002de8bcdc3fbe305890cb",
+          "source_sha256": null,
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.257676+00:00",
+          "url": "https://osv.dev/vulnerability/GO-2026-6612"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+          "rationale": "Eliminates the root cause described in the finding.",
+          "expected_outcome": "The weakness is no longer present on re-test.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Change window and owner approval.",
+          "side_effects": "Possible API changes.",
+          "pre_tests": "Reproduce the finding using the documented steps.",
+          "post_tests": "Re-run the retest procedure from the finding.",
+          "closure_criteria": "Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "109f3226-a2d7-4b6d-be98-bdb59ca6e37a",
+      "public_id": "QSI-2026-17519",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)",
+      "description": "OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
+      "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
+      "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
+      "retest": "Re-run the dependency scan after upgrading.",
+      "limitations": "Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.",
+      "method": "OSV.dev querybatch API lookup of the exact declared version.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GO-2026-6617",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.255375+00:00",
+      "risk_score": 17.8,
+      "risk_breakdown": {
+        "score": 17.8,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.05,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 34.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 1.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "GO-2026-6617",
+          "url": "https://osv.dev/vulnerability/GO-2026-6617",
+          "title": "OSV advisory GO-2026-6617",
+          "status": "modified 2026-10-16T09:55:57.350751224Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GO-2026-6617",
+          "location": "line 46",
+          "content": "{\"id\": \"GO-2026-6617\", \"aliases\": [\"BIT-golang-2026-97032\", \"CVE-2026-97032\"], \"modified\": \"2026-10-16T09:55:57.350751224Z\", \"summary\": \"HTTP/2 server crash due to HPACK encoder race in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "b948c88d959bc78948c7e3b7a746ac4da179933798e9735d02870080906cfc96",
+          "source_sha256": null,
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.264770+00:00",
+          "url": "https://osv.dev/vulnerability/GO-2026-6617"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+          "rationale": "Eliminates the root cause described in the finding.",
+          "expected_outcome": "The weakness is no longer present on re-test.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Change window and owner approval.",
+          "side_effects": "Possible API changes.",
+          "pre_tests": "Reproduce the finding using the documented steps.",
+          "post_tests": "Re-run the retest procedure from the finding.",
+          "closure_criteria": "Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "a883272f-bfdb-45d4-8fd6-4d585256931b",
+      "public_id": "QSI-2026-17520",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)",
+      "description": "OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.58.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Parse, golang.org/x/net/html.ParseFragment, golang.org/x/net/html.ParseFragmentWithOptions, golang.org/x/net/html.ParseWithOptions, golang.org/x/net/html.parser.addText, golang.org/x/net/html.parser.fosterParent …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
+      "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
+      "recommendation": "Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.",
+      "retest": "Re-run the dependency scan after upgrading.",
+      "limitations": "Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.",
+      "method": "OSV.dev querybatch API lookup of the exact declared version.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GO-2026-6860",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.262719+00:00",
+      "risk_score": 17.8,
+      "risk_breakdown": {
+        "score": 17.8,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.05,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 34.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 1.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "GO-2026-6860",
+          "url": "https://osv.dev/vulnerability/GO-2026-6860",
+          "title": "OSV advisory GO-2026-6860",
+          "status": "modified 2026-10-27T21:30:04.890809062Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GO-2026-6860",
+          "location": "line 46",
+          "content": "{\"id\": \"GO-2026-6860\", \"aliases\": [\"CVE-2026-78661\"], \"modified\": \"2026-10-27T21:30:04.890809062Z\", \"summary\": \"Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28",
+          "source_sha256": null,
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.273564+00:00",
+          "url": "https://osv.dev/vulnerability/GO-2026-6860"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.",
+          "rationale": "Eliminates the root cause described in the finding.",
+          "expected_outcome": "The weakness is no longer present on re-test.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Change window and owner approval.",
+          "side_effects": "Possible API changes.",
+          "pre_tests": "Reproduce the finding using the documented steps.",
+          "post_tests": "Re-run the retest procedure from the finding.",
+          "closure_criteria": "Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "bbbea246-64e8-465c-a1a8-865c75edc5e8",
+      "public_id": "QSI-2026-17521",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)",
+      "description": "OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.58.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
+      "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
+      "recommendation": "Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.",
+      "retest": "Re-run the dependency scan after upgrading.",
+      "limitations": "Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.",
+      "method": "OSV.dev querybatch API lookup of the exact declared version.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GO-2026-6866",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-06T10:15:11.269629+00:00",
+      "risk_score": 17.8,
+      "risk_breakdown": {
+        "score": 17.8,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.05,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 34.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 1.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "GO-2026-6866",
+          "url": "https://osv.dev/vulnerability/GO-2026-6866",
+          "title": "OSV advisory GO-2026-6866",
+          "status": "modified 2026-10-27T21:45:08.978077289Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GO-2026-6866",
+          "location": "line 46",
+          "content": "{\"id\": \"GO-2026-6866\", \"aliases\": [\"CVE-2026-97045\"], \"modified\": \"2026-10-27T21:45:08.978077289Z\", \"summary\": \"Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42",
+          "source_sha256": null,
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-06T10:15:11.305225+00:00",
+          "url": "https://osv.dev/vulnerability/GO-2026-6866"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.",
+          "rationale": "Eliminates the root cause described in the finding.",
+          "expected_outcome": "The weakness is no longer present on re-test.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Change window and owner approval.",
+          "side_effects": "Possible API changes.",
+          "pre_tests": "Reproduce the finding using the documented steps.",
+          "post_tests": "Re-run the retest procedure from the finding.",
+          "closure_criteria": "Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
+    "pq_findings": [
+      "QSI-2026-17511",
+      "QSI-2026-17512",
+      "QSI-2026-17513"
+    ],
+    "roles": [
+      {
+        "role": "general",
+        "label": "role not determined",
+        "action": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility",
+        "criticality": 3,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 10
+          },
+          {
+            "algorithm": "Ed25519",
+            "files": 6
+          },
+          {
+            "algorithm": "RSA",
+            "files": 6
+          }
+        ],
+        "findings": [
+          "QSI-2026-17511",
+          "QSI-2026-17512",
+          "QSI-2026-17513"
+        ],
+        "files": 22
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "no post-quantum cryptography",
+      "next": "Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-factoring",
+        "name": "Shor's algorithm — factoring",
+        "effect": "breaks",
+        "effect_label": "breaks",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "RSA",
+            "rows": 6
+          }
+        ],
+        "audit": "Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures.",
+        "practicality": "Needs a fault-tolerant quantum computer. Published estimates for RSA-2048 fell from 20 million noisy qubits and 8 hours (Gidney–Ekerå 2021) to under a million noisy qubits and under a week (Gidney 2025); a 2026 neutral-atom design puts RSA-2048 one to two orders of magnitude slower than P-256 on 26,000 qubits (Cain et al.). Scenarios under stated assumptions; no such machine is publicly known.",
+        "sources": [
+          "SHOR1997",
+          "GIDNEY-EKERA2021",
+          "GIDNEY2025",
+          "CAIN2026"
+        ]
+      },
+      {
+        "id": "shor-ecdlp",
+        "name": "Shor's algorithm — elliptic-curve discrete logarithms",
+        "effect": "breaks",
+        "effect_label": "breaks",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "ECDSA",
+            "rows": 10
+          },
+          {
+            "algorithm": "Ed25519",
+            "rows": 8
+          }
+        ],
+        "audit": "Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.",
+        "practicality": "2026 estimates for a 256-bit curve: under 1,200 logical qubits and 90 million Toffoli gates, under half a million physical superconducting qubits running for minutes (Babbush et al.); 1,193 logical qubits with more gates (Chevignard–Fouque–Schrottenloher); P-256 in a few days on 26,000 neutral-atom qubits (Cain et al.). Scenarios under stated assumptions, not forecasts.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      },
+      {
+        "id": "grover",
+        "name": "Grover's algorithm — key search and preimages",
+        "effect": "weakens",
+        "effect_label": "weakens (larger keys restore the margin)",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "HMAC",
+            "rows": 2
+          },
+          {
+            "algorithm": "SHA-2",
+            "rows": 9
+          },
+          {
+            "algorithm": "SHA-3",
+            "rows": 2
+          }
+        ],
+        "audit": "Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.",
+        "practicality": "The search is long and serial: NIST counts AES-128 key search as 2^170/MAXDEPTH quantum gates with MAXDEPTH between 2^40 and 2^96 and uses it as the yardstick of security category 1; a SHA-256 preimage was estimated at about 2^153.8 surface-code cycles on 2^12.6 logical qubits (Amy et al. 2016).",
+        "sources": [
+          "GROVER1996",
+          "ZALKA1999",
+          "NIST-PQC-SEC",
+          "JAQUES2020",
+          "AMY2016"
+        ]
+      },
+      {
+        "id": "bht-collision",
+        "name": "Brassard–Høyer–Tapp — collision search",
+        "effect": "weakens",
+        "effect_label": "weakens (larger keys restore the margin)",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "SHA-2",
+            "rows": 9
+          },
+          {
+            "algorithm": "SHA-3",
+            "rows": 2
+          }
+        ],
+        "audit": "256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.",
+        "practicality": "Bernstein (2009) argued that, once hardware cost is counted, it is not cheaper than classical parallel collision search; NIST defines security category 2 by SHA3-256 collision search counted in classical gates (2^146).",
+        "sources": [
+          "BHT-COLLISION1998",
+          "CNS2017",
+          "BERNSTEIN2009-COLLISION",
+          "NIST-PQC-SEC"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "averaged estimate"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "quite possible"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "likely"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Inside the 10-year horizon the survey puts at 28-49% ('quite possible'), and consistent with the BSI estimate of 15 years that 'could shrink to 10 or even less'. Use it for data that must stay confidential for decades, where being wrong is expensive.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [
+      {
+        "kind": "root_cause",
+        "action": "Upgrade google.golang.org/grpc to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e).",
+        "rationale": "Eliminates the root cause described in the finding.",
+        "expected_outcome": "The weakness is no longer present on re-test.",
+        "priority": "P2",
+        "horizon_days": 30,
+        "complexity": "low",
+        "dependencies": "Change window and owner approval.",
+        "side_effects": "Possible API changes.",
+        "pre_tests": "Reproduce the finding using the documented steps.",
+        "post_tests": "Re-run the retest procedure from the finding.",
+        "closure_criteria": "Dependency scan no longer reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443).",
+        "status": "todo",
+        "finding": "QSI-2026-17514",
+        "finding_title": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)",
+        "severity": "high"
+      }
+    ],
+    "60": [
+      {
+        "kind": "root_cause",
+        "action": "Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+        "rationale": "Eliminates the root cause described in the finding.",
+        "expected_outcome": "The weakness is no longer present on re-test.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Change window and owner approval.",
+        "side_effects": "Possible API changes.",
+        "pre_tests": "Reproduce the finding using the documented steps.",
+        "post_tests": "Re-run the retest procedure from the finding.",
+        "closure_criteria": "Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded.",
+        "status": "todo",
+        "finding": "QSI-2026-17515",
+        "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)",
+        "severity": "info"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+        "rationale": "Eliminates the root cause described in the finding.",
+        "expected_outcome": "The weakness is no longer present on re-test.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Change window and owner approval.",
+        "side_effects": "Possible API changes.",
+        "pre_tests": "Reproduce the finding using the documented steps.",
+        "post_tests": "Re-run the retest procedure from the finding.",
+        "closure_criteria": "Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded.",
+        "status": "todo",
+        "finding": "QSI-2026-17516",
+        "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)",
+        "severity": "info"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+        "rationale": "Eliminates the root cause described in the finding.",
+        "expected_outcome": "The weakness is no longer present on re-test.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Change window and owner approval.",
+        "side_effects": "Possible API changes.",
+        "pre_tests": "Reproduce the finding using the documented steps.",
+        "post_tests": "Re-run the retest procedure from the finding.",
+        "closure_criteria": "Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded.",
+        "status": "todo",
+        "finding": "QSI-2026-17517",
+        "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)",
+        "severity": "info"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+        "rationale": "Eliminates the root cause described in the finding.",
+        "expected_outcome": "The weakness is no longer present on re-test.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Change window and owner approval.",
+        "side_effects": "Possible API changes.",
+        "pre_tests": "Reproduce the finding using the documented steps.",
+        "post_tests": "Re-run the retest procedure from the finding.",
+        "closure_criteria": "Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded.",
+        "status": "todo",
+        "finding": "QSI-2026-17518",
+        "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)",
+        "severity": "info"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.",
+        "rationale": "Eliminates the root cause described in the finding.",
+        "expected_outcome": "The weakness is no longer present on re-test.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Change window and owner approval.",
+        "side_effects": "Possible API changes.",
+        "pre_tests": "Reproduce the finding using the documented steps.",
+        "post_tests": "Re-run the retest procedure from the finding.",
+        "closure_criteria": "Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded.",
+        "status": "todo",
+        "finding": "QSI-2026-17519",
+        "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)",
+        "severity": "info"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.",
+        "rationale": "Eliminates the root cause described in the finding.",
+        "expected_outcome": "The weakness is no longer present on re-test.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Change window and owner approval.",
+        "side_effects": "Possible API changes.",
+        "pre_tests": "Reproduce the finding using the documented steps.",
+        "post_tests": "Re-run the retest procedure from the finding.",
+        "closure_criteria": "Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded.",
+        "status": "todo",
+        "finding": "QSI-2026-17520",
+        "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)",
+        "severity": "info"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.",
+        "rationale": "Eliminates the root cause described in the finding.",
+        "expected_outcome": "The weakness is no longer present on re-test.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Change window and owner approval.",
+        "side_effects": "Possible API changes.",
+        "pre_tests": "Reproduce the finding using the documented steps.",
+        "post_tests": "Re-run the retest procedure from the finding.",
+        "closure_criteria": "Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded.",
+        "status": "todo",
+        "finding": "QSI-2026-17521",
+        "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)",
+        "severity": "info"
+      }
+    ],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-17511",
+        "finding_title": "Quantum-vulnerable ECDSA: role not determined (10 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-17512",
+        "finding_title": "Quantum-vulnerable Ed25519: role not determined (6 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-17513",
+        "finding_title": "Quantum-vulnerable RSA: role not determined (6 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-17511",
+        "finding_title": "Quantum-vulnerable ECDSA: role not determined (10 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-17512",
+        "finding_title": "Quantum-vulnerable Ed25519: role not determined (6 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-17513",
+        "finding_title": "Quantum-vulnerable RSA: role not determined (6 file(s))",
+        "severity": "medium"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.2.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.3.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.3.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.4.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.3.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CNS2017",
+      "title": "A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2017/847",
+      "status": "peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory"
+    },
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "GIDNEY2025",
+      "title": "C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2505.15917",
+      "status": "preprint (2025-05-21): < 1 million noisy qubits, < 1 week, 0.1% gate error, 1 µs surface-code cycle"
+    },
+    {
+      "key": "GIDNEY-EKERA2021",
+      "title": "C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433)",
+      "publisher": "Quantum",
+      "url": "https://doi.org/10.22331/q-2021-04-15-433",
+      "status": "peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time"
+    },
+    {
+      "key": "ZALKA1999",
+      "title": "C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070)",
+      "publisher": "APS",
+      "url": "https://doi.org/10.1103/PhysRevA.60.2746",
+      "status": "peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "BERNSTEIN2009-COLLISION",
+      "title": "D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009)",
+      "publisher": "cr.yp.to",
+      "url": "https://cr.yp.to/hash/collisioncost-20090823.pdf",
+      "status": "paper dated 2009-08-23"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "BHT-COLLISION1998",
+      "title": "G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/quant-ph/9705002",
+      "status": "peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "GROVER1996",
+      "title": "L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996)",
+      "publisher": "ACM",
+      "url": "https://doi.org/10.1145/237814.237866",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "AMY2016",
+      "title": "M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1603.09383",
+      "status": "peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
+    },
+    {
+      "key": "NIST-PQC-SEC",
+      "title": "NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)",
+      "status": "security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96"
+    },
+    {
+      "key": "GHSA-2v4p-qf9q-27wj",
+      "url": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj",
+      "title": "OSV advisory GHSA-2v4p-qf9q-27wj",
+      "status": "modified 2026-09-25T18:00:05.270054427Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GO-2026-6603",
+      "url": "https://osv.dev/vulnerability/GO-2026-6603",
+      "title": "OSV advisory GO-2026-6603",
+      "status": "modified 2026-10-16T09:55:47.068117441Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GO-2026-6610",
+      "url": "https://osv.dev/vulnerability/GO-2026-6610",
+      "title": "OSV advisory GO-2026-6610",
+      "status": "modified 2026-10-16T09:56:04.364467528Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GO-2026-6611",
+      "url": "https://osv.dev/vulnerability/GO-2026-6611",
+      "title": "OSV advisory GO-2026-6611",
+      "status": "modified 2026-10-16T09:55:38.952277866Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GO-2026-6612",
+      "url": "https://osv.dev/vulnerability/GO-2026-6612",
+      "title": "OSV advisory GO-2026-6612",
+      "status": "modified 2026-10-16T09:55:54.129082194Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GO-2026-6617",
+      "url": "https://osv.dev/vulnerability/GO-2026-6617",
+      "title": "OSV advisory GO-2026-6617",
+      "status": "modified 2026-10-16T09:55:57.350751224Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GO-2026-6860",
+      "url": "https://osv.dev/vulnerability/GO-2026-6860",
+      "title": "OSV advisory GO-2026-6860",
+      "status": "modified 2026-10-27T21:30:04.890809062Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GO-2026-6866",
+      "url": "https://osv.dev/vulnerability/GO-2026-6866",
+      "title": "OSV advisory GO-2026-6866",
+      "status": "modified 2026-10-27T21:45:08.978077289Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    },
+    {
+      "key": "JAQUES2020",
+      "title": "S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1910.01700",
+      "status": "peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "HMAC",
+      "family": "mac",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/opts.go:53",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "HMAC",
+      "family": "mac",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keyderiv.go:21",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-512",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/conf.go:13",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-512",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/new.go:13",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "bccsp/pkcs11/pkcs11.go:13",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/aeskey.go:19",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/conf.go:11",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/ecdsakey.go:21",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/ed25519key.go:10",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/new.go:11",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/rsakey.go:11",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-3",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/conf.go:12",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-3",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/new.go:12",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/pkcs11/ecdsakey.go:19",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "bccsp/pkcs11/pkcs11.go:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/ecdsa.go:19",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/ecdsakey.go:19",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/fileks.go:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keyderiv.go:20",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keygen.go:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keyimport.go:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keys.go:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/utils/ecdsa.go:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/ed25519.go:15",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (9 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/ed25519.go:23",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 9,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (13 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/ed25519key.go:18",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 13,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (5 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/fileks.go:147",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 5,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keygen.go:36",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keygen.go:41",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (4 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keyimport.go:105",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 4,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (4 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/new.go:64",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 4,
+      "origin": "own"
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/fileks.go:13",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keygen.go:14",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keyimport.go:12",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/keys.go:15",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/rsa.go:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "bccsp/sw/rsakey.go:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "HMAC",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "bccsp/opts.go:53",
+        "bccsp/sw/keyderiv.go:21"
+      ]
+    },
+    {
+      "algorithm": "SHA-2",
+      "parameter": "SHA-512",
+      "library": "",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "bccsp/sw/conf.go:13",
+        "bccsp/sw/new.go:13"
+      ]
+    },
+    {
+      "algorithm": "SHA-2",
+      "parameter": "SHA-256",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 7,
+      "rows": 7,
+      "examples": [
+        "bccsp/pkcs11/pkcs11.go:13",
+        "bccsp/sw/aeskey.go:19",
+        "bccsp/sw/conf.go:11"
+      ]
+    },
+    {
+      "algorithm": "SHA-3",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "bccsp/sw/conf.go:12",
+        "bccsp/sw/new.go:12"
+      ]
+    },
+    {
+      "algorithm": "ECDSA",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 10,
+      "rows": 10,
+      "examples": [
+        "bccsp/pkcs11/ecdsakey.go:19",
+        "bccsp/pkcs11/pkcs11.go:11",
+        "bccsp/sw/ecdsa.go:19"
+      ]
+    },
+    {
+      "algorithm": "Ed25519",
+      "parameter": "Ed25519",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 8,
+      "rows": 8,
+      "examples": [
+        "bccsp/sw/ed25519.go:15",
+        "bccsp/sw/ed25519.go:23",
+        "bccsp/sw/ed25519key.go:18"
+      ]
+    },
+    {
+      "algorithm": "RSA",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 6,
+      "rows": 6,
+      "examples": [
+        "bccsp/sw/fileks.go:13",
+        "bccsp/sw/keygen.go:14",
+        "bccsp/sw/keyimport.go:12"
+      ]
+    }
+  ]
+}
