@@ -1,30 +1,30 @@
 # Отчёт об аудите безопасности и постквантовой готовности
 
-**Проект:** scroll @ 3046bbd18a6a · Scroll — публичный репозиторий (пассивная проверка)
+**Проект:** scroll @ 3046bbd18a6a · scroll — публичный репозиторий (пассивная проверка)
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 13:55 UTC |
+| Дата отчёта | 2026-11-07 18:39 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 9f41f8fe-74fd-412a-bc98-0c316478b613 (Документальный аудит) |
+| Запуск аудита | 1f0bf57a-6fcd-49d5-b544-f8233f2f0385 (Документальный аудит) |
 | Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `2342544e2f15be7ff1cd0fe90d6248110e49102a5b68bcaa0d27a0fb55b3c431` |
+| SHA-256 содержимого | `4fb555f1aacf1a15553dbb12fde83d11c84ae195fc3f8b64fd9a8ac90625d10a` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
-- Критическая: **8**
-- Высокая: **17**
-- Средняя: **24**
+- Критическая: **1**
+- Высокая: **14**
+- Средняя: **19**
 - Низкая: **43**
-- Информационная: **80**
+- Информационная: **102**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 114
+- Известная уязвимая версия компонента: 120
 - Подтверждённая ошибка конфигурации: 1
-- Потенциальный криптографический риск: 6
+- Потенциальный криптографический риск: 7
 - Долгосрочный постквантовый риск: 4
 - Рекомендация по улучшению: 47
 - Недостаточность данных: 0
@@ -45,7 +45,7 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 218 | .github/scripts/bump_version_dot_go.mjs: 37 lines scanned with 16 rule patterns and 266 registry patterns; bridge-history-api/abi/backend_abi.go: 344 lines scanned with 16 rule patterns and 266 registry patterns; bridge-history-api/cmd/api/app/app.go: 114 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 218 | .github/scripts/bump_version_dot_go.mjs: 37 lines scanned with 16 rule patterns and 278 registry patterns; bridge-history-api/abi/backend_abi.go: 344 lines scanned with 16 rule patterns and 278 registry patterns; bridge-history-api/cmd/api/app/app.go: 114 lines scanned with 16 rule patterns and 278 registry patterns |
 | dependencies | проверено | 16 | Cargo.lock: 938 dependencies parsed (938 pinned); Cargo.toml: 29 dependencies parsed (7 pinned); bridge-history-api/go.mod: 111 dependencies parsed (111 pinned) |
 | tls_code | проверено | 1 | bridge-history-api/cmd/api/app/app.go: TLS key-exchange settings read |
 | tls_code | Недостаточность данных | 5 | bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS |
@@ -54,7 +54,7 @@
 | entropy | проверено | 1 | random-number generation: 218 code files read with 1 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | не проверено | 1 | 137 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: ecies, encoder-standard, ethers-core, halo2-axiom, halo2-axiom-gpu, halo2-base, halo2-ecc, halo2curves-axiom, k256, openvm, openvm-algebra-circuit, openvm-algebra-complex-macros … |
 | osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 47 affected |
-| osv_advisories | Недостаточность данных | 2 | Go/golang.org/x/crypto@v0.32.0: 37 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; Go/golang.org/x/net@v0.25.0: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
+| osv_advisories | Недостаточность данных | 1 | Go/golang.org/x/crypto@v0.32.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -63,7 +63,7 @@ _Длинные списки здесь сгруппированы; полный
 - tls_code — Недостаточность данных: 5 (примеры: bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS)
 - slither — не проверено: 152 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
 - osv_advisories — не проверено: 1 (примеры: 137 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: ecies, encoder-standard, ethers-core, halo2-axiom, halo2-axiom-gpu, halo2-base, halo2-ecc, halo2curves-axiom, k256, openvm, openvm-algebra-circuit, openvm-algebra-complex-macros …)
-- osv_advisories — Недостаточность данных: 2 (примеры: Go/golang.org/x/crypto@v0.32.0: 37 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; Go/golang.org/x/net@v0.25.0: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)
+- osv_advisories — Недостаточность данных: 1 (примеры: Go/golang.org/x/crypto@v0.32.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)
 
 ## 5. Краткое описание архитектуры
 
@@ -76,13 +76,13 @@ Static review of the source tree scroll at 3046bbd18a6a05bf29dd3ffef7b5676203201
 
 ## 7. Подробное описание находок
 
-### QSI-2026-18907 — github.com/gin-contrib/cors v1.5.0 затронут GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955)
+### QSI-2026-25386 — github.com/gin-contrib/cors v1.5.0 затронут GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/gin-contrib/cors@v1.5.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -110,251 +110,13 @@ _tool_output · [OSV.dev GHSA-869c-j7wc-8jqv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18927 — golang.org/x/crypto v0.32.0 затронут GHSA-5cgq-3rg8-m6cv (CVE-2026-42508)
-
-- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 54.2 / 100
-- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
-
-OSV.dev сообщает GHSA-5cgq-3rg8-m6cv (CVE-2026-42508) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto vulnerable to auth bypass via unenforced @revoked status. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-5cgq-3rg8-m6cv
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-5cgq-3rg8-m6cv](https://osv.dev/vulnerability/GHSA-5cgq-3rg8-m6cv) · line 111 · SHA-256 9c7e78435cdc37851eedba638323f5181e1ce169a5458e1700ec03fddc272ab9_
-
-```
-{"id": "GHSA-5cgq-3rg8-m6cv", "aliases": ["CVE-2026-42508", "GO-2026-5021"], "modified": "2026-09-10T03:50:48.271021372Z", "summary": "golang.org/x/crypto vulnerable to auth bypass via unenforced @revoked status", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18929 — golang.org/x/crypto v0.32.0 затронут GHSA-89gr-r52h-f8rx (CVE-2026-39831)
-
-- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 54.2 / 100
-- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
-
-OSV.dev сообщает GHSA-89gr-r52h-f8rx (CVE-2026-39831) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: FIDO/U2F security key physical presence check can be bypassed. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-89gr-r52h-f8rx
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-89gr-r52h-f8rx](https://osv.dev/vulnerability/GHSA-89gr-r52h-f8rx) · line 111 · SHA-256 001c536b13a7aa2e4aa3994f477697a848d5ede30ac1479a7483e62fe328da7e_
-
-```
-{"id": "GHSA-89gr-r52h-f8rx", "aliases": ["CVE-2026-39831", "GO-2026-5019"], "modified": "2026-09-10T03:50:48.773810556Z", "summary": "golang.org/x/crypto: FIDO/U2F security key physical presence check can be bypassed", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18931 — golang.org/x/crypto v0.32.0 затронут GHSA-f5wc-c3c7-36mc (CVE-2026-39832)
-
-- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 54.2 / 100
-- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
-
-OSV.dev сообщает GHSA-f5wc-c3c7-36mc (CVE-2026-39832) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto doesn't drop invoking agent constraints when forwarding keys. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-f5wc-c3c7-36mc
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-f5wc-c3c7-36mc](https://osv.dev/vulnerability/GHSA-f5wc-c3c7-36mc) · line 111 · SHA-256 cd75989b3d8858cbf649ea67d9d5c78f325b9935df13b8c29a9fc5c9df7245eb_
-
-```
-{"id": "GHSA-f5wc-c3c7-36mc", "aliases": ["CVE-2026-39832", "GO-2026-5006"], "modified": "2026-09-10T03:50:49.274413517Z", "summary": "golang.org/x/crypto doesn't drop invoking agent constraints when forwarding keys", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18935 — golang.org/x/crypto v0.32.0 затронут GHSA-jppx-rxg9-jmrx (CVE-2026-39833)
-
-- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 54.2 / 100
-- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
-
-OSV.dev сообщает GHSA-jppx-rxg9-jmrx (CVE-2026-39833) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto doesn't enforce invoking key constraints. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-jppx-rxg9-jmrx
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-jppx-rxg9-jmrx](https://osv.dev/vulnerability/GHSA-jppx-rxg9-jmrx) · line 111 · SHA-256 fac31c4f2838fd52178b14e6d96699fea8e9c1da51c6f8ce6248a8c8cf16e66a_
-
-```
-{"id": "GHSA-jppx-rxg9-jmrx", "aliases": ["CVE-2026-39833", "GO-2026-5005"], "modified": "2026-09-10T03:50:50.029914620Z", "summary": "golang.org/x/crypto doesn't enforce invoking key constraints", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18938 — golang.org/x/crypto v0.32.0 затронут GHSA-rm3j-f69w-wqmq (CVE-2026-39834)
-
-- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 54.2 / 100
-- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H`)
-
-OSV.dev сообщает GHSA-rm3j-f69w-wqmq (CVE-2026-39834) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto vulnerable to infinite loop on large channel writes. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-rm3j-f69w-wqmq
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-rm3j-f69w-wqmq](https://osv.dev/vulnerability/GHSA-rm3j-f69w-wqmq) · line 111 · SHA-256 2fa0870f797d90f127e1c1c0aeb4882422d031ae1216bcade523505145548ce3_
-
-```
-{"id": "GHSA-rm3j-f69w-wqmq", "aliases": ["CVE-2026-39834", "GO-2026-5020"], "modified": "2026-09-10T03:50:50.499928973Z", "summary": "golang.org/x/crypto vulnerable to infinite loop on large channel writes", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18939 — golang.org/x/crypto v0.32.0 затронут GHSA-vgwf-h737-ff37 (CVE-2026-39830)
-
-- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 54.2 / 100
-- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H`)
-
-OSV.dev сообщает GHSA-vgwf-h737-ff37 (CVE-2026-39830) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking client can cause server deadlock on unexpected responses. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-vgwf-h737-ff37
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-vgwf-h737-ff37](https://osv.dev/vulnerability/GHSA-vgwf-h737-ff37) · line 111 · SHA-256 678f36aaa8710068246ef47fd9594423cc493ff8d1bb2890b073ed475a6da7ba_
-
-```
-{"id": "GHSA-vgwf-h737-ff37", "aliases": ["CVE-2026-39830", "GO-2026-5017"], "modified": "2026-09-15T12:45:34.863978347Z", "summary": "golang.org/x/crypto: Invoking client can cause server deadlock on unexpected responses", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18941 — golang.org/x/crypto v0.32.0 затронут GHSA-x527-x647-q7gg (CVE-2026-46595)
-
-- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 54.2 / 100
-- CVSS v3.1: 10.0 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L`)
-
-OSV.dev сообщает GHSA-x527-x647-q7gg (CVE-2026-46595) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking VerifiedPublicKeyCallback permissions skip enforcement. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-x527-x647-q7gg
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-x527-x647-q7gg](https://osv.dev/vulnerability/GHSA-x527-x647-q7gg) · line 111 · SHA-256 f51045db46b5668a71e274134eeeb6579fcc2fb636cc0bdbd0b5e63188810082_
-
-```
-{"id": "GHSA-x527-x647-q7gg", "aliases": ["CVE-2026-46595", "GO-2026-5023"], "modified": "2026-09-10T03:50:51.157351033Z", "summary": "golang.org/x/crypto: Invoking VerifiedPublicKeyCallback permissions skip enforcement", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18811 — Проверка TLS-сертификата отключена в bridge-history-api/cmd/api/app/app.go
+### QSI-2026-25289 — Проверка TLS-сертификата отключена в bridge-history-api/cmd/api/app/app.go
 
 - Серьёзность: **Высокая** · Классификация: Подтверждённая ошибка конфигурации · Уверенность: Высокая
 - Затронутый актив: `file:bridge-history-api/cmd/api/app/app.go`
 - Источник данных: bridge-history-api/cmd/api/app/app.go
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 70.4 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -386,13 +148,13 @@ _file_excerpt · [bridge-history-api/cmd/api/app/app.go](https://github.com/scro
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-18912 — github.com/docker/cli v25.0.4-0.20240305161310-2bf4225ad269+incompatible затронут GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610)
+### QSI-2026-25391 — github.com/docker/cli v25.0.4-0.20240305161310-2bf4225ad269+incompatible затронут GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/docker/cli@v25.0.4-0.20240305161310-2bf4225ad269+incompatible`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -420,149 +182,13 @@ _tool_output · [OSV.dev GHSA-p436-gjf2-799p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18915 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617)
-
-- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 50.2 / 100
-- CVSS v3.1: 7.2 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H`)
-
-OSV.dev сообщает GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: Race condition in docker cp allows bind mount redirection to host path. Бюллетень называет только неэкспортируемые функции (github.com/docker/docker/daemon.Daemon.openContainerFS), которые код вне пакета не может вызвать по имени, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-rg2x-37c3-w2rh
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-rg2x-37c3-w2rh](https://osv.dev/vulnerability/GHSA-rg2x-37c3-w2rh) · line 39 · SHA-256 1e37c034d0c067cb8cd66e219cb54fb68eb260f0ad00b3cc8953501288ec0324_
-
-```
-{"id": "GHSA-rg2x-37c3-w2rh", "aliases": ["CVE-2026-42306", "GO-2026-5617"], "modified": "2026-09-10T03:50:47.528575532Z", "summary": "Docker: Race condition in docker cp allows bind mount redirection to host path", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18918 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746)
-
-- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 50.2 / 100
-- CVSS v3.1: 7.2 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N`)
-
-OSV.dev сообщает GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: `PUT /containers/{id}/archive` executes container binary on the host. Бюллетень называет только неэкспортируемые функции (github.com/docker/docker/daemon.Daemon.containerExtractToDir), которые код вне пакета не может вызвать по имени, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-x86f-5xw2-fm2r
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-x86f-5xw2-fm2r](https://osv.dev/vulnerability/GHSA-x86f-5xw2-fm2r) · line 39 · SHA-256 5bc10da6eec232c1f263d2cf4ba5656f8695307a0c4ad5bd13ee536999509f78_
-
-```
-{"id": "GHSA-x86f-5xw2-fm2r", "aliases": ["CVE-2026-41567", "GO-2026-5746"], "modified": "2026-09-10T03:50:47.998689316Z", "summary": "Docker: `PUT /containers/{id}/archive` executes container binary on the host", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18936 — golang.org/x/crypto v0.32.0 затронут GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597)
-
-- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 50.2 / 100
-- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
-
-OSV.dev сообщает GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking byte arithmetic causes underflow and panic. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-q4h4-gmj2-qvw2
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-q4h4-gmj2-qvw2](https://osv.dev/vulnerability/GHSA-q4h4-gmj2-qvw2) · line 111 · SHA-256 8b423589adf2a699a3a90ddf4cb5146cd3a0b2dc1d6c62b2d2eddd105ee4ab51_
-
-```
-{"id": "GHSA-q4h4-gmj2-qvw2", "aliases": ["CVE-2026-46597", "GO-2026-5013"], "modified": "2026-09-10T03:50:50.202568323Z", "summary": "golang.org/x/crypto: Invoking byte arithmetic causes underflow and panic", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18940 — golang.org/x/crypto v0.32.0 затронут GHSA-w879-237q-wc7r (CVE-2026-39829)
-
-- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 50.2 / 100
-- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
-
-OSV.dev сообщает GHSA-w879-237q-wc7r (CVE-2026-39829) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking pathological RSA/DSA parameters may cause DoS. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-w879-237q-wc7r
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-w879-237q-wc7r](https://osv.dev/vulnerability/GHSA-w879-237q-wc7r) · line 111 · SHA-256 571904ca1b5634c65ac1aec62988f29789987838a58b873c9e79e7a2ae81e3c4_
-
-```
-{"id": "GHSA-w879-237q-wc7r", "aliases": ["CVE-2026-39829", "GO-2026-5018"], "modified": "2026-09-10T03:50:50.833802829Z", "summary": "golang.org/x/crypto: Invoking pathological RSA/DSA parameters may cause DoS", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18968 — github.com/containerd/containerd v1.7.12 затронут GHSA-pwhc-rpq9-4c8w (CVE-2024-25621, GO-2025-4100)
+### QSI-2026-25453 — github.com/containerd/containerd v1.7.12 затронут GHSA-pwhc-rpq9-4c8w (CVE-2024-25621, GO-2025-4100)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.3 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H`)
 
@@ -590,13 +216,13 @@ _tool_output · [OSV.dev GHSA-pwhc-rpq9-4c8w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18970 — github.com/containerd/containerd v1.7.12 затронут GHSA-xhf5-7wjv-pqxp (CVE-2026-53488, GO-2026-5758)
+### QSI-2026-25455 — github.com/containerd/containerd v1.7.12 затронут GHSA-xhf5-7wjv-pqxp (CVE-2026-53488, GO-2026-5758)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -624,13 +250,13 @@ _tool_output · [OSV.dev GHSA-xhf5-7wjv-pqxp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18979 — github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-4c29-8rgm-jvjj (CVE-2026-33747, GO-2026-4858)
+### QSI-2026-25464 — github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-4c29-8rgm-jvjj (CVE-2026-33747, GO-2026-4858)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/moby/buildkit@v0.13.0-beta1.0.20231219135447-957cb50df991`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.4 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -658,13 +284,13 @@ _tool_output · [OSV.dev GHSA-4c29-8rgm-jvjj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18980 — github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-4vrq-3vrq-g6gg (CVE-2026-33748, GO-2026-4859)
+### QSI-2026-25465 — github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-4vrq-3vrq-g6gg (CVE-2026-33748, GO-2026-4859)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/moby/buildkit@v0.13.0-beta1.0.20231219135447-957cb50df991`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -692,13 +318,13 @@ _tool_output · [OSV.dev GHSA-4vrq-3vrq-g6gg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18881 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0340
+### QSI-2026-25360 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0340
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -726,13 +352,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0340](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18882 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0341
+### QSI-2026-25361 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0341
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -760,13 +386,51 @@ _tool_output · [OSV.dev RUSTSEC-2026-0341](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18820 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol
+### QSI-2026-25298 — Цель и данные вызова задаёт вызывающий в relayMessageWithProof (scroll-contracts/src/L1/L1ScrollMessenger.sol)
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
 - Источник данных: scroll-contracts/src/L1/L1ScrollMessenger.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 36.5 / 100
+- CVSS v3.1: неприменимо
+
+Публичная функция relayMessageWithProof выполняет target.call(data), беря оба значения из параметров, в строка 192. (см. SWC-112)
+
+**Возможные последствия.** Если у контракта есть одобрения токенов или балансы, вызывающий может заставить его вызвать transferFrom любого токена и вывести средства одобривших пользователей.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 192 в предоставленном файле scroll-contracts/src/L1/L1ScrollMessenger.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/L1ScrollMessenger.sol#L192) · line 192 · SHA-256 f4f1b0112884e9b3d0e334f42c4814dc01366df462038674f7f86449d010bc2a_
+
+```
+  190 | 
+  191 |         xDomainMessageSender = _from;
+  192 |         (bool success, ) = _to.call{value: _value}(_message);
+  193 |         // reset value to refund gas.
+  194 |         xDomainMessageSender = ScrollConstants.DEFAULT_XDOMAIN_MESSAGE_SENDER;
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Ограничьте цели и селекторы белым списком, не пересылайте вызовы в контракты токенов и не держите постоянных одобрений.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-25299 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol
+
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
+- Источник данных: scroll-contracts/src/L1/L1ScrollMessenger.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -798,13 +462,13 @@ _file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18821 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol
+### QSI-2026-25300 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
 - Источник данных: scroll-contracts/src/L1/L1ScrollMessenger.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -836,13 +500,13 @@ _file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18835 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L2/L2ScrollMessenger.sol
+### QSI-2026-25314 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L2/L2ScrollMessenger.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:scroll-contracts/src/L2/L2ScrollMessenger.sol`
 - Источник данных: scroll-contracts/src/L2/L2ScrollMessenger.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -874,13 +538,13 @@ _file_excerpt · [scroll-contracts/src/L2/L2ScrollMessenger.sol](https://github.
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18841 — initialize() без модификатора initializer в scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
+### QSI-2026-25320 — initialize() без модификатора initializer в scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L1BlockContainer.sol`
 - Источник данных: scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -912,13 +576,13 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/L1BlockContainer.sol](https
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18844 — initialize() без модификатора initializer в scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
+### QSI-2026-25323 — initialize() без модификатора initializer в scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L2MessageQueue.sol`
 - Источник данных: scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -950,13 +614,13 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/L2MessageQueue.sol](https:/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18914 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883)
+### QSI-2026-25393 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -984,183 +648,13 @@ _tool_output · [OSV.dev GHSA-pxq6-2prw-chj9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18917 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: 6.1 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H`)
-
-OSV.dev сообщает GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap. Бюллетень называет только неэкспортируемые функции (github.com/docker/docker/daemon.Daemon.createIfNotExists, github.com/docker/docker/daemon.Daemon.openContainerFS), которые код вне пакета не может вызвать по имени, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-vp62-88p7-qqf5
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-vp62-88p7-qqf5](https://osv.dev/vulnerability/GHSA-vp62-88p7-qqf5) · line 39 · SHA-256 ebf7b606499a4435f059ad63b1893b11c29261567570d083a5aff397fdb23f99_
-
-```
-{"id": "GHSA-vp62-88p7-qqf5", "aliases": ["CVE-2026-41568", "GO-2026-5668"], "modified": "2026-09-10T03:51:07.017544565Z", "summary": "Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18926 — golang.org/x/crypto v0.32.0 затронут GHSA-45gg-vh54-h5m9 (CVE-2026-39828)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: 6.3 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L`)
-
-OSV.dev сообщает GHSA-45gg-vh54-h5m9 (CVE-2026-39828) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto vulnerable to invoking bypass of certificate restrictions. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-45gg-vh54-h5m9
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-45gg-vh54-h5m9](https://osv.dev/vulnerability/GHSA-45gg-vh54-h5m9) · line 111 · SHA-256 805bee4f20e024bb906a9180f1cf7124a4245664cf6fe17edf71ebc5044de145_
-
-```
-{"id": "GHSA-45gg-vh54-h5m9", "aliases": ["CVE-2026-39828", "GO-2026-5014"], "modified": "2026-09-10T03:51:07.761861882Z", "summary": "golang.org/x/crypto vulnerable to invoking bypass of certificate restrictions", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18928 — golang.org/x/crypto v0.32.0 затронут GHSA-78mq-xcr3-xm33 (CVE-2026-39835)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
-
-OSV.dev сообщает GHSA-78mq-xcr3-xm33 (CVE-2026-39835) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto is vulnerable to invoking server panic during CheckHostKey/Authenticate flow. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-78mq-xcr3-xm33
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-78mq-xcr3-xm33](https://osv.dev/vulnerability/GHSA-78mq-xcr3-xm33) · line 111 · SHA-256 7bfc585e53a88fd64a6614b46fe3387dc352769bc525f3a5b511270de8b84627_
-
-```
-{"id": "GHSA-78mq-xcr3-xm33", "aliases": ["CVE-2026-39835", "GO-2026-5015"], "modified": "2026-09-11T15:45:36.488635295Z", "summary": "golang.org/x/crypto is vulnerable to invoking server panic during CheckHostKey/Authenticate flow", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18930 — golang.org/x/crypto v0.32.0 затронут GHSA-9m57-25v3-79x9 (CVE-2026-46598)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
-
-OSV.dev сообщает GHSA-9m57-25v3-79x9 (CVE-2026-46598) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking pathological inputs can lead to client panic. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-9m57-25v3-79x9
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-9m57-25v3-79x9](https://osv.dev/vulnerability/GHSA-9m57-25v3-79x9) · line 111 · SHA-256 27d4c3e67487f5ff511a7937da2d47cc0a34eb52c672fa7ce111d0d0d235cda6_
-
-```
-{"id": "GHSA-9m57-25v3-79x9", "aliases": ["CVE-2026-46598", "GO-2026-5033"], "modified": "2026-09-10T03:50:55.369516615Z", "summary": "golang.org/x/crypto: Invoking pathological inputs can lead to client panic", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18937 — golang.org/x/crypto v0.32.0 затронут GHSA-qpw4-5x99-6vjp (CVE-2026-39827)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H`)
-
-OSV.dev сообщает GHSA-qpw4-5x99-6vjp (CVE-2026-39827) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking memory leak when rejecting channels can lead to DoS. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qpw4-5x99-6vjp
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-qpw4-5x99-6vjp](https://osv.dev/vulnerability/GHSA-qpw4-5x99-6vjp) · line 111 · SHA-256 31829af7c0886a93248c394dd5c51ea22e9c6d129f3f04b863eb8e49b0dfa1e6_
-
-```
-{"id": "GHSA-qpw4-5x99-6vjp", "aliases": ["CVE-2026-39827", "GO-2026-5016"], "modified": "2026-09-10T03:50:50.295705701Z", "summary": "golang.org/x/crypto: Invoking memory leak when rejecting channels can lead to DoS", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
-
-**Рекомендация.** Обновите до исправленной версии (0.52.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-18963 — github.com/containerd/containerd v1.7.12 затронут GHSA-265r-hfxg-fhmg (CVE-2024-40635, GO-2025-3528)
+### QSI-2026-25448 — github.com/containerd/containerd v1.7.12 затронут GHSA-265r-hfxg-fhmg (CVE-2024-40635, GO-2025-3528)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.6 (`CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N`)
 
@@ -1188,13 +682,13 @@ _tool_output · [OSV.dev GHSA-265r-hfxg-fhmg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18964 — github.com/containerd/containerd v1.7.12 затронут GHSA-7jxh-36q5-gcqv (CVE-2026-53495, GO-2026-6444)
+### QSI-2026-25449 — github.com/containerd/containerd v1.7.12 затронут GHSA-7jxh-36q5-gcqv (CVE-2026-53495, GO-2026-6444)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1222,13 +716,13 @@ _tool_output · [OSV.dev GHSA-7jxh-36q5-gcqv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18965 — github.com/containerd/containerd v1.7.12 затронут GHSA-jpcc-p29g-p8mq (CVE-2026-47262, GO-2026-5475)
+### QSI-2026-25450 — github.com/containerd/containerd v1.7.12 затронут GHSA-jpcc-p29g-p8mq (CVE-2026-47262, GO-2026-5475)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1256,13 +750,13 @@ _tool_output · [OSV.dev GHSA-jpcc-p29g-p8mq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18966 — github.com/containerd/containerd v1.7.12 затронут GHSA-m6hq-p25p-ffr2 (CVE-2025-64329, GO-2025-4108)
+### QSI-2026-25451 — github.com/containerd/containerd v1.7.12 затронут GHSA-m6hq-p25p-ffr2 (CVE-2025-64329, GO-2025-4108)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1290,13 +784,13 @@ _tool_output · [OSV.dev GHSA-m6hq-p25p-ffr2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18967 — github.com/containerd/containerd v1.7.12 затронут GHSA-pg57-6jwg-q645 (CVE-2026-53493, GO-2026-6597)
+### QSI-2026-25452 — github.com/containerd/containerd v1.7.12 затронут GHSA-pg57-6jwg-q645 (CVE-2026-53493, GO-2026-6597)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1324,13 +818,13 @@ _tool_output · [OSV.dev GHSA-pg57-6jwg-q645](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18969 — github.com/containerd/containerd v1.7.12 затронут GHSA-rp3h-jf77-q9p4 (CVE-2026-95838, GO-2026-6796)
+### QSI-2026-25454 — github.com/containerd/containerd v1.7.12 затронут GHSA-rp3h-jf77-q9p4 (CVE-2026-95838, GO-2026-6796)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1358,13 +852,13 @@ _tool_output · [OSV.dev GHSA-rp3h-jf77-q9p4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18975 — github.com/docker/buildx v0.12.0-rc2.0.20231219140829-617f538cb315 затронут GHSA-m4gq-fm9h-8q75 (CVE-2025-0495, GO-2025-3527)
+### QSI-2026-25460 — github.com/docker/buildx v0.12.0-rc2.0.20231219140829-617f538cb315 затронут GHSA-m4gq-fm9h-8q75 (CVE-2025-0495, GO-2025-3527)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/docker/buildx@v0.12.0-rc2.0.20231219140829-617f538cb315`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1392,13 +886,13 @@ _tool_output · [OSV.dev GHSA-m4gq-fm9h-8q75](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18977 — github.com/docker/distribution v2.8.3+incompatible затронут GHSA-685w-q87j-wqw3 (CVE-2026-85747, GO-2026-6778)
+### QSI-2026-25462 — github.com/docker/distribution v2.8.3+incompatible затронут GHSA-685w-q87j-wqw3 (CVE-2026-85747, GO-2026-6778)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/docker/distribution@v2.8.3+incompatible`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N`)
 
@@ -1426,13 +920,13 @@ _tool_output · [OSV.dev GHSA-685w-q87j-wqw3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18978 — github.com/in-toto/in-toto-golang v0.5.0 затронут GHSA-pmwq-pjrm-6p5r (GO-2026-5547)
+### QSI-2026-25463 — github.com/in-toto/in-toto-golang v0.5.0 затронут GHSA-pmwq-pjrm-6p5r (GO-2026-5547)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/in-toto/in-toto-golang@v0.5.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.1 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -1460,13 +954,13 @@ _tool_output · [OSV.dev GHSA-pmwq-pjrm-6p5r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18981 — github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-7236-3392-c5c6 (CVE-2026-61711, GO-2026-6255)
+### QSI-2026-25466 — github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-7236-3392-c5c6 (CVE-2026-61711, GO-2026-6255)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/moby/buildkit@v0.13.0-beta1.0.20231219135447-957cb50df991`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1494,13 +988,13 @@ _tool_output · [OSV.dev GHSA-7236-3392-c5c6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18817 — Прямое использование ecrecover в scroll-contracts/lib/solmate/src/tokens/ERC20.sol
+### QSI-2026-25295 — Прямое использование ecrecover в scroll-contracts/lib/solmate/src/tokens/ERC20.sol
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:scroll-contracts/lib/solmate/src/tokens/ERC20.sol`
 - Источник данных: scroll-contracts/lib/solmate/src/tokens/ERC20.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1532,13 +1026,13 @@ _file_excerpt · [scroll-contracts/lib/solmate/src/tokens/ERC20.sol](https://git
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18814 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
+### QSI-2026-25292 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: rollup/internal/controller/sender/kms_signer.go
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1594,13 +1088,13 @@ _file_excerpt · [scroll-contracts/lib/solmate/src/tokens/ERC20.sol](https://git
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18812 — Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))
+### QSI-2026-25290 — Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: common/utils/keystore.go
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1638,13 +1132,13 @@ _file_excerpt · [coordinator/internal/controller/proxy/client_manager.go](https
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18813 — Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
+### QSI-2026-25291 — Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:authentication`
 - Источник данных: coordinator/internal/types/auth.go
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1674,13 +1168,13 @@ _file_excerpt · [coordinator/internal/types/auth.go](https://github.com/scroll-
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18853 — Криптография на спариваниях в контракте: BN254 (alt_bn128) (scroll-contracts/src/libraries/verifier/RollupVerifier.sol)
+### QSI-2026-25332 — Криптография на спариваниях в контракте: BN254 (alt_bn128) (scroll-contracts/src/libraries/verifier/RollupVerifier.sol)
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:scroll-contracts/src/libraries/verifier/RollupVerifier.sol`
 - Источник данных: scroll-contracts/src/libraries/verifier/RollupVerifier.sol
 - Метод обнаружения: Сопоставление шаблонов реестра с учётом комментариев.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 33.7 / 100
 - CVSS v3.1: неприменимо
 
@@ -1712,13 +1206,13 @@ _file_excerpt · [scroll-contracts/src/libraries/verifier/RollupVerifier.sol](ht
 
 **Повторная проверка.** Повторите аудит после обновления верификатора.
 
-### QSI-2026-18862 — block-buffer 0.11.0 затронут GHSA-qwgh-2vcv-g2f7
+### QSI-2026-25341 — block-buffer 0.11.0 затронут GHSA-qwgh-2vcv-g2f7
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/block-buffer@0.11.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -1746,13 +1240,13 @@ _tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18885 — rustls 0.23.41 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
+### QSI-2026-25364 — rustls 0.23.41 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.23.41`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -1780,13 +1274,13 @@ _tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18886 — rustls 0.23.41 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+### QSI-2026-25365 — rustls 0.23.41 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.23.41`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -1814,13 +1308,13 @@ _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18891 — tracing-subscriber 0.2.25 затронут GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
+### QSI-2026-25370 — tracing-subscriber 0.2.25 затронут GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/tracing-subscriber@0.2.25`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1848,13 +1342,13 @@ _tool_output · [OSV.dev GHSA-xwfj-jgwm-7wp5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18913 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-4vq8-7jfc-9cvp (CVE-2025-54410)
+### QSI-2026-25392 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-4vq8-7jfc-9cvp (CVE-2025-54410)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.3 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -1882,13 +1376,13 @@ _tool_output · [OSV.dev GHSA-4vq8-7jfc-9cvp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18922 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004)
+### QSI-2026-25401 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1916,13 +1410,13 @@ _tool_output · [OSV.dev GHSA-j88v-2chj-qfwx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18815 — Плавающая версия компилятора (>=0.8.0) в 20 файл(ах)
+### QSI-2026-25293 — Плавающая версия компилятора (>=0.8.0) в 20 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.8.0`
 - Источник данных: scroll-contracts/lib/solmate/src/auth/Auth.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -2034,13 +1528,13 @@ _file_excerpt · [scroll-contracts/lib/solmate/src/tokens/WETH.sol](https://gith
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18818 — Плавающая версия компилятора (^0.8.10) в 1 файл(ах)
+### QSI-2026-25296 — Плавающая версия компилятора (^0.8.10) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.10`
 - Источник данных: scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -2071,13 +1565,13 @@ _file_excerpt · [scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol](http
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18819 — Плавающая версия компилятора (^0.8.24) в 58 файл(ах)
+### QSI-2026-25297 — Плавающая версия компилятора (^0.8.24) в 58 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.24`
 - Источник данных: scroll-contracts/src/L1/IL1ScrollMessenger.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -2199,13 +1693,13 @@ _file_excerpt · [scroll-contracts/src/L1/rollup/IL2GasPriceOracle.sol](https://
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18848 — Плавающая версия компилятора (^0.8.0) в 5 файл(ах)
+### QSI-2026-25327 — Плавающая версия компилятора (^0.8.0) в 5 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.0`
 - Источник данных: scroll-contracts/src/L2/predeploys/WrappedEther.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -2277,13 +1771,13 @@ _file_excerpt · [scroll-contracts/src/libraries/token/IScrollERC721Extension.so
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18871 — lru 0.12.5 затронут GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
+### QSI-2026-25350 — lru 0.12.5 затронут GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/lru@0.12.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -2311,13 +1805,13 @@ _tool_output · [OSV.dev GHSA-rhfx-m35p-ff5j](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18873 — lru 0.13.0 затронут GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
+### QSI-2026-25352 — lru 0.13.0 затронут GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/lru@0.13.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -2345,13 +1839,13 @@ _tool_output · [OSV.dev GHSA-rhfx-m35p-ff5j](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18875 — p3-symmetric 0.4.3 затронут GHSA-3g92-f9ch-qjcm
+### QSI-2026-25354 — p3-symmetric 0.4.3 затронут GHSA-3g92-f9ch-qjcm
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/p3-symmetric@0.4.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -2379,13 +1873,13 @@ _tool_output · [OSV.dev GHSA-3g92-f9ch-qjcm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18888 — rustls 0.23.41 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+### QSI-2026-25367 — rustls 0.23.41 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.23.41`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -2413,13 +1907,13 @@ _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18887 — rustls 0.23.41 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
+### QSI-2026-25366 — rustls 0.23.41 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls@0.23.41`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 25.0 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -2447,13 +1941,13 @@ _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18863 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
+### QSI-2026-25342 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2481,13 +1975,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18867 — h2 0.4.15 затронут RUSTSEC-2026-0258 (без оценки серьёзности)
+### QSI-2026-25346 — h2 0.4.15 затронут RUSTSEC-2026-0258 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/h2@0.4.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2515,13 +2009,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0258](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18870 — libz-sys 1.1.29 затронут RUSTSEC-2026-0418 (без оценки серьёзности)
+### QSI-2026-25349 — libz-sys 1.1.29 затронут RUSTSEC-2026-0418 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/libz-sys@1.1.29`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2549,13 +2043,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0418](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18872 — lru 0.12.5 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
+### QSI-2026-25351 — lru 0.12.5 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/lru@0.12.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2583,13 +2077,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18874 — lru 0.13.0 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
+### QSI-2026-25353 — lru 0.13.0 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/lru@0.13.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2617,13 +2111,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18879 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0338 (без оценки серьёзности)
+### QSI-2026-25358 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0338 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2651,13 +2145,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18880 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0339 (без оценки серьёзности)
+### QSI-2026-25359 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0339 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2685,13 +2179,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0339](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18883 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0342 (без оценки серьёзности)
+### QSI-2026-25362 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0342 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2719,13 +2213,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0342](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18884 — ruint 1.19.0 затронут RUSTSEC-2026-0220 (без оценки серьёзности)
+### QSI-2026-25363 — ruint 1.19.0 затронут RUSTSEC-2026-0220 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/ruint@1.19.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2753,13 +2247,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0220](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18889 — rustls-webpki 0.103.13 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-25368 — rustls-webpki 0.103.13 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.13`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2787,13 +2281,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18892 — webpki-roots 1.0.8 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-25371 — webpki-roots 1.0.8 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/webpki-roots@1.0.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2821,13 +2315,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18893 — zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)
+### QSI-2026-25372 — zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd@0.13.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2855,13 +2349,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0391](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18894 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)
+### QSI-2026-25373 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2889,13 +2383,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18895 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)
+### QSI-2026-25374 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2923,13 +2417,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0396](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18896 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)
+### QSI-2026-25375 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2957,13 +2451,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18897 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)
+### QSI-2026-25376 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2991,13 +2485,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0398](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18898 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)
+### QSI-2026-25377 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3025,13 +2519,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18899 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)
+### QSI-2026-25378 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3059,13 +2553,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18900 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)
+### QSI-2026-25379 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3093,13 +2587,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18901 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)
+### QSI-2026-25380 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3127,13 +2621,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18902 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)
+### QSI-2026-25381 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3161,13 +2655,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18903 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)
+### QSI-2026-25382 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3195,13 +2689,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18904 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)
+### QSI-2026-25383 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3229,13 +2723,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0405](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18905 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)
+### QSI-2026-25384 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3263,13 +2757,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18919 — github.com/docker/docker v26.1.0+incompatible затронут GO-2026-4887 (CVE-2026-34040) (без оценки серьёзности)
+### QSI-2026-25398 — github.com/docker/docker v26.1.0+incompatible затронут GO-2026-4887 (CVE-2026-34040) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3297,47 +2791,47 @@ _tool_output · [OSV.dev GO-2026-4887](https://osv.dev/vulnerability/GO-2026-488
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18942 — golang.org/x/crypto v0.32.0 затронут GO-2025-4116 (CVE-2025-47913) (без оценки серьёзности)
+### QSI-2026-25422 — golang.org/x/crypto v0.32.0 затронут GO-2026-5932 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GO-2025-4116 (CVE-2025-47913) для пакета Go golang.org/x/crypto версии v0.32.0: Potential denial of service in golang.org/x/crypto/ssh/agent. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень называет только неэкспортируемые функции (golang.org/x/crypto/ssh/agent.agentKeyringSigner.Sign, golang.org/x/crypto/ssh/agent.agentKeyringSigner.SignWithAlgorithm, golang.org/x/crypto/ssh/agent.client.List, golang.org/x/crypto/ssh/agent.client.Sign, golang.org/x/crypto/ssh/agent.client.SignWithFlags, golang.org/x/crypto/ssh/agent.client.Signers), которые код вне пакета не может вызвать по имени, поэтому достижимость не определена.
+OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.32.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
 **Шаги воспроизведения.**
 
 ```
-curl -s https://api.osv.dev/v1/vulns/GO-2025-4116
+curl -s https://api.osv.dev/v1/vulns/GO-2026-5932
 ```
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev GO-2025-4116](https://osv.dev/vulnerability/GO-2025-4116) · line 111 · SHA-256 42dc4b401dfa98d8bbda949c09629ad1083050d727ba505d65806734d3974a72_
+_tool_output · [OSV.dev GO-2026-5932](https://osv.dev/vulnerability/GO-2026-5932) · line 111 · SHA-256 79b7a13fb7767fbace049b5199d913b96ffabce881fc497fd2222d40644da151_
 
 ```
-{"id": "GO-2025-4116", "aliases": ["CVE-2025-47913", "GHSA-56w8-48fp-6mgv"], "modified": "2026-05-21T10:29:29.799885348Z", "summary": "Potential denial of service in golang.org/x/crypto/ssh/agent", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-5932", "aliases": [], "modified": "2026-11-02T22:15:06.677088389Z", "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues", "severity": null, "declared_in_manifest": true}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.43.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.58.1-0.20261009181718-2f1f834330b2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18971 — github.com/containerd/containerd v1.7.12 затронут GO-2026-5064 (CVE-2026-53492) (без оценки серьёзности)
+### QSI-2026-25456 — github.com/containerd/containerd v1.7.12 затронут GO-2026-5064 (CVE-2026-53492) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3365,13 +2859,13 @@ _tool_output · [OSV.dev GO-2026-5064](https://osv.dev/vulnerability/GO-2026-506
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18972 — github.com/containerd/containerd v1.7.12 затронут GO-2026-5338 (CVE-2026-50195) (без оценки серьёзности)
+### QSI-2026-25457 — github.com/containerd/containerd v1.7.12 затронут GO-2026-5338 (CVE-2026-50195) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3399,13 +2893,13 @@ _tool_output · [OSV.dev GO-2026-5338](https://osv.dev/vulnerability/GO-2026-533
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18973 — github.com/containerd/containerd v1.7.12 затронут GO-2026-5622 (CVE-2026-53489) (без оценки серьёзности)
+### QSI-2026-25458 — github.com/containerd/containerd v1.7.12 затронут GO-2026-5622 (CVE-2026-53489) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3433,13 +2927,13 @@ _tool_output · [OSV.dev GO-2026-5622](https://osv.dev/vulnerability/GO-2026-562
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18974 — github.com/containerd/containerd v1.7.12 затронут GO-2026-6791 (CVE-2026-95837) (без оценки серьёзности)
+### QSI-2026-25459 — github.com/containerd/containerd v1.7.12 затронут GO-2026-6791 (CVE-2026-95837) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/containerd/containerd@v1.7.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3467,13 +2961,13 @@ _tool_output · [OSV.dev GO-2026-6791](https://osv.dev/vulnerability/GO-2026-679
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18976 — github.com/docker/compose/v2 v2.24.7 затронут GO-2025-4077 (CVE-2025-62725) (без оценки серьёзности)
+### QSI-2026-25461 — github.com/docker/compose/v2 v2.24.7 затронут GO-2025-4077 (CVE-2025-62725) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/docker/compose/v2@v2.24.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3501,13 +2995,13 @@ _tool_output · [OSV.dev GO-2025-4077](https://osv.dev/vulnerability/GO-2025-407
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18816 — Привилегированные административные функции в scroll-contracts/lib/solmate/src/auth/Owned.sol: transferOwnership
+### QSI-2026-25294 — Привилегированные административные функции в scroll-contracts/lib/solmate/src/auth/Owned.sol: transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/lib/solmate/src/auth/Owned.sol`
 - Источник данных: scroll-contracts/lib/solmate/src/auth/Owned.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3535,13 +3029,13 @@ Privileged functions: transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18822 — Привилегированные административные функции в scroll-contracts/src/L1/L1ScrollMessenger.sol: updateMaxReplayTimes
+### QSI-2026-25301 — Привилегированные административные функции в scroll-contracts/src/L1/L1ScrollMessenger.sol: updateMaxReplayTimes
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
 - Источник данных: scroll-contracts/src/L1/L1ScrollMessenger.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3569,13 +3063,13 @@ Privileged functions: updateMaxReplayTimes
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18823 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol: updateFeeVault, setPause
+### QSI-2026-25302 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol: updateFeeVault, setPause
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol`
 - Источник данных: scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3603,13 +3097,13 @@ Privileged functions: updateFeeVault, setPause
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18824 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol: updateTokenMapping
+### QSI-2026-25303 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol: updateTokenMapping
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol`
 - Источник данных: scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3637,13 +3131,13 @@ Privileged functions: updateTokenMapping
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18825 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol: updateTokenMapping
+### QSI-2026-25304 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol: updateTokenMapping
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol`
 - Источник данных: scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3671,13 +3165,13 @@ Privileged functions: updateTokenMapping
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18826 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol: updateTokenMapping
+### QSI-2026-25305 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol: updateTokenMapping
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol`
 - Источник данных: scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3705,13 +3199,13 @@ Privileged functions: updateTokenMapping
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18827 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
+### QSI-2026-25306 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/gateways/L1GatewayRouter.sol`
 - Источник данных: scroll-contracts/src/L1/gateways/L1GatewayRouter.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3739,13 +3233,13 @@ Privileged functions: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18828 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw
+### QSI-2026-25307 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol`
 - Источник данных: scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3773,13 +3267,13 @@ Privileged functions: updateCircleCaller, pauseDeposit, pauseWithdraw
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18829 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol: updateCCTPContracts
+### QSI-2026-25308 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol: updateCCTPContracts
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol`
 - Источник данных: scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3807,13 +3301,13 @@ Privileged functions: updateCCTPContracts
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18830 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L1MessageQueue.sol: updateGasOracle, updateMaxGasLimit
+### QSI-2026-25309 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L1MessageQueue.sol: updateGasOracle, updateMaxGasLimit
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/rollup/L1MessageQueue.sol`
 - Источник данных: scroll-contracts/src/L1/rollup/L1MessageQueue.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3841,13 +3335,13 @@ Privileged functions: updateGasOracle, updateMaxGasLimit
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18831 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol: updateWhitelistChecker
+### QSI-2026-25310 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol: updateWhitelistChecker
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol`
 - Источник данных: scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3875,13 +3369,13 @@ Privileged functions: updateWhitelistChecker
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18832 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol: updateWhitelist, setIntrinsicParams
+### QSI-2026-25311 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol: updateWhitelist, setIntrinsicParams
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol`
 - Источник данных: scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3909,13 +3403,13 @@ Privileged functions: updateWhitelist, setIntrinsicParams
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18833 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol: updateVerifier
+### QSI-2026-25312 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol: updateVerifier
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol`
 - Источник данных: scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3943,13 +3437,13 @@ Privileged functions: updateVerifier
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18834 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/ScrollChain.sol: revertBatch, finalizeEuclidInitialBatch, addSequencer, removeSequencer, addProver, removeProver, updateMaxNumTxInChunk, setPause
+### QSI-2026-25313 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/ScrollChain.sol: revertBatch, finalizeEuclidInitialBatch, addSequencer, removeSequencer, addProver, removeProver, updateMaxNumTxInChunk, setPause
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L1/rollup/ScrollChain.sol`
 - Источник данных: scroll-contracts/src/L1/rollup/ScrollChain.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -3977,13 +3471,13 @@ Privileged functions: revertBatch, finalizeEuclidInitialBatch, addSequencer, rem
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18836 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol: updateTokenMapping
+### QSI-2026-25315 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol: updateTokenMapping
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol`
 - Источник данных: scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4011,13 +3505,13 @@ Privileged functions: updateTokenMapping
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18837 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol: updateTokenMapping
+### QSI-2026-25316 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol: updateTokenMapping
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol`
 - Источник данных: scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4045,13 +3539,13 @@ Privileged functions: updateTokenMapping
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18838 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
+### QSI-2026-25317 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/gateways/L2GatewayRouter.sol`
 - Источник данных: scroll-contracts/src/L2/gateways/L2GatewayRouter.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4079,13 +3573,13 @@ Privileged functions: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18839 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw
+### QSI-2026-25318 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol`
 - Источник данных: scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4113,13 +3607,13 @@ Privileged functions: updateCircleCaller, pauseDeposit, pauseWithdraw
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18840 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol: updateCCTPContracts
+### QSI-2026-25319 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol: updateCCTPContracts
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol`
 - Источник данных: scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4147,13 +3641,13 @@ Privileged functions: updateCCTPContracts
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18842 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L1BlockContainer.sol: initialize, updateWhitelist
+### QSI-2026-25321 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L1BlockContainer.sol: initialize, updateWhitelist
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L1BlockContainer.sol`
 - Источник данных: scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4181,13 +3675,13 @@ Privileged functions: initialize, updateWhitelist
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18843 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol: setOverhead, setScalar, setCommitScalar, setBlobScalar, updateWhitelist, enableCurie
+### QSI-2026-25322 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol: setOverhead, setScalar, setCommitScalar, setBlobScalar, updateWhitelist, enableCurie
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol`
 - Источник данных: scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4215,13 +3709,13 @@ Privileged functions: setOverhead, setScalar, setCommitScalar, setBlobScalar, up
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18845 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L2MessageQueue.sol: initialize
+### QSI-2026-25324 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L2MessageQueue.sol: initialize
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L2MessageQueue.sol`
 - Источник данных: scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4249,13 +3743,13 @@ Privileged functions: initialize
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18846 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol: updateMessenger, updateRecipient, updateMinWithdrawAmount
+### QSI-2026-25325 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol: updateMessenger, updateRecipient, updateMinWithdrawAmount
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol`
 - Источник данных: scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4283,13 +3777,13 @@ Privileged functions: updateMessenger, updateRecipient, updateMinWithdrawAmount
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18847 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/Whitelist.sol: updateWhitelistStatus
+### QSI-2026-25326 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/Whitelist.sol: updateWhitelistStatus
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/Whitelist.sol`
 - Источник данных: scroll-contracts/src/L2/predeploys/Whitelist.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4317,13 +3811,13 @@ Privileged functions: updateWhitelistStatus
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18849 — Привилегированные административные функции в scroll-contracts/src/gas-swap/GasSwap.sol: withdraw, updateFeeRatio, updateApprovedTarget
+### QSI-2026-25328 — Привилегированные административные функции в scroll-contracts/src/gas-swap/GasSwap.sol: withdraw, updateFeeRatio, updateApprovedTarget
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/gas-swap/GasSwap.sol`
 - Источник данных: scroll-contracts/src/gas-swap/GasSwap.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4351,13 +3845,13 @@ Privileged functions: withdraw, updateFeeRatio, updateApprovedTarget
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18850 — Привилегированные административные функции в scroll-contracts/src/libraries/ScrollMessengerBase.sol: updateFeeVault, setPause
+### QSI-2026-25329 — Привилегированные административные функции в scroll-contracts/src/libraries/ScrollMessengerBase.sol: updateFeeVault, setPause
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/libraries/ScrollMessengerBase.sol`
 - Источник данных: scroll-contracts/src/libraries/ScrollMessengerBase.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4385,13 +3879,13 @@ Privileged functions: updateFeeVault, setPause
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18851 — Привилегированные административные функции в scroll-contracts/src/libraries/common/OwnableBase.sol: renounceOwnership, transferOwnership
+### QSI-2026-25330 — Привилегированные административные функции в scroll-contracts/src/libraries/common/OwnableBase.sol: renounceOwnership, transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/libraries/common/OwnableBase.sol`
 - Источник данных: scroll-contracts/src/libraries/common/OwnableBase.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4419,13 +3913,13 @@ Privileged functions: renounceOwnership, transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18852 — Привилегированные административные функции в scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol: deployL2Token
+### QSI-2026-25331 — Привилегированные административные функции в scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol: deployL2Token
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol`
 - Источник данных: scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4453,13 +3947,13 @@ Privileged functions: deployL2Token
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18854 — Привилегированные административные функции в scroll-contracts/src/lido/LidoGatewayManager.sol: grantRole, revokeRole
+### QSI-2026-25333 — Привилегированные административные функции в scroll-contracts/src/lido/LidoGatewayManager.sol: grantRole, revokeRole
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/lido/LidoGatewayManager.sol`
 - Источник данных: scroll-contracts/src/lido/LidoGatewayManager.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4487,13 +3981,13 @@ Privileged functions: grantRole, revokeRole
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18855 — Привилегированные административные функции в scroll-contracts/src/misc/Fallback.sol: withdraw, execute
+### QSI-2026-25334 — Привилегированные административные функции в scroll-contracts/src/misc/Fallback.sol: withdraw, execute
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/misc/Fallback.sol`
 - Источник данных: scroll-contracts/src/misc/Fallback.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4521,13 +4015,13 @@ Privileged functions: withdraw, execute
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18856 — Привилегированные административные функции в scroll-contracts/src/rate-limiter/ETHRateLimiter.sol: updateTotalLimit
+### QSI-2026-25335 — Привилегированные административные функции в scroll-contracts/src/rate-limiter/ETHRateLimiter.sol: updateTotalLimit
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:scroll-contracts/src/rate-limiter/ETHRateLimiter.sol`
 - Источник данных: scroll-contracts/src/rate-limiter/ETHRateLimiter.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: solidity 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -4555,13 +4049,13 @@ Privileged functions: updateTotalLimit
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18908 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189)
+### QSI-2026-25387 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H`)
 
@@ -4589,13 +4083,13 @@ _tool_output · [OSV.dev GHSA-27vh-h6mc-q6g8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18909 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098)
+### QSI-2026-25388 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 9.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -4623,13 +4117,13 @@ _tool_output · [OSV.dev GHSA-2chg-86hq-7w38](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18910 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818)
+### QSI-2026-25389 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -4657,13 +4151,13 @@ _tool_output · [OSV.dev GHSA-3jgf-r68h-xfqm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18911 — github.com/consensys/gnark-crypto v0.16.0 затронут GHSA-fj2x-735w-74vq (GO-2025-4087)
+### QSI-2026-25390 — github.com/consensys/gnark-crypto v0.16.0 затронут GHSA-fj2x-735w-74vq (GO-2025-4087)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/consensys/gnark-crypto@v0.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4691,13 +4185,47 @@ _tool_output · [OSV.dev GHSA-fj2x-735w-74vq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18916 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005)
+### QSI-2026-25394 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 7.2 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H`)
+
+OSV.dev сообщает GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: Race condition in docker cp allows bind mount redirection to host path. Ни одна из затронутых функций (github.com/docker/docker/daemon.Daemon.openContainerFS) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-rg2x-37c3-w2rh
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-rg2x-37c3-w2rh](https://osv.dev/vulnerability/GHSA-rg2x-37c3-w2rh) · line 39 · SHA-256 1e37c034d0c067cb8cd66e219cb54fb68eb260f0ad00b3cc8953501288ec0324_
+
+```
+{"id": "GHSA-rg2x-37c3-w2rh", "aliases": ["CVE-2026-42306", "GO-2026-5617"], "modified": "2026-09-10T03:50:47.528575532Z", "summary": "Docker: Race condition in docker cp allows bind mount redirection to host path", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25395 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 9.9 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H`)
 
@@ -4725,13 +4253,81 @@ _tool_output · [OSV.dev GHSA-v23v-6jw2-98fq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18920 — github.com/gorilla/websocket v1.5.0 затронут GHSA-w67g-5rqw-f597 (GO-2026-6278)
+### QSI-2026-25396 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 6.1 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H`)
+
+OSV.dev сообщает GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap. Ни одна из затронутых функций (github.com/docker/docker/daemon.Daemon.createIfNotExists, github.com/docker/docker/daemon.Daemon.openContainerFS) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-vp62-88p7-qqf5
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-vp62-88p7-qqf5](https://osv.dev/vulnerability/GHSA-vp62-88p7-qqf5) · line 39 · SHA-256 ebf7b606499a4435f059ad63b1893b11c29261567570d083a5aff397fdb23f99_
+
+```
+{"id": "GHSA-vp62-88p7-qqf5", "aliases": ["CVE-2026-41568", "GO-2026-5668"], "modified": "2026-09-10T03:51:07.017544565Z", "summary": "Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25397 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 7.2 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N`)
+
+OSV.dev сообщает GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: `PUT /containers/{id}/archive` executes container binary on the host. Ни одна из затронутых функций (github.com/docker/docker/daemon.Daemon.containerExtractToDir) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-x86f-5xw2-fm2r
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-x86f-5xw2-fm2r](https://osv.dev/vulnerability/GHSA-x86f-5xw2-fm2r) · line 39 · SHA-256 5bc10da6eec232c1f263d2cf4ba5656f8695307a0c4ad5bd13ee536999509f78_
+
+```
+{"id": "GHSA-x86f-5xw2-fm2r", "aliases": ["CVE-2026-41567", "GO-2026-5746"], "modified": "2026-09-10T03:50:47.998689316Z", "summary": "Docker: `PUT /containers/{id}/archive` executes container binary on the host", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25399 — github.com/gorilla/websocket v1.5.0 затронут GHSA-w67g-5rqw-f597 (GO-2026-6278)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/gorilla/websocket@v1.5.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -4759,13 +4355,13 @@ _tool_output · [OSV.dev GHSA-w67g-5rqw-f597](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18921 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772)
+### QSI-2026-25400 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 9.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -4793,13 +4389,13 @@ _tool_output · [OSV.dev GHSA-9jj7-4m8r-rfcm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18923 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771)
+### QSI-2026-25402 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 9.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -4827,13 +4423,13 @@ _tool_output · [OSV.dev GHSA-xgrm-4fwx-7qm8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18924 — github.com/klauspost/compress v1.17.9 затронут GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841)
+### QSI-2026-25403 — github.com/klauspost/compress v1.17.9 затронут GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/klauspost/compress@v1.17.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4861,13 +4457,217 @@ _tool_output · [OSV.dev GHSA-259r-337f-4rfw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18932 — golang.org/x/crypto v0.32.0 затронут GHSA-f6x5-jh6r-wrfv (CVE-2025-47914, GO-2025-4135)
+### QSI-2026-25405 — golang.org/x/crypto v0.32.0 затронут GHSA-45gg-vh54-h5m9 (CVE-2026-39828, GO-2026-5014)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 6.3 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L`)
+
+OSV.dev сообщает GHSA-45gg-vh54-h5m9 (CVE-2026-39828, GO-2026-5014) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto vulnerable to invoking bypass of certificate restrictions. Ни одна из затронутых функций (golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.connection.serverAuthenticate) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-45gg-vh54-h5m9
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-45gg-vh54-h5m9](https://osv.dev/vulnerability/GHSA-45gg-vh54-h5m9) · line 111 · SHA-256 805bee4f20e024bb906a9180f1cf7124a4245664cf6fe17edf71ebc5044de145_
+
+```
+{"id": "GHSA-45gg-vh54-h5m9", "aliases": ["CVE-2026-39828", "GO-2026-5014"], "modified": "2026-09-10T03:51:07.761861882Z", "summary": "golang.org/x/crypto vulnerable to invoking bypass of certificate restrictions", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25406 — golang.org/x/crypto v0.32.0 затронут GHSA-5cgq-3rg8-m6cv (CVE-2026-42508, GO-2026-5021)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
+
+OSV.dev сообщает GHSA-5cgq-3rg8-m6cv (CVE-2026-42508, GO-2026-5021) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto vulnerable to auth bypass via unenforced @revoked status. Ни одна из затронутых функций (golang.org/x/crypto/ssh/knownhosts.hostKeyDB.IsRevoked) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-5cgq-3rg8-m6cv
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-5cgq-3rg8-m6cv](https://osv.dev/vulnerability/GHSA-5cgq-3rg8-m6cv) · line 111 · SHA-256 9c7e78435cdc37851eedba638323f5181e1ce169a5458e1700ec03fddc272ab9_
+
+```
+{"id": "GHSA-5cgq-3rg8-m6cv", "aliases": ["CVE-2026-42508", "GO-2026-5021"], "modified": "2026-09-10T03:50:48.271021372Z", "summary": "golang.org/x/crypto vulnerable to auth bypass via unenforced @revoked status", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25407 — golang.org/x/crypto v0.32.0 затронут GHSA-78mq-xcr3-xm33 (CVE-2026-39835, GO-2026-5015)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev сообщает GHSA-78mq-xcr3-xm33 (CVE-2026-39835, GO-2026-5015) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto is vulnerable to invoking server panic during CheckHostKey/Authenticate flow. Ни одна из затронутых функций (golang.org/x/crypto/ssh.CertChecker.Authenticate, golang.org/x/crypto/ssh.CertChecker.CheckHostKey) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-78mq-xcr3-xm33
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-78mq-xcr3-xm33](https://osv.dev/vulnerability/GHSA-78mq-xcr3-xm33) · line 111 · SHA-256 7bfc585e53a88fd64a6614b46fe3387dc352769bc525f3a5b511270de8b84627_
+
+```
+{"id": "GHSA-78mq-xcr3-xm33", "aliases": ["CVE-2026-39835", "GO-2026-5015"], "modified": "2026-09-11T15:45:36.488635295Z", "summary": "golang.org/x/crypto is vulnerable to invoking server panic during CheckHostKey/Authenticate flow", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25408 — golang.org/x/crypto v0.32.0 затронут GHSA-89gr-r52h-f8rx (CVE-2026-39831, GO-2026-5019)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
+
+OSV.dev сообщает GHSA-89gr-r52h-f8rx (CVE-2026-39831, GO-2026-5019) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: FIDO/U2F security key physical presence check can be bypassed. Ни одна из затронутых функций (golang.org/x/crypto/ssh.CertChecker.Authenticate, golang.org/x/crypto/ssh.CertChecker.CheckCert, golang.org/x/crypto/ssh.CertChecker.CheckHostKey, golang.org/x/crypto/ssh.Certificate.Verify, golang.org/x/crypto/ssh.Dial, golang.org/x/crypto/ssh.NewClientConn …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-89gr-r52h-f8rx
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-89gr-r52h-f8rx](https://osv.dev/vulnerability/GHSA-89gr-r52h-f8rx) · line 111 · SHA-256 001c536b13a7aa2e4aa3994f477697a848d5ede30ac1479a7483e62fe328da7e_
+
+```
+{"id": "GHSA-89gr-r52h-f8rx", "aliases": ["CVE-2026-39831", "GO-2026-5019"], "modified": "2026-09-10T03:50:48.773810556Z", "summary": "golang.org/x/crypto: FIDO/U2F security key physical presence check can be bypassed", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25409 — golang.org/x/crypto v0.32.0 затронут GHSA-9m57-25v3-79x9 (CVE-2026-46598, GO-2026-5033)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev сообщает GHSA-9m57-25v3-79x9 (CVE-2026-46598, GO-2026-5033) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking pathological inputs can lead to client panic. Ни одна из затронутых функций (golang.org/x/crypto/ssh/agent.ForwardToAgent, golang.org/x/crypto/ssh/agent.ServeAgent, golang.org/x/crypto/ssh/agent.parseEd25519Cert, golang.org/x/crypto/ssh/agent.parseEd25519Key) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-9m57-25v3-79x9
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-9m57-25v3-79x9](https://osv.dev/vulnerability/GHSA-9m57-25v3-79x9) · line 111 · SHA-256 27d4c3e67487f5ff511a7937da2d47cc0a34eb52c672fa7ce111d0d0d235cda6_
+
+```
+{"id": "GHSA-9m57-25v3-79x9", "aliases": ["CVE-2026-46598", "GO-2026-5033"], "modified": "2026-09-10T03:50:55.369516615Z", "summary": "golang.org/x/crypto: Invoking pathological inputs can lead to client panic", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25410 — golang.org/x/crypto v0.32.0 затронут GHSA-f5wc-c3c7-36mc (CVE-2026-39832, GO-2026-5006)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
+
+OSV.dev сообщает GHSA-f5wc-c3c7-36mc (CVE-2026-39832, GO-2026-5006) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto doesn't drop invoking agent constraints when forwarding keys. Ни одна из затронутых функций (golang.org/x/crypto/ssh/agent.client.Add, golang.org/x/crypto/ssh/agent.keyring.Add) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-f5wc-c3c7-36mc
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-f5wc-c3c7-36mc](https://osv.dev/vulnerability/GHSA-f5wc-c3c7-36mc) · line 111 · SHA-256 cd75989b3d8858cbf649ea67d9d5c78f325b9935df13b8c29a9fc5c9df7245eb_
+
+```
+{"id": "GHSA-f5wc-c3c7-36mc", "aliases": ["CVE-2026-39832", "GO-2026-5006"], "modified": "2026-09-10T03:50:49.274413517Z", "summary": "golang.org/x/crypto doesn't drop invoking agent constraints when forwarding keys", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25411 — golang.org/x/crypto v0.32.0 затронут GHSA-f6x5-jh6r-wrfv (CVE-2025-47914, GO-2025-4135)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -4895,13 +4695,13 @@ _tool_output · [OSV.dev GHSA-f6x5-jh6r-wrfv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18933 — golang.org/x/crypto v0.32.0 затронут GHSA-hcg3-q754-cr77 (CVE-2025-22869, GO-2025-3487)
+### QSI-2026-25412 — golang.org/x/crypto v0.32.0 затронут GHSA-hcg3-q754-cr77 (CVE-2025-22869, GO-2025-3487)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4929,13 +4729,13 @@ _tool_output · [OSV.dev GHSA-hcg3-q754-cr77](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18934 — golang.org/x/crypto v0.32.0 затронут GHSA-j5w8-q4qc-rx2x (CVE-2025-58181, GO-2025-4134)
+### QSI-2026-25413 — golang.org/x/crypto v0.32.0 затронут GHSA-j5w8-q4qc-rx2x (CVE-2025-58181, GO-2025-4134)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -4963,13 +4763,251 @@ _tool_output · [OSV.dev GHSA-j5w8-q4qc-rx2x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18943 — golang.org/x/net v0.25.0 затронут GHSA-5cv4-jp36-h3mw (CVE-2026-25680, GO-2026-5028)
+### QSI-2026-25414 — golang.org/x/crypto v0.32.0 затронут GHSA-jppx-rxg9-jmrx (CVE-2026-39833, GO-2026-5005)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
+
+OSV.dev сообщает GHSA-jppx-rxg9-jmrx (CVE-2026-39833, GO-2026-5005) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto doesn't enforce invoking key constraints. Ни одна из затронутых функций (golang.org/x/crypto/ssh/agent.keyring.Add) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-jppx-rxg9-jmrx
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-jppx-rxg9-jmrx](https://osv.dev/vulnerability/GHSA-jppx-rxg9-jmrx) · line 111 · SHA-256 fac31c4f2838fd52178b14e6d96699fea8e9c1da51c6f8ce6248a8c8cf16e66a_
+
+```
+{"id": "GHSA-jppx-rxg9-jmrx", "aliases": ["CVE-2026-39833", "GO-2026-5005"], "modified": "2026-09-10T03:50:50.029914620Z", "summary": "golang.org/x/crypto doesn't enforce invoking key constraints", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25415 — golang.org/x/crypto v0.32.0 затронут GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597, GO-2026-5013)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev сообщает GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597, GO-2026-5013) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking byte arithmetic causes underflow and panic. Ни одна из затронутых функций (golang.org/x/crypto/ssh.Dial, golang.org/x/crypto/ssh.NewClientConn, golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.curve25519sha256.Client, golang.org/x/crypto/ssh.curve25519sha256.Server, golang.org/x/crypto/ssh.dhGEXSHA.Client …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-q4h4-gmj2-qvw2
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-q4h4-gmj2-qvw2](https://osv.dev/vulnerability/GHSA-q4h4-gmj2-qvw2) · line 111 · SHA-256 8b423589adf2a699a3a90ddf4cb5146cd3a0b2dc1d6c62b2d2eddd105ee4ab51_
+
+```
+{"id": "GHSA-q4h4-gmj2-qvw2", "aliases": ["CVE-2026-46597", "GO-2026-5013"], "modified": "2026-09-10T03:50:50.202568323Z", "summary": "golang.org/x/crypto: Invoking byte arithmetic causes underflow and panic", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25416 — golang.org/x/crypto v0.32.0 затронут GHSA-qpw4-5x99-6vjp (CVE-2026-39827, GO-2026-5016)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev сообщает GHSA-qpw4-5x99-6vjp (CVE-2026-39827, GO-2026-5016) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking memory leak when rejecting channels can lead to DoS. Ни одна из затронутых функций (golang.org/x/crypto/ssh.channel.Reject) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-qpw4-5x99-6vjp
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-qpw4-5x99-6vjp](https://osv.dev/vulnerability/GHSA-qpw4-5x99-6vjp) · line 111 · SHA-256 31829af7c0886a93248c394dd5c51ea22e9c6d129f3f04b863eb8e49b0dfa1e6_
+
+```
+{"id": "GHSA-qpw4-5x99-6vjp", "aliases": ["CVE-2026-39827", "GO-2026-5016"], "modified": "2026-09-10T03:50:50.295705701Z", "summary": "golang.org/x/crypto: Invoking memory leak when rejecting channels can lead to DoS", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25417 — golang.org/x/crypto v0.32.0 затронут GHSA-rm3j-f69w-wqmq (CVE-2026-39834, GO-2026-5020)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H`)
+
+OSV.dev сообщает GHSA-rm3j-f69w-wqmq (CVE-2026-39834, GO-2026-5020) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto vulnerable to infinite loop on large channel writes. Ни одна из затронутых функций (golang.org/x/crypto/ssh.Dial, golang.org/x/crypto/ssh.NewClientConn, golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.Session.CombinedOutput, golang.org/x/crypto/ssh.Session.Output, golang.org/x/crypto/ssh.Session.Run …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-rm3j-f69w-wqmq
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-rm3j-f69w-wqmq](https://osv.dev/vulnerability/GHSA-rm3j-f69w-wqmq) · line 111 · SHA-256 2fa0870f797d90f127e1c1c0aeb4882422d031ae1216bcade523505145548ce3_
+
+```
+{"id": "GHSA-rm3j-f69w-wqmq", "aliases": ["CVE-2026-39834", "GO-2026-5020"], "modified": "2026-09-10T03:50:50.499928973Z", "summary": "golang.org/x/crypto vulnerable to infinite loop on large channel writes", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25418 — golang.org/x/crypto v0.32.0 затронут GHSA-vgwf-h737-ff37 (CVE-2026-39830, GO-2026-5017)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H`)
+
+OSV.dev сообщает GHSA-vgwf-h737-ff37 (CVE-2026-39830, GO-2026-5017) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking client can cause server deadlock on unexpected responses. Ни одна из затронутых функций (golang.org/x/crypto/ssh.Client.Listen, golang.org/x/crypto/ssh.Client.ListenTCP, golang.org/x/crypto/ssh.Client.ListenUnix, golang.org/x/crypto/ssh.Dial, golang.org/x/crypto/ssh.NewClientConn, golang.org/x/crypto/ssh.NewServerConn …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-vgwf-h737-ff37
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-vgwf-h737-ff37](https://osv.dev/vulnerability/GHSA-vgwf-h737-ff37) · line 111 · SHA-256 678f36aaa8710068246ef47fd9594423cc493ff8d1bb2890b073ed475a6da7ba_
+
+```
+{"id": "GHSA-vgwf-h737-ff37", "aliases": ["CVE-2026-39830", "GO-2026-5017"], "modified": "2026-09-15T12:45:34.863978347Z", "summary": "golang.org/x/crypto: Invoking client can cause server deadlock on unexpected responses", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25419 — golang.org/x/crypto v0.32.0 затронут GHSA-w879-237q-wc7r (CVE-2026-39829, GO-2026-5018)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev сообщает GHSA-w879-237q-wc7r (CVE-2026-39829, GO-2026-5018) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking pathological RSA/DSA parameters may cause DoS. Ни одна из затронутых функций (golang.org/x/crypto/ssh.Dial, golang.org/x/crypto/ssh.NewClientConn, golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.NewSignerFromKey, golang.org/x/crypto/ssh.ParseAuthorizedKey, golang.org/x/crypto/ssh.ParseKnownHosts …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-w879-237q-wc7r
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-w879-237q-wc7r](https://osv.dev/vulnerability/GHSA-w879-237q-wc7r) · line 111 · SHA-256 571904ca1b5634c65ac1aec62988f29789987838a58b873c9e79e7a2ae81e3c4_
+
+```
+{"id": "GHSA-w879-237q-wc7r", "aliases": ["CVE-2026-39829", "GO-2026-5018"], "modified": "2026-09-10T03:50:50.833802829Z", "summary": "golang.org/x/crypto: Invoking pathological RSA/DSA parameters may cause DoS", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25420 — golang.org/x/crypto v0.32.0 затронут GHSA-x527-x647-q7gg (CVE-2026-46595, GO-2026-5023)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: 10.0 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L`)
+
+OSV.dev сообщает GHSA-x527-x647-q7gg (CVE-2026-46595, GO-2026-5023) для пакета Go golang.org/x/crypto версии v0.32.0: golang.org/x/crypto: Invoking VerifiedPublicKeyCallback permissions skip enforcement. Ни одна из затронутых функций (golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.connection.serverAuthenticate) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-x527-x647-q7gg
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-x527-x647-q7gg](https://osv.dev/vulnerability/GHSA-x527-x647-q7gg) · line 111 · SHA-256 f51045db46b5668a71e274134eeeb6579fcc2fb636cc0bdbd0b5e63188810082_
+
+```
+{"id": "GHSA-x527-x647-q7gg", "aliases": ["CVE-2026-46595", "GO-2026-5023"], "modified": "2026-09-10T03:50:51.157351033Z", "summary": "golang.org/x/crypto: Invoking VerifiedPublicKeyCallback permissions skip enforcement", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Обновите до исправленной версии (0.52.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25425 — golang.org/x/net v0.25.0 затронут GHSA-5cv4-jp36-h3mw (CVE-2026-25680, GO-2026-5028)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H`)
 
@@ -4997,13 +5035,13 @@ _tool_output · [OSV.dev GHSA-5cv4-jp36-h3mw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18944 — golang.org/x/net v0.25.0 затронут GHSA-qxp5-gwg8-xv66 (CVE-2025-22870, GO-2025-3503)
+### QSI-2026-25426 — golang.org/x/net v0.25.0 затронут GHSA-qxp5-gwg8-xv66 (CVE-2025-22870, GO-2025-3503)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 4.4 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:L`)
 
@@ -5031,13 +5069,13 @@ _tool_output · [OSV.dev GHSA-qxp5-gwg8-xv66](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18945 — golang.org/x/net v0.25.0 затронут GHSA-vvgc-356p-c3xw (CVE-2025-22872, GO-2025-3595)
+### QSI-2026-25427 — golang.org/x/net v0.25.0 затронут GHSA-vvgc-356p-c3xw (CVE-2025-22872, GO-2025-3595)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -5065,13 +5103,13 @@ _tool_output · [OSV.dev GHSA-vvgc-356p-c3xw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18982 — github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-72x6-4j93-7w86 (CVE-2026-61712, GO-2026-6256)
+### QSI-2026-25467 — github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-72x6-4j93-7w86 (CVE-2026-61712, GO-2026-6256)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/moby/buildkit@v0.13.0-beta1.0.20231219135447-957cb50df991`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -5099,13 +5137,13 @@ _tool_output · [OSV.dev GHSA-72x6-4j93-7w86](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18858 — atty 0.2.14 затронут GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145)
+### QSI-2026-25337 — atty 0.2.14 затронут GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/atty@0.2.14`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 22.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -5133,13 +5171,13 @@ _tool_output · [OSV.dev GHSA-g98v-hv3f-hcfr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18860 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-25339 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/bincode@1.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5167,13 +5205,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18861 — bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-25340 — bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/bincode@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5201,13 +5239,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18890 — tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
+### QSI-2026-25369 — tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/tokio@1.52.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5235,13 +5273,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18906 — zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)
+### QSI-2026-25385 — zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5269,13 +5307,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0410](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18925 — github.com/klauspost/compress v1.17.9 затронут GO-2026-6865 (CVE-2026-116591) (без оценки серьёзности)
+### QSI-2026-25404 — github.com/klauspost/compress v1.17.9 затронут GO-2026-6865 (CVE-2026-116591) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/github.com/klauspost/compress@v1.17.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5303,13 +5341,115 @@ _tool_output · [OSV.dev GO-2026-6865](https://osv.dev/vulnerability/GO-2026-686
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18946 — golang.org/x/net v0.25.0 затронут GO-2024-3333 (CVE-2024-45338) (без оценки серьёзности)
+### QSI-2026-25421 — golang.org/x/crypto v0.32.0 затронут GO-2025-4116 (CVE-2025-47913) (без оценки серьёзности)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GO-2025-4116 (CVE-2025-47913) для пакета Go golang.org/x/crypto версии v0.32.0: Potential denial of service in golang.org/x/crypto/ssh/agent. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/crypto/ssh/agent.agentKeyringSigner.Sign, golang.org/x/crypto/ssh/agent.agentKeyringSigner.SignWithAlgorithm, golang.org/x/crypto/ssh/agent.client.List, golang.org/x/crypto/ssh/agent.client.Sign, golang.org/x/crypto/ssh/agent.client.SignWithFlags, golang.org/x/crypto/ssh/agent.client.Signers) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2025-4116
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GO-2025-4116](https://osv.dev/vulnerability/GO-2025-4116) · line 111 · SHA-256 42dc4b401dfa98d8bbda949c09629ad1083050d727ba505d65806734d3974a72_
+
+```
+{"id": "GO-2025-4116", "aliases": ["CVE-2025-47913", "GHSA-56w8-48fp-6mgv"], "modified": "2026-05-21T10:29:29.799885348Z", "summary": "Potential denial of service in golang.org/x/crypto/ssh/agent", "severity": null, "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.43.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25423 — golang.org/x/crypto v0.32.0 затронут GO-2026-6303 (CVE-2026-56854) (без оценки серьёзности)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GO-2026-6303 (CVE-2026-56854) для пакета Go golang.org/x/crypto версии v0.32.0: Source-address critical option not enforced for non-public-key auth callbacks in golang.org/x/crypto/ssh. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.connection.serverAuthenticate) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6303
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GO-2026-6303](https://osv.dev/vulnerability/GO-2026-6303) · line 111 · SHA-256 88023394f478b57c15920ee845fbebeaaf823a86151ca2995ade6b1b323ab5dc_
+
+```
+{"id": "GO-2026-6303", "aliases": ["CVE-2026-56854"], "modified": "2026-08-29T10:10:52.440319762Z", "summary": "Source-address critical option not enforced for non-public-key auth callbacks in golang.org/x/crypto/ssh", "severity": null, "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.55.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25424 — golang.org/x/crypto v0.32.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/crypto@v0.32.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GO-2026-6354 (CVE-2026-78662) для пакета Go golang.org/x/crypto версии v0.32.0: Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/crypto/ssh.Dial, golang.org/x/crypto/ssh.NewClientConn, golang.org/x/crypto/ssh.NewControlClientConn, golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.channel.Accept, golang.org/x/crypto/ssh.channel.handlePacket …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6354
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GO-2026-6354](https://osv.dev/vulnerability/GO-2026-6354) · line 111 · SHA-256 fb187877ccc7bca3e1e620fe5ac478176b0bfa60d40289c6b8513c063eaec76c_
+
+```
+{"id": "GO-2026-6354", "aliases": ["CVE-2026-78662"], "modified": "2026-09-03T10:10:55.147673102Z", "summary": "Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh", "severity": null, "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.56.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25428 — golang.org/x/net v0.25.0 затронут GO-2024-3333 (CVE-2024-45338) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5337,13 +5477,13 @@ _tool_output · [OSV.dev GO-2024-3333](https://osv.dev/vulnerability/GO-2024-333
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18947 — golang.org/x/net v0.25.0 затронут GO-2026-4440 (CVE-2025-47911) (без оценки серьёзности)
+### QSI-2026-25429 — golang.org/x/net v0.25.0 затронут GO-2026-4440 (CVE-2025-47911) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5371,13 +5511,13 @@ _tool_output · [OSV.dev GO-2026-4440](https://osv.dev/vulnerability/GO-2026-444
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18948 — golang.org/x/net v0.25.0 затронут GO-2026-4441 (CVE-2025-58190) (без оценки серьёзности)
+### QSI-2026-25430 — golang.org/x/net v0.25.0 затронут GO-2026-4441 (CVE-2025-58190) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5405,13 +5545,13 @@ _tool_output · [OSV.dev GO-2026-4441](https://osv.dev/vulnerability/GO-2026-444
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18949 — golang.org/x/net v0.25.0 затронут GO-2026-4918 (CVE-2026-33814) (без оценки серьёзности)
+### QSI-2026-25431 — golang.org/x/net v0.25.0 затронут GO-2026-4918 (CVE-2026-33814) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5439,13 +5579,13 @@ _tool_output · [OSV.dev GO-2026-4918](https://osv.dev/vulnerability/GO-2026-491
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18950 — golang.org/x/net v0.25.0 затронут GO-2026-5025 (CVE-2026-42506) (без оценки серьёзности)
+### QSI-2026-25432 — golang.org/x/net v0.25.0 затронут GO-2026-5025 (CVE-2026-42506) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5473,13 +5613,13 @@ _tool_output · [OSV.dev GO-2026-5025](https://osv.dev/vulnerability/GO-2026-502
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18951 — golang.org/x/net v0.25.0 затронут GO-2026-5026 (CVE-2026-39821) (без оценки серьёзности)
+### QSI-2026-25433 — golang.org/x/net v0.25.0 затронут GO-2026-5026 (CVE-2026-39821) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5507,13 +5647,13 @@ _tool_output · [OSV.dev GO-2026-5026](https://osv.dev/vulnerability/GO-2026-502
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18952 — golang.org/x/net v0.25.0 затронут GO-2026-5027 (CVE-2026-42502) (без оценки серьёзности)
+### QSI-2026-25434 — golang.org/x/net v0.25.0 затронут GO-2026-5027 (CVE-2026-42502) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5541,13 +5681,13 @@ _tool_output · [OSV.dev GO-2026-5027](https://osv.dev/vulnerability/GO-2026-502
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18953 — golang.org/x/net v0.25.0 затронут GO-2026-5029 (CVE-2026-25681) (без оценки серьёзности)
+### QSI-2026-25435 — golang.org/x/net v0.25.0 затронут GO-2026-5029 (CVE-2026-25681) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5575,13 +5715,13 @@ _tool_output · [OSV.dev GO-2026-5029](https://osv.dev/vulnerability/GO-2026-502
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18954 — golang.org/x/net v0.25.0 затронут GO-2026-5030 (CVE-2026-27136) (без оценки серьёзности)
+### QSI-2026-25436 — golang.org/x/net v0.25.0 затронут GO-2026-5030 (CVE-2026-27136) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5609,13 +5749,13 @@ _tool_output · [OSV.dev GO-2026-5030](https://osv.dev/vulnerability/GO-2026-503
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18955 — golang.org/x/net v0.25.0 затронут GO-2026-5942 (CVE-2026-46600) (без оценки серьёзности)
+### QSI-2026-25437 — golang.org/x/net v0.25.0 затронут GO-2026-5942 (CVE-2026-46600) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5643,13 +5783,13 @@ _tool_output · [OSV.dev GO-2026-5942](https://osv.dev/vulnerability/GO-2026-594
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18956 — golang.org/x/net v0.25.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности)
+### QSI-2026-25438 — golang.org/x/net v0.25.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5677,13 +5817,13 @@ _tool_output · [OSV.dev GO-2026-6603](https://osv.dev/vulnerability/GO-2026-660
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18957 — golang.org/x/net v0.25.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности)
+### QSI-2026-25439 — golang.org/x/net v0.25.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5711,13 +5851,13 @@ _tool_output · [OSV.dev GO-2026-6610](https://osv.dev/vulnerability/GO-2026-661
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18958 — golang.org/x/net v0.25.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности)
+### QSI-2026-25440 — golang.org/x/net v0.25.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5745,13 +5885,13 @@ _tool_output · [OSV.dev GO-2026-6611](https://osv.dev/vulnerability/GO-2026-661
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18959 — golang.org/x/net v0.25.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности)
+### QSI-2026-25441 — golang.org/x/net v0.25.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5779,13 +5919,115 @@ _tool_output · [OSV.dev GO-2026-6612](https://osv.dev/vulnerability/GO-2026-661
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18960 — golang.org/x/sys v0.30.0 затронут GO-2026-5024 (CVE-2026-39824) (без оценки серьёзности)
+### QSI-2026-25442 — golang.org/x/net v0.25.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GO-2026-6617 (CVE-2026-97032) для пакета Go golang.org/x/net версии v0.25.0: HTTP/2 server crash due to HPACK encoder race in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6617
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GO-2026-6617](https://osv.dev/vulnerability/GO-2026-6617) · line 112 · SHA-256 b948c88d959bc78948c7e3b7a746ac4da179933798e9735d02870080906cfc96_
+
+```
+{"id": "GO-2026-6617", "aliases": ["BIT-golang-2026-97032", "CVE-2026-97032"], "modified": "2026-10-16T09:55:57.350751224Z", "summary": "HTTP/2 server crash due to HPACK encoder race in net/http", "severity": null, "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25443 — golang.org/x/net v0.25.0 затронут GO-2026-6860 (CVE-2026-78661) (без оценки серьёзности)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GO-2026-6860 (CVE-2026-78661) для пакета Go golang.org/x/net версии v0.25.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/html.Parse, golang.org/x/net/html.ParseFragment, golang.org/x/net/html.ParseFragmentWithOptions, golang.org/x/net/html.ParseWithOptions, golang.org/x/net/html.parser.addText, golang.org/x/net/html.parser.fosterParent …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6860
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GO-2026-6860](https://osv.dev/vulnerability/GO-2026-6860) · line 112 · SHA-256 1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28_
+
+```
+{"id": "GO-2026-6860", "aliases": ["CVE-2026-78661"], "modified": "2026-10-27T21:30:04.890809062Z", "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net", "severity": null, "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.62.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25444 — golang.org/x/net v0.25.0 затронут GO-2026-6866 (CVE-2026-97045) (без оценки серьёзности)
+
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/golang.org/x/net@v0.25.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GO-2026-6866 (CVE-2026-97045) для пакета Go golang.org/x/net версии v0.25.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6866
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GO-2026-6866](https://osv.dev/vulnerability/GO-2026-6866) · line 112 · SHA-256 102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42_
+
+```
+{"id": "GO-2026-6866", "aliases": ["CVE-2026-97045"], "modified": "2026-10-27T21:45:08.978077289Z", "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net", "severity": null, "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.62.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-25445 — golang.org/x/sys v0.30.0 затронут GO-2026-5024 (CVE-2026-39824) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/sys@v0.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5813,13 +6055,13 @@ _tool_output · [OSV.dev GO-2026-5024](https://osv.dev/vulnerability/GO-2026-502
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18961 — golang.org/x/text v0.21.0 затронут GO-2026-5970 (CVE-2026-56852) (без оценки серьёзности)
+### QSI-2026-25446 — golang.org/x/text v0.21.0 затронут GO-2026-5970 (CVE-2026-56852) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/text@v0.21.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5847,13 +6089,13 @@ _tool_output · [OSV.dev GO-2026-5970](https://osv.dev/vulnerability/GO-2026-597
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18962 — golang.org/x/text v0.21.0 затронут GO-2026-6629 (CVE-2026-56851) (без оценки серьёзности)
+### QSI-2026-25447 — golang.org/x/text v0.21.0 затронут GO-2026-6629 (CVE-2026-56851) (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:Go/golang.org/x/text@v0.21.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5881,13 +6123,13 @@ _tool_output · [OSV.dev GO-2026-6629](https://osv.dev/vulnerability/GO-2026-662
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18857 — ansi_term 0.12.1: информационный бюллетень RUSTSEC-2021-0139 (unmaintained)
+### QSI-2026-25336 — ansi_term 0.12.1: информационный бюллетень RUSTSEC-2021-0139 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/ansi_term@0.12.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5915,13 +6157,13 @@ _tool_output · [OSV.dev RUSTSEC-2021-0139](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18859 — atty 0.2.14: информационный бюллетень RUSTSEC-2024-0375 (unmaintained)
+### QSI-2026-25338 — atty 0.2.14: информационный бюллетень RUSTSEC-2024-0375 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/atty@0.2.14`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5949,13 +6191,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0375](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18864 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
+### QSI-2026-25343 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/derivative@2.2.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -5983,13 +6225,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18865 — fxhash 0.2.1: информационный бюллетень RUSTSEC-2025-0057 (unmaintained)
+### QSI-2026-25344 — fxhash 0.2.1: информационный бюллетень RUSTSEC-2025-0057 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/fxhash@0.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -6017,13 +6259,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0057](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18866 — generational-arena 0.2.9: информационный бюллетень RUSTSEC-2024-0014 (unmaintained)
+### QSI-2026-25345 — generational-arena 0.2.9: информационный бюллетень RUSTSEC-2024-0014 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/generational-arena@0.2.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -6051,13 +6293,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0014](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18868 — instant 0.1.13: информационный бюллетень RUSTSEC-2024-0384 (unmaintained)
+### QSI-2026-25347 — instant 0.1.13: информационный бюллетень RUSTSEC-2024-0384 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/instant@0.1.13`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -6085,13 +6327,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0384](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18869 — libsecp256k1 0.7.2: информационный бюллетень RUSTSEC-2025-0161 (unmaintained)
+### QSI-2026-25348 — libsecp256k1 0.7.2: информационный бюллетень RUSTSEC-2025-0161 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/libsecp256k1@0.7.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -6119,13 +6361,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0161](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18876 — paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-25355 — paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/paste@1.0.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -6153,13 +6395,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18877 — pin-utils 0.1.0: информационный бюллетень RUSTSEC-2026-0441 (unmaintained)
+### QSI-2026-25356 — pin-utils 0.1.0: информационный бюллетень RUSTSEC-2026-0441 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/pin-utils@0.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -6187,13 +6429,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0441](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-18878 — proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)
+### QSI-2026-25357 — proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/proc-macro-error2@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:55 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-07 18:39 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -6256,9 +6498,9 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-18814 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | ECDSA (1) | QSI-2026-18813 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
-| **роль не определена** | ECDSA (2) | QSI-2026-18812 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-25292 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | ECDSA (1) | QSI-2026-25291 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
+| **роль не определена** | ECDSA (2) | QSI-2026-25290 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -6283,7 +6525,7 @@ _Действие: взламывает — алгоритм нужно заме
 - tls_code: 5 (примеры: bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS)
 - slither: 152 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
 - osv_advisories: 1 (примеры: 137 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: ecies, encoder-standard, ethers-core, halo2-axiom, halo2-axiom-gpu, halo2-base, halo2-ecc, halo2curves-axiom, k256, openvm, openvm-algebra-circuit, openvm-algebra-complex-macros …)
-- osv_advisories: 2 (примеры: Go/golang.org/x/crypto@v0.32.0: 37 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; Go/golang.org/x/net@v0.25.0: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)
+- osv_advisories: 1 (примеры: Go/golang.org/x/crypto@v0.32.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)
 
 ## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
@@ -6291,190 +6533,197 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-18811 | Удалите отключение проверки сертификатов в bridge-history-api/cmd/api/app/app.go. | устранение первопричины | Отключений проверки не осталось вне явно помеченного тестового кода. |
-| P1 | QSI-2026-18820 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-18821 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-18835 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-18841 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-18844 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-18907 | Обновите github.com/gin-contrib/cors до исправленной версии (1.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955). |
-| P2 | QSI-2026-18927 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5cgq-3rg8-m6cv (CVE-2026-42508). |
-| P2 | QSI-2026-18929 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-89gr-r52h-f8rx (CVE-2026-39831). |
-| P2 | QSI-2026-18931 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f5wc-c3c7-36mc (CVE-2026-39832). |
-| P2 | QSI-2026-18935 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jppx-rxg9-jmrx (CVE-2026-39833). |
-| P2 | QSI-2026-18938 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rm3j-f69w-wqmq (CVE-2026-39834). |
-| P2 | QSI-2026-18939 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vgwf-h737-ff37 (CVE-2026-39830). |
-| P2 | QSI-2026-18941 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x527-x647-q7gg (CVE-2026-46595). |
-| P2 | QSI-2026-18912 | Обновите github.com/docker/cli до исправленной версии (29.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610). |
-| P2 | QSI-2026-18915 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617). |
-| P2 | QSI-2026-18918 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746). |
-| P2 | QSI-2026-18936 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597). |
-| P2 | QSI-2026-18940 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w879-237q-wc7r (CVE-2026-39829). |
-| P2 | QSI-2026-18968 | Обновите github.com/containerd/containerd до исправленной версии (1.7.29). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pwhc-rpq9-4c8w (CVE-2024-25621, GO-2025-4100). |
-| P2 | QSI-2026-18970 | Обновите github.com/containerd/containerd до исправленной версии (1.7.33). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xhf5-7wjv-pqxp (CVE-2026-53488, GO-2026-5758). |
-| P2 | QSI-2026-18979 | Обновите github.com/moby/buildkit до исправленной версии (0.28.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4c29-8rgm-jvjj (CVE-2026-33747, GO-2026-4858). |
-| P2 | QSI-2026-18980 | Обновите github.com/moby/buildkit до исправленной версии (0.28.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4vrq-3vrq-g6gg (CVE-2026-33748, GO-2026-4859). |
-| P2 | QSI-2026-18881 | Обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0340. |
-| P2 | QSI-2026-18882 | Обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0341. |
-| P2 | QSI-2026-18914 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883). |
-| P2 | QSI-2026-18917 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668). |
-| P2 | QSI-2026-18926 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-45gg-vh54-h5m9 (CVE-2026-39828). |
-| P2 | QSI-2026-18928 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-78mq-xcr3-xm33 (CVE-2026-39835). |
-| P2 | QSI-2026-18930 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9m57-25v3-79x9 (CVE-2026-46598). |
-| P2 | QSI-2026-18937 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qpw4-5x99-6vjp (CVE-2026-39827). |
-| P2 | QSI-2026-18963 | Обновите github.com/containerd/containerd до исправленной версии (1.6.38, 1.7.27). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-265r-hfxg-fhmg (CVE-2024-40635, GO-2025-3528). |
-| P2 | QSI-2026-18964 | Обновите github.com/containerd/containerd до исправленной версии (1.7.35). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7jxh-36q5-gcqv (CVE-2026-53495, GO-2026-6444). |
-| P2 | QSI-2026-18965 | Обновите github.com/containerd/containerd до исправленной версии (1.7.33). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jpcc-p29g-p8mq (CVE-2026-47262, GO-2026-5475). |
-| P2 | QSI-2026-18966 | Обновите github.com/containerd/containerd до исправленной версии (1.7.29). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m6hq-p25p-ffr2 (CVE-2025-64329, GO-2025-4108). |
-| P2 | QSI-2026-18967 | Обновите github.com/containerd/containerd до исправленной версии (1.7.36). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pg57-6jwg-q645 (CVE-2026-53493, GO-2026-6597). |
-| P2 | QSI-2026-18969 | Обновите github.com/containerd/containerd до исправленной версии (1.7.35). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rp3h-jf77-q9p4 (CVE-2026-95838, GO-2026-6796). |
-| P2 | QSI-2026-18975 | Обновите github.com/docker/buildx до исправленной версии (0.21.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m4gq-fm9h-8q75 (CVE-2025-0495, GO-2025-3527). |
-| P2 | QSI-2026-18977 | Обновите github.com/docker/distribution до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-685w-q87j-wqw3 (CVE-2026-85747, GO-2026-6778). |
-| P2 | QSI-2026-18978 | Обновите github.com/in-toto/in-toto-golang до исправленной версии (0.11.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pmwq-pjrm-6p5r (GO-2026-5547). |
-| P2 | QSI-2026-18981 | Обновите github.com/moby/buildkit до исправленной версии (0.31.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7236-3392-c5c6 (CVE-2026-61711, GO-2026-6255). |
-| P2 | QSI-2026-18862 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-18885 | Обновите rustls до исправленной версии (0.23.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
-| P2 | QSI-2026-18886 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
-| P2 | QSI-2026-18891 | Обновите tracing-subscriber до исправленной версии (0.3.20). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
-| P2 | QSI-2026-18913 | Обновите github.com/docker/docker до исправленной версии (25.0.13, 28.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4vq8-7jfc-9cvp (CVE-2025-54410). |
-| P2 | QSI-2026-18922 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004). |
-| P2 | QSI-2026-18871 | Обновите lru до исправленной версии (0.16.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
-| P2 | QSI-2026-18873 | Обновите lru до исправленной версии (0.16.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
-| P2 | QSI-2026-18875 | Обновите p3-symmetric до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g92-f9ch-qjcm. |
-| P2 | QSI-2026-18888 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
-| P2 | QSI-2026-18887 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
-| P2 | QSI-2026-18908 | Обновите github.com/btcsuite/btcd до исправленной версии (0.24.2-beta.rc1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189). |
-| P2 | QSI-2026-18909 | Обновите github.com/btcsuite/btcd до исправленной версии (0.23.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098). |
-| P2 | QSI-2026-18910 | Обновите github.com/btcsuite/btcd до исправленной версии (0.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818). |
-| P2 | QSI-2026-18911 | Обновите github.com/consensys/gnark-crypto до исправленной версии (0.18.1, 0.19.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fj2x-735w-74vq (GO-2025-4087). |
-| P2 | QSI-2026-18916 | Обновите github.com/docker/docker до исправленной версии (23.0.15, 25.0.6, 26.1.5, 27.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005). |
-| P2 | QSI-2026-18920 | Обновите github.com/gorilla/websocket до исправленной версии (1.5.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w67g-5rqw-f597 (GO-2026-6278). |
-| P2 | QSI-2026-18921 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772). |
-| P2 | QSI-2026-18923 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771). |
-| P2 | QSI-2026-18924 | Обновите github.com/klauspost/compress до исправленной версии (1.18.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841). |
-| P2 | QSI-2026-18932 | Обновите golang.org/x/crypto до исправленной версии (0.45.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f6x5-jh6r-wrfv (CVE-2025-47914, GO-2025-4135). |
-| P2 | QSI-2026-18933 | Обновите golang.org/x/crypto до исправленной версии (0.35.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hcg3-q754-cr77 (CVE-2025-22869, GO-2025-3487). |
-| P2 | QSI-2026-18934 | Обновите golang.org/x/crypto до исправленной версии (0.45.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j5w8-q4qc-rx2x (CVE-2025-58181, GO-2025-4134). |
-| P2 | QSI-2026-18943 | Обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5cv4-jp36-h3mw (CVE-2026-25680, GO-2026-5028). |
-| P2 | QSI-2026-18944 | Обновите golang.org/x/net до исправленной версии (0.36.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qxp5-gwg8-xv66 (CVE-2025-22870, GO-2025-3503). |
-| P2 | QSI-2026-18945 | Обновите golang.org/x/net до исправленной версии (0.38.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vvgc-356p-c3xw (CVE-2025-22872, GO-2025-3595). |
-| P2 | QSI-2026-18982 | Обновите github.com/moby/buildkit до исправленной версии (0.31.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-72x6-4j93-7w86 (CVE-2026-61712, GO-2026-6256). |
-| P2 | QSI-2026-18858 | Обновите atty до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145). |
+| P1 | QSI-2026-25289 | Удалите отключение проверки сертификатов в bridge-history-api/cmd/api/app/app.go. | устранение первопричины | Отключений проверки не осталось вне явно помеченного тестового кода. |
+| P1 | QSI-2026-25298 | Ограничьте цели и селекторы белым списком, не пересылайте вызовы в контракты токенов и не держите постоянных одобрений. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-25299 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-25300 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-25314 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-25320 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-25323 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-25386 | Обновите github.com/gin-contrib/cors до исправленной версии (1.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955). |
+| P2 | QSI-2026-25391 | Обновите github.com/docker/cli до исправленной версии (29.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610). |
+| P2 | QSI-2026-25453 | Обновите github.com/containerd/containerd до исправленной версии (1.7.29). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pwhc-rpq9-4c8w (CVE-2024-25621, GO-2025-4100). |
+| P2 | QSI-2026-25455 | Обновите github.com/containerd/containerd до исправленной версии (1.7.33). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xhf5-7wjv-pqxp (CVE-2026-53488, GO-2026-5758). |
+| P2 | QSI-2026-25464 | Обновите github.com/moby/buildkit до исправленной версии (0.28.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4c29-8rgm-jvjj (CVE-2026-33747, GO-2026-4858). |
+| P2 | QSI-2026-25465 | Обновите github.com/moby/buildkit до исправленной версии (0.28.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4vrq-3vrq-g6gg (CVE-2026-33748, GO-2026-4859). |
+| P2 | QSI-2026-25360 | Обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0340. |
+| P2 | QSI-2026-25361 | Обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0341. |
+| P2 | QSI-2026-25393 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883). |
+| P2 | QSI-2026-25448 | Обновите github.com/containerd/containerd до исправленной версии (1.6.38, 1.7.27). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-265r-hfxg-fhmg (CVE-2024-40635, GO-2025-3528). |
+| P2 | QSI-2026-25449 | Обновите github.com/containerd/containerd до исправленной версии (1.7.35). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7jxh-36q5-gcqv (CVE-2026-53495, GO-2026-6444). |
+| P2 | QSI-2026-25450 | Обновите github.com/containerd/containerd до исправленной версии (1.7.33). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jpcc-p29g-p8mq (CVE-2026-47262, GO-2026-5475). |
+| P2 | QSI-2026-25451 | Обновите github.com/containerd/containerd до исправленной версии (1.7.29). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m6hq-p25p-ffr2 (CVE-2025-64329, GO-2025-4108). |
+| P2 | QSI-2026-25452 | Обновите github.com/containerd/containerd до исправленной версии (1.7.36). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pg57-6jwg-q645 (CVE-2026-53493, GO-2026-6597). |
+| P2 | QSI-2026-25454 | Обновите github.com/containerd/containerd до исправленной версии (1.7.35). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rp3h-jf77-q9p4 (CVE-2026-95838, GO-2026-6796). |
+| P2 | QSI-2026-25460 | Обновите github.com/docker/buildx до исправленной версии (0.21.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m4gq-fm9h-8q75 (CVE-2025-0495, GO-2025-3527). |
+| P2 | QSI-2026-25462 | Обновите github.com/docker/distribution до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-685w-q87j-wqw3 (CVE-2026-85747, GO-2026-6778). |
+| P2 | QSI-2026-25463 | Обновите github.com/in-toto/in-toto-golang до исправленной версии (0.11.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pmwq-pjrm-6p5r (GO-2026-5547). |
+| P2 | QSI-2026-25466 | Обновите github.com/moby/buildkit до исправленной версии (0.31.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7236-3392-c5c6 (CVE-2026-61711, GO-2026-6255). |
+| P2 | QSI-2026-25341 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-25364 | Обновите rustls до исправленной версии (0.23.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
+| P2 | QSI-2026-25365 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-25370 | Обновите tracing-subscriber до исправленной версии (0.3.20). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
+| P2 | QSI-2026-25392 | Обновите github.com/docker/docker до исправленной версии (25.0.13, 28.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4vq8-7jfc-9cvp (CVE-2025-54410). |
+| P2 | QSI-2026-25401 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004). |
+| P2 | QSI-2026-25350 | Обновите lru до исправленной версии (0.16.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
+| P2 | QSI-2026-25352 | Обновите lru до исправленной версии (0.16.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
+| P2 | QSI-2026-25354 | Обновите p3-symmetric до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g92-f9ch-qjcm. |
+| P2 | QSI-2026-25367 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-25366 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
+| P2 | QSI-2026-25387 | Обновите github.com/btcsuite/btcd до исправленной версии (0.24.2-beta.rc1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189). |
+| P2 | QSI-2026-25388 | Обновите github.com/btcsuite/btcd до исправленной версии (0.23.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098). |
+| P2 | QSI-2026-25389 | Обновите github.com/btcsuite/btcd до исправленной версии (0.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818). |
+| P2 | QSI-2026-25390 | Обновите github.com/consensys/gnark-crypto до исправленной версии (0.18.1, 0.19.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fj2x-735w-74vq (GO-2025-4087). |
+| P2 | QSI-2026-25394 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617). |
+| P2 | QSI-2026-25395 | Обновите github.com/docker/docker до исправленной версии (23.0.15, 25.0.6, 26.1.5, 27.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005). |
+| P2 | QSI-2026-25396 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668). |
+| P2 | QSI-2026-25397 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746). |
+| P2 | QSI-2026-25399 | Обновите github.com/gorilla/websocket до исправленной версии (1.5.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w67g-5rqw-f597 (GO-2026-6278). |
+| P2 | QSI-2026-25400 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772). |
+| P2 | QSI-2026-25402 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771). |
+| P2 | QSI-2026-25403 | Обновите github.com/klauspost/compress до исправленной версии (1.18.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841). |
+| P2 | QSI-2026-25405 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-45gg-vh54-h5m9 (CVE-2026-39828, GO-2026-5014). |
+| P2 | QSI-2026-25406 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5cgq-3rg8-m6cv (CVE-2026-42508, GO-2026-5021). |
+| P2 | QSI-2026-25407 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-78mq-xcr3-xm33 (CVE-2026-39835, GO-2026-5015). |
+| P2 | QSI-2026-25408 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-89gr-r52h-f8rx (CVE-2026-39831, GO-2026-5019). |
+| P2 | QSI-2026-25409 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9m57-25v3-79x9 (CVE-2026-46598, GO-2026-5033). |
+| P2 | QSI-2026-25410 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f5wc-c3c7-36mc (CVE-2026-39832, GO-2026-5006). |
+| P2 | QSI-2026-25411 | Обновите golang.org/x/crypto до исправленной версии (0.45.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f6x5-jh6r-wrfv (CVE-2025-47914, GO-2025-4135). |
+| P2 | QSI-2026-25412 | Обновите golang.org/x/crypto до исправленной версии (0.35.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hcg3-q754-cr77 (CVE-2025-22869, GO-2025-3487). |
+| P2 | QSI-2026-25413 | Обновите golang.org/x/crypto до исправленной версии (0.45.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j5w8-q4qc-rx2x (CVE-2025-58181, GO-2025-4134). |
+| P2 | QSI-2026-25414 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jppx-rxg9-jmrx (CVE-2026-39833, GO-2026-5005). |
+| P2 | QSI-2026-25415 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597, GO-2026-5013). |
+| P2 | QSI-2026-25416 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qpw4-5x99-6vjp (CVE-2026-39827, GO-2026-5016). |
+| P2 | QSI-2026-25417 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rm3j-f69w-wqmq (CVE-2026-39834, GO-2026-5020). |
+| P2 | QSI-2026-25418 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vgwf-h737-ff37 (CVE-2026-39830, GO-2026-5017). |
+| P2 | QSI-2026-25419 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w879-237q-wc7r (CVE-2026-39829, GO-2026-5018). |
+| P2 | QSI-2026-25420 | Обновите golang.org/x/crypto до исправленной версии (0.52.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x527-x647-q7gg (CVE-2026-46595, GO-2026-5023). |
+| P2 | QSI-2026-25425 | Обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5cv4-jp36-h3mw (CVE-2026-25680, GO-2026-5028). |
+| P2 | QSI-2026-25426 | Обновите golang.org/x/net до исправленной версии (0.36.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qxp5-gwg8-xv66 (CVE-2025-22870, GO-2025-3503). |
+| P2 | QSI-2026-25427 | Обновите golang.org/x/net до исправленной версии (0.38.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vvgc-356p-c3xw (CVE-2025-22872, GO-2025-3595). |
+| P2 | QSI-2026-25467 | Обновите github.com/moby/buildkit до исправленной версии (0.31.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-72x6-4j93-7w86 (CVE-2026-61712, GO-2026-6256). |
+| P2 | QSI-2026-25337 | Обновите atty до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-18817 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-18863 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
-| P3 | QSI-2026-18867 | Разберите RUSTSEC-2026-0258; при необходимости обновите h2 до исправленной версии (0.4.16). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0258 или результат разбора записан. |
-| P3 | QSI-2026-18870 | Разберите RUSTSEC-2026-0418; при необходимости обновите libz-sys до исправленной версии (1.1.31). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0418 или результат разбора записан. |
-| P3 | QSI-2026-18872 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
-| P3 | QSI-2026-18874 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
-| P3 | QSI-2026-18879 | Разберите RUSTSEC-2026-0338; при необходимости обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0338 или результат разбора записан. |
-| P3 | QSI-2026-18880 | Разберите RUSTSEC-2026-0339; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0339 или результат разбора записан. |
-| P3 | QSI-2026-18883 | Разберите RUSTSEC-2026-0342; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0342 или результат разбора записан. |
-| P3 | QSI-2026-18884 | Разберите RUSTSEC-2026-0220; при необходимости обновите ruint до исправленной версии (1.20.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0220 или результат разбора записан. |
-| P3 | QSI-2026-18889 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-18892 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-18893 | Разберите RUSTSEC-2026-0391; при необходимости обновите zstd до исправленной версии (0.13.4, 0.14.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0391 или результат разбора записан. |
-| P3 | QSI-2026-18894 | Разберите RUSTSEC-2026-0395; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан. |
-| P3 | QSI-2026-18895 | Разберите RUSTSEC-2026-0396; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0396 или результат разбора записан. |
-| P3 | QSI-2026-18896 | Разберите RUSTSEC-2026-0397; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан. |
-| P3 | QSI-2026-18897 | Разберите RUSTSEC-2026-0398; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0398 или результат разбора записан. |
-| P3 | QSI-2026-18898 | Разберите RUSTSEC-2026-0399; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан. |
-| P3 | QSI-2026-18899 | Разберите RUSTSEC-2026-0400; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан. |
-| P3 | QSI-2026-18900 | Разберите RUSTSEC-2026-0401; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан. |
-| P3 | QSI-2026-18901 | Разберите RUSTSEC-2026-0402; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан. |
-| P3 | QSI-2026-18902 | Разберите RUSTSEC-2026-0403; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан. |
-| P3 | QSI-2026-18903 | Разберите RUSTSEC-2026-0404; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан. |
-| P3 | QSI-2026-18904 | Разберите RUSTSEC-2026-0405; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0405 или результат разбора записан. |
-| P3 | QSI-2026-18905 | Разберите RUSTSEC-2026-0406; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан. |
-| P3 | QSI-2026-18919 | Разберите GO-2026-4887 (CVE-2026-34040); при необходимости обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-4887 (CVE-2026-34040) или результат разбора записан. |
-| P3 | QSI-2026-18942 | Разберите GO-2025-4116 (CVE-2025-47913); при необходимости обновите golang.org/x/crypto до исправленной версии (0.43.0). | устранение первопричины | Сканирование больше не сообщает GO-2025-4116 (CVE-2025-47913) или результат разбора записан. |
-| P3 | QSI-2026-18971 | Разберите GO-2026-5064 (CVE-2026-53492); при необходимости обновите github.com/containerd/containerd до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-5064 (CVE-2026-53492) или результат разбора записан. |
-| P3 | QSI-2026-18972 | Разберите GO-2026-5338 (CVE-2026-50195); при необходимости обновите github.com/containerd/containerd до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-5338 (CVE-2026-50195) или результат разбора записан. |
-| P3 | QSI-2026-18973 | Разберите GO-2026-5622 (CVE-2026-53489); при необходимости обновите github.com/containerd/containerd до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-5622 (CVE-2026-53489) или результат разбора записан. |
-| P3 | QSI-2026-18974 | Разберите GO-2026-6791 (CVE-2026-95837); при необходимости обновите github.com/containerd/containerd до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-6791 (CVE-2026-95837) или результат разбора записан. |
-| P3 | QSI-2026-18976 | Разберите GO-2025-4077 (CVE-2025-62725); при необходимости обновите github.com/docker/compose/v2 до исправленной версии (2.40.2). | устранение первопричины | Сканирование больше не сообщает GO-2025-4077 (CVE-2025-62725) или результат разбора записан. |
-| P3 | QSI-2026-18890 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
-| P3 | QSI-2026-18906 | Разберите RUSTSEC-2026-0410; при необходимости обновите zstd-sys до исправленной версии (2.1.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан. |
-| P3 | QSI-2026-18925 | Разберите GO-2026-6865 (CVE-2026-116591); при необходимости обновите github.com/klauspost/compress до исправленной версии (1.20.2). | устранение первопричины | Сканирование больше не сообщает GO-2026-6865 (CVE-2026-116591) или результат разбора записан. |
-| P3 | QSI-2026-18946 | Разберите GO-2024-3333 (CVE-2024-45338); при необходимости обновите golang.org/x/net до исправленной версии (0.33.0). | устранение первопричины | Сканирование больше не сообщает GO-2024-3333 (CVE-2024-45338) или результат разбора записан. |
-| P3 | QSI-2026-18947 | Разберите GO-2026-4440 (CVE-2025-47911); при необходимости обновите golang.org/x/net до исправленной версии (0.45.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-4440 (CVE-2025-47911) или результат разбора записан. |
-| P3 | QSI-2026-18948 | Разберите GO-2026-4441 (CVE-2025-58190); при необходимости обновите golang.org/x/net до исправленной версии (0.45.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-4441 (CVE-2025-58190) или результат разбора записан. |
-| P3 | QSI-2026-18949 | Разберите GO-2026-4918 (CVE-2026-33814); при необходимости обновите golang.org/x/net до исправленной версии (0.53.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-4918 (CVE-2026-33814) или результат разбора записан. |
-| P3 | QSI-2026-18950 | Разберите GO-2026-5025 (CVE-2026-42506); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5025 (CVE-2026-42506) или результат разбора записан. |
-| P3 | QSI-2026-18951 | Разберите GO-2026-5026 (CVE-2026-39821); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5026 (CVE-2026-39821) или результат разбора записан. |
-| P3 | QSI-2026-18952 | Разберите GO-2026-5027 (CVE-2026-42502); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5027 (CVE-2026-42502) или результат разбора записан. |
-| P3 | QSI-2026-18953 | Разберите GO-2026-5029 (CVE-2026-25681); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5029 (CVE-2026-25681) или результат разбора записан. |
-| P3 | QSI-2026-18954 | Разберите GO-2026-5030 (CVE-2026-27136); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5030 (CVE-2026-27136) или результат разбора записан. |
-| P3 | QSI-2026-18955 | Разберите GO-2026-5942 (CVE-2026-46600); при необходимости обновите golang.org/x/net до исправленной версии (0.56.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5942 (CVE-2026-46600) или результат разбора записан. |
-| P3 | QSI-2026-18956 | Разберите GO-2026-6603 (CVE-2026-78659); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6603 (CVE-2026-78659) или результат разбора записан. |
-| P3 | QSI-2026-18957 | Разберите GO-2026-6610 (CVE-2026-78660); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6610 (CVE-2026-78660) или результат разбора записан. |
-| P3 | QSI-2026-18958 | Разберите GO-2026-6611 (CVE-2026-78669); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6611 (CVE-2026-78669) или результат разбора записан. |
-| P3 | QSI-2026-18959 | Разберите GO-2026-6612 (CVE-2026-78663); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6612 (CVE-2026-78663) или результат разбора записан. |
-| P3 | QSI-2026-18960 | Разберите GO-2026-5024 (CVE-2026-39824); при необходимости обновите golang.org/x/sys до исправленной версии (0.44.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5024 (CVE-2026-39824) или результат разбора записан. |
-| P3 | QSI-2026-18961 | Разберите GO-2026-5970 (CVE-2026-56852); при необходимости обновите golang.org/x/text до исправленной версии (0.39.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5970 (CVE-2026-56852) или результат разбора записан. |
-| P3 | QSI-2026-18962 | Разберите GO-2026-6629 (CVE-2026-56851); при необходимости обновите golang.org/x/text до исправленной версии (0.41.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6629 (CVE-2026-56851) или результат разбора записан. |
+| P2 | QSI-2026-25295 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-25342 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-25346 | Разберите RUSTSEC-2026-0258; при необходимости обновите h2 до исправленной версии (0.4.16). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0258 или результат разбора записан. |
+| P3 | QSI-2026-25349 | Разберите RUSTSEC-2026-0418; при необходимости обновите libz-sys до исправленной версии (1.1.31). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0418 или результат разбора записан. |
+| P3 | QSI-2026-25351 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
+| P3 | QSI-2026-25353 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
+| P3 | QSI-2026-25358 | Разберите RUSTSEC-2026-0338; при необходимости обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0338 или результат разбора записан. |
+| P3 | QSI-2026-25359 | Разберите RUSTSEC-2026-0339; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0339 или результат разбора записан. |
+| P3 | QSI-2026-25362 | Разберите RUSTSEC-2026-0342; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0342 или результат разбора записан. |
+| P3 | QSI-2026-25363 | Разберите RUSTSEC-2026-0220; при необходимости обновите ruint до исправленной версии (1.20.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0220 или результат разбора записан. |
+| P3 | QSI-2026-25368 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-25371 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-25372 | Разберите RUSTSEC-2026-0391; при необходимости обновите zstd до исправленной версии (0.13.4, 0.14.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0391 или результат разбора записан. |
+| P3 | QSI-2026-25373 | Разберите RUSTSEC-2026-0395; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан. |
+| P3 | QSI-2026-25374 | Разберите RUSTSEC-2026-0396; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0396 или результат разбора записан. |
+| P3 | QSI-2026-25375 | Разберите RUSTSEC-2026-0397; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан. |
+| P3 | QSI-2026-25376 | Разберите RUSTSEC-2026-0398; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0398 или результат разбора записан. |
+| P3 | QSI-2026-25377 | Разберите RUSTSEC-2026-0399; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан. |
+| P3 | QSI-2026-25378 | Разберите RUSTSEC-2026-0400; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан. |
+| P3 | QSI-2026-25379 | Разберите RUSTSEC-2026-0401; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан. |
+| P3 | QSI-2026-25380 | Разберите RUSTSEC-2026-0402; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан. |
+| P3 | QSI-2026-25381 | Разберите RUSTSEC-2026-0403; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан. |
+| P3 | QSI-2026-25382 | Разберите RUSTSEC-2026-0404; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан. |
+| P3 | QSI-2026-25383 | Разберите RUSTSEC-2026-0405; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0405 или результат разбора записан. |
+| P3 | QSI-2026-25384 | Разберите RUSTSEC-2026-0406; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан. |
+| P3 | QSI-2026-25398 | Разберите GO-2026-4887 (CVE-2026-34040); при необходимости обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-4887 (CVE-2026-34040) или результат разбора записан. |
+| P3 | QSI-2026-25422 | Разберите GO-2026-5932; при необходимости обновите golang.org/x/crypto до исправленной версии (0.58.1-0.20261009181718-2f1f834330b2). | устранение первопричины | Сканирование больше не сообщает GO-2026-5932 или результат разбора записан. |
+| P3 | QSI-2026-25456 | Разберите GO-2026-5064 (CVE-2026-53492); при необходимости обновите github.com/containerd/containerd до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-5064 (CVE-2026-53492) или результат разбора записан. |
+| P3 | QSI-2026-25457 | Разберите GO-2026-5338 (CVE-2026-50195); при необходимости обновите github.com/containerd/containerd до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-5338 (CVE-2026-50195) или результат разбора записан. |
+| P3 | QSI-2026-25458 | Разберите GO-2026-5622 (CVE-2026-53489); при необходимости обновите github.com/containerd/containerd до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-5622 (CVE-2026-53489) или результат разбора записан. |
+| P3 | QSI-2026-25459 | Разберите GO-2026-6791 (CVE-2026-95837); при необходимости обновите github.com/containerd/containerd до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-6791 (CVE-2026-95837) или результат разбора записан. |
+| P3 | QSI-2026-25461 | Разберите GO-2025-4077 (CVE-2025-62725); при необходимости обновите github.com/docker/compose/v2 до исправленной версии (2.40.2). | устранение первопричины | Сканирование больше не сообщает GO-2025-4077 (CVE-2025-62725) или результат разбора записан. |
+| P3 | QSI-2026-25369 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
+| P3 | QSI-2026-25385 | Разберите RUSTSEC-2026-0410; при необходимости обновите zstd-sys до исправленной версии (2.1.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан. |
+| P3 | QSI-2026-25404 | Разберите GO-2026-6865 (CVE-2026-116591); при необходимости обновите github.com/klauspost/compress до исправленной версии (1.20.2). | устранение первопричины | Сканирование больше не сообщает GO-2026-6865 (CVE-2026-116591) или результат разбора записан. |
+| P3 | QSI-2026-25421 | Разберите GO-2025-4116 (CVE-2025-47913); при необходимости обновите golang.org/x/crypto до исправленной версии (0.43.0). | устранение первопричины | Сканирование больше не сообщает GO-2025-4116 (CVE-2025-47913) или результат разбора записан. |
+| P3 | QSI-2026-25423 | Разберите GO-2026-6303 (CVE-2026-56854); при необходимости обновите golang.org/x/crypto до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6303 (CVE-2026-56854) или результат разбора записан. |
+| P3 | QSI-2026-25424 | Разберите GO-2026-6354 (CVE-2026-78662); при необходимости обновите golang.org/x/crypto до исправленной версии (0.56.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6354 (CVE-2026-78662) или результат разбора записан. |
+| P3 | QSI-2026-25428 | Разберите GO-2024-3333 (CVE-2024-45338); при необходимости обновите golang.org/x/net до исправленной версии (0.33.0). | устранение первопричины | Сканирование больше не сообщает GO-2024-3333 (CVE-2024-45338) или результат разбора записан. |
+| P3 | QSI-2026-25429 | Разберите GO-2026-4440 (CVE-2025-47911); при необходимости обновите golang.org/x/net до исправленной версии (0.45.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-4440 (CVE-2025-47911) или результат разбора записан. |
+| P3 | QSI-2026-25430 | Разберите GO-2026-4441 (CVE-2025-58190); при необходимости обновите golang.org/x/net до исправленной версии (0.45.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-4441 (CVE-2025-58190) или результат разбора записан. |
+| P3 | QSI-2026-25431 | Разберите GO-2026-4918 (CVE-2026-33814); при необходимости обновите golang.org/x/net до исправленной версии (0.53.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-4918 (CVE-2026-33814) или результат разбора записан. |
+| P3 | QSI-2026-25432 | Разберите GO-2026-5025 (CVE-2026-42506); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5025 (CVE-2026-42506) или результат разбора записан. |
+| P3 | QSI-2026-25433 | Разберите GO-2026-5026 (CVE-2026-39821); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5026 (CVE-2026-39821) или результат разбора записан. |
+| P3 | QSI-2026-25434 | Разберите GO-2026-5027 (CVE-2026-42502); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5027 (CVE-2026-42502) или результат разбора записан. |
+| P3 | QSI-2026-25435 | Разберите GO-2026-5029 (CVE-2026-25681); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5029 (CVE-2026-25681) или результат разбора записан. |
+| P3 | QSI-2026-25436 | Разберите GO-2026-5030 (CVE-2026-27136); при необходимости обновите golang.org/x/net до исправленной версии (0.55.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5030 (CVE-2026-27136) или результат разбора записан. |
+| P3 | QSI-2026-25437 | Разберите GO-2026-5942 (CVE-2026-46600); при необходимости обновите golang.org/x/net до исправленной версии (0.56.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5942 (CVE-2026-46600) или результат разбора записан. |
+| P3 | QSI-2026-25438 | Разберите GO-2026-6603 (CVE-2026-78659); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6603 (CVE-2026-78659) или результат разбора записан. |
+| P3 | QSI-2026-25439 | Разберите GO-2026-6610 (CVE-2026-78660); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6610 (CVE-2026-78660) или результат разбора записан. |
+| P3 | QSI-2026-25440 | Разберите GO-2026-6611 (CVE-2026-78669); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6611 (CVE-2026-78669) или результат разбора записан. |
+| P3 | QSI-2026-25441 | Разберите GO-2026-6612 (CVE-2026-78663); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6612 (CVE-2026-78663) или результат разбора записан. |
+| P3 | QSI-2026-25442 | Разберите GO-2026-6617 (CVE-2026-97032); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6617 (CVE-2026-97032) или результат разбора записан. |
+| P3 | QSI-2026-25443 | Разберите GO-2026-6860 (CVE-2026-78661); при необходимости обновите golang.org/x/net до исправленной версии (0.62.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6860 (CVE-2026-78661) или результат разбора записан. |
+| P3 | QSI-2026-25444 | Разберите GO-2026-6866 (CVE-2026-97045); при необходимости обновите golang.org/x/net до исправленной версии (0.62.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6866 (CVE-2026-97045) или результат разбора записан. |
+| P3 | QSI-2026-25445 | Разберите GO-2026-5024 (CVE-2026-39824); при необходимости обновите golang.org/x/sys до исправленной версии (0.44.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5024 (CVE-2026-39824) или результат разбора записан. |
+| P3 | QSI-2026-25446 | Разберите GO-2026-5970 (CVE-2026-56852); при необходимости обновите golang.org/x/text до исправленной версии (0.39.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-5970 (CVE-2026-56852) или результат разбора записан. |
+| P3 | QSI-2026-25447 | Разберите GO-2026-6629 (CVE-2026-56851); при необходимости обновите golang.org/x/text до исправленной версии (0.41.0). | устранение первопричины | Сканирование больше не сообщает GO-2026-6629 (CVE-2026-56851) или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-18814 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18812 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18813 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18853 | Внесите использования ? в contract:scroll-contracts/src/libraries/verifier/RollupVerifier.sol в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18815 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-18818 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-18819 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-18848 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18814 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-18812 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-18813 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-18853 | Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
-| P4 | QSI-2026-18816 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18822 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18823 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18824 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18825 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18826 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18827 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18828 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18829 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18830 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18831 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18832 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18833 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18834 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18836 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18837 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18838 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18839 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18840 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18842 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18843 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18845 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18846 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18847 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18849 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18850 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18851 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18852 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18854 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18855 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18856 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18860 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
-| P4 | QSI-2026-18861 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
-| P4 | QSI-2026-18857 | Замените ansi_term поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ansi_term заменён или решение зафиксировано. |
-| P4 | QSI-2026-18859 | Замените atty поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atty заменён или решение зафиксировано. |
-| P4 | QSI-2026-18864 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
-| P4 | QSI-2026-18865 | Замените fxhash поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | fxhash заменён или решение зафиксировано. |
-| P4 | QSI-2026-18866 | Замените generational-arena поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | generational-arena заменён или решение зафиксировано. |
-| P4 | QSI-2026-18868 | Замените instant поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | instant заменён или решение зафиксировано. |
-| P4 | QSI-2026-18869 | Замените libsecp256k1 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | libsecp256k1 заменён или решение зафиксировано. |
-| P4 | QSI-2026-18876 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
-| P4 | QSI-2026-18877 | Замените pin-utils поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | pin-utils заменён или решение зафиксировано. |
-| P4 | QSI-2026-18878 | Замените proc-macro-error2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error2 заменён или решение зафиксировано. |
+| P3 | QSI-2026-25292 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-25290 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-25291 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-25332 | Внесите использования ? в contract:scroll-contracts/src/libraries/verifier/RollupVerifier.sol в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-25293 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-25296 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-25297 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-25327 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25292 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-25290 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-25291 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-25332 | Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-25294 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25301 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25302 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25303 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25304 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25305 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25306 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25307 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25308 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25309 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25310 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25311 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25312 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25313 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25315 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25316 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25317 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25318 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25319 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25321 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25322 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25324 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25325 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25326 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25328 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25329 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25330 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25331 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25333 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25334 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25335 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-25339 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-25340 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-25336 | Замените ansi_term поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ansi_term заменён или решение зафиксировано. |
+| P4 | QSI-2026-25338 | Замените atty поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atty заменён или решение зафиксировано. |
+| P4 | QSI-2026-25343 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
+| P4 | QSI-2026-25344 | Замените fxhash поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | fxhash заменён или решение зафиксировано. |
+| P4 | QSI-2026-25345 | Замените generational-arena поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | generational-arena заменён или решение зафиксировано. |
+| P4 | QSI-2026-25347 | Замените instant поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | instant заменён или решение зафиксировано. |
+| P4 | QSI-2026-25348 | Замените libsecp256k1 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | libsecp256k1 заменён или решение зафиксировано. |
+| P4 | QSI-2026-25355 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
+| P4 | QSI-2026-25356 | Замените pin-utils поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | pin-utils заменён или решение зафиксировано. |
+| P4 | QSI-2026-25357 | Замените proc-macro-error2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error2 заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
@@ -6595,58 +6844,64 @@ _Действие: взламывает — алгоритм нужно заме
 100. OSV advisory GO-2026-5064 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5064> (modified 2026-06-26T06:29:23.046204676Z)
 101. OSV advisory GO-2026-5338 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5338> (modified 2026-06-26T15:44:22.793783834Z)
 102. OSV advisory GO-2026-5622 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5622> (modified 2026-06-26T15:44:24.122407064Z)
-103. OSV advisory GO-2026-5942 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5942> (modified 2026-08-17T12:25:32.471119200Z)
-104. OSV advisory GO-2026-5970 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5970> (modified 2026-09-23T10:41:39.386264978Z)
-105. OSV advisory GO-2026-6603 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6603> (modified 2026-10-16T09:55:47.068117441Z)
-106. OSV advisory GO-2026-6610 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6610> (modified 2026-10-16T09:56:04.364467528Z)
-107. OSV advisory GO-2026-6611 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6611> (modified 2026-10-16T09:55:38.952277866Z)
-108. OSV advisory GO-2026-6612 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6612> (modified 2026-10-16T09:55:54.129082194Z)
-109. OSV advisory GO-2026-6629 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6629> (modified 2026-10-20T10:42:24.514593111Z)
-110. OSV advisory GO-2026-6791 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6791> (modified 2026-10-19T21:31:38.313663029Z)
-111. OSV advisory GO-2026-6865 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6865> (modified 2026-11-05T23:15:14.472777299Z)
-112. OSV advisory RUSTSEC-2021-0139 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2021-0139> (modified 2023-09-06T22:52:31Z)
-113. OSV advisory RUSTSEC-2024-0014 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0014> (modified 2024-02-18T04:06:15Z)
-114. OSV advisory RUSTSEC-2024-0375 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0375> (modified 2024-09-26T12:26:22Z)
-115. OSV advisory RUSTSEC-2024-0384 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0384> (modified 2024-11-10T13:10:28Z)
-116. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
-117. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
-118. OSV advisory RUSTSEC-2025-0057 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0057> (modified 2025-09-05T19:09:01Z)
-119. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
-120. OSV advisory RUSTSEC-2025-0161 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0161> (modified 2026-04-14T11:30:08.962845Z)
-121. OSV advisory RUSTSEC-2026-0173 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0173> (modified 2026-06-07T21:00:04.318567692Z)
-122. OSV advisory RUSTSEC-2026-0220 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0220> (modified 2026-07-30T19:15:04.025918010Z)
-123. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
-124. OSV advisory RUSTSEC-2026-0258 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0258> (modified 2026-10-12T18:00:10.934581734Z)
-125. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
-126. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
-127. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
-128. OSV advisory RUSTSEC-2026-0341 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0341> (modified 2026-10-12T18:15:01.969505433Z)
-129. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
-130. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
-131. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
-132. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
-133. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-134. OSV advisory RUSTSEC-2026-0391 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0391> (modified 2026-11-02T09:30:03.590733846Z)
-135. OSV advisory RUSTSEC-2026-0395 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0395> (modified 2026-11-02T09:30:03.420559993Z)
-136. OSV advisory RUSTSEC-2026-0396 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0396> (modified 2026-11-02T09:30:03.400899521Z)
-137. OSV advisory RUSTSEC-2026-0397 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0397> (modified 2026-11-02T09:30:03.445177143Z)
-138. OSV advisory RUSTSEC-2026-0398 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0398> (modified 2026-11-02T09:30:03.419709171Z)
-139. OSV advisory RUSTSEC-2026-0399 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0399> (modified 2026-11-02T09:30:03.328955732Z)
-140. OSV advisory RUSTSEC-2026-0400 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0400> (modified 2026-11-02T09:30:03.428341570Z)
-141. OSV advisory RUSTSEC-2026-0401 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0401> (modified 2026-11-02T09:30:03.353698025Z)
-142. OSV advisory RUSTSEC-2026-0402 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0402> (modified 2026-11-02T09:30:04.162155944Z)
-143. OSV advisory RUSTSEC-2026-0403 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0403> (modified 2026-11-02T09:30:04.136442771Z)
-144. OSV advisory RUSTSEC-2026-0404 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0404> (modified 2026-11-02T09:30:04.168804805Z)
-145. OSV advisory RUSTSEC-2026-0405 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0405> (modified 2026-11-02T09:30:03.399517581Z)
-146. OSV advisory RUSTSEC-2026-0406 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0406> (modified 2026-11-02T09:30:03.591194710Z)
-147. OSV advisory RUSTSEC-2026-0410 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0410> (modified 2026-10-26T14:00:05.788985783Z)
-148. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
-149. OSV advisory RUSTSEC-2026-0441 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0441> (modified 2026-11-05T09:00:02.627533155Z)
-150. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
-151. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-152. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-153. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
-154. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
+103. OSV advisory GO-2026-5932 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5932> (modified 2026-11-02T22:15:06.677088389Z)
+104. OSV advisory GO-2026-5942 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5942> (modified 2026-08-17T12:25:32.471119200Z)
+105. OSV advisory GO-2026-5970 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5970> (modified 2026-09-23T10:41:39.386264978Z)
+106. OSV advisory GO-2026-6303 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6303> (modified 2026-08-29T10:10:52.440319762Z)
+107. OSV advisory GO-2026-6354 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6354> (modified 2026-09-03T10:10:55.147673102Z)
+108. OSV advisory GO-2026-6603 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6603> (modified 2026-10-16T09:55:47.068117441Z)
+109. OSV advisory GO-2026-6610 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6610> (modified 2026-10-16T09:56:04.364467528Z)
+110. OSV advisory GO-2026-6611 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6611> (modified 2026-10-16T09:55:38.952277866Z)
+111. OSV advisory GO-2026-6612 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6612> (modified 2026-10-16T09:55:54.129082194Z)
+112. OSV advisory GO-2026-6617 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6617> (modified 2026-10-16T09:55:57.350751224Z)
+113. OSV advisory GO-2026-6629 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6629> (modified 2026-10-20T10:42:24.514593111Z)
+114. OSV advisory GO-2026-6791 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6791> (modified 2026-10-19T21:31:38.313663029Z)
+115. OSV advisory GO-2026-6860 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6860> (modified 2026-10-27T21:30:04.890809062Z)
+116. OSV advisory GO-2026-6865 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6865> (modified 2026-11-05T23:15:14.472777299Z)
+117. OSV advisory GO-2026-6866 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6866> (modified 2026-10-27T21:45:08.978077289Z)
+118. OSV advisory RUSTSEC-2021-0139 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2021-0139> (modified 2023-09-06T22:52:31Z)
+119. OSV advisory RUSTSEC-2024-0014 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0014> (modified 2024-02-18T04:06:15Z)
+120. OSV advisory RUSTSEC-2024-0375 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0375> (modified 2024-09-26T12:26:22Z)
+121. OSV advisory RUSTSEC-2024-0384 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0384> (modified 2024-11-10T13:10:28Z)
+122. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
+123. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
+124. OSV advisory RUSTSEC-2025-0057 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0057> (modified 2025-09-05T19:09:01Z)
+125. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
+126. OSV advisory RUSTSEC-2025-0161 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0161> (modified 2026-04-14T11:30:08.962845Z)
+127. OSV advisory RUSTSEC-2026-0173 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0173> (modified 2026-06-07T21:00:04.318567692Z)
+128. OSV advisory RUSTSEC-2026-0220 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0220> (modified 2026-07-30T19:15:04.025918010Z)
+129. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
+130. OSV advisory RUSTSEC-2026-0258 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0258> (modified 2026-10-12T18:00:10.934581734Z)
+131. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
+132. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
+133. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
+134. OSV advisory RUSTSEC-2026-0341 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0341> (modified 2026-10-12T18:15:01.969505433Z)
+135. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
+136. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
+137. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
+138. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
+139. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+140. OSV advisory RUSTSEC-2026-0391 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0391> (modified 2026-11-02T09:30:03.590733846Z)
+141. OSV advisory RUSTSEC-2026-0395 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0395> (modified 2026-11-02T09:30:03.420559993Z)
+142. OSV advisory RUSTSEC-2026-0396 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0396> (modified 2026-11-02T09:30:03.400899521Z)
+143. OSV advisory RUSTSEC-2026-0397 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0397> (modified 2026-11-02T09:30:03.445177143Z)
+144. OSV advisory RUSTSEC-2026-0398 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0398> (modified 2026-11-02T09:30:03.419709171Z)
+145. OSV advisory RUSTSEC-2026-0399 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0399> (modified 2026-11-02T09:30:03.328955732Z)
+146. OSV advisory RUSTSEC-2026-0400 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0400> (modified 2026-11-02T09:30:03.428341570Z)
+147. OSV advisory RUSTSEC-2026-0401 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0401> (modified 2026-11-02T09:30:03.353698025Z)
+148. OSV advisory RUSTSEC-2026-0402 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0402> (modified 2026-11-02T09:30:04.162155944Z)
+149. OSV advisory RUSTSEC-2026-0403 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0403> (modified 2026-11-02T09:30:04.136442771Z)
+150. OSV advisory RUSTSEC-2026-0404 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0404> (modified 2026-11-02T09:30:04.168804805Z)
+151. OSV advisory RUSTSEC-2026-0405 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0405> (modified 2026-11-02T09:30:03.399517581Z)
+152. OSV advisory RUSTSEC-2026-0406 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0406> (modified 2026-11-02T09:30:03.591194710Z)
+153. OSV advisory RUSTSEC-2026-0410 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0410> (modified 2026-10-26T14:00:05.788985783Z)
+154. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
+155. OSV advisory RUSTSEC-2026-0441 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0441> (modified 2026-11-05T09:00:02.627533155Z)
+156. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+157. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+158. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+159. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+160. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
 
 ## Приложения: Криптографическая инвентаризация
 

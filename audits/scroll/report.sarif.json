@@ -61,6 +61,31 @@
               "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
             },
             {
+              "id": "SOL-ARBITRARY-CALL",
+              "name": "SolArbitraryCall",
+              "shortDescription": {
+                "text": "Цель и данные вызова задаёт вызывающий в relayMessageWithProof (scroll-contracts/src/L1/L1ScrollMessenger.sol)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "Публичная функция relayMessageWithProof выполняет target.call(data), беря оба значения из параметров, в строка 192. (см. SWC-112) Ограничьте цели и селекторы белым списком, не пересылайте вызовы в контракты токенов и не держите постоянных одобрений. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "Публичная функция relayMessageWithProof выполняет target.call(data), беря оба значения из параметров, в строка 192. (см. SWC-112) Ограничьте цели и селекторы белым списком, не пересылайте вызовы в контракты токенов и не держите постоянных одобрений. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
               "id": "SOL-REENTRANCY",
               "name": "SolReentrancy",
               "shortDescription": {
@@ -300,137 +325,11 @@
             "qsiFindingKey/v1": "f57650f2ed1fae7c5213ec3ec7a52e0e"
           },
           "properties": {
-            "qsiId": "QSI-2026-18907",
+            "qsiId": "QSI-2026-25386",
             "severity": "critical",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "9.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-5cgq-3rg8-m6cv (CVE-2026-42508) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b977472a0635430ca7b6a51c1bdcd1cd"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18927",
-            "severity": "critical",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "9.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-89gr-r52h-f8rx (CVE-2026-39831) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "c0b056fa0fe5db84f115d12158bb1a4d"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18929",
-            "severity": "critical",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "9.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-f5wc-c3c7-36mc (CVE-2026-39832) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "c28507f707b813c705788c318bbb01d7"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18931",
-            "severity": "critical",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "9.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-jppx-rxg9-jmrx (CVE-2026-39833) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "d30ab6d8212c10ce2b4d84b69ec35b63"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18935",
-            "severity": "critical",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "9.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-rm3j-f69w-wqmq (CVE-2026-39834) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "71ef29dd7ab41b990655076e1cc0310c"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18938",
-            "severity": "critical",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "9.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-vgwf-h737-ff37 (CVE-2026-39830) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cc5d0e2846d8aa7b5b54b1facc6f6101"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18939",
-            "severity": "critical",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "9.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-x527-x647-q7gg (CVE-2026-46595) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b06893c06305e37a83b09d07e89e5517"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18941",
-            "severity": "critical",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "10.0"
           }
         },
         {
@@ -444,7 +343,7 @@
             "qsiFindingKey/v1": "786d5aaf932adb9244aab603ed7d0677"
           },
           "properties": {
-            "qsiId": "QSI-2026-18811",
+            "qsiId": "QSI-2026-25289",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -474,79 +373,7 @@
             "qsiFindingKey/v1": "ee63471611db144d88cdb8a9657a9a6c"
           },
           "properties": {
-            "qsiId": "QSI-2026-18912",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "5394a254269e190ec7b0906bf6cd68e9"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18915",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.2"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b94891eb8897a714f97e0c91208542e9"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18918",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.2"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "54c95c351408b896af4bf44bbd2156d8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18936",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-w879-237q-wc7r (CVE-2026-39829) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "74353c9c2a0638a17f625a34295f4c87"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18940",
+            "qsiId": "QSI-2026-25391",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -564,7 +391,7 @@
             "qsiFindingKey/v1": "b0c4a97ef12b67f584f7e7b13c19ce02"
           },
           "properties": {
-            "qsiId": "QSI-2026-18968",
+            "qsiId": "QSI-2026-25453",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -582,7 +409,7 @@
             "qsiFindingKey/v1": "97aa376a046f643c6253773478ac3111"
           },
           "properties": {
-            "qsiId": "QSI-2026-18970",
+            "qsiId": "QSI-2026-25455",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -600,7 +427,7 @@
             "qsiFindingKey/v1": "ea1746172a1d9429293df84083182cf9"
           },
           "properties": {
-            "qsiId": "QSI-2026-18979",
+            "qsiId": "QSI-2026-25464",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -618,7 +445,7 @@
             "qsiFindingKey/v1": "86184c51c07294c0fdef5d1e9bdbb54a"
           },
           "properties": {
-            "qsiId": "QSI-2026-18980",
+            "qsiId": "QSI-2026-25465",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -636,7 +463,7 @@
             "qsiFindingKey/v1": "2ed65c778f0c0a1523657d6d874be13d"
           },
           "properties": {
-            "qsiId": "QSI-2026-18881",
+            "qsiId": "QSI-2026-25360",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -663,7 +490,7 @@
             "qsiFindingKey/v1": "43f00660c70e2f072efb71f9b0041e21"
           },
           "properties": {
-            "qsiId": "QSI-2026-18882",
+            "qsiId": "QSI-2026-25361",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -680,17 +507,17 @@
           ]
         },
         {
-          "ruleId": "SOL-REENTRANCY",
+          "ruleId": "SOL-ARBITRARY-CALL",
           "ruleIndex": 2,
           "level": "error",
           "message": {
-            "text": "Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol"
+            "text": "Цель и данные вызова задаёт вызывающий в relayMessageWithProof (scroll-contracts/src/L1/L1ScrollMessenger.sol)"
           },
           "partialFingerprints": {
-            "qsiFindingKey/v1": "24bfe171ee30e23dd418544c7484523e"
+            "qsiFindingKey/v1": "883198c9e1d78d6d46141f509576ca87"
           },
           "properties": {
-            "qsiId": "QSI-2026-18820",
+            "qsiId": "QSI-2026-25298",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -711,7 +538,7 @@
         },
         {
           "ruleId": "SOL-REENTRANCY",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "error",
           "message": {
             "text": "Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol"
@@ -720,7 +547,37 @@
             "qsiFindingKey/v1": "24bfe171ee30e23dd418544c7484523e"
           },
           "properties": {
-            "qsiId": "QSI-2026-18821",
+            "qsiId": "QSI-2026-25299",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scroll-contracts/src/L1/L1ScrollMessenger.sol"
+                },
+                "region": {
+                  "startLine": 192
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-REENTRANCY",
+          "ruleIndex": 3,
+          "level": "error",
+          "message": {
+            "text": "Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "24bfe171ee30e23dd418544c7484523e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25300",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -741,7 +598,7 @@
         },
         {
           "ruleId": "SOL-REENTRANCY",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "error",
           "message": {
             "text": "Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L2/L2ScrollMessenger.sol"
@@ -750,7 +607,7 @@
             "qsiFindingKey/v1": "730e1c64971ee8f992d788c58e95d1f4"
           },
           "properties": {
-            "qsiId": "QSI-2026-18835",
+            "qsiId": "QSI-2026-25314",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -771,7 +628,7 @@
         },
         {
           "ruleId": "SOL-UNPROTECTED-INITIALIZER",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "error",
           "message": {
             "text": "initialize() без модификатора initializer в scroll-contracts/src/L2/predeploys/L1BlockContainer.sol"
@@ -780,7 +637,7 @@
             "qsiFindingKey/v1": "c22b55177e747181a5a09df7d9958261"
           },
           "properties": {
-            "qsiId": "QSI-2026-18841",
+            "qsiId": "QSI-2026-25320",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -801,7 +658,7 @@
         },
         {
           "ruleId": "SOL-UNPROTECTED-INITIALIZER",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "error",
           "message": {
             "text": "initialize() без модификатора initializer в scroll-contracts/src/L2/predeploys/L2MessageQueue.sol"
@@ -810,7 +667,7 @@
             "qsiFindingKey/v1": "072b3076513665c30804a5878a8bebcc"
           },
           "properties": {
-            "qsiId": "QSI-2026-18844",
+            "qsiId": "QSI-2026-25323",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -840,101 +697,11 @@
             "qsiFindingKey/v1": "d07d2419b56904a9460112125eb89de1"
           },
           "properties": {
-            "qsiId": "QSI-2026-18914",
+            "qsiId": "QSI-2026-25393",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "6.8"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "72f68e2f7edef76b5a0c46b0a483368e"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18917",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "6.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-45gg-vh54-h5m9 (CVE-2026-39828) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b24abef5549d9844eb648b56badd9f61"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18926",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "6.3"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-78mq-xcr3-xm33 (CVE-2026-39835) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cf5a7bc671f44d2488f9edd1cb5615d8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18928",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "5.3"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-9m57-25v3-79x9 (CVE-2026-46598) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "46e72193aa6ab47d12376fe5f9b63b12"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18930",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "5.3"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-qpw4-5x99-6vjp (CVE-2026-39827) (dependency: Go/golang.org/x/crypto@v0.32.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "6c3acba563166c1ab6b800954dcee7e7"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18937",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "6.5"
           }
         },
         {
@@ -948,7 +715,7 @@
             "qsiFindingKey/v1": "d6d5e1b057d9ffa86952bfedb7cf973c"
           },
           "properties": {
-            "qsiId": "QSI-2026-18963",
+            "qsiId": "QSI-2026-25448",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -966,7 +733,7 @@
             "qsiFindingKey/v1": "ce4c3887e576414912a31c31ccb76f2f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18964",
+            "qsiId": "QSI-2026-25449",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -984,7 +751,7 @@
             "qsiFindingKey/v1": "0cba23f6791145515bdc8e398b34c8ab"
           },
           "properties": {
-            "qsiId": "QSI-2026-18965",
+            "qsiId": "QSI-2026-25450",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1002,7 +769,7 @@
             "qsiFindingKey/v1": "94108ced3c581f9a10a3a7d608bdec36"
           },
           "properties": {
-            "qsiId": "QSI-2026-18966",
+            "qsiId": "QSI-2026-25451",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1020,7 +787,7 @@
             "qsiFindingKey/v1": "62a9723f2afafd60c454ffbda79ac4a8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18967",
+            "qsiId": "QSI-2026-25452",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1038,7 +805,7 @@
             "qsiFindingKey/v1": "74d403ead8d11ec543fba37ca3b00cce"
           },
           "properties": {
-            "qsiId": "QSI-2026-18969",
+            "qsiId": "QSI-2026-25454",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1056,7 +823,7 @@
             "qsiFindingKey/v1": "d704016db2299d8452933c2dc0b75884"
           },
           "properties": {
-            "qsiId": "QSI-2026-18975",
+            "qsiId": "QSI-2026-25460",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1074,7 +841,7 @@
             "qsiFindingKey/v1": "64eef45c7c59ac3cc4efdacaf1bf633b"
           },
           "properties": {
-            "qsiId": "QSI-2026-18977",
+            "qsiId": "QSI-2026-25462",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1092,7 +859,7 @@
             "qsiFindingKey/v1": "7b1af949b573f34679547ef90bf27f21"
           },
           "properties": {
-            "qsiId": "QSI-2026-18978",
+            "qsiId": "QSI-2026-25463",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1110,7 +877,7 @@
             "qsiFindingKey/v1": "820cccae9002e21c324d526e751bb741"
           },
           "properties": {
-            "qsiId": "QSI-2026-18981",
+            "qsiId": "QSI-2026-25466",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1119,7 +886,7 @@
         },
         {
           "ruleId": "SOL-ECRECOVER",
-          "ruleIndex": 4,
+          "ruleIndex": 5,
           "level": "warning",
           "message": {
             "text": "Прямое использование ecrecover в scroll-contracts/lib/solmate/src/tokens/ERC20.sol"
@@ -1128,7 +895,7 @@
             "qsiFindingKey/v1": "8323a0ced95949bc301b1160fea0cac2"
           },
           "properties": {
-            "qsiId": "QSI-2026-18817",
+            "qsiId": "QSI-2026-25295",
             "severity": "medium",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -1149,7 +916,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 6,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))"
@@ -1158,7 +925,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-18814",
+            "qsiId": "QSI-2026-25292",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1167,7 +934,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 6,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))"
@@ -1176,7 +943,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-18812",
+            "qsiId": "QSI-2026-25290",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1185,7 +952,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 6,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))"
@@ -1194,7 +961,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-18813",
+            "qsiId": "QSI-2026-25291",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1203,7 +970,7 @@
         },
         {
           "ruleId": "SOL-PAIRING-QV",
-          "ruleIndex": 6,
+          "ruleIndex": 7,
           "level": "warning",
           "message": {
             "text": "Криптография на спариваниях в контракте: BN254 (alt_bn128) (scroll-contracts/src/libraries/verifier/RollupVerifier.sol)"
@@ -1212,7 +979,7 @@
             "qsiFindingKey/v1": "423283656c2b283e18c5dbc366d4fc76"
           },
           "properties": {
-            "qsiId": "QSI-2026-18853",
+            "qsiId": "QSI-2026-25332",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1242,7 +1009,7 @@
             "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18862",
+            "qsiId": "QSI-2026-25341",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1269,7 +1036,7 @@
             "qsiFindingKey/v1": "ce4c6575359cf9d153f43bb6f325a231"
           },
           "properties": {
-            "qsiId": "QSI-2026-18885",
+            "qsiId": "QSI-2026-25364",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1296,7 +1063,7 @@
             "qsiFindingKey/v1": "c2c7f55f264ba1c2b08a407506bcb98f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18886",
+            "qsiId": "QSI-2026-25365",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1323,7 +1090,7 @@
             "qsiFindingKey/v1": "c4d28076ad96dc58706ae85a13b98936"
           },
           "properties": {
-            "qsiId": "QSI-2026-18891",
+            "qsiId": "QSI-2026-25370",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1350,7 +1117,7 @@
             "qsiFindingKey/v1": "e777d06510640ae9d8c71bfc99c569d4"
           },
           "properties": {
-            "qsiId": "QSI-2026-18913",
+            "qsiId": "QSI-2026-25392",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1368,7 +1135,7 @@
             "qsiFindingKey/v1": "51cb44adb75fc00afa6690abe6625512"
           },
           "properties": {
-            "qsiId": "QSI-2026-18922",
+            "qsiId": "QSI-2026-25401",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1377,7 +1144,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 7,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (>=0.8.0) в 20 файл(ах)"
@@ -1386,7 +1153,7 @@
             "qsiFindingKey/v1": "74be19e8d45860cc87734826500a497b"
           },
           "properties": {
-            "qsiId": "QSI-2026-18815",
+            "qsiId": "QSI-2026-25293",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -1395,7 +1162,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 7,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (^0.8.10) в 1 файл(ах)"
@@ -1404,7 +1171,7 @@
             "qsiFindingKey/v1": "d7874aefe2eb24c325fa0153f9d67e3f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18818",
+            "qsiId": "QSI-2026-25296",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -1413,7 +1180,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 7,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (^0.8.24) в 58 файл(ах)"
@@ -1422,7 +1189,7 @@
             "qsiFindingKey/v1": "ad4c91f080f8598ca456c14e76fe5ad3"
           },
           "properties": {
-            "qsiId": "QSI-2026-18819",
+            "qsiId": "QSI-2026-25297",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -1431,7 +1198,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 7,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (^0.8.0) в 5 файл(ах)"
@@ -1440,7 +1207,7 @@
             "qsiFindingKey/v1": "9222f1a479645679076868cdfc63c53c"
           },
           "properties": {
-            "qsiId": "QSI-2026-18848",
+            "qsiId": "QSI-2026-25327",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -1458,7 +1225,7 @@
             "qsiFindingKey/v1": "2a38432256cda93d93247dedf5c88c86"
           },
           "properties": {
-            "qsiId": "QSI-2026-18871",
+            "qsiId": "QSI-2026-25350",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1485,7 +1252,7 @@
             "qsiFindingKey/v1": "2a38432256cda93d93247dedf5c88c86"
           },
           "properties": {
-            "qsiId": "QSI-2026-18873",
+            "qsiId": "QSI-2026-25352",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1512,7 +1279,7 @@
             "qsiFindingKey/v1": "6623c9e5d7c76355cd0a08d8eae427c7"
           },
           "properties": {
-            "qsiId": "QSI-2026-18875",
+            "qsiId": "QSI-2026-25354",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1539,7 +1306,7 @@
             "qsiFindingKey/v1": "0c214321e3e7ce2b7c0a2531f71801b7"
           },
           "properties": {
-            "qsiId": "QSI-2026-18888",
+            "qsiId": "QSI-2026-25367",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1566,7 +1333,7 @@
             "qsiFindingKey/v1": "d4c7cf2a81d03919d11f20e7dc08e38b"
           },
           "properties": {
-            "qsiId": "QSI-2026-18887",
+            "qsiId": "QSI-2026-25366",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1584,7 +1351,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности) (dependency: crates.io/crypto-bigint@0.5.5)"
@@ -1593,7 +1360,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-18863",
+            "qsiId": "QSI-2026-25342",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1611,7 +1378,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "h2 0.4.15 затронут RUSTSEC-2026-0258 (без оценки серьёзности) (dependency: crates.io/h2@0.4.15)"
@@ -1620,7 +1387,7 @@
             "qsiFindingKey/v1": "39a5d837e386bcefe64c321f97b1e5db"
           },
           "properties": {
-            "qsiId": "QSI-2026-18867",
+            "qsiId": "QSI-2026-25346",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1638,7 +1405,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "libz-sys 1.1.29 затронут RUSTSEC-2026-0418 (без оценки серьёзности) (dependency: crates.io/libz-sys@1.1.29)"
@@ -1647,7 +1414,7 @@
             "qsiFindingKey/v1": "131155ea58c3e2fbe4aa192d418e1a3b"
           },
           "properties": {
-            "qsiId": "QSI-2026-18870",
+            "qsiId": "QSI-2026-25349",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1665,7 +1432,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "lru 0.12.5 затронут RUSTSEC-2026-0253 (без оценки серьёзности) (dependency: crates.io/lru@0.12.5)"
@@ -1674,7 +1441,7 @@
             "qsiFindingKey/v1": "a99cb340246a5baec640a7f8aa0fb8b1"
           },
           "properties": {
-            "qsiId": "QSI-2026-18872",
+            "qsiId": "QSI-2026-25351",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1692,7 +1459,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "lru 0.13.0 затронут RUSTSEC-2026-0253 (без оценки серьёзности) (dependency: crates.io/lru@0.13.0)"
@@ -1701,7 +1468,7 @@
             "qsiFindingKey/v1": "a99cb340246a5baec640a7f8aa0fb8b1"
           },
           "properties": {
-            "qsiId": "QSI-2026-18874",
+            "qsiId": "QSI-2026-25353",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1719,7 +1486,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "quinn-proto 0.11.16 затронут RUSTSEC-2026-0338 (без оценки серьёзности) (dependency: crates.io/quinn-proto@0.11.16)"
@@ -1728,7 +1495,7 @@
             "qsiFindingKey/v1": "d3ca7fccd21f67bd5f8f9561c7543a2c"
           },
           "properties": {
-            "qsiId": "QSI-2026-18879",
+            "qsiId": "QSI-2026-25358",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1746,7 +1513,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "quinn-proto 0.11.16 затронут RUSTSEC-2026-0339 (без оценки серьёзности) (dependency: crates.io/quinn-proto@0.11.16)"
@@ -1755,7 +1522,7 @@
             "qsiFindingKey/v1": "654eafedce8c5c17c2ce41da18ded4ea"
           },
           "properties": {
-            "qsiId": "QSI-2026-18880",
+            "qsiId": "QSI-2026-25359",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1773,7 +1540,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "quinn-proto 0.11.16 затронут RUSTSEC-2026-0342 (без оценки серьёзности) (dependency: crates.io/quinn-proto@0.11.16)"
@@ -1782,7 +1549,7 @@
             "qsiFindingKey/v1": "39f30a2a3ec7f5404ef71baf0e11c67a"
           },
           "properties": {
-            "qsiId": "QSI-2026-18883",
+            "qsiId": "QSI-2026-25362",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1800,7 +1567,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "ruint 1.19.0 затронут RUSTSEC-2026-0220 (без оценки серьёзности) (dependency: crates.io/ruint@1.19.0)"
@@ -1809,7 +1576,7 @@
             "qsiFindingKey/v1": "99b6533baac2fe727d46e2c0948bfef8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18884",
+            "qsiId": "QSI-2026-25363",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1827,7 +1594,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "rustls-webpki 0.103.13 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности) (dependency: crates.io/rustls-webpki@0.103.13)"
@@ -1836,7 +1603,7 @@
             "qsiFindingKey/v1": "ba8434a29ae02f313b720c0655582a47"
           },
           "properties": {
-            "qsiId": "QSI-2026-18889",
+            "qsiId": "QSI-2026-25368",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1854,7 +1621,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "webpki-roots 1.0.8 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности) (dependency: crates.io/webpki-roots@1.0.8)"
@@ -1863,7 +1630,7 @@
             "qsiFindingKey/v1": "75ea72e743b02165442bef2814615a03"
           },
           "properties": {
-            "qsiId": "QSI-2026-18892",
+            "qsiId": "QSI-2026-25371",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1881,7 +1648,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности) (dependency: crates.io/zstd@0.13.3)"
@@ -1890,7 +1657,7 @@
             "qsiFindingKey/v1": "67973567a2d3929f8a65f995e1e7aa91"
           },
           "properties": {
-            "qsiId": "QSI-2026-18893",
+            "qsiId": "QSI-2026-25372",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1908,7 +1675,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -1917,7 +1684,7 @@
             "qsiFindingKey/v1": "64c1fd5f38431b58ce6bc40e7e4e227e"
           },
           "properties": {
-            "qsiId": "QSI-2026-18894",
+            "qsiId": "QSI-2026-25373",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1935,7 +1702,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -1944,7 +1711,7 @@
             "qsiFindingKey/v1": "ddd2290dd11a4be2cd0d1df793f0d2ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-18895",
+            "qsiId": "QSI-2026-25374",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1962,7 +1729,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -1971,7 +1738,7 @@
             "qsiFindingKey/v1": "d382b3b77376d5f430467a2dda781ead"
           },
           "properties": {
-            "qsiId": "QSI-2026-18896",
+            "qsiId": "QSI-2026-25375",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1989,7 +1756,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -1998,7 +1765,7 @@
             "qsiFindingKey/v1": "4dc3d97a34bcaae0c74ae12fdc154561"
           },
           "properties": {
-            "qsiId": "QSI-2026-18897",
+            "qsiId": "QSI-2026-25376",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2016,7 +1783,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2025,7 +1792,7 @@
             "qsiFindingKey/v1": "af7099f6a028cb26db55b7dda7ed86ea"
           },
           "properties": {
-            "qsiId": "QSI-2026-18898",
+            "qsiId": "QSI-2026-25377",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2043,7 +1810,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2052,7 +1819,7 @@
             "qsiFindingKey/v1": "f9c8da51df1c7bb095d219042d1c82ee"
           },
           "properties": {
-            "qsiId": "QSI-2026-18899",
+            "qsiId": "QSI-2026-25378",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2070,7 +1837,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2079,7 +1846,7 @@
             "qsiFindingKey/v1": "d6ac7e8d63f0f129f6fc20b7d503cca8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18900",
+            "qsiId": "QSI-2026-25379",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2097,7 +1864,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2106,7 +1873,7 @@
             "qsiFindingKey/v1": "6f7f35cf9b55ea6dc2311fe171f62a01"
           },
           "properties": {
-            "qsiId": "QSI-2026-18901",
+            "qsiId": "QSI-2026-25380",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2124,7 +1891,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2133,7 +1900,7 @@
             "qsiFindingKey/v1": "29aeb0f151232cc86bd2fd6047e19579"
           },
           "properties": {
-            "qsiId": "QSI-2026-18902",
+            "qsiId": "QSI-2026-25381",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2151,7 +1918,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2160,7 +1927,7 @@
             "qsiFindingKey/v1": "93aaa6f71615d11ec32093f39cfdd5ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-18903",
+            "qsiId": "QSI-2026-25382",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2178,7 +1945,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2187,7 +1954,7 @@
             "qsiFindingKey/v1": "0769c594012687558b7f6995d6b1f215"
           },
           "properties": {
-            "qsiId": "QSI-2026-18904",
+            "qsiId": "QSI-2026-25383",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2205,7 +1972,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2214,7 +1981,7 @@
             "qsiFindingKey/v1": "71976817d2bf587b4a2e06fc1dbdab81"
           },
           "properties": {
-            "qsiId": "QSI-2026-18905",
+            "qsiId": "QSI-2026-25384",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2232,7 +1999,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "github.com/docker/docker v26.1.0+incompatible затронут GO-2026-4887 (CVE-2026-34040) (без оценки серьёзности) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
@@ -2241,7 +2008,7 @@
             "qsiFindingKey/v1": "f11b3d5f396b04b28411c7805a1872d4"
           },
           "properties": {
-            "qsiId": "QSI-2026-18919",
+            "qsiId": "QSI-2026-25398",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2250,16 +2017,16 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
-            "text": "golang.org/x/crypto v0.32.0 затронут GO-2025-4116 (CVE-2025-47913) (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+            "text": "golang.org/x/crypto v0.32.0 затронут GO-2026-5932 (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.32.0)"
           },
           "partialFingerprints": {
-            "qsiFindingKey/v1": "e19ee8c0314053a6be3d9bc34112c477"
+            "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
           },
           "properties": {
-            "qsiId": "QSI-2026-18942",
+            "qsiId": "QSI-2026-25422",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2268,7 +2035,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "github.com/containerd/containerd v1.7.12 затронут GO-2026-5064 (CVE-2026-53492) (без оценки серьёзности) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
@@ -2277,7 +2044,7 @@
             "qsiFindingKey/v1": "1d286b89505d0906ebf7a477e442585f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18971",
+            "qsiId": "QSI-2026-25456",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2286,7 +2053,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "github.com/containerd/containerd v1.7.12 затронут GO-2026-5338 (CVE-2026-50195) (без оценки серьёзности) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
@@ -2295,7 +2062,7 @@
             "qsiFindingKey/v1": "66f853f40960e6c639ebcdc5321b81ff"
           },
           "properties": {
-            "qsiId": "QSI-2026-18972",
+            "qsiId": "QSI-2026-25457",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2304,7 +2071,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "github.com/containerd/containerd v1.7.12 затронут GO-2026-5622 (CVE-2026-53489) (без оценки серьёзности) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
@@ -2313,7 +2080,7 @@
             "qsiFindingKey/v1": "9f9e6d25253236b8f7e32f2e9d316dc7"
           },
           "properties": {
-            "qsiId": "QSI-2026-18973",
+            "qsiId": "QSI-2026-25458",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2322,7 +2089,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "github.com/containerd/containerd v1.7.12 затронут GO-2026-6791 (CVE-2026-95837) (без оценки серьёзности) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
@@ -2331,7 +2098,7 @@
             "qsiFindingKey/v1": "7784f2becca2c9f0e90bb815cdd4a3dd"
           },
           "properties": {
-            "qsiId": "QSI-2026-18974",
+            "qsiId": "QSI-2026-25459",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2340,7 +2107,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "github.com/docker/compose/v2 v2.24.7 затронут GO-2025-4077 (CVE-2025-62725) (без оценки серьёзности) (dependency: Go/github.com/docker/compose/v2@v2.24.7)"
@@ -2349,7 +2116,7 @@
             "qsiFindingKey/v1": "1d698c2ea5b6c2c4c0632620e4b0e88a"
           },
           "properties": {
-            "qsiId": "QSI-2026-18976",
+            "qsiId": "QSI-2026-25461",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2358,7 +2125,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/lib/solmate/src/auth/Owned.sol: transferOwnership"
@@ -2367,7 +2134,7 @@
             "qsiFindingKey/v1": "55d4b7f5f16ded6d7b531c2e6db68628"
           },
           "properties": {
-            "qsiId": "QSI-2026-18816",
+            "qsiId": "QSI-2026-25294",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2385,7 +2152,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/L1ScrollMessenger.sol: updateMaxReplayTimes"
@@ -2394,7 +2161,7 @@
             "qsiFindingKey/v1": "af7364ab9cf6739b65ffeec2e6f30248"
           },
           "properties": {
-            "qsiId": "QSI-2026-18822",
+            "qsiId": "QSI-2026-25301",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2412,7 +2179,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol: updateFeeVault, setPause"
@@ -2421,7 +2188,7 @@
             "qsiFindingKey/v1": "a05e4acc2cbfeb0eac4efdee4bd97c4f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18823",
+            "qsiId": "QSI-2026-25302",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2439,7 +2206,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol: updateTokenMapping"
@@ -2448,7 +2215,7 @@
             "qsiFindingKey/v1": "31cb8f9840176ff0e838b337d779dcfa"
           },
           "properties": {
-            "qsiId": "QSI-2026-18824",
+            "qsiId": "QSI-2026-25303",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2466,7 +2233,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol: updateTokenMapping"
@@ -2475,7 +2242,7 @@
             "qsiFindingKey/v1": "3e755decc3c92c3e2d4b12f97509f967"
           },
           "properties": {
-            "qsiId": "QSI-2026-18825",
+            "qsiId": "QSI-2026-25304",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2493,7 +2260,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol: updateTokenMapping"
@@ -2502,7 +2269,7 @@
             "qsiFindingKey/v1": "717410cf071e1d227388537f8718dee4"
           },
           "properties": {
-            "qsiId": "QSI-2026-18826",
+            "qsiId": "QSI-2026-25305",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2520,7 +2287,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway"
@@ -2529,7 +2296,7 @@
             "qsiFindingKey/v1": "cfff0c8d6d4acfe7b628c549a2a1f529"
           },
           "properties": {
-            "qsiId": "QSI-2026-18827",
+            "qsiId": "QSI-2026-25306",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2547,7 +2314,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw"
@@ -2556,7 +2323,7 @@
             "qsiFindingKey/v1": "4b4efc3baa1d89be01c59fb80ea7711f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18828",
+            "qsiId": "QSI-2026-25307",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2574,7 +2341,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol: updateCCTPContracts"
@@ -2583,7 +2350,7 @@
             "qsiFindingKey/v1": "3ac5b6d602ff1b02e4fa65735f5fc058"
           },
           "properties": {
-            "qsiId": "QSI-2026-18829",
+            "qsiId": "QSI-2026-25308",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2601,7 +2368,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/rollup/L1MessageQueue.sol: updateGasOracle, updateMaxGasLimit"
@@ -2610,7 +2377,7 @@
             "qsiFindingKey/v1": "aaef733d667eede29058e13f9e79f614"
           },
           "properties": {
-            "qsiId": "QSI-2026-18830",
+            "qsiId": "QSI-2026-25309",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2628,7 +2395,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol: updateWhitelistChecker"
@@ -2637,7 +2404,7 @@
             "qsiFindingKey/v1": "42c406e70699b10c4879e5b4eb8d8338"
           },
           "properties": {
-            "qsiId": "QSI-2026-18831",
+            "qsiId": "QSI-2026-25310",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2655,7 +2422,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol: updateWhitelist, setIntrinsicParams"
@@ -2664,7 +2431,7 @@
             "qsiFindingKey/v1": "e4284d81ecd48c600209b00a6f02212d"
           },
           "properties": {
-            "qsiId": "QSI-2026-18832",
+            "qsiId": "QSI-2026-25311",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2682,7 +2449,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol: updateVerifier"
@@ -2691,7 +2458,7 @@
             "qsiFindingKey/v1": "09b790e1fc4f1821ba1ce151df61159c"
           },
           "properties": {
-            "qsiId": "QSI-2026-18833",
+            "qsiId": "QSI-2026-25312",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2709,7 +2476,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L1/rollup/ScrollChain.sol: revertBatch, finalizeEuclidInitialBatch, addSequencer, removeSequencer, addProver, removeProver, updateMaxNumTxInChunk, setPause"
@@ -2718,7 +2485,7 @@
             "qsiFindingKey/v1": "dc7a6c21053efae0e80f73a27b6100a9"
           },
           "properties": {
-            "qsiId": "QSI-2026-18834",
+            "qsiId": "QSI-2026-25313",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2736,7 +2503,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol: updateTokenMapping"
@@ -2745,7 +2512,7 @@
             "qsiFindingKey/v1": "cde6d81434d1d24198b8e8f76b89d050"
           },
           "properties": {
-            "qsiId": "QSI-2026-18836",
+            "qsiId": "QSI-2026-25315",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2763,7 +2530,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol: updateTokenMapping"
@@ -2772,7 +2539,7 @@
             "qsiFindingKey/v1": "d17c379b9f0744e5ce27cfeddd946923"
           },
           "properties": {
-            "qsiId": "QSI-2026-18837",
+            "qsiId": "QSI-2026-25316",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2790,7 +2557,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway"
@@ -2799,7 +2566,7 @@
             "qsiFindingKey/v1": "9aba9fef265d9da19c358b6dd0c0e18d"
           },
           "properties": {
-            "qsiId": "QSI-2026-18838",
+            "qsiId": "QSI-2026-25317",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2817,7 +2584,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw"
@@ -2826,7 +2593,7 @@
             "qsiFindingKey/v1": "317debe185126b493f56919eef968b79"
           },
           "properties": {
-            "qsiId": "QSI-2026-18839",
+            "qsiId": "QSI-2026-25318",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2844,7 +2611,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol: updateCCTPContracts"
@@ -2853,7 +2620,7 @@
             "qsiFindingKey/v1": "49ac96717b17693a1c71746a1a9a7f32"
           },
           "properties": {
-            "qsiId": "QSI-2026-18840",
+            "qsiId": "QSI-2026-25319",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2871,7 +2638,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L1BlockContainer.sol: initialize, updateWhitelist"
@@ -2880,7 +2647,7 @@
             "qsiFindingKey/v1": "94a442be31f6f364405646f6e595129f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18842",
+            "qsiId": "QSI-2026-25321",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2898,7 +2665,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol: setOverhead, setScalar, setCommitScalar, setBlobScalar, updateWhitelist, enableCurie"
@@ -2907,7 +2674,7 @@
             "qsiFindingKey/v1": "42fe14a34cb3e40003f336b648f451f2"
           },
           "properties": {
-            "qsiId": "QSI-2026-18843",
+            "qsiId": "QSI-2026-25322",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2925,7 +2692,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L2MessageQueue.sol: initialize"
@@ -2934,7 +2701,7 @@
             "qsiFindingKey/v1": "d5fc94a23f2b1309a4a225bbc0b6d4dc"
           },
           "properties": {
-            "qsiId": "QSI-2026-18845",
+            "qsiId": "QSI-2026-25324",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2952,7 +2719,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol: updateMessenger, updateRecipient, updateMinWithdrawAmount"
@@ -2961,7 +2728,7 @@
             "qsiFindingKey/v1": "db4f0b459d06d2084ec6d1d89f6d43df"
           },
           "properties": {
-            "qsiId": "QSI-2026-18846",
+            "qsiId": "QSI-2026-25325",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2979,7 +2746,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/L2/predeploys/Whitelist.sol: updateWhitelistStatus"
@@ -2988,7 +2755,7 @@
             "qsiFindingKey/v1": "40fcb621d903b5ae30d493c55319e1f1"
           },
           "properties": {
-            "qsiId": "QSI-2026-18847",
+            "qsiId": "QSI-2026-25326",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3006,7 +2773,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/gas-swap/GasSwap.sol: withdraw, updateFeeRatio, updateApprovedTarget"
@@ -3015,7 +2782,7 @@
             "qsiFindingKey/v1": "e7975b0d79b65add63d974c05b30aba9"
           },
           "properties": {
-            "qsiId": "QSI-2026-18849",
+            "qsiId": "QSI-2026-25328",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3033,7 +2800,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/libraries/ScrollMessengerBase.sol: updateFeeVault, setPause"
@@ -3042,7 +2809,7 @@
             "qsiFindingKey/v1": "084a14952ce72239181a02b86e4da473"
           },
           "properties": {
-            "qsiId": "QSI-2026-18850",
+            "qsiId": "QSI-2026-25329",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3060,7 +2827,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/libraries/common/OwnableBase.sol: renounceOwnership, transferOwnership"
@@ -3069,7 +2836,7 @@
             "qsiFindingKey/v1": "9f7e79f62eba586a8b5bebedef68fe32"
           },
           "properties": {
-            "qsiId": "QSI-2026-18851",
+            "qsiId": "QSI-2026-25330",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3087,7 +2854,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol: deployL2Token"
@@ -3096,7 +2863,7 @@
             "qsiFindingKey/v1": "be4b0edff2eb9001d2a167dd55c83b28"
           },
           "properties": {
-            "qsiId": "QSI-2026-18852",
+            "qsiId": "QSI-2026-25331",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3114,7 +2881,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/lido/LidoGatewayManager.sol: grantRole, revokeRole"
@@ -3123,7 +2890,7 @@
             "qsiFindingKey/v1": "4983ad99a05fc1427f1f3becfcd824f2"
           },
           "properties": {
-            "qsiId": "QSI-2026-18854",
+            "qsiId": "QSI-2026-25333",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3141,7 +2908,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/misc/Fallback.sol: withdraw, execute"
@@ -3150,7 +2917,7 @@
             "qsiFindingKey/v1": "1cab3910ebdef523520131f6470ba222"
           },
           "properties": {
-            "qsiId": "QSI-2026-18855",
+            "qsiId": "QSI-2026-25334",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3168,7 +2935,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Привилегированные административные функции в scroll-contracts/src/rate-limiter/ETHRateLimiter.sol: updateTotalLimit"
@@ -3177,7 +2944,7 @@
             "qsiFindingKey/v1": "77e37f1cd602e44d1ba81e962778796d"
           },
           "properties": {
-            "qsiId": "QSI-2026-18856",
+            "qsiId": "QSI-2026-25335",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3204,7 +2971,7 @@
             "qsiFindingKey/v1": "eaa318e80817e7975ab837a406341120"
           },
           "properties": {
-            "qsiId": "QSI-2026-18908",
+            "qsiId": "QSI-2026-25387",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3222,7 +2989,7 @@
             "qsiFindingKey/v1": "3f37ac587aef6cd0549a7f28caeccbee"
           },
           "properties": {
-            "qsiId": "QSI-2026-18909",
+            "qsiId": "QSI-2026-25388",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3240,7 +3007,7 @@
             "qsiFindingKey/v1": "47687f52c2acf42f13424a6052df549c"
           },
           "properties": {
-            "qsiId": "QSI-2026-18910",
+            "qsiId": "QSI-2026-25389",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3258,11 +3025,29 @@
             "qsiFindingKey/v1": "e35114e201177c82c45642e5a339c4d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-18911",
+            "qsiId": "QSI-2026-25390",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5394a254269e190ec7b0906bf6cd68e9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25394",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.2"
           }
         },
         {
@@ -3276,11 +3061,47 @@
             "qsiFindingKey/v1": "33dcdda3e7078a22848104a010030376"
           },
           "properties": {
-            "qsiId": "QSI-2026-18916",
+            "qsiId": "QSI-2026-25395",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "9.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "72f68e2f7edef76b5a0c46b0a483368e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25396",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b94891eb8897a714f97e0c91208542e9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25397",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.2"
           }
         },
         {
@@ -3294,7 +3115,7 @@
             "qsiFindingKey/v1": "67de223f47ac2ec3b29761eeda2f4a89"
           },
           "properties": {
-            "qsiId": "QSI-2026-18920",
+            "qsiId": "QSI-2026-25399",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3312,7 +3133,7 @@
             "qsiFindingKey/v1": "dede73341b6780e749fe7afac059b784"
           },
           "properties": {
-            "qsiId": "QSI-2026-18921",
+            "qsiId": "QSI-2026-25400",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3330,7 +3151,7 @@
             "qsiFindingKey/v1": "d5f0bd319dc47780672929946f923832"
           },
           "properties": {
-            "qsiId": "QSI-2026-18923",
+            "qsiId": "QSI-2026-25402",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3348,11 +3169,119 @@
             "qsiFindingKey/v1": "3587ca8eaa1c6d12870402df133c6824"
           },
           "properties": {
-            "qsiId": "QSI-2026-18924",
+            "qsiId": "QSI-2026-25403",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-45gg-vh54-h5m9 (CVE-2026-39828, GO-2026-5014) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b24abef5549d9844eb648b56badd9f61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25405",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-5cgq-3rg8-m6cv (CVE-2026-42508, GO-2026-5021) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b977472a0635430ca7b6a51c1bdcd1cd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25406",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-78mq-xcr3-xm33 (CVE-2026-39835, GO-2026-5015) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5a7bc671f44d2488f9edd1cb5615d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25407",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-89gr-r52h-f8rx (CVE-2026-39831, GO-2026-5019) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c0b056fa0fe5db84f115d12158bb1a4d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25408",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-9m57-25v3-79x9 (CVE-2026-46598, GO-2026-5033) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "46e72193aa6ab47d12376fe5f9b63b12"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25409",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-f5wc-c3c7-36mc (CVE-2026-39832, GO-2026-5006) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c28507f707b813c705788c318bbb01d7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25410",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
           }
         },
         {
@@ -3366,7 +3295,7 @@
             "qsiFindingKey/v1": "533cb508dada34b7e73358b5b9fc45ac"
           },
           "properties": {
-            "qsiId": "QSI-2026-18932",
+            "qsiId": "QSI-2026-25411",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3384,7 +3313,7 @@
             "qsiFindingKey/v1": "c7ee4e5cdb623d5341a5c0a4ec4c4bc4"
           },
           "properties": {
-            "qsiId": "QSI-2026-18933",
+            "qsiId": "QSI-2026-25412",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3402,11 +3331,137 @@
             "qsiFindingKey/v1": "0a43f5ef8e70704167ecbd4b1bf8be13"
           },
           "properties": {
-            "qsiId": "QSI-2026-18934",
+            "qsiId": "QSI-2026-25413",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-jppx-rxg9-jmrx (CVE-2026-39833, GO-2026-5005) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d30ab6d8212c10ce2b4d84b69ec35b63"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25414",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597, GO-2026-5013) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "54c95c351408b896af4bf44bbd2156d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25415",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-qpw4-5x99-6vjp (CVE-2026-39827, GO-2026-5016) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6c3acba563166c1ab6b800954dcee7e7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25416",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-rm3j-f69w-wqmq (CVE-2026-39834, GO-2026-5020) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "71ef29dd7ab41b990655076e1cc0310c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25417",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-vgwf-h737-ff37 (CVE-2026-39830, GO-2026-5017) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cc5d0e2846d8aa7b5b54b1facc6f6101"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25418",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-w879-237q-wc7r (CVE-2026-39829, GO-2026-5018) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "74353c9c2a0638a17f625a34295f4c87"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25419",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-x527-x647-q7gg (CVE-2026-46595, GO-2026-5023) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b06893c06305e37a83b09d07e89e5517"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25420",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "10.0"
           }
         },
         {
@@ -3420,7 +3475,7 @@
             "qsiFindingKey/v1": "8998ad384e6714d1c76c08da46584033"
           },
           "properties": {
-            "qsiId": "QSI-2026-18943",
+            "qsiId": "QSI-2026-25425",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3438,7 +3493,7 @@
             "qsiFindingKey/v1": "3a90791813190dd3e5e522c1e882342c"
           },
           "properties": {
-            "qsiId": "QSI-2026-18944",
+            "qsiId": "QSI-2026-25426",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3456,7 +3511,7 @@
             "qsiFindingKey/v1": "3ea7d7dc0652487c52c89acf7dbda356"
           },
           "properties": {
-            "qsiId": "QSI-2026-18945",
+            "qsiId": "QSI-2026-25427",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3474,7 +3529,7 @@
             "qsiFindingKey/v1": "1d725cc5cb55410b442a0562c91f6986"
           },
           "properties": {
-            "qsiId": "QSI-2026-18982",
+            "qsiId": "QSI-2026-25467",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -3492,7 +3547,7 @@
             "qsiFindingKey/v1": "2eda64e1c30707135339d8ced1e60af9"
           },
           "properties": {
-            "qsiId": "QSI-2026-18858",
+            "qsiId": "QSI-2026-25337",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3510,7 +3565,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained) (dependency: crates.io/bincode@1.3.3)"
@@ -3519,7 +3574,7 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-18860",
+            "qsiId": "QSI-2026-25339",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3537,7 +3592,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained) (dependency: crates.io/bincode@2.0.1)"
@@ -3546,7 +3601,7 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-18861",
+            "qsiId": "QSI-2026-25340",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3564,7 +3619,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности) (dependency: crates.io/tokio@1.52.3)"
@@ -3573,7 +3628,7 @@
             "qsiFindingKey/v1": "0f94b12e7ce6cd766918bf059898ddff"
           },
           "properties": {
-            "qsiId": "QSI-2026-18890",
+            "qsiId": "QSI-2026-25369",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3591,7 +3646,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности) (dependency: crates.io/zstd-sys@2.0.16+zstd.1.5.7)"
@@ -3600,7 +3655,7 @@
             "qsiFindingKey/v1": "8d11754f30834ec723fd49617ffb55ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-18906",
+            "qsiId": "QSI-2026-25385",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3618,7 +3673,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "github.com/klauspost/compress v1.17.9 затронут GO-2026-6865 (CVE-2026-116591) (без оценки серьёзности) (dependency: Go/github.com/klauspost/compress@v1.17.9)"
@@ -3627,7 +3682,7 @@
             "qsiFindingKey/v1": "ad62ad24aaaa5709c92451ae65228b85"
           },
           "properties": {
-            "qsiId": "QSI-2026-18925",
+            "qsiId": "QSI-2026-25404",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3636,7 +3691,61 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GO-2025-4116 (CVE-2025-47913) (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e19ee8c0314053a6be3d9bc34112c477"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25421",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GO-2026-6303 (CVE-2026-56854) (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0e85ec3acf2807b14b7a34eefca4d4d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25423",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "79a4e71ca0cc9cb4bf47ce78bf674bdc"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25424",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2024-3333 (CVE-2024-45338) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3645,7 +3754,7 @@
             "qsiFindingKey/v1": "5d01c506dd423a253a791f5cdb4d3b1a"
           },
           "properties": {
-            "qsiId": "QSI-2026-18946",
+            "qsiId": "QSI-2026-25428",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3654,7 +3763,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-4440 (CVE-2025-47911) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3663,7 +3772,7 @@
             "qsiFindingKey/v1": "a3c755749f5ca8649ba47453f60206e9"
           },
           "properties": {
-            "qsiId": "QSI-2026-18947",
+            "qsiId": "QSI-2026-25429",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3672,7 +3781,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-4441 (CVE-2025-58190) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3681,7 +3790,7 @@
             "qsiFindingKey/v1": "27aa67c8794c97576e876c2160034a5f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18948",
+            "qsiId": "QSI-2026-25430",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3690,7 +3799,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-4918 (CVE-2026-33814) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3699,7 +3808,7 @@
             "qsiFindingKey/v1": "dbecdf268262e1b4c6db5d081b7cc331"
           },
           "properties": {
-            "qsiId": "QSI-2026-18949",
+            "qsiId": "QSI-2026-25431",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3708,7 +3817,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-5025 (CVE-2026-42506) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3717,7 +3826,7 @@
             "qsiFindingKey/v1": "3e881b76766a189ea4e1b39ee3183e18"
           },
           "properties": {
-            "qsiId": "QSI-2026-18950",
+            "qsiId": "QSI-2026-25432",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3726,7 +3835,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-5026 (CVE-2026-39821) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3735,7 +3844,7 @@
             "qsiFindingKey/v1": "50e04c8a66836787b884afa80c6d1621"
           },
           "properties": {
-            "qsiId": "QSI-2026-18951",
+            "qsiId": "QSI-2026-25433",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3744,7 +3853,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-5027 (CVE-2026-42502) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3753,7 +3862,7 @@
             "qsiFindingKey/v1": "409dea2fb60ddc2f3808656c8dfbc15f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18952",
+            "qsiId": "QSI-2026-25434",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3762,7 +3871,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-5029 (CVE-2026-25681) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3771,7 +3880,7 @@
             "qsiFindingKey/v1": "f7091a41b94c38fcb24e494983c16f26"
           },
           "properties": {
-            "qsiId": "QSI-2026-18953",
+            "qsiId": "QSI-2026-25435",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3780,7 +3889,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-5030 (CVE-2026-27136) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3789,7 +3898,7 @@
             "qsiFindingKey/v1": "d36d9f212b6483611c10d1a3bbc53f44"
           },
           "properties": {
-            "qsiId": "QSI-2026-18954",
+            "qsiId": "QSI-2026-25436",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3798,7 +3907,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-5942 (CVE-2026-46600) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3807,7 +3916,7 @@
             "qsiFindingKey/v1": "a2b6d45297f7a1a20dce14a1a15539d6"
           },
           "properties": {
-            "qsiId": "QSI-2026-18955",
+            "qsiId": "QSI-2026-25437",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3816,7 +3925,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3825,7 +3934,7 @@
             "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
           },
           "properties": {
-            "qsiId": "QSI-2026-18956",
+            "qsiId": "QSI-2026-25438",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3834,7 +3943,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3843,7 +3952,7 @@
             "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
           },
           "properties": {
-            "qsiId": "QSI-2026-18957",
+            "qsiId": "QSI-2026-25439",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3852,7 +3961,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3861,7 +3970,7 @@
             "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18958",
+            "qsiId": "QSI-2026-25440",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3870,7 +3979,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.25.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
@@ -3879,7 +3988,7 @@
             "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
           },
           "properties": {
-            "qsiId": "QSI-2026-18959",
+            "qsiId": "QSI-2026-25441",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3888,7 +3997,61 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25442",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-6860 (CVE-2026-78661) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25443",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-6866 (CVE-2026-97045) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-25444",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/sys v0.30.0 затронут GO-2026-5024 (CVE-2026-39824) (без оценки серьёзности) (dependency: Go/golang.org/x/sys@v0.30.0)"
@@ -3897,7 +4060,7 @@
             "qsiFindingKey/v1": "edea553b6443bec2ad29601449a8d4ac"
           },
           "properties": {
-            "qsiId": "QSI-2026-18960",
+            "qsiId": "QSI-2026-25445",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3906,7 +4069,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/text v0.21.0 затронут GO-2026-5970 (CVE-2026-56852) (без оценки серьёзности) (dependency: Go/golang.org/x/text@v0.21.0)"
@@ -3915,7 +4078,7 @@
             "qsiFindingKey/v1": "3af8d59dfce04d9a4a7ff89a19689c5e"
           },
           "properties": {
-            "qsiId": "QSI-2026-18961",
+            "qsiId": "QSI-2026-25446",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3924,7 +4087,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "golang.org/x/text v0.21.0 затронут GO-2026-6629 (CVE-2026-56851) (без оценки серьёзности) (dependency: Go/golang.org/x/text@v0.21.0)"
@@ -3933,7 +4096,7 @@
             "qsiFindingKey/v1": "1f5d392cf2cbe83a831464c3efcc2392"
           },
           "properties": {
-            "qsiId": "QSI-2026-18962",
+            "qsiId": "QSI-2026-25447",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3942,7 +4105,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "ansi_term 0.12.1: информационный бюллетень RUSTSEC-2021-0139 (unmaintained) (dependency: crates.io/ansi_term@0.12.1)"
@@ -3951,7 +4114,7 @@
             "qsiFindingKey/v1": "665517bdb4ad6562fd552f32d83e32c8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18857",
+            "qsiId": "QSI-2026-25336",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3969,7 +4132,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "atty 0.2.14: информационный бюллетень RUSTSEC-2024-0375 (unmaintained) (dependency: crates.io/atty@0.2.14)"
@@ -3978,7 +4141,7 @@
             "qsiFindingKey/v1": "8152cdc99d2b32a001ec096f3ede3e86"
           },
           "properties": {
-            "qsiId": "QSI-2026-18859",
+            "qsiId": "QSI-2026-25338",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3996,7 +4159,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained) (dependency: crates.io/derivative@2.2.0)"
@@ -4005,7 +4168,7 @@
             "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
           },
           "properties": {
-            "qsiId": "QSI-2026-18864",
+            "qsiId": "QSI-2026-25343",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4023,7 +4186,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "fxhash 0.2.1: информационный бюллетень RUSTSEC-2025-0057 (unmaintained) (dependency: crates.io/fxhash@0.2.1)"
@@ -4032,7 +4195,7 @@
             "qsiFindingKey/v1": "657a1f7bc918b25a7ebeac72aaefabac"
           },
           "properties": {
-            "qsiId": "QSI-2026-18865",
+            "qsiId": "QSI-2026-25344",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4050,7 +4213,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "generational-arena 0.2.9: информационный бюллетень RUSTSEC-2024-0014 (unmaintained) (dependency: crates.io/generational-arena@0.2.9)"
@@ -4059,7 +4222,7 @@
             "qsiFindingKey/v1": "1f86a632733871c7b31f116b052d83e5"
           },
           "properties": {
-            "qsiId": "QSI-2026-18866",
+            "qsiId": "QSI-2026-25345",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4077,7 +4240,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "instant 0.1.13: информационный бюллетень RUSTSEC-2024-0384 (unmaintained) (dependency: crates.io/instant@0.1.13)"
@@ -4086,7 +4249,7 @@
             "qsiFindingKey/v1": "c38825eb3e0be8d7636b89b1f64b78e5"
           },
           "properties": {
-            "qsiId": "QSI-2026-18868",
+            "qsiId": "QSI-2026-25347",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4104,7 +4267,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "libsecp256k1 0.7.2: информационный бюллетень RUSTSEC-2025-0161 (unmaintained) (dependency: crates.io/libsecp256k1@0.7.2)"
@@ -4113,7 +4276,7 @@
             "qsiFindingKey/v1": "d7ac17c260cd52dfe2551c2a76977625"
           },
           "properties": {
-            "qsiId": "QSI-2026-18869",
+            "qsiId": "QSI-2026-25348",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4131,7 +4294,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained) (dependency: crates.io/paste@1.0.15)"
@@ -4140,7 +4303,7 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-18876",
+            "qsiId": "QSI-2026-25355",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4158,7 +4321,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "pin-utils 0.1.0: информационный бюллетень RUSTSEC-2026-0441 (unmaintained) (dependency: crates.io/pin-utils@0.1.0)"
@@ -4167,7 +4330,7 @@
             "qsiFindingKey/v1": "0f6b97d0b6d3267281e6db41b755fba8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18877",
+            "qsiId": "QSI-2026-25356",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4185,7 +4348,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained) (dependency: crates.io/proc-macro-error2@2.0.1)"
@@ -4194,7 +4357,7 @@
             "qsiFindingKey/v1": "8412cde0bf828d754dd3b306bfe8c506"
           },
           "properties": {
-            "qsiId": "QSI-2026-18878",
+            "qsiId": "QSI-2026-25357",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4212,13 +4375,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/scroll @ 3046bbd18a6a/9f41f8fe-74fd-412a-bc98-0c316478b613"
+        "id": "qsi/scroll @ 3046bbd18a6a/1f0bf57a-6fcd-49d5-b544-f8233f2f0385"
       },
       "properties": {
-        "qsiContentSha256": "2342544e2f15be7ff1cd0fe90d6248110e49102a5b68bcaa0d27a0fb55b3c431",
+        "qsiContentSha256": "4fb555f1aacf1a15553dbb12fde83d11c84ae195fc3f8b64fd9a8ac90625d10a",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:55:21.536526+00:00",
+        "qsiGeneratedAt": "2026-11-07T18:39:33.832346+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [
