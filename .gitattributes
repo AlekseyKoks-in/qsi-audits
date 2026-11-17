@@ -1,0 +1,3 @@
+# The bundles are signed byte for byte. Git must not rewrite line endings on checkout (core.autocrlf, the default of
+# Git for Windows), or every file's SHA-256 changes and verify.py reports each bundle as failed.
+* -text

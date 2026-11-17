@@ -72,6 +72,11 @@ ML-DSA-65 test vectors from the ACVP server (`mldsa65-kat.json`: one valid signa
 expected answer. The bundles published so far were signed before the co-signature existed and pass on Ed25519,
 as before; a publisher ML-DSA key (`PUBLIC-KEY-MLDSA.pem`) will be added at the root with the first co-signed one.
 
+On Windows, Git for Windows turns LF into CRLF on checkout by default (`core.autocrlf`). The signatures are over
+the exact bytes, so this repository's `.gitattributes` switches that off for every file; a clone made before it
+existed, or with the setting forced, has CRLF line endings, and `verify.py` then names the cause instead of
+reporting a bare hash mismatch. Clone again, or `git clone -c core.autocrlf=false`.
+
 Signing key `5b3cf9c9bd0fa544`, fingerprint
 `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`.
 

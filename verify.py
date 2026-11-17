@@ -382,6 +382,16 @@ def _sha256(path: pathlib.Path) -> str:
     return h.hexdigest()
 
 
+def _only_line_endings(path: pathlib.Path, want: str) -> bool:
+    """The file hashes to the signed value once CRLF is turned back into LF: a checkout rewrote its line endings."""
+    data = path.read_bytes()
+    return b"\r\n" in data and hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest() == want
+
+
+CRLF_HINT = ("only its line endings differ: this checkout turned LF into CRLF (Git's core.autocrlf). Clone again with "
+             "the repository's .gitattributes in effect, or with: git clone -c core.autocrlf=false ...")
+
+
 def _check_pq(name: str, doc: dict, payload: dict, root_pq_pem: str | None) -> list[str]:
     """The ML-DSA-65 co-signature of a signature file whose payload names a post-quantum key, or carries one."""
     named, pq = payload.get("pq_key_id"), doc.get("pq")
@@ -472,7 +482,8 @@ def verify_bundle(d: pathlib.Path, root_pem: str | None, root_pq_pem: str | None
             continue
         got = _sha256(f)
         if got != want:
-            errs.append(f"{d.name}/{name}: sha256 {got[:16]}… != signed {want[:16]}…")
+            hint = f" — {CRLF_HINT}" if _only_line_endings(f, want) else ""
+            errs.append(f"{d.name}/{name}: sha256 {got[:16]}… != signed {want[:16]}…{hint}")
 
     # The bundle's own copy of the key must be the key that signed it.
     pem_file = d / "public_key.pem"
