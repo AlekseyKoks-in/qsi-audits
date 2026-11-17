@@ -61,6 +61,17 @@ through the `cryptography` package when it is installed, and **both must agree**
 a real signature passes, that the two implementations agree, and that flipping a single byte of the payload, the
 signature or a file is caught.
 
+Bundles signed from 13 November 2026 on also carry a post-quantum co-signature: ML-DSA-65 (FIPS 204) over the same
+payload, with the payload's schema as the context string, by a key the Ed25519-signed payload names (`pq_key_id`).
+`verify.py` checks it as well, again twice where it can: with an ML-DSA-65 verifier written into the file (pure
+Python, no dependencies) and with `cryptography` 48 or later when that is installed with OpenSSL 3.5. A payload that
+names a key whose signature is missing, a signature for another context, a key other than the named one or a
+`public_key_mldsa.pem` that differs from it all fail. `--self-test` runs the built-in verifier on five of NIST's own
+ML-DSA-65 test vectors from the ACVP server (`mldsa65-kat.json`: one valid signature, and ones with a modified
+`z`, hint, commitment and message), and the full set of NIST's ML-DSA-65 verification vectors (30) gives the
+expected answer. The bundles published so far were signed before the co-signature existed and pass on Ed25519,
+as before; a publisher ML-DSA key (`PUBLIC-KEY-MLDSA.pem`) will be added at the root with the first co-signed one.
+
 Signing key `5b3cf9c9bd0fa544`, fingerprint
 `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`.
 
@@ -356,7 +367,8 @@ the tool to what git actually does with `update = none`.
 
 ```
 PUBLIC-KEY.pem     the one key that signed every bundle
-verify.py          standalone verifier
+verify.py          standalone verifier (Ed25519 and ML-DSA-65)
+mldsa65-kat.json   NIST ACVP test vectors for verify.py --self-test
 readiness.py       BIP-360 / BIP-361 readiness, measured from the bundles
 submodule-scope.py are your pinned submodules populated, and did your tools read them?
 test-submodule-scope.sh  its tests, including two against a real repository and four against git
