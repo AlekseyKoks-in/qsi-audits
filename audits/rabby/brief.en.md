@@ -1,27 +1,27 @@
 # Post-quantum cryptography review: rabby @ 663c0e80e9f6
 
-*One-page brief* · Reviewed: 2026-11-06 13:45 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Rabby Wallet (DeBank) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-17 18:49 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Rabby Wallet (DeBank) — public repository (passive review)
 
 Source: https://github.com/RabbyHub/Rabby/tree/663c0e80e9f6139cbb87932ddea909e1e4a382f1
 
 **Post-quantum maturity:** Level 0 of 4 — no post-quantum cryptography. **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
-**Findings:** Critical 2 · High 74 · Medium 77 · Low 3 · Info 3
+**Findings:** Critical 7 · High 167 · Medium 160 · Low 13 · Info 3
 
 **Quantum timeline (Mosca: x + y − z):** Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **Critical** · @openzeppelin/contracts 3.4.1-solc-0.7-2 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-18467)\
+1. **Critical** · @openzeppelin/contracts 3.4.1-solc-0.7-2 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-27541)\
    What to do: Upgrade to a fixed version (3.4.2, 4.3.1).
-2. **Critical** · @openzeppelin/contracts 3.4.2-solc-0.7 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-18471)\
+2. **Critical** · @openzeppelin/contracts 3.4.2-solc-0.7 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-27545)\
    What to do: Upgrade to a fixed version (3.4.2, 4.3.1).
-3. **High** · fflate 0.8.2 is affected by GHSA-px8p-9vwx-vf98 (CVE-2026-45820) (QSI-2026-18454)\
-   What to do: Upgrade to a fixed version (0.4.9, 0.5.4, 0.6.11, 0.7.5, 0.8.3).
-4. **High** · lodash 4.17.21 is affected by GHSA-r5fr-rjxr-66jc (CVE-2026-4800) (QSI-2026-18455)\
-   What to do: Upgrade to a fixed version (4.18.0).
+3. **Critical** · elliptic 6.5.4 is affected by GHSA-vjh7-7g9h-fjfh (QSI-2026-27715)\
+   What to do: Upgrade to a fixed version (6.6.1).
+4. **Critical** · elliptic 6.5.7 is affected by GHSA-vjh7-7g9h-fjfh (QSI-2026-27718)\
+   What to do: Upgrade to a fixed version (6.6.1).
 
-152 more in the full report.
+343 more in the full report.
 
 ## What the quantum-vulnerable cryptography protects
 
@@ -32,14 +32,14 @@ Source: https://github.com/RabbyHub/Rabby/tree/663c0e80e9f6139cbb87932ddea909e1e
 
 ## Known vulnerable components
 
-Advisories for the versions in use: 153; each needs checking against the code.
+Advisories for the versions in use: 344; each needs checking against the code.
 
 ---
 
 Static review of source code and manifests; files analysed: 1694. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `737f869006f3ea348b2c1e6611f7869a5ab61eae8a6934d85e81cc96de6710f9`
+Full report, content SHA-256: `0d3818447ade0de153f5c097e5f2041bcbe1354c6f042e46eef0d6a8d7faf9fd`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

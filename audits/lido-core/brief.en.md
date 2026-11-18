@@ -1,27 +1,27 @@
 # Post-quantum cryptography review: lido-core @ 2bd532298d85
 
-*One-page brief* · Reviewed: 2026-11-06 13:25 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Lido — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-17 18:33 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Lido — public repository (passive review)
 
 Source: https://github.com/lidofinance/core/tree/2bd532298d85cdf520169fdc0c5fb0cc9baf03c3
 
 **Post-quantum maturity:** Level 0 of 4 — no post-quantum cryptography. **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
-**Findings:** Critical 5 · High 26 · Medium 28 · Low 12 · Info 7
+**Findings:** Critical 5 · High 43 · Medium 36 · Low 17 · Info 7
 
 **Quantum timeline (Mosca: x + y − z):** Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **Critical** · @openzeppelin/contracts 3.4.0 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-18228)\
+1. **Critical** · @openzeppelin/contracts 3.4.0 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-26694)\
    What to do: Upgrade to a fixed version (3.4.2, 4.3.1).
-2. **Critical** · babel-traverse 6.26.0 is affected by GHSA-67hx-6x53-jw92 (CVE-2023-45133) (QSI-2026-18234)\
+2. **Critical** · babel-traverse 6.26.0 is affected by GHSA-67hx-6x53-jw92 (CVE-2023-45133) (QSI-2026-26700)\
    What to do: Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-3. **Critical** · crypto-js 3.3.0 is affected by GHSA-rg76-677x-56q9 (CVE-2026-71851) (QSI-2026-18252)\
+3. **Critical** · crypto-js 3.3.0 is affected by GHSA-rg76-677x-56q9 (CVE-2026-71851) (QSI-2026-26718)\
    What to do: Upgrade to a fixed version (4.0.0).
-4. **Critical** · crypto-js 3.3.0 is affected by GHSA-xwcq-pm8m-c4vf (CVE-2023-46233) (QSI-2026-18253)\
+4. **Critical** · crypto-js 3.3.0 is affected by GHSA-xwcq-pm8m-c4vf (CVE-2023-46233) (QSI-2026-26719)\
    What to do: Upgrade to a fixed version (4.2.0).
 
-67 more in the full report.
+97 more in the full report.
 
 ## What the quantum-vulnerable cryptography protects
 
@@ -32,14 +32,14 @@ Source: https://github.com/lidofinance/core/tree/2bd532298d85cdf520169fdc0c5fb0c
 
 ## Known vulnerable components
 
-Advisories for the versions in use: 47; each needs checking against the code.
+Advisories for the versions in use: 77; each needs checking against the code.
 
 ---
 
 Static review of source code and manifests; files analysed: 267. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `7acb06161ac73d5b7816c3afbf84d682884423d2d6c60d69a9dc8ea6f6ce7e73`
+Full report, content SHA-256: `12140b5940b68e300e4499ce07183cd9062312eee41a133f082f1f6a2f10f81c`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

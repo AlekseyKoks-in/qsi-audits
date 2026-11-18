@@ -2,8 +2,8 @@
 
 61 audit bundles over **53 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**3,988 inventory rows**, of which **1,946 fall to Shor's algorithm**, **28 are post-quantum** and
-**14 are hybrid** (post-quantum combined with classical), from **30,766 parsed files**. Those last two
+**3,989 inventory rows**, of which **1,947 fall to Shor's algorithm**, **28 are post-quantum** and
+**14 are hybrid** (post-quantum combined with classical), from **30,760 parsed files**. Those last two
 are kept apart on purpose: write-ups of mine dated before 2026-10-30 quote a single "29 post-quantum" that was
 28+14-style addition of the two, which is why one number appeared in two different places.
 
@@ -14,7 +14,7 @@ table to read before quoting any other number in this repository.
 
 | what the row rests on | rows | Shor-breakable |
 |---|---:|---:|
-| a line of source code | 2,241 | 1,453 |
+| a line of source code | 2,242 | 1,454 |
 | name of a dependency in a manifest | 859 | 0 |
 | name of a source file (low confidence) | 347 | 158 |
 | a deployed smart contract | 126 | 3 |
@@ -25,7 +25,7 @@ table to read before quoting any other number in this repository.
 
 Two things in that table are worth saying out loud rather than leaving for a careful reader to notice.
 
-**158 of the 1,946 Shor-breakable rows rest on the name of a source file**, not on a line of
+**158 of the 1,947 Shor-breakable rows rest on the name of a source file**, not on a line of
 code. That signal exists because `trezor-firmware/crypto/pbkdf2.c` *defines* PBKDF2 instead of calling it, so no
 call-site pattern reaches it and the inventory missed it entirely — a file named after an algorithm is the project
 telling you what is in it. It is still weaker evidence than a call, the reports mark it `confidence: low`, and a
@@ -69,8 +69,9 @@ names a key whose signature is missing, a signature for another context, a key o
 `public_key_mldsa.pem` that differs from it all fail. `--self-test` runs the built-in verifier on five of NIST's own
 ML-DSA-65 test vectors from the ACVP server (`mldsa65-kat.json`: one valid signature, and ones with a modified
 `z`, hint, commitment and message), and the full set of NIST's ML-DSA-65 verification vectors (30) gives the
-expected answer. The bundles published so far were signed before the co-signature existed and pass on Ed25519,
-as before; a publisher ML-DSA key (`PUBLIC-KEY-MLDSA.pem`) will be added at the root with the first co-signed one.
+expected answer. 9 bundles carry the co-signature so far, the ones re-audited on 17 November (below);
+the rest were signed before it existed and pass on Ed25519, as before. The publisher ML-DSA-65 key is
+`PUBLIC-KEY-MLDSA.pem` at the root, and a bundle co-signed by any other key fails.
 
 On Windows, Git for Windows turns LF into CRLF on checkout by default (`core.autocrlf`). The signatures are over
 the exact bytes, so this repository's `.gitattributes` switches that off for every file; a clone made before it
@@ -78,7 +79,8 @@ existed, or with the setting forced, has CRLF line endings, and `verify.py` then
 reporting a bare hash mismatch. Clone again, or `git clone -c core.autocrlf=false`.
 
 Signing key `5b3cf9c9bd0fa544`, fingerprint
-`5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`.
+`5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`; ML-DSA-65 key `dbd4e297b3213d1d`, fingerprint
+`dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`.
 
 ## What BIP-360 and BIP-361 require of wallet code, and what is actually there
 
@@ -186,7 +188,7 @@ Every bundle published here except `nitro` was re-audited on 5 November at its r
 and analyst decisions, with the engine as it stands after the corrections of 2 to 5 November. `nitro` keeps its
 earlier bundle: its scope was never recorded, and the reconstructed one parses 1,036 files where the published
 bundle parsed 1,038, so a re-run would be a different measurement presented as a correction. The portfolio now
-holds **3,988 inventory rows, 1,946 Shor-breakable**, and the ten-codebase Bitcoin slice
+holds **3,989 inventory rows, 1,947 Shor-breakable**, and the ten-codebase Bitcoin slice
 **808 and 555** (695 and 448 before). `bitcoin-core/secp256k1` has **39 Shor-breakable rows of 40**: its ECDH
 module was not recognised before. Most of the movement is the scanner learning words it lacked — ECDH on secp256k1,
 BIP-340 in Rust and C, Ed25519 implementations — and some is false rows leaving. Every codebase that moved:
@@ -252,6 +254,42 @@ implementations and was corrected before publication. Totals moved from 3,924 / 
 hybrid rows from 12 to **14**. `nitro` again keeps its published bundle (different tree). Before-states and
 logs are in the archive of this run.
 
+## Re-audit, 2026-11-17: dependency advisories past the first 1,000 packages
+
+Until 12 November the dependency check sent OSV.dev at most the first 1,000 pinned packages of a codebase, and its
+coverage line said "1000 pinned packages queried" without saying that more existed. The limit is now 5,000, and
+anything beyond it is named in the coverage as not checked. 9 bundles in `audits/` were re-audited on
+17 November at their recorded commit, tree, language and analyst decisions; each now queries every package it pins
+and carries the ML-DSA-65 co-signature.
+
+| codebase | packages queried before | after | affected before | after | advisory findings before | after | all findings before | after |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `agave` | 1,000 | **1,970** | 60 | **133** | 55 | **240** | 111 | **305** |
+| `foundry` | 1,000 | **1,566** | 8 | **26** | 2 | **4** | 19 | **53** |
+| `lido-core` | 1,000 | **1,365** | 45 | **72** | 47 | **77** | 78 | **108** |
+| `metamask-extension` | 1,000 | **4,643** | 10 | **56** | 1 | **96** | 7 | **104** |
+| `noir` | 1,000 | **3,708** | 8 | **84** | 3 | **125** | 12 | **136** |
+| `rabby` | 1,000 | **2,477** | 21 | **86** | 152 | **344** | 159 | **350** |
+| `reown-appkit` | 1,000 | **3,535** | 32 | **108** | 101 | **395** | 105 | **400** |
+| `scroll` | 1,000 | **2,634** | 47 | **173** | 63 | **134** | 179 | **279** |
+| `signal-desktop` | 1,000 | **2,291** | 6 | **23** | 9 | **39** | 11 | **41** |
+
+Advisory findings (`DEP-KNOWN-ADVISORY`: a pinned version that an OSV.dev advisory names) went from 433 to
+**1,454** across them. All findings moved for a second reason as well: a re-audit runs the current engine, so it
+includes rules added since a bundle was published (payment crediting, TON contracts and TON Connect sign-in,
+stablecoin integrations). The inventory, which is what the totals on this page count, did not move except in
+`metamask-extension`: one ECDH row, its `eciesjs` import (ECIES on secp256k1) in
+`app/scripts/controllers/qr-sync/key-manager.ts`, recognised since JavaScript ECIES libraries were added to the
+registry on 8 November, which moves the totals from 3,988 / 1,946 to
+**3,989 / 1,947**; the other eight inventories are identical row for row. `agave` parses six files fewer:
+the minified KaTeX bundles under `docs/static/katex/`, third-party code that the scanner sets aside since
+12 November, none of which held a row. A lookup that fails on the network is now retried, three attempts, and if
+it still fails the coverage says so and why; the first run of this re-audit lost the lookups of three bundles to
+transient DNS failures, which is how the retry came to exist, and those three were run again. The same re-audit replaced `arc-node`, one bundle published in both studies (`studies/institutional/arc-node`, `studies/l1/arc-node`), which hit the same limit: packages queried 1,000 → **1,993**, advisory findings 30 → **37**, and the 37 own-code rows and 12 Shor-breakable the studies quote are unchanged. `python3 verify.py studies/institutional/arc-node` checks it.
+
+Still stopping at 1,000 packages, as their coverage lines say: `audits/nitro`. `nitro` keeps its published bundle
+for the reason given above (its scope was never recorded, so a re-run would face a different tree).
+
 ## Institutional ledgers and bank-facing platforms
 
 A separate study, kept out of the totals above: Canton, Arc, Hyperledger Fabric and Besu, Corda and the Open Bank
@@ -275,7 +313,7 @@ These bundles use two of those three methods and **declare the third**: live net
 19 March 2027, so nobody can claim conformance to them yet.
 
 The memorandum's algorithm table names seven quantum-vulnerable algorithms and then adds "Other non-PQC
-Asymmetric Algorithms". Measured here, **40% of the 1,946 Shor-breakable rows fall only under
+Asymmetric Algorithms". Measured here, **39% of the 1,947 Shor-breakable rows fall only under
 that catch-all**, across 16 distinct algorithms, the largest being Ed25519 — which the memorandum never
 names. A tool built from the seven named algorithms finds RSA and ECDSA and misses the cryptography modern
 systems are actually built from. The full mapping, and the one gap this exercise found in my own registry (MQV,
@@ -287,7 +325,7 @@ On 27 October 2026 NIST published **IR 8547 in final form**, stricter than its 2
 Diffie-Hellman are now deprecated after 2030 at every key size, not only at 112 bits. Measured here, that puts a
 2030 milestone on **341 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
 and up — and says nothing at all about the 461 secp256k1 rows, a curve NIST never approved; with the
-513 rows in families no NIST standard covers, about half of the exposure here (974 of 1,946 rows) sits outside NIST's dates.
+513 rows in families no NIST standard covers, about half of the exposure here (974 of 1,947 rows) sits outside NIST's dates.
 The split is section 3 of the same report.
 
 ## A check any project can run: does your scanner have a word for this cryptography?
@@ -372,6 +410,7 @@ the tool to what git actually does with `update = none`.
 
 ```
 PUBLIC-KEY.pem     the one key that signed every bundle
+PUBLIC-KEY-MLDSA.pem  the ML-DSA-65 key of the post-quantum co-signatures (from 13 November 2026)
 verify.py          standalone verifier (Ed25519 and ML-DSA-65)
 mldsa65-kat.json   NIST ACVP test vectors for verify.py --self-test
 readiness.py       BIP-360 / BIP-361 readiness, measured from the bundles
@@ -379,6 +418,7 @@ submodule-scope.py are your pinned submodules populated, and did your tools read
 test-submodule-scope.sh  its tests, including two against a real repository and four against git
 audits/<name>/     report.json · report.md · report.html · report.pdf · cbom.cdx.json
                    report.sarif.json · bundle.sig.json · report.sig.json · public_key.pem
+                   (+ public_key_mldsa.pem where co-signed)
                    brief.en.md · brief.ru.md (+ pdf)
 reports/           the write-ups: re-audits, triage, adoption survey, scope-and-recall study,
                    and the BIP-360/361 readiness analysis
@@ -419,7 +459,7 @@ none.
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
 | `trustwallet-wallet-core` | Trust Wallet | `adf80f8bac98` | 1695 | 396 | 294 | 0 |
-| `agave` | Anza (Solana) | `7700cb3128c1` | 1293 | 212 | 115 | 0 |
+| `agave` | Anza (Solana) | `7700cb3128c1` | 1287 | 212 | 115 | 0 |
 | `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 202 | 113 | 0 |
 | `librustzcash` | Electric Coin Company (Zcash) | `8672a4b2d60f` | 333 | 147 | 26 | 0 |
 | `zebra` | Zcash Foundation | `147a6a8bf7d3` | 439 | 146 | 68 | 0 |
@@ -437,7 +477,7 @@ none.
 | `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 93 | 68 | 0 |
 | `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 90 | 88 | 0 |
 | `aave-v3-origin` | Aave DAO | `8305565ae342` | 645 | 89 | 2 | 0 |
-| `scroll` | Scroll | `3046bbd18a6a` | 387 | 89 | 7 | 0 |
+| `scroll` | scroll | `3046bbd18a6a` | 387 | 89 | 7 | 0 |
 | `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 140 | 87 | 64 | 0 |
 | `zingolib` | Zingo Labs | `81d799775f11` | 205 | 82 | 3 | 1 |
 | `noir` | Aztec / Noir | `5c98fecd3fe6` | 783 | 71 | 9 | 0 |
@@ -449,7 +489,7 @@ none.
 | `halo2` | Electric Coin Company (Zcash) | `3442dd33754a` | 100 | 63 | 45 | 0 |
 | `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 57 | 33 | 0 |
 | `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 53 | 36 | 0 |
-| `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4870 | 50 | 12 | 0 |
+| `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4870 | 51 | 13 | 0 |
 | `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 114 | 49 | 48 | 0 |
 | `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 48 | 25 | 0 |
 | `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 48 | 7 | 0 |
@@ -525,10 +565,10 @@ that is the most useful message I can get — the two corrections above both beg
 
 # По-русски
 
-61 подписанных комплектов аудита по **53 кодовым базам**: машиночитаемая инвентаризация
+Подписанные комплекты аудита (61) по **53 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**3,988 строк инвентаризации**, из них **1,946 ломает алгоритм Шора**, и **28 уже
-постквантовых**; разобрано **30,766 файлов**.
+**3 989 строк инвентаризации**, из них **1 947 ломает алгоритм Шора**, и **28 уже
+постквантовых**; разобрано **30 760 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -540,7 +580,16 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 Самопроверка показывает, что настоящая подпись проходит, реализации согласны, а перевёрнутый байт payload,
 подписи или файла обнаруживается.
 
-В `audits/` 61 каталогов, но **53 разных кодовых баз**: 7 из них — англоязычные
+**Постквантовая соподпись.** Комплекты, подписанные с 13 ноября 2026 года, несут и подпись ML-DSA-65 (FIPS 204)
+над тем же payload; `verify.py` проверяет её встроенной реализацией на чистом Python (сверена со всеми 30 векторами
+NIST для ML-DSA-65) и сверяет ключ с `PUBLIC-KEY-MLDSA.pem` в корне (`dbd4e297b3213d1d`). Соподписаны комплекты,
+переаудированные 17 ноября (в `audits/` — 9). Проверка зависимостей по OSV.dev до 12 ноября брала
+не больше 1000 закреплённых пакетов и не говорила об остальных; теперь до 5000, остаток назван в покрытии. Находок
+по бюллетеням в этих комплектах стало 1 454 вместо 433; инвентаризация не изменилась, кроме одной
+строки ECDH в `metamask-extension` (импорт `eciesjs`): итог 3 989 строк и 1 947 по Шору вместо
+3 988 и 1 946. Тем же переаудитом заменён `arc-node` — один комплект в обоих исследованиях: пакетов 1 000 → 1 993, находок по бюллетеням 30 → 37; 37 строк своего кода и 12 по Шору, которые цитируют исследования, не изменились. На прежнем пределе остаётся: `audits/nitro`.
+
+Каталогов в `audits/` — 61, а разных кодовых баз — **53**: 7 из них — англоязычные
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 
@@ -560,9 +609,9 @@ Trezor постквантовый код работает, включая SLH-DS
 75 находок по шести базам, по каждой письменное решение с причиной, 57 подтверждено, 18 неприменимо. Отчёты сами
 указывают измеренную историю ложных срабатываний, включая случай, когда **9 из 11 «высоких» оказались ложными и
 были отозваны**. Два провала метода, найденные измерением и закрытые тестами: Jade сначала дал 7 строк и ни одного
-secp256k1 (поверхностный клон оставляет подмодули пустыми) — после подтягивания 93 строки и 66 Шора; Krux дал 13
+secp256k1 (поверхностный клон оставляет подмодули пустыми) — после подтягивания 110 строк и 74 Шора; Krux дал 13
 строк и одну ECDSA, потому что список пропускаемых каталогов молча переопределил объявленную область с
-`vendor/embit`, — прочитанный правильно, 98 строк и 64. Затем перепись сравнила у каждого аудита пути из
+`vendor/embit`, — прочитанный правильно, 99 строк и 64. Затем перепись сравнила у каждого аудита пути из
 `.gitmodules` с файлами, которые его подписанный комплект называет разобранными, и нашла **18 подмодулей в области
 аудита, которые до сканера вообще не доходили**. Любая суммарная цифра здесь — **нижняя граница**.
 

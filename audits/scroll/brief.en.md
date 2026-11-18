@@ -1,27 +1,27 @@
 # Post-quantum cryptography review: scroll @ 3046bbd18a6a
 
-*One-page brief* · Reviewed: 2026-11-07 18:39 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: scroll — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-17 19:04 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: scroll — public repository (passive review)
 
 Source: https://github.com/scroll-tech/scroll/tree/3046bbd18a6a05bf29dd3ffef7b5676203201050
 
 **Post-quantum maturity:** Level 4 of 4 — post-quantum by default in the critical paths. **Next step:** Keep the inventory current and review new code paths before release.
 
-**Findings:** Critical 1 · High 14 · Medium 19 · Low 43 · Info 102
+**Findings:** Critical 3 · High 37 · Medium 41 · Low 59 · Info 139
 
 **Quantum timeline (Mosca: x + y − z):** Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **Critical** · github.com/gin-contrib/cors v1.5.0 is affected by GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) (QSI-2026-25386)\
+1. **Critical** · github.com/gin-contrib/cors v1.5.0 is affected by GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) (QSI-2026-28027)\
    What to do: Upgrade to a fixed version (1.6.0).
-2. **High** · TLS certificate verification disabled in bridge-history-api/cmd/api/app/app.go (QSI-2026-25289)\
+2. **Critical** · proxy-addr 2.0.7 is affected by GHSA-jqcg-44mw-7w3h (CVE-2026-90711) (QSI-2026-28171)\
+   What to do: Upgrade to a fixed version (2.0.8).
+3. **Critical** · underscore 1.9.1 is affected by GHSA-cf4h-3jhx-xvhq (CVE-2021-23358) (QSI-2026-28191)\
+   What to do: Upgrade to a fixed version (1.12.1).
+4. **High** · TLS certificate verification disabled in bridge-history-api/cmd/api/app/app.go (QSI-2026-27921)\
    What to do: Remove the override; use a proper CA bundle or pinning.
-3. **High** · github.com/docker/cli v25.0.4-0.20240305161310-2bf4225ad269+incompatible is affected by… (QSI-2026-25391)\
-   What to do: Upgrade to a fixed version (29.2.0).
-4. **High** · github.com/containerd/containerd v1.7.12 is affected by GHSA-pwhc-rpq9-4c8w (CVE-2024-25621… (QSI-2026-25453)\
-   What to do: Upgrade to a fixed version (1.7.29).
 
-73 more in the full report.
+136 more in the full report.
 
 ## What the quantum-vulnerable cryptography protects
 
@@ -33,14 +33,14 @@ Source: https://github.com/scroll-tech/scroll/tree/3046bbd18a6a05bf29dd3ffef7b56
 
 ## Known vulnerable components
 
-Advisories for the versions in use: 120; unlikely to apply to this build: 74 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 46.
+Advisories for the versions in use: 215; unlikely to apply to this build: 109 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 106.
 
 ---
 
 Static review of source code and manifests; files analysed: 387. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `4fb555f1aacf1a15553dbb12fde83d11c84ae195fc3f8b64fd9a8ac90625d10a`
+Full report, content SHA-256: `c46f0bf3c10f0ab6be203ce5843d99676dda5f95b5301981f98aaec5022de8c8`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

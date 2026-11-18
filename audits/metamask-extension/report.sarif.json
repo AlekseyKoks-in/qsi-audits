@@ -8,8 +8,58 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.6.0",
           "rules": [
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "bitcoinjs-lib 7.0.1 затронут GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "9.5"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846) для пакета npm bitcoinjs-lib версии 7.0.1: bitcoinjs-lib: Undetected merkle node duplication in block root computation validates a forged transaction list. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (5.2.1, 6.1.8, 7.0.2). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "help": {
+                "text": "OSV.dev сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846) для пакета npm bitcoinjs-lib версии 7.0.1: bitcoinjs-lib: Undetected merkle node duplication in block root computation validates a forged transaction list. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (5.2.1, 6.1.8, 7.0.2). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-8vv3-6qpc-gpw6"
+            },
+            {
+              "id": "CREDIT-EVM-CALLDATA",
+              "name": "CreditEvmCalldata",
+              "shortDescription": {
+                "text": "Перевод токена читается из входных данных транзакции без квитанции (.storybook/test-data.js)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "строка 725 сопоставляет селектор transfer(address,uint256) во входных данных транзакции, и ничто в файле или его пакете не читает квитанцию или журналы Transfer. Зачисляйте по журналу Transfer(address,address,uint256), испущенному адресом контракта самого токена, из квитанции со статусом 1, после числа подтверждений, требуемого вашей политикой рисков. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "строка 725 сопоставляет селектор transfer(address,uint256) во входных данных транзакции, и ничто в файле или его пакете не читает квитанцию или журналы Transfer. Зачисляйте по журналу Transfer(address,address,uint256), испущенному адресом контракта самого токена, из квитанции со статусом 1, после числа подтверждений, требуемого вашей политикой рисков. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://slowmist.medium.com/the-red-alert-about-the-new-false-top-up-vulnerability-76a870423ecb"
+            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
@@ -34,31 +84,6 @@
                 "text": "1 упоминаний ECDSA в 1 файл(ах), например app/scripts/lib/offscreen-bridge/trezor-offscreen-bridge.ts:136. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
-            },
-            {
-              "id": "DEP-KNOWN-ADVISORY",
-              "name": "DepKnownAdvisory",
-              "shortDescription": {
-                "text": "@hono/node-server 2.1.1 затронут GHSA-rmxm-3fg6-px4f (CVE-2026-118663)"
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "dependencies",
-                  "known_vulnerable_component"
-                ],
-                "security-severity": "5.3"
-              },
-              "fullDescription": {
-                "text": "OSV.dev сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: `serveStatic` decodes the request path a second time, leading to bypass of middleware on static paths. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2.1.3). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
-              },
-              "help": {
-                "text": "OSV.dev сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: `serveStatic` decodes the request path a second time, leading to bypass of middleware on static paths. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2.1.3). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
-              },
-              "helpUri": "https://osv.dev/vulnerability/GHSA-rmxm-3fg6-px4f"
             },
             {
               "id": "CODE-INSECURE-RANDOM",
@@ -140,8 +165,764 @@
       },
       "results": [
         {
-          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleId": "DEP-KNOWN-ADVISORY",
           "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "bitcoinjs-lib 7.0.1 затронут GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846) (dependency: npm/bitcoinjs-lib@7.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1ae7c3a43d379f482753f474aaad9d13"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28619",
+            "severity": "critical",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "nanoid 2.1.11 затронут GHSA-xwg4-73v4-xw9w (CVE-2026-73086) (dependency: npm/nanoid@2.1.11)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "38f2ecd7f7649f563e8616af4662d451"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28675",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.4"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "postcss 7.0.39 затронут GHSA-6g55-p6wh-862q (CVE-2026-45623) (dependency: npm/postcss@7.0.39)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9cb07c899bcbf397a9e41ff040a18d97"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28678",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "postcss 7.0.39 затронут GHSA-r28c-9q8g-f849 (CVE-2026-73646) (dependency: npm/postcss@7.0.39)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6a58854a13e31dfce1d9f31c28fdb624"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28682",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "uuid 11.0.3 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988) (dependency: npm/uuid@11.0.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28695",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "uuid 3.2.1 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988) (dependency: npm/uuid@3.2.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28696",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "uuid 8.3.2 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988) (dependency: npm/uuid@8.3.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28697",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "uuid 3.4.0 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988) (dependency: npm/uuid@3.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28698",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "uuid 9.0.1 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988) (dependency: npm/uuid@9.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28699",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "basic-ftp 5.3.1 затронут GHSA-c475-qrg2-pj4r (CVE-2026-102990) (dependency: npm/basic-ftp@5.3.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4438b0a17faf1297bd33270577fba123"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28616",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "bigint-buffer 1.1.5 затронут GHSA-3gc7-fjrx-p6mg (CVE-2025-3194) (dependency: npm/bigint-buffer@1.1.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "53226f36c7c7c384cbb79e2b31b4abbd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28618",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "body-parser 1.20.6 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181) (dependency: npm/body-parser@1.20.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f7e8c4679956e2618817ee2208769add"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28620",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "body-parser 2.3.0 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181) (dependency: npm/body-parser@2.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f7e8c4679956e2618817ee2208769add"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28621",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "braces 2.3.2 затронут GHSA-grv7-fg5c-xmjg (CVE-2024-4068) (dependency: npm/braces@2.3.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "eb3c52dd6a09d65c02ec48c8d154911b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28622",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "decode-uri-component 0.2.2 затронут GHSA-qr28-fpjm-wq7f (CVE-2026-118664) (dependency: npm/decode-uri-component@0.2.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "065ca2199bd4f7980b357f092030581d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28624",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-532v-xpq5-8h95 (CVE-2026-34774) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "476e5f21bc4e414d5e6dbff7d063c700"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28631",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-8337-3p73-46f4 (CVE-2026-34771) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "312016cde91e8cc34206a57cb13b2a39"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28637",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-9f4c-93c8-jc8g (CVE-2026-70608) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "566fcf58230881e6ec79c8f9eaaad0bf"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28641",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.2"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-9qh4-3jw8-366w (CVE-2026-102676) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ac893175732a4608402ed2aa32cc96b2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28643",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-9wfr-w7mm-pc7f (CVE-2026-34769) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6953243edcdc12ab8bb07cc11805c52f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28645",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.7"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "extract-zip 2.0.1 затронут GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693) (dependency: npm/extract-zip@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9b686eb340342f22b1b357843e0e21b6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28647",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "extract-zip 2.0.1 затронут GHSA-jmr9-qjv8-65gv (CVE-2026-56876) (dependency: npm/extract-zip@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a958a786e323635d735bd0092eaf29cc"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28648",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "ip 1.1.8 затронут GHSA-2p57-rm9w-gvfp (CVE-2024-29415) (dependency: npm/ip@1.1.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1f6d09708caf6406d8c95b0b6d3e2f37"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28664",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "joi 17.13.8 затронут GHSA-4528-x5fx-h6hg (CVE-2026-118772) (dependency: npm/joi@17.13.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e5fc7fb305d695f4bd646a38bd44d3d3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28666",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "joi 18.2.9 затронут GHSA-4528-x5fx-h6hg (CVE-2026-118772) (dependency: npm/joi@18.2.9)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e5fc7fb305d695f4bd646a38bd44d3d3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28667",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "picomatch 2.3.2 затронут GHSA-fc5q-39xc-vjpf (CVE-2026-112366) (dependency: npm/picomatch@2.3.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ee55a539bef91511d3578097b170ec92"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28676",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "picomatch 4.0.7 затронут GHSA-fc5q-39xc-vjpf (CVE-2026-112366) (dependency: npm/picomatch@4.0.7)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ee55a539bef91511d3578097b170ec92"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28677",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "undici 7.30.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383) (dependency: npm/undici@7.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7bdffbe6d1e957f01b13bd54158d627b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28687",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.4"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "undici 7.30.0 затронут GHSA-4w7w-5xrc-9h26 (CVE-2026-109829) (dependency: npm/undici@7.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9fc9a9d3c10cc50ab9d398c0a1b5573c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28689",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.4"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "undici 7.30.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018) (dependency: npm/undici@7.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "569f88ac5a95073354780369d2fe6ac7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28693",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "undici 7.30.0 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869) (dependency: npm/undici@7.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "84ae338a2b32878da2f742931bf773d1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28694",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "zod 3.22.4 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) (dependency: npm/zod@3.22.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28700",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "zod 3.25.76 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) (dependency: npm/zod@3.25.76)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28701",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) (dependency: npm/zod@4.6.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28702",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "CREDIT-EVM-CALLDATA",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Перевод токена читается из входных данных транзакции без квитанции (.storybook/test-data.js)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "226d300d19a1b62d4b99c4fd58ca4212"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28605",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "micromatch 3.1.10 затронут GHSA-952p-6rrq-rcjv (CVE-2024-4067) (dependency: npm/micromatch@3.1.10)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "278004409886b0e29aa1301036c38fac"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28668",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "nanoid 2.1.11 затронут GHSA-28wg-ghj8-5hjv (CVE-2026-67214) (dependency: npm/nanoid@2.1.11)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "38ef32b07e21512bbfbe67c902643433"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28672",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "nanoid 2.1.11 затронут GHSA-2v37-7h3g-55p8 (CVE-2026-67213) (dependency: npm/nanoid@2.1.11)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "30eef0d00165dad99db9de5a438de47b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28673",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "nanoid 2.1.11 затронут GHSA-mwcw-c2x4-8c55 (CVE-2024-55565) (dependency: npm/nanoid@2.1.11)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b57de76043f1a8565a7c3555ef44dd66"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28674",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "postcss 7.0.39 затронут GHSA-7fh5-64p2-3v2j (CVE-2023-44270) (dependency: npm/postcss@7.0.39)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "388567477c23b9a32172268f8895d5f0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28679",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "postcss 7.0.39 затронут GHSA-fxqj-rqcc-2cmp (CVE-2026-69153) (dependency: npm/postcss@7.0.39)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e484872bd828d721ad011861bff33b17"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28680",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "postcss 7.0.39 затронут GHSA-qx2v-qp2m-jg93 (CVE-2026-41305) (dependency: npm/postcss@7.0.39)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1d9cd2c573b6f083c2ac3422959c9643"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28681",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.1"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))"
@@ -150,7 +931,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-18296",
+            "qsiId": "QSI-2026-28602",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -159,7 +940,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: роль не определена (10 файл(ов))"
@@ -168,7 +949,25 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-18295",
+            "qsiId": "QSI-2026-28600",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDH: роль не определена (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28601",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -177,7 +976,43 @@
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@hono/node-server 2.1.1 затронут GHSA-jpvv-r467-5p4w (CVE-2026-126210) (dependency: npm/@hono/node-server@2.1.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9d09bf44c31e545708f5310ce2ce9097"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28607",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@hono/node-server 2.1.1 затронут GHSA-qv5m-9pm6-hqp3 (CVE-2026-126343) (dependency: npm/@hono/node-server@2.1.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3c4c4a47796ae80284f5d853fbbf2fe8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28608",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "@hono/node-server 2.1.1 затронут GHSA-rmxm-3fg6-px4f (CVE-2026-118663) (dependency: npm/@hono/node-server@2.1.1)"
@@ -186,7 +1021,7 @@
             "qsiFindingKey/v1": "5ac1fea07d82083f211ab2c659abe677"
           },
           "properties": {
-            "qsiId": "QSI-2026-18300",
+            "qsiId": "QSI-2026-28609",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -194,8 +1029,746 @@
           }
         },
         {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@opentelemetry/instrumentation-http 0.211.0 затронут GHSA-3v2p-hm54-8qcq (CVE-2026-128080) (dependency: npm/@opentelemetry/instrumentation-http@0.211.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "31dcc490deeb386ca0eef93fda8d3730"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28610",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.8"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@vitest/mocker 3.2.4 затронут GHSA-82fw-gwwq-j7x9 (CVE-2026-84373) (dependency: npm/@vitest/mocker@3.2.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8c0ad04b01abe33dd5a4109aef7bea45"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28613",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@vitest/mocker 3.2.4 затронут GHSA-qxg6-89mg-rqv8 (CVE-2026-112949) (dependency: npm/@vitest/mocker@3.2.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3b3c667d0e1caddf856644afd1f79091"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28614",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.7"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "basic-ftp 5.3.1 затронут GHSA-5pm8-86m8-9m6r (CVE-2026-126345) (dependency: npm/basic-ftp@5.3.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d0316e7d21e4b9a569cf80901c1cdc81"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28615",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "basic-ftp 5.3.1 затронут GHSA-r4jh-29pc-gfqr (CVE-2026-126346) (dependency: npm/basic-ftp@5.3.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "93ebe7ba3e197e386bd1f4279a22fe9a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28617",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "color-string 0.3.0 затронут GHSA-257v-vj4p-3w2h (CVE-2021-29060) (dependency: npm/color-string@0.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0a46c969ae7692551da02171c4626340"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28623",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "decode-uri-component 0.2.2 затронут GHSA-vcc3-ghjq-m6fr (CVE-2026-45822) (dependency: npm/decode-uri-component@0.2.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8dd20972694b628973ce2dbb1b313f71"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28625",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-2p8c-gr87-2676 (CVE-2026-113796) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e749297f33f280ff2b594f4741713e5e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28626",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.2"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-3c8v-cfp5-9885 (CVE-2026-34776) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fbe8288dc7ffc0a39bb19236fd6fac55"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28627",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-4f78-qhmw-8j8m (CVE-2026-70609) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "84cdf2bb98b4ca68acc5caf7875acc69"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28629",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.7"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-4p4r-m79c-wq3v (CVE-2026-34767) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0fea769d9ed155d490fe23dde9eeb90c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28630",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-5c9j-mhmv-5xgx (CVE-2026-70603) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ba087bcc6347e70ad22099dabe7da8f7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28632",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-5rqw-r77c-jp79 (CVE-2026-34779) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2a8d3810bed13e9eb9a66137c79999ce"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28633",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-6r2x-8pq8-9489 (CVE-2024-46993) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e31696e06235c5973262485c722393e0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28634",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-7m48-wc93-9g85 (CVE-2023-44402) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1091c8ac9f4fe59c8ec5974a58df9a6d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28635",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-7x97-j373-85x5 (CVE-2023-39956) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "da310014739c42c47753a81c28f55918"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28636",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-997q-gvvc-jwmx (CVE-2026-114121) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d144af503d091b7f54c917746e57396b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28640",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.4"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-9pf5-hg6p-4pwp (CVE-2026-70599) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f0b6ec5333dbffbd97395072be5a7819"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28642",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-9w97-2464-8783 (CVE-2026-34772) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "aa8cc3bc206cb4baaefcfa1f910e77cd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28644",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.8"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505) (dependency: npm/elliptic@6.6.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "84a7ab124d4db916ee85eea8154bac57"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28646",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.6"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "fast-uri 3.1.8 затронут GHSA-w74x-v6f9-j3xg (CVE-2026-110306) (dependency: npm/fast-uri@3.1.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cb07144a7faeb4977dc1ccbd8f5f67de"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28650",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "fast-uri 3.1.8 затронут GHSA-wjr9-j795-jxcr (CVE-2026-110180) (dependency: npm/fast-uri@3.1.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2a588f34d80f70307f829bf6cb6872dd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28651",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.8"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "follow-redirects 1.16.1 затронут GHSA-mrwp-f3q8-3g9p (CVE-2026-116689) (dependency: npm/follow-redirects@1.16.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "83276b96c27acd81b8ecfc5ec24f807a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28654",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "glob 10.5.0 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) (dependency: npm/glob@10.5.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28655",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) (dependency: npm/glob@13.0.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28656",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "got 6.7.1 затронут GHSA-pfrx-2q88-qq97 (CVE-2022-33987) (dependency: npm/got@6.7.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4a93257799a978f4c2f2901d98da869c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28657",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "got 9.6.0 затронут GHSA-pfrx-2q88-qq97 (CVE-2022-33987) (dependency: npm/got@9.6.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4a93257799a978f4c2f2901d98da869c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28658",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "hono 4.13.13 затронут GHSA-46wx-v44x-9hh2 (CVE-2026-126355) (dependency: npm/hono@4.13.13)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ace3ff1da61ea36ebf1144f2250731b8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28660",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "hono 4.13.13 затронут GHSA-4h7h-rv7c-7m2v (CVE-2026-126356) (dependency: npm/hono@4.13.13)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d07921960887da95fab72d4d8b37ff4b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28661",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "hono 4.13.13 затронут GHSA-4m76-xfj5-7975 (CVE-2026-126357) (dependency: npm/hono@4.13.13)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "380f00ffc304950a0efccc778372878d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28662",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "hono 4.13.13 затронут GHSA-h7mg-cq63-vhpq (CVE-2026-126358) (dependency: npm/hono@4.13.13)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "89b0117fa5bcc1061b6756671ad8307a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28663",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "minimatch 10.2.6 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764) (dependency: npm/minimatch@10.2.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28669",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "minimatch 7.4.9 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764) (dependency: npm/minimatch@7.4.9)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28670",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "minimatch 9.0.9 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764) (dependency: npm/minimatch@9.0.9)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28671",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816) (dependency: npm/qs@6.16.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "156b25f742ea6e412aca32e75ea63ea3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28683",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "react-router 6.30.6 затронут GHSA-337j-9hxr-rhxg (CVE-2026-53666) (dependency: npm/react-router@6.30.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2e0b030704e94a77ea4219f7cccf4798"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28684",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "react-router 6.30.6 затронут GHSA-wrjc-x8rr-h8h6 (CVE-2026-53669) (dependency: npm/react-router@6.30.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6574df6188ac97981b5b8a7703fac52c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28685",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "undici 7.30.0 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924) (dependency: npm/undici@7.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dc8a3b4381582f7ca9e0a04d6a61f3b9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28688",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "undici 7.30.0 затронут GHSA-55wc-3pg8-jfw6 (CVE-2026-87029) (dependency: npm/undici@7.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "399aced54289841396a961e1f0ad3cc6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28690",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "undici 7.30.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932) (dependency: npm/undici@7.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "28eb2fe4fbeee74df366ab31937b063d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28691",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "undici 7.30.0 затронут GHSA-f72v-6w45-q472 (CVE-2026-109841) (dependency: npm/undici@7.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6d6a81c06eea2509f12340dbbaf54bdf"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28692",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
           "ruleId": "CODE-INSECURE-RANDOM",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Некриптографический ГСЧ рядом с чувствительными идентификаторами в app/scripts/sidepanel/background.ts"
@@ -204,7 +1777,7 @@
             "qsiFindingKey/v1": "0d27436c70e7a7d5b37400a1c8f0defd"
           },
           "properties": {
-            "qsiId": "QSI-2026-18297",
+            "qsiId": "QSI-2026-28603",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -225,7 +1798,7 @@
         },
         {
           "ruleId": "CODE-INSECURE-RANDOM",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Некриптографический ГСЧ рядом с чувствительными идентификаторами в shared/lib/delegation/delegation.ts"
@@ -234,7 +1807,7 @@
             "qsiFindingKey/v1": "62f76521e650665909baa01a656c8f65"
           },
           "properties": {
-            "qsiId": "QSI-2026-18298",
+            "qsiId": "QSI-2026-28604",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -254,8 +1827,206 @@
           ]
         },
         {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "@tootallnate/once 1.1.2 затронут GHSA-vpq2-c234-7xj6 (CVE-2026-3449) (dependency: npm/@tootallnate/once@1.1.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3b4983fbb82f4b5e3041efade943d0cf"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28611",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "@tootallnate/once 2.0.0 затронут GHSA-vpq2-c234-7xj6 (CVE-2026-3449) (dependency: npm/@tootallnate/once@2.0.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3b4983fbb82f4b5e3041efade943d0cf"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28612",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-3qxv-5xgr-q7w9 (CVE-2026-114122) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "15c603bffdb29a848a3dba33e0126ff8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28628",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-9899-m83m-qhpj (CVE-2026-34766) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0e65e44b758111c133c80944c37f6583"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28638",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "electron 23.3.0 затронут GHSA-98mx-cjp9-gchm (CVE-2026-113797) (dependency: npm/electron@23.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "eb5a90723dd53b024cd735fb62c08e1e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28639",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "fast-uri 3.1.8 затронут GHSA-333x-w4r6-6crp (CVE-2026-110725) (dependency: npm/fast-uri@3.1.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e11c4dd85b502f6788535ca5ffc4a878"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28649",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.7"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "fast-uri 3.1.8 затронут GHSA-xhq7-xmqj-769h (CVE-2026-110095) (dependency: npm/fast-uri@3.1.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e7cbfff98eecf7aacf2ee6c13efb7a4f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28652",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.7"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "fast-xml-parser 5.7.3 затронут GHSA-474x-hrwr-fgx4 (CVE-2026-126066) (dependency: npm/fast-xml-parser@5.7.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d568b473afbb2aed875d0bbca52add13"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28653",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.7"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "hono 4.13.13 затронут GHSA-3gg2-335m-rxc6 (CVE-2026-126359) (dependency: npm/hono@4.13.13)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "21a3926f3ed43ae1c80d53842f018de4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28659",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.4"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "ip 1.1.8 затронут GHSA-78xj-cgh5-2h22 (CVE-2023-42282) (dependency: npm/ip@1.1.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9210b6f1db59759dbe97634324badcb4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28665",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "serialize-javascript 7.0.5 затронут GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897) (dependency: npm/serialize-javascript@7.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ea7a7100367ab3684c77769adaa042b1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-28686",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
           "ruleId": "DEP-ADVISORY-DEV",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "47 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
@@ -264,7 +2035,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-18301",
+            "qsiId": "QSI-2026-28703",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -282,7 +2053,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 4,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
             "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
@@ -291,7 +2062,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-18299",
+            "qsiId": "QSI-2026-28606",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -300,13 +2071,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/metamask-extension @ d2db7ee9a19b/2f4b36c6-ee5e-4997-8b67-f1196a4041a4"
+        "id": "qsi/metamask-extension @ d2db7ee9a19b/78021aaf-403a-4cc1-83b8-f6b0d21f603c"
       },
       "properties": {
-        "qsiContentSha256": "8eb99db5997feaabab0eb8b5148bb5327f576c5d97fdef10e27c6b738a125dd4",
+        "qsiContentSha256": "a1e3701797b3957ebe7f43056bd267b8a25f0908e17fd513a5fe0721419628ba",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:30:28.576534+00:00",
+        "qsiGeneratedAt": "2026-11-17T19:14:41.677959+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [
