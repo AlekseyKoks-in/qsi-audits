@@ -69,7 +69,7 @@ names a key whose signature is missing, a signature for another context, a key o
 `public_key_mldsa.pem` that differs from it all fail. `--self-test` runs the built-in verifier on five of NIST's own
 ML-DSA-65 test vectors from the ACVP server (`mldsa65-kat.json`: one valid signature, and ones with a modified
 `z`, hint, commitment and message), and the full set of NIST's ML-DSA-65 verification vectors (30) gives the
-expected answer. 9 bundles carry the co-signature so far, the ones re-audited on 17 November (below);
+expected answer. 10 bundles carry the co-signature so far, the ones re-audited on 17 and 18 November (below);
 the rest were signed before it existed and pass on Ed25519, as before. The publisher ML-DSA-65 key is
 `PUBLIC-KEY-MLDSA.pem` at the root, and a bundle co-signed by any other key fails.
 
@@ -289,6 +289,30 @@ transient DNS failures, which is how the retry came to exist, and those three we
 
 Still stopping at 1,000 packages, as their coverage lines say: `audits/nitro`. `nitro` keeps its published bundle
 for the reason given above (its scope was never recorded, so a re-run would face a different tree).
+
+## Correction, 2026-11-18: NIST's post-quantum signature API is not Ed25519
+
+NIST's post-quantum standardisation adopted the NaCl/SUPERCOP API for every submission, so `crypto_sign_keypair` and
+`crypto_sign_seed_keypair` name Ed25519 in libsodium, TweetNaCl and ref10, and SPHINCS+ or ML-DSA in a reference
+implementation. The scanner read all of them as Ed25519, and in `trezor-vendored-crypto` that put 5
+Shor-breakable Ed25519 rows into exactly the post-quantum code: `vendor/sphincsplus/ref/api.h`, `sign.c` and
+`PQCgenKAT_sign.c`, and `vendor/mldsa-native/mldsa/mldsa_native.h` and `mldsa_native.c`. Such a match is now not Ed25519
+when the file shows a post-quantum signature scheme — in its path, as the NIST API's `CRYPTO_ALGNAME`, or as the
+scheme's own identifiers (`SPX_`, `MLD_`, `PQCLEAN_`) — and names neither Ed25519 nor libsodium or TweetNaCl. The
+upper-case `CRYPTO_BYTES` is no signal, because SUPERCOP's ref10 Ed25519 defines it too. Measured on every file of the
+portfolio whose Ed25519 row came from these names (11 files in 4 bundles): the five post-quantum files lose the row and
+keep their ML-DSA and SLH-DSA rows; TweetNaCl in `libnunchuk`, ref10 in `monero` and libsodium in `stellar-core` keep
+theirs.
+
+`trezor-vendored-crypto` was re-audited at its recorded commit and scope, on the same tree: **143 inventory rows,
+36 Shor-breakable** (148 and 41 before), its 102 post-quantum rows unchanged. Every version
+of it published here carried the same five rows, so the 38 Shor-breakable rows that
+[reports/PQ-ADOPTION-2026-10-28.md](reports/PQ-ADOPTION-2026-10-28.md) quotes for it were 33. The sub-audit
+is outside the totals on this page, which therefore do not move.
+
+The same day, a source file that is a table of test vectors (Wycheproof, FIPS 186-4) became test code when its name,
+its own description and its body agree. Measured on the 579 analysed files with a test word in their name that 112
+bundles' audited commits still serve, it changes no bundle published here.
 
 ## Institutional ledgers and bank-facing platforms
 
@@ -583,11 +607,18 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 **Постквантовая соподпись.** Комплекты, подписанные с 13 ноября 2026 года, несут и подпись ML-DSA-65 (FIPS 204)
 над тем же payload; `verify.py` проверяет её встроенной реализацией на чистом Python (сверена со всеми 30 векторами
 NIST для ML-DSA-65) и сверяет ключ с `PUBLIC-KEY-MLDSA.pem` в корне (`dbd4e297b3213d1d`). Соподписаны комплекты,
-переаудированные 17 ноября (в `audits/` — 9). Проверка зависимостей по OSV.dev до 12 ноября брала
+переаудированные 17 и 18 ноября (в `audits/` — 10). Проверка зависимостей по OSV.dev до 12 ноября брала
 не больше 1000 закреплённых пакетов и не говорила об остальных; теперь до 5000, остаток назван в покрытии. Находок
 по бюллетеням в этих комплектах стало 1 454 вместо 433; инвентаризация не изменилась, кроме одной
 строки ECDH в `metamask-extension` (импорт `eciesjs`): итог 3 989 строк и 1 947 по Шору вместо
 3 988 и 1 946. Тем же переаудитом заменён `arc-node` — один комплект в обоих исследованиях: пакетов 1 000 → 1 993, находок по бюллетеням 30 → 37; 37 строк своего кода и 12 по Шору, которые цитируют исследования, не изменились. На прежнем пределе остаётся: `audits/nitro`.
+
+**Поправка 18 ноября.** NIST взял для постквантовых подписей API NaCl, поэтому `crypto_sign_keypair` в эталонных
+SPHINCS+ и ML-DSA сканер читал как Ed25519: в `trezor-vendored-crypto` было 5 ложных строк Ed25519, ломаемых
+Шором, — во всех опубликованных версиях (из 38 строк по Шору в отчёте от 28 октября настоящих
+33). После переаудита: строк 143, по Шору 36 (было 148 и 41); подаудит в
+итоги не входит. Тем же днём таблицы тестовых векторов (Wycheproof, FIPS 186-4) стали тестовым кодом; опубликованные
+комплекты это не меняет.
 
 Каталогов в `audits/` — 61, а разных кодовых баз — **53**: 7 из них — англоязычные
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В

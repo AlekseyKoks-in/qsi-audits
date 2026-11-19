@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.6.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-19291",
+            "qsiId": "QSI-2026-31704",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,25 +68,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-19293",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Ed25519: role not determined (5 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19290",
+            "qsiId": "QSI-2026-31706",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,7 +86,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-19292",
+            "qsiId": "QSI-2026-31705",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -113,13 +95,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/trezor-vendored-crypto @ 72489948b3c4/dec43503-c3d5-4ee3-bac4-415de182564e"
+        "id": "qsi/trezor-vendored-crypto @ 72489948b3c4/cedcd5c2-1ef6-4f00-b09d-0da1a7271a05"
       },
       "properties": {
-        "qsiContentSha256": "61dd2de82e4d564b1a3f4c220a2b6a15bf0407f3722f3b05d874bae599441e13",
+        "qsiContentSha256": "831cabf2c0ab5d6e4d2cc7635ea339a160d937d12e49cc68b9e9209563cc358a",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T14:40:10.979521+00:00",
+        "qsiGeneratedAt": "2026-11-18T09:37:42.675866+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [
