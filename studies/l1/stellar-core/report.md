@@ -4,13 +4,13 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-06 16:13 UTC |
+| Report date | 2026-11-19 17:18 UTC |
 | Report version | 1 |
-| Audit run | b0f4a6ed-9255-4307-8ee5-a8714e875faf (Document audit) |
-| Analyzer engine | qsi-engine 1.3.0 |
+| Audit run | 9a90f3ee-0182-4452-8787-55165729f192 (Document audit) |
+| Analyzer engine | qsi-engine 1.6.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `f327ba1b869fa8b4294a76c06b8c8cab443e20fce8fcaa92ea2b8a6bee57463e` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| Content SHA-256 | `7b02c4d08bef6cbe4176f223dc45c806462f14fd97e8c58a8ed017066ff174d0` |
+| Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
@@ -18,15 +18,15 @@
 - Critical: **0**
 - High: **3**
 - Medium: **24**
-- Low: **18**
-- Info: **5**
+- Low: **36**
+- Info: **7**
 
 - Confirmed technical vulnerability: 0
-- Known vulnerable component: 32
+- Known vulnerable component: 50
 - Confirmed configuration error: 2
 - Potential cryptographic risk: 3
 - Long-term post-quantum risk: 8
-- Improvement recommendation: 5
+- Improvement recommendation: 7
 - Insufficient data: 0
 
 Mosca's inequality (x + y > z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
@@ -39,19 +39,19 @@ Mode: Document audit
 
 Repository: <https://github.com/stellar/stellar-core> @ `362dbc5184c5fdc0d6e898f3046639dc5e2a4f32` — evidence links open the lines at this commit.
 
-3388 files, 52428740 bytes in total, 2 redaction(s); the per-file SHA-256 list is in appendix C.
+3401 files, 52428766 bytes in total, 2 redaction(s); the per-file SHA-256 list is in appendix C.
 
 ## 3. Methodology
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| dependencies | checked | 148 | Cargo.lock: 288 dependencies parsed (288 pinned); Cargo.toml: 0 dependencies parsed (0 pinned); scripts/apply_load/token/Cargo.lock: 184 dependencies parsed (184 pinned) |
-| source_code | checked | 3231 | lib/asio.cpp: 2 lines scanned with 16 rule patterns and 267 registry patterns; lib/autocheck/include/autocheck/arbitrary.hpp: 133 lines scanned with 16 rule patterns and 267 registry patterns; lib/autocheck/include/autocheck/autocheck.hpp: 5 lines scanned with 16 rule patterns and 267 registry patterns |
+| dependencies | checked | 154 | Cargo.lock: 288 dependencies parsed (288 pinned); Cargo.toml: 0 dependencies parsed (0 pinned); scripts/apply_load/token/Cargo.lock: 184 dependencies parsed (184 pinned) |
+| source_code | checked | 3238 | lib/asio.cpp: 2 lines scanned with 16 rule patterns and 280 registry patterns; lib/autocheck/include/autocheck/arbitrary.hpp: 133 lines scanned with 16 rule patterns and 280 registry patterns; lib/autocheck/include/autocheck/autocheck.hpp: 5 lines scanned with 16 rule patterns and 280 registry patterns |
 | tls_key_exchange_groups | Insufficient data | 1 | lib/fmt/support/docopt.py line 80: not in the algorithm registry, not assessed: [[pattern]] |
 | tls_configuration | checked | 1 | lib/fmt/support/docopt.py: openssl TLS directives parsed |
-| entropy | checked | 1 | random-number generation: 3227 code files read with 6405 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s) |
+| entropy | checked | 1 | random-number generation: 3234 code files read with 6405 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s) |
 | osv_advisories | not checked | 1 | 14 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: soroban-builtin-sdk-macros, soroban-env-common, soroban-env-host, soroban-env-macros, soroban-fuzz-targets, soroban-synth-wasm, soroban-test-wasms, soroban-wasmi, stellar-quorum-analyzer, stellar-strkey, stellar-xdr, wasmi_arena … |
-| osv_advisories | checked | 1 | 575 pinned packages queried at OSV.dev; 36 affected |
+| osv_advisories | checked | 1 | 575 pinned packages queried at OSV.dev; 40 affected |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -62,22 +62,22 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree stellar-core at 362dbc5184c5fdc0d6e898f3046639dc5e2a4f32. 3388 files analysed; of 27064 files, 5182 are test, fuzzing, benchmark or example code and were left out, 16879 are not read by any analyzer, 0 exceed the per-file limit and 1615 did not fit the total limit. Files no analyzer reads include: .clang-format, .claude/skills/adding-a-new-skill/SKILL.md, .claude/skills/configuring-the-build/SKILL.md, .claude/skills/high-level-code-review/SKILL.md, .claude/skills/low-level-code-review/SKILL.md. Because the total limit bound, this inventory covers 3388 of 27064 candidate files (12%) and is a sample of the tree rather than a reading of it; a different limit gives a different figure. Files it could not fit include: lib/tracy/server/TracyMicroArchitecture.cpp, src/rust/soroban/p24/soroban-env-host/src/host/metered_vector.rs, src/rust/soroban/p24/soroban-env-host/src/host/prng.rs, src/rust/soroban/p24/soroban-env-host/src/host/trace.rs, src/rust/soroban/p24/soroban-env-host/src/host/trace/fmt.rs. 765 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 2628 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: lib/asio (596), lib/tracy (344), lib/gperftools (240), lib/libsodium (240). No requests were sent to the owner's systems.
+Static review of the source tree stellar-core at 362dbc5184c5fdc0d6e898f3046639dc5e2a4f32. 3401 files analysed; of 27064 files, 5224 are test, fuzzing, benchmark or example code and were left out, 16879 are not read by any analyzer, 0 exceed the per-file limit and 1560 did not fit the total limit. Files no analyzer reads include: .clang-format, .claude/skills/adding-a-new-skill/SKILL.md, .claude/skills/configuring-the-build/SKILL.md, .claude/skills/high-level-code-review/SKILL.md, .claude/skills/low-level-code-review/SKILL.md. Because the total limit bound, this inventory covers 3401 of 27064 candidate files (12%) and is a sample of the tree rather than a reading of it; a different limit gives a different figure. Files it could not fit include: lib/tracy/server/TracyMicroArchitecture.cpp, src/rust/soroban/p24/soroban-simulation/src/simulation.rs, src/rust/soroban/p24/soroban-simulation/src/snapshot_source.rs, src/rust/soroban/p24/soroban-synth-wasm/src/func_emitter.rs, src/rust/soroban/p24/soroban-synth-wasm/src/host_funcs.rs. 814 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 2641 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: lib/asio (596), lib/tracy (344), lib/libsodium (240), lib/gperftools (238). No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
 - Indicative posture index: **0** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 42.0%
+- Quantum-vulnerable share of inventory: 41.4%
 
 ## 7. Detailed findings
 
-### QSI-2026-19575 — Possible hard-coded secret in lib/sqlite/sqlite3.c
+### QSI-2026-31983 — Possible hard-coded secret in lib/sqlite/sqlite3.c
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `file:lib/sqlite/sqlite3.c`
 - Data source: lib/sqlite/sqlite3.c
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 47.1 / 100
 - CVSS v3.1: not applicable
 
@@ -105,13 +105,13 @@ _file_excerpt · [lib/sqlite/sqlite3.c](https://github.com/stellar/stellar-core/
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-19582 — Possible hard-coded secret in lib/tracy/nfd/nfd_portal.cpp
+### QSI-2026-31990 — Possible hard-coded secret in lib/tracy/nfd/nfd_portal.cpp
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `file:lib/tracy/nfd/nfd_portal.cpp`
 - Data source: lib/tracy/nfd/nfd_portal.cpp
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 47.1 / 100
 - CVSS v3.1: not applicable
 
@@ -139,13 +139,13 @@ _file_excerpt · [lib/tracy/nfd/nfd_portal.cpp](https://github.com/stellar/stell
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-19587 — Non-cryptographic generator next to key or seed generation in src/crypto/SecretKey.h
+### QSI-2026-31995 — Non-cryptographic generator next to key or seed generation in src/crypto/SecretKey.h
 
 - Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `src/crypto/SecretKey.h:keygen`
 - Data source: src/crypto/SecretKey.h
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: entropy 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: entropy 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 38.8 / 100
 - CVSS v3.1: not applicable
 
@@ -177,13 +177,13 @@ _file_excerpt · [src/crypto/SecretKey.h](https://github.com/stellar/stellar-cor
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-19595 — stellar-xdr 21.2.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
+### QSI-2026-32012 — stellar-xdr 21.2.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/stellar-xdr@21.2.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -211,13 +211,13 @@ _tool_output · [OSV.dev GHSA-x57h-xx53-v53w](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19596 — stellar-xdr 22.0.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
+### QSI-2026-32013 — stellar-xdr 22.0.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/stellar-xdr@22.0.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -245,13 +245,13 @@ _tool_output · [OSV.dev GHSA-x57h-xx53-v53w](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19597 — stellar-xdr 23.0.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
+### QSI-2026-32014 — stellar-xdr 23.0.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/stellar-xdr@23.0.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -279,13 +279,13 @@ _tool_output · [OSV.dev GHSA-x57h-xx53-v53w](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19598 — stellar-xdr 24.0.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
+### QSI-2026-32015 — stellar-xdr 24.0.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/stellar-xdr@24.0.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -313,13 +313,13 @@ _tool_output · [OSV.dev GHSA-x57h-xx53-v53w](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19615 — stellar-xdr 20.1.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
+### QSI-2026-32043 — stellar-xdr 20.1.0 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/stellar-xdr@20.1.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -347,13 +347,13 @@ _tool_output · [OSV.dev GHSA-x57h-xx53-v53w](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19617 — soroban-sdk 21.4.0 is affected by GHSA-96xm-fv9w-pf3f (CVE-2026-24889)
+### QSI-2026-32045 — soroban-sdk 21.4.0 is affected by GHSA-96xm-fv9w-pf3f (CVE-2026-24889)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/soroban-sdk@21.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -381,13 +381,13 @@ _tool_output · [OSV.dev GHSA-96xm-fv9w-pf3f](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19618 — soroban-sdk 21.4.0 is affected by GHSA-x2hw-px52-wp4m (CVE-2026-32322)
+### QSI-2026-32046 — soroban-sdk 21.4.0 is affected by GHSA-x2hw-px52-wp4m (CVE-2026-32322)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/soroban-sdk@21.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -415,13 +415,13 @@ _tool_output · [OSV.dev GHSA-x2hw-px52-wp4m](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19623 — stellar-xdr 23.0.0-rc.2 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
+### QSI-2026-32051 — stellar-xdr 23.0.0-rc.2 is affected by GHSA-x57h-xx53-v53w (CVE-2026-29795)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/stellar-xdr@23.0.0-rc.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -449,13 +449,13 @@ _tool_output · [OSV.dev GHSA-x57h-xx53-v53w](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19581 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
+### QSI-2026-31989 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:X25519:key_wrapping`
 - Data source: lib/libsodium/src/libsodium/crypto_box/crypto_box_seal.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 36.9 / 100
 - CVSS v3.1: not applicable
 
@@ -485,17 +485,17 @@ _file_excerpt · [lib/libsodium/src/libsodium/crypto_box/crypto_box_seal.c](http
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19579 — Quantum-vulnerable Ed25519: transaction and message signing (12 file(s))
+### QSI-2026-31987 — Quantum-vulnerable Ed25519: transaction and message signing (13 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: src/crypto/SignerKey.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
-20 reference(s) to Ed25519 across 12 file(s), e.g. src/crypto/SignerKey.cpp:132. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+19 reference(s) to Ed25519 across 13 file(s), e.g. src/crypto/SignerKey.cpp:132. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -571,20 +571,20 @@ _file_excerpt · [src/rust/soroban/p21/soroban-env-host/src/builtin_contracts/st
   159 |     let name = String::try_from_val(e, &e.string_new_from_slice(s.as_bytes())?)?;
 ```
 
-_file_excerpt · [src/rust/soroban/p21/soroban-env-host/src/testutils.rs](https://github.com/stellar/stellar-core/blob/362dbc5184c5fdc0d6e898f3046639dc5e2a4f32/src/rust/soroban/p21/soroban-env-host/src/testutils.rs#L14) · line 14 · SHA-256 31181acc71844a88e7c8356ff1e5659de5d5240265a0a0bdb8295af30158cc37_
+_file_excerpt · [src/rust/soroban/p21/soroban-env-host/src/host.rs](https://github.com/stellar/stellar-core/blob/362dbc5184c5fdc0d6e898f3046639dc5e2a4f32/src/rust/soroban/p21/soroban-env-host/src/host.rs#L2815) · line 2815 · SHA-256 f0dfdedf8833bf7998c5f73b7e5b5c6dc176960db587c9252f8a6eb8ee855062_
 
 ```
-   13 | };
-   14 | use ed25519_dalek::SigningKey;
-   15 | use rand::RngCore;
+ 2814 |         let verifying_key = self.ed25519_pub_key_from_bytesobj_input(k)?;
+ 2815 |         let sig = self.ed25519_signature_from_bytesobj_input("sig", s)?;
+ 2816 |         let res = self.visit_obj(x, |payload: &ScBytes| {
 ```
 
-_file_excerpt · [src/rust/soroban/p21/soroban-env-host/src/testutils.rs](https://github.com/stellar/stellar-core/blob/362dbc5184c5fdc0d6e898f3046639dc5e2a4f32/src/rust/soroban/p21/soroban-env-host/src/testutils.rs#L309) · line 309 · SHA-256 fc3690b3ba7ca3c5613563bacdf14b5c265ca7e42f9e4bcff56717585a7e8a3f_
+_file_excerpt · [src/rust/soroban/p21/soroban-env-host/src/host.rs](https://github.com/stellar/stellar-core/blob/362dbc5184c5fdc0d6e898f3046639dc5e2a4f32/src/rust/soroban/p21/soroban-env-host/src/host.rs#L2936) · line 2936 · SHA-256 0acb58550db2098a8a3982d803af74daaf305f0a7b334153dd4579f60df16e84_
 
 ```
-  308 |         n_signers: usize,
-  309 |     ) -> (Host, Vec<AddressObject>, Vec<ed25519_dalek::SigningKey>) {
-  310 |         use crate::builtin_contracts::testutils::{
+ 2935 |                     let strkey = stellar_strkey::Strkey::PublicKeyEd25519(
+ 2936 |                         stellar_strkey::ed25519::PublicKey(ed25519.metered_clone(self)?),
+ 2937 |                     );
 ```
 
 **Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
@@ -593,13 +593,13 @@ _file_excerpt · [src/rust/soroban/p21/soroban-env-host/src/testutils.rs](https:
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19583 — Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))
+### QSI-2026-31991 — Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/recover_ecdsa_secp256k1_key.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -701,13 +701,13 @@ _file_excerpt · [src/rust/soroban/p24/soroban-env-host/src/cost_runner/cost_typ
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19577 — Quantum-vulnerable X25519: role not determined (9 file(s))
+### QSI-2026-31985 — Quantum-vulnerable X25519: role not determined (9 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:X25519:general`
 - Data source: src/crypto/Curve25519.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -809,17 +809,17 @@ _file_excerpt · [lib/libsodium/src/libsodium/include/sodium.h](https://github.c
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19578 — Quantum-vulnerable Ed25519: role not determined (44 file(s))
+### QSI-2026-31986 — Quantum-vulnerable Ed25519: role not determined (36 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: src/crypto/SecretKey.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
-156 reference(s) to Ed25519 across 44 file(s), e.g. src/crypto/SecretKey.cpp:117. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+144 reference(s) to Ed25519 across 36 file(s), e.g. src/crypto/SecretKey.cpp:117. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -917,13 +917,13 @@ _file_excerpt · [lib/libsodium/src/libsodium/crypto_sign/ed25519/ref10/keypair.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19584 — Quantum-vulnerable ECDSA: role not determined (24 file(s))
+### QSI-2026-31992 — Quantum-vulnerable ECDSA: role not determined (24 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/sec1_decode_point_uncompressed.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1025,13 +1025,13 @@ _file_excerpt · [src/rust/soroban/p21/soroban-env-host/src/host/crypto.rs](http
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19585 — Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (3 file(s))
+### QSI-2026-31993 — Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:authentication`
 - Data source: src/rust/soroban/p21/soroban-test-wasms/wasm-workspace/simple_account/src/lib.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1077,13 +1077,13 @@ _file_excerpt · [src/rust/soroban/p23/soroban-test-wasms/wasm-workspace/simple_
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19586 — Quantum-vulnerable BLS12-381: role not determined (12 file(s))
+### QSI-2026-31994 — Quantum-vulnerable BLS12-381: role not determined (12 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:BLS12-381:general`
 - Data source: src/rust/soroban/p22/soroban-env-host/src/cost_runner/cost_types/bls12_381.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1181,13 +1181,13 @@ _file_excerpt · [src/rust/soroban/p23/soroban-env-host/src/cost_runner/experime
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19580 — MD5 used in lib/gperftools/src/gen_getpc.rb
+### QSI-2026-31988 — MD5 used in lib/gperftools/src/gen_getpc.rb
 
 - Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `file:lib/gperftools/src/gen_getpc.rb`
 - Data source: lib/gperftools/src/gen_getpc.rb
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 33.7 / 100
 - CVSS v3.1: not applicable
 
@@ -1219,13 +1219,13 @@ _file_excerpt · [lib/gperftools/src/gen_getpc.rb](https://github.com/stellar/st
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-19600 — serde_with 3.18.0 is affected by GHSA-7gcf-g7xr-8hxj
+### QSI-2026-32027 — serde_with 3.18.0 is affected by GHSA-7gcf-g7xr-8hxj
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/serde_with@3.18.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1253,13 +1253,13 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19608 — serde_with 3.4.0 is affected by GHSA-7gcf-g7xr-8hxj
+### QSI-2026-32036 — serde_with 3.4.0 is affected by GHSA-7gcf-g7xr-8hxj
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/serde_with@3.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1287,13 +1287,13 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19609 — time 0.3.30 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+### QSI-2026-32037 — time 0.3.30 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/time@0.3.30`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1321,13 +1321,13 @@ _tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19619 — serde_with 3.12.0 is affected by GHSA-7gcf-g7xr-8hxj
+### QSI-2026-32047 — serde_with 3.12.0 is affected by GHSA-7gcf-g7xr-8hxj
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/serde_with@3.12.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1355,13 +1355,13 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19620 — time 0.3.41 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+### QSI-2026-32048 — time 0.3.41 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/time@0.3.41`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1389,13 +1389,13 @@ _tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19622 — serde_with 3.14.0 is affected by GHSA-7gcf-g7xr-8hxj
+### QSI-2026-32050 — serde_with 3.14.0 is affected by GHSA-7gcf-g7xr-8hxj
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/serde_with@3.14.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1423,13 +1423,13 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19576 — Non-cryptographic RNG near security-sensitive identifiers in scripts/OverlaySurvey.py
+### QSI-2026-31984 — Non-cryptographic RNG near security-sensitive identifiers in scripts/OverlaySurvey.py
 
 - Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `file:scripts/OverlaySurvey.py`
 - Data source: scripts/OverlaySurvey.py
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: source_code 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 25.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1461,13 +1461,13 @@ _file_excerpt · [scripts/OverlaySurvey.py](https://github.com/stellar/stellar-c
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-19594 — rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+### QSI-2026-32011 — rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/rand@0.8.5`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1495,13 +1495,13 @@ _tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19601 — soroban-env-host 23.0.1 is affected by GHSA-pm4j-7r4q-ccg8
+### QSI-2026-32028 — soroban-env-host 23.0.1 is affected by GHSA-pm4j-7r4q-ccg8
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/soroban-env-host@23.0.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1529,13 +1529,13 @@ _tool_output · [OSV.dev GHSA-pm4j-7r4q-ccg8](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19605 — curve25519-dalek 4.1.1 is affected by GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344)
+### QSI-2026-32033 — curve25519-dalek 4.1.1 is affected by GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/curve25519-dalek@4.1.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: 2.9 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -1563,13 +1563,13 @@ _tool_output · [OSV.dev GHSA-x4gp-pqpj-f43q](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19611 — soroban-env-host 21.2.2 is affected by GHSA-pm4j-7r4q-ccg8
+### QSI-2026-32039 — soroban-env-host 21.2.2 is affected by GHSA-pm4j-7r4q-ccg8
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/soroban-env-host@21.2.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1597,13 +1597,13 @@ _tool_output · [OSV.dev GHSA-pm4j-7r4q-ccg8](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19614 — soroban-env-host 20.3.0 is affected by GHSA-pm4j-7r4q-ccg8
+### QSI-2026-32042 — soroban-env-host 20.3.0 is affected by GHSA-pm4j-7r4q-ccg8
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/soroban-env-host@20.3.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1631,13 +1631,13 @@ _tool_output · [OSV.dev GHSA-pm4j-7r4q-ccg8](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19616 — soroban-env-host 22.0.0 is affected by GHSA-pm4j-7r4q-ccg8
+### QSI-2026-32044 — soroban-env-host 22.0.0 is affected by GHSA-pm4j-7r4q-ccg8
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/soroban-env-host@22.0.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1665,13 +1665,13 @@ _tool_output · [OSV.dev GHSA-pm4j-7r4q-ccg8](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19621 — soroban-env-host 23.0.0 is affected by GHSA-pm4j-7r4q-ccg8
+### QSI-2026-32049 — soroban-env-host 23.0.0 is affected by GHSA-pm4j-7r4q-ccg8
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/soroban-env-host@23.0.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1699,13 +1699,13 @@ _tool_output · [OSV.dev GHSA-pm4j-7r4q-ccg8](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19624 — soroban-env-host 24.0.0 is affected by GHSA-pm4j-7r4q-ccg8
+### QSI-2026-32052 — soroban-env-host 24.0.0 is affected by GHSA-pm4j-7r4q-ccg8
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/soroban-env-host@24.0.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1733,13 +1733,13 @@ _tool_output · [OSV.dev GHSA-pm4j-7r4q-ccg8](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19599 — tracing-subscriber 0.3.17 is affected by GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
+### QSI-2026-32016 — tracing-subscriber 0.3.17 is affected by GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/tracing-subscriber@0.3.17`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 29.4 / 100
 - CVSS v3.1: not applicable
 
@@ -1767,13 +1767,13 @@ _tool_output · [OSV.dev GHSA-xwfj-jgwm-7wp5](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19610 — tracing-subscriber 0.3.18 is affected by GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
+### QSI-2026-32038 — tracing-subscriber 0.3.18 is affected by GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/tracing-subscriber@0.3.18`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 29.4 / 100
 - CVSS v3.1: not applicable
 
@@ -1801,13 +1801,13 @@ _tool_output · [OSV.dev GHSA-xwfj-jgwm-7wp5](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19592 — keccak 0.1.5 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-32009 — keccak 0.1.5 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/keccak@0.1.5`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 25.0 / 100
 - CVSS v3.1: not applicable
 
@@ -1835,13 +1835,13 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19606 — keccak 0.1.4 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-32034 — keccak 0.1.4 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/keccak@0.1.4`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 25.0 / 100
 - CVSS v3.1: not applicable
 
@@ -1869,13 +1869,13 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19588 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-31996 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1903,13 +1903,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19589 — ctutils 0.4.2 is affected by RUSTSEC-2026-0385 (no severity rating)
+### QSI-2026-31997 — ctutils 0.4.2 is affected by RUSTSEC-2026-0385 (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/ctutils@0.4.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1937,13 +1937,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0385](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19590 — cxx 1.0.97 is affected by RUSTSEC-2026-0202 (no severity rating)
+### QSI-2026-31998 — cxx 1.0.97 is affected by RUSTSEC-2026-0202 (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/cxx@1.0.97`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1971,13 +1971,625 @@ _tool_output · [OSV.dev RUSTSEC-2026-0202](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19603 — anyhow 1.0.75 is affected by RUSTSEC-2026-0190 (no severity rating)
+### QSI-2026-32000 — heapless 0.9.3 is affected by RUSTSEC-2026-0574 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0574 for crates.io package heapless at version 0.9.3: `FindMutView::pop` after mutating the value would lead to a use after free. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0574
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0574](https://osv.dev/vulnerability/RUSTSEC-2026-0574) · manifest · SHA-256 8036d7decb205a3a78a01ce5b0c508dd8b0522d0e0ac6e4be98d7cc2a3a88814_
+
+```
+{"id": "RUSTSEC-2026-0574", "aliases": [], "modified": "2026-11-19T09:00:03.915405109Z", "summary": "`FindMutView::pop` after mutating the value would lead to a use after free", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32001 — heapless 0.9.3 is affected by RUSTSEC-2026-0575 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0575 for crates.io package heapless at version 0.9.3: `Spsc::peek` used `Relaxed` ordering where it should have use `Acquire`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0575
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0575](https://osv.dev/vulnerability/RUSTSEC-2026-0575) · manifest · SHA-256 9f03365d2d31b79a56c6ea51189c7bce15fb54454c2d6742f955918015ec6112_
+
+```
+{"id": "RUSTSEC-2026-0575", "aliases": [], "modified": "2026-11-19T09:00:04.331392862Z", "summary": "`Spsc::peek` used `Relaxed` ordering where it should have use `Acquire`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32002 — heapless 0.9.3 is affected by RUSTSEC-2026-0576 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0576 for crates.io package heapless at version 0.9.3: `IndexMap::truncate` could lead to an inconsistent state. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0576
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0576](https://osv.dev/vulnerability/RUSTSEC-2026-0576) · manifest · SHA-256 cac89759a1ba626d6fdebb9eb010c068a97a8d8680f22993b22c42ee2997fa94_
+
+```
+{"id": "RUSTSEC-2026-0576", "aliases": [], "modified": "2026-11-19T09:00:03.918246184Z", "summary": "`IndexMap::truncate` could lead to an inconsistent state", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32003 — heapless 0.9.3 is affected by RUSTSEC-2026-0577 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0577 for crates.io package heapless at version 0.9.3: Panicking `Drop` implementation could lead to UB. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0577
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0577](https://osv.dev/vulnerability/RUSTSEC-2026-0577) · manifest · SHA-256 5b57e830ce2d429efd9cb1e499aa9b3c6aaf89deaa7402e9c7e0faac2758e903_
+
+```
+{"id": "RUSTSEC-2026-0577", "aliases": [], "modified": "2026-11-19T09:00:04.328496490Z", "summary": "Panicking `Drop` implementation could lead to UB", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32004 — heapless 0.9.3 is affected by RUSTSEC-2026-0578 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0578 for crates.io package heapless at version 0.9.3: `SortedLinkedList::zeroize` lead to an inconsistent state. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0578
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0578](https://osv.dev/vulnerability/RUSTSEC-2026-0578) · manifest · SHA-256 e8d0c30a9cc7cab83146a688628a34d55adcbfab254506dc2b0192d326846460_
+
+```
+{"id": "RUSTSEC-2026-0578", "aliases": [], "modified": "2026-11-19T09:00:04.321872625Z", "summary": "`SortedLinkedList::zeroize` lead to an inconsistent state", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32005 — heapless 0.9.3 is affected by RUSTSEC-2026-0579 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0579 for crates.io package heapless at version 0.9.3: The `Deque` implementation from `TryFrom` was wrong when the `Deque` ended up full. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0579
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0579](https://osv.dev/vulnerability/RUSTSEC-2026-0579) · manifest · SHA-256 bea200d5cec036d98e0f13e7fc6b2e9ce592314cb1918a6a21d2d1c2eea51dd8_
+
+```
+{"id": "RUSTSEC-2026-0579", "aliases": [], "modified": "2026-11-19T09:00:03.915731439Z", "summary": "The `Deque` implementation from `TryFrom` was wrong when the `Deque` ended up full", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32006 — heapless 0.9.3 is affected by RUSTSEC-2026-0580 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0580 for crates.io package heapless at version 0.9.3: The treiber stack implementation in heapless had a race condition. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0580
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0580](https://osv.dev/vulnerability/RUSTSEC-2026-0580) · manifest · SHA-256 d7fc272ae71e632e608f39a00a878d7c148b3534146d7d3f3c1ab40d7a839470_
+
+```
+{"id": "RUSTSEC-2026-0580", "aliases": [], "modified": "2026-11-19T09:00:04.526645559Z", "summary": "The treiber stack implementation in heapless had a race condition", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32007 — heapless 0.9.3 is affected by RUSTSEC-2026-0581 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0581 for crates.io package heapless at version 0.9.3: `Deque::make_contiguous` could lead to broken invariants. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0581
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0581](https://osv.dev/vulnerability/RUSTSEC-2026-0581) · manifest · SHA-256 e134d1cf51573225805d3457b5cc7efecd5c9cb917a4b4da1ece41317c0894f4_
+
+```
+{"id": "RUSTSEC-2026-0581", "aliases": [], "modified": "2026-11-19T09:00:03.911566789Z", "summary": "`Deque::make_contiguous` could lead to broken invariants", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32008 — heapless 0.9.3 is affected by RUSTSEC-2026-0582 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0582 for crates.io package heapless at version 0.9.3: On maps of `u16::MAX` elements, `IndexMap::insert` could lead to a broken invariant. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0582
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0582](https://osv.dev/vulnerability/RUSTSEC-2026-0582) · manifest · SHA-256 a4a714de3b1b4b8b4b7f6f8c97a3c93cae061db7faeca3ee0605e5a9c03d4830_
+
+```
+{"id": "RUSTSEC-2026-0582", "aliases": [], "modified": "2026-11-19T09:00:04.317864790Z", "summary": "On maps of `u16::MAX` elements, `IndexMap::insert` could lead to a broken invariant", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32018 — heapless 0.8.0 is affected by RUSTSEC-2026-0574 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0574 for crates.io package heapless at version 0.8.0: `FindMutView::pop` after mutating the value would lead to a use after free. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0574
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0574](https://osv.dev/vulnerability/RUSTSEC-2026-0574) · manifest · SHA-256 8036d7decb205a3a78a01ce5b0c508dd8b0522d0e0ac6e4be98d7cc2a3a88814_
+
+```
+{"id": "RUSTSEC-2026-0574", "aliases": [], "modified": "2026-11-19T09:00:03.915405109Z", "summary": "`FindMutView::pop` after mutating the value would lead to a use after free", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32019 — heapless 0.8.0 is affected by RUSTSEC-2026-0575 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0575 for crates.io package heapless at version 0.8.0: `Spsc::peek` used `Relaxed` ordering where it should have use `Acquire`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0575
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0575](https://osv.dev/vulnerability/RUSTSEC-2026-0575) · manifest · SHA-256 9f03365d2d31b79a56c6ea51189c7bce15fb54454c2d6742f955918015ec6112_
+
+```
+{"id": "RUSTSEC-2026-0575", "aliases": [], "modified": "2026-11-19T09:00:04.331392862Z", "summary": "`Spsc::peek` used `Relaxed` ordering where it should have use `Acquire`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32020 — heapless 0.8.0 is affected by RUSTSEC-2026-0576 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0576 for crates.io package heapless at version 0.8.0: `IndexMap::truncate` could lead to an inconsistent state. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0576
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0576](https://osv.dev/vulnerability/RUSTSEC-2026-0576) · manifest · SHA-256 cac89759a1ba626d6fdebb9eb010c068a97a8d8680f22993b22c42ee2997fa94_
+
+```
+{"id": "RUSTSEC-2026-0576", "aliases": [], "modified": "2026-11-19T09:00:03.918246184Z", "summary": "`IndexMap::truncate` could lead to an inconsistent state", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32021 — heapless 0.8.0 is affected by RUSTSEC-2026-0577 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0577 for crates.io package heapless at version 0.8.0: Panicking `Drop` implementation could lead to UB. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0577
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0577](https://osv.dev/vulnerability/RUSTSEC-2026-0577) · manifest · SHA-256 5b57e830ce2d429efd9cb1e499aa9b3c6aaf89deaa7402e9c7e0faac2758e903_
+
+```
+{"id": "RUSTSEC-2026-0577", "aliases": [], "modified": "2026-11-19T09:00:04.328496490Z", "summary": "Panicking `Drop` implementation could lead to UB", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32022 — heapless 0.8.0 is affected by RUSTSEC-2026-0578 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0578 for crates.io package heapless at version 0.8.0: `SortedLinkedList::zeroize` lead to an inconsistent state. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0578
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0578](https://osv.dev/vulnerability/RUSTSEC-2026-0578) · manifest · SHA-256 e8d0c30a9cc7cab83146a688628a34d55adcbfab254506dc2b0192d326846460_
+
+```
+{"id": "RUSTSEC-2026-0578", "aliases": [], "modified": "2026-11-19T09:00:04.321872625Z", "summary": "`SortedLinkedList::zeroize` lead to an inconsistent state", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32023 — heapless 0.8.0 is affected by RUSTSEC-2026-0579 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0579 for crates.io package heapless at version 0.8.0: The `Deque` implementation from `TryFrom` was wrong when the `Deque` ended up full. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0579
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0579](https://osv.dev/vulnerability/RUSTSEC-2026-0579) · manifest · SHA-256 bea200d5cec036d98e0f13e7fc6b2e9ce592314cb1918a6a21d2d1c2eea51dd8_
+
+```
+{"id": "RUSTSEC-2026-0579", "aliases": [], "modified": "2026-11-19T09:00:03.915731439Z", "summary": "The `Deque` implementation from `TryFrom` was wrong when the `Deque` ended up full", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32024 — heapless 0.8.0 is affected by RUSTSEC-2026-0580 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0580 for crates.io package heapless at version 0.8.0: The treiber stack implementation in heapless had a race condition. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0580
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0580](https://osv.dev/vulnerability/RUSTSEC-2026-0580) · manifest · SHA-256 d7fc272ae71e632e608f39a00a878d7c148b3534146d7d3f3c1ab40d7a839470_
+
+```
+{"id": "RUSTSEC-2026-0580", "aliases": [], "modified": "2026-11-19T09:00:04.526645559Z", "summary": "The treiber stack implementation in heapless had a race condition", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32025 — heapless 0.8.0 is affected by RUSTSEC-2026-0581 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0581 for crates.io package heapless at version 0.8.0: `Deque::make_contiguous` could lead to broken invariants. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0581
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0581](https://osv.dev/vulnerability/RUSTSEC-2026-0581) · manifest · SHA-256 e134d1cf51573225805d3457b5cc7efecd5c9cb917a4b4da1ece41317c0894f4_
+
+```
+{"id": "RUSTSEC-2026-0581", "aliases": [], "modified": "2026-11-19T09:00:03.911566789Z", "summary": "`Deque::make_contiguous` could lead to broken invariants", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32026 — heapless 0.8.0 is affected by RUSTSEC-2026-0582 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/heapless@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0582 for crates.io package heapless at version 0.8.0: On maps of `u16::MAX` elements, `IndexMap::insert` could lead to a broken invariant. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0582
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0582](https://osv.dev/vulnerability/RUSTSEC-2026-0582) · manifest · SHA-256 a4a714de3b1b4b8b4b7f6f8c97a3c93cae061db7faeca3ee0605e5a9c03d4830_
+
+```
+{"id": "RUSTSEC-2026-0582", "aliases": [], "modified": "2026-11-19T09:00:04.317864790Z", "summary": "On maps of `u16::MAX` elements, `IndexMap::insert` could lead to a broken invariant", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-32030 — anyhow 1.0.75 is affected by RUSTSEC-2026-0190 (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/anyhow@1.0.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -2005,13 +2617,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19604 — crypto-bigint 0.5.2 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-32032 — crypto-bigint 0.5.2 is affected by RUSTSEC-2026-0387 (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/crypto-bigint@0.5.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -2039,13 +2651,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19612 — crypto-bigint 0.5.4 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-32040 — crypto-bigint 0.5.4 is affected by RUSTSEC-2026-0387 (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/crypto-bigint@0.5.4`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -2073,13 +2685,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19591 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
+### QSI-2026-31999 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/derivative@2.2.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -2107,13 +2719,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-19593 — paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-32010 — paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/paste@1.0.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -2141,13 +2753,47 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-19602 — adler 1.0.2: informational advisory RUSTSEC-2025-0056 (unmaintained)
+### QSI-2026-32017 — chrono 0.4.44: informational advisory RUSTSEC-2026-0543 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/chrono@0.4.44`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 11.8 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2026-0543 for crates.io package chrono at version 0.4.44 as informational (unmaintained): chrono is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0543
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0543](https://osv.dev/vulnerability/RUSTSEC-2026-0543) · manifest · SHA-256 37d2d647609cf3ea819b650afa04f4f974a83c89d3c0613ec3b45f6d0e14c207_
+
+```
+{"id": "RUSTSEC-2026-0543", "aliases": [], "modified": "2026-11-17T10:15:02.344223779Z", "summary": "chrono is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-32029 — adler 1.0.2: informational advisory RUSTSEC-2025-0056 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/adler@1.0.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -2175,13 +2821,47 @@ _tool_output · [OSV.dev RUSTSEC-2025-0056](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-19607 — paste 1.0.12: informational advisory RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-32031 — chrono 0.4.31: informational advisory RUSTSEC-2026-0543 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/chrono@0.4.31`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
+- Priority score: 11.8 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2026-0543 for crates.io package chrono at version 0.4.31 as informational (unmaintained): chrono is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0543
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0543](https://osv.dev/vulnerability/RUSTSEC-2026-0543) · manifest · SHA-256 37d2d647609cf3ea819b650afa04f4f974a83c89d3c0613ec3b45f6d0e14c207_
+
+```
+{"id": "RUSTSEC-2026-0543", "aliases": [], "modified": "2026-11-17T10:15:02.344223779Z", "summary": "chrono is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-32035 — paste 1.0.12: informational advisory RUSTSEC-2024-0436 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/paste@1.0.12`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -2209,13 +2889,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-19613 — paste 1.0.14: informational advisory RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-32041 — paste 1.0.14: informational advisory RUSTSEC-2024-0436 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/paste@1.0.14`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:13 UTC
+- Analyzer: dependencies 1.6.0 · 2026-11-19 17:18 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -2278,10 +2958,10 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **key wrapping and data encryption at rest** | X25519 (1) | QSI-2026-19581 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **transaction and message signing** | Ed25519 (12), ECDSA (8) | QSI-2026-19579, QSI-2026-19583 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | Ed25519 (3) | QSI-2026-19585 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | Ed25519 (44), ECDSA (24), BLS12-381 (12), X25519 (9) | QSI-2026-19577, QSI-2026-19578, QSI-2026-19584, QSI-2026-19586 | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | X25519 (1) | QSI-2026-31989 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **transaction and message signing** | Ed25519 (13), ECDSA (8) | QSI-2026-31987, QSI-2026-31991 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **authentication and identity (certificates, tokens, device attestation)** | Ed25519 (3) | QSI-2026-31993 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
+| **role not determined** | Ed25519 (36), ECDSA (24), BLS12-381 (12), X25519 (9) | QSI-2026-31985, QSI-2026-31986, QSI-2026-31992, QSI-2026-31994 | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -2291,9 +2971,9 @@ No readiness questionnaire was completed for this project.
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
 | Shor's algorithm — discrete logarithms in finite fields | breaks | Q1 | BLS12-381 (18) | Breaks finite-field Diffie–Hellman and DSA at every size. Move key establishment to ML-KEM (hybrid with X25519 or ECDH during the transition) and signatures to ML-DSA or SLH-DSA. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BLS12-381 (18), ECDSA (64), Ed25519 (76), X25519 (18) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (2), Argon2 (17), BLAKE2 (28), ChaCha20-Poly1305 (21), HMAC (16), Keccak-256 (8), MD5 (1), PBKDF2 (2), Poly1305 (18), SHA-2 (29), XSalsa20-Poly1305 (29), scrypt (3) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | BLAKE2 (28), Keccak-256 (8), MD5 (1), SHA-2 (29) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BLS12-381 (18), ECDSA (64), Ed25519 (69), X25519 (18) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (2), Argon2 (17), BLAKE2 (28), ChaCha20-Poly1305 (21), HMAC (16), Keccak-256 (8), MD5 (1), PBKDF2 (2), Poly1305 (18), SHA-2 (25), XSalsa20-Poly1305 (29), scrypt (3) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
+| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | BLAKE2 (28), Keccak-256 (8), MD5 (1), SHA-2 (25) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 
 _Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
 
@@ -2311,72 +2991,92 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-19575 | Rotate and remove secrets found in lib/sqlite/sqlite3.c. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-19582 | Rotate and remove secrets found in lib/tracy/nfd/nfd_portal.cpp. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-19587 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P2 | QSI-2026-19595 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
-| P2 | QSI-2026-19596 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
-| P2 | QSI-2026-19597 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
-| P2 | QSI-2026-19598 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
-| P2 | QSI-2026-19615 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
-| P2 | QSI-2026-19617 | Upgrade soroban-sdk to a fixed version (22.0.9, 23.5.1, 25.0.2). | root-cause fix | Dependency scan no longer reports GHSA-96xm-fv9w-pf3f (CVE-2026-24889). |
-| P2 | QSI-2026-19618 | Upgrade soroban-sdk to a fixed version (22.0.11, 23.5.3, 25.3.0). | root-cause fix | Dependency scan no longer reports GHSA-x2hw-px52-wp4m (CVE-2026-32322). |
-| P2 | QSI-2026-19623 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
-| P2 | QSI-2026-19600 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-19608 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-19609 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
-| P2 | QSI-2026-19619 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-19620 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
-| P2 | QSI-2026-19622 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-19594 | Upgrade rand to a fixed version (0.10.1, 0.8.6, 0.9.3). | root-cause fix | Dependency scan no longer reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
-| P2 | QSI-2026-19601 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
-| P2 | QSI-2026-19605 | Upgrade curve25519-dalek to a fixed version (4.1.3). | root-cause fix | Dependency scan no longer reports GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344). |
-| P2 | QSI-2026-19611 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
-| P2 | QSI-2026-19614 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
-| P2 | QSI-2026-19616 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
-| P2 | QSI-2026-19621 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
-| P2 | QSI-2026-19624 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
-| P2 | QSI-2026-19599 | Upgrade tracing-subscriber to a fixed version (0.3.20). | root-cause fix | Dependency scan no longer reports GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
-| P2 | QSI-2026-19610 | Upgrade tracing-subscriber to a fixed version (0.3.20). | root-cause fix | Dependency scan no longer reports GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
-| P2 | QSI-2026-19592 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
-| P2 | QSI-2026-19606 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P1 | QSI-2026-31983 | Rotate and remove secrets found in lib/sqlite/sqlite3.c. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
+| P1 | QSI-2026-31990 | Rotate and remove secrets found in lib/tracy/nfd/nfd_portal.cpp. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
+| P1 | QSI-2026-31995 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P2 | QSI-2026-32012 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
+| P2 | QSI-2026-32013 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
+| P2 | QSI-2026-32014 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
+| P2 | QSI-2026-32015 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
+| P2 | QSI-2026-32043 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
+| P2 | QSI-2026-32045 | Upgrade soroban-sdk to a fixed version (22.0.9, 23.5.1, 25.0.2). | root-cause fix | Dependency scan no longer reports GHSA-96xm-fv9w-pf3f (CVE-2026-24889). |
+| P2 | QSI-2026-32046 | Upgrade soroban-sdk to a fixed version (22.0.11, 23.5.3, 25.3.0). | root-cause fix | Dependency scan no longer reports GHSA-x2hw-px52-wp4m (CVE-2026-32322). |
+| P2 | QSI-2026-32051 | Upgrade stellar-xdr to a fixed version (25.0.1). | root-cause fix | Dependency scan no longer reports GHSA-x57h-xx53-v53w (CVE-2026-29795). |
+| P2 | QSI-2026-32027 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-32036 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-32037 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
+| P2 | QSI-2026-32047 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-32048 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
+| P2 | QSI-2026-32050 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-32011 | Upgrade rand to a fixed version (0.10.1, 0.8.6, 0.9.3). | root-cause fix | Dependency scan no longer reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-32028 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
+| P2 | QSI-2026-32033 | Upgrade curve25519-dalek to a fixed version (4.1.3). | root-cause fix | Dependency scan no longer reports GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344). |
+| P2 | QSI-2026-32039 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
+| P2 | QSI-2026-32042 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
+| P2 | QSI-2026-32044 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
+| P2 | QSI-2026-32049 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
+| P2 | QSI-2026-32052 | Upgrade soroban-env-host to a fixed version (26.0.0). | root-cause fix | Dependency scan no longer reports GHSA-pm4j-7r4q-ccg8. |
+| P2 | QSI-2026-32016 | Upgrade tracing-subscriber to a fixed version (0.3.20). | root-cause fix | Dependency scan no longer reports GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
+| P2 | QSI-2026-32038 | Upgrade tracing-subscriber to a fixed version (0.3.20). | root-cause fix | Dependency scan no longer reports GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
+| P2 | QSI-2026-32009 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P2 | QSI-2026-32034 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P2 | QSI-2026-19576 | Use a CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P3 | QSI-2026-19580 | Review each MD5 call site in lib/gperftools/src/gen_getpc.rb; replace security-relevant ones with SHA-256 or a password hash. | root-cause fix | No security-relevant MD5 usage remains. |
-| P3 | QSI-2026-19588 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-19589 | Triage RUSTSEC-2026-0385; upgrade ctutils to a fixed version (0.4.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0385, or the triage is recorded. |
-| P3 | QSI-2026-19590 | Triage RUSTSEC-2026-0202; upgrade cxx to a fixed version (1.0.195) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0202, or the triage is recorded. |
-| P3 | QSI-2026-19603 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
-| P3 | QSI-2026-19604 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-19612 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
+| P2 | QSI-2026-31984 | Use a CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P3 | QSI-2026-31988 | Review each MD5 call site in lib/gperftools/src/gen_getpc.rb; replace security-relevant ones with SHA-256 or a password hash. | root-cause fix | No security-relevant MD5 usage remains. |
+| P3 | QSI-2026-31996 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
+| P3 | QSI-2026-31997 | Triage RUSTSEC-2026-0385; upgrade ctutils to a fixed version (0.4.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0385, or the triage is recorded. |
+| P3 | QSI-2026-31998 | Triage RUSTSEC-2026-0202; upgrade cxx to a fixed version (1.0.195) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0202, or the triage is recorded. |
+| P3 | QSI-2026-32000 | Triage RUSTSEC-2026-0574; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0574, or the triage is recorded. |
+| P3 | QSI-2026-32001 | Triage RUSTSEC-2026-0575; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0575, or the triage is recorded. |
+| P3 | QSI-2026-32002 | Triage RUSTSEC-2026-0576; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0576, or the triage is recorded. |
+| P3 | QSI-2026-32003 | Triage RUSTSEC-2026-0577; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0577, or the triage is recorded. |
+| P3 | QSI-2026-32004 | Triage RUSTSEC-2026-0578; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0578, or the triage is recorded. |
+| P3 | QSI-2026-32005 | Triage RUSTSEC-2026-0579; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0579, or the triage is recorded. |
+| P3 | QSI-2026-32006 | Triage RUSTSEC-2026-0580; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0580, or the triage is recorded. |
+| P3 | QSI-2026-32007 | Triage RUSTSEC-2026-0581; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0581, or the triage is recorded. |
+| P3 | QSI-2026-32008 | Triage RUSTSEC-2026-0582; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0582, or the triage is recorded. |
+| P3 | QSI-2026-32018 | Triage RUSTSEC-2026-0574; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0574, or the triage is recorded. |
+| P3 | QSI-2026-32019 | Triage RUSTSEC-2026-0575; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0575, or the triage is recorded. |
+| P3 | QSI-2026-32020 | Triage RUSTSEC-2026-0576; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0576, or the triage is recorded. |
+| P3 | QSI-2026-32021 | Triage RUSTSEC-2026-0577; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0577, or the triage is recorded. |
+| P3 | QSI-2026-32022 | Triage RUSTSEC-2026-0578; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0578, or the triage is recorded. |
+| P3 | QSI-2026-32023 | Triage RUSTSEC-2026-0579; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0579, or the triage is recorded. |
+| P3 | QSI-2026-32024 | Triage RUSTSEC-2026-0580; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0580, or the triage is recorded. |
+| P3 | QSI-2026-32025 | Triage RUSTSEC-2026-0581; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0581, or the triage is recorded. |
+| P3 | QSI-2026-32026 | Triage RUSTSEC-2026-0582; upgrade heapless to a fixed version (0.9.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0582, or the triage is recorded. |
+| P3 | QSI-2026-32030 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
+| P3 | QSI-2026-32032 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
+| P3 | QSI-2026-32040 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-19581 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19579 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19583 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19577 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19578 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19584 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19585 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19586 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-19581 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-19579 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19583 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19577 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-19578 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19584 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19585 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19586 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-19591 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
-| P4 | QSI-2026-19593 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
-| P4 | QSI-2026-19602 | Replace adler with a maintained alternative or record why it stays. | root-cause fix | adler replaced, or the decision recorded. |
-| P4 | QSI-2026-19607 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
-| P4 | QSI-2026-19613 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
+| P3 | QSI-2026-31989 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-31987 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-31991 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-31985 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-31986 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-31992 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-31993 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-31994 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-31989 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-31987 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-31991 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-31985 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-31986 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-31992 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-31993 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-31994 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-31999 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
+| P4 | QSI-2026-32010 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
+| P4 | QSI-2026-32017 | Replace chrono with a maintained alternative or record why it stays. | root-cause fix | chrono replaced, or the decision recorded. |
+| P4 | QSI-2026-32029 | Replace adler with a maintained alternative or record why it stays. | root-cause fix | adler replaced, or the decision recorded. |
+| P4 | QSI-2026-32031 | Replace chrono with a maintained alternative or record why it stays. | root-cause fix | chrono replaced, or the decision recorded. |
+| P4 | QSI-2026-32035 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
+| P4 | QSI-2026-32041 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
 
 ## 11. Tools used
 
@@ -2384,13 +3084,18 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.0.0
+- dependencies 1.4.2
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.5.0
+- source_code 1.5.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- wallet_login 1.0.0
+- qsi-engine 1.6.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -2437,14 +3142,24 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 40. OSV advisory RUSTSEC-2026-0202 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0202> (modified 2026-07-05T08:45:04.168768726Z)
 41. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
 42. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-43. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
-44. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-45. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-46. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+43. OSV advisory RUSTSEC-2026-0543 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0543> (modified 2026-11-17T10:15:02.344223779Z)
+44. OSV advisory RUSTSEC-2026-0574 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0574> (modified 2026-11-19T09:00:03.915405109Z)
+45. OSV advisory RUSTSEC-2026-0575 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0575> (modified 2026-11-19T09:00:04.331392862Z)
+46. OSV advisory RUSTSEC-2026-0576 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0576> (modified 2026-11-19T09:00:03.918246184Z)
+47. OSV advisory RUSTSEC-2026-0577 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0577> (modified 2026-11-19T09:00:04.328496490Z)
+48. OSV advisory RUSTSEC-2026-0578 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0578> (modified 2026-11-19T09:00:04.321872625Z)
+49. OSV advisory RUSTSEC-2026-0579 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0579> (modified 2026-11-19T09:00:03.915731439Z)
+50. OSV advisory RUSTSEC-2026-0580 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0580> (modified 2026-11-19T09:00:04.526645559Z)
+51. OSV advisory RUSTSEC-2026-0581 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0581> (modified 2026-11-19T09:00:03.911566789Z)
+52. OSV advisory RUSTSEC-2026-0582 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0582> (modified 2026-11-19T09:00:04.317864790Z)
+53. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+54. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+55. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+56. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Appendices: Cryptographic inventory
 
-By origin: dependency manifests 69 (0 Shor-breakable) · own code 186 (143 Shor-breakable) · third-party code in the tree 164 (33 Shor-breakable).
+By origin: dependency manifests 69 (0 Shor-breakable) · own code 175 (136 Shor-breakable) · third-party code in the tree 164 (33 Shor-breakable).
 
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
@@ -2464,7 +3179,7 @@ By origin: dependency manifests 69 (0 Shor-breakable) · own code 186 (143 Shor-
 | scrypt |  |  | reduced margin (Grover), approved | acceptable | 3 | 3 | lib/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/crypto_scrypt-common.c; lib/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/crypto_scrypt.h; lib/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/scrypt_platform.c |
 | BLAKE2 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 28 | 28 | lib/libsodium/src/libsodium/crypto_box/crypto_box_seal.c:5; lib/libsodium/src/libsodium/crypto_box/curve25519xchacha20poly1305/box_seal_curve25519xchacha20poly1305.c:5; lib/libsodium/src/libsodium/crypto_generichash/blake2b/generichash_blake2.c |
 | Keccak-256 | Keccak-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 8 | 8 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/compute_keccak256_hash.rs; src/rust/soroban/p21/soroban-env-host/src/host/crypto.rs:15; src/rust/soroban/p22/soroban-env-host/src/cost_runner/cost_types/compute_keccak256_hash.rs |
-| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 26 | 26 | lib/libsodium/src/libsodium/crypto_hash/sha256/cp/hash_sha256_cp.c:61; lib/libsodium/src/libsodium/crypto_hash/sha256/hash_sha256.c; lib/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pbkdf2-sha256.c |
+| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 22 | 22 | lib/libsodium/src/libsodium/crypto_hash/sha256/cp/hash_sha256_cp.c:61; lib/libsodium/src/libsodium/crypto_hash/sha256/hash_sha256.c; lib/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pbkdf2-sha256.c |
 | Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | n/a | acceptable | 12 | 12 | Cargo.lock; scripts/apply_load/token/Cargo.lock; src/rust/soroban/p21/Cargo.lock |
 | Crypto library | 0.13.4 | k256 (RustCrypto elliptic curves) | n/a | acceptable | 6 | 6 | Cargo.lock; scripts/apply_load/token/Cargo.lock; src/rust/soroban/p22/Cargo.lock |
 | Crypto library | 0.16.9 | ecdsa (python-ecdsa) | n/a | acceptable | 6 | 6 | Cargo.lock; scripts/apply_load/token/Cargo.lock; src/rust/soroban/p22/Cargo.lock |
@@ -2485,7 +3200,7 @@ By origin: dependency manifests 69 (0 Shor-breakable) · own code 186 (143 Shor-
 | ECDSA |  |  | vulnerable (Shor) | acceptable | 24 | 24 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/decode_ecdsa_curve256_sig.rs; src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/sec1_decode_point_uncompressed.rs:5; src/rust/soroban/p21/soroban-env-host/src/cost_runner/experimental/ecdsa_secp256r1_recover.rs:7 |
 | ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 16 | 16 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/recover_ecdsa_secp256k1_key.rs:7; src/rust/soroban/p21/soroban-env-host/src/cost_runner/experimental/ecdsa_secp256k1_verify.rs:6; src/rust/soroban/p21/soroban-env-host/src/cost_runner/util.rs:12 |
 | ECDSA | P-256 |  | vulnerable (Shor) | acceptable | 24 | 24 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/sec1_decode_point_uncompressed.rs:5; src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/verify_ecdsa_secp256r1_sig.rs:5; src/rust/soroban/p21/soroban-env-host/src/cost_runner/experimental/ecdsa_secp256r1_recover.rs:7 |
-| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 76 | 76 | lib/libsodium/src/libsodium/crypto_core/ed25519/core_ed25519.c; lib/libsodium/src/libsodium/crypto_core/ed25519/ref10/ed25519_ref10.c; lib/libsodium/src/libsodium/crypto_scalarmult/ed25519/ref10/scalarmult_ed25519_ref10.c |
+| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 69 | 69 | lib/libsodium/src/libsodium/crypto_core/ed25519/core_ed25519.c; lib/libsodium/src/libsodium/crypto_core/ed25519/ref10/ed25519_ref10.c; lib/libsodium/src/libsodium/crypto_scalarmult/ed25519/ref10/scalarmult_ed25519_ref10.c |
 | X25519 | X25519 |  | vulnerable (Shor) | acceptable | 12 | 12 | lib/libsodium/src/libsodium/crypto_box/crypto_box.c:72; lib/libsodium/src/libsodium/crypto_box/crypto_box_seal.c:32; lib/libsodium/src/libsodium/crypto_kx/crypto_kx.c:7 |
 | X25519 |  |  | vulnerable (Shor) | acceptable | 6 | 6 | lib/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/curve25519_sandy2x.c; lib/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/curve25519_sandy2x.h; lib/libsodium/src/libsodium/crypto_scalarmult/curve25519/scalarmult_curve25519.c |
 
@@ -4094,7 +4809,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | lib/gperftools/src/check_address-inl.h | 6819 | `614a5aae4b3ed377751c4e457b8dddf7f0aecc4654dc3fd9a391b47689e3c2e4` | 0 |
 | lib/gperftools/src/common.cc | 11798 | `500b125070007d30d1caa1c469426a3d5c9b6e9d8c4c35e510909356ec7147bd` | 0 |
 | lib/gperftools/src/common.h | 12199 | `088025bad22ee75d92f6c55998054f274e729c26f1f3d5a1c0bf5cc5c7ffef6f` | 0 |
-| lib/gperftools/src/config_for_unittests.h | 3961 | `18cf3495ece4f6c41623bff7d665f5841ab95e8892ea118bff8ceefad308ce08` | 0 |
 | lib/gperftools/src/debugallocation.cc | 58811 | `9fb845d8797022a90fa4fa2fda10f4170995ad3c08405d67b8eebc1d136bd54f` | 0 |
 | lib/gperftools/src/emergency_malloc.cc | 5983 | `bb6c27e307d17ff2990537f49232fe11fbac8b4dcfeaa9cd66a5e4c55b0b58ae` | 0 |
 | lib/gperftools/src/emergency_malloc.h | 2628 | `9ba7adeb1a2b70c842cab30f0fee938356d093277eee1fbbc422c6da93125287` | 0 |
@@ -4283,7 +4997,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | lib/gperftools/vendor/libbacktrace/testlib.c | 5867 | `df3819b03cb0773f8298e01d91e453dc5922d6f8a282d08c63d0768bdc253a22` | 0 |
 | lib/gperftools/vendor/libbacktrace/testlib.h | 3280 | `e1c7714f3aba0900df66e913b52d617530a08074b413d3f6b0f01b25b957b543` | 0 |
 | lib/gperftools/vendor/libbacktrace/ttest.c | 4276 | `df428a9cbfa314b32607a5b9ba02deeca994b7f5523280aaf6f5682edb600025` | 0 |
-| lib/gperftools/vendor/libbacktrace/unittest.c | 2599 | `74136e820ef980220af5eef80dd0536ee6f54c1a7a6d678b0dcef3669705268d` | 0 |
 | lib/gperftools/vendor/libbacktrace/unknown.c | 2418 | `7b57e16d0d4e64f81b7276d48e00089641f56b10b0793b5447c3d5961ff13724` | 0 |
 | lib/gperftools/vendor/libbacktrace/xcoff.c | 41946 | `ff30acc0050487b4af76695e5662794792fb7b9d72e5d0bd41521f0b0c2e673f` | 0 |
 | lib/gperftools/vendor/libbacktrace/xztest.c | 11938 | `5301fa31d53c24ba8391104597c3b1eaaa973f86974d184e5e52b732f2a67e29` | 0 |
@@ -5141,7 +5854,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p21/soroban-env-host/src/builtin_contracts/stellar_asset_contract/public_types.rs | 1318 | `84834c2fec3c9763ba73d89fdd44db86da9a35400e82401cd5ba04ed03874026` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/builtin_contracts/stellar_asset_contract/storage_types.rs | 1113 | `655a0cec594b78db2eeccabfe03e27f2ae0537c65729e456b604cbbdb579f298` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/builtin_contracts/storage_utils.rs | 362 | `216d16572291ac021fd3ee7a0ce6d4b1810f8dbee07fc2791bbf32236a75ed10` | 0 |
-| src/rust/soroban/p21/soroban-env-host/src/builtin_contracts/testutils.rs | 11060 | `d72eace5611ec5988f3a32a06ab52e8085823b3503b7f94d03def35d39795b74` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/compute_ed25519_pubkey.rs | 952 | `c679365a8825299630452cf28daf21f4e6cff1805ca06910bc4ce49300d04a7c` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/compute_keccak256_hash.rs | 916 | `c70f481dcea5eba30a4ae54ea476efec3fb3bf938d15987042aaeac222bbef3d` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/cost_types/compute_sha256_hash.rs | 902 | `5ef3a4dc6cbe4050c2b5d88e4bb438d948d21339ca57ab3fa9738285ea86d185` | 0 |
@@ -5176,7 +5888,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/runner.rs | 4175 | `3b52809532b30053143a982ab1c7ca72ae810e02b13c80b6ae15d1602241c664` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/cost_runner/util.rs | 1548 | `8d9741de3bc0ab1c9b3e4179d35cd04d8d61d9e5e42101a87763ba8f62325f92` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/e2e_invoke.rs | 33424 | `8a3b090887f7078ccb34d134117a0bc0b1fcc10e43d2c40e989386e8cdcab8f0` | 0 |
-| src/rust/soroban/p21/soroban-env-host/src/e2e_testutils.rs | 10219 | `6d7e109ac6dff91a99c289e9134b09b10c3728449dec272e49028803d5453627` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/events/diagnostic.rs | 5724 | `cc9c9e7ed0036b849e7c42d73faf4e028fcf00a79d9d8b9e2bf8513eae78e6b6` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/events/internal.rs | 10770 | `e8e2f8e1c189d006db1d648f083857b519eb37c63012e25423b9e1c7ea58b64d` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/events/mod.rs | 6989 | `55902e2c28907e67e261eed174e060d9f4f4633cf0c19ce8dc7373623812119e` | 0 |
@@ -5208,7 +5919,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p21/soroban-env-host/src/lib.rs | 1992 | `2cbe4d1cee3c1fb46629189a2b1d7520c8c498321ffe293de1c40d0a091c0a62` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/macros.rs | 2394 | `9f4ae1003353842d0b43727fab8047c44af9fe781092d62ff513db5a5c1ccafe` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/storage.rs | 30128 | `8649ce51069b9f17d2997b8560cf9833318656eb39b235ade33f2d52fe56058d` | 0 |
-| src/rust/soroban/p21/soroban-env-host/src/testutils.rs | 41174 | `ffc1b4b489e8ee867f7e826d32e9f3071962c4fceee58e7ed6b5a79aa27af839` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/vm.rs | 24038 | `e080386c7fe54324bb9474d8ad6ac121cd2abce8602b2d3ac5a21b33c7456be0` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/vm/dispatch.rs | 13221 | `35209bf562e299ce3928b180192fc26c9c4c0d153a704cea89bc07571dc05a22` | 0 |
 | src/rust/soroban/p21/soroban-env-host/src/vm/fuel_refillable.rs | 2310 | `b8e65b7971534028a2e4f2e865653cee23252a4b750ba5c9da35071b7b1cb110` | 0 |
@@ -5226,7 +5936,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p21/soroban-simulation/src/resources.rs | 12351 | `cb4c45866e7b80e590a542d96cc2b163500aabf4c66fa9c6c35b5cba681248e8` | 0 |
 | src/rust/soroban/p21/soroban-simulation/src/simulation.rs | 14279 | `1c49e7268cdddd6f7b2e57eeabc29dc58c0f5bca97a917583651158a8ac8e4f4` | 0 |
 | src/rust/soroban/p21/soroban-simulation/src/snapshot_source.rs | 10988 | `f491f1dc868e10849ad7102d8728f04efed8a015a0fc64d889abd46a79f4eb81` | 0 |
-| src/rust/soroban/p21/soroban-simulation/src/testutils.rs | 4012 | `c3120c9a6ba757fab7ae30ba4638c617f5823d3c4a3f16bb12bb6cbab19f575c` | 0 |
 | src/rust/soroban/p21/soroban-synth-wasm/Cargo.toml | 809 | `716d98debb3338990d4d706eec504fc8dea0bad1f4a52626eae0da6e4ae138be` | 0 |
 | src/rust/soroban/p21/soroban-synth-wasm/src/expr.rs | 3370 | `20abb89282b4fcc30d85aa162b3edf8c49cd59a5d90ebc6bfd6ae6a24eacc3cd` | 0 |
 | src/rust/soroban/p21/soroban-synth-wasm/src/func_emitter.rs | 15938 | `38d2d41444363114390bd9272701b0441a27402584df4983a08e075b7b9440e2` | 0 |
@@ -5355,7 +6064,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p22/soroban-env-host/src/builtin_contracts/stellar_asset_contract/public_types.rs | 1318 | `84834c2fec3c9763ba73d89fdd44db86da9a35400e82401cd5ba04ed03874026` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/builtin_contracts/stellar_asset_contract/storage_types.rs | 1113 | `655a0cec594b78db2eeccabfe03e27f2ae0537c65729e456b604cbbdb579f298` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/builtin_contracts/storage_utils.rs | 362 | `216d16572291ac021fd3ee7a0ce6d4b1810f8dbee07fc2791bbf32236a75ed10` | 0 |
-| src/rust/soroban/p22/soroban-env-host/src/builtin_contracts/testutils.rs | 11060 | `d72eace5611ec5988f3a32a06ab52e8085823b3503b7f94d03def35d39795b74` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/cost_runner/cost_types/bls12_381.rs | 10204 | `965dff98b1d17f2c58dd07697781db1c8033193651fb14d4473b091fb6ab43c4` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/cost_runner/cost_types/compute_ed25519_pubkey.rs | 952 | `c679365a8825299630452cf28daf21f4e6cff1805ca06910bc4ce49300d04a7c` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/cost_runner/cost_types/compute_keccak256_hash.rs | 916 | `c70f481dcea5eba30a4ae54ea476efec3fb3bf938d15987042aaeac222bbef3d` | 0 |
@@ -5394,7 +6102,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p22/soroban-env-host/src/crypto/bls12_381.rs | 32393 | `e5a30609cf9ed9d774b3bff1cf2b74f8bc251f33c9ecdcdd5adf799e11140c20` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/crypto/mod.rs | 13040 | `ccbe1563db40bf085dacdc7d468d0ac5b3230274e1ac237509c81868c8af8411` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/e2e_invoke.rs | 33624 | `8b66f124a417ec6f58844d675a5231ba2cd5dbe2f25dd8085b79dcfb32b1f5c0` | 0 |
-| src/rust/soroban/p22/soroban-env-host/src/e2e_testutils.rs | 11470 | `e1aea83e5cd999e44161d9c61dddf1812545cc6e6d9c7f692e8d635fc0501878` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/events/diagnostic.rs | 5724 | `cc9c9e7ed0036b849e7c42d73faf4e028fcf00a79d9d8b9e2bf8513eae78e6b6` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/events/internal.rs | 10770 | `e8e2f8e1c189d006db1d648f083857b519eb37c63012e25423b9e1c7ea58b64d` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/events/mod.rs | 8183 | `a9a1455bf98a301a7f6b55e2f70cfc3b4af16e9c864f6a87724d93c7e63013e0` | 0 |
@@ -5425,7 +6132,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p22/soroban-env-host/src/lib.rs | 2014 | `8318b8c3fdfc678a2ff9db0ee47163e26ba2d2bc17f9159b9de89779ba2671bc` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/macros.rs | 2394 | `9f4ae1003353842d0b43727fab8047c44af9fe781092d62ff513db5a5c1ccafe` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/storage.rs | 30128 | `8649ce51069b9f17d2997b8560cf9833318656eb39b235ade33f2d52fe56058d` | 0 |
-| src/rust/soroban/p22/soroban-env-host/src/testutils.rs | 42030 | `6b93fa0b1f7870bd91b6f1dda6e6d8d3f107d4f26dcdb14f823cde60f287d174` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/vm.rs | 25112 | `42618857ff314631dfd45464af3cc0cd5264092fc06507573da4c602a90c0ee6` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/vm/dispatch.rs | 13221 | `35209bf562e299ce3928b180192fc26c9c4c0d153a704cea89bc07571dc05a22` | 0 |
 | src/rust/soroban/p22/soroban-env-host/src/vm/fuel_refillable.rs | 2310 | `b8e65b7971534028a2e4f2e865653cee23252a4b750ba5c9da35071b7b1cb110` | 0 |
@@ -5443,7 +6149,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p22/soroban-simulation/src/resources.rs | 12351 | `cb4c45866e7b80e590a542d96cc2b163500aabf4c66fa9c6c35b5cba681248e8` | 0 |
 | src/rust/soroban/p22/soroban-simulation/src/simulation.rs | 14279 | `1c49e7268cdddd6f7b2e57eeabc29dc58c0f5bca97a917583651158a8ac8e4f4` | 0 |
 | src/rust/soroban/p22/soroban-simulation/src/snapshot_source.rs | 10988 | `f491f1dc868e10849ad7102d8728f04efed8a015a0fc64d889abd46a79f4eb81` | 0 |
-| src/rust/soroban/p22/soroban-simulation/src/testutils.rs | 3565 | `e6f3646ea375d2593b0b8b6854a8308e26b35541ecabbcde5948ac8602658baa` | 0 |
 | src/rust/soroban/p22/soroban-synth-wasm/Cargo.toml | 809 | `716d98debb3338990d4d706eec504fc8dea0bad1f4a52626eae0da6e4ae138be` | 0 |
 | src/rust/soroban/p22/soroban-synth-wasm/src/expr.rs | 3370 | `20abb89282b4fcc30d85aa162b3edf8c49cd59a5d90ebc6bfd6ae6a24eacc3cd` | 0 |
 | src/rust/soroban/p22/soroban-synth-wasm/src/func_emitter.rs | 15938 | `38d2d41444363114390bd9272701b0441a27402584df4983a08e075b7b9440e2` | 0 |
@@ -5584,7 +6289,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p23/soroban-env-host/src/builtin_contracts/stellar_asset_contract/public_types.rs | 1318 | `84834c2fec3c9763ba73d89fdd44db86da9a35400e82401cd5ba04ed03874026` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/builtin_contracts/stellar_asset_contract/storage_types.rs | 1113 | `655a0cec594b78db2eeccabfe03e27f2ae0537c65729e456b604cbbdb579f298` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/builtin_contracts/storage_utils.rs | 362 | `216d16572291ac021fd3ee7a0ce6d4b1810f8dbee07fc2791bbf32236a75ed10` | 0 |
-| src/rust/soroban/p23/soroban-env-host/src/builtin_contracts/testutils.rs | 12166 | `d7cfa0520c24dc9360d9126071f8ef48b88103196b29726dc9571cdc181c9af0` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/cost_runner/cost_types/bls12_381.rs | 10204 | `965dff98b1d17f2c58dd07697781db1c8033193651fb14d4473b091fb6ab43c4` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/cost_runner/cost_types/compute_ed25519_pubkey.rs | 952 | `c679365a8825299630452cf28daf21f4e6cff1805ca06910bc4ce49300d04a7c` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/cost_runner/cost_types/compute_keccak256_hash.rs | 916 | `c70f481dcea5eba30a4ae54ea476efec3fb3bf938d15987042aaeac222bbef3d` | 0 |
@@ -5623,7 +6327,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p23/soroban-env-host/src/crypto/bls12_381.rs | 32386 | `53570a02f948b812a40b6ebf41054c842020a8c968639867c4a6d96508e4a136` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/crypto/mod.rs | 13040 | `ccbe1563db40bf085dacdc7d468d0ac5b3230274e1ac237509c81868c8af8411` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/e2e_invoke.rs | 45273 | `edb371aed251cd24236eb363f4ed427b74c696b105acf0d1fb59c2af80ca7932` | 0 |
-| src/rust/soroban/p23/soroban-env-host/src/e2e_testutils.rs | 11747 | `1e004e07778f6c0c921cb36f95e400435e6d59062a9f9f1663cd5cd80aa321bc` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/events/diagnostic.rs | 5750 | `a66118d5747c50c89b1c7e1fa859b6b43b91f10add59353f274b115e3a171776` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/events/internal.rs | 10946 | `1bbfaa4dbdb10c8d256d8a7722473da598b3d543b8bd7e07e20b55b198d34028` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/events/mod.rs | 9153 | `f9ad2d0f0c9e9fc74885433e1bafd8a3045f499176a4fb44c339ecb2fc0c0742` | 0 |
@@ -5655,7 +6358,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p23/soroban-env-host/src/lib.rs | 2180 | `66a4ba6676268b0bcd59c1fb00a29f07e6c19b021e45244932a01a415f0247be` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/macros.rs | 3069 | `40406f573892430b2bdfce358923e0cd47bd06e0c2ab7d472a15f09b9a06b57d` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/storage.rs | 29990 | `5b05f3c0062dae790d1f9c06971f9ed36ebc6876c6bdf691d6bdbe5797d30bcc` | 0 |
-| src/rust/soroban/p23/soroban-env-host/src/testutils.rs | 42213 | `987c1309fba500c5b9168c4ad3d3aad0577688299de0cbf82a314c7c62aaed92` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/vm.rs | 20025 | `459a4c1e5805bb10bcd2e0a85ba58cd580e57ed64c49f196a86c1f77fe3a5c4a` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/vm/dispatch.rs | 13315 | `8f4f99793318ced48d810a380213945cd50f4f92992ae2baab7cb913f8f0e404` | 0 |
 | src/rust/soroban/p23/soroban-env-host/src/vm/fuel_refillable.rs | 2310 | `b8e65b7971534028a2e4f2e865653cee23252a4b750ba5c9da35071b7b1cb110` | 0 |
@@ -5673,7 +6375,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p23/soroban-simulation/src/resources.rs | 12449 | `dbfb46469d7539d86911d8487aaf303b365de52c38fc62e383274b3b4534921c` | 0 |
 | src/rust/soroban/p23/soroban-simulation/src/simulation.rs | 15415 | `7278d70854bd6bed517560045aa282014568533401e5965b8d71813c5f3f40b7` | 0 |
 | src/rust/soroban/p23/soroban-simulation/src/snapshot_source.rs | 9727 | `bb6febacc3e5729108305606c7724931ccc7ef67db9806f2b17f0097810e387c` | 0 |
-| src/rust/soroban/p23/soroban-simulation/src/testutils.rs | 2772 | `6e1089e18f46f0b0403c6dd304307dd1debe481701574a306621e1654d1752aa` | 0 |
 | src/rust/soroban/p23/soroban-synth-wasm/Cargo.toml | 809 | `716d98debb3338990d4d706eec504fc8dea0bad1f4a52626eae0da6e4ae138be` | 0 |
 | src/rust/soroban/p23/soroban-synth-wasm/src/expr.rs | 3370 | `20abb89282b4fcc30d85aa162b3edf8c49cd59a5d90ebc6bfd6ae6a24eacc3cd` | 0 |
 | src/rust/soroban/p23/soroban-synth-wasm/src/func_emitter.rs | 15938 | `38d2d41444363114390bd9272701b0441a27402584df4983a08e075b7b9440e2` | 0 |
@@ -5818,7 +6519,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p24/soroban-env-host/src/builtin_contracts/stellar_asset_contract/public_types.rs | 1318 | `84834c2fec3c9763ba73d89fdd44db86da9a35400e82401cd5ba04ed03874026` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/builtin_contracts/stellar_asset_contract/storage_types.rs | 1113 | `655a0cec594b78db2eeccabfe03e27f2ae0537c65729e456b604cbbdb579f298` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/builtin_contracts/storage_utils.rs | 362 | `216d16572291ac021fd3ee7a0ce6d4b1810f8dbee07fc2791bbf32236a75ed10` | 0 |
-| src/rust/soroban/p24/soroban-env-host/src/builtin_contracts/testutils.rs | 12166 | `d7cfa0520c24dc9360d9126071f8ef48b88103196b29726dc9571cdc181c9af0` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/cost_runner/cost_types/bls12_381.rs | 10204 | `965dff98b1d17f2c58dd07697781db1c8033193651fb14d4473b091fb6ab43c4` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/cost_runner/cost_types/compute_ed25519_pubkey.rs | 952 | `c679365a8825299630452cf28daf21f4e6cff1805ca06910bc4ce49300d04a7c` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/cost_runner/cost_types/compute_keccak256_hash.rs | 916 | `c70f481dcea5eba30a4ae54ea476efec3fb3bf938d15987042aaeac222bbef3d` | 0 |
@@ -5857,7 +6557,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p24/soroban-env-host/src/crypto/bls12_381.rs | 32386 | `53570a02f948b812a40b6ebf41054c842020a8c968639867c4a6d96508e4a136` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/crypto/mod.rs | 13040 | `ccbe1563db40bf085dacdc7d468d0ac5b3230274e1ac237509c81868c8af8411` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/e2e_invoke.rs | 45261 | `e136857e26a7fe1fb4e16ad9a5398ab258b736391e5e8b2b9144321237b45a3a` | 0 |
-| src/rust/soroban/p24/soroban-env-host/src/e2e_testutils.rs | 11747 | `1e004e07778f6c0c921cb36f95e400435e6d59062a9f9f1663cd5cd80aa321bc` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/events/diagnostic.rs | 5750 | `a66118d5747c50c89b1c7e1fa859b6b43b91f10add59353f274b115e3a171776` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/events/internal.rs | 11050 | `44c6828241d86a89af619d88026b57b38a7915632a8d163716c4afe9ac6743be` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/events/mod.rs | 9660 | `763d64d569ba98e1ebfa0491a263291b8004d170629d6ae6902435ced6c92436` | 0 |
@@ -5877,9 +6576,38 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/rust/soroban/p24/soroban-env-host/src/host/metered_clone.rs | 25638 | `43de045d53cf824b83407c440275bf9d7498f0f9e5fbd6be04629889f92cc3a6` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/host/metered_hash.rs | 2482 | `3792f8eea8df5b983fb363b0a282f8e91e3b7dfca5a424484cb5d3e0ae5c056b` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/host/metered_map.rs | 15359 | `f81c4b76b8487f4f6d849751cd26353bf8778ecf0916266cf2e5fb09fd2e5b5c` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/host/metered_vector.rs | 14304 | `b872b5c595424df07bd377fa16ba3d5e10d43109bf66fe2420286c9f2bf847ce` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/host/metered_xdr.rs | 2650 | `22e70db0f290b025fb1e992b230564210a7b315c9ea7dca1e3e28609c64b7a52` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/host/num.rs | 2933 | `e188fe8582e1ff99f1ed9123e6f30bbd3903c89c6ba3d31644c1d7a3c1e983df` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/host/prng.rs | 8157 | `eeed1bff44661301241a4bd31c87705cc202eb8efd829763646947091bb6de39` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/host/trace.rs | 13278 | `9dccf1335c089462ef22bde75e4cce6dd7ecc706d00089484122f5cc8c1f28cb` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/host/trace/fmt.rs | 7968 | `cd88957494c05f14961fccbd99707a506a08cd246ec6d063ff1fb1a1c252fd7d` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/host/validity.rs | 1818 | `b5c6baa004d08a398e6553f5336c5c1dc2ccb099dfdc0ed708ed967147c883d5` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/host_object.rs | 21487 | `1bd3907c903587b2854f7ff05f8326f19a72ed51970e436cb2b8f19f5b6474d1` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/ledger_info.rs | 1348 | `5a7d202b945c0e639624746f926040eb873f640217652d55fb68fbc5acfb1f4c` | 0 |
 | src/rust/soroban/p24/soroban-env-host/src/lib.rs | 2180 | `66a4ba6676268b0bcd59c1fb00a29f07e6c19b021e45244932a01a415f0247be` | 0 |
-| src/rust/soroban/p25/soroban-bench-utils/src/lib.rs | 75 | `4ed9af88c90c8137a175e9b2e583a3076ef13bc4911e133e889aa6f559caeeab` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/macros.rs | 3069 | `40406f573892430b2bdfce358923e0cd47bd06e0c2ab7d472a15f09b9a06b57d` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/storage.rs | 30998 | `55d30acc860800d25639f01cbe8076f534ec0d4fc17f6a2545416d20549a83d4` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/vm.rs | 20025 | `459a4c1e5805bb10bcd2e0a85ba58cd580e57ed64c49f196a86c1f77fe3a5c4a` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/vm/dispatch.rs | 13315 | `8f4f99793318ced48d810a380213945cd50f4f92992ae2baab7cb913f8f0e404` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/vm/fuel_refillable.rs | 2310 | `b8e65b7971534028a2e4f2e865653cee23252a4b750ba5c9da35071b7b1cb110` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/vm/func_info.rs | 6266 | `80fa97bf3e4b23155b0d52e9694d3f3351f2109f61b7a2bdf1df591f4df0d579` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/vm/module_cache.rs | 7540 | `f76b737e4f6a91bc8f7a9b75ac19c08020bc51f8aec27dbcc44e275924c6eab6` | 0 |
+| src/rust/soroban/p24/soroban-env-host/src/vm/parsed_module.rs | 31359 | `cba6264ca734976cdffeded7ee037eaa3ae9e2869ce75f288318bb8567c5bd34` | 0 |
+| src/rust/soroban/p24/soroban-env-macros/Cargo.toml | 736 | `d833e8b411fd3f88761e5f9cdee0b508b8984887deb703d07fb61c11a427381b` | 0 |
+| src/rust/soroban/p24/soroban-env-macros/src/call_macro_with_all_host_functions.rs | 5354 | `44cc078e72635e4869c16316e5d11c1aed11a61f3906fcccf51a058b96fadb18` | 0 |
+| src/rust/soroban/p24/soroban-env-macros/src/lib.rs | 7835 | `454022a03082aa7432b4bbcd88eb653b77f563d0d4f1d5d37170f57855c5c88d` | 0 |
+| src/rust/soroban/p24/soroban-env-macros/src/path.rs | 561 | `6d186fe3120e11b1deb22d5faa6005b68ded100c76cfde483d729fe8ea15c813` | 0 |
+| src/rust/soroban/p24/soroban-env-macros/src/synth_wasm_expr_type.rs | 12311 | `350dc56852495c24af799b1398a490f31eba313fc273a106a6997c346b96ed0f` | 0 |
+| src/rust/soroban/p24/soroban-simulation/Cargo.toml | 1055 | `f433950b59bf4790021894ef1c16e9aa6750a68e095bdfbbd7d45479713917a5` | 0 |
+| src/rust/soroban/p24/soroban-simulation/src/lib.rs | 253 | `c554a9c4dc9655d33e65137f3e6b8f1335b256da59ea5460150c8b4e37b3b752` | 0 |
+| src/rust/soroban/p24/soroban-simulation/src/network_config.rs | 6694 | `4c58115a603c918557b85d3693866e0792506648ef32b475449bd48cce5b113b` | 0 |
+| src/rust/soroban/p24/soroban-simulation/src/resources.rs | 12449 | `dbfb46469d7539d86911d8487aaf303b365de52c38fc62e383274b3b4534921c` | 0 |
+| src/rust/soroban/p24/soroban-synth-wasm/Cargo.toml | 809 | `716d98debb3338990d4d706eec504fc8dea0bad1f4a52626eae0da6e4ae138be` | 0 |
+| src/rust/soroban/p24/soroban-synth-wasm/src/expr.rs | 3370 | `20abb89282b4fcc30d85aa162b3edf8c49cd59a5d90ebc6bfd6ae6a24eacc3cd` | 0 |
+| src/rust/soroban/p24/soroban-synth-wasm/src/lib.rs | 1130 | `b94fdbd1d86e3438c269123a6f6c9426e0791bf3b60d81d7b0b40dceb9544328` | 0 |
+| src/rust/soroban/p24/soroban-test-wasms/Cargo.toml | 241 | `6eef4c0875ef4d266d255a5f5c6bdfee377c1d347b4f7e5418f6ee1134739280` | 0 |
+| src/rust/soroban/p24/soroban-test-wasms/wasm-workspace/add_f32/Cargo.toml | 309 | `549e4c2516c26da535fbc0adede29e1e326c418737f90a536b6edb4059bd3eb2` | 0 |
+| src/rust/soroban/p24/soroban-test-wasms/wasm-workspace/add_f32/src/lib.rs | 336 | `099703bd2f3f4088add74ae0d0f900d1cddb16967d483ca76480bd37e5aaa525` | 0 |
+| src/rust/soroban/p24/soroban-test-wasms/wasm-workspace/add_i32/Cargo.toml | 309 | `dd8f899b62614dd9aa7b485eb5de3b02b65c0f341c828e7c86fa01c0ef893d9f` | 0 |
+| src/rust/soroban/p24/soroban-test-wasms/wasm-workspace/constructor_with_return_value/src/lib.rs | 234 | `c30ae802d69000e032c778d0558e7a3cd1fc93750e69f617a27d5a281b812522` | 0 |

@@ -61,4 +61,12 @@ algorithm per location), not call sites. The Fabric hybrid rows are inferred fro
 marked low confidence. A build that sets `GODEBUG=tlsmlkem=0` would not have them. Private submodules and closed
 components (for example Canton's enterprise modules, Circle's custody stack) were not available and are not covered.
 
+## Correction, 2026-11-19
+
+Arc's own-code rows in the summary counted three SLH-DSA rows from test-support code: `pq_test_vectors.rs`, which
+arc-node's precompiles compile only under `#[cfg(any(test, feature = "test-utils"))]`, and the tool that generates those
+vectors. Re-audited at the same commit, on the same tree, the bundle in `studies/institutional/arc-node` gives **34**
+own-code rows (was 37) and **12** Shor-breakable (unchanged). The SLH-DSA verification precompile is unaffected, and no
+other platform's figures change. The README's dated section of the same day gives the measurement.
+
 *QSI — quantum-readiness inventory of cryptography. Contact: alekseykoksin@gmail.com.*

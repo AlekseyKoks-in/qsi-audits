@@ -4,29 +4,29 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 12:50 UTC |
+| Дата отчёта | 2026-11-19 17:39 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 3ced1c5b-bd11-46cb-980b-117c1407c2c9 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | 89966310-f0f6-48a4-beab-4ecc345a8983 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.6.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `ccca0cb5e9296152a5b2191011a5dd1c3bc67086ea2bcd6d9ded783c5e6ea570` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `bb41ff4a30c95a7fb927bcfd2ccf40e3f60d0c46c9ac924d9eaf1390a2136636` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
 - Высокая: **9**
-- Средняя: **3**
-- Низкая: **14**
-- Информационная: **32**
+- Средняя: **6**
+- Низкая: **12**
+- Информационная: **28**
 
 - Подтверждённая техническая уязвимость: 0
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
-- Потенциальный криптографический риск: 11
+- Потенциальный криптографический риск: 14
 - Долгосрочный постквантовый риск: 1
-- Рекомендация по улучшению: 45
+- Рекомендация по улучшению: 39
 - Недостаточность данных: 1
 
 Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
@@ -39,18 +39,18 @@
 
 Репозиторий: <https://github.com/aave-dao/aave-v3-origin> @ `8305565ae342f1773c42cd2e4593f175fe5968a0` — ссылки в доказательствах открывают строки на этом коммите.
 
-645 файлов, всего 3567520 байт, редактирований: 44; список SHA-256 по файлам — в приложении C.
+569 файлов, всего 3459494 байт, редактирований: 44; список SHA-256 по файлам — в приложении C.
 
 ## 3. Методология
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| smart_contracts | проверено | 520 | certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol: built-in Solidity pattern checks; certora/atoken-with-delegation/harness/DummyERC20Impl.sol: built-in Solidity pattern checks; certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol: built-in Solidity pattern checks |
-| slither | не проверено | 520 | slither is not installed on the server (pip install slither-analyzer + solc) |
-| source_code | проверено | 113 | echidna-parser.py: 70 lines scanned with 16 rule patterns and 266 registry patterns; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.mocharc.js: 4 lines scanned with 16 rule patterns and 266 registry patterns; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.solcover.js: 21 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 111 | echidna-parser.py: 70 lines scanned with 16 rule patterns and 280 registry patterns; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.mocharc.js: 4 lines scanned with 16 rule patterns and 280 registry patterns; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.solcover.js: 21 lines scanned with 16 rule patterns and 280 registry patterns |
 | dependencies | проверено | 12 | package-lock.json: 110 dependencies parsed (110 pinned); package.json: 4 dependencies parsed (1 pinned); lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/package.json: 1 dependencies parsed (1 pinned) |
+| smart_contracts | проверено | 446 | scripts/DeployAaveV3MarketBatched.sol: built-in Solidity pattern checks; scripts/misc/DeployAaveV3MarketBatchedBase.sol: built-in Solidity pattern checks; scripts/misc/LibraryPreCompileOne.sol: built-in Solidity pattern checks |
+| slither | не проверено | 446 | slither is not installed on the server (pip install slither-analyzer + solc) |
 | secrets | проверено | 43 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| entropy | проверено | 1 | random-number generation: 113 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| entropy | проверено | 1 | random-number generation: 111 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | проверено | 1 | 852 pinned packages queried at OSV.dev; 53 affected (53 of them only in development or build dependencies) |
 | osv_advisories | Недостаточность данных | 2 | npm/axios@1.6.8: 31 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/undici@6.12.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
@@ -58,27 +58,27 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 4. Проверенные и непроверенные активы
 
-- slither — не проверено: 520 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
+- slither — не проверено: 446 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
 - osv_advisories — Недостаточность данных: 2 (примеры: npm/axios@1.6.8: 31 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/undici@6.12.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree aave-v3-origin at 8305565ae342f1773c42cd2e4593f175fe5968a0. 645 files analysed; of 2245 files, 985 are test, fuzzing, benchmark or example code and were left out, 615 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .changeset/README.md, .changeset/config.json, .editorconfig, .env.example, .gitattributes. 697 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 420 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: lib/solidity-utils (420). No requests were sent to the owner's systems.
+Static review of the source tree aave-v3-origin at 8305565ae342f1773c42cd2e4593f175fe5968a0. 569 files analysed; of 2245 files, 1314 are test, fuzzing, benchmark or example code and were left out, 362 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .changeset/README.md, .changeset/config.json, .editorconfig, .env.example, .gitattributes. 697 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 376 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: lib/solidity-utils (376). No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **29** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 2.2%
+- Ориентировочный индекс состояния: **20** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 1.2%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-17557 — Использование delegatecall в src/contracts/dependencies/openzeppelin/contracts/Address.sol
+### QSI-2026-32489 — Использование delegatecall в src/contracts/dependencies/openzeppelin/contracts/Address.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/contracts/Address.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/contracts/Address.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -110,13 +110,13 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/Address.sol]
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17559 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol
+### QSI-2026-32491 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -148,13 +148,13 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/BaseAdm
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17560 — initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol
+### QSI-2026-32492 — initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -186,13 +186,13 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/Initial
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17561 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
+### QSI-2026-32493 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -224,13 +224,13 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/Initial
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17562 — initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
+### QSI-2026-32494 — initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -262,13 +262,13 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/Initial
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17563 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol
+### QSI-2026-32495 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -300,13 +300,13 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/Upgrade
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17567 — Использование delegatecall в src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol
+### QSI-2026-32502 — Использование delegatecall в src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -338,13 +338,13 @@ _file_excerpt · [src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgra
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17570 — initialize() без модификатора initializer в src/contracts/protocol/libraries/logic/ReserveLogic.sol
+### QSI-2026-32505 — initialize() без модификатора initializer в src/contracts/protocol/libraries/logic/ReserveLogic.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/protocol/libraries/logic/ReserveLogic.sol`
 - Источник данных: src/contracts/protocol/libraries/logic/ReserveLogic.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -376,13 +376,13 @@ _file_excerpt · [src/contracts/protocol/libraries/logic/ReserveLogic.sol](https
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17601 — Использование delegatecall в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
+### QSI-2026-32532 — Использование delegatecall в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -414,51 +414,13 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17553 — Прямое использование ecrecover в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
-
-- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `contract:certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol`
-- Источник данных: certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
-- Балл приоритета: 43.6 / 100
-- CVSS v3.1: неприменимо
-
-ecrecover в строка 98. (см. SWC-117/SWC-121)
-
-**Возможные последствия.** Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).
-
-**Шаги воспроизведения.**
-
-```
-Откройте строка 98 в предоставленном файле certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol#L98) · line 98 · SHA-256 f341d040eab32a32d8c57d399be1f82e3cb0ddd7c9dce1f1a28cbbe4a62b96b4_
-
-```
-   96 |     bytes32 s
-   97 |   ) public pure returns (address) {
-   98 |     return ecrecover(hash, v, r, s);
-   99 |   }
-  100 |   function computeMetaDelegateHash(
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-17602 — Прямое использование ecrecover в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
+### QSI-2026-32534 — Прямое использование ecrecover в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -490,37 +452,181 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17552 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
+### QSI-2026-32498 — Цена Chainlink используется без проверки свежести (latestAnswer()) в src/contracts/helpers/UiIncentiveDataProviderV3.sol
+
+- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:src/contracts/helpers/UiIncentiveDataProviderV3.sol`
+- Источник данных: src/contracts/helpers/UiIncentiveDataProviderV3.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
+- Балл приоритета: 37.6 / 100
+- CVSS v3.1: неприменимо
+
+latestAnswer() в строка 92: время последнего обновления не читается. (см. —)
+
+**Возможные последствия.** Фид, переставший обновляться — приостановленный или снятый агрегатор, перегруженная сеть, остановка секвенсора в роллапе, — продолжает возвращать последний ответ. Кредитование, ликвидации и выпуск тогда работают по устаревшей цене.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 92 в предоставленном файле src/contracts/helpers/UiIncentiveDataProviderV3.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/contracts/helpers/UiIncentiveDataProviderV3.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/helpers/UiIncentiveDataProviderV3.sol#L92) · line 92 · SHA-256 66d9a508846f1b1aaa300cccb15202929215b6dddf3955a5f0b709ddc42ef26a_
+
+```
+   90 |           rewardInformation.rewardPriceFeed = AggregatorInterface(
+   91 |             rewardInformation.rewardOracleAddress
+   92 |           ).latestAnswer();
+   93 | 
+   94 |           aRewardsInformation[j] = rewardInformation;
+```
+
+_file_excerpt · [src/contracts/helpers/UiIncentiveDataProviderV3.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/helpers/UiIncentiveDataProviderV3.sol#L146) · line 146 · SHA-256 f0adaa3e28365364ec9f33f3395a9365d6315f2bfc714d343fa2322922b71cde_
+
+```
+  144 |           rewardInformation.rewardPriceFeed = AggregatorInterface(
+  145 |             rewardInformation.rewardOracleAddress
+  146 |           ).latestAnswer();
+  147 | 
+  148 |           vRewardsInformation[j] = rewardInformation;
+```
+
+_file_excerpt · [src/contracts/helpers/UiIncentiveDataProviderV3.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/helpers/UiIncentiveDataProviderV3.sol#L226) · line 226 · SHA-256 634b2c5152d58c2ed11d610fd3ffdd7c981d9da04b0b66af8286770fbffd3b61_
+
+```
+  224 |           userRewardInformation.rewardPriceFeed = AggregatorInterface(
+  225 |             userRewardInformation.rewardOracleAddress
+  226 |           ).latestAnswer();
+  227 | 
+  228 |           aUserRewardsInformation[j] = userRewardInformation;
+```
+
+_file_excerpt · [src/contracts/helpers/UiIncentiveDataProviderV3.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/helpers/UiIncentiveDataProviderV3.sol#L279) · line 279 · SHA-256 43a36ec2cfb080f93949f2886ba5496d654bc4ce1ef4110a5f7ab51ecdc42b29_
+
+```
+  277 |           userRewardInformation.rewardPriceFeed = AggregatorInterface(
+  278 |             userRewardInformation.rewardOracleAddress
+  279 |           ).latestAnswer();
+  280 | 
+  281 |           vUserRewardsInformation[j] = userRewardInformation;
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Читайте updatedAt из latestRoundData и отклоняйте ответы старше heartbeat фида; отклоняйте неположительные ответы; в роллапах сверяйтесь с фидом работоспособности секвенсора.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-32499 — Цена Chainlink используется без проверки свежести (latestAnswer()) в src/contracts/helpers/UiPoolDataProviderV3.sol
+
+- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:src/contracts/helpers/UiPoolDataProviderV3.sol`
+- Источник данных: src/contracts/helpers/UiPoolDataProviderV3.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
+- Балл приоритета: 37.6 / 100
+- CVSS v3.1: неприменимо
+
+latestAnswer() в строка 155: время последнего обновления не читается. (см. —)
+
+**Возможные последствия.** Фид, переставший обновляться — приостановленный или снятый агрегатор, перегруженная сеть, остановка секвенсора в роллапе, — продолжает возвращать последний ответ. Кредитование, ликвидации и выпуск тогда работают по устаревшей цене.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 155 в предоставленном файле src/contracts/helpers/UiPoolDataProviderV3.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/contracts/helpers/UiPoolDataProviderV3.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/helpers/UiPoolDataProviderV3.sol#L155) · line 155 · SHA-256 c42aa6d132cec92c32e79fd1d29e0547629e03c59bdaf4af499924a55c1b4a50_
+
+```
+  153 |     BaseCurrencyInfo memory baseCurrencyInfo;
+  154 |     baseCurrencyInfo.networkBaseTokenPriceInUsd = networkBaseTokenPriceInUsdProxyAggregator
+  155 |       .latestAnswer();
+  156 |     baseCurrencyInfo.networkBaseTokenPriceDecimals = networkBaseTokenPriceInUsdProxyAggregator
+  157 |       .decimals();
+```
+
+_file_excerpt · [src/contracts/helpers/UiPoolDataProviderV3.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/helpers/UiPoolDataProviderV3.sol#L168) · line 168 · SHA-256 b62663724136035d79e85042c93863ecf5557c6cc497fc284f04c37fc9a10dd5_
+
+```
+  166 |       baseCurrencyInfo
+  167 |         .marketReferenceCurrencyPriceInUsd = marketReferenceCurrencyPriceInUsdProxyAggregator
+  168 |         .latestAnswer();
+  169 |     }
+  170 | 
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Читайте updatedAt из latestRoundData и отклоняйте ответы старше heartbeat фида; отклоняйте неположительные ответы; в роллапах сверяйтесь с фидом работоспособности секвенсора.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-32501 — Цена Chainlink используется без проверки свежести (latestAnswer()) в src/contracts/misc/AaveOracle.sol
+
+- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:src/contracts/misc/AaveOracle.sol`
+- Источник данных: src/contracts/misc/AaveOracle.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
+- Балл приоритета: 37.6 / 100
+- CVSS v3.1: неприменимо
+
+latestAnswer() в строка 109: время последнего обновления не читается. (см. —)
+
+**Возможные последствия.** Фид, переставший обновляться — приостановленный или снятый агрегатор, перегруженная сеть, остановка секвенсора в роллапе, — продолжает возвращать последний ответ. Кредитование, ликвидации и выпуск тогда работают по устаревшей цене.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 109 в предоставленном файле src/contracts/misc/AaveOracle.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/contracts/misc/AaveOracle.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/misc/AaveOracle.sol#L109) · line 109 · SHA-256 6ab93b6de91e0e6a99154bb098254aa5bfe4991f7eec005ca0c42e5b9dc4c1ab_
+
+```
+  107 |       return _fallbackOracle.getAssetPrice(asset);
+  108 |     } else {
+  109 |       int256 price = source.latestAnswer();
+  110 |       if (price > 0) {
+  111 |         // forge-lint: disable-next-line(unsafe-typecast)
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Читайте updatedAt из latestRoundData и отклоняйте ответы старше heartbeat фида; отклоняйте неположительные ответы; в роллапах сверяйтесь с фидом работоспособности секвенсора.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-32533 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
-- Источник данных: certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: source_code 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
-2 упоминаний ECDSA в 2 файл(ах), например certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:98. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+1 упоминаний ECDSA в 1 файл(ах), например lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol:148. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:98 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol:148 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
-
-_file_excerpt · [certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol#L98) · line 98 · SHA-256 f341d040eab32a32d8c57d399be1f82e3cb0ddd7c9dce1f1a28cbbe4a62b96b4_
-
-```
-   96 |     bytes32 s
-   97 |   ) public pure returns (address) {
-   98 |     return ecrecover(hash, v, r, s);
-   99 |   }
-  100 |   function computeMetaDelegateHash(
-```
 
 _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol#L148) · line 148 · SHA-256 bbb05c626df7732576d2e3f08f6fcf908767b508ed20b71385b32c95794d893e_
 
@@ -538,102 +644,85 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17551 — Плавающая версия компилятора (^0.8.0) в 116 файл(ах)
+### QSI-2026-32507 — ERC-20 approve вызывается напрямую, не через SafeERC20 (возвращаемое значение не проверяется) в src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol
+
+- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol`
+- Источник данных: src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
+- Балл приоритета: 28.1 / 100
+- CVSS v3.1: неприменимо
+
+Прямых вызовов токена, который контракту передают извне: 5; первый — IERC20(UNDERLYING_TOKEN).approve(...) в строка 31: возвращаемое значение не проверяется. (см. SWC-104)
+
+**Возможные последствия.** USDT в Ethereum ничего не возвращает из transfer, transferFrom и approve, а USDT в Tron, по сообщениям, возвращает false при успешном transfer: вызов через интерфейс, объявляющий bool, откатывается или читает неверный ответ, и функция не работает с крупнейшим стейблкоином. Токен, возвращающий false вместо отката, при игнорировании значения отказывает молча, и контракт учитывает перевод, которого не было. Безвредно только для токена, о котором известно, что он откатывается при ошибке и возвращает true.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 31 в предоставленном файле src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol#L31) · line 31 · SHA-256 6dc8eacf108a42313e33f6756deae659f92f280f6e889b69b28190d1f17c30d9_
+
+```
+   29 |     UNDERLYING_TOKEN = [REDACTED]
+   30 | 
+   31 |     IERC20(UNDERLYING_TOKEN).approve(address(STAKE_CONTRACT), 0);
+   32 |     IERC20(UNDERLYING_TOKEN).approve(address(STAKE_CONTRACT), type(uint256).max);
+   33 |   }
+```
+
+_file_excerpt · [src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol#L32) · line 32 · SHA-256 02fef9fd7a2adb9a30feb2d19e59a00557ae0c668416b68627028d8e059ae1d6_
+
+```
+   30 | 
+   31 |     IERC20(UNDERLYING_TOKEN).approve(address(STAKE_CONTRACT), 0);
+   32 |     IERC20(UNDERLYING_TOKEN).approve(address(STAKE_CONTRACT), type(uint256).max);
+   33 |   }
+   34 | 
+```
+
+_file_excerpt · [src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol#L55) · line 55 · SHA-256 b712440bba75095903a498e455dd44ed5121ca7827841f84ff2b8013698c50c6_
+
+```
+   53 |   /// @inheritdoc IStakedTokenTransferStrategy
+   54 |   function renewApproval() external onlyRewardsAdmin {
+   55 |     IERC20(UNDERLYING_TOKEN).approve(address(STAKE_CONTRACT), 0);
+   56 |     IERC20(UNDERLYING_TOKEN).approve(address(STAKE_CONTRACT), type(uint256).max);
+   57 |   }
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте OpenZeppelin SafeERC20 (safeTransfer, safeTransferFrom, forceApprove) или эквивалент, принимающий и пустой ответ, и true.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-32487 — Плавающая версия компилятора (^0.8.0) в 108 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.0`
-- Источник данных: certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
+- Источник данных: scripts/DeployAaveV3MarketBatched.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
-pragma ^0.8.0 в 116 файл(ах), впервые в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:7. (см. SWC-103)
+pragma ^0.8.0 в 108 файл(ах), впервые в scripts/DeployAaveV3MarketBatched.sol:2. (см. SWC-103)
 
 **Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
 
 **Шаги воспроизведения.**
 
 ```
-Откройте certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:7 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте scripts/DeployAaveV3MarketBatched.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
-
-_file_excerpt · [certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol#L7) · line 7 · SHA-256 d9e74f9f04af0442bac5a64083246a3c44a4dc2ee529e80a01a1bf464a07e543_
-
-```
-    5 |  */
-    6 | 
-    7 | pragma solidity ^0.8.0;
-    8 | 
-    9 | import {ATokenWithDelegationInstance} from 'certora/atoken-with-delegation/munged/src/contracts/instances/ATokenWithDelegationInstance.sol';
-```
-
-_file_excerpt · [certora/atoken-with-delegation/harness/DummyERC20Impl.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/atoken-with-delegation/harness/DummyERC20Impl.sol#L2) · line 2 · SHA-256 d6da26a109fcbcfe48b3ead0d1cf964ab2d25b2e1ec72df018af6bb75032a726_
-
-```
-    1 | // SPDX-License-Identifier: agpl-3.0
-    2 | pragma solidity ^0.8.0;
-    3 | 
-    4 | // with mint
-```
-
-_file_excerpt · [certora/basic/harness/PoolInstanceHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/PoolInstanceHarness.sol#L2) · line 2 · SHA-256 da57c7eb8b978240f834d0886ba8f13d437fb7cd308efdb09e91d56969cd47c6_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.0;
-    3 | 
-    4 | import {Pool} from '../munged/src/contracts/protocol/pool/Pool.sol';
-```
-
-_file_excerpt · [certora/math-calculations/harnesses/PoolInstanceHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/math-calculations/harnesses/PoolInstanceHarness.sol#L2) · line 2 · SHA-256 da57c7eb8b978240f834d0886ba8f13d437fb7cd308efdb09e91d56969cd47c6_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.0;
-    3 | 
-    4 | import {Pool} from '../munged/src/contracts/protocol/pool/Pool.sol';
-```
-
-_file_excerpt · [certora/solvency/harnesses/Aave/PoolInstanceHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/solvency/harnesses/Aave/PoolInstanceHarness.sol#L2) · line 2 · SHA-256 98736a9b681094b8271db4452baf0324ae907d492e5983b49cd32465cb30877b_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.0;
-    3 | 
-    4 | import {Pool} from '../../munged/src/contracts/protocol/pool/Pool.sol';
-```
-
-_file_excerpt · [certora/solvency/harnesses/ERC20Like/DummyERC20A.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/solvency/harnesses/ERC20Like/DummyERC20A.sol#L4) · line 4 · SHA-256 c924b98cd72fe91e990d2a6d3211feda370bae7cc9f852ad558d420c8e372768_
-
-```
-    2 | 
-    3 | // SPDX-License-Identifier: agpl-3.0
-    4 | pragma solidity ^0.8.0;
-    5 | 
-    6 | contract DummyERC20A {
-```
-
-_file_excerpt · [certora/solvency/harnesses/ERC20Like/DummyERC20B.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/solvency/harnesses/ERC20Like/DummyERC20B.sol#L4) · line 4 · SHA-256 6c0cf6a837bdee3b219d7eef171c083d33713892fc8497043703edf702b86810_
-
-```
-    2 | 
-    3 | // SPDX-License-Identifier: agpl-3.0
-    4 | pragma solidity ^0.8.0;
-    5 | 
-    6 | contract DummyERC20B {
-```
-
-_file_excerpt · [certora/stata/harness/tokens/DummyERC20Impl.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/stata/harness/tokens/DummyERC20Impl.sol#L2) · line 2 · SHA-256 afd12dd35620a320e9a4292953a5a4781d914013f2a37313c9f7bcd1198c4f16_
-
-```
-    1 | // SPDX-License-Identifier: agpl-3.0
-    2 | pragma solidity ^0.8.0;
-    3 | 
-    4 | contract DummyERC20Impl {
-```
 
 _file_excerpt · [scripts/DeployAaveV3MarketBatched.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/scripts/DeployAaveV3MarketBatched.sol#L2) · line 2 · SHA-256 29fd06d3d1e34e611f1fcffe019e86c5bc93fabb99e08b50a48c6d352e7ddab9_
 
@@ -653,109 +742,107 @@ _file_excerpt · [scripts/misc/DeployAaveV3MarketBatchedBase.sol](https://github
     4 | import {Script} from 'forge-std/Script.sol';
 ```
 
+_file_excerpt · [scripts/misc/LibraryPreCompileOne.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/scripts/misc/LibraryPreCompileOne.sol#L2) · line 2 · SHA-256 fd74724e7f82dd9e45e28f0ac6a25f2e0bbdc797dc74caf127d023eb54785107_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.0;
+    3 | 
+    4 | import {Script} from 'forge-std/Script.sol';
+```
+
+_file_excerpt · [scripts/misc/LibraryPreCompileTwo.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/scripts/misc/LibraryPreCompileTwo.sol#L2) · line 2 · SHA-256 fd74724e7f82dd9e45e28f0ac6a25f2e0bbdc797dc74caf127d023eb54785107_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.0;
+    3 | 
+    4 | import {Script} from 'forge-std/Script.sol';
+```
+
+_file_excerpt · [src/contracts/dependencies/chainlink/AggregatorInterface.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/chainlink/AggregatorInterface.sol#L3) · line 3 · SHA-256 3a0627b3ab288bb16024bcfadb9b711d2201387b10cd0326481846bfa26ef99b_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | // Chainlink Contracts v0.8
+    3 | pragma solidity ^0.8.0;
+    4 | 
+    5 | interface AggregatorInterface {
+```
+
+_file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/Address.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/contracts/Address.sol#L4) · line 4 · SHA-256 8fd7f086fc738613298fbd5d852d99463764e13d04464443f2f8829c328c5790_
+
+```
+    2 | // OpenZeppelin Contracts v4.4.1 (utils/Address.sol)
+    3 | 
+    4 | pragma solidity ^0.8.0;
+    5 | 
+    6 | /**
+```
+
+_file_excerpt · [src/contracts/extensions/stata-token/StataTokenV2.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/stata-token/StataTokenV2.sol#L2) · line 2 · SHA-256 4f89cc167d94d207a4fdbab0eca0cfdb7caa899e416cd5857ffa668b4a8e0e1d_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.0;
+    3 | 
+    4 | import {ERC20Upgradeable, ERC20PermitUpgradeable} from 'openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20PermitUpgradeable.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/stata-token/interfaces/IStataTokenV2.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/stata-token/interfaces/IStataTokenV2.sol#L2) · line 2 · SHA-256 3ea59ae83b91d11c6b0f1c7245fbadda0c80b430f67e510054ba1e6450335df6_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity ^0.8.0;
+    3 | 
+    4 | import {IERC4626} from 'openzeppelin-contracts/contracts/interfaces/IERC4626.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/AaveV3Payload.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/AaveV3Payload.sol#L2) · line 2 · SHA-256 53d51fb2d3b4c85edb01553882bd2fc2bfb4dca30d5d15804e513af1191d24d6_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.0;
+    3 | 
+    4 | import {Address} from 'openzeppelin-contracts/contracts/utils/Address.sol';
+```
+
+_file_excerpt · [src/contracts/helpers/interfaces/IWETH.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/helpers/interfaces/IWETH.sol#L2) · line 2 · SHA-256 631ca496d6713fdd8b80e07fc529b2a957c2b42dadb4b0e2f16ed46241c54a76_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity ^0.8.0;
+    3 | 
+    4 | interface IWETH {
+```
+
 **Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
 **Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17554 — Плавающая версия компилятора (^0.8.10) в 91 файл(ах)
+### QSI-2026-32488 — Плавающая версия компилятора (^0.8.10) в 82 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.10`
-- Источник данных: certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol
+- Источник данных: src/contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
-pragma ^0.8.10 в 91 файл(ах), впервые в certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol:2. (см. SWC-103)
+pragma ^0.8.10 в 82 файл(ах), впервые в src/contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol:2. (см. SWC-103)
 
 **Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
 
 **Шаги воспроизведения.**
 
 ```
-Откройте certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте src/contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
-
-_file_excerpt · [certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol#L2) · line 2 · SHA-256 3f4a1d22a82973bb049cd9fb4690919c2da353bf6bb37eb1ce85c05dc5ccb5ab_
-
-```
-    1 | // SPDX-License-Identifier: agpl-3.0
-    2 | pragma solidity ^0.8.10;
-    3 | import './DummyERC20Impl.sol';
-    4 | 
-```
-
-_file_excerpt · [certora/atoken-with-delegation/harness/SymbolicLendingPoolL1.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/atoken-with-delegation/harness/SymbolicLendingPoolL1.sol#L1) · line 1 · SHA-256 d1c3f956c97930fc8de9a0f274967aeefd14bf01f27af1310c3ea0ee4e5811ca_
-
-```
-    1 | pragma solidity ^0.8.10;
-    2 | pragma experimental ABIEncoderV2;
-    3 | 
-```
-
-_file_excerpt · [certora/stata/harness/StataTokenV2Harness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/stata/harness/StataTokenV2Harness.sol#L2) · line 2 · SHA-256 2b53497786e16d3e0ca1f9dc651d0ecab694a775a25d4989c816f2ec2c06775f_
-
-```
-    1 | // SPDX-License-Identifier: agpl-3.0
-    2 | pragma solidity ^0.8.10;
-    3 | 
-    4 | import {IERC20} from 'openzeppelin-contracts/contracts/interfaces/IERC20.sol';
-```
-
-_file_excerpt · [certora/stata/harness/pool/SymbolicLendingPool.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/stata/harness/pool/SymbolicLendingPool.sol#L1) · line 1 · SHA-256 d1c3f956c97930fc8de9a0f274967aeefd14bf01f27af1310c3ea0ee4e5811ca_
-
-```
-    1 | pragma solidity ^0.8.10;
-    2 | pragma experimental ABIEncoderV2;
-    3 | 
-```
-
-_file_excerpt · [certora/stata/harness/rewards/RewardsControllerHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/stata/harness/rewards/RewardsControllerHarness.sol#L1) · line 1 · SHA-256 9372b15ef72f01a12dcf2cfafcf77b91177ed855c5bd5c7dae427ce94ddb1c41_
-
-```
-    1 | pragma solidity ^0.8.10;
-    2 | 
-    3 | import {RewardsController, RewardsDataTypes} from '../../munged/src/contracts/rewards/RewardsController.sol';
-```
-
-_file_excerpt · [certora/stata/harness/rewards/TransferStrategyHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/stata/harness/rewards/TransferStrategyHarness.sol#L1) · line 1 · SHA-256 8918629f0b4ee16e39cda4b40c958d8e55cbff27df98e3983c34bd2518ddf77a_
-
-```
-    1 | pragma solidity ^0.8.10;
-    2 | 
-    3 | import {IERC20} from 'openzeppelin-contracts/contracts/token/ERC20/IERC20.sol';
-```
-
-_file_excerpt · [certora/stata/harness/rewards/TransferStrategyMultiRewardHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/stata/harness/rewards/TransferStrategyMultiRewardHarness.sol#L1) · line 1 · SHA-256 abb8b785a9929500267f2715dea61d3584ddd46583c3679bbafa52de99a7d141_
-
-```
-    1 | pragma solidity ^0.8.10;
-    2 | 
-    3 | import {IERC20} from '../../munged/lib/aave-v3-core/contracts/dependencies/openzeppelin/contracts/IERC20.sol';
-```
-
-_file_excerpt · [certora/stata/harness/tokens/DummyERC20_aTokenUnderlying.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/stata/harness/tokens/DummyERC20_aTokenUnderlying.sol#L2) · line 2 · SHA-256 3f4a1d22a82973bb049cd9fb4690919c2da353bf6bb37eb1ce85c05dc5ccb5ab_
-
-```
-    1 | // SPDX-License-Identifier: agpl-3.0
-    2 | pragma solidity ^0.8.10;
-    3 | import './DummyERC20Impl.sol';
-    4 | 
-```
-
-_file_excerpt · [certora/stata/harness/tokens/DummyERC20_rewardToken.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/stata/harness/tokens/DummyERC20_rewardToken.sol#L2) · line 2 · SHA-256 d11267193b3f90a28bf22d55c16525e7c11375116a83c98af7fadca6d16f83b4_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.10;
-    3 | import './DummyERC20Impl.sol';
-    4 | 
-```
 
 _file_excerpt · [src/contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol#L2) · line 2 · SHA-256 48c90c111b01af01b2d3d56f3012bef946c82bd6543be6d8ec29066255fe6672_
 
@@ -766,104 +853,91 @@ _file_excerpt · [src/contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol]
     4 | import {IERC20} from 'openzeppelin-contracts/contracts/token/ERC20/IERC20.sol';
 ```
 
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-17555 — Плавающая версия компилятора (^0.8.19) в 8 файл(ах)
-
-- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `solidity:pragma:^0.8.19`
-- Источник данных: certora/basic/harness/ATokenHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
-- Балл приоритета: 34.8 / 100
-- CVSS v3.1: неприменимо
-
-pragma ^0.8.19 в 8 файл(ах), впервые в certora/basic/harness/ATokenHarness.sol:2. (см. SWC-103)
-
-**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
-
-**Шаги воспроизведения.**
+_file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/AccessControl.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/contracts/AccessControl.sol#L3) · line 3 · SHA-256 19da5b6b538812675b311c05267b6e98574d2af76c86ad371b42d3fe6af09a0c_
 
 ```
-Откройте certora/basic/harness/ATokenHarness.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [certora/basic/harness/ATokenHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/ATokenHarness.sol#L2) · line 2 · SHA-256 0c572c448d4e052ab1eaac66bb54b9ad683dee9dfc3a39aaefdaca3f515d9d09_
-
-```
-    1 | // SPDX-License-Identifier: agpl-3.0
-    2 | pragma solidity ^0.8.19;
-    3 | 
-    4 | import {Pool} from '../munged/src/contracts/protocol/pool/Pool.sol';
-```
-
-_file_excerpt · [certora/basic/harness/EModeConfigurationHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/EModeConfigurationHarness.sol#L2) · line 2 · SHA-256 b52838116bb7b3c33adf25ee4550d0c3b5fa616e479c99319ecc08012ad4707a_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.19;
-    3 | pragma experimental ABIEncoderV2;
+    1 | // SPDX-License-Identifier: MIT
+    2 | 
+    3 | pragma solidity ^0.8.10;
     4 | 
+    5 | import './IAccessControl.sol';
 ```
 
-_file_excerpt · [certora/basic/harness/PoolHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/PoolHarness.sol#L2) · line 2 · SHA-256 a01ca8d39017e2e3efa43e47fee1f5aaa8ecff98494e1dcf69954d4cef4df614_
+_file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/Context.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/contracts/Context.sol#L2) · line 2 · SHA-256 976774f1edbb2c6e22eee295eb375b7f3ebee72493d16ce653ff3d29c4962131_
 
 ```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.19;
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity ^0.8.10;
     3 | 
-    4 | import {PoolInstance} from '../munged/src/contracts/instances/PoolInstance.sol';
+    4 | /*
 ```
 
-_file_excerpt · [certora/basic/harness/ReserveConfigurationHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/ReserveConfigurationHarness.sol#L2) · line 2 · SHA-256 b52838116bb7b3c33adf25ee4550d0c3b5fa616e479c99319ecc08012ad4707a_
+_file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/ERC165.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/contracts/ERC165.sol#L3) · line 3 · SHA-256 65b73ea6d850517c01e95b5164c8868d03daaf4a171d03f5c9708d8ecac8ea3d_
 
 ```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.19;
-    3 | pragma experimental ABIEncoderV2;
+    1 | // SPDX-License-Identifier: MIT
+    2 | 
+    3 | pragma solidity ^0.8.10;
     4 | 
+    5 | import './IERC165.sol';
 ```
 
-_file_excerpt · [certora/basic/harness/SimpleERC20.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/SimpleERC20.sol#L2) · line 2 · SHA-256 d054857602dde7d3e64e5065192e4bb321400d0f01121fd8c67088815eaa6abb_
+_file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/IAccessControl.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/contracts/IAccessControl.sol#L3) · line 3 · SHA-256 8cf10540f7ade070fb02ae5d3e7843bc7bae1e8394df7e381add935edad73604_
 
 ```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.19;
-    3 | 
-    4 | import {IERC20} from 'openzeppelin-contracts/contracts/token/ERC20/IERC20.sol';
-```
-
-_file_excerpt · [certora/basic/harness/SymbolicPriceOracle.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/SymbolicPriceOracle.sol#L2) · line 2 · SHA-256 78526b3e7bfa8670bb1bd78631fb5964c96177c353527da6e3d649d0149e8fd2_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.19;
-    3 | 
-    4 | import {IPriceOracleGetter} from '../munged/src/contracts/interfaces/IPriceOracleGetter.sol';
-```
-
-_file_excerpt · [certora/basic/harness/UserConfigurationHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/UserConfigurationHarness.sol#L2) · line 2 · SHA-256 b52838116bb7b3c33adf25ee4550d0c3b5fa616e479c99319ecc08012ad4707a_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.19;
-    3 | pragma experimental ABIEncoderV2;
+    1 | // SPDX-License-Identifier: MIT
+    2 | 
+    3 | pragma solidity ^0.8.10;
     4 | 
+    5 | /**
 ```
 
-_file_excerpt · [certora/basic/harness/VariableDebtTokenHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/basic/harness/VariableDebtTokenHarness.sol#L2) · line 2 · SHA-256 14c62e563a900d89c639b64cbe6bd05d02a677cf1bb7a3c98f35fba972999671_
+_file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/IERC165.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/contracts/IERC165.sol#L3) · line 3 · SHA-256 8cf10540f7ade070fb02ae5d3e7843bc7bae1e8394df7e381add935edad73604_
 
 ```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.19;
+    1 | // SPDX-License-Identifier: MIT
+    2 | 
+    3 | pragma solidity ^0.8.10;
+    4 | 
+    5 | /**
+```
+
+_file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/Ownable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/contracts/Ownable.sol#L3) · line 3 · SHA-256 1ef8665aa89fb0117f5afd88836217214c9ed829e2851c77c479dad526f3ec32_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | 
+    3 | pragma solidity ^0.8.10;
+    4 | 
+    5 | import './Context.sol';
+```
+
+_file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/Strings.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/contracts/Strings.sol#L3) · line 3 · SHA-256 8cf10540f7ade070fb02ae5d3e7843bc7bae1e8394df7e381add935edad73604_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | 
+    3 | pragma solidity ^0.8.10;
+    4 | 
+    5 | /**
+```
+
+_file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/AdminUpgradeabilityProxy.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/upgradeability/AdminUpgradeabilityProxy.sol#L2) · line 2 · SHA-256 6c081815a1f57473615617a74186764c80c42910e46029a4dfa2096d39e1ca1e_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity ^0.8.10;
     3 | 
-    4 | import {VariableDebtTokenInstance} from '../munged/src/contracts/instances/VariableDebtTokenInstance.sol';
+    4 | import './BaseAdminUpgradeabilityProxy.sol';
+```
+
+_file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol#L2) · line 2 · SHA-256 e16ad304470bfb0e310e898c3e34fd938a6b0d581d7ae4530dd7d40d633efa30_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity ^0.8.10;
+    3 | 
+    4 | import './UpgradeabilityProxy.sol';
 ```
 
 **Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
@@ -872,86 +946,13 @@ _file_excerpt · [certora/basic/harness/VariableDebtTokenHarness.sol](https://gi
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17556 — Плавающая версия компилятора (>=0.8.0) в 5 файл(ах)
-
-- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `solidity:pragma:>=0.8.0`
-- Источник данных: certora/solvency/harnesses/ERC20Like/DummyWeth.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
-- Балл приоритета: 34.8 / 100
-- CVSS v3.1: неприменимо
-
-pragma >=0.8.0 в 5 файл(ах), впервые в certora/solvency/harnesses/ERC20Like/DummyWeth.sol:2. (см. SWC-103)
-
-**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
-
-**Шаги воспроизведения.**
-
-```
-Откройте certora/solvency/harnesses/ERC20Like/DummyWeth.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [certora/solvency/harnesses/ERC20Like/DummyWeth.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/certora/solvency/harnesses/ERC20Like/DummyWeth.sol#L2) · line 2 · SHA-256 785861bbc2e0a88eb0bd3b98cf2d84d2a34a2a761705ae60b484507be3c689b2_
-
-```
-    1 | // SPDX-License-Identifier: agpl-3.0
-    2 | pragma solidity >=0.8.0;
-    3 | 
-    4 | /**
-```
-
-_file_excerpt · [lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol#L2) · line 2 · SHA-256 6d0558e6081d2b24d19a9d6f4980118ad69cf49fbe347361a405afeec8c90ed8_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity >=0.8.0;
-    3 | 
-    4 | import {TransparentProxyFactoryBase} from './TransparentProxyFactoryBase.sol';
-```
-
-_file_excerpt · [lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactoryBase.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactoryBase.sol#L2) · line 2 · SHA-256 5e012ccfa5ef0aef37479a143ad727d932e8fafbcc6fef7fd7f4328a817f40fc_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity >=0.8.0;
-    3 | 
-    4 | import {TransparentUpgradeableProxy} from 'openzeppelin-contracts/contracts/proxy/transparent/TransparentUpgradeableProxy.sol';
-```
-
-_file_excerpt · [lib/solidity-utils/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactory.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactory.sol#L2) · line 2 · SHA-256 1162d8a266f347a4fcd4abfe105ce51b713291e4a5c89ddb83d25873bc31eea6_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity >=0.8.0;
-    3 | 
-    4 | interface ITransparentProxyFactory {
-```
-
-_file_excerpt · [lib/solidity-utils/zksync/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactoryZkSync.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/zksync/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactoryZkSync.sol#L2) · line 2 · SHA-256 6d1f0a69f7f0b55664c1ffb266b72f667942d81bd0110b9e74130985fa5781e9_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity >=0.8.0;
-    3 | 
-    4 | interface ITransparentProxyFactoryZkSync {
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-17564 — Плавающая версия компилятора (^0.8.17) в 2 файл(ах)
+### QSI-2026-32496 — Плавающая версия компилятора (^0.8.17) в 2 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.17`
 - Источник данных: src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -991,13 +992,13 @@ _file_excerpt · [src/contracts/extensions/stata-token/ERC4626StataTokenUpgradea
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17565 — Плавающая версия компилятора (^0.8.18) в 10 файл(ах)
+### QSI-2026-32497 — Плавающая версия компилятора (^0.8.18) в 10 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.18`
 - Источник данных: src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1109,122 +1110,126 @@ _file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/RateEngine
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17573 — Плавающая версия компилятора (^0.8.20) в 259 файл(ах)
+### QSI-2026-32509 — Плавающая версия компилятора (^0.8.20) в 221 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.20`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
-pragma ^0.8.20 в 259 файл(ах), впервые в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol:2. (см. SWC-103)
+pragma ^0.8.20 в 221 файл(ах), впервые в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol:4. (см. SWC-103)
 
 **Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
 
 **Шаги воспроизведения.**
 
 ```
-Откройте lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol:4 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
 
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol#L2) · line 2 · SHA-256 756598f4bd85d94c54eb240ebeadf53780d19d71de6fe7a69ff53c1507742f21_
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol#L4) · line 4 · SHA-256 4c17dc6a2ffce1ef24599534270b10b3f917c81ab4f3c5fdd3f4a1d824e43f05_
 
 ```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.20;
+    2 | // OpenZeppelin Contracts (last updated v5.0.0) (access/AccessControl.sol)
     3 | 
-    4 | import {AccessControlDefaultAdminRules} from "../patched/access/extensions/AccessControlDefaultAdminRules.sol";
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {IAccessControl} from "@openzeppelin/contracts/access/IAccessControl.sol";
 ```
 
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlHarness.sol#L2) · line 2 · SHA-256 d3760e2e2e6b2de828a557f740f9904e637cc250bed6ea48140f2d7daef11453_
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol#L4) · line 4 · SHA-256 9039fba09f8df5cefb332d1e317b3aad6b2ba7b8ced29a77b66686e10d70cb92_
 
 ```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.20;
+    2 | // OpenZeppelin Contracts (last updated v5.1.0) (access/Ownable2Step.sol)
     3 | 
-    4 | import {AccessControl} from "../patched/access/AccessControl.sol";
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {OwnableUpgradeable} from "./OwnableUpgradeable.sol";
 ```
 
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagedHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagedHarness.sol#L3) · line 3 · SHA-256 8b82af0296a3ec37e4e214190af0400128d0db4f5ee34af49eec871b38137797_
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol#L4) · line 4 · SHA-256 010e5f1ec1c98ca5555f498ffaac5efbb31f3dc629e3d2423eb6352420c6fd11_
 
 ```
-    1 | // SPDX-License-Identifier: MIT
-    2 | 
-    3 | pragma solidity ^0.8.20;
-    4 | 
-    5 | import "../patched/access/manager/IAccessManager.sol";
-```
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagerHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagerHarness.sol#L3) · line 3 · SHA-256 87d2bae8e69f1f7f97a6ba1e9699d0307d2dae27a7db50ac21f0dc2fb2cdf318_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | 
-    3 | pragma solidity ^0.8.20;
-    4 | 
-    5 | import "../patched/access/manager/AccessManager.sol";
-```
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/DoubleEndedQueueHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/DoubleEndedQueueHarness.sol#L2) · line 2 · SHA-256 7465f9b8e6c53057c2d9dfbc88a2b83fb14b813ca1d865da45a12143ec796206_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.20;
+    2 | // OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)
     3 | 
-    4 | import {DoubleEndedQueue} from "../patched/utils/structs/DoubleEndedQueue.sol";
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {ContextUpgradeable} from "../utils/ContextUpgradeable.sol";
 ```
 
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20FlashMintHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20FlashMintHarness.sol#L3) · line 3 · SHA-256 d9268da21b039a53f3ffe15e3e1b64163968ef2adaabc61fb422f2327baf75d3_
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/extensions/AccessControlDefaultAdminRulesUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/extensions/AccessControlDefaultAdminRulesUpgradeable.sol#L4) · line 4 · SHA-256 2c2ed9a8f406e504989f68ab2e75dc467953978177242213a83e88eeedd9a718_
 
 ```
-    1 | // SPDX-License-Identifier: MIT
-    2 | 
-    3 | pragma solidity ^0.8.20;
-    4 | 
-    5 | import "../patched/token/ERC20/ERC20.sol";
-```
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20PermitHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20PermitHarness.sol#L2) · line 2 · SHA-256 fe79ecdbebdd3812b94f5edab6c9b7572be14d41aa4c9be552aa6706e1ac1d3d_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.20;
+    2 | // OpenZeppelin Contracts (last updated v5.0.0) (access/extensions/AccessControlDefaultAdminRules.sol)
     3 | 
-    4 | import {ERC20Permit, ERC20} from "../patched/token/ERC20/extensions/ERC20Permit.sol";
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {IAccessControlDefaultAdminRules} from "@openzeppelin/contracts/access/extensions/IAccessControlDefaultAdminRules.sol";
 ```
 
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20WrapperHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20WrapperHarness.sol#L3) · line 3 · SHA-256 16d256728596f72ea22e19d41f979405a160b6d28721d44c83e4422d9017b2ce_
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/extensions/AccessControlEnumerableUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/extensions/AccessControlEnumerableUpgradeable.sol#L4) · line 4 · SHA-256 d3ece1ad914e93fc536b73d0a4e13dbd96c02007252552ad30185d89c3cd77b8_
+
+```
+    2 | // OpenZeppelin Contracts (last updated v5.1.0) (access/extensions/AccessControlEnumerable.sol)
+    3 | 
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {IAccessControlEnumerable} from "@openzeppelin/contracts/access/extensions/IAccessControlEnumerable.sol";
+```
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagedUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagedUpgradeable.sol#L4) · line 4 · SHA-256 edd7ee987ab5ff29ea4b82bb785d8ba2a34b541aea8deeff1a35d74f7b4feb4f_
+
+```
+    2 | // OpenZeppelin Contracts (last updated v5.1.0) (access/manager/AccessManaged.sol)
+    3 | 
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {IAuthority} from "@openzeppelin/contracts/access/manager/IAuthority.sol";
+```
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagerUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagerUpgradeable.sol#L4) · line 4 · SHA-256 575435e4928010428fa802e255813dcdd6dbcfc35a25bf47f66e66ae24209bb0_
+
+```
+    2 | // OpenZeppelin Contracts (last updated v5.1.0) (access/manager/AccessManager.sol)
+    3 | 
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {IAccessManager} from "@openzeppelin/contracts/access/manager/IAccessManager.sol";
+```
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/finance/VestingWalletCliffUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/finance/VestingWalletCliffUpgradeable.sol#L4) · line 4 · SHA-256 01776e114ea476addd2214f92fb220c91c26f31b6f2ba42446af224e69be7c48_
+
+```
+    2 | // OpenZeppelin Contracts (last updated v5.1.0) (finance/VestingWalletCliff.sol)
+    3 | 
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {SafeCast} from "@openzeppelin/contracts/utils/math/SafeCast.sol";
+```
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/finance/VestingWalletUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/finance/VestingWalletUpgradeable.sol#L3) · line 3 · SHA-256 9907f62b7b12ad7de573cb4197ef9f1825871bb142b8393ac6f2838c100a2cab_
 
 ```
     1 | // SPDX-License-Identifier: MIT
-    2 | 
+    2 | // OpenZeppelin Contracts (last updated v5.1.0) (finance/VestingWallet.sol)
     3 | pragma solidity ^0.8.20;
     4 | 
-    5 | import {ERC20Permit} from "../patched/token/ERC20/extensions/ERC20Permit.sol";
+    5 | import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 ```
 
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC3156FlashBorrowerHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC3156FlashBorrowerHarness.sol#L5) · line 5 · SHA-256 c5389bf3b06d502da28d0c5a350b10b0fabe82e0ffba247a522ea005b5e3ad09_
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol#L4) · line 4 · SHA-256 6119cd4d053b976fae49e89cc77cc11ff2a76016f5426e209db8c77dfbb00b77_
 
 ```
-    3 | import {IERC3156FlashBorrower} from "../patched/interfaces/IERC3156FlashBorrower.sol";
-    4 | 
-    5 | pragma solidity ^0.8.20;
-    6 | 
-    7 | contract ERC3156FlashBorrowerHarness is IERC3156FlashBorrower {
-```
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC721Harness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC721Harness.sol#L3) · line 3 · SHA-256 6f89bde0f57299ebcc2623cc87a97d97d48f0b4775ed243d802e69dc6d1fee44_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | 
-    3 | pragma solidity ^0.8.20;
-    4 | 
-    5 | import {ERC721} from "../patched/token/ERC721/ERC721.sol";
+    2 | // OpenZeppelin Contracts (last updated v5.1.0) (governance/Governor.sol)
+    3 | 
+    4 | pragma solidity ^0.8.20;
+    5 | 
+    6 | import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 ```
 
 **Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
@@ -1233,13 +1238,13 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/cert
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17585 — Плавающая версия компилятора (^0.8.24) в 5 файл(ах)
+### QSI-2026-32519 — Плавающая версия компилятора (^0.8.24) в 5 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.24`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/draft-ERC20TemporaryApprovalUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1311,77 +1316,13 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17586 — Плавающая версия компилятора (>=0.8.0 <0.9.0) в 4 файл(ах)
-
-- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `solidity:pragma:>=0.8.0 <0.9.0`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
-- Балл приоритета: 34.8 / 100
-- CVSS v3.1: неприменимо
-
-pragma >=0.8.0 <0.9.0 в 4 файл(ах), впервые в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol:2. (см. SWC-103)
-
-**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
-
-**Шаги воспроизведения.**
-
-```
-Откройте lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol#L2) · line 2 · SHA-256 bd471efc2f4d7d423e928467267caaddb41788dd0f77dd12ceceaf88d979eed2_
-
-```
-    1 | // SPDX-License-Identifier: AGPL-3.0
-    2 | pragma solidity >=0.8.0 <0.9.0;
-    3 | 
-    4 | /// @notice Symbolic Virtual Machine
-```
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SymTest.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SymTest.sol#L2) · line 2 · SHA-256 97630b16a584af991c523a19d6304c66e9d3e30b64896278317489cf5453873b_
-
-```
-    1 | // SPDX-License-Identifier: AGPL-3.0
-    2 | pragma solidity >=0.8.0 <0.9.0;
-    3 | 
-    4 | import {SVM} from "./SVM.sol";
-```
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SVM.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SVM.sol#L2) · line 2 · SHA-256 bd471efc2f4d7d423e928467267caaddb41788dd0f77dd12ceceaf88d979eed2_
-
-```
-    1 | // SPDX-License-Identifier: AGPL-3.0
-    2 | pragma solidity >=0.8.0 <0.9.0;
-    3 | 
-    4 | /// @notice Symbolic Virtual Machine
-```
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SymTest.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SymTest.sol#L2) · line 2 · SHA-256 97630b16a584af991c523a19d6304c66e9d3e30b64896278317489cf5453873b_
-
-```
-    1 | // SPDX-License-Identifier: AGPL-3.0
-    2 | pragma solidity >=0.8.0 <0.9.0;
-    3 | 
-    4 | import {SVM} from "./SVM.sol";
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-17598 — Плавающая версия компилятора (^0.8.21) в 1 файл(ах)
+### QSI-2026-32529 — Плавающая версия компилятора (^0.8.21) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.21`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1413,13 +1354,13 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17603 — Плавающая версия компилятора (>=0.7.0) в 2 файл(ах)
+### QSI-2026-32535 — Плавающая версия компилятора (>=0.7.0) в 2 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.7.0`
 - Источник данных: lib/solidity-utils/src/contracts/access-control/OwnableWithGuardian.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1459,13 +1400,13 @@ _file_excerpt · [lib/solidity-utils/src/contracts/access-control/interfaces/IWi
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17604 — Плавающая версия компилятора (>=0.6.0) в 1 файл(ах)
+### QSI-2026-32536 — Плавающая версия компилятора (>=0.6.0) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.6.0`
 - Источник данных: lib/solidity-utils/src/contracts/create3/interfaces/ICreate3Factory.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1497,13 +1438,77 @@ _file_excerpt · [lib/solidity-utils/src/contracts/create3/interfaces/ICreate3Fa
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17605 — Плавающая версия компилятора (^0.8.8) в 9 файл(ах)
+### QSI-2026-32537 — Плавающая версия компилятора (>=0.8.0) в 4 файл(ах)
+
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:>=0.8.0`
+- Источник данных: lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
+
+pragma >=0.8.0 в 4 файл(ах), впервые в lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol:2. (см. SWC-103)
+
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
+
+**Шаги воспроизведения.**
+
+```
+Откройте lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol#L2) · line 2 · SHA-256 6d0558e6081d2b24d19a9d6f4980118ad69cf49fbe347361a405afeec8c90ed8_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity >=0.8.0;
+    3 | 
+    4 | import {TransparentProxyFactoryBase} from './TransparentProxyFactoryBase.sol';
+```
+
+_file_excerpt · [lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactoryBase.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactoryBase.sol#L2) · line 2 · SHA-256 5e012ccfa5ef0aef37479a143ad727d932e8fafbcc6fef7fd7f4328a817f40fc_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity >=0.8.0;
+    3 | 
+    4 | import {TransparentUpgradeableProxy} from 'openzeppelin-contracts/contracts/proxy/transparent/TransparentUpgradeableProxy.sol';
+```
+
+_file_excerpt · [lib/solidity-utils/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactory.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactory.sol#L2) · line 2 · SHA-256 1162d8a266f347a4fcd4abfe105ce51b713291e4a5c89ddb83d25873bc31eea6_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity >=0.8.0;
+    3 | 
+    4 | interface ITransparentProxyFactory {
+```
+
+_file_excerpt · [lib/solidity-utils/zksync/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactoryZkSync.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/zksync/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactoryZkSync.sol#L2) · line 2 · SHA-256 6d1f0a69f7f0b55664c1ffb266b72f667942d81bd0110b9e74130985fa5781e9_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity >=0.8.0;
+    3 | 
+    4 | interface ITransparentProxyFactoryZkSync {
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-32538 — Плавающая версия компилятора (^0.8.8) в 9 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.8`
 - Источник данных: lib/solidity-utils/src/contracts/utils/PermissionlessRescuable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1606,13 +1611,13 @@ _file_excerpt · [lib/solidity-utils/src/contracts/utils/interfaces/IRescuableBa
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17606 — Плавающая версия компилятора (>=0.8.24) в 1 файл(ах)
+### QSI-2026-32539 — Плавающая версия компилятора (>=0.8.24) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.8.24`
 - Источник данных: lib/solidity-utils/zksync/src/contracts/transparent-proxy/TransparentProxyFactoryZkSync.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1643,13 +1648,13 @@ _file_excerpt · [lib/solidity-utils/zksync/src/contracts/transparent-proxy/Tran
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17558 — Привилегированные административные функции в src/contracts/dependencies/openzeppelin/contracts/Ownable.sol: renounceOwnership, transferOwnership
+### QSI-2026-32490 — Привилегированные административные функции в src/contracts/dependencies/openzeppelin/contracts/Ownable.sol: renounceOwnership, transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/contracts/Ownable.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/contracts/Ownable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1677,13 +1682,13 @@ Privileged functions: renounceOwnership, transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17566 — Привилегированные административные функции в src/contracts/helpers/WrappedTokenGatewayV3.sol: emergencyTokenTransfer, emergencyEtherTransfer
+### QSI-2026-32500 — Привилегированные административные функции в src/contracts/helpers/WrappedTokenGatewayV3.sol: emergencyTokenTransfer, emergencyEtherTransfer
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/helpers/WrappedTokenGatewayV3.sol`
 - Источник данных: src/contracts/helpers/WrappedTokenGatewayV3.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1711,13 +1716,13 @@ Privileged functions: emergencyTokenTransfer, emergencyEtherTransfer
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17568 — Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProvider.sol: setMarketId, setAddress, setAddressAsProxy, setPoolImpl, setPoolConfiguratorImpl, setPriceOracle, setACLManager, setACLAdmin, setPriceOracleSentinel, setPoolDataProvider
+### QSI-2026-32503 — Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProvider.sol: setMarketId, setAddress, setAddressAsProxy, setPoolImpl, setPoolConfiguratorImpl, setPriceOracle, setACLManager, setACLAdmin, setPriceOracleSentinel, setPoolDataProvider
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/protocol/configuration/PoolAddressesProvider.sol`
 - Источник данных: src/contracts/protocol/configuration/PoolAddressesProvider.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1745,13 +1750,13 @@ Privileged functions: setMarketId, setAddress, setAddressAsProxy, setPoolImpl, s
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17569 — Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol: registerAddressesProvider, unregisterAddressesProvider
+### QSI-2026-32504 — Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol: registerAddressesProvider, unregisterAddressesProvider
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol`
 - Источник данных: src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1779,13 +1784,13 @@ Privileged functions: registerAddressesProvider, unregisterAddressesProvider
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17571 — Привилегированные административные функции в src/contracts/rewards/EmissionManager.sol: setClaimer, setEmissionAdmin, setRewardsController
+### QSI-2026-32506 — Привилегированные административные функции в src/contracts/rewards/EmissionManager.sol: setClaimer, setEmissionAdmin, setRewardsController
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/rewards/EmissionManager.sol`
 - Источник данных: src/contracts/rewards/EmissionManager.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1813,13 +1818,13 @@ Privileged functions: setClaimer, setEmissionAdmin, setRewardsController
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17572 — Привилегированные административные функции в src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol: setupAaveV3Market, setMarketReport, setProtocolDataProvider, transferMarketOwnership
+### QSI-2026-32508 — Привилегированные административные функции в src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol: setupAaveV3Market, setMarketReport, setProtocolDataProvider, transferMarketOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol`
 - Источник данных: src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1847,81 +1852,13 @@ Privileged functions: setupAaveV3Market, setMarketReport, setProtocolDataProvide
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17574 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol: restricted
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
-- Балл приоритета: 37.0 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
-
-```
-Privileged functions: restricted
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-17575 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol: restricted
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
-- Балл приоритета: 37.0 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
-
-```
-Privileged functions: restricted
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-17576 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership
+### QSI-2026-32510 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1949,13 +1886,13 @@ Privileged functions: transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17577 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership
+### QSI-2026-32511 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1983,13 +1920,13 @@ Privileged functions: renounceOwnership, transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17578 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay
+### QSI-2026-32512 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2017,13 +1954,13 @@ Privileged functions: relay
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17579 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension
+### QSI-2026-32513 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2051,13 +1988,13 @@ Privileged functions: setLateQuorumVoteExtension
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17580 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
+### QSI-2026-32514 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2085,13 +2022,13 @@ Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17581 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored
+### QSI-2026-32515 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2119,13 +2056,13 @@ Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17582 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock
+### QSI-2026-32516 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2153,13 +2090,13 @@ Privileged functions: updateTimelock
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17583 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock
+### QSI-2026-32517 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2187,13 +2124,13 @@ Privileged functions: updateTimelock
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17584 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator
+### QSI-2026-32518 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2221,81 +2158,13 @@ Privileged functions: updateQuorumNumerator
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17587 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol: restricted
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
-- Балл приоритета: 37.0 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
-
-```
-Privileged functions: restricted
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-17588 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol: restricted
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
-- Балл приоритета: 37.0 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
-
-```
-Privileged functions: restricted
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-17589 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership
+### QSI-2026-32520 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2323,13 +2192,13 @@ Privileged functions: renounceOwnership, transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17590 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership
+### QSI-2026-32521 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2357,13 +2226,13 @@ Privileged functions: transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17591 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay
+### QSI-2026-32522 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2391,13 +2260,13 @@ Privileged functions: relay
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17592 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension
+### QSI-2026-32523 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2425,13 +2294,13 @@ Privileged functions: setLateQuorumVoteExtension
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17593 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
+### QSI-2026-32524 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2459,13 +2328,13 @@ Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17594 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored
+### QSI-2026-32525 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2493,13 +2362,13 @@ Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17595 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock
+### QSI-2026-32526 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2527,13 +2396,13 @@ Privileged functions: updateTimelock
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17596 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock
+### QSI-2026-32527 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2561,13 +2430,13 @@ Privileged functions: updateTimelock
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17597 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator
+### QSI-2026-32528 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2595,13 +2464,13 @@ Privileged functions: updateQuorumNumerator
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17599 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo
+### QSI-2026-32530 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2629,13 +2498,13 @@ Privileged functions: upgradeTo
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17600 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall
+### QSI-2026-32531 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2663,13 +2532,13 @@ Privileged functions: upgradeAndCall
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-17608 — 200 бюллетеней в 53 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-32541 — 200 бюллетеней в 53 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: dependencies 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -2745,13 +2614,13 @@ undici@6.12.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-17607 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-32540 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 12:50 UTC
+- Анализатор: dependencies 1.6.0 · 2026-11-19 17:39 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2812,7 +2681,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-17552 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **подпись транзакций и сообщений** | ECDSA (1) | QSI-2026-32533 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -2821,9 +2690,9 @@ _Роль определяется по путям файлов, именам ф
 
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (2) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
-| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (59) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
-| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (59) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (1) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (56) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
+| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (56) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
 _Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
@@ -2832,7 +2701,7 @@ _Действие: взламывает — алгоритм нужно заме
 
 - Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 - z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
-- slither: 520 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
+- slither: 446 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
 - osv_advisories: 2 (примеры: npm/axios@1.6.8: 31 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/undici@6.12.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)
 
 ## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
@@ -2841,72 +2710,69 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-17557 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-17559 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-17560 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-17561 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-17562 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-17563 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-17567 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-17570 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-17601 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32489 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32491 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32492 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32493 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32494 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32495 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32502 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32505 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-32532 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-17553 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-17602 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-32534 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-32498 | Читайте updatedAt из latestRoundData и отклоняйте ответы старше heartbeat фида; отклоняйте неположительные ответы; в роллапах сверяйтесь с фидом работоспособности секвенсора. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-32499 | Читайте updatedAt из latestRoundData и отклоняйте ответы старше heartbeat фида; отклоняйте неположительные ответы; в роллапах сверяйтесь с фидом работоспособности секвенсора. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-32501 | Читайте updatedAt из latestRoundData и отклоняйте ответы старше heartbeat фида; отклоняйте неположительные ответы; в роллапах сверяйтесь с фидом работоспособности секвенсора. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-32507 | Используйте OpenZeppelin SafeERC20 (safeTransfer, safeTransferFrom, forceApprove) или эквивалент, принимающий и пустой ответ, и true. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-17552 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17551 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17554 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17555 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17556 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17564 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17565 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17573 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17585 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17586 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17598 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17603 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17604 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17605 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-17606 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17552 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-17558 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17566 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17568 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17569 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17571 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17572 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17574 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17575 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17576 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17577 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17578 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17579 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17580 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17581 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17582 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17583 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17584 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17587 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17588 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17589 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17590 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17591 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17592 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17593 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17594 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17595 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17596 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17597 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17599 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17600 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-17608 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-32533 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-32487 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32488 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32496 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32497 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32509 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32519 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32529 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32535 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32536 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32537 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32538 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32539 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32533 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-32490 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32500 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32503 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32504 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32506 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32508 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32510 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32511 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32512 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32513 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32514 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32515 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32516 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32517 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32518 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32520 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32521 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32522 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32523 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32524 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32525 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32526 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32527 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32528 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32530 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32531 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32541 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -2914,13 +2780,18 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.0.0
+- dependencies 1.4.2
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.5.0
+- source_code 1.5.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- wallet_login 1.0.0
+- qsi-engine 1.6.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -2928,39 +2799,41 @@ _Действие: взламывает — алгоритм нужно заме
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
 3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-4. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-5. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-6. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-7. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-8. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-9. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-10. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-11. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-12. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-13. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
-18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-19. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-20. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-21. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-22. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
-23. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
+4. Chainlink documentation — Data Feeds (monitoring the timestamp of the latest answer) — Chainlink. <https://docs.chain.link/data-feeds> (living documentation: consumers are expected to check updatedAt against the feed's heartbeat and, on rollups, the sequencer uptime feed)
+5. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+6. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+7. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+8. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+9. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+10. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+11. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+12. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+13. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+14. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+15. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+16. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+17. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+18. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+19. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+20. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+21. OpenZeppelin Contracts — SafeERC20 (wrappers around ERC-20 operations that throw on failure) — OpenZeppelin. <https://docs.openzeppelin.com/contracts/5.x/api/token/erc20#SafeERC20> (library documentation: handles tokens that return no value (USDT) or false, and forceApprove for tokens that require the allowance to be reset to zero first)
+22. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+23. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+24. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+25. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
 
 ## Приложения: Криптографическая инвентаризация
 
-По происхождению: манифесты зависимостей 28 (0 уязвимы для алгоритма Шора) · собственный код 61 (2 уязвимы для алгоритма Шора).
+По происхождению: манифесты зависимостей 28 (0 уязвимы для алгоритма Шора) · собственный код 57 (1 уязвимы для алгоритма Шора).
 
 | Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
-| Keccak-256 | Keccak-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 59 | 59 | certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:109; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagerUpgradeable.sol:625; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol:34 |
+| Keccak-256 | Keccak-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 56 | 56 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagerUpgradeable.sol:625; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol:34; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/TimelockControllerUpgradeable.sol:26 |
 | Crypto library | 1.0.3 | tweetnacl (TweetNaCl) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.1.0 | @noble/curves (noble-curves) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.1.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
-| Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.2.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
+| Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.3.0 | @noble/curves (noble-curves) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.3.1 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
@@ -2970,7 +2843,7 @@ _Действие: взламывает — алгоритм нужно заме
 | Crypto library | 6.5.4 | elliptic (elliptic (Node)) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 6.7.1 | ethers (ethers.js) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | ^6.7.1 | ethers (ethers.js) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package.json |
-| ECDSA | secp256k1 (ecrecover) |  | уязвим (Шор) | допустимо | 2 | 2 | certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:98; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol:148 |
+| ECDSA | secp256k1 (ecrecover) |  | уязвим (Шор) | допустимо | 1 | 1 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol:148 |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -2978,38 +2851,6 @@ _Длинные списки здесь сгруппированы; полный
 
 | Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
-| certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol | 5219 | `bd4801cfdc7ceb0ece2ed11f68d2ddb641ee5381e287cd966d0f796939d92eb0` | 0 |
-| certora/atoken-with-delegation/harness/DummyERC20Impl.sol | 1490 | `ee886c556ba043085a13dea66944e34686033388f9bce7fb614c50298a9552a6` | 0 |
-| certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol | 152 | `5ab15bd047b5c50634e450cd39c7114ab8ffdc6824e8d8619368c157449866e7` | 0 |
-| certora/atoken-with-delegation/harness/SimpleERC20.sol | 1582 | `c7c4838e044dcc6ff18aac280eb3bfd36ae1fc38d83260e12314c2933ea3af34` | 0 |
-| certora/atoken-with-delegation/harness/SymbolicLendingPoolL1.sol | 2454 | `5377d17d0c6adf7de4480e5eb05219e37a138cb442fd0c2719697a7ec7279339` | 0 |
-| certora/basic/harness/ATokenHarness.sol | 1598 | `fcb7dc84077a9c4a9d794b312443434de3fc155c5595bd25163d62845b6435d9` | 0 |
-| certora/basic/harness/DummyContract.sol | 166 | `b9bf31caa85a3a04e4955cc92dcb8431f579646e6115ec4268a9b860d9f0a31e` | 0 |
-| certora/basic/harness/EModeConfigurationHarness.sol | 1345 | `33e620181c35914fd6e15d3b68606eb825b5de573cbba835c1135378279608ee` | 0 |
-| certora/basic/harness/PoolHarness.sol | 2950 | `e0cfca5681d7ea5902353630434ce999176386b3cce9b1ab8ce8f47167783595` | 0 |
-| certora/basic/harness/PoolInstanceHarness.sol | 1638 | `71f3110e8cfd28d1900409e91051101c93c696d11f0f3508a5aa463bf5e8d331` | 0 |
-| certora/basic/harness/ReserveConfigurationHarness.sol | 9229 | `4a0cce4afa7a32cd956eb05a74023b3cf483707da9ca866871daa40ee012c7f4` | 0 |
-| certora/basic/harness/SimpleERC20.sol | 1584 | `86f5c97d33ff555420c48848655a52715800a18f8485d8dbd13b0bd14ac6b49d` | 0 |
-| certora/basic/harness/SymbolicPriceOracle.sol | 596 | `aeb9be28bb1c99ac551c0482af7b09022f80e0822e70cda693daf38e2e9ae28b` | 0 |
-| certora/basic/harness/UserConfigurationHarness.sol | 2547 | `0c0199cd8f022642a5cdf055ef0aa18bd6ee3e0463777abbcb2d306657081934` | 0 |
-| certora/basic/harness/VariableDebtTokenHarness.sol | 724 | `6b5fd6e11305923164c110c445e4f3ba5cbc0734608de0b269e1c264b2e803a5` | 0 |
-| certora/math-calculations/harnesses/PoolInstanceHarness.sol | 3421 | `34d1b5acf14e2299f1ae614f8f7aba4b309aadbc7e32f737e3a49d00538da4f9` | 0 |
-| certora/math-calculations/harnesses/Utilities.sol | 2611 | `9df1a52bf6b04ad1e087e51d95a7f4ca602f0eda65ee9d55ea03ae33d2a0b271` | 0 |
-| certora/solvency/harnesses/Aave/DummyContract.sol | 166 | `b9bf31caa85a3a04e4955cc92dcb8431f579646e6115ec4268a9b860d9f0a31e` | 0 |
-| certora/solvency/harnesses/Aave/PoolInstanceForAToken.sol | 778 | `588d320c2b2eae282a67bc70b2df21c9efb30784afbc0847f2fa83c290671e5a` | 0 |
-| certora/solvency/harnesses/Aave/PoolInstanceHarness.sol | 2158 | `6197e42e7723ac377d321035a417e7d6fcca54037e939787b9421a5c6774cdc2` | 0 |
-| certora/solvency/harnesses/ERC20Like/DummyERC20A.sol | 1202 | `4eb8e726e65e4407ec112c1d012f3972f91e8198440ed45cefb64124070f3c5c` | 0 |
-| certora/solvency/harnesses/ERC20Like/DummyERC20B.sol | 1202 | `3b3ca522c342987a2ffc4dbc37459c26ee23a8b6b76aaf8af86fde60fb0f0a16` | 0 |
-| certora/solvency/harnesses/ERC20Like/DummyWeth.sol | 1417 | `dc3ad0140fe4ab2362f9f03a746ac53d3a9e892ef951716c1735c26ed734f815` | 0 |
-| certora/solvency/harnesses/Utilities.sol | 1468 | `be7e23ac78cad5ac9e7cd6ca7d16a91e47cf476db2f26c19bc78b20957631af7` | 0 |
-| certora/stata/harness/StataTokenV2Harness.sol | 2390 | `9933493dfbb819d68e48e2c60d5c0d3e68b83f948c06704d0e8ec0259fa16a48` | 0 |
-| certora/stata/harness/pool/SymbolicLendingPool.sol | 4029 | `51910a3ff5aa68e9c0ac1bf45b334a639e30515eb92ab85db664661109893346` | 0 |
-| certora/stata/harness/rewards/RewardsControllerHarness.sol | 1624 | `f376957102276b9f2f233dea6bb45c4ea7266ffb531029543b9de41b23565512` | 0 |
-| certora/stata/harness/rewards/TransferStrategyHarness.sol | 729 | `001fe789bf01185a81f88dd802ec63e84348e586598a31b477c6d8c61a215702` | 0 |
-| certora/stata/harness/rewards/TransferStrategyMultiRewardHarness.sol | 1014 | `f417d18f2f4b78132efde71087d687687c7319bc526d15c65cf4d26932e80dbc` | 0 |
-| certora/stata/harness/tokens/DummyERC20Impl.sol | 1161 | `c82b77086fe66ebfbcc188b4cfd0afe5b2722973f997eeb12168fea64d430e68` | 0 |
-| certora/stata/harness/tokens/DummyERC20_aTokenUnderlying.sol | 152 | `5ab15bd047b5c50634e450cd39c7114ab8ffdc6824e8d8619368c157449866e7` | 0 |
-| certora/stata/harness/tokens/DummyERC20_rewardToken.sol | 142 | `46cf60eeab10148855e20168f6e5351b86b84c36b9f91bf4c66918d59a3e4349` | 0 |
 | echidna-parser.py | 2400 | `9d8d2391a450bae08b573ca9246062cdf90d76455e455bca8acd1d5ba20a0fa1` | 0 |
 | package-lock.json | 47418 | `b7dccbe98cd688ee13df7b2a28b35020650a005855ff6541073c4fd7eab5efd1` | 0 |
 | package.json | 884 | `18b7a1575cabf1d02382fbb5001cbe30e005f3b5b58a5c1341623a227de9117c` | 0 |
@@ -3205,26 +3046,6 @@ _Длинные списки здесь сгруппированы; полный
 | src/deployments/projects/aave-v3-libraries/AaveV3LibrariesBatch2.sol | 1271 | `97c775e90b63a857df7f562544e0e2dcc0ac3fa4e7a8e5df155eee49c525167e` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.mocharc.js | 70 | `434e1df653523a6bce5e53a62690018b51039b10fab4a734a10948bedd06789d` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.solcover.js | 448 | `9111d1d9d5d8651916cf6e1afb033eeefd3f1ffa2d353a13f443518364c59420` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol | 1454 | `e0ba6d8a937323046f2bbcc72ba70f7406276aa37b562e1a362004872def3ac8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlHarness.sol | 176 | `a49b1631dee3cd0b22358651751410bda67363f219d4c5dc5d9bcd105c5eb260` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagedHarness.sol | 1636 | `e6d084707582b75bf29e170ec02da237fc21541e793a15b2b17482ed9e1a63f9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagerHarness.sol | 4475 | `65fc78a99fd9cfc3daec97c3b5656338e526a7ec639aaa304b185afb32fa50cf` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/DoubleEndedQueueHarness.sol | 1399 | `7473e0ca273983325153604dde0906745542b4ce90bf94984a0c86ea1f54f3b8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20FlashMintHarness.sol | 1028 | `d14171faf0d2ccb9bf14fd9ad252c07e386689e69a39f0a65a7f5dae6540bcfe` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20PermitHarness.sol | 493 | `7f5eee48c453af458cec04df5678ee8618dd198d3ef399bd1e9efc543491cb97` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20WrapperHarness.sol | 1121 | `05f6d555cceadef86ae7dde4757897a685ed5c156e6034c7e1a760a8e54d133e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC3156FlashBorrowerHarness.sol | 405 | `68d31d5af5df023d29304b43e3720164b00d09c75240e9bad83995a8e138c9a6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC721Harness.sol | 891 | `69a5144e1ae8249774d795e69f815457f85d32b9aff3f3bcc8c15545233ff8bd` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC721ReceiverHarness.sol | 325 | `ba334a1b77d8b0c5bf566957f03fab538938318f059fc1277ecd36e065e76ba1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/EnumerableMapHarness.sol | 1488 | `9898955deb052f5c661ba6168e789f4f080f6a2a3411c7ad7412e76dd7b0a16b` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/EnumerableSetHarness.sol | 890 | `dc5621c2e221d8bf0e5eb74c841e44ab3f7b7568388f758db919c36e64658733` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/InitializableHarness.sol | 976 | `92af00cfefdefb5137d3fc9c0b615fd719a2ecab85832d28346b4d359ab54158` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/NoncesHarness.sol | 378 | `112c07190fdc3275661c418dcc9597de383422aa31fe76f861248bef979e9c94` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol | 294 | `dd7ea7342e518bfdcbe4bf10980c1949e9ba67428f436b4d082b359560827eee` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol | 265 | `b285dad9f93bed4facd29fab94daea314baf78eab611daa3133323a2877a02ab` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/PausableHarness.sol | 387 | `d9c391078e05dceaa14d9731fb1542f5675b35670c556b705adb7c80b18e9374` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/TimelockControllerHarness.sol | 405 | `02d61705a0cce4d30449a7250da8e51e9eca48ce5598d962d9eadf6864096079` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/run.js | 4107 | `d2d11e62fd6e5cefbc43ebcf535ca140616e7fab85ce4c69d915dacd0495e691` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol | 8227 | `af65f33d5d4ee58be1871f806a6e5f76945ab93acc8579905348c0af9dbd6fdd` | 1 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol | 3433 | `e65937e8c36af5c343406e97399759bd576090c0599b864bbea3501d617f7e1f` | 1 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol | 3969 | `9247b9ad7939d23990dbdc9274917c3762ffb37e5137ef7bbfcc2e2fba1b8dd2` | 1 |
@@ -3298,30 +3119,8 @@ _Длинные списки здесь сгруппированы; полный
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/remappings.js | 508 | `8c937c074523720f867389503a24c6f1b24b729712995842fbb8fccf1c3fdb36` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/skip-foundry-tests.js | 295 | `5e594373be07d38818abb95c62e159435c68e291aa230e7d95fc2e38f00cb8ea` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/task-test-get-files.js | 1008 | `9851350b493983460df169f1c5dedac9c36930ee5bdbddaf977fb5fa75925a86` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol | 1594 | `35d3191997b0f778ba623c3f126aa2afacc486d7cbde83aa91cbe4aa089a9044` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SymTest.sol | 357 | `c5391a942e6ca4a31e1b48668ba80d12e5bc552453470fa153541ea322f8a88d` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/.mocharc.js | 70 | `434e1df653523a6bce5e53a62690018b51039b10fab4a734a10948bedd06789d` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/.solcover.js | 448 | `9111d1d9d5d8651916cf6e1afb033eeefd3f1ffa2d353a13f443518364c59420` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol | 1454 | `e0ba6d8a937323046f2bbcc72ba70f7406276aa37b562e1a362004872def3ac8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessControlHarness.sol | 176 | `a49b1631dee3cd0b22358651751410bda67363f219d4c5dc5d9bcd105c5eb260` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessManagedHarness.sol | 1636 | `e6d084707582b75bf29e170ec02da237fc21541e793a15b2b17482ed9e1a63f9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessManagerHarness.sol | 4475 | `65fc78a99fd9cfc3daec97c3b5656338e526a7ec639aaa304b185afb32fa50cf` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/DoubleEndedQueueHarness.sol | 1399 | `7473e0ca273983325153604dde0906745542b4ce90bf94984a0c86ea1f54f3b8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20FlashMintHarness.sol | 1028 | `d14171faf0d2ccb9bf14fd9ad252c07e386689e69a39f0a65a7f5dae6540bcfe` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20PermitHarness.sol | 493 | `7f5eee48c453af458cec04df5678ee8618dd198d3ef399bd1e9efc543491cb97` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20WrapperHarness.sol | 1121 | `05f6d555cceadef86ae7dde4757897a685ed5c156e6034c7e1a760a8e54d133e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC3156FlashBorrowerHarness.sol | 405 | `68d31d5af5df023d29304b43e3720164b00d09c75240e9bad83995a8e138c9a6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC721Harness.sol | 891 | `69a5144e1ae8249774d795e69f815457f85d32b9aff3f3bcc8c15545233ff8bd` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC721ReceiverHarness.sol | 325 | `ba334a1b77d8b0c5bf566957f03fab538938318f059fc1277ecd36e065e76ba1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/EnumerableMapHarness.sol | 1488 | `9898955deb052f5c661ba6168e789f4f080f6a2a3411c7ad7412e76dd7b0a16b` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/EnumerableSetHarness.sol | 890 | `dc5621c2e221d8bf0e5eb74c841e44ab3f7b7568388f758db919c36e64658733` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/InitializableHarness.sol | 976 | `92af00cfefdefb5137d3fc9c0b615fd719a2ecab85832d28346b4d359ab54158` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/NoncesHarness.sol | 378 | `112c07190fdc3275661c418dcc9597de383422aa31fe76f861248bef979e9c94` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol | 294 | `dd7ea7342e518bfdcbe4bf10980c1949e9ba67428f436b4d082b359560827eee` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol | 265 | `b285dad9f93bed4facd29fab94daea314baf78eab611daa3133323a2877a02ab` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/PausableHarness.sol | 387 | `d9c391078e05dceaa14d9731fb1542f5675b35670c556b705adb7c80b18e9374` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/TimelockControllerHarness.sol | 405 | `02d61705a0cce4d30449a7250da8e51e9eca48ce5598d962d9eadf6864096079` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/run.js | 4107 | `d2d11e62fd6e5cefbc43ebcf535ca140616e7fab85ce4c69d915dacd0495e691` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/AccessControl.sol | 7050 | `1086a1ad3788972b885ff3f209da510615dde6214d46b29e1cd2a4924f66c06d` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/IAccessControl.sol | 3343 | `c112f5c86fdc4e862f88d4f5694530342320923ebd5b5e7d9d8493550d337c2d` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol | 3102 | `38578bd71c0a909840e67202db527cc6b4e6b437e0f39f0c909da32c1e30cb81` | 0 |
@@ -3497,8 +3296,6 @@ _Длинные списки здесь сгруппированы; полный
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/remappings.js | 508 | `8c937c074523720f867389503a24c6f1b24b729712995842fbb8fccf1c3fdb36` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/skip-foundry-tests.js | 295 | `5e594373be07d38818abb95c62e159435c68e291aa230e7d95fc2e38f00cb8ea` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/task-test-get-files.js | 1008 | `9851350b493983460df169f1c5dedac9c36930ee5bdbddaf977fb5fa75925a86` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SVM.sol | 1594 | `35d3191997b0f778ba623c3f126aa2afacc486d7cbde83aa91cbe4aa089a9044` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SymTest.sol | 357 | `c5391a942e6ca4a31e1b48668ba80d12e5bc552453470fa153541ea322f8a88d` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json | 414672 | `0b12305e50ac29f985ad2c1b8808842680ff1ddd244ce78803bf45fa46fb58c2` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package.json | 3431 | `c57ecc49cdadc103b019cf7617c9415d9678c85f329792bb7518a19786a4a23d` | 0 |
 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/compare-layout.js | 662 | `9db6f11c491c88e94eb7ca6700f50bfca1b6cd0ac5e1842ee797f89bff001140` | 0 |

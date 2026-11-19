@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.6.0",
           "rules": [
             {
               "id": "CODE-HARDCODED-SECRET",
@@ -225,7 +225,7 @@
             "qsiFindingKey/v1": "aaed30356c7183715b264d8ea6c0cf90"
           },
           "properties": {
-            "qsiId": "QSI-2026-19575",
+            "qsiId": "QSI-2026-31983",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -255,7 +255,7 @@
             "qsiFindingKey/v1": "612106e085a6409f3a9fcf38e3029ac0"
           },
           "properties": {
-            "qsiId": "QSI-2026-19582",
+            "qsiId": "QSI-2026-31990",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -285,7 +285,7 @@
             "qsiFindingKey/v1": "723311dc05828915cc687d8dd3444422"
           },
           "properties": {
-            "qsiId": "QSI-2026-19587",
+            "qsiId": "QSI-2026-31995",
             "severity": "high",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -303,7 +303,7 @@
             "qsiFindingKey/v1": "458170bae1585f298d3ccf92f1f4c834"
           },
           "properties": {
-            "qsiId": "QSI-2026-19595",
+            "qsiId": "QSI-2026-32012",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -321,7 +321,7 @@
             "qsiFindingKey/v1": "458170bae1585f298d3ccf92f1f4c834"
           },
           "properties": {
-            "qsiId": "QSI-2026-19596",
+            "qsiId": "QSI-2026-32013",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -339,7 +339,7 @@
             "qsiFindingKey/v1": "458170bae1585f298d3ccf92f1f4c834"
           },
           "properties": {
-            "qsiId": "QSI-2026-19597",
+            "qsiId": "QSI-2026-32014",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -357,7 +357,7 @@
             "qsiFindingKey/v1": "458170bae1585f298d3ccf92f1f4c834"
           },
           "properties": {
-            "qsiId": "QSI-2026-19598",
+            "qsiId": "QSI-2026-32015",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -375,7 +375,7 @@
             "qsiFindingKey/v1": "458170bae1585f298d3ccf92f1f4c834"
           },
           "properties": {
-            "qsiId": "QSI-2026-19615",
+            "qsiId": "QSI-2026-32043",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -393,7 +393,7 @@
             "qsiFindingKey/v1": "ac6c2714092b3ac07066e7da69a4b396"
           },
           "properties": {
-            "qsiId": "QSI-2026-19617",
+            "qsiId": "QSI-2026-32045",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -411,7 +411,7 @@
             "qsiFindingKey/v1": "d49034eb9467847ff81a9469ef9b58bb"
           },
           "properties": {
-            "qsiId": "QSI-2026-19618",
+            "qsiId": "QSI-2026-32046",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -429,7 +429,7 @@
             "qsiFindingKey/v1": "458170bae1585f298d3ccf92f1f4c834"
           },
           "properties": {
-            "qsiId": "QSI-2026-19623",
+            "qsiId": "QSI-2026-32051",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -447,7 +447,7 @@
             "qsiFindingKey/v1": "eea411a740e8c8ff6e16a6953594accc"
           },
           "properties": {
-            "qsiId": "QSI-2026-19581",
+            "qsiId": "QSI-2026-31989",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -459,13 +459,13 @@
           "ruleIndex": 3,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Ed25519: transaction and message signing (12 file(s))"
+            "text": "Quantum-vulnerable Ed25519: transaction and message signing (13 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-19579",
+            "qsiId": "QSI-2026-31987",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -483,7 +483,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-19583",
+            "qsiId": "QSI-2026-31991",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -501,7 +501,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-19577",
+            "qsiId": "QSI-2026-31985",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -513,13 +513,13 @@
           "ruleIndex": 3,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Ed25519: role not determined (44 file(s))"
+            "text": "Quantum-vulnerable Ed25519: role not determined (36 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-19578",
+            "qsiId": "QSI-2026-31986",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -537,7 +537,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-19584",
+            "qsiId": "QSI-2026-31992",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -555,7 +555,7 @@
             "qsiFindingKey/v1": "0aba2e2bcd7b95bfa30682b0b2fddff5"
           },
           "properties": {
-            "qsiId": "QSI-2026-19585",
+            "qsiId": "QSI-2026-31993",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -573,7 +573,7 @@
             "qsiFindingKey/v1": "a32dc4d401fc32a953504c0a38f8d3f4"
           },
           "properties": {
-            "qsiId": "QSI-2026-19586",
+            "qsiId": "QSI-2026-31994",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -591,7 +591,7 @@
             "qsiFindingKey/v1": "e7ccb401d658101dcd25b45e39d66d9c"
           },
           "properties": {
-            "qsiId": "QSI-2026-19580",
+            "qsiId": "QSI-2026-31988",
             "severity": "medium",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -621,7 +621,7 @@
             "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
           },
           "properties": {
-            "qsiId": "QSI-2026-19600",
+            "qsiId": "QSI-2026-32027",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -639,7 +639,7 @@
             "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
           },
           "properties": {
-            "qsiId": "QSI-2026-19608",
+            "qsiId": "QSI-2026-32036",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -657,7 +657,7 @@
             "qsiFindingKey/v1": "2ac8c159371cd6957a4d2f0c1eb519e1"
           },
           "properties": {
-            "qsiId": "QSI-2026-19609",
+            "qsiId": "QSI-2026-32037",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -675,7 +675,7 @@
             "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
           },
           "properties": {
-            "qsiId": "QSI-2026-19619",
+            "qsiId": "QSI-2026-32047",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -693,7 +693,7 @@
             "qsiFindingKey/v1": "2ac8c159371cd6957a4d2f0c1eb519e1"
           },
           "properties": {
-            "qsiId": "QSI-2026-19620",
+            "qsiId": "QSI-2026-32048",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -711,7 +711,7 @@
             "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
           },
           "properties": {
-            "qsiId": "QSI-2026-19622",
+            "qsiId": "QSI-2026-32050",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -729,7 +729,7 @@
             "qsiFindingKey/v1": "02a22294eb27dffc3443769964705aa8"
           },
           "properties": {
-            "qsiId": "QSI-2026-19576",
+            "qsiId": "QSI-2026-31984",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -759,7 +759,7 @@
             "qsiFindingKey/v1": "de9d6880ad9a2af6ca3b69562ca270b4"
           },
           "properties": {
-            "qsiId": "QSI-2026-19594",
+            "qsiId": "QSI-2026-32011",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -777,7 +777,7 @@
             "qsiFindingKey/v1": "53fe2ba06f06c8ee83dc5dd34c7e0ce8"
           },
           "properties": {
-            "qsiId": "QSI-2026-19601",
+            "qsiId": "QSI-2026-32028",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -795,7 +795,7 @@
             "qsiFindingKey/v1": "dd24d41084302c29abc1e0a9f75852d5"
           },
           "properties": {
-            "qsiId": "QSI-2026-19605",
+            "qsiId": "QSI-2026-32033",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -813,7 +813,7 @@
             "qsiFindingKey/v1": "53fe2ba06f06c8ee83dc5dd34c7e0ce8"
           },
           "properties": {
-            "qsiId": "QSI-2026-19611",
+            "qsiId": "QSI-2026-32039",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -831,7 +831,7 @@
             "qsiFindingKey/v1": "53fe2ba06f06c8ee83dc5dd34c7e0ce8"
           },
           "properties": {
-            "qsiId": "QSI-2026-19614",
+            "qsiId": "QSI-2026-32042",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -849,7 +849,7 @@
             "qsiFindingKey/v1": "53fe2ba06f06c8ee83dc5dd34c7e0ce8"
           },
           "properties": {
-            "qsiId": "QSI-2026-19616",
+            "qsiId": "QSI-2026-32044",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -867,7 +867,7 @@
             "qsiFindingKey/v1": "53fe2ba06f06c8ee83dc5dd34c7e0ce8"
           },
           "properties": {
-            "qsiId": "QSI-2026-19621",
+            "qsiId": "QSI-2026-32049",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -885,7 +885,7 @@
             "qsiFindingKey/v1": "53fe2ba06f06c8ee83dc5dd34c7e0ce8"
           },
           "properties": {
-            "qsiId": "QSI-2026-19624",
+            "qsiId": "QSI-2026-32052",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -903,7 +903,7 @@
             "qsiFindingKey/v1": "c4d28076ad96dc58706ae85a13b98936"
           },
           "properties": {
-            "qsiId": "QSI-2026-19599",
+            "qsiId": "QSI-2026-32016",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -921,7 +921,7 @@
             "qsiFindingKey/v1": "c4d28076ad96dc58706ae85a13b98936"
           },
           "properties": {
-            "qsiId": "QSI-2026-19610",
+            "qsiId": "QSI-2026-32038",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -939,7 +939,7 @@
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-19592",
+            "qsiId": "QSI-2026-32009",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -957,7 +957,7 @@
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-19606",
+            "qsiId": "QSI-2026-32034",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -975,7 +975,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-19588",
+            "qsiId": "QSI-2026-31996",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -993,7 +993,7 @@
             "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
           },
           "properties": {
-            "qsiId": "QSI-2026-19589",
+            "qsiId": "QSI-2026-31997",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1011,7 +1011,331 @@
             "qsiFindingKey/v1": "3f8850c4bceb8a6c61ddbbe878f0f137"
           },
           "properties": {
-            "qsiId": "QSI-2026-19590",
+            "qsiId": "QSI-2026-31998",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0574 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3a9cb039a1a27f8519f8e2488f772de8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32000",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0575 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0bd45fc7e5f7979e1b2252763239ed1b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32001",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0576 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a7730dd1c85805eef8ffca29044b06f2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32002",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0577 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "811b1c8cb6d8c8b008a86908089a7614"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32003",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0578 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e2d83f9392f52051e87accb3e5626418"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32004",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0579 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3a3f7138d247df632d48a3db5576a9f5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32005",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0580 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4d9bed4fc9a3931f906e181ff7595013"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32006",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0581 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f2df69ee31485713b89987b4cb976a7d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32007",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.9.3 is affected by RUSTSEC-2026-0582 (no severity rating) (dependency: crates.io/heapless@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9265853f0f5680940a594345abca4112"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32008",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0574 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3a9cb039a1a27f8519f8e2488f772de8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32018",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0575 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0bd45fc7e5f7979e1b2252763239ed1b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32019",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0576 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a7730dd1c85805eef8ffca29044b06f2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32020",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0577 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "811b1c8cb6d8c8b008a86908089a7614"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32021",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0578 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e2d83f9392f52051e87accb3e5626418"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32022",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0579 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3a3f7138d247df632d48a3db5576a9f5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32023",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0580 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4d9bed4fc9a3931f906e181ff7595013"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32024",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0581 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f2df69ee31485713b89987b4cb976a7d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32025",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "heapless 0.8.0 is affected by RUSTSEC-2026-0582 (no severity rating) (dependency: crates.io/heapless@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9265853f0f5680940a594345abca4112"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32026",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1029,7 +1353,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-19603",
+            "qsiId": "QSI-2026-32030",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1047,7 +1371,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-19604",
+            "qsiId": "QSI-2026-32032",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1065,7 +1389,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-19612",
+            "qsiId": "QSI-2026-32040",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1083,7 +1407,7 @@
             "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
           },
           "properties": {
-            "qsiId": "QSI-2026-19591",
+            "qsiId": "QSI-2026-31999",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -1101,7 +1425,25 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-19593",
+            "qsiId": "QSI-2026-32010",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "chrono 0.4.44: informational advisory RUSTSEC-2026-0543 (unmaintained) (dependency: crates.io/chrono@0.4.44)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7439bae337a673be840331b9becf8856"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32017",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -1119,7 +1461,25 @@
             "qsiFindingKey/v1": "d5bac48d64a6bf2f66ad3ad87972b471"
           },
           "properties": {
-            "qsiId": "QSI-2026-19602",
+            "qsiId": "QSI-2026-32029",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "chrono 0.4.31: informational advisory RUSTSEC-2026-0543 (unmaintained) (dependency: crates.io/chrono@0.4.31)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7439bae337a673be840331b9becf8856"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-32031",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -1137,7 +1497,7 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-19607",
+            "qsiId": "QSI-2026-32035",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -1155,7 +1515,7 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-19613",
+            "qsiId": "QSI-2026-32041",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -1164,13 +1524,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/stellar-core @ 362dbc5184c5/b0f4a6ed-9255-4307-8ee5-a8714e875faf"
+        "id": "qsi/stellar-core @ 362dbc5184c5/9a90f3ee-0182-4452-8787-55165729f192"
       },
       "properties": {
-        "qsiContentSha256": "f327ba1b869fa8b4294a76c06b8c8cab443e20fce8fcaa92ea2b8a6bee57463e",
+        "qsiContentSha256": "7b02c4d08bef6cbe4176f223dc45c806462f14fd97e8c58a8ed017066ff174d0",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T16:13:25.846072+00:00",
+        "qsiGeneratedAt": "2026-11-19T17:18:19.531824+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

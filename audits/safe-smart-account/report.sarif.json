@@ -8,63 +8,13 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.6.0",
           "rules": [
-            {
-              "id": "SOL-ECRECOVER",
-              "name": "SolEcrecover",
-              "shortDescription": {
-                "text": "Прямое использование ecrecover в certora/harnesses/SafeHarness.sol"
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "smart_contract",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "5.0"
-              },
-              "fullDescription": {
-                "text": "ecrecover в строка 32. (см. SWC-117/SWC-121) Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
-              },
-              "help": {
-                "text": "ecrecover в строка 32. (см. SWC-117/SWC-121) Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
-              },
-              "helpUri": "https://swcregistry.io/"
-            },
-            {
-              "id": "SOL-UNCHECKED-CALL",
-              "name": "SolUncheckedCall",
-              "shortDescription": {
-                "text": "Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol"
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "smart_contract",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "5.0"
-              },
-              "fullDescription": {
-                "text": "Результат низкоуровневого вызова не проверяется в строка 88. (см. SWC-104) Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
-              },
-              "help": {
-                "text": "Результат низкоуровневого вызова не проверяется в строка 88. (см. SWC-104) Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
-              },
-              "helpUri": "https://swcregistry.io/"
-            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))"
+                "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -78,10 +28,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "5 упоминаний ECDSA в 3 файл(ах), например certora/harnesses/SafeHarness.sol:32. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "3 упоминаний ECDSA в 2 файл(ах), например contracts/Safe.sol:403. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "help": {
-                "text": "5 упоминаний ECDSA в 3 файл(ах), например certora/harnesses/SafeHarness.sol:32. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "3 упоминаний ECDSA в 2 файл(ах), например contracts/Safe.sol:403. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -153,10 +103,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -165,77 +115,17 @@
       },
       "results": [
         {
-          "ruleId": "SOL-ECRECOVER",
+          "ruleId": "CODE-QV-ASYMMETRIC",
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "Прямое использование ecrecover в certora/harnesses/SafeHarness.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "9022ae6ce37eefd2abab29e1d2c6da2f"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18794",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "5.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "certora/harnesses/SafeHarness.sol"
-                },
-                "region": {
-                  "startLine": 32
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "SOL-UNCHECKED-CALL",
-          "ruleIndex": 1,
-          "level": "warning",
-          "message": {
-            "text": "Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "2032b437a7333388e11a79f7a501bb90"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-18795",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "5.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "certora/harnesses/SafeHarness.sol"
-                },
-                "region": {
-                  "startLine": 88
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))"
+            "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-18793",
+            "qsiId": "QSI-2026-32708",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -244,7 +134,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 3,
+          "ruleIndex": 1,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)"
@@ -253,7 +143,7 @@
             "qsiFindingKey/v1": "4781b95b0fbd7ec3040031da63de18c6"
           },
           "properties": {
-            "qsiId": "QSI-2026-18796",
+            "qsiId": "QSI-2026-32707",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -262,7 +152,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 3,
+          "ruleIndex": 1,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)"
@@ -271,7 +161,7 @@
             "qsiFindingKey/v1": "32a56deb3dad5d9045ccf3971b5c5eb2"
           },
           "properties": {
-            "qsiId": "QSI-2026-18797",
+            "qsiId": "QSI-2026-32709",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -280,7 +170,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 3,
+          "ruleIndex": 1,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)"
@@ -289,7 +179,7 @@
             "qsiFindingKey/v1": "34db541a9e95a884cc8e7a114bbc9b80"
           },
           "properties": {
-            "qsiId": "QSI-2026-18798",
+            "qsiId": "QSI-2026-32710",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -298,7 +188,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-DEV",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
@@ -307,7 +197,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-18800",
+            "qsiId": "QSI-2026-32712",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -325,7 +215,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
@@ -334,7 +224,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-18799",
+            "qsiId": "QSI-2026-32711",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -343,13 +233,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/safe-smart-account @ 247b8ce3bdbf/da003a3e-e362-465b-af60-fbcb4b6322d3"
+        "id": "qsi/safe-smart-account @ 247b8ce3bdbf/ea8e93f0-e50c-4911-b6cd-fd8500780959"
       },
       "properties": {
-        "qsiContentSha256": "a78c7f23d1423e7637d8911f87319e67fed03020af9361b43d60c729eb96d13b",
+        "qsiContentSha256": "3e7806a2c68bc773b95ef90da9ee2143cde6f6c176356f94cdfa6059eb3f45a9",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:53:12.483207+00:00",
+        "qsiGeneratedAt": "2026-11-19T17:44:59.530211+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

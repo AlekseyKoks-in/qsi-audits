@@ -40,4 +40,15 @@ vendored code reported apart from the project's own code. aptos-core was reviewe
 whole monorepo. A verifier in the code does not mean it is enabled on mainnet: feature flags and protocol versions
 decide that, and this report does not claim activation.
 
+## Correction, 2026-11-19
+
+The own-code figures for Stellar and Arc in the table above counted test-support code as shipped. soroban-env-host
+compiles `testutils.rs`, `builtin_contracts/testutils.rs` and `e2e_testutils.rs` only under
+`#[cfg(any(test, feature = "testutils"))]`, and arc-node's precompiles gate `pq_test_vectors.rs` behind `test-utils`
+and build its generator as a separate tool. Re-audited at the same commits, on the same trees, the bundles in
+`studies/l1/` now give: Stellar **55 + 175** own-code rows (was 58 + 186) and **36 + 136** Shor-breakable (was 38 + 143);
+Arc **34** own-code rows (was 37) and **12** Shor-breakable (unchanged). Arc's three removed rows were the SLH-DSA rows of
+its test-vector generator; the SLH-DSA verification precompile cited above is unaffected, and no other cell of the table
+changes. The README's dated section of the same day gives the measurement.
+
 *QSI — quantum-readiness inventory of cryptography. Contact: alekseykoksin@gmail.com.*

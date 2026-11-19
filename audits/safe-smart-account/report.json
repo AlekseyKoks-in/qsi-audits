@@ -1,8 +1,8 @@
 {
-  "content_sha256": "a78c7f23d1423e7637d8911f87319e67fed03020af9361b43d60c729eb96d13b",
+  "content_sha256": "3e7806a2c68bc773b95ef90da9ee2143cde6f6c176356f94cdfa6059eb3f45a9",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-06T13:53:12.483207+00:00",
+  "generated_at": "2026-11-19T17:44:59.530211+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "5d8b683e-ad6e-4179-b295-b074f8e119fc",
     "name": "safe-smart-account @ 247b8ce3bdbf",
     "client_name": "Safe",
-    "description": "Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b369d137424ddc58. 77 files analysed; of 236 files, 81 are test, fuzzing, benchmark or example code and were left out, 78 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .env.sample, .gitattributes, .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/feature_request.md. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b369d137424ddc58. 74 files analysed; of 236 files, 117 are test, fuzzing, benchmark or example code and were left out, 45 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .env.sample, .gitattributes, .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/feature_request.md. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "da003a3e-e362-465b-af60-fbcb4b6322d3",
+    "id": "ea8e93f0-e50c-4911-b6cd-fd8500780959",
     "mode": "document",
     "title": "Document audit: safe-smart-account",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T13:52:28.347588+00:00",
-    "finished_at": "2026-11-06T13:53:12.358422+00:00",
+    "engine_version": "1.6.0",
+    "started_at": "2026-11-19T17:44:11.030890+00:00",
+    "finished_at": "2026-11-19T17:44:59.438024+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -42,24 +42,6 @@
       "name": ".solcover.js",
       "size": 433,
       "sha256": "e082bfb212d25c3367596453ba28440137a54a63b8ff8072b5e004fb98629686",
-      "redactions": 0
-    },
-    {
-      "name": "certora/harnesses/ExtensibleFallbackHandlerHarness.sol",
-      "size": 368,
-      "sha256": "a23d35cd9283f8262742377b7862f63c10aeeec1964f31b610dc35e53ea9f911",
-      "redactions": 0
-    },
-    {
-      "name": "certora/harnesses/SafeHarness.sol",
-      "size": 3751,
-      "sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
-      "redactions": 0
-    },
-    {
-      "name": "certora/requirements.txt",
-      "size": 20,
-      "sha256": "138d8afeb220dd3aadad0b7221d49d76c3ec475ca2c6f5bed4f44298b41af4fa",
       "redactions": 0
     },
     {
@@ -502,39 +484,14 @@
     }
   ],
   "inputs_total": {
-    "files": 77,
-    "bytes": 722848,
+    "files": 74,
+    "bytes": 718709,
     "redactions": 6
   },
   "coverage": [
     {
       "area": "source_code",
-      "detail": ".solcover.js: 15 lines scanned with 16 rule patterns and 266 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "smart_contracts",
-      "detail": "certora/harnesses/ExtensibleFallbackHandlerHarness.sol: built-in Solidity pattern checks",
-      "status": "checked"
-    },
-    {
-      "area": "slither",
-      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
-      "status": "not_checked"
-    },
-    {
-      "area": "smart_contracts",
-      "detail": "certora/harnesses/SafeHarness.sol: built-in Solidity pattern checks",
-      "status": "checked"
-    },
-    {
-      "area": "slither",
-      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
-      "status": "not_checked"
-    },
-    {
-      "area": "dependencies",
-      "detail": "certora/requirements.txt: 1 dependencies parsed (1 pinned)",
+      "detail": ".solcover.js: 15 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
@@ -1079,12 +1036,12 @@
     },
     {
       "area": "source_code",
-      "detail": "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
@@ -1099,87 +1056,87 @@
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_accessors.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/deploy/deploy_accessors.ts: 16 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_factories.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/deploy/deploy_factories.ts: 16 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_handlers.ts: 30 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/deploy/deploy_handlers.ts: 30 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_libraries.ts: 44 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/deploy/deploy_libraries.ts: 44 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_migrations.ts: 21 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/deploy/deploy_migrations.ts: 21 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_safe_l2.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/deploy/deploy_safe_l2.ts: 16 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_safe_singleton.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/deploy/deploy_safe_singleton.ts: 16 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/index.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/index.ts: 4 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/deploy_contracts.ts: 10 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/tasks/deploy_contracts.ts: 10 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/local_verify.ts: 47 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/tasks/local_verify.ts: 47 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/show_codesize.ts: 37 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/tasks/show_codesize.ts: 37 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/constants.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/utils/constants.ts: 1 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/execution.ts: 284 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/utils/execution.ts: 284 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/multisend.ts: 25 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/utils/multisend.ts: 25 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/proxies.ts: 28 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/utils/proxies.ts: 28 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/solc.ts: 18 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/utils/solc.ts: 18 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/solc.d.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "types/solc.d.ts: 1 lines scanned with 16 rule patterns and 280 registry patterns",
       "status": "checked"
     },
     {
@@ -1189,7 +1146,7 @@
     },
     {
       "area": "osv_advisories",
-      "detail": "736 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies)",
+      "detail": "735 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies)",
       "status": "checked"
     },
     {
@@ -1210,40 +1167,29 @@
       "count": 20,
       "rows": 20,
       "examples": [
-        ".solcover.js: 15 lines scanned with 16 rule patterns and 266 registry patterns",
-        "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 266 registry patterns",
-        "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 266 registry patterns"
+        ".solcover.js: 15 lines scanned with 16 rule patterns and 280 registry patterns",
+        "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 280 registry patterns",
+        "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 280 registry patterns"
       ]
     },
     {
       "area": "smart_contracts",
       "status": "checked",
-      "count": 54,
-      "rows": 54,
+      "count": 52,
+      "rows": 52,
       "examples": [
-        "certora/harnesses/ExtensibleFallbackHandlerHarness.sol: built-in Solidity pattern checks",
-        "certora/harnesses/SafeHarness.sol: built-in Solidity pattern checks",
-        "contracts/Safe.sol: built-in Solidity pattern checks"
+        "contracts/Safe.sol: built-in Solidity pattern checks",
+        "contracts/SafeL2.sol: built-in Solidity pattern checks",
+        "contracts/accessors/SimulateTxAccessor.sol: built-in Solidity pattern checks"
       ]
     },
     {
       "area": "slither",
       "status": "not_checked",
-      "count": 54,
-      "rows": 54,
+      "count": 52,
+      "rows": 52,
       "examples": [
         "slither is not installed on the server (pip install slither-analyzer + solc)"
-      ]
-    },
-    {
-      "area": "dependencies",
-      "status": "checked",
-      "count": 3,
-      "rows": 3,
-      "examples": [
-        "certora/requirements.txt: 1 dependencies parsed (1 pinned)",
-        "package-lock.json: 831 dependencies parsed (831 pinned)",
-        "package.json: 30 dependencies parsed (0 pinned)"
       ]
     },
     {
@@ -1255,6 +1201,16 @@
         "contracts/Safe.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
         "contracts/handler/CompatibilityFallbackHandler.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
         "contracts/handler/extensible/SignatureVerifierMuxer.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)"
+      ]
+    },
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "package-lock.json: 831 dependencies parsed (831 pinned)",
+        "package.json: 30 dependencies parsed (0 pinned)"
       ]
     },
     {
@@ -1272,7 +1228,7 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "736 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies)"
+        "735 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies)"
       ]
     },
     {
@@ -1548,16 +1504,6 @@
       "status": "not_checked"
     },
     {
-      "area": "slither",
-      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
-      "status": "not_checked"
-    },
-    {
-      "area": "slither",
-      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
-      "status": "not_checked"
-    },
-    {
       "area": "osv_advisories",
       "detail": "npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest",
       "status": "insufficient_data"
@@ -1572,8 +1518,8 @@
     {
       "area": "slither",
       "status": "not_checked",
-      "count": 54,
-      "rows": 54,
+      "count": 52,
+      "rows": 52,
       "examples": [
         "slither is not installed on the server (pip install slither-analyzer + solc)"
       ]
@@ -1595,10 +1541,7 @@
     "registered": [],
     "examined_inputs": [
       ".solcover.js",
-      "736 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies)",
-      "certora/harnesses/ExtensibleFallbackHandlerHarness.sol",
-      "certora/harnesses/SafeHarness.sol",
-      "certora/requirements.txt",
+      "735 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies)",
       "contracts/Safe.sol",
       "contracts/SafeL2.sol",
       "contracts/accessors/SimulateTxAccessor.sol",
@@ -1681,7 +1624,7 @@
     "by_severity": {
       "critical": 0,
       "high": 0,
-      "medium": 3,
+      "medium": 1,
       "low": 3,
       "info": 2
     },
@@ -1689,19 +1632,19 @@
       "confirmed_vulnerability": 0,
       "known_vulnerable_component": 0,
       "confirmed_misconfiguration": 0,
-      "potential_crypto_risk": 2,
+      "potential_crypto_risk": 0,
       "pq_long_term_risk": 1,
       "improvement": 4,
       "insufficient_data": 1
     },
-    "total": 8,
-    "posture_index": 94,
-    "pq_vulnerable_share": 15.2,
-    "inventory_total": 33,
+    "total": 6,
+    "posture_index": 100,
+    "pq_vulnerable_share": 10.0,
+    "inventory_total": 30,
     "inventory_by_quantum_status": {
-      "grover_reduced": 8,
+      "grover_reduced": 7,
       "not_applicable": 20,
-      "vulnerable_shor": 5
+      "vulnerable_shor": 3
     },
     "inventory_by_origin": {
       "dependency": {
@@ -1709,235 +1652,24 @@
         "vulnerable_shor": 0
       },
       "own": {
-        "total": 13,
-        "vulnerable_shor": 5
+        "total": 10,
+        "vulnerable_shor": 3
       }
     }
   },
   "findings": [
     {
-      "id": "6195cd5b-ece9-43f5-9bf7-405d90494315",
-      "public_id": "QSI-2026-18794",
-      "rule_id": "SOL-ECRECOVER",
-      "title": "Прямое использование ecrecover в certora/harnesses/SafeHarness.sol",
-      "description": "ecrecover в строка 32. (см. SWC-117/SWC-121)",
-      "impact": "Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).",
-      "recommendation": "Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.",
-      "retest": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-      "limitations": "Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).",
-      "method": "Анализ шаблонов исходного кода Solidity.",
-      "repro": "Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
-      "category": "smart_contract",
-      "classification": "potential_crypto_risk",
-      "severity": "medium",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "contract:certora/harnesses/SafeHarness.sol",
-      "data_source": "certora/harnesses/SafeHarness.sol",
-      "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-06T13:53:12.291989+00:00",
-      "risk_score": 43.6,
-      "risk_breakdown": {
-        "score": 43.6,
-        "factors": {
-          "ease": 0.6,
-          "asset": 0.6,
-          "impact": 0.58,
-          "urgency": 1.0,
-          "exposure": 0.8,
-          "severity": 0.5,
-          "exploitability": 0.6
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 64.1,
-        "references": [],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 11.6,
-          "urgency": 10.0,
-          "exposure": 12.0,
-          "severity": 12.5,
-          "exploitability": 12.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "SWC",
-          "url": "https://swcregistry.io/",
-          "title": "Smart Contract Weakness Classification (SWC) Registry",
-          "status": "historic reference; still widely cited",
-          "publisher": "SWC community (no longer actively maintained)"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "certora/harnesses/SafeHarness.sol",
-          "location": "line 32",
-          "content": "   30 |             currentOwner = address(uint160(uint256(r)));\n   31 |         } else if (v > 30) {\n   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), v - 4, r, s);\n   33 |         } else {\n   34 |             currentOwner = ecrecover(dataHash, v, r, s);",
-          "content_sha256": "e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0",
-          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.313966+00:00",
-          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "certora/harnesses/SafeHarness.sol",
-          "location": "line 34",
-          "content": "   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), v - 4, r, s);\n   33 |         } else {\n   34 |             currentOwner = ecrecover(dataHash, v, r, s);\n   35 |         }\n   36 |     }",
-          "content_sha256": "3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef",
-          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.313973+00:00",
-          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "root_cause",
-          "action": "Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.",
-          "rationale": "Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).",
-          "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-          "priority": "P2",
-          "horizon_days": 60,
-          "complexity": "medium",
-          "dependencies": "",
-          "side_effects": "",
-          "pre_tests": "Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
-          "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-          "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "784e4ebc-c81f-416e-837a-8face9ed5eaf",
-      "public_id": "QSI-2026-18795",
-      "rule_id": "SOL-UNCHECKED-CALL",
-      "title": "Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol",
-      "description": "Результат низкоуровневого вызова не проверяется в строка 88. (см. SWC-104)",
-      "impact": "Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.",
-      "recommendation": "Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.",
-      "retest": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-      "limitations": "Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).",
-      "method": "Анализ шаблонов исходного кода Solidity.",
-      "repro": "Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
-      "category": "smart_contract",
-      "classification": "potential_crypto_risk",
-      "severity": "medium",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "contract:certora/harnesses/SafeHarness.sol",
-      "data_source": "certora/harnesses/SafeHarness.sol",
-      "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-06T13:53:12.310259+00:00",
-      "risk_score": 43.6,
-      "risk_breakdown": {
-        "score": 43.6,
-        "factors": {
-          "ease": 0.6,
-          "asset": 0.6,
-          "impact": 0.58,
-          "urgency": 1.0,
-          "exposure": 0.8,
-          "severity": 0.5,
-          "exploitability": 0.6
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 64.1,
-        "references": [],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 11.6,
-          "urgency": 10.0,
-          "exposure": 12.0,
-          "severity": 12.5,
-          "exploitability": 12.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "SWC",
-          "url": "https://swcregistry.io/",
-          "title": "Smart Contract Weakness Classification (SWC) Registry",
-          "status": "historic reference; still widely cited",
-          "publisher": "SWC community (no longer actively maintained)"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "certora/harnesses/SafeHarness.sol",
-          "location": "line 88",
-          "content": "   86 | \n   87 |     function callDummyHandler(bytes4 selector) public {\n   88 |         address(this).call(abi.encodeWithSelector(selector));\n   89 |     }\n   90 | ",
-          "content_sha256": "8e885c80b50cce328ce145786c0515613599e25c3226c2115c450b873c5e9506",
-          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.321338+00:00",
-          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L88"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "root_cause",
-          "action": "Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.",
-          "rationale": "Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.",
-          "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-          "priority": "P2",
-          "horizon_days": 60,
-          "complexity": "medium",
-          "dependencies": "",
-          "side_effects": "",
-          "pre_tests": "Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
-          "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-          "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "2ea05c73-c235-47ac-bfcc-695543aa7ab1",
-      "public_id": "QSI-2026-18793",
+      "id": "11970274-eda5-483a-943f-af4cf912cac0",
+      "public_id": "QSI-2026-32708",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
-      "description": "5 упоминаний ECDSA в 3 файл(ах), например certora/harnesses/SafeHarness.sol:32. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
+      "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))",
+      "description": "3 упоминаний ECDSA в 2 файл(ах), например contracts/Safe.sol:403. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
       "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
       "recommendation": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.",
       "retest": "Повторите инвентаризацию после рефакторинга.",
       "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
       "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
-      "repro": "Откройте certora/harnesses/SafeHarness.sol:32 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "repro": "Откройте contracts/Safe.sol:403 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
       "category": "post_quantum",
       "classification": "pq_long_term_risk",
       "severity": "medium",
@@ -1946,9 +1678,9 @@
       "status": "open",
       "triage": null,
       "affected_asset": "source-code:ECDSA:transaction_signing",
-      "data_source": "certora/harnesses/SafeHarness.sol",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:53:12.281642+00:00",
+      "data_source": "contracts/Safe.sol",
+      "analyzer": "source_code 1.6.0",
+      "detected_at": "2026-11-19T17:44:59.395520+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -2039,35 +1771,13 @@
       "evidence": [
         {
           "kind": "file_excerpt",
-          "source": "certora/harnesses/SafeHarness.sol",
-          "location": "line 32",
-          "content": "   30 |             currentOwner = address(uint160(uint256(r)));\n   31 |         } else if (v > 30) {\n   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), v - 4, r, s);\n   33 |         } else {\n   34 |             currentOwner = ecrecover(dataHash, v, r, s);",
-          "content_sha256": "e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0",
-          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.298450+00:00",
-          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "certora/harnesses/SafeHarness.sol",
-          "location": "line 34",
-          "content": "   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), v - 4, r, s);\n   33 |         } else {\n   34 |             currentOwner = ecrecover(dataHash, v, r, s);\n   35 |         }\n   36 |     }",
-          "content_sha256": "3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef",
-          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.298458+00:00",
-          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34"
-        },
-        {
-          "kind": "file_excerpt",
           "source": "contracts/Safe.sol",
           "location": "line 403",
           "content": "  401 |                 // If `v > 30` then default `v` (27, 28) has been adjusted to encode an `eth_sign` signature.\n  402 |                 // To support `eth_sign` and similar we adjust `v` and hash the `dataHash` with the EIP-191 message prefix before applying `ecrecover`.\n  403 |                 currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), uint8(v - 4), r, s);\n  404 |             } else {\n  405 |                 // Default is `ecrecover` for the provided `dataHash`.",
           "content_sha256": "be7c18bdbce908e503f1c899b447b921a9a3880ec49ae5d3d5ea33045ae5aec7",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.298462+00:00",
+          "collector": "source_code 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.413069+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L403"
         },
         {
@@ -2077,8 +1787,8 @@
           "content": "  404 |             } else {\n  405 |                 // Default is `ecrecover` for the provided `dataHash`.\n  406 |                 currentOwner = ecrecover(dataHash, uint8(v), r, s);\n  407 |             }\n  408 |             if (currentOwner <= lastOwner || owners[currentOwner] == address(0) || currentOwner == SENTINEL_OWNERS)",
           "content_sha256": "361e3d349b65a6cf85ae3cc313307e936af7349c06d154fd2e39b0f84d9b4714",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.298465+00:00",
+          "collector": "source_code 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.413078+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L406"
         },
         {
@@ -2088,8 +1798,8 @@
           "content": "  112 |         signer: signerAddress,\n  113 |         data: await signer.signTypedData({ verifyingContract: safeAddress, chainId: cid }, EIP712_SAFE_TX_TYPE, safeTx),\n  114 |     };",
           "content_sha256": "a189cee56b6fb9aa095cce0a3b5099d5f195bc22ad24f9e656e950cde6a753c0",
           "source_sha256": "d2d395bd775bb64117ad4d323fb164f4dd5ef7c616c64f26beeabbf0096121b3",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.298469+00:00",
+          "collector": "source_code 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.413083+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/src/utils/execution.ts#L113"
         }
       ],
@@ -2127,8 +1837,8 @@
       ]
     },
     {
-      "id": "8531b252-4776-4324-88a6-a3f8fa9c7c5c",
-      "public_id": "QSI-2026-18796",
+      "id": "2e0b4a06-9644-441d-97ac-66aa23b02430",
+      "public_id": "QSI-2026-32707",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)",
       "description": "pragma >=0.7.0 <0.9.0 в 50 файл(ах), впервые в contracts/Safe.sol:2. (см. SWC-103)",
@@ -2147,8 +1857,8 @@
       "triage": null,
       "affected_asset": "solidity:pragma:>=0.7.0 <0.9.0",
       "data_source": "contracts/Safe.sol",
-      "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-06T13:53:12.318916+00:00",
+      "analyzer": "solidity 1.6.0",
+      "detected_at": "2026-11-19T17:44:59.387457+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -2203,8 +1913,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {FallbackManager} from \"./base/FallbackManager.sol\";",
           "content_sha256": "e88d87460c9e31999f74a385f7211f2a3d247576a8d5e7321fb8ab7610726718",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331134+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399580+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L2"
         },
         {
@@ -2214,8 +1924,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | // The import is used in the @inheritdoc, false positive",
           "content_sha256": "15c9f4200fba8411f86f51e4783fa81326529bbdedb3a85d3d69541f7783cbd7",
           "source_sha256": "6030700562329d1ebd42ec3c0494b10c9001dbe9080fbb4abf75c1563ed466db",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331145+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399589+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/SafeL2.sol#L2"
         },
         {
@@ -2225,8 +1935,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {Executor, Enum} from \"../base/Executor.sol\";",
           "content_sha256": "af5c840a272a5dab66211c10e60731181ce16ddf9518928201829db6baacef22",
           "source_sha256": "ea5890f27c3a488246ecb1880d632f4a5a30fcbbb65a512bad7a1c5b88f86082",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331150+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399594+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/accessors/SimulateTxAccessor.sol#L2"
         },
         {
@@ -2236,8 +1946,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | import {Enum} from \"../interfaces/Enum.sol\";\n    4 | ",
           "content_sha256": "c8eec2e4083c16adc0bf1e7eea14ca740cca55b1f5676d9cb4a355576c6800c6",
           "source_sha256": "dcea582290abd1dc0ce89171389d78b716e89f6c788fce523c5cb562e81743e8",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331154+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399599+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/Executor.sol#L2"
         },
         {
@@ -2247,8 +1957,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {SelfAuthorized} from \"../common/SelfAuthorized.sol\";",
           "content_sha256": "f0696aecda7f2d4390ae2470ec51a56b07a6565df8ff4be3d0a6524628ffb825",
           "source_sha256": "da724d64eb3238f1cb3355bf8b87c459cf812fc3f6dd100f2f89290a8a169eb9",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331158+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399603+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/FallbackManager.sol#L2"
         },
         {
@@ -2258,8 +1968,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | /* solhint-disable one-contract-per-file */\n    3 | pragma solidity >=0.7.0 <0.9.0;\n    4 | \n    5 | import {SelfAuthorized} from \"./../common/SelfAuthorized.sol\";",
           "content_sha256": "2f8023b221054a49f2c7512edfc7f592b58e8c7053625f4af7216c1251f2bd74",
           "source_sha256": "e1db96b2ed4f15aa42c8ceca0d8701048e7b6fe276cb437a4f814d85f69119a9",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331162+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399608+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/GuardManager.sol#L3"
         },
         {
@@ -2269,8 +1979,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | /* solhint-disable one-contract-per-file */\n    3 | pragma solidity >=0.7.0 <0.9.0;\n    4 | import {SelfAuthorized} from \"./../common/SelfAuthorized.sol\";\n    5 | import {IERC165} from \"./../interfaces/IERC165.sol\";",
           "content_sha256": "6fd7193061543bd17b02478604b1e136ee186957854410e2482d2fd544017605",
           "source_sha256": "3b7be17091c7c9e37c9ddaba41e57464b1c4a334500d34eaddd94721f8cd83b3",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331167+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399613+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/ModuleManager.sol#L3"
         },
         {
@@ -2280,8 +1990,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {EIP7702} from \"../common/EIP7702.sol\";",
           "content_sha256": "43281753a6047468ec8145eb656909a730f9b1bb7e3a6388e81a52f7cc0c1714",
           "source_sha256": "c9744122158f543336c11bafc70d376711f48c4dd310fe09f385231f264a3fc1",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331172+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399618+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/OwnerManager.sol#L2"
         },
         {
@@ -2291,8 +2001,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | /**",
           "content_sha256": "4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f",
           "source_sha256": "719f239f789764c2d79150ab0d6d5b3b49af4fee4409f0e6c3303350e30aad3a",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331176+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399622+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7702.sol#L2"
         },
         {
@@ -2302,8 +2012,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | /**",
           "content_sha256": "4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f",
           "source_sha256": "445d712873ba07b5ef800edd7038d8483da9d2ae1f56ee972e18076a7ee90992",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.331180+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.399627+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7951.sol#L2"
         }
       ],
@@ -2326,8 +2036,8 @@
       ]
     },
     {
-      "id": "eb4bf5ce-4e34-44cd-9b1d-bf64d773372a",
-      "public_id": "QSI-2026-18797",
+      "id": "214118bd-bf73-4669-8740-547240c1a009",
+      "public_id": "QSI-2026-32709",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)",
       "description": "pragma >=0.5.0 <0.9.0 в 1 файл(ах), впервые в contracts/interfaces/ViewStorageAccessible.sol:2. (см. SWC-103)",
@@ -2346,8 +2056,8 @@
       "triage": null,
       "affected_asset": "solidity:pragma:>=0.5.0 <0.9.0",
       "data_source": "contracts/interfaces/ViewStorageAccessible.sol",
-      "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-06T13:53:12.328434+00:00",
+      "analyzer": "solidity 1.6.0",
+      "detected_at": "2026-11-19T17:44:59.410929+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -2402,8 +2112,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.5.0 <0.9.0;\n    3 | \n    4 | /**",
           "content_sha256": "983f9c51447ea383d35f05b85564c2a8e5c2eb17d9109edf52dad4e588c49ca6",
           "source_sha256": "c03720d0b31ec9208f2372c1ed397e2b4e7c77f60dc80a571721e50d66a598cf",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.339823+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.421182+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/interfaces/ViewStorageAccessible.sol#L2"
         }
       ],
@@ -2426,8 +2136,8 @@
       ]
     },
     {
-      "id": "24e1f444-7049-434d-9a9b-65e78779892d",
-      "public_id": "QSI-2026-18798",
+      "id": "5f20cd30-b367-4944-aff6-12139e288c44",
+      "public_id": "QSI-2026-32710",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)",
       "description": "pragma >=0.7.4 <0.9.0 в 1 файл(ах), впервые в contracts/libraries/SafeStorage.sol:2. (см. SWC-103)",
@@ -2446,8 +2156,8 @@
       "triage": null,
       "affected_asset": "solidity:pragma:>=0.7.4 <0.9.0",
       "data_source": "contracts/libraries/SafeStorage.sol",
-      "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-06T13:53:12.337511+00:00",
+      "analyzer": "solidity 1.6.0",
+      "detected_at": "2026-11-19T17:44:59.418891+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -2502,8 +2212,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.4 <0.9.0;\n    3 | \n    4 | /**",
           "content_sha256": "11c26335bd27fe89dda40165c6fea219ab0021d1c0b45a5bace32a1322a9ae25",
           "source_sha256": "642b3e3f69348c8bb715ed222fd510f71e265f6cf45b71b8d7d88b2bdff00cea",
-          "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.346657+00:00",
+          "collector": "solidity 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.426381+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/libraries/SafeStorage.sol#L2"
         }
       ],
@@ -2526,8 +2236,8 @@
       ]
     },
     {
-      "id": "747a1b36-77ad-4c7e-be36-003f3cf771a4",
-      "public_id": "QSI-2026-18800",
+      "id": "00839605-6f8d-40e0-aa6d-90c9c6c4c958",
+      "public_id": "QSI-2026-32712",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 176 бюллетеней (94 с оценкой high или critical) для 46 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; @openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -2546,8 +2256,8 @@
       "triage": null,
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:53:12.349818+00:00",
+      "analyzer": "dependencies 1.6.0",
+      "detected_at": "2026-11-19T17:44:59.430018+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -2602,8 +2312,8 @@
           "content": "@fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx\n@humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g\n@isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2\n@openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh\nadm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85\najv@6.12.6 [dev]: GHSA-2g4f-4pwh-qvx6\najv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6\naxios@0.21.4 [dev]: GHSA-3g43-6gmg-66jw, GHSA-3p68-rc4w-qgx5, GHSA-43fc-jf86-j433, GHSA-5c9x-8gcm-mpgx, GHSA-62hf-57xw-28j9, GHSA-6chq-wfr3-2hj9, GHSA-7q8q-rj6j-mhjq, GHSA-898c-q2cr-xwhg, GHSA-fvcv-3m26-pcqx, GHSA-hfxv-24rg-xrqf, GHSA-j5f8-grm9-p9fc, GHSA-jr5f-v2jv-69x6, GHSA-m7pr-hjqh-92cm, GHSA-mmx7-hfxf-jppx, GHSA-p92q-9vqr-4j8v, GHSA-pf86-5x62-jrwf, GHSA-pjwm-pj3p-43mv, GHSA-pmwg-cvhr-8vh7, GHSA-vf2m-468p-8v99, GHSA-w9j2-pvgh-6h63\naxios@1.13.2 [dev]: GHSA-35jp-ww65-95wh, GHSA-3g43-6gmg-66jw, GHSA-3p68-rc4w-qgx5, GHSA-3pq3-5fj3-cg6v, GHSA-3w6x-2g7m-8v23, GHSA-42h9-826w-cgv3, GHSA-43fc-jf86-j433, GHSA-445q-vr5w-6q77, GHSA-4hqw-qxg8-jxx2, GHSA-542g-h47m-68v8, GHSA-5c9x-8gcm-mpgx, GHSA-62hf-57xw-28j9, GHSA-6chq-wfr3-2hj9, GHSA-777c-7fjr-54vf, GHSA-7q8q-rj6j-mhjq, GHSA-898c-q2cr-xwhg, GHSA-9fr6-4gfg-395g, GHSA-fvcv-3m26-pcqx, GHSA-hfxv-24rg-xrqf, GHSA-j5f8-grm9-p9fc\nbn.js@4.11.6 [dev]: GHSA-378v-28hj-76wf\nbn.js@4.12.2 [dev]: GHSA-378v-28hj-76wf\nbn.js@5.2.2 [dev]: GHSA-378v-28hj-76wf\nbrace-expansion@1.1.12 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895\nbrace-expansion@2.0.2 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895\ncookie@0.4.2 [dev]: GHSA-pxg6-pf52-xh8x\ndiff@4.0.2 [dev]: GHSA-73rr-hh4g-fpgx\ndiff@5.2.0 [dev]: GHSA-73rr-hh4g-fpgx\nelliptic@6.5.4 [dev]: GHSA-434g-2637-qmqr, GHSA-49q7-c7j4-3p7m, GHSA-848j-6mx2-7j84, GHSA-977x-g7h5-7qgw, GHSA-f7q4-pwc6-w24p, GHSA-fc9h-whq2-v747, GHSA-vjh7-7g9h-fjfh\nelliptic@6.6.1 [dev]: GHSA-848j-6mx2-7j84\nfast-uri@3.1.0 [dev]: GHSA-333x-w4r6-6crp, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p8w7, GHSA-f65p-4m7j-42xc, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-q3j6-qgpj-74h6, GHSA-qw65-cvwx-89v3, GHSA-v2hh-gcrm-f6hx, GHSA-v39h-62p7-jpjc, GHSA-w74x-v6f9-j3xg, GHSA-xhq7-xmqj-769h\nflatted@3.3.3 [dev]: GHSA-25h7-pfq9-p65f, GHSA-rf6f-7fwh-wjgh\nfollow-redirects@1.15.11 [dev]: GHSA-r4q5-vmmm-2653\nform-data@4.0.5 [dev]: GHSA-hmw2-7cc7-3qxx\nglob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4\nglob@13.0.0 [dev]: GHSA-3g3m-2fjr-6pw4\nhandlebars@4.7.8 [dev]: GHSA-2qvq-rjwj-gvw9, GHSA-2w6w-674q-4c4q, GHSA-3mfm-83xf-c92r, GHSA-442j-39wm-28r2, GHSA-7rx3-28cr-v5wh, GHSA-8r5x-fm3f-whwj, GHSA-9cx6-37pm-9jff, GHSA-p8wg-vrv2-v86f, GHSA-xhpv-hc6g-r9c6, GHSA-xjpj-3mr7-gcpf, GHSA-xw65-4hp5-5hc7\nimmutable@4.3.7 [dev]: GHSA-v56q-mh7h-f735, GHSA-wf6x-7x77-mvgw, GHSA-xvcm-6775-5m9r\njs-yaml@3.14.2 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68\njs-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68\nlodash@4.17.21 [dev]: GHSA-r5fr-rjxr-66jc, GHSA-xxjr-mmjv-4gpg\nminimatch@10.1.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249\nminimatch@3.1.2 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj\nminimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj\nminimatch@9.0.5 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249\npbkdf2@3.1.5 [dev]: GHSA-477h-4r7f-fvrx\npicomatch@2.3.1 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj\npicomatch@4.0.3 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj\nserialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA-qj8w-gfj5-8c6v\ntmp@0.0.33 [dev]: GHSA-52f5-9888-hmc6, GHSA-ph9p-34f9-6g65\nundici@5.29.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g52, GHSA-4992-7rv2-5pvq, GHSA-8xcm-r25x-g524, GHSA-9fm3-97px-rjf6, GHSA-g8m3-5g58-fq7m, GHSA-g9mf-h72j-4rw9, GHSA-m8rv-5g2x-5cg5, GHSA-p88m-4jfj-68fv, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-v3r7-h72x-cjcm, GHSA-v9p9-hfj2-hcw8, GHSA-vrm6-8vpv-qv8q, GHSA-vxpw-j846-p89q\nuuid@8.3.2 [dev]: GHSA-w5hq-g745-h8pq\nws@7.4.6 [dev]: GHSA-3h5v-q93c-6h6q, GHSA-96hv-2xvq-fx4p\nws@7.5.10 [dev]: GHSA-96hv-2xvq-fx4p\nws@8.17.1 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p\nws@8.18.0 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p\nws@8.18.3 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p",
           "content_sha256": "e7e0d4ba12d0451485a23e0ef896adc8947c8f2642b075c4597d34ce70699112",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.390235+00:00",
+          "collector": "dependencies 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.457248+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -2626,11 +2336,11 @@
       ]
     },
     {
-      "id": "dbcaaea6-c28e-418c-aee4-2e074a2e9f73",
-      "public_id": "QSI-2026-18799",
+      "id": "ee1784ed-f1f1-4aff-a95c-ccbdf84af321",
+      "public_id": "QSI-2026-32711",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
-      "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.",
+      "description": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.",
       "impact": "Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.",
       "recommendation": "Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).",
       "retest": "Повторите сканирование после обновлений.",
@@ -2646,8 +2356,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:53:12.344713+00:00",
+      "analyzer": "dependencies 1.6.0",
+      "detected_at": "2026-11-19T17:44:59.424584+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -2704,13 +2414,13 @@
       "evidence": [
         {
           "kind": "dependency",
-          "source": "certora/requirements.txt, package-lock.json, package.json",
+          "source": "package-lock.json, package.json",
           "location": null,
           "content": "Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1",
           "content_sha256": "47e156b611a62a94da8b2ebeeacd5c7d245cbbdc38b44af530ee4ffe425233ff",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:53:12.353179+00:00",
+          "collector": "dependencies 1.6.0",
+          "collected_at": "2026-11-19T17:44:59.432641+00:00",
           "url": null
         }
       ],
@@ -2738,7 +2448,7 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-18793"
+      "QSI-2026-32708"
     ],
     "roles": [
       {
@@ -2750,13 +2460,13 @@
         "algorithms": [
           {
             "algorithm": "ECDSA",
-            "files": 3
+            "files": 2
           }
         ],
         "findings": [
-          "QSI-2026-18793"
+          "QSI-2026-32708"
         ],
-        "files": 3
+        "files": 2
       }
     ],
     "maturity": {
@@ -2776,7 +2486,7 @@
         "affected": [
           {
             "algorithm": "ECDSA",
-            "rows": 5
+            "rows": 3
           }
         ],
         "audit": "Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.",
@@ -2800,7 +2510,7 @@
         "affected": [
           {
             "algorithm": "Keccak-256",
-            "rows": 8
+            "rows": 7
           }
         ],
         "audit": "Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.",
@@ -2823,7 +2533,7 @@
         "affected": [
           {
             "algorithm": "Keccak-256",
-            "rows": 8
+            "rows": 7
           }
         ],
         "audit": "256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.",
@@ -2871,44 +2581,7 @@
   },
   "plan": {
     "30": [],
-    "60": [
-      {
-        "kind": "root_cause",
-        "action": "Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.",
-        "rationale": "Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).",
-        "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-        "priority": "P2",
-        "horizon_days": 60,
-        "complexity": "medium",
-        "dependencies": "",
-        "side_effects": "",
-        "pre_tests": "Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
-        "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-        "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-        "status": "todo",
-        "finding": "QSI-2026-18794",
-        "finding_title": "Прямое использование ecrecover в certora/harnesses/SafeHarness.sol",
-        "severity": "medium"
-      },
-      {
-        "kind": "root_cause",
-        "action": "Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.",
-        "rationale": "Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.",
-        "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-        "priority": "P2",
-        "horizon_days": 60,
-        "complexity": "medium",
-        "dependencies": "",
-        "side_effects": "",
-        "pre_tests": "Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
-        "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-        "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
-        "status": "todo",
-        "finding": "QSI-2026-18795",
-        "finding_title": "Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol",
-        "severity": "medium"
-      }
-    ],
+    "60": [],
     "90": [
       {
         "kind": "mitigation",
@@ -2924,8 +2597,8 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18793",
-        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
+        "finding": "QSI-2026-32708",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))",
         "severity": "medium"
       },
       {
@@ -2942,7 +2615,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-18796",
+        "finding": "QSI-2026-32707",
         "finding_title": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)",
         "severity": "low"
       },
@@ -2960,7 +2633,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-18797",
+        "finding": "QSI-2026-32709",
         "finding_title": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)",
         "severity": "low"
       },
@@ -2978,7 +2651,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-18798",
+        "finding": "QSI-2026-32710",
         "finding_title": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)",
         "severity": "low"
       },
@@ -2996,8 +2669,8 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18793",
-        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
+        "finding": "QSI-2026-32708",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))",
         "severity": "medium"
       },
       {
@@ -3014,7 +2687,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-18800",
+        "finding": "QSI-2026-32712",
         "finding_title": "176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки",
         "severity": "info"
       }
@@ -3038,20 +2711,32 @@
       "version": "1.1.0"
     },
     {
+      "name": "crediting",
+      "version": "1.0.0"
+    },
+    {
       "name": "dependencies",
-      "version": "1.3.0"
+      "version": "1.4.2"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.5.0"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     {
       "name": "tls_code",
@@ -3062,8 +2747,16 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.6.0"
     },
     {
       "name": "OSV.dev API",
@@ -3241,19 +2934,6 @@
       "parameter": "Keccak-256",
       "usage": "smart contract",
       "library": "",
-      "location": "certora/harnesses/SafeHarness.sol:32",
-      "quantum_status": "grover_reduced",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1,
-      "origin": "own"
-    },
-    {
-      "algorithm": "Keccak-256",
-      "family": "hash",
-      "parameter": "Keccak-256",
-      "usage": "smart contract",
-      "library": "",
       "location": "contracts/Safe.sol:396",
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
@@ -3344,7 +3024,7 @@
       "family": "library",
       "parameter": "1.2.0",
       "usage": "npm dependency",
-      "library": "@noble/curves (noble-curves)",
+      "library": "@noble/hashes (noble-hashes)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3357,7 +3037,7 @@
       "family": "library",
       "parameter": "1.2.0",
       "usage": "npm dependency",
-      "library": "@noble/hashes (noble-hashes)",
+      "library": "@noble/curves (noble-curves)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3603,32 +3283,6 @@
       "algorithm": "ECDSA",
       "family": "signature",
       "parameter": "secp256k1 (ecrecover)",
-      "usage": "on-chain signature verification (ecrecover)",
-      "library": "",
-      "location": "certora/harnesses/SafeHarness.sol:32",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1,
-      "origin": "own"
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1 (ecrecover)",
-      "usage": "on-chain signature verification (ecrecover)",
-      "library": "",
-      "location": "certora/harnesses/SafeHarness.sol:34",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1,
-      "origin": "own"
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1 (ecrecover)",
       "usage": "on-chain signature verification (ecrecover, zero-address check and nonce present)",
       "library": "",
       "location": "contracts/Safe.sol:403",
@@ -3672,18 +3326,18 @@
       "library": "",
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
-      "count": 8,
-      "rows": 8,
+      "count": 7,
+      "rows": 7,
       "examples": [
-        "certora/harnesses/SafeHarness.sol:32",
         "contracts/Safe.sol:396",
-        "contracts/handler/CompatibilityFallbackHandler.sol:52"
+        "contracts/handler/CompatibilityFallbackHandler.sol:52",
+        "contracts/handler/extensible/SignatureVerifierMuxer.sol:129"
       ]
     },
     {
       "algorithm": "Crypto library",
       "parameter": "1.2.0",
-      "library": "@noble/curves (noble-curves)",
+      "library": "@noble/hashes (noble-hashes)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3695,7 +3349,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "1.2.0",
-      "library": "@noble/hashes (noble-hashes)",
+      "library": "@noble/curves (noble-curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3926,12 +3580,11 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 4,
-      "rows": 4,
+      "count": 2,
+      "rows": 2,
       "examples": [
-        "certora/harnesses/SafeHarness.sol:32",
-        "certora/harnesses/SafeHarness.sol:34",
-        "contracts/Safe.sol:403"
+        "contracts/Safe.sol:403",
+        "contracts/Safe.sol:406"
       ]
     },
     {

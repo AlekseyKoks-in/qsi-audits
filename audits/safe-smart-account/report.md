@@ -4,27 +4,27 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 13:53 UTC |
+| Дата отчёта | 2026-11-19 17:44 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | da003a3e-e362-465b-af60-fbcb4b6322d3 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | ea8e93f0-e50c-4911-b6cd-fd8500780959 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.6.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `a78c7f23d1423e7637d8911f87319e67fed03020af9361b43d60c729eb96d13b` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `3e7806a2c68bc773b95ef90da9ee2143cde6f6c176356f94cdfa6059eb3f45a9` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **3**
+- Средняя: **1**
 - Низкая: **3**
 - Информационная: **2**
 
 - Подтверждённая техническая уязвимость: 0
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
-- Потенциальный криптографический риск: 2
+- Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 1
 - Рекомендация по улучшению: 4
 - Недостаточность данных: 1
@@ -39,166 +39,60 @@
 
 Репозиторий: <https://github.com/safe-global/safe-smart-account> @ `247b8ce3bdbf204a120e77f5b369d137424ddc58` — ссылки в доказательствах открывают строки на этом коммите.
 
-77 файлов, всего 722848 байт, редактирований: 6; список SHA-256 по файлам — в приложении C.
+74 файлов, всего 718709 байт, редактирований: 6; список SHA-256 по файлам — в приложении C.
 
 ## 3. Методология
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 20 | .solcover.js: 15 lines scanned with 16 rule patterns and 266 registry patterns; eslint.config.mjs: 20 lines scanned with 16 rule patterns and 266 registry patterns; hardhat.config.ts: 134 lines scanned with 16 rule patterns and 266 registry patterns |
-| smart_contracts | проверено | 54 | certora/harnesses/ExtensibleFallbackHandlerHarness.sol: built-in Solidity pattern checks; certora/harnesses/SafeHarness.sol: built-in Solidity pattern checks; contracts/Safe.sol: built-in Solidity pattern checks |
-| slither | не проверено | 54 | slither is not installed on the server (pip install slither-analyzer + solc) |
-| dependencies | проверено | 3 | certora/requirements.txt: 1 dependencies parsed (1 pinned); package-lock.json: 831 dependencies parsed (831 pinned); package.json: 30 dependencies parsed (0 pinned) |
+| source_code | проверено | 20 | .solcover.js: 15 lines scanned with 16 rule patterns and 280 registry patterns; eslint.config.mjs: 20 lines scanned with 16 rule patterns and 280 registry patterns; hardhat.config.ts: 134 lines scanned with 16 rule patterns and 280 registry patterns |
+| smart_contracts | проверено | 52 | contracts/Safe.sol: built-in Solidity pattern checks; contracts/SafeL2.sol: built-in Solidity pattern checks; contracts/accessors/SimulateTxAccessor.sol: built-in Solidity pattern checks |
+| slither | не проверено | 52 | slither is not installed on the server (pip install slither-analyzer + solc) |
 | secrets | проверено | 4 | contracts/Safe.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); contracts/handler/CompatibilityFallbackHandler.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); contracts/handler/extensible/SignatureVerifierMuxer.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
+| dependencies | проверено | 2 | package-lock.json: 831 dependencies parsed (831 pinned); package.json: 30 dependencies parsed (0 pinned) |
 | entropy | проверено | 1 | random-number generation: 20 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| osv_advisories | проверено | 1 | 736 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies) |
+| osv_advisories | проверено | 1 | 735 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies) |
 | osv_advisories | Недостаточность данных | 2 | npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
 ## 4. Проверенные и непроверенные активы
 
-- slither — не проверено: 54 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
+- slither — не проверено: 52 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
 - osv_advisories — Недостаточность данных: 2 (примеры: npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b369d137424ddc58. 77 files analysed; of 236 files, 81 are test, fuzzing, benchmark or example code and were left out, 78 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .env.sample, .gitattributes, .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/feature_request.md. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b369d137424ddc58. 74 files analysed; of 236 files, 117 are test, fuzzing, benchmark or example code and were left out, 45 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .env.sample, .gitattributes, .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/feature_request.md. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **94** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 15.2%
+- Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 10.0%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-18794 — Прямое использование ecrecover в certora/harnesses/SafeHarness.sol
-
-- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `contract:certora/harnesses/SafeHarness.sol`
-- Источник данных: certora/harnesses/SafeHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:53 UTC
-- Балл приоритета: 43.6 / 100
-- CVSS v3.1: неприменимо
-
-ecrecover в строка 32. (см. SWC-117/SWC-121)
-
-**Возможные последствия.** Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).
-
-**Шаги воспроизведения.**
-
-```
-Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [certora/harnesses/SafeHarness.sol](https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32) · line 32 · SHA-256 e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0_
-
-```
-   30 |             currentOwner = address(uint160(uint256(r)));
-   31 |         } else if (v > 30) {
-   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", dataHash)), v - 4, r, s);
-   33 |         } else {
-   34 |             currentOwner = ecrecover(dataHash, v, r, s);
-```
-
-_file_excerpt · [certora/harnesses/SafeHarness.sol](https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34) · line 34 · SHA-256 3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef_
-
-```
-   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", dataHash)), v - 4, r, s);
-   33 |         } else {
-   34 |             currentOwner = ecrecover(dataHash, v, r, s);
-   35 |         }
-   36 |     }
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-18795 — Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol
-
-- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `contract:certora/harnesses/SafeHarness.sol`
-- Источник данных: certora/harnesses/SafeHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:53 UTC
-- Балл приоритета: 43.6 / 100
-- CVSS v3.1: неприменимо
-
-Результат низкоуровневого вызова не проверяется в строка 88. (см. SWC-104)
-
-**Возможные последствия.** Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.
-
-**Шаги воспроизведения.**
-
-```
-Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [certora/harnesses/SafeHarness.sol](https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L88) · line 88 · SHA-256 8e885c80b50cce328ce145786c0515613599e25c3226c2115c450b873c5e9506_
-
-```
-   86 | 
-   87 |     function callDummyHandler(bytes4 selector) public {
-   88 |         address(this).call(abi.encodeWithSelector(selector));
-   89 |     }
-   90 | 
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-18793 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))
+### QSI-2026-32708 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
-- Источник данных: certora/harnesses/SafeHarness.sol
+- Источник данных: contracts/Safe.sol
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:53 UTC
+- Анализатор: source_code 1.6.0 · 2026-11-19 17:44 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
-5 упоминаний ECDSA в 3 файл(ах), например certora/harnesses/SafeHarness.sol:32. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+3 упоминаний ECDSA в 2 файл(ах), например contracts/Safe.sol:403. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте certora/harnesses/SafeHarness.sol:32 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте contracts/Safe.sol:403 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
-
-_file_excerpt · [certora/harnesses/SafeHarness.sol](https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32) · line 32 · SHA-256 e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0_
-
-```
-   30 |             currentOwner = address(uint160(uint256(r)));
-   31 |         } else if (v > 30) {
-   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", dataHash)), v - 4, r, s);
-   33 |         } else {
-   34 |             currentOwner = ecrecover(dataHash, v, r, s);
-```
-
-_file_excerpt · [certora/harnesses/SafeHarness.sol](https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34) · line 34 · SHA-256 3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef_
-
-```
-   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", dataHash)), v - 4, r, s);
-   33 |         } else {
-   34 |             currentOwner = ecrecover(dataHash, v, r, s);
-   35 |         }
-   36 |     }
-```
 
 _file_excerpt · [contracts/Safe.sol](https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L403) · line 403 · SHA-256 be7c18bdbce908e503f1c899b447b921a9a3880ec49ae5d3d5ea33045ae5aec7_
 
@@ -234,13 +128,13 @@ _file_excerpt · [src/utils/execution.ts](https://github.com/safe-global/safe-sm
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18796 — Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)
+### QSI-2026-32707 — Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.7.0 <0.9.0`
 - Источник данных: contracts/Safe.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:53 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:44 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -354,13 +248,13 @@ _file_excerpt · [contracts/common/EIP7951.sol](https://github.com/safe-global/s
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18797 — Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)
+### QSI-2026-32709 — Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.5.0 <0.9.0`
 - Источник данных: contracts/interfaces/ViewStorageAccessible.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:53 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:44 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -391,13 +285,13 @@ _file_excerpt · [contracts/interfaces/ViewStorageAccessible.sol](https://github
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18798 — Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)
+### QSI-2026-32710 — Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.7.4 <0.9.0`
 - Источник данных: contracts/libraries/SafeStorage.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.3.0 · 2026-11-06 13:53 UTC
+- Анализатор: solidity 1.6.0 · 2026-11-19 17:44 UTC
 - Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -428,13 +322,13 @@ _file_excerpt · [contracts/libraries/SafeStorage.sol](https://github.com/safe-g
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-18800 — 176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-32712 — 176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:53 UTC
+- Анализатор: dependencies 1.6.0 · 2026-11-19 17:44 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -507,17 +401,17 @@ ws@8.18.3 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18799 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-32711 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:53 UTC
+- Анализатор: dependencies 1.6.0 · 2026-11-19 17:44 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
-В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.
+В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.
 
 **Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
@@ -529,7 +423,7 @@ ws@8.18.3 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p
 
 **Подтверждающие доказательства.**
 
-_dependency · certora/requirements.txt, package-lock.json, package.json · SHA-256 47e156b611a62a94da8b2ebeeacd5c7d245cbbdc38b44af530ee4ffe425233ff_
+_dependency · package-lock.json, package.json · SHA-256 47e156b611a62a94da8b2ebeeacd5c7d245cbbdc38b44af530ee4ffe425233ff_
 
 ```
 Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1
@@ -574,7 +468,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (3) | QSI-2026-18793 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-32708 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -583,9 +477,9 @@ _Роль определяется по путям файлов, именам ф
 
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (5) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
-| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (8) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
-| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (8) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (3) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (7) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
+| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (7) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
 _Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
@@ -594,7 +488,7 @@ _Действие: взламывает — алгоритм нужно заме
 
 - Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 - z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
-- slither: 54 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
+- slither: 52 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
 - osv_advisories: 2 (примеры: npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)
 
 ## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
@@ -607,18 +501,16 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-18794 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-18795 | Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-18793 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18796 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-18797 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-18798 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-18793 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-18800 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-32708 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-32707 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32709 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-32710 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-32708 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-32712 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -626,13 +518,18 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.0.0
+- dependencies 1.4.2
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.5.0
+- source_code 1.5.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- wallet_login 1.0.0
+- qsi-engine 1.6.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -663,44 +560,46 @@ _Действие: взламывает — алгоритм нужно заме
 
 ## Приложения: Криптографическая инвентаризация
 
-По происхождению: манифесты зависимостей 20 (0 уязвимы для алгоритма Шора) · собственный код 13 (5 уязвимы для алгоритма Шора).
+По происхождению: манифесты зависимостей 20 (0 уязвимы для алгоритма Шора) · собственный код 10 (3 уязвимы для алгоритма Шора).
 
-| Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
-|---|---|---|---|---|---|---|---|
-| Keccak-256 | Keccak-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 8 | 8 | certora/harnesses/SafeHarness.sol:32; contracts/Safe.sol:396; contracts/handler/CompatibilityFallbackHandler.sol:52 |
-| Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.2.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.4.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.4.2 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.7.1 | @noble/secp256k1 (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.7.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.8.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.8.2 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.9.1 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 1.9.7 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 2.0.1 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 2.0.1 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 4.0.4 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 5.7.2 | ethers (ethers.js) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 5.8.0 | ethers (ethers.js) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 6.15.0 | ethers (ethers.js) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 6.5.4 | elliptic (elliptic (Node)) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | 6.6.1 | elliptic (elliptic (Node)) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | ^2.0.1 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package.json |
-| ECDSA | secp256k1 (ecrecover) |  | уязвим (Шор) | допустимо | 4 | 4 | certora/harnesses/SafeHarness.sol:32; certora/harnesses/SafeHarness.sol:34; contracts/Safe.sol:403 |
-| ECDSA |  |  | уязвим (Шор) | допустимо | 1 | 1 | src/utils/execution.ts:113 |
-
-_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
+| Алгоритм | Параметр | Библиотека | Расположение | Квантовый статус | Классический статус |
+|---|---|---|---|---|---|
+| Keccak-256 | Keccak-256 |  | contracts/Safe.sol:396 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
+| Keccak-256 | Keccak-256 |  | contracts/handler/CompatibilityFallbackHandler.sol:52 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
+| Keccak-256 | Keccak-256 |  | contracts/handler/extensible/SignatureVerifierMuxer.sol:129 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
+| Keccak-256 | Keccak-256 |  | contracts/libraries/SignMessageLib.sol:42 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
+| Keccak-256 | Keccak-256 |  | contracts/proxies/SafeProxyFactory.sol:44 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
+| Keccak-256 | Keccak-256 |  | src/tasks/local_verify.ts:39 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
+| Keccak-256 | Keccak-256 |  | src/utils/proxies.ts:10 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
+| Crypto library | 1.2.0 | @noble/hashes (noble-hashes) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.2.0 | @noble/curves (noble-curves) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.4.0 | @noble/hashes (noble-hashes) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.4.2 | @noble/curves (noble-curves) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.7.1 | @noble/secp256k1 (noble-curves) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.7.2 | @noble/hashes (noble-hashes) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.8.0 | @noble/hashes (noble-hashes) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.8.2 | @noble/curves (noble-curves) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.9.1 | @noble/curves (noble-curves) | package-lock.json | н/п | допустимо |
+| Crypto library | 1.9.7 | @noble/curves (noble-curves) | package-lock.json | н/п | допустимо |
+| Crypto library | 2.0.1 | @noble/curves (noble-curves) | package-lock.json | н/п | допустимо |
+| Crypto library | 2.0.1 | @noble/hashes (noble-hashes) | package-lock.json | н/п | допустимо |
+| Crypto library | 4.0.4 | secp256k1 (secp256k1 bindings) | package-lock.json | н/п | допустимо |
+| Crypto library | 5.7.2 | ethers (ethers.js) | package-lock.json | н/п | допустимо |
+| Crypto library | 5.8.0 | ethers (ethers.js) | package-lock.json | н/п | допустимо |
+| Crypto library | 6.15.0 | ethers (ethers.js) | package-lock.json | н/п | допустимо |
+| Crypto library | 6.5.4 | elliptic (elliptic (Node)) | package-lock.json | н/п | допустимо |
+| Crypto library | 6.6.1 | elliptic (elliptic (Node)) | package-lock.json | н/п | допустимо |
+| Crypto library | ^2.0.1 | @noble/curves (noble-curves) | package.json | н/п | допустимо |
+| ECDSA | secp256k1 (ecrecover) |  | contracts/Safe.sol:403 | уязвим (Шор) | допустимо |
+| ECDSA | secp256k1 (ecrecover) |  | contracts/Safe.sol:406 | уязвим (Шор) | допустимо |
+| ECDSA |  |  | src/utils/execution.ts:113 | уязвим (Шор) | допустимо |
 
 ## Приложения: Входные файлы
 
 | Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
 | .solcover.js | 433 | `e082bfb212d25c3367596453ba28440137a54a63b8ff8072b5e004fb98629686` | 0 |
-| certora/harnesses/ExtensibleFallbackHandlerHarness.sol | 368 | `a23d35cd9283f8262742377b7862f63c10aeeec1964f31b610dc35e53ea9f911` | 0 |
-| certora/harnesses/SafeHarness.sol | 3751 | `0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401` | 0 |
-| certora/requirements.txt | 20 | `138d8afeb220dd3aadad0b7221d49d76c3ec475ca2c6f5bed4f44298b41af4fa` | 0 |
 | contracts/Safe.sol | 30242 | `60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130` | 2 |
 | contracts/SafeL2.sol | 3685 | `6030700562329d1ebd42ec3c0494b10c9001dbe9080fbb4abf75c1563ed466db` | 0 |
 | contracts/accessors/SimulateTxAccessor.sol | 2900 | `ea5890f27c3a488246ecb1880d632f4a5a30fcbbb65a512bad7a1c5b88f86082` | 0 |
