@@ -1,0 +1,212 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.8.1",
+          "rules": [
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (2 file(s))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "3 reference(s) to Pedersen commitment across 2 file(s), e.g. xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaPedersenCommitmentGenerator.java:75. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change. Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (securit…"
+              },
+              "help": {
+                "text": "3 reference(s) to Pedersen commitment across 2 file(s), e.g. xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaPedersenCommitmentGenerator.java:75. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change. Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "No post-quantum capable cryptographic library detected"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "Across 6 dependency manifests, QSI found crypto libraries (org.bouncycastle:bcprov-jdk18on) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+              },
+              "help": {
+                "text": "Across 6 dependency manifests, QSI found crypto libraries (org.bouncycastle:bcprov-jdk18on) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34918",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: transaction and message signing (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34921",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34922",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: role not determined (5 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34919",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: role not determined (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34920",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "efdc4d587b2d71d3dce86b3cee0780ad"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34917",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "No post-quantum capable cryptographic library detected"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34923",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/xrpl4j @ bbbd620b6214/c388b044-b9ac-473d-9fe9-edf415fad5a5"
+      },
+      "properties": {
+        "qsiContentSha256": "4b51766decd8fed732fc4d7790df3dbfacbcd2bde9d09b827d8df02287718f16",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "web3",
+        "qsiGeneratedAt": "2026-11-21T10:22:45.035199+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "bbbd620b621491765dab54dd6bf14ae8ef3b901a",
+          "repositoryUri": "https://github.com/XRPLF/xrpl4j"
+        }
+      ]
+    }
+  ]
+}

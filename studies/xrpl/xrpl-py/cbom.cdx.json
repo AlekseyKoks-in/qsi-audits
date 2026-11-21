@@ -1,0 +1,1955 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.7",
+  "serialNumber": "urn:uuid:5fa1be49-d5d5-4c57-aa47-478a2db158f8",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-21T10:22:02Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "QSI",
+          "version": "1.8.1"
+        }
+      ]
+    },
+    "component": {
+      "type": "application",
+      "name": "xrpl-py @ d15d5a0f42b2"
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4fd217c1-34ba-4ab4-9b9e-02e3f66e03fc",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "packaging/confidential/pyproject.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "PyPI dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "xrpl-py (xrpl-py)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4838ff7c-fcc2-4796-a070-2f584632e04e",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "poetry.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "PyPI dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "pycryptodome (PyCryptodome)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "62277801-98bf-47c1-a219-d1bee33ebbd4",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "pyproject.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "PyPI dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "pycryptodome (PyCryptodome)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4479680d-ebf7-4e44-977c-0cec036247c7",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/build_mpt_crypto.py:63"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L63"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (7 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1950ef1c-db0f-4896-aefd-a0acb7e09a16",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/commitments.py:171"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/commitments.py#L171"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "62aabaa5-ce7c-4801-8e52-ba84449122be",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/encryption.py:2"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/encryption.py#L2"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (6 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5343a3a3-84ed-4f46-a114-ba2378c7cdb2",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/homomorphic.py:2"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/homomorphic.py#L2"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (8 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a0615299-b4b7-456d-be94-53e483146af4",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/include/secp256k1_mpt.h:16"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1_mpt.h#L16"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (16 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a900a268-53b8-448b-9f31-78bce1ad5c1f",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/include/utility/mpt_utility.h:6"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/utility/mpt_utility.h#L6"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (6 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "8149ee02-3775-4cfa-8137-50b75f26c621",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/keypair.py:4"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/keypair.py#L4"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c931410a-42d8-439f-96f2-01f01eeebe6d",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/models/transactions/mptoken_issuance_set.py:148"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/mptoken_issuance_set.py#L148"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "87df1dee-07f9-43d8-8dcb-0b8ef8ffefc0",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/constants.py:15"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/constants.py#L15"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "9149ae9f-1aa6-4931-88a0-cb4df61debeb",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/core/keypairs/main.py:15"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/main.py#L15"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ce9d82be-ec9b-433b-827f-9bc3f408da7e",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/core/keypairs/secp256k1.py:1"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/secp256k1.py#L1"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (6 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "67b1968c-5fec-4637-b85b-994e76f56bd5",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/build_mpt_crypto.py:311"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L311"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b32e92c6-ad6b-4a02-8ea5-55857df5a0f2",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/commitments.py:8"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/commitments.py#L8"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6ebe48ab-873f-4c85-a733-348016091a52",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/crypto_bindings.py:7"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/crypto_bindings.py#L7"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3793f84d-de2e-47d6-beb1-29dcd485c2c4",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/include/secp256k1.h:80"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1.h#L80"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (17 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "79529a98-dec8-4304-a76f-0d94ab3e2059",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/include/secp256k1_mpt.h:5"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1_mpt.h#L5"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "580d6416-2df8-4d62-9b47-4b9888cedcb9",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/include/utility/mpt_utility.h:5"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/utility/mpt_utility.h#L5"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "21a2931c-2804-4b70-a21a-eacb3694597a",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/main.py:73"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L73"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "7afa921a-b258-46de-9a02-9633c47e8462",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/transaction_builders.py:78"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/transaction_builders.py#L78"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b67918cf-d018-4f06-b370-f994fa1e3095",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/models/transactions/payment_channel_create.py:52"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/payment_channel_create.py#L52"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "acec3b63-1e28-4eb4-b47e-b3b421e8c658",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/core/keypairs/ed25519.py"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implemented in a file of this name"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "low"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "EdDSA",
+          "parameterSetIdentifier": "Ed25519",
+          "curve": "Ed25519",
+          "ellipticCurve": "other/Ed25519",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d45fe304-2798-4f2b-95d6-6120d8487fc2",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/main.py:85"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L85"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (5 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "algorithmFamily": "ElGamal",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "25d8e009-c916-44f5-ac8f-d31478ced96a",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/transaction_builders.py:240"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/transaction_builders.py#L240"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "algorithmFamily": "ElGamal",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "aeebc1b7-fe5c-401d-9a4d-7619e8538d17",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/models/base_model.py:41"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/base_model.py#L41"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "algorithmFamily": "ElGamal",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c9934c5d-11d2-4ac5-a04a-048c2f082a75",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/models/transactions/confidential_mpt_clawback.py:28"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/confidential_mpt_clawback.py#L28"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "algorithmFamily": "ElGamal",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "13f4a420-6b94-44d0-abc1-20d0fdef7a5a",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/models/transactions/confidential_mpt_convert.py:76"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/confidential_mpt_convert.py#L76"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (5 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "algorithmFamily": "ElGamal",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "7898335d-2aa2-416a-a0e1-a92ae47c0302",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/build_mpt_crypto.py:79"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L79"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e05348e1-6154-49d0-9804-63c277904900",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/commitments.py:22"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/commitments.py#L22"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f68503c7-e3e4-4ebd-9d51-72ac0ae76dda",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/include/secp256k1_mpt.h:231"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1_mpt.h#L231"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f48d2721-0ef1-41c5-a881-ed83ae0c109a",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/include/utility/mpt_utility.h:54"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/utility/mpt_utility.h#L54"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "954846d4-6f89-49c0-bb18-36677df6e7b0",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/main.py:132"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L132"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "53a3875b-5e97-4b31-86f1-4ec723874792",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/ext/confidential/transaction_builders.py:559"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/transaction_builders.py#L559"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c5677d2e-9b9b-4109-916f-e5983b0dd52b",
+      "name": "RIPEMD-160",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "classical_weakness"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "legacy"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/core/keypairs/helpers.py:34"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/helpers.py#L34"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ripemd-160"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "RIPEMD",
+          "parameterSetIdentifier": "RIPEMD-160",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 80
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "8a03f1f4-c7fb-41d1-aaf9-3afdcabe830d",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/core/keypairs/helpers.py:18"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/helpers.py#L18"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "parameterSetIdentifier": "SHA-512",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 256,
+          "nistQuantumSecurityLevel": 5
+        },
+        "oid": "2.16.840.1.101.3.4.2.3"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "bc38c88b-0eff-42b3-87a6-428d8ad549ad",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl/core/keypairs/helpers.py:33"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/helpers.py#L33"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    }
+  ]
+}

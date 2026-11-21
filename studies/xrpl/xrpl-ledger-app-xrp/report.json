@@ -1,0 +1,2143 @@
+{
+  "content_sha256": "c4b300b70b7772ddbbdb5d52c84cbf755be18fa733c273cc754905516b5c049a",
+  "schema": "qsi.report/1",
+  "language": "en",
+  "generated_at": "2026-11-21T10:24:35.092442+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "e537254b-1905-4820-94a7-019b3c22436e",
+    "name": "xrpl-ledger-app-xrp @ 7b5185ff09b4",
+    "client_name": "Ledger",
+    "description": "Static review of the source tree xrpl-ledger-app-xrp at 7b5185ff09b4b3d15df242b156a6aaadfc99f555. 61 files analysed; of 6763 files, 6662 are test, fuzzing, benchmark or example code and were left out, 40 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .clang-format, .clusterfuzzlite/Dockerfile, .clusterfuzzlite/build.sh, .clusterfuzzlite/project.yaml, .git-blame-ignore-revs. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "05402e90-0837-46cb-b494-39f70a88d9ca",
+    "mode": "document",
+    "title": "Document audit: xrpl-ledger-app-xrp",
+    "status": "completed",
+    "engine_version": "1.8.1",
+    "started_at": "2026-11-21T10:24:33.617803+00:00",
+    "finished_at": "2026-11-21T10:24:35.009256+00:00",
+    "risk_profile": "web3",
+    "risk_profile_name": "Web3 project",
+    "parameters": {
+      "ref": "7b5185ff09b4b3d15df242b156a6aaadfc99f555",
+      "language": "en",
+      "repo_url": "https://github.com/LedgerHQ/app-xrp",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "doc/xrpapp.asc",
+      "size": 13599,
+      "sha256": "0cb0fc700954bd614cfdf749365bfe55ce40b34c169c21e9faf3e699aa465e08",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/constants.h",
+      "size": 1514,
+      "sha256": "1c948301cd3c09c04b70635977cc4676f912b89747e29c56f7dbd65d14219c0b",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/entry.c",
+      "size": 1909,
+      "sha256": "238babd6201129cf5c71f6c5f6077e923fab2ac1ecfef577c9bd73dcfd521cf1",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/entry.h",
+      "size": 914,
+      "sha256": "449c63baef9e9a870060460db08439cfcf96b5bff3954c799d3dd35742b7332e",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/global.c",
+      "size": 1238,
+      "sha256": "fe1f9068f0f47bab3ea7c041d2e49a3d8ec7a83adb1f4be9208d71dad6f06ec7",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/global.h",
+      "size": 2306,
+      "sha256": "e65e3e41ca97d056077f670ad9cc5bb4ecd33d63d60bf77afc2b45408cf61348",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/messages/get_app_configuration.c",
+      "size": 1116,
+      "sha256": "34d989d87b3fbb24d829a6a1cbec13895d5af4cc721a56359e7df3ac5a771c78",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/messages/get_app_configuration.h",
+      "size": 990,
+      "sha256": "54bd7b663303b355d1476f926f50699b0574ee89fac05d5bd2d9f8eb72604898",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/messages/get_public_key.c",
+      "size": 4924,
+      "sha256": "49c0d00a12b961419c83066ea4d940bbbebeb4e7b000f473a7a075c4fdb0a526",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/messages/get_public_key.h",
+      "size": 1028,
+      "sha256": "bd5ddbb3d93adff5a024e8d4eeeacc2033f3745246287545c202b70618897b00",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/messages/sign_transaction.c",
+      "size": 9253,
+      "sha256": "d064e7e8518fcd28cf2c09acf1cd5fbef192b1dc4c14d75784fcfdc61822c6a0",
+      "redactions": 0
+    },
+    {
+      "name": "src/apdu/messages/sign_transaction.h",
+      "size": 1119,
+      "sha256": "2d8d5d0adcfce85c7c75c837b04b2b3ceb31ad8efc11bb1d76302f711bbcd0d9",
+      "redactions": 0
+    },
+    {
+      "name": "src/app_main.c",
+      "size": 2362,
+      "sha256": "723e36f359c0dfd693fb60959d0f33c5d2a4d0015e7662c9cb7ece7db29f3f46",
+      "redactions": 0
+    },
+    {
+      "name": "src/common.h",
+      "size": 901,
+      "sha256": "92d0dce40e1aa61e20654845541d8bf31d47ae0402001e45240be642161a9973",
+      "redactions": 0
+    },
+    {
+      "name": "src/globals.h",
+      "size": 485,
+      "sha256": "0aec6e34e1b2f441bba11429df801d46b14f95b8267fa3237a615f09cc2322b9",
+      "redactions": 0
+    },
+    {
+      "name": "src/limitations.h",
+      "size": 1393,
+      "sha256": "5708eb66e5ea433968d28d60a3f3b22abf30f63d6d22131660bf78486c7ca950",
+      "redactions": 0
+    },
+    {
+      "name": "src/swap/handle_check_address.c",
+      "size": 1507,
+      "sha256": "71c6a7d2f196bd5f49a4539e38a0fa381e953573de81e839cec28d21d0372651",
+      "redactions": 0
+    },
+    {
+      "name": "src/swap/handle_get_printable_amount.c",
+      "size": 565,
+      "sha256": "8986b87e5867c39c29bfeb23dc1bc6278500a02ff46358df126fae8b28078391",
+      "redactions": 0
+    },
+    {
+      "name": "src/swap/handle_swap_sign_transaction.c",
+      "size": 1832,
+      "sha256": "d611223451d97886c9b5aad745a0739802d2dd70b402eba201441f2852870100",
+      "redactions": 0
+    },
+    {
+      "name": "src/swap/handle_swap_sign_transaction.h",
+      "size": 241,
+      "sha256": "ac7402499cd10a0ccce6e9a32910b5d21a0e4e465623841bb69734c24ada2839",
+      "redactions": 0
+    },
+    {
+      "name": "src/transaction/transaction.c",
+      "size": 6594,
+      "sha256": "94cc2274ad568853771783b01b75cc61b0fc3d6760d76de1aad65c56d508bc03",
+      "redactions": 0
+    },
+    {
+      "name": "src/transaction/transaction.h",
+      "size": 1169,
+      "sha256": "85d9a6c8808f4eb30be9047c2777131a62347a82e75a88a684bb5217cde66c0f",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/address/address_ui.h",
+      "size": 1222,
+      "sha256": "f4e519feb6e85eb0ba56549e37b319f2df4c5fc190ca26aa9a0dad5c5d35b02e",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/address/address_ui_nbgl.c",
+      "size": 2023,
+      "sha256": "cb29680a01e7d1eaf7aa71e5c98de27a4e65d2b3130150412df004239bb18d4d",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/main/idle_menu.h",
+      "size": 867,
+      "sha256": "0e26d294e13e0b57fdd03eb20205794ce5f8a292dbf6b970f3eb22c4639afdd1",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/main/idle_menu_nbgl.c",
+      "size": 3999,
+      "sha256": "5d8717a3066c127870a6a8bf40b8079dd5922aad613810f14cb5d3b789198289",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/other/blind_signing.c",
+      "size": 950,
+      "sha256": "e15fad37eaff0c0d6e982be9d88cad2d291f8e01f64051d3fd92bed0fe26db2f",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/other/blind_signing.h",
+      "size": 60,
+      "sha256": "4df97dd2ce4f17301b2a4b81db0deba0db120984c521ffe3aa9c578537d78548",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/transaction/review_menu.h",
+      "size": 1062,
+      "sha256": "625b33a291b3b6ab71d84cbbf7a917e1c405e0b1dd107bfe83df6d516015dc70",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/transaction/review_menu_nbgl.c",
+      "size": 4475,
+      "sha256": "6581e829c55f772792e9d6a8bbb572e886db76bbf8308aabc47ab68fb347a318",
+      "redactions": 0
+    },
+    {
+      "name": "src/ui/ui.h",
+      "size": 1246,
+      "sha256": "ed68e2e52e071ec64bd69eb65b70b8d9cf8715b66ad2ca876c55f813f5b4541a",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/amount.c",
+      "size": 9400,
+      "sha256": "9f0398cdd99e174ef69071e7d22609054d48f479130e84817c8f35779473aa67",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/amount.h",
+      "size": 1277,
+      "sha256": "036bfc07a7f8ec3ba371fa03b4876c3496d074fd20c0276d60ccd15b567e2863",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/array.h",
+      "size": 927,
+      "sha256": "4898659d98034f5deeb527e5482eec332b80fd565b7ae50fa72aae2b6a406764",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/ascii_strings.c",
+      "size": 1347,
+      "sha256": "1d1e3f6f81c97db7ab0f49e23eb061e928ede5779a4f20c61ac7ede4addc2e4f",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/ascii_strings.h",
+      "size": 114,
+      "sha256": "f2190a080e316f101ac6d7b75523414ee587b31e3d5d688d01cb0b683a91342e",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/field_sort.c",
+      "size": 1932,
+      "sha256": "4909485c67b8185f334417c18951c7716879ededa14183129d59aa6c0a6c3b9a",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/field_sort.h",
+      "size": 947,
+      "sha256": "48325fb4c56f0f2d893f4fda6c1cfa90547d04c0513a04810ac50e92b0354c87",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/fields.c",
+      "size": 9543,
+      "sha256": "e3d49dc82dcff55afc45c4232442ffa6bb1b72bfdfb30d262d618010436b8a74",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/fields.h",
+      "size": 8157,
+      "sha256": "3755cda8a10f2b9101c541ded6c73a2af01e8200aa4ee250c6b20345d453c1eb",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/flags.c",
+      "size": 16559,
+      "sha256": "4bbb78921e29fd2d13387c7a11e9067dba0d2dbe3a9c58b38b8ea47032ab4162",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/flags.h",
+      "size": 1218,
+      "sha256": "90c439e572e7fad08ef1df3a649ac45a92397862a361399c4d555dd41e4df66c",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/fmt.c",
+      "size": 2421,
+      "sha256": "2d54aee7630ceca45b4f4d43deed69aedb01f7d0d8b98c35ae2c4097e26bc565",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/fmt.h",
+      "size": 90,
+      "sha256": "2bd09cd700a846019debd7f6777c0dd27a7c1015c9915ca16ecbce59c729ebb3",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/general.c",
+      "size": 8162,
+      "sha256": "067e5fb0c0159665282e81998ac8fcc0f6feb3d278ee2993147cc059be2b5a0f",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/general.h",
+      "size": 1454,
+      "sha256": "7a707749af9b4ed6c8d5b576a0ea7dc27ef449d13598f30a7bd44cad51ae48c0",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/number_helpers.c",
+      "size": 925,
+      "sha256": "5a439c3b1426c2b66663a945a3f473ff5d4ade33c0e1552083bf9142968be4c7",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/number_helpers.h",
+      "size": 848,
+      "sha256": "e68166af8e6bd1d736f11b4e198f8f92a6c21052235ab4187a0ec44036de70a5",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/percentage.c",
+      "size": 3115,
+      "sha256": "9c8f45f161bb43675db8b98f0887e3adf33ca9843fd924b595d4cb7f1b23f0b3",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/percentage.h",
+      "size": 1023,
+      "sha256": "96d835d105573a50efc0ad93086caf4b79a0464eb8c43bf286ec3b9454d650b5",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/readers.c",
+      "size": 1430,
+      "sha256": "633c2e3d87c498978557222338abf23a8c31d78415389cfd644ab7213fc1f32c",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/readers.h",
+      "size": 990,
+      "sha256": "da91db49867ec38abf7d152cc193fd4b3a1730606a5df624dac2183faa57b34e",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/time.c",
+      "size": 4356,
+      "sha256": "262c9b0f15c0bc722b5cfcb480579beb60ccb4c78858e4f119693549c4486e07",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/time.h",
+      "size": 1089,
+      "sha256": "78750c1cd52c1b2f49122b1a73aaeb80fd06087de3b23f206924792fbbfba176",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/transaction_types.h",
+      "size": 2616,
+      "sha256": "f918fb14fa915064b69d5f1fdcdd5c9aa96450f54e5f4383e55cb038a2102033",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/xrp_helpers.c",
+      "size": 9106,
+      "sha256": "033ee7cc78dada40f0b133de8eaa5e9dd627675807468ffe3ecb0ade8b1b6dc6",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/xrp_helpers.h",
+      "size": 1898,
+      "sha256": "24c0fb770bfc2fe3e75c010ccb836f1094a13b5f763d0abf4cd4eaece1aa1ed0",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/xrp_parse.c",
+      "size": 23969,
+      "sha256": "c78835d4ac4268988eab15b64af1dbcd7f628bbbbf20e88698ac90245407b887",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/xrp_parse.h",
+      "size": 1428,
+      "sha256": "2e13e37ea18ade2f2cadda54fb31072f9f90a4e720dffc3c6ae59d4af9320de5",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/xrp_pub_key.c",
+      "size": 1115,
+      "sha256": "318eb2967a6a895fd2890c851f5e91dbf6224218e567d0ea3ad298559b9bc9bf",
+      "redactions": 0
+    },
+    {
+      "name": "src/xrp/xrp_pub_key.h",
+      "size": 288,
+      "sha256": "6ee5b72f81c8ee9b3954105b2a2b560ea94b9a7e6e3400f33fa5c1b37268bc12",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 61,
+    "bytes": 190607,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "source_code",
+      "detail": "src/apdu/constants.h: 42 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/entry.c: 57 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/entry.h: 24 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/global.c: 39 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/global.h: 80 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/messages/get_app_configuration.c: 34 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/messages/get_app_configuration.h: 26 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/messages/get_public_key.c: 143 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/messages/get_public_key.h: 26 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/messages/sign_transaction.c: 285 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/apdu/messages/sign_transaction.h: 31 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/app_main.c: 73 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/common.h: 23 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/globals.h: 26 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/limitations.h: 42 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/swap/handle_check_address.c: 54 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/swap/handle_get_printable_amount.c: 22 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/swap/handle_swap_sign_transaction.c: 53 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/swap/handle_swap_sign_transaction.h: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/transaction/transaction.c: 214 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/transaction/transaction.h: 31 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/address/address_ui.h: 30 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/address/address_ui_nbgl.c: 56 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/main/idle_menu.h: 24 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/main/idle_menu_nbgl.c: 113 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/other/blind_signing.c: 35 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/other/blind_signing.h: 5 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/transaction/review_menu.h: 27 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/transaction/review_menu_nbgl.c: 114 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ui/ui.h: 32 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/amount.c: 303 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/amount.h: 35 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/array.h: 25 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/ascii_strings.c: 41 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/ascii_strings.h: 5 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/field_sort.c: 61 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/field_sort.h: 25 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/fields.c: 341 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/fields.h: 245 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/flags.c: 482 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/flags.h: 33 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/fmt.c: 82 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/fmt.h: 5 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/general.c: 232 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/general.h: 34 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/number_helpers.c: 26 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/number_helpers.h: 22 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/percentage.c: 102 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/percentage.h: 27 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/readers.c: 44 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/readers.h: 28 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/time.c: 145 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/time.h: 29 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/transaction_types.h: 63 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/xrp_helpers.c: 295 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/xrp_helpers.h: 59 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/xrp_parse.c: 750 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/xrp_parse.h: 49 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/xrp_pub_key.c: 31 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/xrp/xrp_pub_key.h: 10 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "entropy",
+      "detail": "random-number generation: 60 code files read with 271 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 60,
+      "rows": 60,
+      "examples": [
+        "src/apdu/constants.h: 42 lines scanned with 16 rule patterns and 313 registry patterns",
+        "src/apdu/entry.c: 57 lines scanned with 16 rule patterns and 313 registry patterns",
+        "src/apdu/entry.h: 24 lines scanned with 16 rule patterns and 313 registry patterns"
+      ]
+    },
+    {
+      "area": "entropy",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "random-number generation: 60 code files read with 271 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    }
+  ],
+  "not_checked": [],
+  "not_checked_grouped": [],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "random-number generation",
+      "src/apdu/constants.h",
+      "src/apdu/entry.c",
+      "src/apdu/entry.h",
+      "src/apdu/global.c",
+      "src/apdu/global.h",
+      "src/apdu/messages/get_app_configuration.c",
+      "src/apdu/messages/get_app_configuration.h",
+      "src/apdu/messages/get_public_key.c",
+      "src/apdu/messages/get_public_key.h",
+      "src/apdu/messages/sign_transaction.c",
+      "src/apdu/messages/sign_transaction.h",
+      "src/app_main.c",
+      "src/common.h",
+      "src/globals.h",
+      "src/limitations.h",
+      "src/swap/handle_check_address.c",
+      "src/swap/handle_get_printable_amount.c",
+      "src/swap/handle_swap_sign_transaction.c",
+      "src/swap/handle_swap_sign_transaction.h",
+      "src/transaction/transaction.c",
+      "src/transaction/transaction.h",
+      "src/ui/address/address_ui.h",
+      "src/ui/address/address_ui_nbgl.c",
+      "src/ui/main/idle_menu.h",
+      "src/ui/main/idle_menu_nbgl.c",
+      "src/ui/other/blind_signing.c",
+      "src/ui/other/blind_signing.h",
+      "src/ui/transaction/review_menu.h",
+      "src/ui/transaction/review_menu_nbgl.c",
+      "src/ui/ui.h",
+      "src/xrp/amount.c",
+      "src/xrp/amount.h",
+      "src/xrp/array.h",
+      "src/xrp/ascii_strings.c",
+      "src/xrp/ascii_strings.h",
+      "src/xrp/field_sort.c",
+      "src/xrp/field_sort.h",
+      "src/xrp/fields.c",
+      "src/xrp/fields.h",
+      "src/xrp/flags.c",
+      "src/xrp/flags.h",
+      "src/xrp/fmt.c",
+      "src/xrp/fmt.h",
+      "src/xrp/general.c",
+      "src/xrp/general.h",
+      "src/xrp/number_helpers.c",
+      "src/xrp/number_helpers.h",
+      "src/xrp/percentage.c",
+      "src/xrp/percentage.h",
+      "src/xrp/readers.c",
+      "src/xrp/readers.h",
+      "src/xrp/time.c",
+      "src/xrp/time.h",
+      "src/xrp/transaction_types.h",
+      "src/xrp/xrp_helpers.c",
+      "src/xrp/xrp_helpers.h",
+      "src/xrp/xrp_parse.c",
+      "src/xrp/xrp_parse.h",
+      "src/xrp/xrp_pub_key.c",
+      "src/xrp/xrp_pub_key.h"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 4,
+      "low": 0,
+      "info": 0
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 4,
+      "improvement": 0,
+      "insufficient_data": 0
+    },
+    "total": 4,
+    "posture_index": 100,
+    "pq_vulnerable_share": 100.0,
+    "inventory_total": 8,
+    "inventory_by_quantum_status": {
+      "vulnerable_shor": 8
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 8,
+        "vulnerable_shor": 8
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "4b34bfdb-081e-4953-8a4c-445668c2cd20",
+      "public_id": "QSI-2026-34938",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))",
+      "description": "5 reference(s) to ECDSA across 3 file(s), e.g. src/apdu/messages/sign_transaction.c:100. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open src/apdu/messages/sign_transaction.c:100 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDSA:transaction_signing",
+      "data_source": "src/apdu/messages/sign_transaction.c",
+      "analyzer": "source_code 1.8.1",
+      "detected_at": "2026-11-21T10:24:34.992812+00:00",
+      "risk_score": 33.0,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 12.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "central",
+          "x_source": "project signature lifetime",
+          "margin_years": 3.0
+        },
+        "score": 33.0,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.48,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "web3",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.05,
+          "exposure": 0.15,
+          "severity": 0.3,
+          "exploitability": 0.2
+        },
+        "raw_score": 48.6,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 9.6,
+          "urgency": 5.0,
+          "exposure": 9.0,
+          "severity": 15.0,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/apdu/messages/sign_transaction.c",
+          "location": "line 100",
+          "content": "   99 | \n  100 |     if (tmp_ctx.transaction_context.curve == CX_CURVE_256K1) {\n  101 |         cx_sha512_t hash;",
+          "content_sha256": "e30b6d6f765da2a317b8c538f6acbc075fe3008965877e6ad47f4f3cd7f9fd1d",
+          "source_sha256": "d064e7e8518fcd28cf2c09acf1cd5fbef192b1dc4c14d75784fcfdc61822c6a0",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:35.003501+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/apdu/messages/sign_transaction.c#L100"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/apdu/messages/sign_transaction.c",
+          "location": "line 110",
+          "content": "  109 |         tx = sizeof(G_io_apdu_buffer);\n  110 |         CX_CHECK(cx_ecdsa_sign_no_throw(&private_key, CX_RND_RFC6979 | CX_LAST,\n  111 |                                         CX_SHA256, key_buffer, 32,",
+          "content_sha256": "e213ba5ab23f8c8337d14a9f602f9e765f35f3cdad14a2f5ac5e7c96368edae7",
+          "source_sha256": "d064e7e8518fcd28cf2c09acf1cd5fbef192b1dc4c14d75784fcfdc61822c6a0",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:35.003510+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/apdu/messages/sign_transaction.c#L110"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/apdu/messages/sign_transaction.c",
+          "location": "line 204",
+          "content": "  203 |     tmp_ctx.transaction_context.curve =\n  204 |         (((p2 & P2_ED25519) != 0) ? CX_CURVE_Ed25519 : CX_CURVE_256K1);\n  205 | ",
+          "content_sha256": "f662e2c23a17326ab8694984f0e078cd6a1df3477de3ecae1888ef7ab0f873cc",
+          "source_sha256": "d064e7e8518fcd28cf2c09acf1cd5fbef192b1dc4c14d75784fcfdc61822c6a0",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:35.003514+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/apdu/messages/sign_transaction.c#L204"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/swap/handle_check_address.c",
+          "location": "line 37",
+          "content": "   36 |     int error =\n   37 |         get_public_key(CX_CURVE_256K1, bip32_path_ptr, bip32_path_length,\n   38 |                        params_length, &public_key, NULL);",
+          "content_sha256": "b42cd54e3d915d64c83513a541abf3eb6a99ba953a16bae0da9ddd12cde6928a",
+          "source_sha256": "71c6a7d2f196bd5f49a4539e38a0fa381e953573de81e839cec28d21d0372651",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:35.003519+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/swap/handle_check_address.c#L37"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/xrp/xrp_helpers.c",
+          "location": "line 147",
+          "content": "  146 |                              xrp_pubkey_t* out) {\n  147 |     if (public_key->curve == CX_CURVE_256K1) {\n  148 |         out->buf[0] = ((public_key->W[64] & 1u) ? 0x03 : 0x02);",
+          "content_sha256": "b6b0de7721dd5c84793ac3eed115e6eb427a038acf2cf397641c8719a202f338",
+          "source_sha256": "033ee7cc78dada40f0b133de8eaa5e9dd627675807468ffe3ecb0ade8b1b6dc6",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:35.003524+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/xrp/xrp_helpers.c#L147"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "af7ac50e-36ea-41f9-9bd4-cb4a6212f575",
+      "public_id": "QSI-2026-34939",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable Ed25519: transaction and message signing (2 file(s))",
+      "description": "3 reference(s) to Ed25519 across 2 file(s), e.g. src/apdu/messages/sign_transaction.c:115. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open src/apdu/messages/sign_transaction.c:115 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Ed25519:transaction_signing",
+      "data_source": "src/apdu/messages/sign_transaction.c",
+      "analyzer": "source_code 1.8.1",
+      "detected_at": "2026-11-21T10:24:35.000408+00:00",
+      "risk_score": 33.0,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 12.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "central",
+          "x_source": "project signature lifetime",
+          "margin_years": 3.0
+        },
+        "score": 33.0,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.48,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "web3",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.05,
+          "exposure": 0.15,
+          "severity": 0.3,
+          "exploitability": 0.2
+        },
+        "raw_score": 48.6,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 9.6,
+          "urgency": 5.0,
+          "exposure": 9.0,
+          "severity": 15.0,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/apdu/messages/sign_transaction.c",
+          "location": "line 115",
+          "content": "  114 |         size_t size;\n  115 |         CX_CHECK(cx_eddsa_sign_no_throw(\n  116 |             &private_key, CX_SHA512, tmp_ctx.transaction_context.raw_tx,",
+          "content_sha256": "97a23e7186d26d562e8847491e95dcf5e8346ab9f4b06f0cdc213820be2bc9b4",
+          "source_sha256": "d064e7e8518fcd28cf2c09acf1cd5fbef192b1dc4c14d75784fcfdc61822c6a0",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:35.019847+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/apdu/messages/sign_transaction.c#L115"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/apdu/messages/sign_transaction.c",
+          "location": "line 204",
+          "content": "  203 |     tmp_ctx.transaction_context.curve =\n  204 |         (((p2 & P2_ED25519) != 0) ? CX_CURVE_Ed25519 : CX_CURVE_256K1);\n  205 | ",
+          "content_sha256": "f662e2c23a17326ab8694984f0e078cd6a1df3477de3ecae1888ef7ab0f873cc",
+          "source_sha256": "d064e7e8518fcd28cf2c09acf1cd5fbef192b1dc4c14d75784fcfdc61822c6a0",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:35.019855+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/apdu/messages/sign_transaction.c#L204"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/xrp/xrp_pub_key.c",
+          "location": "line 24",
+          "content": "   23 |     // other supported value.\n   24 |     cx_md_t pubkey_hash = (curve == CX_CURVE_Ed25519) ? CX_SHA512 : CX_SHA256;\n   25 | ",
+          "content_sha256": "4ab90166a46856aa933359078db80f2e0997f0a524ef683b6cdb658190d93ee0",
+          "source_sha256": "318eb2967a6a895fd2890c851f5e91dbf6224218e567d0ea3ad298559b9bc9bf",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:35.019860+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/xrp/xrp_pub_key.c#L24"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "1a2bedad-8d84-46db-830b-aacd2a3334db",
+      "public_id": "QSI-2026-34936",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDSA: role not determined (1 file(s))",
+      "description": "1 reference(s) to ECDSA across 1 file(s), e.g. src/apdu/messages/get_public_key.c:106. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open src/apdu/messages/get_public_key.c:106 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDSA:general",
+      "data_source": "src/apdu/messages/get_public_key.c",
+      "analyzer": "source_code 1.8.1",
+      "detected_at": "2026-11-21T10:24:34.974013+00:00",
+      "risk_score": 31.7,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 12.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "central",
+          "x_source": "project signature lifetime",
+          "margin_years": 3.0
+        },
+        "score": 31.7,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.48,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "web3",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.05,
+          "exposure": 0.15,
+          "severity": 0.3,
+          "exploitability": 0.2
+        },
+        "raw_score": 46.6,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 9.6,
+          "urgency": 5.0,
+          "exposure": 9.0,
+          "severity": 15.0,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/apdu/messages/get_public_key.c",
+          "location": "line 106",
+          "content": "  105 | \n  106 |     curve = (((p2 & P2_ED25519) != 0) ? CX_CURVE_Ed25519 : CX_CURVE_256K1);\n  107 |     memset(&pending_pubkey_ctx, 0, sizeof(pending_pubkey_ctx));",
+          "content_sha256": "56a3c0e14de6cef079997dd89749383db6b8d97d9e5471b2f4d9e69d0c71cc10",
+          "source_sha256": "49c0d00a12b961419c83066ea4d940bbbebeb4e7b000f473a7a075c4fdb0a526",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:34.983899+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/apdu/messages/get_public_key.c#L106"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "c67d1943-dd4b-4085-8ce7-3769dddf3719",
+      "public_id": "QSI-2026-34937",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable Ed25519: role not determined (1 file(s))",
+      "description": "1 reference(s) to Ed25519 across 1 file(s), e.g. src/apdu/messages/get_public_key.c:106. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open src/apdu/messages/get_public_key.c:106 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Ed25519:general",
+      "data_source": "src/apdu/messages/get_public_key.c",
+      "analyzer": "source_code 1.8.1",
+      "detected_at": "2026-11-21T10:24:34.980883+00:00",
+      "risk_score": 31.7,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 12.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "central",
+          "x_source": "project signature lifetime",
+          "margin_years": 3.0
+        },
+        "score": 31.7,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.48,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "web3",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.05,
+          "exposure": 0.15,
+          "severity": 0.3,
+          "exploitability": 0.2
+        },
+        "raw_score": 46.6,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 9.6,
+          "urgency": 5.0,
+          "exposure": 9.0,
+          "severity": 15.0,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/apdu/messages/get_public_key.c",
+          "location": "line 106",
+          "content": "  105 | \n  106 |     curve = (((p2 & P2_ED25519) != 0) ? CX_CURVE_Ed25519 : CX_CURVE_256K1);\n  107 |     memset(&pending_pubkey_ctx, 0, sizeof(pending_pubkey_ctx));",
+          "content_sha256": "56a3c0e14de6cef079997dd89749383db6b8d97d9e5471b2f4d9e69d0c71cc10",
+          "source_sha256": "49c0d00a12b961419c83066ea4d940bbbebeb4e7b000f473a7a075c4fdb0a526",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:34.995024+00:00",
+          "url": "https://github.com/LedgerHQ/app-xrp/blob/7b5185ff09b4b3d15df242b156a6aaadfc99f555/src/apdu/messages/get_public_key.c#L106"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 5,
+      "y": 5,
+      "z": 12,
+      "margin": -2,
+      "verdict": "tight",
+      "scenario": "central",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 12,
+      "margin": 3,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Web3 project”, not the client's figures; with the client's actual lifetimes the verdict can change.",
+    "pq_findings": [
+      "QSI-2026-34938",
+      "QSI-2026-34939",
+      "QSI-2026-34936",
+      "QSI-2026-34937"
+    ],
+    "roles": [
+      {
+        "role": "transaction_signing",
+        "label": "transaction and message signing",
+        "action": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them",
+        "criticality": 4,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 3
+          },
+          {
+            "algorithm": "Ed25519",
+            "files": 2
+          }
+        ],
+        "findings": [
+          "QSI-2026-34938",
+          "QSI-2026-34939"
+        ],
+        "files": 5
+      },
+      {
+        "role": "general",
+        "label": "role not determined",
+        "action": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility",
+        "criticality": 3,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 1
+          },
+          {
+            "algorithm": "Ed25519",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-34936",
+          "QSI-2026-34937"
+        ],
+        "files": 2
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "no post-quantum cryptography",
+      "next": "Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Shor's algorithm — elliptic-curve discrete logarithms",
+        "effect": "breaks",
+        "effect_label": "breaks",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "ECDSA",
+            "rows": 5
+          },
+          {
+            "algorithm": "Ed25519",
+            "rows": 3
+          }
+        ],
+        "audit": "Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.",
+        "practicality": "2026 estimates for a 256-bit curve: under 1,200 logical qubits and 90 million Toffoli gates, under half a million physical superconducting qubits running for minutes (Babbush et al.); 1,193 logical qubits with more gates (Chevignard–Fouque–Schrottenloher); P-256 in a few days on 26,000 neutral-atom qubits (Cain et al.). Scenarios under stated assumptions, not forecasts.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "averaged estimate"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "quite possible"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "likely"
+        }
+      ],
+      "scenario": {
+        "key": "central",
+        "years": 12,
+        "rationale": "Between the 10-year band (28-49%) and the 15-year band (51-70%): roughly where the experts' averaged likelihood crosses one half. More than half of the respondents (13 of 26) already put the likelihood at 50% or more for some horizon.",
+        "refs": [
+          "GRI-QTT"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-34938",
+        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-34939",
+        "finding_title": "Quantum-vulnerable Ed25519: transaction and message signing (2 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-34936",
+        "finding_title": "Quantum-vulnerable ECDSA: role not determined (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-34937",
+        "finding_title": "Quantum-vulnerable Ed25519: role not determined (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-34938",
+        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-34939",
+        "finding_title": "Quantum-vulnerable Ed25519: transaction and message signing (2 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-34936",
+        "finding_title": "Quantum-vulnerable ECDSA: role not determined (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-34937",
+        "finding_title": "Quantum-vulnerable Ed25519: role not determined (1 file(s))",
+        "severity": "medium"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.2.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "crediting",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.3"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.5.2"
+    },
+    {
+      "name": "source_code",
+      "version": "1.7.1"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.8.1"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/apdu/messages/get_public_key.c:106",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/apdu/messages/sign_transaction.c:100",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/apdu/messages/sign_transaction.c:110",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/swap/handle_check_address.c:37",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/xrp/xrp_helpers.c:147",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/apdu/messages/get_public_key.c:106",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/apdu/messages/sign_transaction.c:115",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/xrp/xrp_pub_key.c:24",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "ECDSA",
+      "parameter": "secp256k1",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 4,
+      "rows": 4,
+      "examples": [
+        "src/apdu/messages/get_public_key.c:106",
+        "src/apdu/messages/sign_transaction.c:100",
+        "src/swap/handle_check_address.c:37"
+      ]
+    },
+    {
+      "algorithm": "ECDSA",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/apdu/messages/sign_transaction.c:110"
+      ]
+    },
+    {
+      "algorithm": "Ed25519",
+      "parameter": "Ed25519",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "src/apdu/messages/get_public_key.c:106",
+        "src/apdu/messages/sign_transaction.c:115",
+        "src/xrp/xrp_pub_key.c:24"
+      ]
+    }
+  ]
+}

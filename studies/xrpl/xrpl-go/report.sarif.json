@@ -1,0 +1,325 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.8.1",
+          "rules": [
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Quantum-vulnerable ECDSA: transaction and message signing (9 file(s))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "59 reference(s) to ECDSA across 9 file(s), e.g. address-codec/codec.go:126. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "59 reference(s) to ECDSA across 9 file(s), e.g. address-codec/codec.go:126. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-ADVISORY-UNRATED",
+              "name": "DepAdvisoryUnrated",
+              "shortDescription": {
+                "text": "golang.org/x/crypto v0.56.0 is affected by GO-2026-5932 (no severity rating)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.56.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package…"
+              },
+              "help": {
+                "text": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.56.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GO-2026-5932"
+            },
+            {
+              "id": "DEP-ADVISORY-DEV",
+              "name": "DepAdvisoryDev",
+              "shortDescription": {
+                "text": "1 advisories in 1 development or build-only npm package(s)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev lists 1 advisories (1 rated high or critical) for 1 npm package(s) that only development or build tooling pulls in (docs/yarn.lock): e.g. webpack-dev-middleware@7.4.5 [build]: GHSA-g84c-rxfj-3j2c. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller."
+              },
+              "help": {
+                "text": "OSV.dev lists 1 advisories (1 rated high or critical) for 1 npm package(s) that only development or build tooling pulls in (docs/yarn.lock): e.g. webpack-dev-middleware@7.4.5 [build]: GHSA-g84c-rxfj-3j2c. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller."
+              },
+              "helpUri": "https://osv.dev/"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "No post-quantum capable cryptographic library detected"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "Across 4 dependency manifests, QSI found crypto libraries (@noble/hashes, github.com/Peersyst/xrpl-go, golang.org/x/crypto) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+              },
+              "help": {
+                "text": "Across 4 dependency manifests, QSI found crypto libraries (@noble/hashes, github.com/Peersyst/xrpl-go, golang.org/x/crypto) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (9 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34924",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (5 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34926",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: role not determined (6 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34925",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: role not determined (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34929",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "efdc4d587b2d71d3dce86b3cee0780ad"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34927",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable ElGamal: key wrapping and data encryption at rest (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0904b31236bfd574348786617dde92ca"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34930",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable EC-ElGamal: role not determined (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fa34198662ed4654d505a0eac8a789b5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34928",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.56.0 is affected by GO-2026-5932 (no severity rating) (dependency: Go/golang.org/x/crypto@v0.56.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34932",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "1 advisories in 1 development or build-only npm package(s) (dependencies: npm:non-runtime)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34933",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/yarn.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "No post-quantum capable cryptographic library detected"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-34931",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/xrpl-go @ 23275f007b47/e2c0bd2f-aaed-4cdb-baf8-25224d63c391"
+      },
+      "properties": {
+        "qsiContentSha256": "fdc2d49d507c44f6cbd5efb2c1ed267838cb784520e897471e93609d4941bb39",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "web3",
+        "qsiGeneratedAt": "2026-11-21T10:23:42.929825+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "23275f007b4758e82809f51d1e4ec3c5efb2fbe0",
+          "repositoryUri": "https://github.com/XRPLF/xrpl-go"
+        }
+      ]
+    }
+  ]
+}

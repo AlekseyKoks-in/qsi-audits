@@ -69,8 +69,9 @@ names a key whose signature is missing, a signature for another context, a key o
 `public_key_mldsa.pem` that differs from it all fail. `--self-test` runs the built-in verifier on five of NIST's own
 ML-DSA-65 test vectors from the ACVP server (`mldsa65-kat.json`: one valid signature, and ones with a modified
 `z`, hint, commitment and message), and the full set of NIST's ML-DSA-65 verification vectors (30) gives the
-expected answer. 12 bundles carry the co-signature so far, the ones re-audited from 17 to 19 November (below);
-the rest were signed before it existed and pass on Ed25519, as before. The publisher ML-DSA-65 key is
+expected answer. 12 bundles in `audits/` carry the co-signature so far, the ones re-audited from 17 to 19 November
+(below), and so do the eight XRP Ledger bundles in `studies/xrpl/` (21 November); the rest were signed before it
+existed and pass on Ed25519, as before. The publisher ML-DSA-65 key is
 `PUBLIC-KEY-MLDSA.pem` at the root, and a bundle co-signed by any other key fails.
 
 On Windows, Git for Windows turns LF into CRLF on checkout by default (`core.autocrlf`). The signatures are over
@@ -367,6 +368,14 @@ A second study compares five layer-1 networks' announced post-quantum plans with
 Stellar, Arc, Solana; bundles in `studies/l1/`): Falcon, SLH-DSA and ML-DSA verifiers and opt-in accounts exist, and
 every consensus key set is still classical. See [reports/L1-PQ-PLANS-VS-CODE-2026-11-06.md](reports/L1-PQ-PLANS-VS-CODE-2026-11-06.md).
 
+A third study reads the XRP Ledger stack for XRPL-Standards discussion 295, which proposes ML-DSA-44 under a
+`Quantum` amendment: rippled (`develop` and `xrplf/quantum`), xrpl.js, xrpl-py, xrpl4j, xrpl-go, validator-keys-tool
+and Ledger's XRP app, eight bundles in `studies/xrpl/`, each also co-signed with ML-DSA-65 (`python3 verify.py
+studies/xrpl/*`). 241 inventory rows, 190 Shor-breakable; the 13 post-quantum rows are all on rippled's
+`xrplf/quantum` branch. Two things the proposal does not cover yet: Confidential MPT balances (XLS-0096) sit on the
+ledger as EC-ElGamal ciphertexts on secp256k1, readable by whoever first breaks the key with a quantum computer, and
+validator-keys-tool has no post-quantum key type. See [reports/XRPL-PQ-INVENTORY-2026-11-21.md](reports/XRPL-PQ-INVENTORY-2026-11-21.md).
+
 ## A federal mandate now describes this method
 
 OMB **M-26-15** of 24 June 2026 asks agencies to build "a dynamic, continuously updated inventory of all
@@ -486,8 +495,10 @@ audits/<name>/     report.json · report.md · report.html · report.pdf · cbom
                    report.sarif.json · bundle.sig.json · report.sig.json · public_key.pem
                    (+ public_key_mldsa.pem where co-signed)
                    brief.en.md · brief.ru.md (+ pdf)
+studies/<study>/<name>/  bundles of the separate studies (institutional, l1, xrpl), same layout,
+                   kept out of the totals on this page
 reports/           the write-ups: re-audits, triage, adoption survey, scope-and-recall study,
-                   and the BIP-360/361 readiness analysis
+                   the BIP-360/361 readiness analysis and the studies
 ```
 
 `audits/` holds 61 directories but **53 distinct codebases**: 7 of them
@@ -649,7 +660,7 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 **Постквантовая соподпись.** Комплекты, подписанные с 13 ноября 2026 года, несут и подпись ML-DSA-65 (FIPS 204)
 над тем же payload; `verify.py` проверяет её встроенной реализацией на чистом Python (сверена со всеми 30 векторами
 NIST для ML-DSA-65) и сверяет ключ с `PUBLIC-KEY-MLDSA.pem` в корне (`dbd4e297b3213d1d`). Соподписаны комплекты,
-переаудированные 17–19 ноября (в `audits/` — 12). Проверка зависимостей по OSV.dev до 12 ноября брала
+переаудированные 17–19 ноября (в `audits/` — 12), и восемь комплектов XRP Ledger в `studies/xrpl/` (21 ноября). Проверка зависимостей по OSV.dev до 12 ноября брала
 не больше 1000 закреплённых пакетов и не говорила об остальных; теперь до 5000, остаток назван в покрытии. Находок
 по бюллетеням в этих комплектах стало 1 454 вместо 433; инвентаризация не изменилась, кроме одной
 строки ECDH в `metamask-extension` (импорт `eciesjs`): итог стал таким — строк 3 989, по Шору
@@ -679,6 +690,14 @@ SPHINCS+ и ML-DSA сканер читал как Ed25519: в `trezor-vendored-c
 по закреплению, объявляет биткоин-подписанта чистым. И три самых рекомендуемых аппаратных кошелька разошлись: у
 Trezor постквантовый код работает, включая SLH-DSA в загрузочном заголовке рядом с Ed25519, у BitBox02 и Jade —
 ничего.
+
+**XRP Ledger (21 ноября), отдельное исследование вне итогов.** Для обсуждения №295 в XRPL-Standards (ML-DSA-44 под
+поправкой `Quantum`) прочитан стек XRP Ledger: rippled (`develop` и `xrplf/quantum`), xrpl.js, xrpl-py, xrpl4j,
+xrpl-go, validator-keys-tool и приложение XRP для Ledger — восемь комплектов в `studies/xrpl/`, все с соподписью
+ML-DSA-65 (`python3 verify.py studies/xrpl/*`). Строк 241, по Шору 190; все 13 постквантовых — в ветке
+`xrplf/quantum` rippled. Чего предложение пока не охватывает: остатки конфиденциальных MPT (XLS-0096) лежат в реестре
+как шифротексты EC-ElGamal на secp256k1, и их прочтёт тот, кто первым взломает ключ квантовым компьютером; в
+validator-keys-tool нет постквантового типа ключа. Подробно — [reports/XRPL-PQ-INVENTORY-2026-11-21.md](reports/XRPL-PQ-INVENTORY-2026-11-21.md).
 
 **Чем это не является:** не криптографический разбор реализаций и не утверждение, что эти проекты слабы; не отчёт
 об уязвимостях — инвентаризация говорит, что примитив присутствует и где, а не что он применён неверно; не анализ

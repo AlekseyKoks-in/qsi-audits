@@ -1,0 +1,897 @@
+{
+  "content_sha256": "b85785e63f890a58ff95dd6422534423caf8411033ded5511e5803a9181a099c",
+  "schema": "qsi.report/1",
+  "language": "en",
+  "generated_at": "2026-11-21T10:24:10.361543+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "e230a0e5-9c83-4aaa-9ddb-e53fc358beb2",
+    "name": "xrpl-validator-keys-tool @ 4c0fb75eec96",
+    "client_name": "Ripple",
+    "description": "Static review of the source tree xrpl-validator-keys-tool at 4c0fb75eec9601c711645998c904507e87e910ae. 4 files analysed; of 20 files, 3 are test, fuzzing, benchmark or example code and were left out, 13 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .clang-format, .git-blame-ignore-revs, .github/workflows/clang-format.yml, .gitignore, CMakeLists.txt. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "a9bad12b-a5d9-4c48-87f2-b83026b08b85",
+    "mode": "document",
+    "title": "Document audit: xrpl-validator-keys-tool",
+    "status": "completed",
+    "engine_version": "1.8.1",
+    "started_at": "2026-11-21T10:24:09.846021+00:00",
+    "finished_at": "2026-11-21T10:24:10.237371+00:00",
+    "risk_profile": "web3",
+    "risk_profile_name": "Web3 project",
+    "parameters": {
+      "ref": "4c0fb75eec9601c711645998c904507e87e910ae",
+      "language": "en",
+      "repo_url": "https://github.com/ripple/validator-keys-tool",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "src/ValidatorKeys.cpp",
+      "size": 8755,
+      "sha256": "a2a51292625a283541d247f1435005851b59ce6836f209b07d9c1440a6350f1f",
+      "redactions": 0
+    },
+    {
+      "name": "src/ValidatorKeys.h",
+      "size": 3553,
+      "sha256": "b8e33d80d5dddff750403e1d67fe2d574118e1cce4ab873b15ecea825e4122d1",
+      "redactions": 0
+    },
+    {
+      "name": "src/ValidatorKeysTool.cpp",
+      "size": 13448,
+      "sha256": "94c1bfc7b5ca715e1a6c0cc14dc5b0f9319dadb3b5a963ad4b37289e311e779f",
+      "redactions": 0
+    },
+    {
+      "name": "src/ValidatorKeysTool.h",
+      "size": 567,
+      "sha256": "c8314e8fa8b8bbcffee8b678b60cfc7625b63c1ce84dec93aec73b57cbd43997",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 4,
+    "bytes": 26323,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "source_code",
+      "detail": "src/ValidatorKeys.cpp: 294 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ValidatorKeys.h: 162 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ValidatorKeysTool.cpp: 471 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ValidatorKeysTool.h: 30 lines scanned with 16 rule patterns and 313 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "entropy",
+      "detail": "random-number generation: 4 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 4,
+      "rows": 4,
+      "examples": [
+        "src/ValidatorKeys.cpp: 294 lines scanned with 16 rule patterns and 313 registry patterns",
+        "src/ValidatorKeys.h: 162 lines scanned with 16 rule patterns and 313 registry patterns",
+        "src/ValidatorKeysTool.cpp: 471 lines scanned with 16 rule patterns and 313 registry patterns"
+      ]
+    },
+    {
+      "area": "entropy",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "random-number generation: 4 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    }
+  ],
+  "not_checked": [],
+  "not_checked_grouped": [],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "random-number generation",
+      "src/ValidatorKeys.cpp",
+      "src/ValidatorKeys.h",
+      "src/ValidatorKeysTool.cpp",
+      "src/ValidatorKeysTool.h"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 2,
+      "low": 0,
+      "info": 0
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 2,
+      "improvement": 0,
+      "insufficient_data": 0
+    },
+    "total": 2,
+    "posture_index": 100,
+    "pq_vulnerable_share": 100.0,
+    "inventory_total": 2,
+    "inventory_by_quantum_status": {
+      "vulnerable_shor": 2
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 2,
+        "vulnerable_shor": 2
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "7469ceb9-b3fd-483d-88d8-1b5354ae8cd5",
+      "public_id": "QSI-2026-34934",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDSA: role not determined (1 file(s))",
+      "description": "1 reference(s) to ECDSA across 1 file(s), e.g. src/ValidatorKeys.h:104. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open src/ValidatorKeys.h:104 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDSA:general",
+      "data_source": "src/ValidatorKeys.h",
+      "analyzer": "source_code 1.8.1",
+      "detected_at": "2026-11-21T10:24:10.219110+00:00",
+      "risk_score": 31.7,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 12.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "central",
+          "x_source": "project signature lifetime",
+          "margin_years": 3.0
+        },
+        "score": 31.7,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.48,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "web3",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.05,
+          "exposure": 0.15,
+          "severity": 0.3,
+          "exploitability": 0.2
+        },
+        "raw_score": 46.6,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 9.6,
+          "urgency": 5.0,
+          "exposure": 9.0,
+          "severity": 15.0,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/ValidatorKeys.h",
+          "location": "line 104",
+          "content": "  103 |     boost::optional<ValidatorToken>\n  104 |     createValidatorToken(KeyType const& keyType = KeyType::Secp256k1);\n  105 | ",
+          "content_sha256": "ab49ca1c1a19a77ad484a2f6f8163e3ec955f2808563d6eb9730ce952409ce0a",
+          "source_sha256": "b8e33d80d5dddff750403e1d67fe2d574118e1cce4ab873b15ecea825e4122d1",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:10.228659+00:00",
+          "url": "https://github.com/ripple/validator-keys-tool/blob/4c0fb75eec9601c711645998c904507e87e910ae/src/ValidatorKeys.h#L104"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "8208cb1d-0099-42e7-9a68-ccc011c772dc",
+      "public_id": "QSI-2026-34935",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable Ed25519: role not determined (1 file(s))",
+      "description": "1 reference(s) to Ed25519 across 1 file(s), e.g. src/ValidatorKeysTool.cpp:64. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open src/ValidatorKeysTool.cpp:64 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Ed25519:general",
+      "data_source": "src/ValidatorKeysTool.cpp",
+      "analyzer": "source_code 1.8.1",
+      "detected_at": "2026-11-21T10:24:10.225546+00:00",
+      "risk_score": 31.7,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 12.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "central",
+          "x_source": "project signature lifetime",
+          "margin_years": 3.0
+        },
+        "score": 31.7,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.48,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "web3",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.05,
+          "exposure": 0.15,
+          "severity": 0.3,
+          "exploitability": 0.2
+        },
+        "raw_score": 46.6,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 9.6,
+          "urgency": 5.0,
+          "exposure": 9.0,
+          "severity": 15.0,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/ValidatorKeysTool.cpp",
+          "location": "line 64",
+          "content": "   63 | \n   64 |     ValidatorKeys const keys(KeyType::Ed25519);\n   65 |     keys.writeToFile(keyFile);",
+          "content_sha256": "4ccde58448819ac88692327683451e95a08012e9a680e95a3b808e111d60afad",
+          "source_sha256": "94c1bfc7b5ca715e1a6c0cc14dc5b0f9319dadb3b5a963ad4b37289e311e779f",
+          "collector": "source_code 1.8.1",
+          "collected_at": "2026-11-21T10:24:10.244865+00:00",
+          "url": "https://github.com/ripple/validator-keys-tool/blob/4c0fb75eec9601c711645998c904507e87e910ae/src/ValidatorKeysTool.cpp#L64"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 5,
+      "y": 5,
+      "z": 12,
+      "margin": -2,
+      "verdict": "tight",
+      "scenario": "central",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 12,
+      "margin": 3,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Web3 project”, not the client's figures; with the client's actual lifetimes the verdict can change.",
+    "pq_findings": [
+      "QSI-2026-34934",
+      "QSI-2026-34935"
+    ],
+    "roles": [
+      {
+        "role": "general",
+        "label": "role not determined",
+        "action": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility",
+        "criticality": 3,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 1
+          },
+          {
+            "algorithm": "Ed25519",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-34934",
+          "QSI-2026-34935"
+        ],
+        "files": 2
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "no post-quantum cryptography",
+      "next": "Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Shor's algorithm — elliptic-curve discrete logarithms",
+        "effect": "breaks",
+        "effect_label": "breaks",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "ECDSA",
+            "rows": 1
+          },
+          {
+            "algorithm": "Ed25519",
+            "rows": 1
+          }
+        ],
+        "audit": "Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.",
+        "practicality": "2026 estimates for a 256-bit curve: under 1,200 logical qubits and 90 million Toffoli gates, under half a million physical superconducting qubits running for minutes (Babbush et al.); 1,193 logical qubits with more gates (Chevignard–Fouque–Schrottenloher); P-256 in a few days on 26,000 neutral-atom qubits (Cain et al.). Scenarios under stated assumptions, not forecasts.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "averaged estimate"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "quite possible"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "likely"
+        }
+      ],
+      "scenario": {
+        "key": "central",
+        "years": 12,
+        "rationale": "Between the 10-year band (28-49%) and the 15-year band (51-70%): roughly where the experts' averaged likelihood crosses one half. More than half of the respondents (13 of 26) already put the likelihood at 50% or more for some horizon.",
+        "refs": [
+          "GRI-QTT"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-34934",
+        "finding_title": "Quantum-vulnerable ECDSA: role not determined (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-34935",
+        "finding_title": "Quantum-vulnerable Ed25519: role not determined (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-34934",
+        "finding_title": "Quantum-vulnerable ECDSA: role not determined (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-34935",
+        "finding_title": "Quantum-vulnerable Ed25519: role not determined (1 file(s))",
+        "severity": "medium"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.2.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "crediting",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.3"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.5.2"
+    },
+    {
+      "name": "source_code",
+      "version": "1.7.1"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.8.1"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/ValidatorKeys.h:104",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/ValidatorKeysTool.cpp:64",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "ECDSA",
+      "parameter": "secp256k1",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/ValidatorKeys.h:104"
+      ]
+    },
+    {
+      "algorithm": "Ed25519",
+      "parameter": "Ed25519",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/ValidatorKeysTool.cpp:64"
+      ]
+    }
+  ]
+}

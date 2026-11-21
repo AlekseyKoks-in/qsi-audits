@@ -1,0 +1,1152 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.7",
+  "serialNumber": "urn:uuid:6eb4bbe1-3558-44d0-af09-95cc4585835e",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-21T10:22:57Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "QSI",
+          "version": "1.8.1"
+        }
+      ]
+    },
+    "component": {
+      "type": "application",
+      "name": "xrpl4j @ bbbd620b6214"
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4ed1238c-ba70-43c6-935b-93117c4105c6",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "pom.xml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "Maven dependency; PQC: Recent releases include PQC algorithms; verify the version in use. bcprov-jdk15on is the legacy artifact."
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "org.bouncycastle:bcprov-jdk18on (Bouncy Castle)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "57954b0c-149a-4aaa-a5c1-675c0ab2e3dd",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/pom.xml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "Maven dependency; PQC: Recent releases include PQC algorithms; verify the version in use. bcprov-jdk15on is the legacy artifact."
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "org.bouncycastle:bcprov-jdk18on (Bouncy Castle)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "62dbd609-3f1e-4c81-9e8b-546c9e714af2",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaConfidentialCiphertextArithmetic.java:107"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaConfidentialCiphertextArithmetic.java#L107"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (8 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3afe0fa9-4cee-4760-ad80-5dbff2c9fa1d",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaMptAmountDecryptor.java:105"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaMptAmountDecryptor.java#L105"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4561abf1-2205-40ad-9a5f-26e36221e070",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaMptAmountEncryptor.java:97"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaMptAmountEncryptor.java#L97"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ce9dd3a5-f858-4a9d-8551-d37e4e7b30b2",
+      "name": "EC-ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/MptCryptoLibrary.java:69"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/MptCryptoLibrary.java#L69"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (6 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ec-elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4da77817-7753-42a0-a302-283e68d93369",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/PrivateKey.java:109"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/PrivateKey.java#L109"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "539dc9da-3063-4b67-9515-598d633db80d",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/Seed.java:401"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/Seed.java#L401"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "9a614cff-2b66-4ccc-bb30-f816a735017d",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/bc/BcKeyUtils.java:52"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/bc/BcKeyUtils.java#L52"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c4a4a0bc-e5fe-4056-853a-3e53d987881f",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcDerivedKeySignatureService.java:109"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcDerivedKeySignatureService.java#L109"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c6d5edd2-15bc-4e56-952b-44289ab32361",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcSignatureService.java:69"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcSignatureService.java#L69"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d3b10846-f6db-45fd-8d5b-9e51f1b2ff51",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/Secp256k1.java:45"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/Secp256k1.java#L45"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "01eb31c3-2cb3-4250-8091-2331527ca795",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/Seed.java:77"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/Seed.java#L77"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (5 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "EdDSA",
+          "parameterSetIdentifier": "Ed25519",
+          "curve": "Ed25519",
+          "ellipticCurve": "other/Ed25519",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2d0f9d76-46d1-4b92-a06c-4d0ea20d5c76",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/bc/BcKeyUtils.java:84"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/bc/BcKeyUtils.java#L84"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (8 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "EdDSA",
+          "parameterSetIdentifier": "Ed25519",
+          "curve": "Ed25519",
+          "ellipticCurve": "other/Ed25519",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e3b40696-a844-4f57-9957-c36d3ba89fdd",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcDerivedKeySignatureService.java:32"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcDerivedKeySignatureService.java#L32"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "EdDSA",
+          "parameterSetIdentifier": "Ed25519",
+          "curve": "Ed25519",
+          "ellipticCurve": "other/Ed25519",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6075f64d-0066-4fc5-b69f-4b33b5d347c9",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcSignatureService.java:29"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcSignatureService.java#L29"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (13 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "EdDSA",
+          "parameterSetIdentifier": "Ed25519",
+          "curve": "Ed25519",
+          "ellipticCurve": "other/Ed25519",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "df186ec1-9bbb-43f5-819a-c64ecb6f26a3",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaPedersenCommitmentGenerator.java:75"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/JnaPedersenCommitmentGenerator.java#L75"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "8d08cd5b-0233-44ae-80c2-709a6efb4e90",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/MptCryptoLibrary.java:106"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/confidential/util/jna/MptCryptoLibrary.java#L106"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "8b22c6f0-f82c-4553-8f77-afe66ebd3172",
+      "name": "RIPEMD-160",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "classical_weakness"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "legacy"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/PublicKey.java:186"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/keys/PublicKey.java#L186"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ripemd-160"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "RIPEMD",
+          "parameterSetIdentifier": "RIPEMD-160",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 80
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b010163f-3803-469d-94bd-eded3b21c3ea",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/codec/addresses/Utils.java:32"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/codec/addresses/Utils.java#L32"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "726bb739-c368-4429-ab9c-5ad7566df79f",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcDerivedKeySignatureService.java:109"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcDerivedKeySignatureService.java#L109"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "08f89b07-f6e2-4483-8b76-be1951530b3f",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcSignatureService.java:69"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/XRPLF/xrpl4j/blob/bbbd620b621491765dab54dd6bf14ae8ef3b901a/xrpl4j-core/src/main/java/org/xrpl/xrpl4j/crypto/signing/bc/BcSignatureService.java#L69"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    }
+  ]
+}
