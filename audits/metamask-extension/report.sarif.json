@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.6.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -153,10 +153,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "В 4 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, @solana/web3.js, bitcoinjs-lib, crypto-js, elliptic, ethers, jose, jsonwebtoken, secp256k1, tweetnacl), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 4 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, @solana/web3.js, bitcoinjs-lib, crypto-js, elliptic, ethers, jose, jsonwebtoken, ripple-keypairs, secp256k1, tweetnacl, xrpl), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "В 4 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, @solana/web3.js, bitcoinjs-lib, crypto-js, elliptic, ethers, jose, jsonwebtoken, secp256k1, tweetnacl), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 4 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, @solana/web3.js, bitcoinjs-lib, crypto-js, elliptic, ethers, jose, jsonwebtoken, ripple-keypairs, secp256k1, tweetnacl, xrpl), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -175,7 +175,7 @@
             "qsiFindingKey/v1": "1ae7c3a43d379f482753f474aaad9d13"
           },
           "properties": {
-            "qsiId": "QSI-2026-28619",
+            "qsiId": "QSI-2026-42267",
             "severity": "critical",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -193,7 +193,7 @@
             "qsiFindingKey/v1": "38f2ecd7f7649f563e8616af4662d451"
           },
           "properties": {
-            "qsiId": "QSI-2026-28675",
+            "qsiId": "QSI-2026-42323",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -211,7 +211,7 @@
             "qsiFindingKey/v1": "9cb07c899bcbf397a9e41ff040a18d97"
           },
           "properties": {
-            "qsiId": "QSI-2026-28678",
+            "qsiId": "QSI-2026-42324",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -229,7 +229,7 @@
             "qsiFindingKey/v1": "6a58854a13e31dfce1d9f31c28fdb624"
           },
           "properties": {
-            "qsiId": "QSI-2026-28682",
+            "qsiId": "QSI-2026-42328",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -247,7 +247,7 @@
             "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-28695",
+            "qsiId": "QSI-2026-42341",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -265,7 +265,7 @@
             "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-28696",
+            "qsiId": "QSI-2026-42342",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -283,7 +283,7 @@
             "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-28697",
+            "qsiId": "QSI-2026-42343",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -301,7 +301,7 @@
             "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-28698",
+            "qsiId": "QSI-2026-42344",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -319,7 +319,7 @@
             "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-28699",
+            "qsiId": "QSI-2026-42345",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -337,7 +337,7 @@
             "qsiFindingKey/v1": "4438b0a17faf1297bd33270577fba123"
           },
           "properties": {
-            "qsiId": "QSI-2026-28616",
+            "qsiId": "QSI-2026-42264",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -355,7 +355,7 @@
             "qsiFindingKey/v1": "53226f36c7c7c384cbb79e2b31b4abbd"
           },
           "properties": {
-            "qsiId": "QSI-2026-28618",
+            "qsiId": "QSI-2026-42266",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -373,7 +373,7 @@
             "qsiFindingKey/v1": "f7e8c4679956e2618817ee2208769add"
           },
           "properties": {
-            "qsiId": "QSI-2026-28620",
+            "qsiId": "QSI-2026-42268",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -391,7 +391,7 @@
             "qsiFindingKey/v1": "f7e8c4679956e2618817ee2208769add"
           },
           "properties": {
-            "qsiId": "QSI-2026-28621",
+            "qsiId": "QSI-2026-42269",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -409,7 +409,7 @@
             "qsiFindingKey/v1": "eb3c52dd6a09d65c02ec48c8d154911b"
           },
           "properties": {
-            "qsiId": "QSI-2026-28622",
+            "qsiId": "QSI-2026-42270",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -427,7 +427,7 @@
             "qsiFindingKey/v1": "065ca2199bd4f7980b357f092030581d"
           },
           "properties": {
-            "qsiId": "QSI-2026-28624",
+            "qsiId": "QSI-2026-42272",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -445,7 +445,7 @@
             "qsiFindingKey/v1": "476e5f21bc4e414d5e6dbff7d063c700"
           },
           "properties": {
-            "qsiId": "QSI-2026-28631",
+            "qsiId": "QSI-2026-42279",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -463,7 +463,7 @@
             "qsiFindingKey/v1": "312016cde91e8cc34206a57cb13b2a39"
           },
           "properties": {
-            "qsiId": "QSI-2026-28637",
+            "qsiId": "QSI-2026-42285",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -481,7 +481,7 @@
             "qsiFindingKey/v1": "566fcf58230881e6ec79c8f9eaaad0bf"
           },
           "properties": {
-            "qsiId": "QSI-2026-28641",
+            "qsiId": "QSI-2026-42289",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -499,7 +499,7 @@
             "qsiFindingKey/v1": "ac893175732a4608402ed2aa32cc96b2"
           },
           "properties": {
-            "qsiId": "QSI-2026-28643",
+            "qsiId": "QSI-2026-42291",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -517,7 +517,7 @@
             "qsiFindingKey/v1": "6953243edcdc12ab8bb07cc11805c52f"
           },
           "properties": {
-            "qsiId": "QSI-2026-28645",
+            "qsiId": "QSI-2026-42293",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -535,7 +535,7 @@
             "qsiFindingKey/v1": "9b686eb340342f22b1b357843e0e21b6"
           },
           "properties": {
-            "qsiId": "QSI-2026-28647",
+            "qsiId": "QSI-2026-42295",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -553,7 +553,7 @@
             "qsiFindingKey/v1": "a958a786e323635d735bd0092eaf29cc"
           },
           "properties": {
-            "qsiId": "QSI-2026-28648",
+            "qsiId": "QSI-2026-42296",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -571,7 +571,7 @@
             "qsiFindingKey/v1": "1f6d09708caf6406d8c95b0b6d3e2f37"
           },
           "properties": {
-            "qsiId": "QSI-2026-28664",
+            "qsiId": "QSI-2026-42312",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -589,7 +589,7 @@
             "qsiFindingKey/v1": "e5fc7fb305d695f4bd646a38bd44d3d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-28666",
+            "qsiId": "QSI-2026-42314",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -607,43 +607,7 @@
             "qsiFindingKey/v1": "e5fc7fb305d695f4bd646a38bd44d3d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-28667",
-            "severity": "high",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "picomatch 2.3.2 затронут GHSA-fc5q-39xc-vjpf (CVE-2026-112366) (dependency: npm/picomatch@2.3.2)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "ee55a539bef91511d3578097b170ec92"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-28676",
-            "severity": "high",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "picomatch 4.0.7 затронут GHSA-fc5q-39xc-vjpf (CVE-2026-112366) (dependency: npm/picomatch@4.0.7)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "ee55a539bef91511d3578097b170ec92"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-28677",
+            "qsiId": "QSI-2026-42315",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -661,7 +625,7 @@
             "qsiFindingKey/v1": "7bdffbe6d1e957f01b13bd54158d627b"
           },
           "properties": {
-            "qsiId": "QSI-2026-28687",
+            "qsiId": "QSI-2026-42333",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -679,7 +643,7 @@
             "qsiFindingKey/v1": "9fc9a9d3c10cc50ab9d398c0a1b5573c"
           },
           "properties": {
-            "qsiId": "QSI-2026-28689",
+            "qsiId": "QSI-2026-42335",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -697,7 +661,7 @@
             "qsiFindingKey/v1": "569f88ac5a95073354780369d2fe6ac7"
           },
           "properties": {
-            "qsiId": "QSI-2026-28693",
+            "qsiId": "QSI-2026-42339",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -715,7 +679,7 @@
             "qsiFindingKey/v1": "84ae338a2b32878da2f742931bf773d1"
           },
           "properties": {
-            "qsiId": "QSI-2026-28694",
+            "qsiId": "QSI-2026-42340",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -733,7 +697,7 @@
             "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
           },
           "properties": {
-            "qsiId": "QSI-2026-28700",
+            "qsiId": "QSI-2026-42346",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -751,7 +715,7 @@
             "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
           },
           "properties": {
-            "qsiId": "QSI-2026-28701",
+            "qsiId": "QSI-2026-42347",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -769,7 +733,7 @@
             "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
           },
           "properties": {
-            "qsiId": "QSI-2026-28702",
+            "qsiId": "QSI-2026-42348",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -787,7 +751,7 @@
             "qsiFindingKey/v1": "226d300d19a1b62d4b99c4fd58ca4212"
           },
           "properties": {
-            "qsiId": "QSI-2026-28605",
+            "qsiId": "QSI-2026-42253",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -805,7 +769,7 @@
             "qsiFindingKey/v1": "278004409886b0e29aa1301036c38fac"
           },
           "properties": {
-            "qsiId": "QSI-2026-28668",
+            "qsiId": "QSI-2026-42316",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -823,7 +787,7 @@
             "qsiFindingKey/v1": "38ef32b07e21512bbfbe67c902643433"
           },
           "properties": {
-            "qsiId": "QSI-2026-28672",
+            "qsiId": "QSI-2026-42320",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -841,7 +805,7 @@
             "qsiFindingKey/v1": "30eef0d00165dad99db9de5a438de47b"
           },
           "properties": {
-            "qsiId": "QSI-2026-28673",
+            "qsiId": "QSI-2026-42321",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -859,7 +823,7 @@
             "qsiFindingKey/v1": "b57de76043f1a8565a7c3555ef44dd66"
           },
           "properties": {
-            "qsiId": "QSI-2026-28674",
+            "qsiId": "QSI-2026-42322",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -877,7 +841,7 @@
             "qsiFindingKey/v1": "388567477c23b9a32172268f8895d5f0"
           },
           "properties": {
-            "qsiId": "QSI-2026-28679",
+            "qsiId": "QSI-2026-42325",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -895,7 +859,7 @@
             "qsiFindingKey/v1": "e484872bd828d721ad011861bff33b17"
           },
           "properties": {
-            "qsiId": "QSI-2026-28680",
+            "qsiId": "QSI-2026-42326",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -913,7 +877,7 @@
             "qsiFindingKey/v1": "1d9cd2c573b6f083c2ac3422959c9643"
           },
           "properties": {
-            "qsiId": "QSI-2026-28681",
+            "qsiId": "QSI-2026-42327",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -931,7 +895,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-28602",
+            "qsiId": "QSI-2026-42250",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -949,7 +913,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-28600",
+            "qsiId": "QSI-2026-42248",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -967,7 +931,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-28601",
+            "qsiId": "QSI-2026-42249",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -985,7 +949,7 @@
             "qsiFindingKey/v1": "9d09bf44c31e545708f5310ce2ce9097"
           },
           "properties": {
-            "qsiId": "QSI-2026-28607",
+            "qsiId": "QSI-2026-42255",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1003,7 +967,7 @@
             "qsiFindingKey/v1": "3c4c4a47796ae80284f5d853fbbf2fe8"
           },
           "properties": {
-            "qsiId": "QSI-2026-28608",
+            "qsiId": "QSI-2026-42256",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1021,7 +985,7 @@
             "qsiFindingKey/v1": "5ac1fea07d82083f211ab2c659abe677"
           },
           "properties": {
-            "qsiId": "QSI-2026-28609",
+            "qsiId": "QSI-2026-42257",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1039,7 +1003,7 @@
             "qsiFindingKey/v1": "31dcc490deeb386ca0eef93fda8d3730"
           },
           "properties": {
-            "qsiId": "QSI-2026-28610",
+            "qsiId": "QSI-2026-42258",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1057,7 +1021,7 @@
             "qsiFindingKey/v1": "8c0ad04b01abe33dd5a4109aef7bea45"
           },
           "properties": {
-            "qsiId": "QSI-2026-28613",
+            "qsiId": "QSI-2026-42261",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1075,7 +1039,7 @@
             "qsiFindingKey/v1": "3b3c667d0e1caddf856644afd1f79091"
           },
           "properties": {
-            "qsiId": "QSI-2026-28614",
+            "qsiId": "QSI-2026-42262",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1093,7 +1057,7 @@
             "qsiFindingKey/v1": "d0316e7d21e4b9a569cf80901c1cdc81"
           },
           "properties": {
-            "qsiId": "QSI-2026-28615",
+            "qsiId": "QSI-2026-42263",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1111,7 +1075,7 @@
             "qsiFindingKey/v1": "93ebe7ba3e197e386bd1f4279a22fe9a"
           },
           "properties": {
-            "qsiId": "QSI-2026-28617",
+            "qsiId": "QSI-2026-42265",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1129,7 +1093,7 @@
             "qsiFindingKey/v1": "0a46c969ae7692551da02171c4626340"
           },
           "properties": {
-            "qsiId": "QSI-2026-28623",
+            "qsiId": "QSI-2026-42271",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1147,7 +1111,7 @@
             "qsiFindingKey/v1": "8dd20972694b628973ce2dbb1b313f71"
           },
           "properties": {
-            "qsiId": "QSI-2026-28625",
+            "qsiId": "QSI-2026-42273",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1165,7 +1129,7 @@
             "qsiFindingKey/v1": "e749297f33f280ff2b594f4741713e5e"
           },
           "properties": {
-            "qsiId": "QSI-2026-28626",
+            "qsiId": "QSI-2026-42274",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1183,7 +1147,7 @@
             "qsiFindingKey/v1": "fbe8288dc7ffc0a39bb19236fd6fac55"
           },
           "properties": {
-            "qsiId": "QSI-2026-28627",
+            "qsiId": "QSI-2026-42275",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1201,7 +1165,7 @@
             "qsiFindingKey/v1": "84cdf2bb98b4ca68acc5caf7875acc69"
           },
           "properties": {
-            "qsiId": "QSI-2026-28629",
+            "qsiId": "QSI-2026-42277",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1219,7 +1183,7 @@
             "qsiFindingKey/v1": "0fea769d9ed155d490fe23dde9eeb90c"
           },
           "properties": {
-            "qsiId": "QSI-2026-28630",
+            "qsiId": "QSI-2026-42278",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1237,7 +1201,7 @@
             "qsiFindingKey/v1": "ba087bcc6347e70ad22099dabe7da8f7"
           },
           "properties": {
-            "qsiId": "QSI-2026-28632",
+            "qsiId": "QSI-2026-42280",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1255,7 +1219,7 @@
             "qsiFindingKey/v1": "2a8d3810bed13e9eb9a66137c79999ce"
           },
           "properties": {
-            "qsiId": "QSI-2026-28633",
+            "qsiId": "QSI-2026-42281",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1273,7 +1237,7 @@
             "qsiFindingKey/v1": "e31696e06235c5973262485c722393e0"
           },
           "properties": {
-            "qsiId": "QSI-2026-28634",
+            "qsiId": "QSI-2026-42282",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1291,7 +1255,7 @@
             "qsiFindingKey/v1": "1091c8ac9f4fe59c8ec5974a58df9a6d"
           },
           "properties": {
-            "qsiId": "QSI-2026-28635",
+            "qsiId": "QSI-2026-42283",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1309,7 +1273,7 @@
             "qsiFindingKey/v1": "da310014739c42c47753a81c28f55918"
           },
           "properties": {
-            "qsiId": "QSI-2026-28636",
+            "qsiId": "QSI-2026-42284",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1327,7 +1291,7 @@
             "qsiFindingKey/v1": "d144af503d091b7f54c917746e57396b"
           },
           "properties": {
-            "qsiId": "QSI-2026-28640",
+            "qsiId": "QSI-2026-42288",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1345,7 +1309,7 @@
             "qsiFindingKey/v1": "f0b6ec5333dbffbd97395072be5a7819"
           },
           "properties": {
-            "qsiId": "QSI-2026-28642",
+            "qsiId": "QSI-2026-42290",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1363,7 +1327,7 @@
             "qsiFindingKey/v1": "aa8cc3bc206cb4baaefcfa1f910e77cd"
           },
           "properties": {
-            "qsiId": "QSI-2026-28644",
+            "qsiId": "QSI-2026-42292",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1381,7 +1345,7 @@
             "qsiFindingKey/v1": "84a7ab124d4db916ee85eea8154bac57"
           },
           "properties": {
-            "qsiId": "QSI-2026-28646",
+            "qsiId": "QSI-2026-42294",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1399,7 +1363,7 @@
             "qsiFindingKey/v1": "cb07144a7faeb4977dc1ccbd8f5f67de"
           },
           "properties": {
-            "qsiId": "QSI-2026-28650",
+            "qsiId": "QSI-2026-42298",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1417,7 +1381,7 @@
             "qsiFindingKey/v1": "2a588f34d80f70307f829bf6cb6872dd"
           },
           "properties": {
-            "qsiId": "QSI-2026-28651",
+            "qsiId": "QSI-2026-42299",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1435,7 +1399,7 @@
             "qsiFindingKey/v1": "83276b96c27acd81b8ecfc5ec24f807a"
           },
           "properties": {
-            "qsiId": "QSI-2026-28654",
+            "qsiId": "QSI-2026-42302",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1453,7 +1417,7 @@
             "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
           },
           "properties": {
-            "qsiId": "QSI-2026-28655",
+            "qsiId": "QSI-2026-42303",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1471,7 +1435,7 @@
             "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
           },
           "properties": {
-            "qsiId": "QSI-2026-28656",
+            "qsiId": "QSI-2026-42304",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1489,7 +1453,7 @@
             "qsiFindingKey/v1": "4a93257799a978f4c2f2901d98da869c"
           },
           "properties": {
-            "qsiId": "QSI-2026-28657",
+            "qsiId": "QSI-2026-42305",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1507,7 +1471,7 @@
             "qsiFindingKey/v1": "4a93257799a978f4c2f2901d98da869c"
           },
           "properties": {
-            "qsiId": "QSI-2026-28658",
+            "qsiId": "QSI-2026-42306",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1525,7 +1489,7 @@
             "qsiFindingKey/v1": "ace3ff1da61ea36ebf1144f2250731b8"
           },
           "properties": {
-            "qsiId": "QSI-2026-28660",
+            "qsiId": "QSI-2026-42308",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1543,7 +1507,7 @@
             "qsiFindingKey/v1": "d07921960887da95fab72d4d8b37ff4b"
           },
           "properties": {
-            "qsiId": "QSI-2026-28661",
+            "qsiId": "QSI-2026-42309",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1561,7 +1525,7 @@
             "qsiFindingKey/v1": "380f00ffc304950a0efccc778372878d"
           },
           "properties": {
-            "qsiId": "QSI-2026-28662",
+            "qsiId": "QSI-2026-42310",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1579,7 +1543,7 @@
             "qsiFindingKey/v1": "89b0117fa5bcc1061b6756671ad8307a"
           },
           "properties": {
-            "qsiId": "QSI-2026-28663",
+            "qsiId": "QSI-2026-42311",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1597,7 +1561,7 @@
             "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
           },
           "properties": {
-            "qsiId": "QSI-2026-28669",
+            "qsiId": "QSI-2026-42317",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1615,7 +1579,7 @@
             "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
           },
           "properties": {
-            "qsiId": "QSI-2026-28670",
+            "qsiId": "QSI-2026-42318",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1633,7 +1597,7 @@
             "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
           },
           "properties": {
-            "qsiId": "QSI-2026-28671",
+            "qsiId": "QSI-2026-42319",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1651,7 +1615,7 @@
             "qsiFindingKey/v1": "156b25f742ea6e412aca32e75ea63ea3"
           },
           "properties": {
-            "qsiId": "QSI-2026-28683",
+            "qsiId": "QSI-2026-42329",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1669,7 +1633,7 @@
             "qsiFindingKey/v1": "2e0b030704e94a77ea4219f7cccf4798"
           },
           "properties": {
-            "qsiId": "QSI-2026-28684",
+            "qsiId": "QSI-2026-42330",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1687,7 +1651,7 @@
             "qsiFindingKey/v1": "6574df6188ac97981b5b8a7703fac52c"
           },
           "properties": {
-            "qsiId": "QSI-2026-28685",
+            "qsiId": "QSI-2026-42331",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1705,7 +1669,7 @@
             "qsiFindingKey/v1": "dc8a3b4381582f7ca9e0a04d6a61f3b9"
           },
           "properties": {
-            "qsiId": "QSI-2026-28688",
+            "qsiId": "QSI-2026-42334",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1723,7 +1687,7 @@
             "qsiFindingKey/v1": "399aced54289841396a961e1f0ad3cc6"
           },
           "properties": {
-            "qsiId": "QSI-2026-28690",
+            "qsiId": "QSI-2026-42336",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1741,7 +1705,7 @@
             "qsiFindingKey/v1": "28eb2fe4fbeee74df366ab31937b063d"
           },
           "properties": {
-            "qsiId": "QSI-2026-28691",
+            "qsiId": "QSI-2026-42337",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1759,7 +1723,7 @@
             "qsiFindingKey/v1": "6d6a81c06eea2509f12340dbbaf54bdf"
           },
           "properties": {
-            "qsiId": "QSI-2026-28692",
+            "qsiId": "QSI-2026-42338",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1777,7 +1741,7 @@
             "qsiFindingKey/v1": "0d27436c70e7a7d5b37400a1c8f0defd"
           },
           "properties": {
-            "qsiId": "QSI-2026-28603",
+            "qsiId": "QSI-2026-42251",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -1807,7 +1771,7 @@
             "qsiFindingKey/v1": "62f76521e650665909baa01a656c8f65"
           },
           "properties": {
-            "qsiId": "QSI-2026-28604",
+            "qsiId": "QSI-2026-42252",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -1837,7 +1801,7 @@
             "qsiFindingKey/v1": "3b4983fbb82f4b5e3041efade943d0cf"
           },
           "properties": {
-            "qsiId": "QSI-2026-28611",
+            "qsiId": "QSI-2026-42259",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1855,7 +1819,7 @@
             "qsiFindingKey/v1": "3b4983fbb82f4b5e3041efade943d0cf"
           },
           "properties": {
-            "qsiId": "QSI-2026-28612",
+            "qsiId": "QSI-2026-42260",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1873,7 +1837,7 @@
             "qsiFindingKey/v1": "15c603bffdb29a848a3dba33e0126ff8"
           },
           "properties": {
-            "qsiId": "QSI-2026-28628",
+            "qsiId": "QSI-2026-42276",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1891,7 +1855,7 @@
             "qsiFindingKey/v1": "0e65e44b758111c133c80944c37f6583"
           },
           "properties": {
-            "qsiId": "QSI-2026-28638",
+            "qsiId": "QSI-2026-42286",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1909,7 +1873,7 @@
             "qsiFindingKey/v1": "eb5a90723dd53b024cd735fb62c08e1e"
           },
           "properties": {
-            "qsiId": "QSI-2026-28639",
+            "qsiId": "QSI-2026-42287",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1927,7 +1891,7 @@
             "qsiFindingKey/v1": "e11c4dd85b502f6788535ca5ffc4a878"
           },
           "properties": {
-            "qsiId": "QSI-2026-28649",
+            "qsiId": "QSI-2026-42297",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1945,7 +1909,7 @@
             "qsiFindingKey/v1": "e7cbfff98eecf7aacf2ee6c13efb7a4f"
           },
           "properties": {
-            "qsiId": "QSI-2026-28652",
+            "qsiId": "QSI-2026-42300",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1963,7 +1927,7 @@
             "qsiFindingKey/v1": "d568b473afbb2aed875d0bbca52add13"
           },
           "properties": {
-            "qsiId": "QSI-2026-28653",
+            "qsiId": "QSI-2026-42301",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1981,7 +1945,7 @@
             "qsiFindingKey/v1": "21a3926f3ed43ae1c80d53842f018de4"
           },
           "properties": {
-            "qsiId": "QSI-2026-28659",
+            "qsiId": "QSI-2026-42307",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1999,7 +1963,7 @@
             "qsiFindingKey/v1": "9210b6f1db59759dbe97634324badcb4"
           },
           "properties": {
-            "qsiId": "QSI-2026-28665",
+            "qsiId": "QSI-2026-42313",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2017,7 +1981,7 @@
             "qsiFindingKey/v1": "ea7a7100367ab3684c77769adaa042b1"
           },
           "properties": {
-            "qsiId": "QSI-2026-28686",
+            "qsiId": "QSI-2026-42332",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2035,7 +1999,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-28703",
+            "qsiId": "QSI-2026-42349",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -2062,7 +2026,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-28606",
+            "qsiId": "QSI-2026-42254",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -2071,13 +2035,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/metamask-extension @ d2db7ee9a19b/78021aaf-403a-4cc1-83b8-f6b0d21f603c"
+        "id": "qsi/metamask-extension @ d2db7ee9a19b/7a2366dc-edfd-4785-89ed-19c9212c3c61"
       },
       "properties": {
-        "qsiContentSha256": "a1e3701797b3957ebe7f43056bd267b8a25f0908e17fd513a5fe0721419628ba",
+        "qsiContentSha256": "b0a22dca7397a1b5d36312851dbbe7eb91a4c84595f609898d15e02ca6516893",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-17T19:14:41.677959+00:00",
+        "qsiGeneratedAt": "2026-11-23T12:44:27.081983+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

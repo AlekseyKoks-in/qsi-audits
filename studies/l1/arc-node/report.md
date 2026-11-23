@@ -4,28 +4,28 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-19 17:43 UTC |
+| Report date | 2026-11-23 13:53 UTC |
 | Report version | 1 |
-| Audit run | 5f265cb5-5d5a-4ea5-ac4e-6452f63cc96c (Document audit) |
-| Analyzer engine | qsi-engine 1.6.0 |
+| Audit run | 83fc4a73-3679-4ea2-91f6-1db7c2f42eb3 (Document audit) |
+| Analyzer engine | qsi-engine 1.16.2 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `735a5c6cb5a010be77fc92cae73fd53f8416351d80a4eb79d88b74997805df81` |
+| Content SHA-256 | `55c5d2c629ebd812b42edaeb9c5dc94ab02eb3c9a5a0140280c6199e200058fd` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
-- High: **21**
-- Medium: **23**
-- Low: **63**
-- Info: **58**
+- High: **16**
+- Medium: **21**
+- Low: **53**
+- Info: **73**
 
 - Confirmed technical vulnerability: 0
-- Known vulnerable component: 85
+- Known vulnerable component: 86
 - Confirmed configuration error: 1
-- Potential cryptographic risk: 6
-- Long-term post-quantum risk: 4
+- Potential cryptographic risk: 2
+- Long-term post-quantum risk: 5
 - Improvement recommendation: 69
 - Insufficient data: 0
 
@@ -46,14 +46,14 @@ Repository: <https://github.com/circlefin/arc-node> @ `6e764023ee6515fe70573e123
 | Area | Status | Count | Examples |
 |---|---|---|---|
 | dependencies | checked | 40 | Cargo.lock: 1276 dependencies parsed (1276 pinned); Cargo.toml: 216 dependencies parsed (3 pinned); crates/consensus-db/Cargo.toml: 20 dependencies parsed (0 pinned) |
-| source_code | checked | 493 | assets/devnet/genesis.config.ts: 138 lines scanned with 16 rule patterns and 280 registry patterns; assets/localdev/genesis.config.ts: 182 lines scanned with 16 rule patterns and 280 registry patterns; assets/mainnet/genesis.config.ts: 177 lines scanned with 16 rule patterns and 280 registry patterns |
+| source_code | checked | 493 | assets/devnet/genesis.config.ts: 138 lines scanned with 16 rule patterns and 340 registry patterns; assets/localdev/genesis.config.ts: 182 lines scanned with 16 rule patterns and 340 registry patterns; assets/mainnet/genesis.config.ts: 177 lines scanned with 16 rule patterns and 340 registry patterns |
 | secrets | checked | 66 | assets/mainnet/genesis.config.ts: 11 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); crates/eth-engine/src/abi_utils.rs: value(s) at line(s) 337 (test_corrupted_public_key_leaves_set_empty_and_errors) are declared inside a fixture and treated as test data, although the file itself is not test code; crates/eth-engine/src/abi_utils.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| smart_contracts | checked | 527 | contracts/scripts/Addresses.sol: built-in Solidity pattern checks; contracts/scripts/ArtifactHelper.s.sol: built-in Solidity pattern checks; contracts/scripts/DenylistManagement.s.sol: built-in Solidity pattern checks |
+| smart_contracts | checked | 536 | contracts/scripts/Addresses.sol: built-in Solidity pattern checks; contracts/scripts/ArtifactHelper.s.sol: built-in Solidity pattern checks; contracts/scripts/DenylistManagement.s.sol: built-in Solidity pattern checks |
 | slither | not checked | 527 | slither is not installed on the server (pip install slither-analyzer + solc) |
 | entropy | checked | 1 | random-number generation: 493 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| crediting | checked | 1 | payment crediting: 0 file(s) read incoming transfers on TON, the XRP Ledger, Tron or an EVM chain; 0 lead(s). Confirmation depth, reorganisations and duplicate crediting are not checked |
+| crediting | checked | 1 | payment crediting: 0 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 10 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
 | osv_advisories | not checked | 1 | 125 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: arc-malachitebft-app, arc-malachitebft-app-channel, arc-malachitebft-codec, arc-malachitebft-config, arc-malachitebft-core-consensus, arc-malachitebft-core-driver, arc-malachitebft-core-state-machine, arc-malachitebft-core-types, arc-malachitebft-core-votekeeper, arc-malachitebft-discovery, arc-malachitebft-engine, arc-malachitebft-engine-byzantine … |
-| osv_advisories | checked | 1 | 1993 pinned packages queried at OSV.dev; 106 affected (62 of them only in development or build dependencies) |
+| osv_advisories | checked | 1 | 1993 pinned packages queried at OSV.dev; 107 affected (62 of them only in development or build dependencies) |
 | osv_advisories | Insufficient data | 2 | npm/axios@1.9.0: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/undici@7.8.0: 27 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -66,22 +66,22 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree arc-node at 6e764023ee6515fe70573e123ed2db912a7207b4. 1067 files analysed; of 3265 files, 1655 are test, fuzzing, benchmark or example code and were left out, 543 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .cargo/audit.toml, .config/nextest.toml, .dockerignore, .foundry-version, .github/CODEOWNERS. 685 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 684 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: contracts/lib/openzeppelin-contracts-upgradeable (415), contracts/lib/openzeppelin-contracts (269). No requests were sent to the owner's systems.
+Static review of the source tree arc-node at 6e764023ee6515fe70573e123ed2db912a7207b4. 1067 files analysed; of 3265 files, 1655 are test, fuzzing, benchmark or example code and were left out, 543 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .cargo/audit.toml, .config/nextest.toml, .dockerignore, .foundry-version, .github/CODEOWNERS. 685 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 684 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts (269), contracts/lib/openzeppelin-contracts (269), contracts/lib/openzeppelin-contracts-upgradeable (146). No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
 - Indicative posture index: **0** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 7.4%
+- Quantum-vulnerable share of inventory: 22.0%
 
 ## 7. Detailed findings
 
-### QSI-2026-32671 — rmcp 1.4.0 is affected by GHSA-33f5-2c5q-wgwj (CVE-2026-63127)
+### QSI-2026-44198 — rmcp 1.4.0 is affected by GHSA-33f5-2c5q-wgwj (CVE-2026-63127)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/rmcp@1.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 8.2 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N`)
 
@@ -109,13 +109,13 @@ _tool_output · [OSV.dev GHSA-33f5-2c5q-wgwj](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32673 — rmcp 1.4.0 is affected by GHSA-9pj6-vhgr-3mwh (CVE-2026-63128)
+### QSI-2026-44200 — rmcp 1.4.0 is affected by GHSA-9pj6-vhgr-3mwh (CVE-2026-63128)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/rmcp@1.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -143,47 +143,13 @@ _tool_output · [OSV.dev GHSA-9pj6-vhgr-3mwh](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32570 — Possible hard-coded secret in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-1 secret-like value(s) of type hex_private_key_32b (first at line 21). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 21 in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol#L21) · line 21 · SHA-256 cf74f24f02484f76ae662f07905a00e2ce06c4da7fab82259bdd3c0ca92095c5_
-
-```
-   21 |     bytes32 private constant ERC6909TokenSupplyStorageLocation = [REDACTED];
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-32624 — hickory-proto 0.25.2 is affected by GHSA-3v94-mw7p-v465 (CVE-2026-123607, RUSTSEC-2026-0118)
+### QSI-2026-44151 — hickory-proto 0.25.2 is affected by GHSA-3v94-mw7p-v465 (CVE-2026-123607, RUSTSEC-2026-0118)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: not applicable
 
@@ -211,13 +177,13 @@ _tool_output · [OSV.dev GHSA-3v94-mw7p-v465](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32631 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0505 (CVE-2026-123580)
+### QSI-2026-44158 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0505 (CVE-2026-123580)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -245,13 +211,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0505](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32640 — hickory-resolver 0.25.2 is affected by GHSA-5j98-2g5x-46v6 (CVE-2026-93657, RUSTSEC-2026-0514)
+### QSI-2026-44167 — hickory-resolver 0.25.2 is affected by GHSA-5j98-2g5x-46v6 (CVE-2026-93657, RUSTSEC-2026-0514)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/hickory-resolver@0.25.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -279,13 +245,13 @@ _tool_output · [OSV.dev GHSA-5j98-2g5x-46v6](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32647 — libp2p-quic 0.13.0 is affected by GHSA-5hq8-qhww-jm7q (CVE-2026-61544, RUSTSEC-2026-0525)
+### QSI-2026-44174 — libp2p-quic 0.13.0 is affected by GHSA-5hq8-qhww-jm7q (CVE-2026-61544, RUSTSEC-2026-0525)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/libp2p-quic@0.13.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: not applicable
 
@@ -313,13 +279,13 @@ _tool_output · [OSV.dev GHSA-5hq8-qhww-jm7q](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32664 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0340
+### QSI-2026-44191 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0340
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -347,13 +313,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0340](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32665 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0341
+### QSI-2026-44192 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0341
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -381,13 +347,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0341](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32688 — yamux 0.12.1 is affected by GHSA-vxx9-2994-q338 (CVE-2026-32314)
+### QSI-2026-44216 — yamux 0.12.1 is affected by GHSA-vxx9-2994-q338 (CVE-2026-32314)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/yamux@0.12.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: not applicable
 
@@ -415,13 +381,13 @@ _tool_output · [OSV.dev GHSA-vxx9-2994-q338](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32689 — yamux 0.13.8 is affected by GHSA-4w32-2493-32g7 (CVE-2026-31814)
+### QSI-2026-44217 — yamux 0.13.8 is affected by GHSA-4w32-2493-32g7 (CVE-2026-31814)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/yamux@0.13.8`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: not applicable
 
@@ -449,13 +415,13 @@ _tool_output · [OSV.dev GHSA-4w32-2493-32g7](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32690 — yamux 0.13.8 is affected by GHSA-vxx9-2994-q338 (CVE-2026-32314)
+### QSI-2026-44218 — yamux 0.13.8 is affected by GHSA-vxx9-2994-q338 (CVE-2026-32314)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/yamux@0.13.8`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 37.6 / 100
 - CVSS v3.1: not applicable
 
@@ -483,165 +449,13 @@ _tool_output · [OSV.dev GHSA-vxx9-2994-q338](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32575 — delegatecall usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol
-
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 36.5 / 100
-- CVSS v3.1: not applicable
-
-delegatecall at line 234. (related: SWC-112)
-
-**Potential impact.** If the target is user-controlled, an attacker can execute arbitrary code in this contract's storage context.
-
-**Reproduction steps.**
-
-```
-Open line 234 in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol#L234) · line 234 · SHA-256 42e274c73007a59a42e252b5a5a5cc7573d9d4823b920a60f52ffb2015e1419b_
-
-```
-  232 |         bytes calldata data
-  233 |     ) private returns (bytes memory) {
-  234 |         (bool success, bytes memory returndata) = (target == address(0) ? address(this) : target).delegatecall(data);
-  235 |         return _validateExecutionMode(index, execType, success, returndata);
-  236 |     }
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Restrict delegatecall targets to trusted, immutable implementations.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32591 — delegatecall usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
-
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 36.5 / 100
-- CVSS v3.1: not applicable
-
-delegatecall at line 97. (related: SWC-112)
-
-**Potential impact.** If the target is user-controlled, an attacker can execute arbitrary code in this contract's storage context.
-
-**Reproduction steps.**
-
-```
-Open line 97 in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol#L97) · line 97 · SHA-256 de90734492398d249f990996f44e7767a3e9ae43db2e357697f6ccfc0437f3af_
-
-```
-   95 |      */
-   96 |     function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
-   97 |         (bool success, bytes memory returndata) = target.delegatecall(data);
-   98 |         return verifyCallResultFromTarget(target, success, returndata);
-   99 |     }
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Restrict delegatecall targets to trusted, immutable implementations.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32596 — delegatecall usage in contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol
-
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 36.5 / 100
-- CVSS v3.1: not applicable
-
-delegatecall at line 234. (related: SWC-112)
-
-**Potential impact.** If the target is user-controlled, an attacker can execute arbitrary code in this contract's storage context.
-
-**Reproduction steps.**
-
-```
-Open line 234 in the supplied file contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol#L234) · line 234 · SHA-256 42e274c73007a59a42e252b5a5a5cc7573d9d4823b920a60f52ffb2015e1419b_
-
-```
-  232 |         bytes calldata data
-  233 |     ) private returns (bytes memory) {
-  234 |         (bool success, bytes memory returndata) = (target == address(0) ? address(this) : target).delegatecall(data);
-  235 |         return _validateExecutionMode(index, execType, success, returndata);
-  236 |     }
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Restrict delegatecall targets to trusted, immutable implementations.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32608 — delegatecall usage in contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol
-
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 36.5 / 100
-- CVSS v3.1: not applicable
-
-delegatecall at line 97. (related: SWC-112)
-
-**Potential impact.** If the target is user-controlled, an attacker can execute arbitrary code in this contract's storage context.
-
-**Reproduction steps.**
-
-```
-Open line 97 in the supplied file contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol#L97) · line 97 · SHA-256 de90734492398d249f990996f44e7767a3e9ae43db2e357697f6ccfc0437f3af_
-
-```
-   95 |      */
-   96 |     function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
-   97 |         (bool success, bytes memory returndata) = target.delegatecall(data);
-   98 |         return verifyCallResultFromTarget(target, success, returndata);
-   99 |     }
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Restrict delegatecall targets to trusted, immutable implementations.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32650 — openssl 0.10.75 is affected by GHSA-8c75-8mhr-p7r9 (CVE-2026-41678, RUSTSEC-2026-0463)
+### QSI-2026-44177 — openssl 0.10.75 is affected by GHSA-8c75-8mhr-p7r9 (CVE-2026-41678, RUSTSEC-2026-0463)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/openssl@0.10.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 32.0 / 100
 - CVSS v3.1: not applicable
 
@@ -669,13 +483,13 @@ _tool_output · [OSV.dev GHSA-8c75-8mhr-p7r9](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32651 — openssl 0.10.75 is affected by GHSA-ghm9-cr32-g9qj (CVE-2026-41681, RUSTSEC-2026-0475)
+### QSI-2026-44178 — openssl 0.10.75 is affected by GHSA-ghm9-cr32-g9qj (CVE-2026-41681, RUSTSEC-2026-0475)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/openssl@0.10.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 32.0 / 100
 - CVSS v3.1: not applicable
 
@@ -703,13 +517,13 @@ _tool_output · [OSV.dev GHSA-ghm9-cr32-g9qj](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32652 — openssl 0.10.75 is affected by GHSA-hppc-g8h3-xhp3 (CVE-2026-41898, RUSTSEC-2026-0478)
+### QSI-2026-44179 — openssl 0.10.75 is affected by GHSA-hppc-g8h3-xhp3 (CVE-2026-41898, RUSTSEC-2026-0478)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/openssl@0.10.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 32.0 / 100
 - CVSS v3.1: not applicable
 
@@ -737,13 +551,13 @@ _tool_output · [OSV.dev GHSA-hppc-g8h3-xhp3](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32654 — openssl 0.10.75 is affected by GHSA-pqf5-4pqq-29f5 (CVE-2026-41676, RUSTSEC-2026-0473)
+### QSI-2026-44181 — openssl 0.10.75 is affected by GHSA-pqf5-4pqq-29f5 (CVE-2026-41676, RUSTSEC-2026-0473)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/openssl@0.10.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 32.0 / 100
 - CVSS v3.1: not applicable
 
@@ -771,13 +585,13 @@ _tool_output · [OSV.dev GHSA-pqf5-4pqq-29f5](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32656 — openssl 0.10.75 is affected by GHSA-xp3w-r5p5-63rr (CVE-2026-42327, RUSTSEC-2026-0474)
+### QSI-2026-44183 — openssl 0.10.75 is affected by GHSA-xp3w-r5p5-63rr (CVE-2026-42327, RUSTSEC-2026-0474)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/openssl@0.10.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 32.0 / 100
 - CVSS v3.1: not applicable
 
@@ -805,13 +619,13 @@ _tool_output · [OSV.dev GHSA-xp3w-r5p5-63rr](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32644 — jsonwebtoken 9.3.1 is affected by GHSA-h395-gr6q-cpjc (CVE-2026-25537)
+### QSI-2026-44171 — jsonwebtoken 9.3.1 is affected by GHSA-h395-gr6q-cpjc (CVE-2026-25537)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/jsonwebtoken@9.3.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -839,13 +653,13 @@ _tool_output · [OSV.dev GHSA-h395-gr6q-cpjc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32672 — rmcp 1.4.0 is affected by GHSA-9g45-5xwm-f3wc (CVE-2026-64684)
+### QSI-2026-44199 — rmcp 1.4.0 is affected by GHSA-9g45-5xwm-f3wc (CVE-2026-64684)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/rmcp@1.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N`)
 
@@ -873,13 +687,13 @@ _tool_output · [OSV.dev GHSA-9g45-5xwm-f3wc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32674 — rmcp 1.4.0 is affected by GHSA-c9xm-49cp-xcr9
+### QSI-2026-44201 — rmcp 1.4.0 is affected by GHSA-c9xm-49cp-xcr9
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/rmcp@1.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -907,13 +721,13 @@ _tool_output · [OSV.dev GHSA-c9xm-49cp-xcr9](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32675 — rmcp 1.4.0 is affected by RUSTSEC-2026-0462
+### QSI-2026-44202 — rmcp 1.4.0 is affected by RUSTSEC-2026-0462
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/rmcp@1.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H`)
 
@@ -941,13 +755,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0462](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32683 — serde_with 3.16.1 is affected by GHSA-7gcf-g7xr-8hxj
+### QSI-2026-44210 — serde_with 3.16.1 is affected by GHSA-7gcf-g7xr-8hxj
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/serde_with@3.16.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -975,13 +789,13 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32684 — tar 0.4.45 is affected by GHSA-3pv8-6f4r-ffg2
+### QSI-2026-44211 — tar 0.4.45 is affected by GHSA-3pv8-6f4r-ffg2
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/tar@0.4.45`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1009,93 +823,17 @@ _tool_output · [OSV.dev GHSA-3pv8-6f4r-ffg2](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32592 — Raw ecrecover usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
-
-- Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 43.6 / 100
-- CVSS v3.1: not applicable
-
-ecrecover at line 148. (related: SWC-117/SWC-121)
-
-**Potential impact.** Without s-value/zero-address checks and nonces, signatures may be malleable or replayable. ecrecover relies on secp256k1 ECDSA (quantum-vulnerable long-term).
-
-**Reproduction steps.**
-
-```
-Open line 148 in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol#L148) · line 148 · SHA-256 bbb05c626df7732576d2e3f08f6fcf908767b508ed20b71385b32c95794d893e_
-
-```
-  146 | 
-  147 |         // If the signature is valid (and not malleable), return the signer address
-  148 |         address signer = ecrecover(hash, v, r, s);
-  149 |         if (signer == address(0)) {
-  150 |             return (address(0), RecoverError.InvalidSignature, bytes32(0));
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32609 — Raw ecrecover usage in contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
-
-- Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 43.6 / 100
-- CVSS v3.1: not applicable
-
-ecrecover at line 148. (related: SWC-117/SWC-121)
-
-**Potential impact.** Without s-value/zero-address checks and nonces, signatures may be malleable or replayable. ecrecover relies on secp256k1 ECDSA (quantum-vulnerable long-term).
-
-**Reproduction steps.**
-
-```
-Open line 148 in the supplied file contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol#L148) · line 148 · SHA-256 bbb05c626df7732576d2e3f08f6fcf908767b508ed20b71385b32c95794d893e_
-
-```
-  146 | 
-  147 |         // If the signature is valid (and not malleable), return the signer address
-  148 |         address signer = ecrecover(hash, v, r, s);
-  149 |         if (signer == address(0)) {
-  150 |             return (address(0), RecoverError.InvalidSignature, bytes32(0));
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32552 — Quantum-vulnerable ECDSA: transaction and message signing (5 file(s))
+### QSI-2026-44083 — Quantum-vulnerable ECDSA: transaction and message signing (35 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: crates/quake/src/rpc/valset_manager.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
-5 reference(s) to ECDSA across 5 file(s), e.g. crates/quake/src/rpc/valset_manager.rs:25. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+41 reference(s) to ECDSA across 35 file(s), e.g. crates/quake/src/rpc/valset_manager.rs:25. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -1131,24 +869,74 @@ _file_excerpt · [crates/spammer/src/generator.rs](https://github.com/circlefin/
    24 | use rand::Rng;
 ```
 
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol#L148) · line 148 · SHA-256 bbb05c626df7732576d2e3f08f6fcf908767b508ed20b71385b32c95794d893e_
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol#L602) · line 602 · SHA-256 0deb244320a896a965a50c8d43e275e169adefaff59e72f86d239f146351a40c_
 
 ```
-  146 | 
-  147 |         // If the signature is valid (and not malleable), return the signer address
-  148 |         address signer = ecrecover(hash, v, r, s);
-  149 |         if (signer == address(0)) {
-  150 |             return (address(0), RecoverError.InvalidSignature, bytes32(0));
+  600 |     ) internal virtual returns (bool) {
+  601 |         return
+  602 |             SignatureChecker.isValidSignatureNow(
+  603 |                 voter,
+  604 |                 _hashTypedDataV4(keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support, voter, _useNonce(voter)))),
 ```
 
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol#L148) · line 148 · SHA-256 bbb05c626df7732576d2e3f08f6fcf908767b508ed20b71385b32c95794d893e_
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol#L619) · line 619 · SHA-256 2d25faa280bd54b4b2a3f43dfa934b3a93f8b5c953a264eb5b40335dec257051_
 
 ```
-  146 | 
-  147 |         // If the signature is valid (and not malleable), return the signer address
-  148 |         address signer = ecrecover(hash, v, r, s);
-  149 |         if (signer == address(0)) {
-  150 |             return (address(0), RecoverError.InvalidSignature, bytes32(0));
+  617 |     ) internal virtual returns (bool) {
+  618 |         return
+  619 |             SignatureChecker.isValidSignatureNow(
+  620 |                 voter,
+  621 |                 _hashTypedDataV4(
+```
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorCountingOverridableUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorCountingOverridableUpgradeable.sol#L225) · line 225 · SHA-256 58c9ab10292db908ccb3f98fa6b565329587ef82ceb614abce7a358b97864c69_
+
+```
+  223 |         bytes calldata signature
+  224 |     ) public virtual returns (uint256) {
+  225 |         bool valid = SignatureChecker.isValidSignatureNow(
+  226 |             voter,
+  227 |             _hashTypedDataV4(
+```
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorNoncesKeyedUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorNoncesKeyedUpgradeable.sol#L41) · line 41 · SHA-256 e5e0db449fa7400cb0010be100cecf14774cb2deed276ef14904e076bb2c21b3_
+
+```
+   39 |     ) internal virtual override returns (bool) {
+   40 |         if (
+   41 |             SignatureChecker.isValidSignatureNow(
+   42 |                 voter,
+   43 |                 _hashTypedDataV4(
+```
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorNoncesKeyedUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorNoncesKeyedUpgradeable.sol#L73) · line 73 · SHA-256 f8bd1146b2a68f28e331864ef0da938ac62215fbdda8a66808dfe6da67597721_
+
+```
+   71 |     ) internal virtual override returns (bool) {
+   72 |         if (
+   73 |             SignatureChecker.isValidSignatureNow(
+   74 |                 voter,
+   75 |                 _hashTypedDataV4(
+```
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/utils/VotesUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/utils/VotesUpgradeable.sol#L177) · line 177 · SHA-256 33dee8a7d4392d4d46ceaa523085a5687fa7d0c071771cf1e7b4ecf36ef4ba8d_
+
+```
+  175 |             revert VotesExpiredSignature(expiry);
+  176 |         }
+  177 |         address signer = ECDSA.recover(
+  178 |             _hashTypedDataV4(keccak256(abi.encode(DELEGATION_TYPEHASH, delegatee, nonce, expiry))),
+  179 |             v,
+```
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20PermitUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20PermitUpgradeable.sol#L64) · line 64 · SHA-256 384eef7fe13b6366023c68208fca7180d40c6c81a7a19364e346356a89d64dfb_
+
+```
+   62 |         bytes32 hash = _hashTypedDataV4(structHash);
+   63 | 
+   64 |         address signer = ECDSA.recover(hash, v, r, s);
+   65 |         if (signer != owner) {
+   66 |             revert ERC2612InvalidSigner(signer, owner);
 ```
 
 **Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
@@ -1157,17 +945,17 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/utils/cryptogra
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-32553 — Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))
+### QSI-2026-44084 — Quantum-vulnerable Ed25519: transaction and message signing (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: crates/signer/src/local.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
-1 reference(s) to Ed25519 across 1 file(s), e.g. crates/signer/src/local.rs:26. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+2 reference(s) to Ed25519 across 2 file(s), e.g. crates/signer/src/local.rs:26. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -1187,33 +975,49 @@ _file_excerpt · [crates/signer/src/local.rs](https://github.com/circlefin/arc-n
    27 | 
 ```
 
+_file_excerpt · [scripts/genesis/AccountCreator.ts](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/scripts/genesis/AccountCreator.ts#L17) · line 17 · SHA-256 4722cb6003963508930e06dcc91a1a13f1d67b5c9bbd1fdeb5f7fe4bfea9c079_
+
+```
+   16 | 
+   17 | import * as ed from '@noble/ed25519'
+   18 | import { Address, Hex, toHex } from 'viem'
+```
+
 **Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
 
 **Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-32551 — Quantum-vulnerable ECDSA: role not determined (1 file(s))
+### QSI-2026-44072 — Quantum-vulnerable ECDSA: role not determined (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
-- Data source: crates/quake/src/nodekey.rs
+- Data source: assets/localdev/genesis.config.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
-2 reference(s) to ECDSA across 1 file(s), e.g. crates/quake/src/nodekey.rs:23. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+3 reference(s) to ECDSA across 2 file(s), e.g. assets/localdev/genesis.config.ts:65. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
 **Reproduction steps.**
 
 ```
-Open crates/quake/src/nodekey.rs:23 and inspect the quoted lines; the evidence lists further files.
+Open assets/localdev/genesis.config.ts:65 and inspect the quoted lines; the evidence lists further files.
 ```
 
 **Evidence.**
+
+_file_excerpt · [assets/localdev/genesis.config.ts](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/assets/localdev/genesis.config.ts#L65) · line 65 · SHA-256 02d0f6cebc0032d10e886538055d0ca90a59fb93dfec3c8352527035698d8274_
+
+```
+   64 | 
+   65 |   const one = privateKeyToAccount(toHex(1n, { size: 32 }))
+   66 |   const controllers = accountCreator.controllers()
+```
 
 _file_excerpt · [crates/quake/src/nodekey.rs](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/crates/quake/src/nodekey.rs#L23) · line 23 · SHA-256 e12a2180b412a84ef180085d707eb0f0b4cc77bf22e34a02b0364a7cf0a70a0a_
 
@@ -1237,27 +1041,35 @@ _file_excerpt · [crates/quake/src/nodekey.rs](https://github.com/circlefin/arc-
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-32554 — Quantum-vulnerable Ed25519: role not determined (4 file(s))
+### QSI-2026-44082 — Quantum-vulnerable Ed25519: role not determined (5 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
-- Data source: crates/types/src/codec/proto.rs
+- Data source: crates/malachite-app/src/node.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
-4 reference(s) to Ed25519 across 4 file(s), e.g. crates/types/src/codec/proto.rs:28. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+5 reference(s) to Ed25519 across 5 file(s), e.g. crates/malachite-app/src/node.rs:136. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
 **Reproduction steps.**
 
 ```
-Open crates/types/src/codec/proto.rs:28 and inspect the quoted lines; the evidence lists further files.
+Open crates/malachite-app/src/node.rs:136 and inspect the quoted lines; the evidence lists further files.
 ```
 
 **Evidence.**
+
+_file_excerpt · [crates/malachite-app/src/node.rs](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/crates/malachite-app/src/node.rs#L136) · line 136 · SHA-256 f559c9db2b9e9ad403ac3d419bb9d3874842c0a19a17501afdc6de2b6028db72_
+
+```
+  135 |     pub fn new(private_key: &PrivateKey) -> Self {
+  136 |         let keypair = Keypair::ed25519_from_bytes(private_key.inner().to_bytes())
+  137 |             .expect("valid ed25519 key bytes");
+```
 
 _file_excerpt · [crates/types/src/codec/proto.rs](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/crates/types/src/codec/proto.rs#L28) · line 28 · SHA-256 4690a4677968e8bbb2e0ae3db50e5dcc1ed2093b4bcb5c88fcc46792a755eb20_
 
@@ -1297,13 +1109,13 @@ _file_excerpt · [crates/types/src/ssz/v1/vote.rs](https://github.com/circlefin/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-32614 — block-buffer 0.12.0 is affected by GHSA-qwgh-2vcv-g2f7
+### QSI-2026-44141 — block-buffer 0.12.0 is affected by GHSA-qwgh-2vcv-g2f7
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/block-buffer@0.12.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1331,13 +1143,13 @@ _tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32616 — cmov 0.5.2 is affected by GHSA-3rjw-m598-pq24 (CVE-2026-50185)
+### QSI-2026-44143 — cmov 0.5.2 is affected by GHSA-3rjw-m598-pq24 (CVE-2026-50185)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/cmov@0.5.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1365,13 +1177,13 @@ _tool_output · [OSV.dev GHSA-3rjw-m598-pq24](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32625 — hickory-proto 0.25.2 is affected by GHSA-q2qq-hmj6-3wpp (CVE-2026-123608, RUSTSEC-2026-0119)
+### QSI-2026-44152 — hickory-proto 0.25.2 is affected by GHSA-q2qq-hmj6-3wpp (CVE-2026-123608, RUSTSEC-2026-0119)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1399,13 +1211,13 @@ _tool_output · [OSV.dev GHSA-q2qq-hmj6-3wpp](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32633 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0512 (CVE-2026-123581)
+### QSI-2026-44160 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0512 (CVE-2026-123581)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -1433,13 +1245,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0512](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32635 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0531 (CVE-2026-123591)
+### QSI-2026-44162 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0531 (CVE-2026-123591)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -1467,13 +1279,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0531](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32641 — hickory-resolver 0.25.2 is affected by GHSA-6f2x-v7q7-m7m5 (CVE-2026-123585)
+### QSI-2026-44168 — hickory-resolver 0.25.2 is affected by GHSA-6f2x-v7q7-m7m5 (CVE-2026-123585)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/hickory-resolver@0.25.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
@@ -1501,13 +1313,13 @@ _tool_output · [OSV.dev GHSA-6f2x-v7q7-m7m5](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32658 — opentelemetry_sdk 0.31.0 is affected by GHSA-w9wp-h8wv-79jx (CVE-2026-48504)
+### QSI-2026-44185 — opentelemetry_sdk 0.31.0 is affected by GHSA-w9wp-h8wv-79jx (CVE-2026-48504)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/opentelemetry_sdk@0.31.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -1535,13 +1347,13 @@ _tool_output · [OSV.dev GHSA-w9wp-h8wv-79jx](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32677 — rustls 0.23.36 is affected by GHSA-2mjx-qc3c-rqvc (CVE-2026-123613, RUSTSEC-2026-0285)
+### QSI-2026-44204 — rustls 0.23.36 is affected by GHSA-2mjx-qc3c-rqvc (CVE-2026-123613, RUSTSEC-2026-0285)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/rustls@0.23.36`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -1569,13 +1381,13 @@ _tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32678 — rustls 0.23.36 is affected by GHSA-c8m5-c952-6cm4 (CVE-2026-123609, RUSTSEC-2026-0346)
+### QSI-2026-44205 — rustls 0.23.36 is affected by GHSA-c8m5-c952-6cm4 (CVE-2026-123609, RUSTSEC-2026-0346)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
 - Affected asset: `dependency:crates.io/rustls@0.23.36`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 33.1 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -1603,13 +1415,13 @@ _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32653 — openssl 0.10.75 is affected by GHSA-phqj-4mhp-q6mq (CVE-2026-45784, RUSTSEC-2026-0477)
+### QSI-2026-44180 — openssl 0.10.75 is affected by GHSA-phqj-4mhp-q6mq (CVE-2026-45784, RUSTSEC-2026-0477)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/openssl@0.10.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 28.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1637,13 +1449,13 @@ _tool_output · [OSV.dev GHSA-phqj-4mhp-q6mq](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32657 — openssl 0.10.75 is affected by GHSA-xv59-967r-8726 (CVE-2026-44662, RUSTSEC-2026-0476)
+### QSI-2026-44184 — openssl 0.10.75 is affected by GHSA-xv59-967r-8726 (CVE-2026-44662, RUSTSEC-2026-0476)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/openssl@0.10.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 28.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1671,13 +1483,13 @@ _tool_output · [OSV.dev GHSA-xv59-967r-8726](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32670 — rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+### QSI-2026-44197 — rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:crates.io/rand@0.8.5`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1705,13 +1517,13 @@ _tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32542 — Floating pragma (^0.8.29) in 29 file(s)
+### QSI-2026-44073 — Floating pragma (^0.8.29) in 29 file(s)
 
 - Severity: **Low** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:^0.8.29`
 - Data source: contracts/scripts/Addresses.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 34.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1833,14 +1645,3388 @@ _file_excerpt · [contracts/scripts/ProxyManagement.s.sol](https://github.com/ci
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32555 — Floating pragma (^0.8.20) in 279 file(s)
+### QSI-2026-44182 — openssl 0.10.75 is affected by GHSA-xmgf-hq76-4vx2 (CVE-2026-41677, RUSTSEC-2026-0479)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/openssl@0.10.75`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.4 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-xmgf-hq76-4vx2 (CVE-2026-41677, RUSTSEC-2026-0479) for crates.io package openssl at version 0.10.75: rust-opennssl has an Out-of-bounds read in PEM password callback when returning an oversized length. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-xmgf-hq76-4vx2
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-xmgf-hq76-4vx2](https://osv.dev/vulnerability/GHSA-xmgf-hq76-4vx2) · manifest · SHA-256 bff9faaad7c9c3ebbe6b4437d54873d1e683ce1d0103f4d57b3b847a2d7b36f7_
+
+```
+{"id": "GHSA-xmgf-hq76-4vx2", "aliases": ["CVE-2026-41677", "RUSTSEC-2026-0479"], "modified": "2026-11-10T14:10:37.732358174Z", "summary": "rust-opennssl has an Out-of-bounds read in PEM password callback when returning an oversized length", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:L/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.78).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44207 — rustls 0.23.36 is affected by GHSA-w44r-93j7-qv28 (CVE-2026-123611, RUSTSEC-2026-0349)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/rustls@0.23.36`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.4 / 100
+- CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
+
+OSV.dev reports GHSA-w44r-93j7-qv28 (CVE-2026-123611, RUSTSEC-2026-0349) for crates.io package rustls at version 0.23.36: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-w44r-93j7-qv28
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28) · manifest · SHA-256 8ccd9599884b4730640347a2a7b992b8b80c3163286e3af1b4c5340b999f2f18_
+
+```
+{"id": "GHSA-w44r-93j7-qv28", "aliases": ["CVE-2026-123611", "RUSTSEC-2026-0349"], "modified": "2026-11-08T10:55:46.312019109Z", "summary": "rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44206 — rustls 0.23.36 is affected by GHSA-h2v8-394m-p7vv (CVE-2026-123610, RUSTSEC-2026-0348)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/rustls@0.23.36`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 25.0 / 100
+- CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev reports GHSA-h2v8-394m-p7vv (CVE-2026-123610, RUSTSEC-2026-0348) for crates.io package rustls at version 0.23.36: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. The affected code sits behind the `brotli` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-h2v8-394m-p7vv
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv) · manifest · SHA-256 c263367634d669fe7d4a5d388304c4f40b83d9837549f87b19d1fc0a9e26d648_
+
+```
+{"id": "GHSA-h2v8-394m-p7vv", "aliases": ["CVE-2026-123610", "RUSTSEC-2026-0348"], "modified": "2026-11-08T10:55:59.261359726Z", "summary": "Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication.", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44137 — anyhow 1.0.102 is affected by RUSTSEC-2026-0190 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/anyhow@1.0.102`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0190 for crates.io package anyhow at version 1.0.102: Unsoundness in `Error::downcast_mut()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (anyhow::Error::downcast_mut); anyhow comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0190
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSEC-2026-0190) · manifest · SHA-256 12d4b3eeb5a7dc67549bc112051813542621c4c3bb2d3ddfb353886e687f8013_
+
+```
+{"id": "RUSTSEC-2026-0190", "aliases": [], "modified": "2026-06-29T14:15:03.650725453Z", "summary": "Unsoundness in `Error::downcast_mut()`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (1.0.103) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44139 — bitmaps 3.2.1 is affected by RUSTSEC-2025-0167 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/bitmaps@3.2.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2025-0167 for crates.io package bitmaps at version 3.2.1: `Bitmap::try_from(&[u8])` can create invalid values. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0167
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0167](https://osv.dev/vulnerability/RUSTSEC-2025-0167) · manifest · SHA-256 03863e29642c4e63a545c7523f4282720a866033586991abde6afc0a8f4675cc_
+
+```
+{"id": "RUSTSEC-2025-0167", "aliases": [], "modified": "2026-08-10T19:45:04.530683607Z", "summary": "`Bitmap::try_from(&[u8])` can create invalid values", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44145 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
+
+```
+{"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44146 — ctutils 0.4.0 is affected by RUSTSEC-2026-0385 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/ctutils@0.4.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0385 for crates.io package ctutils at version 0.4.0: Non-constant-time mask generation and `u128` comparisons. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0385
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0385](https://osv.dev/vulnerability/RUSTSEC-2026-0385) · manifest · SHA-256 200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848_
+
+```
+{"id": "RUSTSEC-2026-0385", "aliases": [], "modified": "2026-10-23T08:30:02.389575143Z", "summary": "Non-constant-time mask generation and `u128` comparisons", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.4.4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44148 — event-listener 5.4.1 is affected by RUSTSEC-2026-0221 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/event-listener@5.4.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0221 for crates.io package event-listener at version 5.4.1: `event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0221
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0221](https://osv.dev/vulnerability/RUSTSEC-2026-0221) · manifest · SHA-256 984b4e4e87b4e2cc5992a06daf6b6466ee08279d927a38dca105b75fa8546f7c_
+
+```
+{"id": "RUSTSEC-2026-0221", "aliases": [], "modified": "2026-07-31T12:15:04.629484145Z", "summary": "`event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (5.4.2) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44149 — git2 0.20.4 is affected by RUSTSEC-2026-0183 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/git2@0.20.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0183 for crates.io package git2 at version 0.20.4: Potential undefined behavior when calling Remote::list(). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0183
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0183](https://osv.dev/vulnerability/RUSTSEC-2026-0183) · manifest · SHA-256 10faba6c0849fd3be4082ba2701b3a701df0d48038fec8624f4d5771044fc51f_
+
+```
+{"id": "RUSTSEC-2026-0183", "aliases": [], "modified": "2026-06-17T13:00:04.696626611Z", "summary": "Potential undefined behavior when calling Remote::list()", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.21.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44150 — git2 0.20.4 is affected by RUSTSEC-2026-0184 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/git2@0.20.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0184 for crates.io package git2 at version 0.20.4: Potential undefined behavior with Signature from a buffer-created BlameHunk. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0184
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0184](https://osv.dev/vulnerability/RUSTSEC-2026-0184) · manifest · SHA-256 bb3368926dab073cdb45cbcb12e78836e24537892ff222fd96327f747e605250_
+
+```
+{"id": "RUSTSEC-2026-0184", "aliases": [], "modified": "2026-06-17T14:00:05.672935662Z", "summary": "Potential undefined behavior with Signature from a buffer-created BlameHunk", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.21.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44153 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0487 (CVE-2026-123572) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0487 (CVE-2026-123572) for crates.io package hickory-proto at version 0.25.2: Panic on a malformed `alpn` value when parsing SVCB or HTTPS records from text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0487
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0487](https://osv.dev/vulnerability/RUSTSEC-2026-0487) · manifest · SHA-256 64f03d12f9f74cbeab2b3fccf943d34999f239c40f035e8a8a7ca7300a82b791_
+
+```
+{"id": "RUSTSEC-2026-0487", "aliases": ["CVE-2026-123572", "GHSA-hx8c-fjhc-hmf5"], "modified": "2026-11-12T09:45:02.502326297Z", "summary": "Panic on a malformed `alpn` value when parsing SVCB or HTTPS records from text", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.2) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44154 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0489 (CVE-2026-123573) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0489 (CVE-2026-123573) for crates.io package hickory-proto at version 0.25.2: Panic when an SVCB or HTTPS parameter value is a single quote character. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0489
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0489](https://osv.dev/vulnerability/RUSTSEC-2026-0489) · manifest · SHA-256 4455647cf2a59500928913d60d4dcdf741abcae2665a762aa7fb8bfd9c47a902_
+
+```
+{"id": "RUSTSEC-2026-0489", "aliases": ["CVE-2026-123573", "GHSA-wgfr-mphw-j5g4"], "modified": "2026-11-12T09:45:02.524857780Z", "summary": "Panic when an SVCB or HTTPS parameter value is a single quote character", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.2) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44155 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0490 (CVE-2026-123574) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0490 (CVE-2026-123574) for crates.io package hickory-proto at version 0.25.2: Zone file lexer panics on a token of 4096 or more characters. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0490
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0490](https://osv.dev/vulnerability/RUSTSEC-2026-0490) · manifest · SHA-256 99cfb78cb9fb3bbfc7af547bd08c25862b757364ad145cbb96317c8022122ed0_
+
+```
+{"id": "RUSTSEC-2026-0490", "aliases": ["CVE-2026-123574", "GHSA-4rph-pmrw-mwpw"], "modified": "2026-11-12T09:31:57Z", "summary": "Zone file lexer panics on a token of 4096 or more characters", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.2) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44156 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0491 (CVE-2026-123570) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0491 (CVE-2026-123570) for crates.io package hickory-proto at version 0.25.2: Memory amplification from record counts in the DNS message header. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0491
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0491](https://osv.dev/vulnerability/RUSTSEC-2026-0491) · manifest · SHA-256 05ddbfd3c58542a0ce75bb429ba4d03b4dd050065dbab242c23068e2a5fa727b_
+
+```
+{"id": "RUSTSEC-2026-0491", "aliases": ["CVE-2026-123570", "GHSA-67wc-6jq8-ghrc"], "modified": "2026-11-12T09:45:02.494262633Z", "summary": "Memory amplification from record counts in the DNS message header", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.2) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44157 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0504 (CVE-2026-123601) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0504 (CVE-2026-123601) for crates.io package hickory-proto at version 0.25.2: Inverted NSEC3 comparison in DNSSEC validation (hickory-proto 0.25). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0504
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0504](https://osv.dev/vulnerability/RUSTSEC-2026-0504) · manifest · SHA-256 f5a47f3f7423682f9a31fc4c0b33365f39178969021f18b67d70558fd1d60cc7_
+
+```
+{"id": "RUSTSEC-2026-0504", "aliases": ["CVE-2026-123601", "GHSA-588m-chg6-8jqj", "RUSTSEC-2026-0506"], "modified": "2026-11-12T14:10:49.815536430Z", "summary": "Inverted NSEC3 comparison in DNSSEC validation (hickory-proto 0.25)", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44159 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0511 (CVE-2026-123594) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0511 (CVE-2026-123594) for crates.io package hickory-proto at version 0.25.2: NXDOMAIN accepted for a proven empty non-terminal (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0511
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0511](https://osv.dev/vulnerability/RUSTSEC-2026-0511) · manifest · SHA-256 aaab348f6a64d724fe28da75daf8f2472f8c43dd6904186e9cff2cebd91155d0_
+
+```
+{"id": "RUSTSEC-2026-0511", "aliases": ["CVE-2026-123594", "GHSA-86vr-jm6c-7cpg", "RUSTSEC-2026-0519"], "modified": "2026-11-12T14:40:42.050905197Z", "summary": "NXDOMAIN accepted for a proven empty non-terminal (hickory-proto)", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44161 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0530 (CVE-2026-123596) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0530 (CVE-2026-123596) for crates.io package hickory-proto at version 0.25.2: Parent-side NSEC at a zone cut accepted as proof of nonexistence (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0530
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0530](https://osv.dev/vulnerability/RUSTSEC-2026-0530) · manifest · SHA-256 df42c405f4cfc41de966ea0348913d6961fba85fc75fe0484f3c9ecf09a317fd_
+
+```
+{"id": "RUSTSEC-2026-0530", "aliases": ["CVE-2026-123596", "GHSA-3r6v-f3jh-vvqm", "RUSTSEC-2026-0539"], "modified": "2026-11-13T12:55:36.653610929Z", "summary": "Parent-side NSEC at a zone cut accepted as proof of nonexistence (hickory-proto)", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44163 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0532 (CVE-2026-123595) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0532 (CVE-2026-123595) for crates.io package hickory-proto at version 0.25.2: Parent-side NSEC3 at a zone cut accepted as proof of nonexistence (hickory-proto 0.25). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0532
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0532](https://osv.dev/vulnerability/RUSTSEC-2026-0532) · manifest · SHA-256 153630f896b74c6168bfbe3dd5125640978d85be823c6a4a18ed2ac34780801d_
+
+```
+{"id": "RUSTSEC-2026-0532", "aliases": ["CVE-2026-123595", "GHSA-624w-vvww-xvpw", "RUSTSEC-2026-0541"], "modified": "2026-11-13T12:55:46.260287377Z", "summary": "Parent-side NSEC3 at a zone cut accepted as proof of nonexistence (hickory-proto 0.25)", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44164 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0549 (CVE-2026-123600) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0549 (CVE-2026-123600) for crates.io package hickory-proto at version 0.25.2: NSEC3 NODATA at a zone apex accepted without an NSEC3 record matching the query name (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0549
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0549](https://osv.dev/vulnerability/RUSTSEC-2026-0549) · manifest · SHA-256 69abb3924191226581d6669db8a5b920f471e39b5a662962246da6cee69bafcf_
+
+```
+{"id": "RUSTSEC-2026-0549", "aliases": ["CVE-2026-123600", "GHSA-3jvh-8vj5-65rq", "RUSTSEC-2026-0556"], "modified": "2026-11-17T10:25:34.470342084Z", "summary": "NSEC3 NODATA at a zone apex accepted without an NSEC3 record matching the query name (hickory-proto)", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44165 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0550 (CVE-2026-123590) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0550 (CVE-2026-123590) for crates.io package hickory-proto at version 0.25.2: Unsigned NSEC or NSEC3 record used in a nonexistence proof (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0550
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0550](https://osv.dev/vulnerability/RUSTSEC-2026-0550) · manifest · SHA-256 5076f99efa5d74025fef64e1af5b79f7403edddb482ada567bd24e4f46dbaab9_
+
+```
+{"id": "RUSTSEC-2026-0550", "aliases": ["CVE-2026-123590", "GHSA-57pw-897j-v4j6", "RUSTSEC-2026-0557"], "modified": "2026-11-17T10:25:41.214979058Z", "summary": "Unsigned NSEC or NSEC3 record used in a nonexistence proof (hickory-proto)", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44166 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0551 (CVE-2026-123599) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0551 (CVE-2026-123599) for crates.io package hickory-proto at version 0.25.2: Records with a DNS class other than the query's marked secure without being validated (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0551
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0551](https://osv.dev/vulnerability/RUSTSEC-2026-0551) · manifest · SHA-256 a7ab1caf2571e8ab764a5b075e63b0c271cb428c3eb5de74d4cca82908edd7a9_
+
+```
+{"id": "RUSTSEC-2026-0551", "aliases": ["CVE-2026-123599", "GHSA-wjgj-fvg9-65w9", "RUSTSEC-2026-0558"], "modified": "2026-11-17T10:25:38.558562434Z", "summary": "Records with a DNS class other than the query's marked secure without being validated (hickory-proto)", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44170 — imbl-sized-chunks 0.1.3 is affected by RUSTSEC-2026-0292 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/imbl-sized-chunks@0.1.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0292 for crates.io package imbl-sized-chunks at version 0.1.3: Double free / use-after-free in `Chunk` and `InlineArray` removal methods when an element's `Drop` panics. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (imbl_sized_chunks::inline_array::InlineArray::clear, imbl_sized_chunks::inline_array::InlineArray::truncate, imbl_sized_chunks::sized_chunk::Chunk::clear, imbl_sized_chunks::sized_chunk::Chunk::drop_left, imbl_sized_chunks::sized_chunk::Chunk::drop_right); imbl-sized-chunks comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0292
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0292](https://osv.dev/vulnerability/RUSTSEC-2026-0292) · manifest · SHA-256 746e59e7a217deb325b0ab8f2f61c3aa99980400e09bc72ae0a048c06d833d42_
+
+```
+{"id": "RUSTSEC-2026-0292", "aliases": [], "modified": "2026-09-21T09:15:02.898993962Z", "summary": "Double free / use-after-free in `Chunk` and `InlineArray` removal methods when an element's `Drop` panics", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44172 — libp2p-gossipsub 0.49.4 is affected by RUSTSEC-2026-0534 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/libp2p-gossipsub@0.49.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0534 for crates.io package libp2p-gossipsub at version 0.49.4: Unbounded backoff state from PRUNE messages for unknown topics. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0534
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0534](https://osv.dev/vulnerability/RUSTSEC-2026-0534) · manifest · SHA-256 2e190b9f4f4e06bb08d8937643722ff48cf741fcb21bf5afdb6cc1505c39d680_
+
+```
+{"id": "RUSTSEC-2026-0534", "aliases": ["GHSA-vrx6-jcp8-vm7m"], "modified": "2026-11-13T12:45:07.339789114Z", "summary": "Unbounded backoff state from PRUNE messages for unknown topics", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.50.1) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44173 — libp2p-gossipsub 0.49.4 is affected by RUSTSEC-2026-0536 (CVE-2026-95859) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/libp2p-gossipsub@0.49.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0536 (CVE-2026-95859) for crates.io package libp2p-gossipsub at version 0.49.4: Unbounded memory growth from GRAFT messages for unsubscribed topics. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0536
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0536](https://osv.dev/vulnerability/RUSTSEC-2026-0536) · manifest · SHA-256 8b9bffa7dbefd0740ef106e5da42acb5051ac92f3e42149dd69497fdb3704ba6_
+
+```
+{"id": "RUSTSEC-2026-0536", "aliases": ["CVE-2026-95859", "GHSA-g3g5-x568-qvqx"], "modified": "2026-11-13T12:45:02.747808849Z", "summary": "Unbounded memory growth from GRAFT messages for unsubscribed topics", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.49.5) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44175 — libz-sys 1.1.23 is affected by RUSTSEC-2026-0418 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/libz-sys@1.1.23`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0418 for crates.io package libz-sys at version 1.1.23: libz-sys build script leaks environment variables in the build directory. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0418
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0418](https://osv.dev/vulnerability/RUSTSEC-2026-0418) · manifest · SHA-256 c5853994609eb6005df3fdabfd8d90722c9213a6b6ddc9f03b43ae0e4a747b57_
+
+```
+{"id": "RUSTSEC-2026-0418", "aliases": ["GHSA-8p3x-q3q3-q3v5"], "modified": "2026-10-29T14:15:02.333141406Z", "summary": "libz-sys build script leaks environment variables in the build directory", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (1.1.31) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44176 — lru 0.16.3 is affected by RUSTSEC-2026-0253 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/lru@0.16.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0253 for crates.io package lru at version 0.16.3: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0253
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSEC-2026-0253) · manifest · SHA-256 06df98c5350689983b2fda96297e3527fd26f472c5d474c041975b220e7ffc2c_
+
+```
+{"id": "RUSTSEC-2026-0253", "aliases": [], "modified": "2026-08-11T11:15:06.101553049Z", "summary": "Potential use-after-free due to lack of panic safety in `LruCache::pop()`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.18.2) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44189 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0338 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0338 for crates.io package quinn-proto at version 0.11.15: Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0338
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSEC-2026-0338) · manifest · SHA-256 2d8a96c1ccb5782dfd51ab6c6bfc548092df0a416eb5a7c29ca5b5ffdce603ea_
+
+```
+{"id": "RUSTSEC-2026-0338", "aliases": ["GHSA-465w-v9q3-7j98"], "modified": "2026-10-12T18:15:01.969514645Z", "summary": "Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.18) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44190 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0339 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0339 for crates.io package quinn-proto at version 0.11.15: Unbounded growth of pending connection ID retirements in quinn-proto. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0339
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0339](https://osv.dev/vulnerability/RUSTSEC-2026-0339) · manifest · SHA-256 b5c8da254e3051004bc694e865ed6cf27e63c10cddc5641f13f42bd290bdb54a_
+
+```
+{"id": "RUSTSEC-2026-0339", "aliases": ["GHSA-hmxj-32vh-65vr"], "modified": "2026-10-12T18:15:01.956822776Z", "summary": "Unbounded growth of pending connection ID retirements in quinn-proto", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.17) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44193 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0342 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0342 for crates.io package quinn-proto at version 0.11.15: Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0342
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0342](https://osv.dev/vulnerability/RUSTSEC-2026-0342) · manifest · SHA-256 41dfd63166e25757cdb189c219a98c5e4b8d6b2e389f484cc583556a378073e4_
+
+```
+{"id": "RUSTSEC-2026-0342", "aliases": ["GHSA-2hv7-gw8g-gpq5"], "modified": "2026-10-12T18:15:01.956681478Z", "summary": "Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.17) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44194 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0523 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0523 for crates.io package quinn-proto at version 0.11.15: MAX_STREAM_DATA frame can open streams beyond the stream limit. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0523
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0523](https://osv.dev/vulnerability/RUSTSEC-2026-0523) · manifest · SHA-256 ba38a838d4e45dd6958b4102d8a1ec90700c5ca22b5da6f35671a03ddf163935_
+
+```
+{"id": "RUSTSEC-2026-0523", "aliases": ["GHSA-53rm-773f-4q8c"], "modified": "2026-11-13T12:45:04.789912316Z", "summary": "MAX_STREAM_DATA frame can open streams beyond the stream limit", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.19) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44195 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0524 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0524 for crates.io package quinn-proto at version 0.11.15: Long Retry token can panic or exhaust memory in a QUIC client. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0524
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0524](https://osv.dev/vulnerability/RUSTSEC-2026-0524) · manifest · SHA-256 9f8eaf429d5c8dd463becfc33bc7e125bb3ab1967308406c7556f423cdd5abd1_
+
+```
+{"id": "RUSTSEC-2026-0524", "aliases": ["GHSA-wppq-2f6r-wfvm"], "modified": "2026-11-13T12:45:06.127108520Z", "summary": "Long Retry token can panic or exhaust memory in a QUIC client", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.19) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44196 — quinn-udp 0.5.14 is affected by RUSTSEC-2026-0538 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-udp@0.5.14`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0538 for crates.io package quinn-udp at version 0.5.14: Receive loop can spin after a truncated datagram. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0538
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0538](https://osv.dev/vulnerability/RUSTSEC-2026-0538) · manifest · SHA-256 a253fc85c2462bf8cb9613adb913b5e61c4a5d4ae73f83f65e16cf568f6c2409_
+
+```
+{"id": "RUSTSEC-2026-0538", "aliases": ["GHSA-6pp4-4cxf-xf88"], "modified": "2026-11-13T12:45:08.844283231Z", "summary": "Receive loop can spin after a truncated datagram", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.5.16, 0.6.3) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44203 — rustix 1.1.3 is affected by RUSTSEC-2026-0486 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/rustix@1.1.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0486 for crates.io package rustix at version 1.1.3: xattr functions mark unwritten bytes as initialized when given a zero-length buffer. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (rustix::fs::fgetxattr, rustix::fs::flistxattr, rustix::fs::getxattr, rustix::fs::lgetxattr, rustix::fs::listxattr, rustix::fs::llistxattr); rustix comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0486
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0486](https://osv.dev/vulnerability/RUSTSEC-2026-0486) · manifest · SHA-256 3a9db0a5ea2efefb678d315af96712a5f277c0e348371bd9630df7afe1635fbe_
+
+```
+{"id": "RUSTSEC-2026-0486", "aliases": ["GHSA-jh2m-fhpj-3vr7"], "modified": "2026-11-11T08:45:02.466292839Z", "summary": "xattr functions mark unwritten bytes as initialized when given a zero-length buffer", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (1.1.6) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44209 — rustls-webpki 0.103.13 is affected by RUSTSEC-2026-0382 (CVE-2026-111943) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/rustls-webpki@0.103.13`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0382 (CVE-2026-111943) for crates.io package rustls-webpki at version 0.103.13: Certificate verification may accept distrusted intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0382
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 4c972eb1d77abf0d1c39f2b402c5fea32a5dacf7dbbeac638e7549ce780805d1_
+
+```
+{"id": "RUSTSEC-2026-0382", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44213 — url 2.5.8 is affected by RUSTSEC-2026-0592 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/url@2.5.8`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0592 for crates.io package url at version 2.5.8: Stack overflow in `Url::origin()` on nested `blob:` URLs. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names url::Url::origin, url::quirks::origin: the affected code may be reachable.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0592
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0592](https://osv.dev/vulnerability/RUSTSEC-2026-0592) · manifest · SHA-256 9fdeb08e523b9b634ce52d0e2982b63623de0fbbf6a079d9d20e6e24f3cc4522_
+
+```
+{"id": "RUSTSEC-2026-0592", "aliases": ["GHSA-hrj5-67jp-wqp9"], "modified": "2026-11-22T10:00:02.260974192Z", "summary": "Stack overflow in `Url::origin()` on nested `blob:` URLs", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (2.5.9) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44214 — webpki-root-certs 1.0.6 is affected by RUSTSEC-2026-0383 (CVE-2026-111943) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/webpki-root-certs@1.0.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0383 (CVE-2026-111943) for crates.io package webpki-root-certs at version 1.0.6: Bundled root certificates allow trust in distrusted emSign intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0383
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0383](https://osv.dev/vulnerability/RUSTSEC-2026-0383) · manifest · SHA-256 3246026933edff30d4662b8425596fe73691a2ab5c886d1d7d3a6808822713fb_
+
+```
+{"id": "RUSTSEC-2026-0383", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0382"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.11, 1.0.10) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44215 — webpki-roots 1.0.6 is affected by RUSTSEC-2026-0381 (CVE-2026-111943) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/webpki-roots@1.0.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0381 (CVE-2026-111943) for crates.io package webpki-roots at version 1.0.6: Bundled root certificates allow trust in distrusted emSign intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0381
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 fe0730fa87c619c62bf0bee198d2f7f275186863690454c8ae7e45848f4db031_
+
+```
+{"id": "RUSTSEC-2026-0381", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.11, 1.0.10) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44219 — zstd 0.13.3 is affected by RUSTSEC-2026-0391 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd@0.13.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0391 for crates.io package zstd at version 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names zstd::stream::raw::Decoder::with_context: the affected code may be reachable.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0391
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0391](https://osv.dev/vulnerability/RUSTSEC-2026-0391) · manifest · SHA-256 dc6dbee0c1ba82e00207f73145a919892074238eb5633372ba4ad3af24bd80dd_
+
+```
+{"id": "RUSTSEC-2026-0391", "aliases": [], "modified": "2026-11-02T09:30:03.590733846Z", "summary": "Data from an abandoned stream leaks into the next stream on a reused context", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.13.4, 0.14.3) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44220 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0395 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0395 for crates.io package zstd-safe at version 7.2.4: Use-after-free with `CParameter::StableInBuffer`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::set_parameter); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0395
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSEC-2026-0395) · manifest · SHA-256 728850176f43ecf2b9c562524c791d0da3abc31547980bb333caeadf51eb3ce4_
+
+```
+{"id": "RUSTSEC-2026-0395", "aliases": [], "modified": "2026-11-02T09:30:03.420559993Z", "summary": "Use-after-free with `CParameter::StableInBuffer`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44221 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0396 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0396 for crates.io package zstd-safe at version 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0396
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0396](https://osv.dev/vulnerability/RUSTSEC-2026-0396) · manifest · SHA-256 4530740c3dd2640b5c96ad098b4e771f286dd562d83e8e4aa6214c518b1f08ee_
+
+```
+{"id": "RUSTSEC-2026-0396", "aliases": [], "modified": "2026-11-02T09:30:03.400899521Z", "summary": "`Seekable` reads a NULL or out-of-bounds seek table", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44222 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0397 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0397 for crates.io package zstd-safe at version 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::OutBuffer::around_pos); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0397
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSEC-2026-0397) · manifest · SHA-256 4ad3bc187fa64e24d070e53c5d01373b2aba040ea27757bbf26f8efea74c0967_
+
+```
+{"id": "RUSTSEC-2026-0397", "aliases": [], "modified": "2026-11-02T09:30:03.445177143Z", "summary": "`OutBuffer::around_pos` exposes uninitialized memory", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44223 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0398 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0398 for crates.io package zstd-safe at version 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0398
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0398](https://osv.dev/vulnerability/RUSTSEC-2026-0398) · manifest · SHA-256 7e1e8fe35e2578f061734431e3a9558d8cc0dab6043f409c833b43c905bf10d3_
+
+```
+{"id": "RUSTSEC-2026-0398", "aliases": [], "modified": "2026-11-02T09:30:03.419709171Z", "summary": "`Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44224 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0399 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0399 for crates.io package zstd-safe at version 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0399
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSEC-2026-0399) · manifest · SHA-256 58cd19f1b734988f6219b3659cd613c349a5c6693e08cb4e8b9846d1f92bb38f_
+
+```
+{"id": "RUSTSEC-2026-0399", "aliases": [], "modified": "2026-11-02T09:30:03.328955732Z", "summary": "Use-after-free through `init_using_cdict` and `init_using_ddict`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44225 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0400 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0400 for crates.io package zstd-safe at version 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0400
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSEC-2026-0400) · manifest · SHA-256 00f83f7c4931137d6b18e25256c039f2c52bd627946f5f05f74c2cc7b2615d30_
+
+```
+{"id": "RUSTSEC-2026-0400", "aliases": [], "modified": "2026-11-02T09:30:03.428341570Z", "summary": "Use-after-free of a dictionary after a one-shot call on a context with an open stream", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44226 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0401 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0401 for crates.io package zstd-safe at version 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::train_from_buffer); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0401
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSEC-2026-0401) · manifest · SHA-256 dd6e9bd27e75cf4c8d9a5333bbc4dda81ef2f2990271b711f964d6bc829e71fd_
+
+```
+{"id": "RUSTSEC-2026-0401", "aliases": [], "modified": "2026-11-02T09:30:03.353698025Z", "summary": "Out-of-bounds read in `train_from_buffer` when sample sizes overflow", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44227 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0402 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0402 for crates.io package zstd-safe at version 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0402
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSEC-2026-0402) · manifest · SHA-256 464c8c61aa6d0a29b646ba665145c6d256c18786ece14e1921252cecf4a4e54e_
+
+```
+{"id": "RUSTSEC-2026-0402", "aliases": [], "modified": "2026-11-02T09:30:04.162155944Z", "summary": "Heap buffer overflow in `CCtx::try_clone` on a multithreaded context", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44228 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0403 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0403 for crates.io package zstd-safe at version 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress_stream); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0403
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSEC-2026-0403) · manifest · SHA-256 09699f0d23ac15a18937ce02a1b778a246ec661449852b62d6415d8d60ed2147_
+
+```
+{"id": "RUSTSEC-2026-0403", "aliases": [], "modified": "2026-11-02T09:30:04.136442771Z", "summary": "Uninitialized memory exposed when streaming decompression of a legacy frame fails", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44229 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0404 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0404 for crates.io package zstd-safe at version 7.2.4: Double free in `DCtx::try_clone`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0404
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSEC-2026-0404) · manifest · SHA-256 e265647b9f2c582eebfcac7889bee04fada79ea833147205829d693f4c6f8131_
+
+```
+{"id": "RUSTSEC-2026-0404", "aliases": [], "modified": "2026-11-02T09:30:04.168804805Z", "summary": "Double free in `DCtx::try_clone`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44230 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0405 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0405 for crates.io package zstd-safe at version 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0405
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0405](https://osv.dev/vulnerability/RUSTSEC-2026-0405) · manifest · SHA-256 e784735107b5a74149056e3244a7f30afbcf59892ceaa6d018ec1739be5661d5_
+
+```
+{"id": "RUSTSEC-2026-0405", "aliases": [], "modified": "2026-11-02T09:30:03.399517581Z", "summary": "Out-of-bounds read with an out-of-range `InBuffer::pos`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44231 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0406 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0406 for crates.io package zstd-safe at version 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0406
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSEC-2026-0406) · manifest · SHA-256 f08bb0f8849019aa21c995ae08e9c10ff924c83b0464e87d3143ab07935008f5_
+
+```
+{"id": "RUSTSEC-2026-0406", "aliases": [], "modified": "2026-11-02T09:30:03.591194710Z", "summary": "Use-after-free when changing a multithreaded context with an unfinished frame", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44232 — zstd-sys 2.0.16+zstd.1.5.7 is affected by RUSTSEC-2026-0410 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 20.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0410 for crates.io package zstd-sys at version 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. It affects only wasm32 targets.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0410
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0410](https://osv.dev/vulnerability/RUSTSEC-2026-0410) · manifest · SHA-256 1e892df4ce7c9911f01547e4a80d1fb3ea5a27b8c1c89c0514917e08bbf3bdc5_
+
+```
+{"id": "RUSTSEC-2026-0410", "aliases": [], "modified": "2026-10-26T14:00:05.788985783Z", "summary": "WebAssembly allocator shim corrupts memory on allocation failure", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (2.1.2) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44074 — Privileged administrative functions in contracts/src/Denylist.sol: addDenylister, removeDenylister
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/src/Denylist.sol`
+- Data source: contracts/src/Denylist.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: addDenylister, removeDenylister. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/src/Denylist.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/src/Denylist.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/Denylist.sol) · multiple · SHA-256 cadbbdb19e190130c437c5cd3c1bdd5bf5beba4ac520194ead25107990714e23_
+
+```
+Privileged functions: addDenylister, removeDenylister
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44075 — Privileged administrative functions in contracts/src/common/roles/Pausable.sol: updatePauser
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/src/common/roles/Pausable.sol`
+- Data source: contracts/src/common/roles/Pausable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updatePauser. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/src/common/roles/Pausable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/src/common/roles/Pausable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/common/roles/Pausable.sol) · multiple · SHA-256 bd451358b742bb99245bd4b702dca8520a5778e3c6052249a52d69b058d7e287_
+
+```
+Privileged functions: updatePauser
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44076 — Privileged administrative functions in contracts/src/protocol-config/roles/Controller.sol: updateController
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/src/protocol-config/roles/Controller.sol`
+- Data source: contracts/src/protocol-config/roles/Controller.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateController. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/src/protocol-config/roles/Controller.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/src/protocol-config/roles/Controller.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/protocol-config/roles/Controller.sol) · multiple · SHA-256 163e0107f6554559a2216f674f448926df9c7e2c7f9bbafff11a2dd4c71c44dd_
+
+```
+Privileged functions: updateController
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44077 — Privileged administrative functions in contracts/src/proxy/AdminUpgradeableProxy.sol: upgradeTo, upgradeToAndCall, changeAdmin
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/src/proxy/AdminUpgradeableProxy.sol`
+- Data source: contracts/src/proxy/AdminUpgradeableProxy.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: upgradeTo, upgradeToAndCall, changeAdmin. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/src/proxy/AdminUpgradeableProxy.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/src/proxy/AdminUpgradeableProxy.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/proxy/AdminUpgradeableProxy.sol) · multiple · SHA-256 cebcf7b9e5eb6647254a7b67be21e509d1481751443611294fc0f42bccfa0eb7_
+
+```
+Privileged functions: upgradeTo, upgradeToAndCall, changeAdmin
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44078 — Privileged administrative functions in contracts/src/validator-manager/PermissionedValidatorManager.sol: transferRegistryOwner, acceptRegistryOwnership
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/src/validator-manager/PermissionedValidatorManager.sol`
+- Data source: contracts/src/validator-manager/PermissionedValidatorManager.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: transferRegistryOwner, acceptRegistryOwnership. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/src/validator-manager/PermissionedValidatorManager.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/src/validator-manager/PermissionedValidatorManager.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/validator-manager/PermissionedValidatorManager.sol) · multiple · SHA-256 3931080fe35e77bc29d127415ae04b8c3218a8c5215a6e7af4e636bba2970151_
+
+```
+Privileged functions: transferRegistryOwner, acceptRegistryOwnership
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44079 — Privileged administrative functions in contracts/src/validator-manager/ValidatorRegistry.sol: registerValidator, activateValidator, removeValidator, updateValidatorVotingPower
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/src/validator-manager/ValidatorRegistry.sol`
+- Data source: contracts/src/validator-manager/ValidatorRegistry.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: registerValidator, activateValidator, removeValidator, updateValidatorVotingPower. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/src/validator-manager/ValidatorRegistry.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/src/validator-manager/ValidatorRegistry.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/validator-manager/ValidatorRegistry.sol) · multiple · SHA-256 bd1b2d0999172dce7804f3a5026567f30704da6702191f95c9cb5ffa2ad8f6d5_
+
+```
+Privileged functions: registerValidator, activateValidator, removeValidator, updateValidatorVotingPower
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44080 — Privileged administrative functions in contracts/src/validator-manager/roles/Controller.sol: configureController, removeController, updateVotingPowerLimit
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/src/validator-manager/roles/Controller.sol`
+- Data source: contracts/src/validator-manager/roles/Controller.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: configureController, removeController, updateVotingPowerLimit. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/src/validator-manager/roles/Controller.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/src/validator-manager/roles/Controller.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/validator-manager/roles/Controller.sol) · multiple · SHA-256 b34887a19bc168163054e80fca215b40e779ea813c2dd4166d91146c3325ef12_
+
+```
+Privileged functions: configureController, removeController, updateVotingPowerLimit
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44081 — Privileged administrative functions in contracts/src/validator-manager/roles/ValidatorRegisterer.sol: addValidatorRegisterer, removeValidatorRegisterer
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/src/validator-manager/roles/ValidatorRegisterer.sol`
+- Data source: contracts/src/validator-manager/roles/ValidatorRegisterer.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: addValidatorRegisterer, removeValidatorRegisterer. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/src/validator-manager/roles/ValidatorRegisterer.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/src/validator-manager/roles/ValidatorRegisterer.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/validator-manager/roles/ValidatorRegisterer.sol) · multiple · SHA-256 21761771f0d55baafbb802499b47d8acf890d4d9967eb4bbb342dbfa08af9f09_
+
+```
+Privileged functions: addValidatorRegisterer, removeValidatorRegisterer
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44086 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: transferOwnership. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
+
+```
+Privileged functions: transferOwnership
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44087 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: renounceOwnership, transferOwnership. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
+
+```
+Privileged functions: renounceOwnership, transferOwnership
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44090 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: relay. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
+
+```
+Privileged functions: relay
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44091 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setLateQuorumVoteExtension. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
+
+```
+Privileged functions: setLateQuorumVoteExtension
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44092 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol: setProposalGuardian
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setProposalGuardian. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol) · multiple · SHA-256 07131118f6b2675894b2f4bfb84fe2a748fee242d9167f30d1ec33a4fc0f9f34_
+
+```
+Privileged functions: setProposalGuardian
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44093 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setVotingDelay, setVotingPeriod, setProposalThreshold. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
+
+```
+Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44094 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setBaseDelaySeconds, setAccessManagerIgnored. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
+
+```
+Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44095 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateTimelock. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44096 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateTimelock. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44097 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateQuorumNumerator. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
+
+```
+Privileged functions: updateQuorumNumerator
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44098 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol: updateSuperQuorumNumerator
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateSuperQuorumNumerator. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol) · multiple · SHA-256 07f49116aa90ff89ec6b7b7d0820cc65a342e480d922ad1f7209983948f77120_
+
+```
+Privileged functions: updateSuperQuorumNumerator
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44103 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: renounceOwnership, transferOwnership. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
+
+```
+Privileged functions: renounceOwnership, transferOwnership
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44104 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: transferOwnership. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
+
+```
+Privileged functions: transferOwnership
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44106 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: relay. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
+
+```
+Privileged functions: relay
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44107 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setLateQuorumVoteExtension. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
+
+```
+Privileged functions: setLateQuorumVoteExtension
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44108 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setProposalGuardian. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol) · multiple · SHA-256 07131118f6b2675894b2f4bfb84fe2a748fee242d9167f30d1ec33a4fc0f9f34_
+
+```
+Privileged functions: setProposalGuardian
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44109 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setVotingDelay, setVotingPeriod, setProposalThreshold. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
+
+```
+Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44110 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setBaseDelaySeconds, setAccessManagerIgnored. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
+
+```
+Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44111 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateTimelock. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44112 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateTimelock. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44113 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateQuorumNumerator. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
+
+```
+Privileged functions: updateQuorumNumerator
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44114 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateSuperQuorumNumerator. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol) · multiple · SHA-256 07f49116aa90ff89ec6b7b7d0820cc65a342e480d922ad1f7209983948f77120_
+
+```
+Privileged functions: updateSuperQuorumNumerator
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44119 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: upgradeTo. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol) · multiple · SHA-256 02e606b6560ec4a99c06589dd8655178cca253b457dcec0438b77dd4a8cb04f5_
+
+```
+Privileged functions: upgradeTo
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44120 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: upgradeAndCall. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol) · multiple · SHA-256 08d87f8ddab73b6f3211d313d176dd5e3323cdca43425bff268f49bee3960937_
+
+```
+Privileged functions: upgradeAndCall
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44123 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: renounceOwnership, transferOwnership. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
+
+```
+Privileged functions: renounceOwnership, transferOwnership
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44124 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: transferOwnership. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
+
+```
+Privileged functions: transferOwnership
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44125 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: relay. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
+
+```
+Privileged functions: relay
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44126 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setLateQuorumVoteExtension. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
+
+```
+Privileged functions: setLateQuorumVoteExtension
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44127 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setProposalGuardian. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol) · multiple · SHA-256 07131118f6b2675894b2f4bfb84fe2a748fee242d9167f30d1ec33a4fc0f9f34_
+
+```
+Privileged functions: setProposalGuardian
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44128 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setVotingDelay, setVotingPeriod, setProposalThreshold. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
+
+```
+Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44129 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: setBaseDelaySeconds, setAccessManagerIgnored. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
+
+```
+Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44130 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateTimelock. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44131 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateTimelock. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44132 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateQuorumNumerator. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
+
+```
+Privileged functions: updateQuorumNumerator
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44133 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: updateSuperQuorumNumerator. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol) · multiple · SHA-256 07f49116aa90ff89ec6b7b7d0820cc65a342e480d922ad1f7209983948f77120_
+
+```
+Privileged functions: updateSuperQuorumNumerator
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44134 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: upgradeTo. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol) · multiple · SHA-256 02e606b6560ec4a99c06589dd8655178cca253b457dcec0438b77dd4a8cb04f5_
+
+```
+Privileged functions: upgradeTo
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44135 — In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 37.0 / 100
+- CVSS v3.1: not applicable
+
+Functions guarded by owner/role modifiers: upgradeAndCall. (related: —)
+
+**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+
+**Reproduction steps.**
+
+```
+Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol) · multiple · SHA-256 08d87f8ddab73b6f3211d313d176dd5e3323cdca43425bff268f49bee3960937_
+
+```
+Privileged functions: upgradeAndCall
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use a multisig/timelock for admin roles and document them.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44121 — In bundled third-party code: Raw ecrecover usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
+
+- Severity: **Info** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 35.9 / 100
+- CVSS v3.1: not applicable
+
+ecrecover at line 148. (related: SWC-117/SWC-121)
+
+**Potential impact.** Without s-value/zero-address checks and nonces, signatures may be malleable or replayable. ecrecover relies on secp256k1 ECDSA (quantum-vulnerable long-term).
+
+**Reproduction steps.**
+
+```
+Open line 148 in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol#L148) · line 148 · SHA-256 bbb05c626df7732576d2e3f08f6fcf908767b508ed20b71385b32c95794d893e_
+
+```
+  146 | 
+  147 |         // If the signature is valid (and not malleable), return the signer address
+  148 |         address signer = ecrecover(hash, v, r, s);
+  149 |         if (signer == address(0)) {
+  150 |             return (address(0), RecoverError.InvalidSignature, bytes32(0));
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44136 — In bundled third-party code: Raw ecrecover usage in contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
+
+- Severity: **Info** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol`
+- Data source: contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
+- Detection method: Solidity source pattern analysis.
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 35.9 / 100
+- CVSS v3.1: not applicable
+
+ecrecover at line 148. (related: SWC-117/SWC-121)
+
+**Potential impact.** Without s-value/zero-address checks and nonces, signatures may be malleable or replayable. ecrecover relies on secp256k1 ECDSA (quantum-vulnerable long-term).
+
+**Reproduction steps.**
+
+```
+Open line 148 in the supplied file contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol#L148) · line 148 · SHA-256 bbb05c626df7732576d2e3f08f6fcf908767b508ed20b71385b32c95794d893e_
+
+```
+  146 | 
+  147 |         // If the signature is valid (and not malleable), return the signer address
+  148 |         address signer = ecrecover(hash, v, r, s);
+  149 |         if (signer == address(0)) {
+  150 |             return (address(0), RecoverError.InvalidSignature, bytes32(0));
+```
+
+**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+
+**Recommendation.** Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces.
+
+**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+
+### QSI-2026-44100 — In bundled third-party code: Possible hard-coded secret in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol
+
+- Severity: **Info** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `file:contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol
+- Detection method: Regular-expression matching of language-specific API patterns.
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 34.4 / 100
+- CVSS v3.1: not applicable
+
+1 secret-like value(s) of type hex_private_key_32b (first at line 21). Values were redacted by QSI.
+
+**Potential impact.** Credentials in source code leak through repositories, builds and logs.
+
+**Reproduction steps.**
+
+```
+Open line 21 in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol#L21) · line 21 · SHA-256 cf74f24f02484f76ae662f07905a00e2ce06c4da7fab82259bdd3c0ca92095c5_
+
+```
+   21 |     bytes32 private constant ERC6909TokenSupplyStorageLocation = [REDACTED];
+```
+
+**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
+
+**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+
+### QSI-2026-44085 — In bundled third-party code: Floating pragma (^0.8.20) in 279 file(s)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:^0.8.20`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma ^0.8.20 in 279 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol:4. (related: SWC-103)
@@ -1961,14 +5147,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/gov
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32558 — Floating pragma (^0.8.26) in 12 file(s)
+### QSI-2026-44088 — In bundled third-party code: Floating pragma (^0.8.26) in 12 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:^0.8.26`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/account/extensions/draft-AccountERC7579HookedUpgradeable.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma ^0.8.26 in 12 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/contracts/account/extensions/draft-AccountERC7579HookedUpgradeable.sol:4. (related: SWC-103)
@@ -2089,14 +5275,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/account/extensi
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32559 — Floating pragma (^0.8.24) in 70 file(s)
+### QSI-2026-44089 — In bundled third-party code: Floating pragma (^0.8.24) in 70 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:^0.8.24`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma ^0.8.24 in 70 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol:4. (related: SWC-103)
@@ -2217,14 +5403,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/gov
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32569 — Floating pragma (^0.8.22) in 11 file(s)
+### QSI-2026-44099 — In bundled third-party code: Floating pragma (^0.8.22) in 11 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:^0.8.22`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma ^0.8.22 in 11 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol:4. (related: SWC-103)
@@ -2345,14 +5531,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/proxy/transpare
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32571 — Floating pragma (>=0.8.4) in 22 file(s)
+### QSI-2026-44102 — In bundled third-party code: Floating pragma (>=0.8.4) in 22 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:>=0.8.4`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/IAccessControl.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma >=0.8.4 in 22 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/IAccessControl.sol:4. (related: SWC-103)
@@ -2473,14 +5659,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppe
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32574 — Floating pragma (>=0.4.16) in 24 file(s)
+### QSI-2026-44105 — In bundled third-party code: Floating pragma (>=0.4.16) in 24 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:>=0.4.16`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/IAuthority.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma >=0.4.16 in 24 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/IAuthority.sol:4. (related: SWC-103)
@@ -2601,14 +5787,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppe
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32585 — Floating pragma (>=0.6.2) in 44 file(s)
+### QSI-2026-44115 — In bundled third-party code: Floating pragma (>=0.6.2) in 44 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:>=0.6.2`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1155.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma >=0.6.2 in 44 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1155.sol:4. (related: SWC-103)
@@ -2729,14 +5915,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppe
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32586 — Floating pragma (>=0.5.0) in 28 file(s)
+### QSI-2026-44116 — In bundled third-party code: Floating pragma (>=0.5.0) in 28 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:>=0.5.0`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1271.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma >=0.5.0 in 28 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1271.sol:4. (related: SWC-103)
@@ -2857,14 +6043,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppe
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32587 — Floating pragma (>=0.4.11) in 4 file(s)
+### QSI-2026-44117 — In bundled third-party code: Floating pragma (>=0.4.11) in 4 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:>=0.4.11`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1967.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma >=0.4.11 in 4 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1967.sol:4. (related: SWC-103)
@@ -2925,14 +6111,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/interfaces/IERC
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32588 — Floating pragma (^0.8.21) in 2 file(s)
+### QSI-2026-44118 — In bundled third-party code: Floating pragma (^0.8.21) in 2 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:^0.8.21`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma ^0.8.21 in 2 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol:4. (related: SWC-103)
@@ -2973,14 +6159,14 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/proxy/ERC1967/E
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32593 — Floating pragma (>=0.6.9) in 2 file(s)
+### QSI-2026-44122 — In bundled third-party code: Floating pragma (>=0.6.9) in 2 file(s)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `solidity:pragma:>=0.6.9`
 - Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/vendor/compound/ICompoundTimelock.sol
 - Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 34.8 / 100
+- Analyzer: solidity 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 29.8 / 100
 - CVSS v3.1: not applicable
 
 pragma >=0.6.9 in 2 file(s), first at contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/vendor/compound/ICompoundTimelock.sol:4. (related: SWC-103)
@@ -3021,3243 +6207,91 @@ _file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/vendor/compound
 
 **Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
 
-### QSI-2026-32655 — openssl 0.10.75 is affected by GHSA-xmgf-hq76-4vx2 (CVE-2026-41677, RUSTSEC-2026-0479)
+### QSI-2026-44101 — In bundled third-party code: Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (5 file(s))
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/openssl@0.10.75`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 29.4 / 100
+- Severity: **Info** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:RSA:authentication`
+- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/signers/SignerRSAUpgradeable.sol
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:53 UTC
+- Priority score: 26.6 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GHSA-xmgf-hq76-4vx2 (CVE-2026-41677, RUSTSEC-2026-0479) for crates.io package openssl at version 0.10.75: rust-opennssl has an Out-of-bounds read in PEM password callback when returning an oversized length. The advisory names no affected functions, so reachability was not determined.
+5 reference(s) to RSA across 5 file(s), e.g. contracts/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/signers/SignerRSAUpgradeable.sol:82. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
 **Reproduction steps.**
 
 ```
-curl -s https://api.osv.dev/v1/vulns/GHSA-xmgf-hq76-4vx2
+Open contracts/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/signers/SignerRSAUpgradeable.sol:82 and inspect the quoted lines; the evidence lists further files.
 ```
 
 **Evidence.**
 
-_tool_output · [OSV.dev GHSA-xmgf-hq76-4vx2](https://osv.dev/vulnerability/GHSA-xmgf-hq76-4vx2) · manifest · SHA-256 bff9faaad7c9c3ebbe6b4437d54873d1e683ce1d0103f4d57b3b847a2d7b36f7_
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/signers/SignerRSAUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/signers/SignerRSAUpgradeable.sol#L82) · line 82 · SHA-256 6b518259d8e3239fb63ab89c4d41059dcbb2e61b0d6bf9db0f02c1e3c44c19d0_
 
 ```
-{"id": "GHSA-xmgf-hq76-4vx2", "aliases": ["CVE-2026-41677", "RUSTSEC-2026-0479"], "modified": "2026-11-10T14:10:37.732358174Z", "summary": "rust-opennssl has an Out-of-bounds read in PEM password callback when returning an oversized length", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:L/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
+   80 |     ) internal view virtual override returns (bool) {
+   81 |         (bytes memory e, bytes memory n) = signer();
+   82 |         return RSA.pkcs1Sha256(abi.encodePacked(hash), signature, e, n);
+   83 |     }
+   84 | }
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/signers/SignerRSA.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/signers/SignerRSA.sol#L63) · line 63 · SHA-256 6e9d685f5e64a14fc4a4ec16ced69ed72a70392b7baac01419c0057e37b68693_
 
-**Recommendation.** Upgrade to a fixed version (0.10.78).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32680 — rustls 0.23.36 is affected by GHSA-w44r-93j7-qv28 (CVE-2026-123611, RUSTSEC-2026-0349)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.36`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 29.4 / 100
-- CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
-
-OSV.dev reports GHSA-w44r-93j7-qv28 (CVE-2026-123611, RUSTSEC-2026-0349) for crates.io package rustls at version 0.23.36: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-w44r-93j7-qv28
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28) · manifest · SHA-256 8ccd9599884b4730640347a2a7b992b8b80c3163286e3af1b4c5340b999f2f18_
-
-```
-{"id": "GHSA-w44r-93j7-qv28", "aliases": ["CVE-2026-123611", "RUSTSEC-2026-0349"], "modified": "2026-11-08T10:55:46.312019109Z", "summary": "rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32679 — rustls 0.23.36 is affected by GHSA-h2v8-394m-p7vv (CVE-2026-123610, RUSTSEC-2026-0348)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/rustls@0.23.36`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 25.0 / 100
-- CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
-
-OSV.dev reports GHSA-h2v8-394m-p7vv (CVE-2026-123610, RUSTSEC-2026-0348) for crates.io package rustls at version 0.23.36: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. The affected code sits behind the `brotli` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-h2v8-394m-p7vv
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv) · manifest · SHA-256 c263367634d669fe7d4a5d388304c4f40b83d9837549f87b19d1fc0a9e26d648_
-
-```
-{"id": "GHSA-h2v8-394m-p7vv", "aliases": ["CVE-2026-123610", "RUSTSEC-2026-0348"], "modified": "2026-11-08T10:55:59.261359726Z", "summary": "Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication.", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32610 — anyhow 1.0.102 is affected by RUSTSEC-2026-0190 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/anyhow@1.0.102`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0190 for crates.io package anyhow at version 1.0.102: Unsoundness in `Error::downcast_mut()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (anyhow::Error::downcast_mut); anyhow comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0190
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSEC-2026-0190) · manifest · SHA-256 12d4b3eeb5a7dc67549bc112051813542621c4c3bb2d3ddfb353886e687f8013_
-
-```
-{"id": "RUSTSEC-2026-0190", "aliases": [], "modified": "2026-06-29T14:15:03.650725453Z", "summary": "Unsoundness in `Error::downcast_mut()`", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (1.0.103) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32612 — bitmaps 3.2.1 is affected by RUSTSEC-2025-0167 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/bitmaps@3.2.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2025-0167 for crates.io package bitmaps at version 3.2.1: `Bitmap::try_from(&[u8])` can create invalid values. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0167
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2025-0167](https://osv.dev/vulnerability/RUSTSEC-2025-0167) · manifest · SHA-256 03863e29642c4e63a545c7523f4282720a866033586991abde6afc0a8f4675cc_
-
-```
-{"id": "RUSTSEC-2025-0167", "aliases": [], "modified": "2026-08-10T19:45:04.530683607Z", "summary": "`Bitmap::try_from(&[u8])` can create invalid values", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32618 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
-
-```
-{"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32619 — ctutils 0.4.0 is affected by RUSTSEC-2026-0385 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/ctutils@0.4.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0385 for crates.io package ctutils at version 0.4.0: Non-constant-time mask generation and `u128` comparisons. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0385
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0385](https://osv.dev/vulnerability/RUSTSEC-2026-0385) · manifest · SHA-256 200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848_
-
-```
-{"id": "RUSTSEC-2026-0385", "aliases": [], "modified": "2026-10-23T08:30:02.389575143Z", "summary": "Non-constant-time mask generation and `u128` comparisons", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.4.4) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32621 — event-listener 5.4.1 is affected by RUSTSEC-2026-0221 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/event-listener@5.4.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0221 for crates.io package event-listener at version 5.4.1: `event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0221
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0221](https://osv.dev/vulnerability/RUSTSEC-2026-0221) · manifest · SHA-256 984b4e4e87b4e2cc5992a06daf6b6466ee08279d927a38dca105b75fa8546f7c_
-
-```
-{"id": "RUSTSEC-2026-0221", "aliases": [], "modified": "2026-07-31T12:15:04.629484145Z", "summary": "`event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (5.4.2) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32622 — git2 0.20.4 is affected by RUSTSEC-2026-0183 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/git2@0.20.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0183 for crates.io package git2 at version 0.20.4: Potential undefined behavior when calling Remote::list(). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0183
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0183](https://osv.dev/vulnerability/RUSTSEC-2026-0183) · manifest · SHA-256 10faba6c0849fd3be4082ba2701b3a701df0d48038fec8624f4d5771044fc51f_
-
-```
-{"id": "RUSTSEC-2026-0183", "aliases": [], "modified": "2026-06-17T13:00:04.696626611Z", "summary": "Potential undefined behavior when calling Remote::list()", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.21.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32623 — git2 0.20.4 is affected by RUSTSEC-2026-0184 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/git2@0.20.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0184 for crates.io package git2 at version 0.20.4: Potential undefined behavior with Signature from a buffer-created BlameHunk. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0184
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0184](https://osv.dev/vulnerability/RUSTSEC-2026-0184) · manifest · SHA-256 bb3368926dab073cdb45cbcb12e78836e24537892ff222fd96327f747e605250_
-
-```
-{"id": "RUSTSEC-2026-0184", "aliases": [], "modified": "2026-06-17T14:00:05.672935662Z", "summary": "Potential undefined behavior with Signature from a buffer-created BlameHunk", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.21.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32626 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0487 (CVE-2026-123572) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0487 (CVE-2026-123572) for crates.io package hickory-proto at version 0.25.2: Panic on a malformed `alpn` value when parsing SVCB or HTTPS records from text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0487
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0487](https://osv.dev/vulnerability/RUSTSEC-2026-0487) · manifest · SHA-256 64f03d12f9f74cbeab2b3fccf943d34999f239c40f035e8a8a7ca7300a82b791_
-
-```
-{"id": "RUSTSEC-2026-0487", "aliases": ["CVE-2026-123572", "GHSA-hx8c-fjhc-hmf5"], "modified": "2026-11-12T09:45:02.502326297Z", "summary": "Panic on a malformed `alpn` value when parsing SVCB or HTTPS records from text", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.2) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32627 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0489 (CVE-2026-123573) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0489 (CVE-2026-123573) for crates.io package hickory-proto at version 0.25.2: Panic when an SVCB or HTTPS parameter value is a single quote character. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0489
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0489](https://osv.dev/vulnerability/RUSTSEC-2026-0489) · manifest · SHA-256 4455647cf2a59500928913d60d4dcdf741abcae2665a762aa7fb8bfd9c47a902_
-
-```
-{"id": "RUSTSEC-2026-0489", "aliases": ["CVE-2026-123573", "GHSA-wgfr-mphw-j5g4"], "modified": "2026-11-12T09:45:02.524857780Z", "summary": "Panic when an SVCB or HTTPS parameter value is a single quote character", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.2) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32628 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0490 (CVE-2026-123574) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0490 (CVE-2026-123574) for crates.io package hickory-proto at version 0.25.2: Zone file lexer panics on a token of 4096 or more characters. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0490
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0490](https://osv.dev/vulnerability/RUSTSEC-2026-0490) · manifest · SHA-256 99cfb78cb9fb3bbfc7af547bd08c25862b757364ad145cbb96317c8022122ed0_
-
-```
-{"id": "RUSTSEC-2026-0490", "aliases": ["CVE-2026-123574", "GHSA-4rph-pmrw-mwpw"], "modified": "2026-11-12T09:31:57Z", "summary": "Zone file lexer panics on a token of 4096 or more characters", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.2) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32629 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0491 (CVE-2026-123570) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0491 (CVE-2026-123570) for crates.io package hickory-proto at version 0.25.2: Memory amplification from record counts in the DNS message header. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0491
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0491](https://osv.dev/vulnerability/RUSTSEC-2026-0491) · manifest · SHA-256 05ddbfd3c58542a0ce75bb429ba4d03b4dd050065dbab242c23068e2a5fa727b_
-
-```
-{"id": "RUSTSEC-2026-0491", "aliases": ["CVE-2026-123570", "GHSA-67wc-6jq8-ghrc"], "modified": "2026-11-12T09:45:02.494262633Z", "summary": "Memory amplification from record counts in the DNS message header", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.2) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32630 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0504 (CVE-2026-123601) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0504 (CVE-2026-123601) for crates.io package hickory-proto at version 0.25.2: Inverted NSEC3 comparison in DNSSEC validation (hickory-proto 0.25). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0504
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0504](https://osv.dev/vulnerability/RUSTSEC-2026-0504) · manifest · SHA-256 f5a47f3f7423682f9a31fc4c0b33365f39178969021f18b67d70558fd1d60cc7_
-
-```
-{"id": "RUSTSEC-2026-0504", "aliases": ["CVE-2026-123601", "GHSA-588m-chg6-8jqj", "RUSTSEC-2026-0506"], "modified": "2026-11-12T14:10:49.815536430Z", "summary": "Inverted NSEC3 comparison in DNSSEC validation (hickory-proto 0.25)", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32632 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0511 (CVE-2026-123594) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0511 (CVE-2026-123594) for crates.io package hickory-proto at version 0.25.2: NXDOMAIN accepted for a proven empty non-terminal (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0511
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0511](https://osv.dev/vulnerability/RUSTSEC-2026-0511) · manifest · SHA-256 aaab348f6a64d724fe28da75daf8f2472f8c43dd6904186e9cff2cebd91155d0_
-
-```
-{"id": "RUSTSEC-2026-0511", "aliases": ["CVE-2026-123594", "GHSA-86vr-jm6c-7cpg", "RUSTSEC-2026-0519"], "modified": "2026-11-12T14:40:42.050905197Z", "summary": "NXDOMAIN accepted for a proven empty non-terminal (hickory-proto)", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32634 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0530 (CVE-2026-123596) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0530 (CVE-2026-123596) for crates.io package hickory-proto at version 0.25.2: Parent-side NSEC at a zone cut accepted as proof of nonexistence (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0530
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0530](https://osv.dev/vulnerability/RUSTSEC-2026-0530) · manifest · SHA-256 df42c405f4cfc41de966ea0348913d6961fba85fc75fe0484f3c9ecf09a317fd_
-
-```
-{"id": "RUSTSEC-2026-0530", "aliases": ["CVE-2026-123596", "GHSA-3r6v-f3jh-vvqm", "RUSTSEC-2026-0539"], "modified": "2026-11-13T12:55:36.653610929Z", "summary": "Parent-side NSEC at a zone cut accepted as proof of nonexistence (hickory-proto)", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32636 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0532 (CVE-2026-123595) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0532 (CVE-2026-123595) for crates.io package hickory-proto at version 0.25.2: Parent-side NSEC3 at a zone cut accepted as proof of nonexistence (hickory-proto 0.25). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0532
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0532](https://osv.dev/vulnerability/RUSTSEC-2026-0532) · manifest · SHA-256 153630f896b74c6168bfbe3dd5125640978d85be823c6a4a18ed2ac34780801d_
-
-```
-{"id": "RUSTSEC-2026-0532", "aliases": ["CVE-2026-123595", "GHSA-624w-vvww-xvpw", "RUSTSEC-2026-0541"], "modified": "2026-11-13T12:55:46.260287377Z", "summary": "Parent-side NSEC3 at a zone cut accepted as proof of nonexistence (hickory-proto 0.25)", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32637 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0549 (CVE-2026-123600) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0549 (CVE-2026-123600) for crates.io package hickory-proto at version 0.25.2: NSEC3 NODATA at a zone apex accepted without an NSEC3 record matching the query name (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0549
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0549](https://osv.dev/vulnerability/RUSTSEC-2026-0549) · manifest · SHA-256 69abb3924191226581d6669db8a5b920f471e39b5a662962246da6cee69bafcf_
-
-```
-{"id": "RUSTSEC-2026-0549", "aliases": ["CVE-2026-123600", "GHSA-3jvh-8vj5-65rq", "RUSTSEC-2026-0556"], "modified": "2026-11-17T10:25:34.470342084Z", "summary": "NSEC3 NODATA at a zone apex accepted without an NSEC3 record matching the query name (hickory-proto)", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32638 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0550 (CVE-2026-123590) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0550 (CVE-2026-123590) for crates.io package hickory-proto at version 0.25.2: Unsigned NSEC or NSEC3 record used in a nonexistence proof (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0550
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0550](https://osv.dev/vulnerability/RUSTSEC-2026-0550) · manifest · SHA-256 5076f99efa5d74025fef64e1af5b79f7403edddb482ada567bd24e4f46dbaab9_
-
-```
-{"id": "RUSTSEC-2026-0550", "aliases": ["CVE-2026-123590", "GHSA-57pw-897j-v4j6", "RUSTSEC-2026-0557"], "modified": "2026-11-17T10:25:41.214979058Z", "summary": "Unsigned NSEC or NSEC3 record used in a nonexistence proof (hickory-proto)", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32639 — hickory-proto 0.25.2 is affected by RUSTSEC-2026-0551 (CVE-2026-123599) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/hickory-proto@0.25.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0551 (CVE-2026-123599) for crates.io package hickory-proto at version 0.25.2: Records with a DNS class other than the query's marked secure without being validated (hickory-proto). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0551
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0551](https://osv.dev/vulnerability/RUSTSEC-2026-0551) · manifest · SHA-256 a7ab1caf2571e8ab764a5b075e63b0c271cb428c3eb5de74d4cca82908edd7a9_
-
-```
-{"id": "RUSTSEC-2026-0551", "aliases": ["CVE-2026-123599", "GHSA-wjgj-fvg9-65w9", "RUSTSEC-2026-0558"], "modified": "2026-11-17T10:25:38.558562434Z", "summary": "Records with a DNS class other than the query's marked secure without being validated (hickory-proto)", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.0-beta.1) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32643 — imbl-sized-chunks 0.1.3 is affected by RUSTSEC-2026-0292 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/imbl-sized-chunks@0.1.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0292 for crates.io package imbl-sized-chunks at version 0.1.3: Double free / use-after-free in `Chunk` and `InlineArray` removal methods when an element's `Drop` panics. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (imbl_sized_chunks::inline_array::InlineArray::clear, imbl_sized_chunks::inline_array::InlineArray::truncate, imbl_sized_chunks::sized_chunk::Chunk::clear, imbl_sized_chunks::sized_chunk::Chunk::drop_left, imbl_sized_chunks::sized_chunk::Chunk::drop_right); imbl-sized-chunks comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0292
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0292](https://osv.dev/vulnerability/RUSTSEC-2026-0292) · manifest · SHA-256 746e59e7a217deb325b0ab8f2f61c3aa99980400e09bc72ae0a048c06d833d42_
-
-```
-{"id": "RUSTSEC-2026-0292", "aliases": [], "modified": "2026-09-21T09:15:02.898993962Z", "summary": "Double free / use-after-free in `Chunk` and `InlineArray` removal methods when an element's `Drop` panics", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32645 — libp2p-gossipsub 0.49.4 is affected by RUSTSEC-2026-0534 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/libp2p-gossipsub@0.49.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0534 for crates.io package libp2p-gossipsub at version 0.49.4: Unbounded backoff state from PRUNE messages for unknown topics. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0534
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0534](https://osv.dev/vulnerability/RUSTSEC-2026-0534) · manifest · SHA-256 2e190b9f4f4e06bb08d8937643722ff48cf741fcb21bf5afdb6cc1505c39d680_
-
-```
-{"id": "RUSTSEC-2026-0534", "aliases": ["GHSA-vrx6-jcp8-vm7m"], "modified": "2026-11-13T12:45:07.339789114Z", "summary": "Unbounded backoff state from PRUNE messages for unknown topics", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.50.1) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32646 — libp2p-gossipsub 0.49.4 is affected by RUSTSEC-2026-0536 (CVE-2026-95859) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/libp2p-gossipsub@0.49.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0536 (CVE-2026-95859) for crates.io package libp2p-gossipsub at version 0.49.4: Unbounded memory growth from GRAFT messages for unsubscribed topics. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0536
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0536](https://osv.dev/vulnerability/RUSTSEC-2026-0536) · manifest · SHA-256 8b9bffa7dbefd0740ef106e5da42acb5051ac92f3e42149dd69497fdb3704ba6_
-
-```
-{"id": "RUSTSEC-2026-0536", "aliases": ["CVE-2026-95859", "GHSA-g3g5-x568-qvqx"], "modified": "2026-11-13T12:45:02.747808849Z", "summary": "Unbounded memory growth from GRAFT messages for unsubscribed topics", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.49.5) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32648 — libz-sys 1.1.23 is affected by RUSTSEC-2026-0418 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/libz-sys@1.1.23`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0418 for crates.io package libz-sys at version 1.1.23: libz-sys build script leaks environment variables in the build directory. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0418
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0418](https://osv.dev/vulnerability/RUSTSEC-2026-0418) · manifest · SHA-256 c5853994609eb6005df3fdabfd8d90722c9213a6b6ddc9f03b43ae0e4a747b57_
-
-```
-{"id": "RUSTSEC-2026-0418", "aliases": ["GHSA-8p3x-q3q3-q3v5"], "modified": "2026-10-29T14:15:02.333141406Z", "summary": "libz-sys build script leaks environment variables in the build directory", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (1.1.31) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32649 — lru 0.16.3 is affected by RUSTSEC-2026-0253 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/lru@0.16.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0253 for crates.io package lru at version 0.16.3: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0253
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSEC-2026-0253) · manifest · SHA-256 06df98c5350689983b2fda96297e3527fd26f472c5d474c041975b220e7ffc2c_
-
-```
-{"id": "RUSTSEC-2026-0253", "aliases": [], "modified": "2026-08-11T11:15:06.101553049Z", "summary": "Potential use-after-free due to lack of panic safety in `LruCache::pop()`", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.18.2) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32662 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0338 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0338 for crates.io package quinn-proto at version 0.11.15: Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0338
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSEC-2026-0338) · manifest · SHA-256 2d8a96c1ccb5782dfd51ab6c6bfc548092df0a416eb5a7c29ca5b5ffdce603ea_
-
-```
-{"id": "RUSTSEC-2026-0338", "aliases": ["GHSA-465w-v9q3-7j98"], "modified": "2026-10-12T18:15:01.969514645Z", "summary": "Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.18) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32663 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0339 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0339 for crates.io package quinn-proto at version 0.11.15: Unbounded growth of pending connection ID retirements in quinn-proto. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0339
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0339](https://osv.dev/vulnerability/RUSTSEC-2026-0339) · manifest · SHA-256 b5c8da254e3051004bc694e865ed6cf27e63c10cddc5641f13f42bd290bdb54a_
-
-```
-{"id": "RUSTSEC-2026-0339", "aliases": ["GHSA-hmxj-32vh-65vr"], "modified": "2026-10-12T18:15:01.956822776Z", "summary": "Unbounded growth of pending connection ID retirements in quinn-proto", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.17) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32666 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0342 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0342 for crates.io package quinn-proto at version 0.11.15: Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0342
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0342](https://osv.dev/vulnerability/RUSTSEC-2026-0342) · manifest · SHA-256 41dfd63166e25757cdb189c219a98c5e4b8d6b2e389f484cc583556a378073e4_
-
-```
-{"id": "RUSTSEC-2026-0342", "aliases": ["GHSA-2hv7-gw8g-gpq5"], "modified": "2026-10-12T18:15:01.956681478Z", "summary": "Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.17) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32667 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0523 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0523 for crates.io package quinn-proto at version 0.11.15: MAX_STREAM_DATA frame can open streams beyond the stream limit. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0523
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0523](https://osv.dev/vulnerability/RUSTSEC-2026-0523) · manifest · SHA-256 ba38a838d4e45dd6958b4102d8a1ec90700c5ca22b5da6f35671a03ddf163935_
-
-```
-{"id": "RUSTSEC-2026-0523", "aliases": ["GHSA-53rm-773f-4q8c"], "modified": "2026-11-13T12:45:04.789912316Z", "summary": "MAX_STREAM_DATA frame can open streams beyond the stream limit", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.19) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32668 — quinn-proto 0.11.15 is affected by RUSTSEC-2026-0524 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0524 for crates.io package quinn-proto at version 0.11.15: Long Retry token can panic or exhaust memory in a QUIC client. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0524
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0524](https://osv.dev/vulnerability/RUSTSEC-2026-0524) · manifest · SHA-256 9f8eaf429d5c8dd463becfc33bc7e125bb3ab1967308406c7556f423cdd5abd1_
-
-```
-{"id": "RUSTSEC-2026-0524", "aliases": ["GHSA-wppq-2f6r-wfvm"], "modified": "2026-11-13T12:45:06.127108520Z", "summary": "Long Retry token can panic or exhaust memory in a QUIC client", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.19) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32669 — quinn-udp 0.5.14 is affected by RUSTSEC-2026-0538 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-udp@0.5.14`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0538 for crates.io package quinn-udp at version 0.5.14: Receive loop can spin after a truncated datagram. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0538
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0538](https://osv.dev/vulnerability/RUSTSEC-2026-0538) · manifest · SHA-256 a253fc85c2462bf8cb9613adb913b5e61c4a5d4ae73f83f65e16cf568f6c2409_
-
-```
-{"id": "RUSTSEC-2026-0538", "aliases": ["GHSA-6pp4-4cxf-xf88"], "modified": "2026-11-13T12:45:08.844283231Z", "summary": "Receive loop can spin after a truncated datagram", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.5.16, 0.6.3) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32676 — rustix 1.1.3 is affected by RUSTSEC-2026-0486 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/rustix@1.1.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0486 for crates.io package rustix at version 1.1.3: xattr functions mark unwritten bytes as initialized when given a zero-length buffer. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (rustix::fs::fgetxattr, rustix::fs::flistxattr, rustix::fs::getxattr, rustix::fs::lgetxattr, rustix::fs::listxattr, rustix::fs::llistxattr); rustix comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0486
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0486](https://osv.dev/vulnerability/RUSTSEC-2026-0486) · manifest · SHA-256 3a9db0a5ea2efefb678d315af96712a5f277c0e348371bd9630df7afe1635fbe_
-
-```
-{"id": "RUSTSEC-2026-0486", "aliases": ["GHSA-jh2m-fhpj-3vr7"], "modified": "2026-11-11T08:45:02.466292839Z", "summary": "xattr functions mark unwritten bytes as initialized when given a zero-length buffer", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (1.1.6) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32682 — rustls-webpki 0.103.13 is affected by RUSTSEC-2026-0382 (CVE-2026-111943) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/rustls-webpki@0.103.13`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0382 (CVE-2026-111943) for crates.io package rustls-webpki at version 0.103.13: Certificate verification may accept distrusted intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0382
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 4c972eb1d77abf0d1c39f2b402c5fea32a5dacf7dbbeac638e7549ce780805d1_
-
-```
-{"id": "RUSTSEC-2026-0382", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32686 — webpki-root-certs 1.0.6 is affected by RUSTSEC-2026-0383 (CVE-2026-111943) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/webpki-root-certs@1.0.6`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0383 (CVE-2026-111943) for crates.io package webpki-root-certs at version 1.0.6: Bundled root certificates allow trust in distrusted emSign intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0383
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0383](https://osv.dev/vulnerability/RUSTSEC-2026-0383) · manifest · SHA-256 3246026933edff30d4662b8425596fe73691a2ab5c886d1d7d3a6808822713fb_
-
-```
-{"id": "RUSTSEC-2026-0383", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0382"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.11, 1.0.10) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32687 — webpki-roots 1.0.6 is affected by RUSTSEC-2026-0381 (CVE-2026-111943) (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/webpki-roots@1.0.6`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0381 (CVE-2026-111943) for crates.io package webpki-roots at version 1.0.6: Bundled root certificates allow trust in distrusted emSign intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0381
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 fe0730fa87c619c62bf0bee198d2f7f275186863690454c8ae7e45848f4db031_
-
-```
-{"id": "RUSTSEC-2026-0381", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.11, 1.0.10) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32691 — zstd 0.13.3 is affected by RUSTSEC-2026-0391 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd@0.13.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0391 for crates.io package zstd at version 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names zstd::stream::raw::Decoder::with_context: the affected code may be reachable.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0391
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0391](https://osv.dev/vulnerability/RUSTSEC-2026-0391) · manifest · SHA-256 dc6dbee0c1ba82e00207f73145a919892074238eb5633372ba4ad3af24bd80dd_
-
-```
-{"id": "RUSTSEC-2026-0391", "aliases": [], "modified": "2026-11-02T09:30:03.590733846Z", "summary": "Data from an abandoned stream leaks into the next stream on a reused context", "severity": null, "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.13.4, 0.14.3) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32692 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0395 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0395 for crates.io package zstd-safe at version 7.2.4: Use-after-free with `CParameter::StableInBuffer`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::set_parameter); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0395
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSEC-2026-0395) · manifest · SHA-256 728850176f43ecf2b9c562524c791d0da3abc31547980bb333caeadf51eb3ce4_
-
-```
-{"id": "RUSTSEC-2026-0395", "aliases": [], "modified": "2026-11-02T09:30:03.420559993Z", "summary": "Use-after-free with `CParameter::StableInBuffer`", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32693 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0396 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0396 for crates.io package zstd-safe at version 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0396
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0396](https://osv.dev/vulnerability/RUSTSEC-2026-0396) · manifest · SHA-256 4530740c3dd2640b5c96ad098b4e771f286dd562d83e8e4aa6214c518b1f08ee_
-
-```
-{"id": "RUSTSEC-2026-0396", "aliases": [], "modified": "2026-11-02T09:30:03.400899521Z", "summary": "`Seekable` reads a NULL or out-of-bounds seek table", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32694 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0397 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0397 for crates.io package zstd-safe at version 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::OutBuffer::around_pos); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0397
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSEC-2026-0397) · manifest · SHA-256 4ad3bc187fa64e24d070e53c5d01373b2aba040ea27757bbf26f8efea74c0967_
-
-```
-{"id": "RUSTSEC-2026-0397", "aliases": [], "modified": "2026-11-02T09:30:03.445177143Z", "summary": "`OutBuffer::around_pos` exposes uninitialized memory", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32695 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0398 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0398 for crates.io package zstd-safe at version 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0398
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0398](https://osv.dev/vulnerability/RUSTSEC-2026-0398) · manifest · SHA-256 7e1e8fe35e2578f061734431e3a9558d8cc0dab6043f409c833b43c905bf10d3_
-
-```
-{"id": "RUSTSEC-2026-0398", "aliases": [], "modified": "2026-11-02T09:30:03.419709171Z", "summary": "`Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32696 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0399 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0399 for crates.io package zstd-safe at version 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0399
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSEC-2026-0399) · manifest · SHA-256 58cd19f1b734988f6219b3659cd613c349a5c6693e08cb4e8b9846d1f92bb38f_
-
-```
-{"id": "RUSTSEC-2026-0399", "aliases": [], "modified": "2026-11-02T09:30:03.328955732Z", "summary": "Use-after-free through `init_using_cdict` and `init_using_ddict`", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32697 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0400 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0400 for crates.io package zstd-safe at version 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0400
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSEC-2026-0400) · manifest · SHA-256 00f83f7c4931137d6b18e25256c039f2c52bd627946f5f05f74c2cc7b2615d30_
-
-```
-{"id": "RUSTSEC-2026-0400", "aliases": [], "modified": "2026-11-02T09:30:03.428341570Z", "summary": "Use-after-free of a dictionary after a one-shot call on a context with an open stream", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32698 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0401 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0401 for crates.io package zstd-safe at version 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::train_from_buffer); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0401
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSEC-2026-0401) · manifest · SHA-256 dd6e9bd27e75cf4c8d9a5333bbc4dda81ef2f2990271b711f964d6bc829e71fd_
-
-```
-{"id": "RUSTSEC-2026-0401", "aliases": [], "modified": "2026-11-02T09:30:03.353698025Z", "summary": "Out-of-bounds read in `train_from_buffer` when sample sizes overflow", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32699 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0402 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0402 for crates.io package zstd-safe at version 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0402
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSEC-2026-0402) · manifest · SHA-256 464c8c61aa6d0a29b646ba665145c6d256c18786ece14e1921252cecf4a4e54e_
-
-```
-{"id": "RUSTSEC-2026-0402", "aliases": [], "modified": "2026-11-02T09:30:04.162155944Z", "summary": "Heap buffer overflow in `CCtx::try_clone` on a multithreaded context", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32700 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0403 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0403 for crates.io package zstd-safe at version 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress_stream); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0403
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSEC-2026-0403) · manifest · SHA-256 09699f0d23ac15a18937ce02a1b778a246ec661449852b62d6415d8d60ed2147_
-
-```
-{"id": "RUSTSEC-2026-0403", "aliases": [], "modified": "2026-11-02T09:30:04.136442771Z", "summary": "Uninitialized memory exposed when streaming decompression of a legacy frame fails", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32701 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0404 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0404 for crates.io package zstd-safe at version 7.2.4: Double free in `DCtx::try_clone`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0404
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSEC-2026-0404) · manifest · SHA-256 e265647b9f2c582eebfcac7889bee04fada79ea833147205829d693f4c6f8131_
-
-```
-{"id": "RUSTSEC-2026-0404", "aliases": [], "modified": "2026-11-02T09:30:04.168804805Z", "summary": "Double free in `DCtx::try_clone`", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32702 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0405 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0405 for crates.io package zstd-safe at version 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0405
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0405](https://osv.dev/vulnerability/RUSTSEC-2026-0405) · manifest · SHA-256 e784735107b5a74149056e3244a7f30afbcf59892ceaa6d018ec1739be5661d5_
-
-```
-{"id": "RUSTSEC-2026-0405", "aliases": [], "modified": "2026-11-02T09:30:03.399517581Z", "summary": "Out-of-bounds read with an out-of-range `InBuffer::pos`", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32703 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0406 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0406 for crates.io package zstd-safe at version 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe comes in through other dependencies, which may still call them.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0406
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSEC-2026-0406) · manifest · SHA-256 f08bb0f8849019aa21c995ae08e9c10ff924c83b0464e87d3143ab07935008f5_
-
-```
-{"id": "RUSTSEC-2026-0406", "aliases": [], "modified": "2026-11-02T09:30:03.591194710Z", "summary": "Use-after-free when changing a multithreaded context with an unfinished frame", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (7.4.0, 8.2.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32704 — zstd-sys 2.0.16+zstd.1.5.7 is affected by RUSTSEC-2026-0410 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0410 for crates.io package zstd-sys at version 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. It affects only wasm32 targets.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0410
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0410](https://osv.dev/vulnerability/RUSTSEC-2026-0410) · manifest · SHA-256 1e892df4ce7c9911f01547e4a80d1fb3ea5a27b8c1c89c0514917e08bbf3bdc5_
-
-```
-{"id": "RUSTSEC-2026-0410", "aliases": [], "modified": "2026-10-26T14:00:05.788985783Z", "summary": "WebAssembly allocator shim corrupts memory on allocation failure", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (2.1.2) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-32543 — Privileged administrative functions in contracts/src/Denylist.sol: addDenylister, removeDenylister
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/src/Denylist.sol`
-- Data source: contracts/src/Denylist.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: addDenylister, removeDenylister. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/src/Denylist.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/src/Denylist.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/Denylist.sol) · multiple · SHA-256 cadbbdb19e190130c437c5cd3c1bdd5bf5beba4ac520194ead25107990714e23_
-
-```
-Privileged functions: addDenylister, removeDenylister
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32544 — Privileged administrative functions in contracts/src/common/roles/Pausable.sol: updatePauser
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/src/common/roles/Pausable.sol`
-- Data source: contracts/src/common/roles/Pausable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updatePauser. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/src/common/roles/Pausable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/src/common/roles/Pausable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/common/roles/Pausable.sol) · multiple · SHA-256 bd451358b742bb99245bd4b702dca8520a5778e3c6052249a52d69b058d7e287_
-
-```
-Privileged functions: updatePauser
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32545 — Privileged administrative functions in contracts/src/protocol-config/roles/Controller.sol: updateController
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/src/protocol-config/roles/Controller.sol`
-- Data source: contracts/src/protocol-config/roles/Controller.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateController. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/src/protocol-config/roles/Controller.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/src/protocol-config/roles/Controller.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/protocol-config/roles/Controller.sol) · multiple · SHA-256 163e0107f6554559a2216f674f448926df9c7e2c7f9bbafff11a2dd4c71c44dd_
-
-```
-Privileged functions: updateController
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32546 — Privileged administrative functions in contracts/src/proxy/AdminUpgradeableProxy.sol: upgradeTo, upgradeToAndCall, changeAdmin
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/src/proxy/AdminUpgradeableProxy.sol`
-- Data source: contracts/src/proxy/AdminUpgradeableProxy.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: upgradeTo, upgradeToAndCall, changeAdmin. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/src/proxy/AdminUpgradeableProxy.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/src/proxy/AdminUpgradeableProxy.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/proxy/AdminUpgradeableProxy.sol) · multiple · SHA-256 cebcf7b9e5eb6647254a7b67be21e509d1481751443611294fc0f42bccfa0eb7_
-
-```
-Privileged functions: upgradeTo, upgradeToAndCall, changeAdmin
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32547 — Privileged administrative functions in contracts/src/validator-manager/PermissionedValidatorManager.sol: transferRegistryOwner, acceptRegistryOwnership
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/src/validator-manager/PermissionedValidatorManager.sol`
-- Data source: contracts/src/validator-manager/PermissionedValidatorManager.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: transferRegistryOwner, acceptRegistryOwnership. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/src/validator-manager/PermissionedValidatorManager.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/src/validator-manager/PermissionedValidatorManager.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/validator-manager/PermissionedValidatorManager.sol) · multiple · SHA-256 3931080fe35e77bc29d127415ae04b8c3218a8c5215a6e7af4e636bba2970151_
-
-```
-Privileged functions: transferRegistryOwner, acceptRegistryOwnership
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32548 — Privileged administrative functions in contracts/src/validator-manager/ValidatorRegistry.sol: registerValidator, activateValidator, removeValidator, updateValidatorVotingPower
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/src/validator-manager/ValidatorRegistry.sol`
-- Data source: contracts/src/validator-manager/ValidatorRegistry.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: registerValidator, activateValidator, removeValidator, updateValidatorVotingPower. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/src/validator-manager/ValidatorRegistry.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/src/validator-manager/ValidatorRegistry.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/validator-manager/ValidatorRegistry.sol) · multiple · SHA-256 bd1b2d0999172dce7804f3a5026567f30704da6702191f95c9cb5ffa2ad8f6d5_
-
-```
-Privileged functions: registerValidator, activateValidator, removeValidator, updateValidatorVotingPower
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32549 — Privileged administrative functions in contracts/src/validator-manager/roles/Controller.sol: configureController, removeController, updateVotingPowerLimit
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/src/validator-manager/roles/Controller.sol`
-- Data source: contracts/src/validator-manager/roles/Controller.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: configureController, removeController, updateVotingPowerLimit. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/src/validator-manager/roles/Controller.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/src/validator-manager/roles/Controller.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/validator-manager/roles/Controller.sol) · multiple · SHA-256 b34887a19bc168163054e80fca215b40e779ea813c2dd4166d91146c3325ef12_
-
-```
-Privileged functions: configureController, removeController, updateVotingPowerLimit
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32550 — Privileged administrative functions in contracts/src/validator-manager/roles/ValidatorRegisterer.sol: addValidatorRegisterer, removeValidatorRegisterer
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/src/validator-manager/roles/ValidatorRegisterer.sol`
-- Data source: contracts/src/validator-manager/roles/ValidatorRegisterer.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: addValidatorRegisterer, removeValidatorRegisterer. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/src/validator-manager/roles/ValidatorRegisterer.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/src/validator-manager/roles/ValidatorRegisterer.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/src/validator-manager/roles/ValidatorRegisterer.sol) · multiple · SHA-256 21761771f0d55baafbb802499b47d8acf890d4d9967eb4bbb342dbfa08af9f09_
-
-```
-Privileged functions: addValidatorRegisterer, removeValidatorRegisterer
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32556 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: transferOwnership. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
-
-```
-Privileged functions: transferOwnership
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32557 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: renounceOwnership, transferOwnership. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
-
-```
-Privileged functions: renounceOwnership, transferOwnership
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32560 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: relay. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
-
-```
-Privileged functions: relay
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32561 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setLateQuorumVoteExtension. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
-
-```
-Privileged functions: setLateQuorumVoteExtension
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32562 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol: setProposalGuardian
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setProposalGuardian. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol) · multiple · SHA-256 07131118f6b2675894b2f4bfb84fe2a748fee242d9167f30d1ec33a4fc0f9f34_
-
-```
-Privileged functions: setProposalGuardian
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32563 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setVotingDelay, setVotingPeriod, setProposalThreshold. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
-
-```
-Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32564 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setBaseDelaySeconds, setAccessManagerIgnored. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
-
-```
-Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32565 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateTimelock. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32566 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateTimelock. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32567 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateQuorumNumerator. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
-
-```
-Privileged functions: updateQuorumNumerator
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32568 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol: updateSuperQuorumNumerator
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateSuperQuorumNumerator. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol) · multiple · SHA-256 07f49116aa90ff89ec6b7b7d0820cc65a342e480d922ad1f7209983948f77120_
-
-```
-Privileged functions: updateSuperQuorumNumerator
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32572 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: renounceOwnership, transferOwnership. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
-
-```
-Privileged functions: renounceOwnership, transferOwnership
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32573 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: transferOwnership. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
-
-```
-Privileged functions: transferOwnership
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32576 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: relay. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
-
-```
-Privileged functions: relay
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32577 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setLateQuorumVoteExtension. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
-
-```
-Privileged functions: setLateQuorumVoteExtension
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32578 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setProposalGuardian. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol) · multiple · SHA-256 07131118f6b2675894b2f4bfb84fe2a748fee242d9167f30d1ec33a4fc0f9f34_
-
-```
-Privileged functions: setProposalGuardian
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32579 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setVotingDelay, setVotingPeriod, setProposalThreshold. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
-
-```
-Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32580 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setBaseDelaySeconds, setAccessManagerIgnored. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
-
-```
-Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32581 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateTimelock. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32582 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateTimelock. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32583 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateQuorumNumerator. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
-
-```
-Privileged functions: updateQuorumNumerator
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32584 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateSuperQuorumNumerator. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol) · multiple · SHA-256 07f49116aa90ff89ec6b7b7d0820cc65a342e480d922ad1f7209983948f77120_
-
-```
-Privileged functions: updateSuperQuorumNumerator
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32589 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: upgradeTo. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol) · multiple · SHA-256 02e606b6560ec4a99c06589dd8655178cca253b457dcec0438b77dd4a8cb04f5_
-
-```
-Privileged functions: upgradeTo
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32590 — Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol`
-- Data source: contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: upgradeAndCall. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol) · multiple · SHA-256 08d87f8ddab73b6f3211d313d176dd5e3323cdca43425bff268f49bee3960937_
-
-```
-Privileged functions: upgradeAndCall
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32594 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: renounceOwnership, transferOwnership. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
-
-```
-Privileged functions: renounceOwnership, transferOwnership
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32595 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: transferOwnership. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
-
-```
-Privileged functions: transferOwnership
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32597 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: relay. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
-
-```
-Privileged functions: relay
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32598 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setLateQuorumVoteExtension. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
-
-```
-Privileged functions: setLateQuorumVoteExtension
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32599 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setProposalGuardian. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol) · multiple · SHA-256 07131118f6b2675894b2f4bfb84fe2a748fee242d9167f30d1ec33a4fc0f9f34_
-
-```
-Privileged functions: setProposalGuardian
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32600 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setVotingDelay, setVotingPeriod, setProposalThreshold. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
-
-```
-Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32601 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: setBaseDelaySeconds, setAccessManagerIgnored. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
-
-```
-Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32602 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateTimelock. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32603 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateTimelock. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32604 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateQuorumNumerator. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
-
-```
-Privileged functions: updateQuorumNumerator
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32605 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: updateSuperQuorumNumerator. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
-```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol) · multiple · SHA-256 07f49116aa90ff89ec6b7b7d0820cc65a342e480d922ad1f7209983948f77120_
-
-```
-Privileged functions: updateSuperQuorumNumerator
-```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
-
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
-
-### QSI-2026-32606 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: upgradeTo. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
 ```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol and inspect the quoted lines (see evidence).
+   61 |     ) internal view virtual override returns (bool) {
+   62 |         (bytes memory e, bytes memory n) = signer();
+   63 |         return RSA.pkcs1Sha256(abi.encodePacked(hash), signature, e, n);
+   64 |     }
+   65 | }
 ```
 
-**Evidence.**
-
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol) · multiple · SHA-256 02e606b6560ec4a99c06589dd8655178cca253b457dcec0438b77dd4a8cb04f5_
+_file_excerpt · [contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/verifiers/ERC7913RSAVerifier.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/verifiers/ERC7913RSAVerifier.sol#L19) · line 19 · SHA-256 d952aa5b1632f6c1455720661ab447efc13f434567c57a8e8b581754847d3ec1_
 
 ```
-Privileged functions: upgradeTo
+   17 |         (bytes memory e, bytes memory n) = abi.decode(key, (bytes, bytes));
+   18 |         return
+   19 |             RSA.pkcs1Sha256(abi.encodePacked(hash), signature, e, n)
+   20 |                 ? IERC7913SignatureVerifier.verify.selector
+   21 |                 : bytes4(0xFFFFFFFF);
 ```
-
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
-
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/signers/SignerRSA.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/signers/SignerRSA.sol#L63) · line 63 · SHA-256 6e9d685f5e64a14fc4a4ec16ced69ed72a70392b7baac01419c0057e37b68693_
 
-### QSI-2026-32607 — Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall
-
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol`
-- Data source: contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.6.0 · 2026-11-19 17:43 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
-
-Functions guarded by owner/role modifiers: upgradeAndCall. (related: —)
-
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
-
-**Reproduction steps.**
-
 ```
-Open contract in the supplied file contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol and inspect the quoted lines (see evidence).
+   61 |     ) internal view virtual override returns (bool) {
+   62 |         (bytes memory e, bytes memory n) = signer();
+   63 |         return RSA.pkcs1Sha256(abi.encodePacked(hash), signature, e, n);
+   64 |     }
+   65 | }
 ```
-
-**Evidence.**
 
-_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol) · multiple · SHA-256 08d87f8ddab73b6f3211d313d176dd5e3323cdca43425bff268f49bee3960937_
+_file_excerpt · [contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/verifiers/ERC7913RSAVerifier.sol](https://github.com/circlefin/arc-node/blob/6e764023ee6515fe70573e123ed2db912a7207b4/contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/verifiers/ERC7913RSAVerifier.sol#L19) · line 19 · SHA-256 d952aa5b1632f6c1455720661ab447efc13f434567c57a8e8b581754847d3ec1_
 
 ```
-Privileged functions: upgradeAndCall
+   17 |         (bytes memory e, bytes memory n) = abi.decode(key, (bytes, bytes));
+   18 |         return
+   19 |             RSA.pkcs1Sha256(abi.encodePacked(hash), signature, e, n)
+   20 |                 ? IERC7913SignatureVerifier.verify.selector
+   21 |                 : bytes4(0xFFFFFFFF);
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Recommendation.** Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-32615 — chrono 0.4.44: informational advisory RUSTSEC-2026-0543 (unmaintained)
+### QSI-2026-44142 — chrono 0.4.44: informational advisory RUSTSEC-2026-0543 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `dependency:crates.io/chrono@0.4.44`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 19.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6285,13 +6319,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0543](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32642 — humantime 2.3.0: informational advisory RUSTSEC-2026-0542 (unmaintained)
+### QSI-2026-44169 — humantime 2.3.0: informational advisory RUSTSEC-2026-0542 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `dependency:crates.io/humantime@2.3.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 19.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6319,13 +6353,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0542](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32685 — tokio 1.52.3 is affected by RUSTSEC-2026-0386 (no severity rating)
+### QSI-2026-44212 — tokio 1.52.3 is affected by RUSTSEC-2026-0386 (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:crates.io/tokio@1.52.3`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6353,13 +6387,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-32705 — 1 advisories in 1 development or build-only crates.io package(s)
+### QSI-2026-44233 — 1 advisories in 1 development or build-only crates.io package(s)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `dependencies:crates.io:non-runtime`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch lookup of exact versions; scope from devDependencies, package-lock.json dev flags, pnpm importers sections, the Cargo.lock graph rooted at the Cargo.toml tables, and — for yarn.lock, which records no scope — the lock graph walked from package.json. Where a runtime requirement cannot be resolved in a lock, that lock is left unclassified rather than risking a package being set aside wrongly.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 15.5 / 100
 - CVSS v3.1: not applicable
 
@@ -6387,13 +6421,13 @@ scc@2.4.0 [dev]: RUSTSEC-2026-0205
 
 **Retest procedure.** Re-run the dependency scan after updating.
 
-### QSI-2026-32706 — 244 advisories in 61 development or build-only npm package(s)
+### QSI-2026-44234 — 244 advisories in 61 development or build-only npm package(s)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `dependencies:npm:non-runtime`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch lookup of exact versions; scope from devDependencies, package-lock.json dev flags, pnpm importers sections, the Cargo.lock graph rooted at the Cargo.toml tables, and — for yarn.lock, which records no scope — the lock graph walked from package.json. Where a runtime requirement cannot be resolved in a lock, that lock is left unclassified rather than risking a package being set aside wrongly.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 15.5 / 100
 - CVSS v3.1: not applicable
 
@@ -6471,13 +6505,13 @@ undici@5.29.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2
 
 **Retest procedure.** Re-run the dependency scan after updating.
 
-### QSI-2026-32611 — bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-44138 — bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/bincode@1.3.3`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6505,13 +6539,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32613 — bitmaps 3.2.1: informational advisory RUSTSEC-2026-0247 (unmaintained)
+### QSI-2026-44140 — bitmaps 3.2.1: informational advisory RUSTSEC-2026-0247 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/bitmaps@3.2.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6539,13 +6573,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0247](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32617 — core2 0.4.0: informational advisory RUSTSEC-2026-0105 (unmaintained)
+### QSI-2026-44144 — core2 0.4.0: informational advisory RUSTSEC-2026-0105 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/core2@0.4.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6573,13 +6607,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0105](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32620 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
+### QSI-2026-44147 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/derivative@2.2.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6607,13 +6641,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32659 — paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-44186 — paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/paste@1.0.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6641,13 +6675,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32660 — pin-utils 0.1.0: informational advisory RUSTSEC-2026-0441 (unmaintained)
+### QSI-2026-44187 — pin-utils 0.1.0: informational advisory RUSTSEC-2026-0441 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/pin-utils@0.1.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6675,13 +6709,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0441](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32661 — proc-macro-error2 2.0.1: informational advisory RUSTSEC-2026-0173 (unmaintained)
+### QSI-2026-44188 — proc-macro-error2 2.0.1: informational advisory RUSTSEC-2026-0173 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/proc-macro-error2@2.0.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6709,13 +6743,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0173](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-32681 — rustls-pemfile 2.2.0: informational advisory RUSTSEC-2025-0134 (unmaintained)
+### QSI-2026-44208 — rustls-pemfile 2.2.0: informational advisory RUSTSEC-2025-0134 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/rustls-pemfile@2.2.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.6.0 · 2026-11-19 17:43 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:53 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -6778,8 +6812,8 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (5), Ed25519 (1) | QSI-2026-32552, QSI-2026-32553 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | Ed25519 (4), ECDSA (1) | QSI-2026-32551, QSI-2026-32554 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **transaction and message signing** | ECDSA (35), Ed25519 (2) | QSI-2026-44083, QSI-2026-44084 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | Ed25519 (5), ECDSA (2) | QSI-2026-44072, QSI-2026-44082 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -6788,7 +6822,8 @@ No readiness questionnaire was completed for this project.
 
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDSA (9), Ed25519 (5) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Shor's algorithm — factoring | breaks | Q1 | RSA (5) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDSA (37), Ed25519 (7) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
 | Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | Keccak-256 (87), SLH-DSA (1) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | Keccak-256 (87) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 
@@ -6809,183 +6844,182 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-32570 | Rotate and remove secrets found in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-32575 | Restrict delegatecall targets to trusted, immutable implementations. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P1 | QSI-2026-32591 | Restrict delegatecall targets to trusted, immutable implementations. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P1 | QSI-2026-32596 | Restrict delegatecall targets to trusted, immutable implementations. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P1 | QSI-2026-32608 | Restrict delegatecall targets to trusted, immutable implementations. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P2 | QSI-2026-32671 | Upgrade rmcp to a fixed version (2.0.0). | root-cause fix | Dependency scan no longer reports GHSA-33f5-2c5q-wgwj (CVE-2026-63127). |
-| P2 | QSI-2026-32673 | Upgrade rmcp to a fixed version (2.0.0). | root-cause fix | Dependency scan no longer reports GHSA-9pj6-vhgr-3mwh (CVE-2026-63128). |
-| P2 | QSI-2026-32624 | Upgrade hickory-proto to a fixed version (0.26.0-beta.1). | root-cause fix | Dependency scan no longer reports GHSA-3v94-mw7p-v465 (CVE-2026-123607, RUSTSEC-2026-0118). |
-| P2 | QSI-2026-32631 | Upgrade hickory-proto to a fixed version (0.26.0-beta.1). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0505 (CVE-2026-123580). |
-| P2 | QSI-2026-32640 | Upgrade hickory-resolver to a fixed version (0.26.2). | root-cause fix | Dependency scan no longer reports GHSA-5j98-2g5x-46v6 (CVE-2026-93657, RUSTSEC-2026-0514). |
-| P2 | QSI-2026-32647 | Upgrade libp2p-quic to a fixed version (0.13.1). | root-cause fix | Dependency scan no longer reports GHSA-5hq8-qhww-jm7q (CVE-2026-61544, RUSTSEC-2026-0525). |
-| P2 | QSI-2026-32664 | Upgrade quinn-proto to a fixed version (0.11.18). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0340. |
-| P2 | QSI-2026-32665 | Upgrade quinn-proto to a fixed version (0.11.17). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0341. |
-| P2 | QSI-2026-32688 | Upgrade yamux to a fixed version (0.13.10). | root-cause fix | Dependency scan no longer reports GHSA-vxx9-2994-q338 (CVE-2026-32314). |
-| P2 | QSI-2026-32689 | Upgrade yamux to a fixed version (0.13.9). | root-cause fix | Dependency scan no longer reports GHSA-4w32-2493-32g7 (CVE-2026-31814). |
-| P2 | QSI-2026-32690 | Upgrade yamux to a fixed version (0.13.10). | root-cause fix | Dependency scan no longer reports GHSA-vxx9-2994-q338 (CVE-2026-32314). |
-| P2 | QSI-2026-32650 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-8c75-8mhr-p7r9 (CVE-2026-41678, RUSTSEC-2026-0463). |
-| P2 | QSI-2026-32651 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-ghm9-cr32-g9qj (CVE-2026-41681, RUSTSEC-2026-0475). |
-| P2 | QSI-2026-32652 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-hppc-g8h3-xhp3 (CVE-2026-41898, RUSTSEC-2026-0478). |
-| P2 | QSI-2026-32654 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-pqf5-4pqq-29f5 (CVE-2026-41676, RUSTSEC-2026-0473). |
-| P2 | QSI-2026-32656 | Upgrade openssl to a fixed version (0.10.79). | root-cause fix | Dependency scan no longer reports GHSA-xp3w-r5p5-63rr (CVE-2026-42327, RUSTSEC-2026-0474). |
-| P2 | QSI-2026-32644 | Upgrade jsonwebtoken to a fixed version (10.3.0). | root-cause fix | Dependency scan no longer reports GHSA-h395-gr6q-cpjc (CVE-2026-25537). |
-| P2 | QSI-2026-32672 | Upgrade rmcp to a fixed version (2.1.0). | root-cause fix | Dependency scan no longer reports GHSA-9g45-5xwm-f3wc (CVE-2026-64684). |
-| P2 | QSI-2026-32674 | Upgrade rmcp to a fixed version (2.0.0). | root-cause fix | Dependency scan no longer reports GHSA-c9xm-49cp-xcr9. |
-| P2 | QSI-2026-32675 | Upgrade rmcp to a fixed version (3.9.0). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0462. |
-| P2 | QSI-2026-32683 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-32684 | Upgrade tar to a fixed version (0.4.46). | root-cause fix | Dependency scan no longer reports GHSA-3pv8-6f4r-ffg2. |
-| P2 | QSI-2026-32614 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-32616 | Upgrade cmov to a fixed version (0.5.4). | root-cause fix | Dependency scan no longer reports GHSA-3rjw-m598-pq24 (CVE-2026-50185). |
-| P2 | QSI-2026-32625 | Upgrade hickory-proto to a fixed version (0.26.1). | root-cause fix | Dependency scan no longer reports GHSA-q2qq-hmj6-3wpp (CVE-2026-123608, RUSTSEC-2026-0119). |
-| P2 | QSI-2026-32633 | Upgrade hickory-proto to a fixed version (0.26.0-beta.1). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0512 (CVE-2026-123581). |
-| P2 | QSI-2026-32635 | Upgrade hickory-proto to a fixed version (0.26.0-beta.1). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0531 (CVE-2026-123591). |
-| P2 | QSI-2026-32641 | Upgrade hickory-resolver to a fixed version (0.26.2). | root-cause fix | Dependency scan no longer reports GHSA-6f2x-v7q7-m7m5 (CVE-2026-123585). |
-| P2 | QSI-2026-32658 | Upgrade opentelemetry_sdk to a fixed version (0.32.1). | root-cause fix | Dependency scan no longer reports GHSA-w9wp-h8wv-79jx (CVE-2026-48504). |
-| P2 | QSI-2026-32677 | Upgrade rustls to a fixed version (0.23.45). | root-cause fix | Dependency scan no longer reports GHSA-2mjx-qc3c-rqvc (CVE-2026-123613, RUSTSEC-2026-0285). |
-| P2 | QSI-2026-32678 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-c8m5-c952-6cm4 (CVE-2026-123609, RUSTSEC-2026-0346). |
-| P2 | QSI-2026-32653 | Upgrade openssl to a fixed version (0.10.80). | root-cause fix | Dependency scan no longer reports GHSA-phqj-4mhp-q6mq (CVE-2026-45784, RUSTSEC-2026-0477). |
-| P2 | QSI-2026-32657 | Upgrade openssl to a fixed version (0.10.79). | root-cause fix | Dependency scan no longer reports GHSA-xv59-967r-8726 (CVE-2026-44662, RUSTSEC-2026-0476). |
-| P2 | QSI-2026-32670 | Upgrade rand to a fixed version (0.10.1, 0.8.6, 0.9.3). | root-cause fix | Dependency scan no longer reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
-| P2 | QSI-2026-32655 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-xmgf-hq76-4vx2 (CVE-2026-41677, RUSTSEC-2026-0479). |
-| P2 | QSI-2026-32680 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-w44r-93j7-qv28 (CVE-2026-123611, RUSTSEC-2026-0349). |
-| P2 | QSI-2026-32679 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-h2v8-394m-p7vv (CVE-2026-123610, RUSTSEC-2026-0348). |
+| P1 | QSI-2026-44100 | Rotate and remove secrets found in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
+| P2 | QSI-2026-44198 | Upgrade rmcp to a fixed version (2.0.0). | root-cause fix | Dependency scan no longer reports GHSA-33f5-2c5q-wgwj (CVE-2026-63127). |
+| P2 | QSI-2026-44200 | Upgrade rmcp to a fixed version (2.0.0). | root-cause fix | Dependency scan no longer reports GHSA-9pj6-vhgr-3mwh (CVE-2026-63128). |
+| P2 | QSI-2026-44151 | Upgrade hickory-proto to a fixed version (0.26.0-beta.1). | root-cause fix | Dependency scan no longer reports GHSA-3v94-mw7p-v465 (CVE-2026-123607, RUSTSEC-2026-0118). |
+| P2 | QSI-2026-44158 | Upgrade hickory-proto to a fixed version (0.26.0-beta.1). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0505 (CVE-2026-123580). |
+| P2 | QSI-2026-44167 | Upgrade hickory-resolver to a fixed version (0.26.2). | root-cause fix | Dependency scan no longer reports GHSA-5j98-2g5x-46v6 (CVE-2026-93657, RUSTSEC-2026-0514). |
+| P2 | QSI-2026-44174 | Upgrade libp2p-quic to a fixed version (0.13.1). | root-cause fix | Dependency scan no longer reports GHSA-5hq8-qhww-jm7q (CVE-2026-61544, RUSTSEC-2026-0525). |
+| P2 | QSI-2026-44191 | Upgrade quinn-proto to a fixed version (0.11.18). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0340. |
+| P2 | QSI-2026-44192 | Upgrade quinn-proto to a fixed version (0.11.17). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0341. |
+| P2 | QSI-2026-44216 | Upgrade yamux to a fixed version (0.13.10). | root-cause fix | Dependency scan no longer reports GHSA-vxx9-2994-q338 (CVE-2026-32314). |
+| P2 | QSI-2026-44217 | Upgrade yamux to a fixed version (0.13.9). | root-cause fix | Dependency scan no longer reports GHSA-4w32-2493-32g7 (CVE-2026-31814). |
+| P2 | QSI-2026-44218 | Upgrade yamux to a fixed version (0.13.10). | root-cause fix | Dependency scan no longer reports GHSA-vxx9-2994-q338 (CVE-2026-32314). |
+| P2 | QSI-2026-44177 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-8c75-8mhr-p7r9 (CVE-2026-41678, RUSTSEC-2026-0463). |
+| P2 | QSI-2026-44178 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-ghm9-cr32-g9qj (CVE-2026-41681, RUSTSEC-2026-0475). |
+| P2 | QSI-2026-44179 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-hppc-g8h3-xhp3 (CVE-2026-41898, RUSTSEC-2026-0478). |
+| P2 | QSI-2026-44181 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-pqf5-4pqq-29f5 (CVE-2026-41676, RUSTSEC-2026-0473). |
+| P2 | QSI-2026-44183 | Upgrade openssl to a fixed version (0.10.79). | root-cause fix | Dependency scan no longer reports GHSA-xp3w-r5p5-63rr (CVE-2026-42327, RUSTSEC-2026-0474). |
+| P2 | QSI-2026-44171 | Upgrade jsonwebtoken to a fixed version (10.3.0). | root-cause fix | Dependency scan no longer reports GHSA-h395-gr6q-cpjc (CVE-2026-25537). |
+| P2 | QSI-2026-44199 | Upgrade rmcp to a fixed version (2.1.0). | root-cause fix | Dependency scan no longer reports GHSA-9g45-5xwm-f3wc (CVE-2026-64684). |
+| P2 | QSI-2026-44201 | Upgrade rmcp to a fixed version (2.0.0). | root-cause fix | Dependency scan no longer reports GHSA-c9xm-49cp-xcr9. |
+| P2 | QSI-2026-44202 | Upgrade rmcp to a fixed version (3.9.0). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0462. |
+| P2 | QSI-2026-44210 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-44211 | Upgrade tar to a fixed version (0.4.46). | root-cause fix | Dependency scan no longer reports GHSA-3pv8-6f4r-ffg2. |
+| P2 | QSI-2026-44141 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-44143 | Upgrade cmov to a fixed version (0.5.4). | root-cause fix | Dependency scan no longer reports GHSA-3rjw-m598-pq24 (CVE-2026-50185). |
+| P2 | QSI-2026-44152 | Upgrade hickory-proto to a fixed version (0.26.1). | root-cause fix | Dependency scan no longer reports GHSA-q2qq-hmj6-3wpp (CVE-2026-123608, RUSTSEC-2026-0119). |
+| P2 | QSI-2026-44160 | Upgrade hickory-proto to a fixed version (0.26.0-beta.1). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0512 (CVE-2026-123581). |
+| P2 | QSI-2026-44162 | Upgrade hickory-proto to a fixed version (0.26.0-beta.1). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0531 (CVE-2026-123591). |
+| P2 | QSI-2026-44168 | Upgrade hickory-resolver to a fixed version (0.26.2). | root-cause fix | Dependency scan no longer reports GHSA-6f2x-v7q7-m7m5 (CVE-2026-123585). |
+| P2 | QSI-2026-44185 | Upgrade opentelemetry_sdk to a fixed version (0.32.1). | root-cause fix | Dependency scan no longer reports GHSA-w9wp-h8wv-79jx (CVE-2026-48504). |
+| P2 | QSI-2026-44204 | Upgrade rustls to a fixed version (0.23.45). | root-cause fix | Dependency scan no longer reports GHSA-2mjx-qc3c-rqvc (CVE-2026-123613, RUSTSEC-2026-0285). |
+| P2 | QSI-2026-44205 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-c8m5-c952-6cm4 (CVE-2026-123609, RUSTSEC-2026-0346). |
+| P2 | QSI-2026-44180 | Upgrade openssl to a fixed version (0.10.80). | root-cause fix | Dependency scan no longer reports GHSA-phqj-4mhp-q6mq (CVE-2026-45784, RUSTSEC-2026-0477). |
+| P2 | QSI-2026-44184 | Upgrade openssl to a fixed version (0.10.79). | root-cause fix | Dependency scan no longer reports GHSA-xv59-967r-8726 (CVE-2026-44662, RUSTSEC-2026-0476). |
+| P2 | QSI-2026-44197 | Upgrade rand to a fixed version (0.10.1, 0.8.6, 0.9.3). | root-cause fix | Dependency scan no longer reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-44182 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-xmgf-hq76-4vx2 (CVE-2026-41677, RUSTSEC-2026-0479). |
+| P2 | QSI-2026-44207 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-w44r-93j7-qv28 (CVE-2026-123611, RUSTSEC-2026-0349). |
+| P2 | QSI-2026-44206 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-h2v8-394m-p7vv (CVE-2026-123610, RUSTSEC-2026-0348). |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P2 | QSI-2026-32592 | Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P2 | QSI-2026-32609 | Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32610 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
-| P3 | QSI-2026-32612 | Triage RUSTSEC-2025-0167; upgrade bitmaps to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2025-0167, or the triage is recorded. |
-| P3 | QSI-2026-32618 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-32619 | Triage RUSTSEC-2026-0385; upgrade ctutils to a fixed version (0.4.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0385, or the triage is recorded. |
-| P3 | QSI-2026-32621 | Triage RUSTSEC-2026-0221; upgrade event-listener to a fixed version (5.4.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0221, or the triage is recorded. |
-| P3 | QSI-2026-32622 | Triage RUSTSEC-2026-0183; upgrade git2 to a fixed version (0.21.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0183, or the triage is recorded. |
-| P3 | QSI-2026-32623 | Triage RUSTSEC-2026-0184; upgrade git2 to a fixed version (0.21.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0184, or the triage is recorded. |
-| P3 | QSI-2026-32626 | Triage RUSTSEC-2026-0487 (CVE-2026-123572); upgrade hickory-proto to a fixed version (0.26.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0487 (CVE-2026-123572), or the triage is recorded. |
-| P3 | QSI-2026-32627 | Triage RUSTSEC-2026-0489 (CVE-2026-123573); upgrade hickory-proto to a fixed version (0.26.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0489 (CVE-2026-123573), or the triage is recorded. |
-| P3 | QSI-2026-32628 | Triage RUSTSEC-2026-0490 (CVE-2026-123574); upgrade hickory-proto to a fixed version (0.26.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0490 (CVE-2026-123574), or the triage is recorded. |
-| P3 | QSI-2026-32629 | Triage RUSTSEC-2026-0491 (CVE-2026-123570); upgrade hickory-proto to a fixed version (0.26.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0491 (CVE-2026-123570), or the triage is recorded. |
-| P3 | QSI-2026-32630 | Triage RUSTSEC-2026-0504 (CVE-2026-123601); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0504 (CVE-2026-123601), or the triage is recorded. |
-| P3 | QSI-2026-32632 | Triage RUSTSEC-2026-0511 (CVE-2026-123594); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0511 (CVE-2026-123594), or the triage is recorded. |
-| P3 | QSI-2026-32634 | Triage RUSTSEC-2026-0530 (CVE-2026-123596); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0530 (CVE-2026-123596), or the triage is recorded. |
-| P3 | QSI-2026-32636 | Triage RUSTSEC-2026-0532 (CVE-2026-123595); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0532 (CVE-2026-123595), or the triage is recorded. |
-| P3 | QSI-2026-32637 | Triage RUSTSEC-2026-0549 (CVE-2026-123600); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0549 (CVE-2026-123600), or the triage is recorded. |
-| P3 | QSI-2026-32638 | Triage RUSTSEC-2026-0550 (CVE-2026-123590); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0550 (CVE-2026-123590), or the triage is recorded. |
-| P3 | QSI-2026-32639 | Triage RUSTSEC-2026-0551 (CVE-2026-123599); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0551 (CVE-2026-123599), or the triage is recorded. |
-| P3 | QSI-2026-32643 | Triage RUSTSEC-2026-0292; upgrade imbl-sized-chunks to a fixed version (0.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0292, or the triage is recorded. |
-| P3 | QSI-2026-32645 | Triage RUSTSEC-2026-0534; upgrade libp2p-gossipsub to a fixed version (0.50.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0534, or the triage is recorded. |
-| P3 | QSI-2026-32646 | Triage RUSTSEC-2026-0536 (CVE-2026-95859); upgrade libp2p-gossipsub to a fixed version (0.49.5) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0536 (CVE-2026-95859), or the triage is recorded. |
-| P3 | QSI-2026-32648 | Triage RUSTSEC-2026-0418; upgrade libz-sys to a fixed version (1.1.31) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0418, or the triage is recorded. |
-| P3 | QSI-2026-32649 | Triage RUSTSEC-2026-0253; upgrade lru to a fixed version (0.18.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0253, or the triage is recorded. |
-| P3 | QSI-2026-32662 | Triage RUSTSEC-2026-0338; upgrade quinn-proto to a fixed version (0.11.18) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0338, or the triage is recorded. |
-| P3 | QSI-2026-32663 | Triage RUSTSEC-2026-0339; upgrade quinn-proto to a fixed version (0.11.17) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0339, or the triage is recorded. |
-| P3 | QSI-2026-32666 | Triage RUSTSEC-2026-0342; upgrade quinn-proto to a fixed version (0.11.17) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0342, or the triage is recorded. |
-| P3 | QSI-2026-32667 | Triage RUSTSEC-2026-0523; upgrade quinn-proto to a fixed version (0.11.19) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0523, or the triage is recorded. |
-| P3 | QSI-2026-32668 | Triage RUSTSEC-2026-0524; upgrade quinn-proto to a fixed version (0.11.19) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0524, or the triage is recorded. |
-| P3 | QSI-2026-32669 | Triage RUSTSEC-2026-0538; upgrade quinn-udp to a fixed version (0.5.16, 0.6.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0538, or the triage is recorded. |
-| P3 | QSI-2026-32676 | Triage RUSTSEC-2026-0486; upgrade rustix to a fixed version (1.1.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0486, or the triage is recorded. |
-| P3 | QSI-2026-32682 | Triage RUSTSEC-2026-0382 (CVE-2026-111943); upgrade rustls-webpki to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0382 (CVE-2026-111943), or the triage is recorded. |
-| P3 | QSI-2026-32686 | Triage RUSTSEC-2026-0383 (CVE-2026-111943); upgrade webpki-root-certs to a fixed version (0.26.11, 1.0.10) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0383 (CVE-2026-111943), or the triage is recorded. |
-| P3 | QSI-2026-32687 | Triage RUSTSEC-2026-0381 (CVE-2026-111943); upgrade webpki-roots to a fixed version (0.26.11, 1.0.10) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0381 (CVE-2026-111943), or the triage is recorded. |
-| P3 | QSI-2026-32691 | Triage RUSTSEC-2026-0391; upgrade zstd to a fixed version (0.13.4, 0.14.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0391, or the triage is recorded. |
-| P3 | QSI-2026-32692 | Triage RUSTSEC-2026-0395; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0395, or the triage is recorded. |
-| P3 | QSI-2026-32693 | Triage RUSTSEC-2026-0396; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0396, or the triage is recorded. |
-| P3 | QSI-2026-32694 | Triage RUSTSEC-2026-0397; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0397, or the triage is recorded. |
-| P3 | QSI-2026-32695 | Triage RUSTSEC-2026-0398; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0398, or the triage is recorded. |
-| P3 | QSI-2026-32696 | Triage RUSTSEC-2026-0399; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0399, or the triage is recorded. |
-| P3 | QSI-2026-32697 | Triage RUSTSEC-2026-0400; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0400, or the triage is recorded. |
-| P3 | QSI-2026-32698 | Triage RUSTSEC-2026-0401; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0401, or the triage is recorded. |
-| P3 | QSI-2026-32699 | Triage RUSTSEC-2026-0402; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0402, or the triage is recorded. |
-| P3 | QSI-2026-32700 | Triage RUSTSEC-2026-0403; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0403, or the triage is recorded. |
-| P3 | QSI-2026-32701 | Triage RUSTSEC-2026-0404; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0404, or the triage is recorded. |
-| P3 | QSI-2026-32702 | Triage RUSTSEC-2026-0405; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0405, or the triage is recorded. |
-| P3 | QSI-2026-32703 | Triage RUSTSEC-2026-0406; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0406, or the triage is recorded. |
-| P3 | QSI-2026-32704 | Triage RUSTSEC-2026-0410; upgrade zstd-sys to a fixed version (2.1.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0410, or the triage is recorded. |
-| P3 | QSI-2026-32685 | Triage RUSTSEC-2026-0386; upgrade tokio to a fixed version (1.51.6, 1.53.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0386, or the triage is recorded. |
+| P3 | QSI-2026-44137 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
+| P3 | QSI-2026-44139 | Triage RUSTSEC-2025-0167; upgrade bitmaps to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2025-0167, or the triage is recorded. |
+| P3 | QSI-2026-44145 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
+| P3 | QSI-2026-44146 | Triage RUSTSEC-2026-0385; upgrade ctutils to a fixed version (0.4.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0385, or the triage is recorded. |
+| P3 | QSI-2026-44148 | Triage RUSTSEC-2026-0221; upgrade event-listener to a fixed version (5.4.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0221, or the triage is recorded. |
+| P3 | QSI-2026-44149 | Triage RUSTSEC-2026-0183; upgrade git2 to a fixed version (0.21.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0183, or the triage is recorded. |
+| P3 | QSI-2026-44150 | Triage RUSTSEC-2026-0184; upgrade git2 to a fixed version (0.21.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0184, or the triage is recorded. |
+| P3 | QSI-2026-44153 | Triage RUSTSEC-2026-0487 (CVE-2026-123572); upgrade hickory-proto to a fixed version (0.26.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0487 (CVE-2026-123572), or the triage is recorded. |
+| P3 | QSI-2026-44154 | Triage RUSTSEC-2026-0489 (CVE-2026-123573); upgrade hickory-proto to a fixed version (0.26.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0489 (CVE-2026-123573), or the triage is recorded. |
+| P3 | QSI-2026-44155 | Triage RUSTSEC-2026-0490 (CVE-2026-123574); upgrade hickory-proto to a fixed version (0.26.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0490 (CVE-2026-123574), or the triage is recorded. |
+| P3 | QSI-2026-44156 | Triage RUSTSEC-2026-0491 (CVE-2026-123570); upgrade hickory-proto to a fixed version (0.26.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0491 (CVE-2026-123570), or the triage is recorded. |
+| P3 | QSI-2026-44157 | Triage RUSTSEC-2026-0504 (CVE-2026-123601); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0504 (CVE-2026-123601), or the triage is recorded. |
+| P3 | QSI-2026-44159 | Triage RUSTSEC-2026-0511 (CVE-2026-123594); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0511 (CVE-2026-123594), or the triage is recorded. |
+| P3 | QSI-2026-44161 | Triage RUSTSEC-2026-0530 (CVE-2026-123596); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0530 (CVE-2026-123596), or the triage is recorded. |
+| P3 | QSI-2026-44163 | Triage RUSTSEC-2026-0532 (CVE-2026-123595); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0532 (CVE-2026-123595), or the triage is recorded. |
+| P3 | QSI-2026-44164 | Triage RUSTSEC-2026-0549 (CVE-2026-123600); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0549 (CVE-2026-123600), or the triage is recorded. |
+| P3 | QSI-2026-44165 | Triage RUSTSEC-2026-0550 (CVE-2026-123590); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0550 (CVE-2026-123590), or the triage is recorded. |
+| P3 | QSI-2026-44166 | Triage RUSTSEC-2026-0551 (CVE-2026-123599); upgrade hickory-proto to a fixed version (0.26.0-beta.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0551 (CVE-2026-123599), or the triage is recorded. |
+| P3 | QSI-2026-44170 | Triage RUSTSEC-2026-0292; upgrade imbl-sized-chunks to a fixed version (0.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0292, or the triage is recorded. |
+| P3 | QSI-2026-44172 | Triage RUSTSEC-2026-0534; upgrade libp2p-gossipsub to a fixed version (0.50.1) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0534, or the triage is recorded. |
+| P3 | QSI-2026-44173 | Triage RUSTSEC-2026-0536 (CVE-2026-95859); upgrade libp2p-gossipsub to a fixed version (0.49.5) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0536 (CVE-2026-95859), or the triage is recorded. |
+| P3 | QSI-2026-44175 | Triage RUSTSEC-2026-0418; upgrade libz-sys to a fixed version (1.1.31) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0418, or the triage is recorded. |
+| P3 | QSI-2026-44176 | Triage RUSTSEC-2026-0253; upgrade lru to a fixed version (0.18.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0253, or the triage is recorded. |
+| P3 | QSI-2026-44189 | Triage RUSTSEC-2026-0338; upgrade quinn-proto to a fixed version (0.11.18) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0338, or the triage is recorded. |
+| P3 | QSI-2026-44190 | Triage RUSTSEC-2026-0339; upgrade quinn-proto to a fixed version (0.11.17) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0339, or the triage is recorded. |
+| P3 | QSI-2026-44193 | Triage RUSTSEC-2026-0342; upgrade quinn-proto to a fixed version (0.11.17) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0342, or the triage is recorded. |
+| P3 | QSI-2026-44194 | Triage RUSTSEC-2026-0523; upgrade quinn-proto to a fixed version (0.11.19) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0523, or the triage is recorded. |
+| P3 | QSI-2026-44195 | Triage RUSTSEC-2026-0524; upgrade quinn-proto to a fixed version (0.11.19) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0524, or the triage is recorded. |
+| P3 | QSI-2026-44196 | Triage RUSTSEC-2026-0538; upgrade quinn-udp to a fixed version (0.5.16, 0.6.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0538, or the triage is recorded. |
+| P3 | QSI-2026-44203 | Triage RUSTSEC-2026-0486; upgrade rustix to a fixed version (1.1.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0486, or the triage is recorded. |
+| P3 | QSI-2026-44209 | Triage RUSTSEC-2026-0382 (CVE-2026-111943); upgrade rustls-webpki to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0382 (CVE-2026-111943), or the triage is recorded. |
+| P3 | QSI-2026-44213 | Triage RUSTSEC-2026-0592; upgrade url to a fixed version (2.5.9) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0592, or the triage is recorded. |
+| P3 | QSI-2026-44214 | Triage RUSTSEC-2026-0383 (CVE-2026-111943); upgrade webpki-root-certs to a fixed version (0.26.11, 1.0.10) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0383 (CVE-2026-111943), or the triage is recorded. |
+| P3 | QSI-2026-44215 | Triage RUSTSEC-2026-0381 (CVE-2026-111943); upgrade webpki-roots to a fixed version (0.26.11, 1.0.10) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0381 (CVE-2026-111943), or the triage is recorded. |
+| P3 | QSI-2026-44219 | Triage RUSTSEC-2026-0391; upgrade zstd to a fixed version (0.13.4, 0.14.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0391, or the triage is recorded. |
+| P3 | QSI-2026-44220 | Triage RUSTSEC-2026-0395; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0395, or the triage is recorded. |
+| P3 | QSI-2026-44221 | Triage RUSTSEC-2026-0396; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0396, or the triage is recorded. |
+| P3 | QSI-2026-44222 | Triage RUSTSEC-2026-0397; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0397, or the triage is recorded. |
+| P3 | QSI-2026-44223 | Triage RUSTSEC-2026-0398; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0398, or the triage is recorded. |
+| P3 | QSI-2026-44224 | Triage RUSTSEC-2026-0399; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0399, or the triage is recorded. |
+| P3 | QSI-2026-44225 | Triage RUSTSEC-2026-0400; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0400, or the triage is recorded. |
+| P3 | QSI-2026-44226 | Triage RUSTSEC-2026-0401; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0401, or the triage is recorded. |
+| P3 | QSI-2026-44227 | Triage RUSTSEC-2026-0402; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0402, or the triage is recorded. |
+| P3 | QSI-2026-44228 | Triage RUSTSEC-2026-0403; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0403, or the triage is recorded. |
+| P3 | QSI-2026-44229 | Triage RUSTSEC-2026-0404; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0404, or the triage is recorded. |
+| P3 | QSI-2026-44230 | Triage RUSTSEC-2026-0405; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0405, or the triage is recorded. |
+| P3 | QSI-2026-44231 | Triage RUSTSEC-2026-0406; upgrade zstd-safe to a fixed version (7.4.0, 8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0406, or the triage is recorded. |
+| P3 | QSI-2026-44232 | Triage RUSTSEC-2026-0410; upgrade zstd-sys to a fixed version (2.1.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0410, or the triage is recorded. |
+| P3 | QSI-2026-44212 | Triage RUSTSEC-2026-0386; upgrade tokio to a fixed version (1.51.6, 1.53.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0386, or the triage is recorded. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-32552 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-32553 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-32551 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-32554 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-32542 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32555 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32558 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32559 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32569 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32571 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32574 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32585 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32586 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32587 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32588 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-32593 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32552 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-32553 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-32551 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-32554 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-32543 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32544 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32545 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32546 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32547 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32548 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32549 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32550 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32556 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32557 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32560 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32561 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32562 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32563 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32564 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32565 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32566 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32567 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32568 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32572 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32573 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32576 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32577 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32578 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32579 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32580 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32581 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32582 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32583 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32584 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32589 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32590 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32594 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32595 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32597 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32598 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32599 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32600 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32601 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32602 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32603 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32604 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32605 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32606 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32607 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-32615 | Replace chrono with a maintained alternative or record why it stays. | root-cause fix | chrono replaced, or the decision recorded. |
-| P4 | QSI-2026-32642 | Replace humantime with a maintained alternative or record why it stays. | root-cause fix | humantime replaced, or the decision recorded. |
-| P4 | QSI-2026-32705 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
-| P4 | QSI-2026-32706 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
-| P4 | QSI-2026-32611 | Replace bincode with a maintained alternative or record why it stays. | root-cause fix | bincode replaced, or the decision recorded. |
-| P4 | QSI-2026-32613 | Replace bitmaps with a maintained alternative or record why it stays. | root-cause fix | bitmaps replaced, or the decision recorded. |
-| P4 | QSI-2026-32617 | Replace core2 with a maintained alternative or record why it stays. | root-cause fix | core2 replaced, or the decision recorded. |
-| P4 | QSI-2026-32620 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
-| P4 | QSI-2026-32659 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
-| P4 | QSI-2026-32660 | Replace pin-utils with a maintained alternative or record why it stays. | root-cause fix | pin-utils replaced, or the decision recorded. |
-| P4 | QSI-2026-32661 | Replace proc-macro-error2 with a maintained alternative or record why it stays. | root-cause fix | proc-macro-error2 replaced, or the decision recorded. |
-| P4 | QSI-2026-32681 | Replace rustls-pemfile with a maintained alternative or record why it stays. | root-cause fix | rustls-pemfile replaced, or the decision recorded. |
+| P3 | QSI-2026-44083 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44084 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44072 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44082 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44073 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P3 | QSI-2026-44101 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-44083 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44084 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44072 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44082 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44074 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44075 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44076 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44077 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44078 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44079 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44080 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44081 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44086 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44087 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44090 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44091 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44092 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44093 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44094 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44095 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44096 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44097 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44098 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44103 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44104 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44106 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44107 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44108 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44109 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44110 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44111 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44112 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44113 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44114 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44119 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44120 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44123 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44124 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44125 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44126 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44127 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44128 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44129 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44130 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44131 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44132 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44133 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44134 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44135 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44121 | Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44136 | Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44085 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44088 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44089 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44099 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44102 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44105 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44115 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44116 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44117 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44118 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44122 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
+| P4 | QSI-2026-44101 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44142 | Replace chrono with a maintained alternative or record why it stays. | root-cause fix | chrono replaced, or the decision recorded. |
+| P4 | QSI-2026-44169 | Replace humantime with a maintained alternative or record why it stays. | root-cause fix | humantime replaced, or the decision recorded. |
+| P4 | QSI-2026-44233 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
+| P4 | QSI-2026-44234 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
+| P4 | QSI-2026-44138 | Replace bincode with a maintained alternative or record why it stays. | root-cause fix | bincode replaced, or the decision recorded. |
+| P4 | QSI-2026-44140 | Replace bitmaps with a maintained alternative or record why it stays. | root-cause fix | bitmaps replaced, or the decision recorded. |
+| P4 | QSI-2026-44144 | Replace core2 with a maintained alternative or record why it stays. | root-cause fix | core2 replaced, or the decision recorded. |
+| P4 | QSI-2026-44147 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
+| P4 | QSI-2026-44186 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
+| P4 | QSI-2026-44187 | Replace pin-utils with a maintained alternative or record why it stays. | root-cause fix | pin-utils replaced, or the decision recorded. |
+| P4 | QSI-2026-44188 | Replace proc-macro-error2 with a maintained alternative or record why it stays. | root-cause fix | proc-macro-error2 replaced, or the decision recorded. |
+| P4 | QSI-2026-44208 | Replace rustls-pemfile with a maintained alternative or record why it stays. | root-cause fix | rustls-pemfile replaced, or the decision recorded. |
 
 ## 11. Tools used
 
@@ -6993,144 +7027,148 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.0.0
-- dependencies 1.4.2
+- crediting 1.3.0
+- dependencies 1.4.4
 - hndl 1.0.0
 - inventory_document 1.1.0
 - mpc 1.0.0
-- solidity 1.5.0
-- source_code 1.5.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
+- validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.6.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
 
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
-3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-4. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-5. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-6. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-7. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-8. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-9. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-10. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-11. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-12. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-13. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
-18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-19. OSV advisory GHSA-2mjx-qc3c-rqvc — OSV.dev. <https://osv.dev/vulnerability/GHSA-2mjx-qc3c-rqvc> (modified 2026-11-08T10:55:54.395419388Z)
-20. OSV advisory GHSA-33f5-2c5q-wgwj — OSV.dev. <https://osv.dev/vulnerability/GHSA-33f5-2c5q-wgwj> (modified 2026-09-16T22:30:08.107391372Z)
-21. OSV advisory GHSA-3pv8-6f4r-ffg2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3pv8-6f4r-ffg2> (modified 2026-09-10T03:51:04.454810375Z)
-22. OSV advisory GHSA-3rjw-m598-pq24 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3rjw-m598-pq24> (modified 2026-09-10T03:51:10.250390903Z)
-23. OSV advisory GHSA-3v94-mw7p-v465 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3v94-mw7p-v465> (modified 2026-11-08T10:55:55.393700581Z)
-24. OSV advisory GHSA-4w32-2493-32g7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4w32-2493-32g7> (modified 2026-03-16T17:16:28.081446Z)
-25. OSV advisory GHSA-5hq8-qhww-jm7q — OSV.dev. <https://osv.dev/vulnerability/GHSA-5hq8-qhww-jm7q> (modified 2026-11-13T12:56:08.635291670Z)
-26. OSV advisory GHSA-5j98-2g5x-46v6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-5j98-2g5x-46v6> (modified 2026-11-12T14:40:54.257337988Z)
-27. OSV advisory GHSA-6f2x-v7q7-m7m5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-6f2x-v7q7-m7m5> (modified 2026-11-08T10:56:17.173884253Z)
-28. OSV advisory GHSA-7gcf-g7xr-8hxj — OSV.dev. <https://osv.dev/vulnerability/GHSA-7gcf-g7xr-8hxj> (modified 2026-09-10T03:51:10.897685062Z)
-29. OSV advisory GHSA-8c75-8mhr-p7r9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8c75-8mhr-p7r9> (modified 2026-11-09T16:26:14.394973598Z)
-30. OSV advisory GHSA-9g45-5xwm-f3wc — OSV.dev. <https://osv.dev/vulnerability/GHSA-9g45-5xwm-f3wc> (modified 2026-09-17T16:45:06.215938994Z)
-31. OSV advisory GHSA-9pj6-vhgr-3mwh — OSV.dev. <https://osv.dev/vulnerability/GHSA-9pj6-vhgr-3mwh> (modified 2026-09-16T22:30:08.343637534Z)
-32. OSV advisory GHSA-c8m5-c952-6cm4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4> (modified 2026-11-08T10:55:36.514447652Z)
-33. OSV advisory GHSA-c9xm-49cp-xcr9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c9xm-49cp-xcr9> (modified 2026-11-09T10:11:52.549680069Z)
-34. OSV advisory GHSA-cq8v-f236-94qc — OSV.dev. <https://osv.dev/vulnerability/GHSA-cq8v-f236-94qc> (modified 2026-09-10T03:50:43.958966498Z)
-35. OSV advisory GHSA-ghm9-cr32-g9qj — OSV.dev. <https://osv.dev/vulnerability/GHSA-ghm9-cr32-g9qj> (modified 2026-11-10T14:10:39.444799345Z)
-36. OSV advisory GHSA-h2v8-394m-p7vv — OSV.dev. <https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv> (modified 2026-11-08T10:55:59.261359726Z)
-37. OSV advisory GHSA-h395-gr6q-cpjc — OSV.dev. <https://osv.dev/vulnerability/GHSA-h395-gr6q-cpjc> (modified 2026-09-10T03:50:35.169824826Z)
-38. OSV advisory GHSA-hppc-g8h3-xhp3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-hppc-g8h3-xhp3> (modified 2026-11-10T14:10:47.500432370Z)
-39. OSV advisory GHSA-phqj-4mhp-q6mq — OSV.dev. <https://osv.dev/vulnerability/GHSA-phqj-4mhp-q6mq> (modified 2026-11-10T14:10:52.035417381Z)
-40. OSV advisory GHSA-pqf5-4pqq-29f5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-pqf5-4pqq-29f5> (modified 2026-11-10T14:10:59.704101108Z)
-41. OSV advisory GHSA-q2qq-hmj6-3wpp — OSV.dev. <https://osv.dev/vulnerability/GHSA-q2qq-hmj6-3wpp> (modified 2026-11-08T10:56:05.969001606Z)
-42. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-10-30T15:45:11.580215361Z)
-43. OSV advisory GHSA-vxx9-2994-q338 — OSV.dev. <https://osv.dev/vulnerability/GHSA-vxx9-2994-q338> (modified 2026-03-16T22:16:17.324879Z)
-44. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-11-08T10:55:46.312019109Z)
-45. OSV advisory GHSA-w9wp-h8wv-79jx — OSV.dev. <https://osv.dev/vulnerability/GHSA-w9wp-h8wv-79jx> (modified 2026-09-10T03:50:50.807599062Z)
-46. OSV advisory GHSA-xmgf-hq76-4vx2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xmgf-hq76-4vx2> (modified 2026-11-10T14:10:37.732358174Z)
-47. OSV advisory GHSA-xp3w-r5p5-63rr — OSV.dev. <https://osv.dev/vulnerability/GHSA-xp3w-r5p5-63rr> (modified 2026-11-10T14:10:43.787985131Z)
-48. OSV advisory GHSA-xv59-967r-8726 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xv59-967r-8726> (modified 2026-11-10T14:11:00.353842596Z)
-49. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
-50. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
-51. OSV advisory RUSTSEC-2025-0134 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0134> (modified 2025-12-05T19:07:59.622592Z)
-52. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
-53. OSV advisory RUSTSEC-2025-0167 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0167> (modified 2026-08-10T19:45:04.530683607Z)
-54. OSV advisory RUSTSEC-2026-0105 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0105> (modified 2026-04-25T15:15:06.139681Z)
-55. OSV advisory RUSTSEC-2026-0173 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0173> (modified 2026-06-07T21:00:04.318567692Z)
-56. OSV advisory RUSTSEC-2026-0183 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0183> (modified 2026-06-17T13:00:04.696626611Z)
-57. OSV advisory RUSTSEC-2026-0184 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0184> (modified 2026-06-17T14:00:05.672935662Z)
-58. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
-59. OSV advisory RUSTSEC-2026-0221 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0221> (modified 2026-07-31T12:15:04.629484145Z)
-60. OSV advisory RUSTSEC-2026-0247 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0247> (modified 2026-08-10T19:45:04.540318330Z)
-61. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
-62. OSV advisory RUSTSEC-2026-0292 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0292> (modified 2026-09-21T09:15:02.898993962Z)
-63. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
-64. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
-65. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
-66. OSV advisory RUSTSEC-2026-0341 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0341> (modified 2026-10-12T18:15:01.969505433Z)
-67. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
-68. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
-69. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
-70. OSV advisory RUSTSEC-2026-0383 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0383> (modified 2026-10-29T10:55:54.096394276Z)
-71. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
-72. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
-73. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-74. OSV advisory RUSTSEC-2026-0391 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0391> (modified 2026-11-02T09:30:03.590733846Z)
-75. OSV advisory RUSTSEC-2026-0395 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0395> (modified 2026-11-02T09:30:03.420559993Z)
-76. OSV advisory RUSTSEC-2026-0396 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0396> (modified 2026-11-02T09:30:03.400899521Z)
-77. OSV advisory RUSTSEC-2026-0397 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0397> (modified 2026-11-02T09:30:03.445177143Z)
-78. OSV advisory RUSTSEC-2026-0398 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0398> (modified 2026-11-02T09:30:03.419709171Z)
-79. OSV advisory RUSTSEC-2026-0399 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0399> (modified 2026-11-02T09:30:03.328955732Z)
-80. OSV advisory RUSTSEC-2026-0400 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0400> (modified 2026-11-02T09:30:03.428341570Z)
-81. OSV advisory RUSTSEC-2026-0401 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0401> (modified 2026-11-02T09:30:03.353698025Z)
-82. OSV advisory RUSTSEC-2026-0402 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0402> (modified 2026-11-02T09:30:04.162155944Z)
-83. OSV advisory RUSTSEC-2026-0403 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0403> (modified 2026-11-02T09:30:04.136442771Z)
-84. OSV advisory RUSTSEC-2026-0404 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0404> (modified 2026-11-02T09:30:04.168804805Z)
-85. OSV advisory RUSTSEC-2026-0405 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0405> (modified 2026-11-02T09:30:03.399517581Z)
-86. OSV advisory RUSTSEC-2026-0406 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0406> (modified 2026-11-02T09:30:03.591194710Z)
-87. OSV advisory RUSTSEC-2026-0410 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0410> (modified 2026-10-26T14:00:05.788985783Z)
-88. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
-89. OSV advisory RUSTSEC-2026-0441 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0441> (modified 2026-11-05T09:00:02.627533155Z)
-90. OSV advisory RUSTSEC-2026-0462 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0462> (modified 2026-11-09T10:30:02.590803911Z)
-91. OSV advisory RUSTSEC-2026-0486 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0486> (modified 2026-11-11T08:45:02.466292839Z)
-92. OSV advisory RUSTSEC-2026-0487 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0487> (modified 2026-11-12T09:45:02.502326297Z)
-93. OSV advisory RUSTSEC-2026-0489 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0489> (modified 2026-11-12T09:45:02.524857780Z)
-94. OSV advisory RUSTSEC-2026-0490 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0490> (modified 2026-11-12T09:31:57Z)
-95. OSV advisory RUSTSEC-2026-0491 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0491> (modified 2026-11-12T09:45:02.494262633Z)
-96. OSV advisory RUSTSEC-2026-0504 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0504> (modified 2026-11-12T14:10:49.815536430Z)
-97. OSV advisory RUSTSEC-2026-0505 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0505> (modified 2026-11-12T14:10:38.251619656Z)
-98. OSV advisory RUSTSEC-2026-0511 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0511> (modified 2026-11-12T14:40:42.050905197Z)
-99. OSV advisory RUSTSEC-2026-0512 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0512> (modified 2026-11-12T14:40:54.645975781Z)
-100. OSV advisory RUSTSEC-2026-0523 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0523> (modified 2026-11-13T12:45:04.789912316Z)
-101. OSV advisory RUSTSEC-2026-0524 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0524> (modified 2026-11-13T12:45:06.127108520Z)
-102. OSV advisory RUSTSEC-2026-0530 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0530> (modified 2026-11-13T12:55:36.653610929Z)
-103. OSV advisory RUSTSEC-2026-0531 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0531> (modified 2026-11-13T12:55:54.316294846Z)
-104. OSV advisory RUSTSEC-2026-0532 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0532> (modified 2026-11-13T12:55:46.260287377Z)
-105. OSV advisory RUSTSEC-2026-0534 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0534> (modified 2026-11-13T12:45:07.339789114Z)
-106. OSV advisory RUSTSEC-2026-0536 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0536> (modified 2026-11-13T12:45:02.747808849Z)
-107. OSV advisory RUSTSEC-2026-0538 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0538> (modified 2026-11-13T12:45:08.844283231Z)
-108. OSV advisory RUSTSEC-2026-0542 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0542> (modified 2026-11-17T10:15:02.347148964Z)
-109. OSV advisory RUSTSEC-2026-0543 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0543> (modified 2026-11-17T10:15:02.344223779Z)
-110. OSV advisory RUSTSEC-2026-0549 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0549> (modified 2026-11-17T10:25:34.470342084Z)
-111. OSV advisory RUSTSEC-2026-0550 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0550> (modified 2026-11-17T10:25:41.214979058Z)
-112. OSV advisory RUSTSEC-2026-0551 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0551> (modified 2026-11-17T10:25:38.558562434Z)
-113. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-114. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
-115. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-116. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-117. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
-118. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
+3. C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917) — arXiv. <https://arxiv.org/abs/2505.15917> (preprint (2025-05-21): < 1 million noisy qubits, < 1 week, 0.1% gate error, 1 µs surface-code cycle)
+4. C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <https://doi.org/10.22331/q-2021-04-15-433> (peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)
+5. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
+6. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+7. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+8. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+9. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+10. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+11. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+12. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+13. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+14. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+15. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+16. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+17. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+18. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+21. OSV advisory GHSA-2mjx-qc3c-rqvc — OSV.dev. <https://osv.dev/vulnerability/GHSA-2mjx-qc3c-rqvc> (modified 2026-11-08T10:55:54.395419388Z)
+22. OSV advisory GHSA-33f5-2c5q-wgwj — OSV.dev. <https://osv.dev/vulnerability/GHSA-33f5-2c5q-wgwj> (modified 2026-09-16T22:30:08.107391372Z)
+23. OSV advisory GHSA-3pv8-6f4r-ffg2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3pv8-6f4r-ffg2> (modified 2026-09-10T03:51:04.454810375Z)
+24. OSV advisory GHSA-3rjw-m598-pq24 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3rjw-m598-pq24> (modified 2026-09-10T03:51:10.250390903Z)
+25. OSV advisory GHSA-3v94-mw7p-v465 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3v94-mw7p-v465> (modified 2026-11-08T10:55:55.393700581Z)
+26. OSV advisory GHSA-4w32-2493-32g7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4w32-2493-32g7> (modified 2026-03-16T17:16:28.081446Z)
+27. OSV advisory GHSA-5hq8-qhww-jm7q — OSV.dev. <https://osv.dev/vulnerability/GHSA-5hq8-qhww-jm7q> (modified 2026-11-13T12:56:08.635291670Z)
+28. OSV advisory GHSA-5j98-2g5x-46v6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-5j98-2g5x-46v6> (modified 2026-11-12T14:40:54.257337988Z)
+29. OSV advisory GHSA-6f2x-v7q7-m7m5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-6f2x-v7q7-m7m5> (modified 2026-11-08T10:56:17.173884253Z)
+30. OSV advisory GHSA-7gcf-g7xr-8hxj — OSV.dev. <https://osv.dev/vulnerability/GHSA-7gcf-g7xr-8hxj> (modified 2026-09-10T03:51:10.897685062Z)
+31. OSV advisory GHSA-8c75-8mhr-p7r9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8c75-8mhr-p7r9> (modified 2026-11-09T16:26:14.394973598Z)
+32. OSV advisory GHSA-9g45-5xwm-f3wc — OSV.dev. <https://osv.dev/vulnerability/GHSA-9g45-5xwm-f3wc> (modified 2026-09-17T16:45:06.215938994Z)
+33. OSV advisory GHSA-9pj6-vhgr-3mwh — OSV.dev. <https://osv.dev/vulnerability/GHSA-9pj6-vhgr-3mwh> (modified 2026-09-16T22:30:08.343637534Z)
+34. OSV advisory GHSA-c8m5-c952-6cm4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4> (modified 2026-11-08T10:55:36.514447652Z)
+35. OSV advisory GHSA-c9xm-49cp-xcr9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c9xm-49cp-xcr9> (modified 2026-11-09T10:11:52.549680069Z)
+36. OSV advisory GHSA-cq8v-f236-94qc — OSV.dev. <https://osv.dev/vulnerability/GHSA-cq8v-f236-94qc> (modified 2026-09-10T03:50:43.958966498Z)
+37. OSV advisory GHSA-ghm9-cr32-g9qj — OSV.dev. <https://osv.dev/vulnerability/GHSA-ghm9-cr32-g9qj> (modified 2026-11-10T14:10:39.444799345Z)
+38. OSV advisory GHSA-h2v8-394m-p7vv — OSV.dev. <https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv> (modified 2026-11-08T10:55:59.261359726Z)
+39. OSV advisory GHSA-h395-gr6q-cpjc — OSV.dev. <https://osv.dev/vulnerability/GHSA-h395-gr6q-cpjc> (modified 2026-09-10T03:50:35.169824826Z)
+40. OSV advisory GHSA-hppc-g8h3-xhp3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-hppc-g8h3-xhp3> (modified 2026-11-10T14:10:47.500432370Z)
+41. OSV advisory GHSA-phqj-4mhp-q6mq — OSV.dev. <https://osv.dev/vulnerability/GHSA-phqj-4mhp-q6mq> (modified 2026-11-10T14:10:52.035417381Z)
+42. OSV advisory GHSA-pqf5-4pqq-29f5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-pqf5-4pqq-29f5> (modified 2026-11-10T14:10:59.704101108Z)
+43. OSV advisory GHSA-q2qq-hmj6-3wpp — OSV.dev. <https://osv.dev/vulnerability/GHSA-q2qq-hmj6-3wpp> (modified 2026-11-08T10:56:05.969001606Z)
+44. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-10-30T15:45:11.580215361Z)
+45. OSV advisory GHSA-vxx9-2994-q338 — OSV.dev. <https://osv.dev/vulnerability/GHSA-vxx9-2994-q338> (modified 2026-03-16T22:16:17.324879Z)
+46. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-11-08T10:55:46.312019109Z)
+47. OSV advisory GHSA-w9wp-h8wv-79jx — OSV.dev. <https://osv.dev/vulnerability/GHSA-w9wp-h8wv-79jx> (modified 2026-09-10T03:50:50.807599062Z)
+48. OSV advisory GHSA-xmgf-hq76-4vx2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xmgf-hq76-4vx2> (modified 2026-11-10T14:10:37.732358174Z)
+49. OSV advisory GHSA-xp3w-r5p5-63rr — OSV.dev. <https://osv.dev/vulnerability/GHSA-xp3w-r5p5-63rr> (modified 2026-11-10T14:10:43.787985131Z)
+50. OSV advisory GHSA-xv59-967r-8726 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xv59-967r-8726> (modified 2026-11-10T14:11:00.353842596Z)
+51. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
+52. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
+53. OSV advisory RUSTSEC-2025-0134 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0134> (modified 2025-12-05T19:07:59.622592Z)
+54. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
+55. OSV advisory RUSTSEC-2025-0167 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0167> (modified 2026-08-10T19:45:04.530683607Z)
+56. OSV advisory RUSTSEC-2026-0105 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0105> (modified 2026-04-25T15:15:06.139681Z)
+57. OSV advisory RUSTSEC-2026-0173 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0173> (modified 2026-06-07T21:00:04.318567692Z)
+58. OSV advisory RUSTSEC-2026-0183 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0183> (modified 2026-06-17T13:00:04.696626611Z)
+59. OSV advisory RUSTSEC-2026-0184 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0184> (modified 2026-06-17T14:00:05.672935662Z)
+60. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
+61. OSV advisory RUSTSEC-2026-0221 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0221> (modified 2026-07-31T12:15:04.629484145Z)
+62. OSV advisory RUSTSEC-2026-0247 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0247> (modified 2026-08-10T19:45:04.540318330Z)
+63. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
+64. OSV advisory RUSTSEC-2026-0292 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0292> (modified 2026-09-21T09:15:02.898993962Z)
+65. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
+66. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
+67. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
+68. OSV advisory RUSTSEC-2026-0341 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0341> (modified 2026-10-12T18:15:01.969505433Z)
+69. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
+70. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
+71. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
+72. OSV advisory RUSTSEC-2026-0383 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0383> (modified 2026-10-29T10:55:54.096394276Z)
+73. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
+74. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
+75. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+76. OSV advisory RUSTSEC-2026-0391 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0391> (modified 2026-11-02T09:30:03.590733846Z)
+77. OSV advisory RUSTSEC-2026-0395 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0395> (modified 2026-11-02T09:30:03.420559993Z)
+78. OSV advisory RUSTSEC-2026-0396 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0396> (modified 2026-11-02T09:30:03.400899521Z)
+79. OSV advisory RUSTSEC-2026-0397 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0397> (modified 2026-11-02T09:30:03.445177143Z)
+80. OSV advisory RUSTSEC-2026-0398 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0398> (modified 2026-11-02T09:30:03.419709171Z)
+81. OSV advisory RUSTSEC-2026-0399 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0399> (modified 2026-11-02T09:30:03.328955732Z)
+82. OSV advisory RUSTSEC-2026-0400 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0400> (modified 2026-11-02T09:30:03.428341570Z)
+83. OSV advisory RUSTSEC-2026-0401 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0401> (modified 2026-11-02T09:30:03.353698025Z)
+84. OSV advisory RUSTSEC-2026-0402 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0402> (modified 2026-11-02T09:30:04.162155944Z)
+85. OSV advisory RUSTSEC-2026-0403 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0403> (modified 2026-11-02T09:30:04.136442771Z)
+86. OSV advisory RUSTSEC-2026-0404 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0404> (modified 2026-11-02T09:30:04.168804805Z)
+87. OSV advisory RUSTSEC-2026-0405 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0405> (modified 2026-11-02T09:30:03.399517581Z)
+88. OSV advisory RUSTSEC-2026-0406 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0406> (modified 2026-11-02T09:30:03.591194710Z)
+89. OSV advisory RUSTSEC-2026-0410 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0410> (modified 2026-10-26T14:00:05.788985783Z)
+90. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
+91. OSV advisory RUSTSEC-2026-0441 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0441> (modified 2026-11-05T09:00:02.627533155Z)
+92. OSV advisory RUSTSEC-2026-0462 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0462> (modified 2026-11-09T10:30:02.590803911Z)
+93. OSV advisory RUSTSEC-2026-0486 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0486> (modified 2026-11-11T08:45:02.466292839Z)
+94. OSV advisory RUSTSEC-2026-0487 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0487> (modified 2026-11-12T09:45:02.502326297Z)
+95. OSV advisory RUSTSEC-2026-0489 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0489> (modified 2026-11-12T09:45:02.524857780Z)
+96. OSV advisory RUSTSEC-2026-0490 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0490> (modified 2026-11-12T09:31:57Z)
+97. OSV advisory RUSTSEC-2026-0491 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0491> (modified 2026-11-12T09:45:02.494262633Z)
+98. OSV advisory RUSTSEC-2026-0504 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0504> (modified 2026-11-12T14:10:49.815536430Z)
+99. OSV advisory RUSTSEC-2026-0505 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0505> (modified 2026-11-12T14:10:38.251619656Z)
+100. OSV advisory RUSTSEC-2026-0511 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0511> (modified 2026-11-12T14:40:42.050905197Z)
+101. OSV advisory RUSTSEC-2026-0512 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0512> (modified 2026-11-12T14:40:54.645975781Z)
+102. OSV advisory RUSTSEC-2026-0523 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0523> (modified 2026-11-13T12:45:04.789912316Z)
+103. OSV advisory RUSTSEC-2026-0524 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0524> (modified 2026-11-13T12:45:06.127108520Z)
+104. OSV advisory RUSTSEC-2026-0530 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0530> (modified 2026-11-13T12:55:36.653610929Z)
+105. OSV advisory RUSTSEC-2026-0531 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0531> (modified 2026-11-13T12:55:54.316294846Z)
+106. OSV advisory RUSTSEC-2026-0532 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0532> (modified 2026-11-13T12:55:46.260287377Z)
+107. OSV advisory RUSTSEC-2026-0534 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0534> (modified 2026-11-13T12:45:07.339789114Z)
+108. OSV advisory RUSTSEC-2026-0536 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0536> (modified 2026-11-13T12:45:02.747808849Z)
+109. OSV advisory RUSTSEC-2026-0538 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0538> (modified 2026-11-13T12:45:08.844283231Z)
+110. OSV advisory RUSTSEC-2026-0542 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0542> (modified 2026-11-17T10:15:02.347148964Z)
+111. OSV advisory RUSTSEC-2026-0543 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0543> (modified 2026-11-17T10:15:02.344223779Z)
+112. OSV advisory RUSTSEC-2026-0549 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0549> (modified 2026-11-17T10:25:34.470342084Z)
+113. OSV advisory RUSTSEC-2026-0550 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0550> (modified 2026-11-17T10:25:41.214979058Z)
+114. OSV advisory RUSTSEC-2026-0551 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0551> (modified 2026-11-17T10:25:38.558562434Z)
+115. OSV advisory RUSTSEC-2026-0592 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0592> (modified 2026-11-22T10:00:02.260974192Z)
+116. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+117. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+118. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+119. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+120. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+121. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
 
 ## Appendices: Cryptographic inventory
 
-By origin: dependency manifests 86 (0 Shor-breakable) · own code 34 (12 Shor-breakable) · third-party code in the tree 68 (2 Shor-breakable).
+By origin: dependency manifests 86 (0 Shor-breakable) · own code 34 (12 Shor-breakable) · third-party code in the tree 103 (37 Shor-breakable).
 
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
@@ -7152,8 +7190,8 @@ By origin: dependency manifests 86 (0 Shor-breakable) · own code 34 (12 Shor-br
 | Crypto library | 0.13 | k256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | Cargo.toml |
 | Crypto library | 0.30 | secp256k1 (secp256k1 bindings) | n/a | acceptable | 1 | 1 | Cargo.toml |
 | Crypto library | 2.0 | ed25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | Cargo.toml |
-| Crypto library | 1.2.0 | @noble/hashes (noble-hashes) | n/a | acceptable | 4 | 4 | contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; contracts/lib/openzeppelin-contracts-upgradeable/package-lock.json; contracts/lib/openzeppelin-contracts/package-lock.json |
 | Crypto library | 1.2.0 | @noble/curves (noble-curves) | n/a | acceptable | 4 | 4 | contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; contracts/lib/openzeppelin-contracts-upgradeable/package-lock.json; contracts/lib/openzeppelin-contracts/package-lock.json |
+| Crypto library | 1.2.0 | @noble/hashes (noble-hashes) | n/a | acceptable | 4 | 4 | contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; contracts/lib/openzeppelin-contracts-upgradeable/package-lock.json; contracts/lib/openzeppelin-contracts/package-lock.json |
 | Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | n/a | acceptable | 4 | 4 | contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; contracts/lib/openzeppelin-contracts-upgradeable/package-lock.json; contracts/lib/openzeppelin-contracts/package-lock.json |
 | Crypto library | 1.4.0 | @noble/hashes (noble-hashes) | n/a | acceptable | 4 | 4 | contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; contracts/lib/openzeppelin-contracts-upgradeable/package-lock.json; contracts/lib/openzeppelin-contracts/package-lock.json |
 | Crypto library | 1.4.2 | @noble/curves (noble-curves) | n/a | acceptable | 4 | 4 | contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; contracts/lib/openzeppelin-contracts-upgradeable/package-lock.json; contracts/lib/openzeppelin-contracts/package-lock.json |
@@ -7178,10 +7216,12 @@ By origin: dependency manifests 86 (0 Shor-breakable) · own code 34 (12 Shor-br
 | PQC library | 0.2.0-rc.5 | slh-dsa (RustCrypto post-quantum crates) | post-quantum | acceptable | 2 | 2 | Cargo.lock; Cargo.toml |
 | PQC library | workspace | slh-dsa (RustCrypto post-quantum crates) | post-quantum | acceptable | 2 | 2 | crates/pq-precompile/Cargo.toml; crates/precompiles/Cargo.toml |
 | SLH-DSA |  |  | post-quantum | acceptable | 1 | 1 | crates/pq-precompile/src/lib.rs:22 |
+| ECDSA |  |  | vulnerable (Shor) | acceptable | 1 | 1 | assets/localdev/genesis.config.ts:65 |
+| ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 29 | 29 | contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol:602; contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorCountingOverridableUpgradeable.sol:225; contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorNoncesKeyedUpgradeable.sol:41 |
+| ECDSA | P-256 |  | vulnerable (Shor) | acceptable | 5 | 5 | contracts/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/signers/SignerP256Upgradeable.sol:81; contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/signers/SignerP256.sol:62; contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/verifiers/ERC7913P256Verifier.sol:23 |
 | ECDSA | secp256k1 (ecrecover) |  | vulnerable (Shor) | acceptable | 2 | 2 | contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol:148; contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol:148 |
-| ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 4 | 4 | crates/quake/src/nodekey.rs:23; crates/quake/src/rpc/valset_manager.rs:25; crates/spammer/src/accounts.rs:20 |
-| ECDSA |  |  | vulnerable (Shor) | acceptable | 3 | 3 | crates/quake/src/rpc/valset_manager.rs:25; crates/spammer/src/accounts.rs:20; crates/spammer/src/generator.rs:23 |
-| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 5 | 5 | crates/signer/src/local.rs:26; crates/types/src/codec/proto.rs:28; crates/types/src/proposal_part.rs:26 |
+| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 7 | 7 | crates/malachite-app/src/node.rs:136; crates/signer/src/local.rs:26; crates/types/src/codec/proto.rs:28 |
+| RSA |  |  | vulnerable (Shor) | acceptable | 5 | 5 | contracts/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/signers/SignerRSAUpgradeable.sol:82; contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/signers/SignerRSA.sol:63; contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/verifiers/ERC7913RSAVerifier.sol:19 |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 

@@ -1,8 +1,8 @@
 {
-  "content_sha256": "967ff3502b91c3f489ae4dc96bfd80d7f227c73a45038ab60ffb4c654876bd06",
+  "content_sha256": "42392a7f34a043f31c37339e3a6ba66d1fb7d3a44403754864b1cb5117360fcb",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-06T10:15:11.403927+00:00",
+  "generated_at": "2026-11-23T13:44:44.047510+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "9f3b8d12-9473-49de-9ebb-9f2f640f8653",
+    "id": "93a63b4a-bd18-4f3b-806f-569b82b2740b",
     "mode": "document",
     "title": "Document audit: fabric-lib-go",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T10:15:05.550854+00:00",
-    "finished_at": "2026-11-06T10:15:11.278384+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T13:44:38.016041+00:00",
+    "finished_at": "2026-11-23T13:44:43.955508+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Crypto exchange, custodian or wallet",
     "parameters": {
@@ -449,322 +449,322 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": "bccsp/aesopts.go: 82 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/aesopts.go: 82 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/bccsp.go: 134 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/bccsp.go: 134 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/ecdsaopts.go: 49 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/ecdsaopts.go: 49 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/factory/factory.go: 94 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/factory/factory.go: 94 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/factory/nopkcs11.go: 84 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/factory/nopkcs11.go: 84 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/factory/opts.go: 24 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/factory/opts.go: 24 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/factory/pkcs11.go: 119 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/factory/pkcs11.go: 119 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/factory/pkcs11factory.go: 64 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/factory/pkcs11factory.go: 64 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/factory/swfactory.go: 73 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/factory/swfactory.go: 73 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/hashopts.go: 66 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/hashopts.go: 66 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/keystore.go: 34 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/keystore.go: 34 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/opts.go: 361 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/opts.go: 361 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/pkcs11/conf.go: 44 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/pkcs11/conf.go: 44 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/pkcs11/ecdsakey.go: 97 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/pkcs11/ecdsakey.go: 97 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/pkcs11/pkcs11.go: 930 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/pkcs11/pkcs11.go: 930 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/rsaopts.go: 70 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/rsaopts.go: 70 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/signer/signer.go: 85 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/signer/signer.go: 85 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/aes.go: 221 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/aes.go: 221 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/aeskey.go: 64 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/aeskey.go: 64 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/conf.go: 75 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/conf.go: 75 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/dummyks.go: 48 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/dummyks.go: 48 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/ecdsa.go: 75 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/ecdsa.go: 75 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/ecdsakey.go: 117 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/ecdsakey.go: 117 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/ed25519.go: 40 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/ed25519.go: 40 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/ed25519key.go: 109 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/ed25519key.go: 109 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/fileks.go: 464 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/fileks.go: 464 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/hash.go: 37 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/hash.go: 37 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/impl.go: 340 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/impl.go: 340 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/internals.go: 94 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/internals.go: 94 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/keyderiv.go: 150 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/keyderiv.go: 150 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/keygen.go: 68 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/keygen.go: 68 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/keyimport.go: 215 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/keyimport.go: 215 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/keys.go: 468 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/keys.go: 468 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/new.go: 120 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/new.go: 120 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/rsa.go: 62 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/rsa.go: 62 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/sw/rsakey.go: 124 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/sw/rsakey.go: 124 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bccsp/utils/ecdsa.go: 106 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bccsp/utils/ecdsa.go: 106 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/core.go: 124 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/core.go: 124 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/fabenc/color.go: 39 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/fabenc/color.go: 39 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/fabenc/encoder.go: 125 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/fabenc/encoder.go: 125 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/fabenc/formatter.go: 294 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/fabenc/formatter.go: 294 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/floggingtest/logger.go: 242 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/floggingtest/logger.go: 242 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/global.go: 84 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/global.go: 84 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/httpadmin/fakes/logging.go: 174 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/httpadmin/fakes/logging.go: 174 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/httpadmin/spec.go: 83 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/httpadmin/spec.go: 83 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/levels.go: 68 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/levels.go: 68 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/loggerlevels.go: 175 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/loggerlevels.go: 175 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/logging.go: 243 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/logging.go: 243 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/metrics/observer.go: 50 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/metrics/observer.go: 50 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/flogging/zap.go: 105 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/flogging/zap.go: 105 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/cmd/gendoc/main.go: 79 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/cmd/gendoc/main.go: 79 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/disabled/provider.go: 39 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/disabled/provider.go: 39 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/gendoc/options.go: 220 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/gendoc/options.go: 220 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/gendoc/table.go: 372 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/gendoc/table.go: 372 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/metricsfakes/counter.go: 148 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/metricsfakes/counter.go: 148 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/metricsfakes/gauge.go: 186 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/metricsfakes/gauge.go: 186 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/metricsfakes/histogram.go: 148 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/metricsfakes/histogram.go: 148 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/metricsfakes/provider.go: 256 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/metricsfakes/provider.go: 256 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/namer/namer.go: 146 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/namer/namer.go: 146 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/prometheus/provider.go: 77 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/prometheus/provider.go: 77 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/provider.go: 169 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/provider.go: 169 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/statsd/goruntime/collector.go: 130 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/statsd/goruntime/collector.go: 130 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/statsd/goruntime/metrics.go: 43 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/statsd/goruntime/metrics.go: 43 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/metrics/statsd/provider.go: 128 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/metrics/statsd/provider.go: 128 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -774,7 +774,7 @@
     },
     {
       "area": "source_code",
-      "detail": "healthz/checker.go: 170 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "healthz/checker.go: 170 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -800,9 +800,9 @@
       "count": 65,
       "rows": 65,
       "examples": [
-        "bccsp/aesopts.go: 82 lines scanned with 16 rule patterns and 266 registry patterns",
-        "bccsp/bccsp.go: 134 lines scanned with 16 rule patterns and 266 registry patterns",
-        "bccsp/ecdsaopts.go: 49 lines scanned with 16 rule patterns and 266 registry patterns"
+        "bccsp/aesopts.go: 82 lines scanned with 16 rule patterns and 340 registry patterns",
+        "bccsp/bccsp.go: 134 lines scanned with 16 rule patterns and 340 registry patterns",
+        "bccsp/ecdsaopts.go: 49 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -920,7 +920,7 @@
       "high": 1,
       "medium": 3,
       "low": 0,
-      "info": 7
+      "info": 8
     },
     "by_classification": {
       "confirmed_vulnerability": 0,
@@ -929,18 +929,23 @@
       "potential_crypto_risk": 0,
       "pq_long_term_risk": 3,
       "improvement": 0,
-      "insufficient_data": 0
+      "insufficient_data": 1
     },
-    "total": 11,
+    "total": 12,
     "posture_index": 88,
-    "pq_vulnerable_share": 64.9,
-    "inventory_total": 37,
+    "pq_vulnerable_share": 63.2,
+    "inventory_total": 38,
     "inventory_by_quantum_status": {
       "grover_margin": 4,
       "grover_reduced": 9,
+      "not_applicable": 1,
       "vulnerable_shor": 24
     },
     "inventory_by_origin": {
+      "dependency": {
+        "total": 1,
+        "vulnerable_shor": 0
+      },
       "own": {
         "total": 37,
         "vulnerable_shor": 24
@@ -949,8 +954,8 @@
   },
   "findings": [
     {
-      "id": "f1a46bd4-7d1f-4967-bb36-4d194c9354f3",
-      "public_id": "QSI-2026-17514",
+      "id": "e1e414ef-cf35-4d86-8b39-c8c0c4d61b98",
+      "public_id": "QSI-2026-43986",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)",
       "description": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The advisory lists only unexported functions (google.golang.org/grpc/internal/transport.http2Server.HandleStreams, google.golang.org/grpc/internal/transport.http2Server.operateHeaders, google.golang.org/grpc/internal/xds/server.RouteAndProcess), which code outside the package cannot call by name, so reachability was not determined.",
@@ -970,8 +975,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:Go/google.golang.org/grpc@v1.83.1",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.210095+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.907958+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "score": 50.2,
@@ -1026,8 +1031,8 @@
           "content": "{\"id\": \"GHSA-2v4p-qf9q-27wj\", \"aliases\": [\"CVE-2026-84445\", \"GO-2026-6443\"], \"modified\": \"2026-09-25T18:00:05.270054427Z\", \"summary\": \"gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X\"}], \"declared_in_manifest\": true}",
           "content_sha256": "3566bf539cd1bed726145fc02332a18308f9a065bb8b992c0e44deb9ec44221a",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.225747+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.915799+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj"
         }
       ],
@@ -1050,11 +1055,11 @@
       ]
     },
     {
-      "id": "71fddbc0-665f-4bf6-9d8a-a5a02bcf35d7",
-      "public_id": "QSI-2026-17511",
+      "id": "495f3de2-ca0d-4b6d-8155-44bd9d523973",
+      "public_id": "QSI-2026-43982",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: role not determined (10 file(s))",
-      "description": "14 reference(s) to ECDSA across 10 file(s), e.g. bccsp/pkcs11/ecdsakey.go:19. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "description": "19 reference(s) to ECDSA across 10 file(s), e.g. bccsp/pkcs11/ecdsakey.go:19. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
       "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
       "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
       "retest": "Re-run the inventory after refactoring.",
@@ -1070,8 +1075,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "bccsp/pkcs11/ecdsakey.go",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.167377+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.866259+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1167,8 +1172,8 @@
           "content": "   18 | import (\n   19 | \t\"crypto/ecdsa\"\n   20 | \t\"crypto/x509\"",
           "content_sha256": "87680e3cf321a1d927f748c94e56fef66319eb13e2554469b4d613e55886927b",
           "source_sha256": "41b35f8b4e01edc52825fc73e1041ce296e6fc1d979622d7b437424f72160bd9",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182694+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877474+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/ecdsakey.go#L19"
         },
         {
@@ -1178,8 +1183,8 @@
           "content": "   10 | \t\"context\"\n   11 | \t\"crypto/ecdsa\"\n   12 | \t\"crypto/elliptic\"",
           "content_sha256": "8da8b0c88ebe01946640787c08a65d84eb065c628bc69992d0bd8b7d1eda1ff8",
           "source_sha256": "98a15788cd8cdca171d2c662f6e2eece206a5d8adc91994f75ddd67ffc6bbd4b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182702+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877484+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L11"
         },
         {
@@ -1189,9 +1194,20 @@
           "content": "  329 | \tif csp.softVerify {\n  330 | \t\treturn ecdsa.Verify(k.pub, digest, r, s), nil\n  331 | \t}",
           "content_sha256": "c46c43f1ab599be0dc6777bac06d578b05466bf53f5527162b89cacfcc3b671c",
           "source_sha256": "98a15788cd8cdca171d2c662f6e2eece206a5d8adc91994f75ddd67ffc6bbd4b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182705+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877489+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L330"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "bccsp/pkcs11/pkcs11.go",
+          "location": "line 529",
+          "content": "  528 | \tpubkeyT := []*pkcs11.Attribute{\n  529 | \t\tpkcs11.NewAttribute(pkcs11.CKA_KEY_TYPE, pkcs11.CKK_EC),\n  530 | \t\tpkcs11.NewAttribute(pkcs11.CKA_CLASS, pkcs11.CKO_PUBLIC_KEY),",
+          "content_sha256": "ad763a2e7581506df131cc1586b4f0ac4c738d06f2b5a0f53a5397bbfd7f5176",
+          "source_sha256": "98a15788cd8cdca171d2c662f6e2eece206a5d8adc91994f75ddd67ffc6bbd4b",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877494+00:00",
+          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/pkcs11/pkcs11.go#L529"
         },
         {
           "kind": "file_excerpt",
@@ -1200,8 +1216,8 @@
           "content": "   18 | import (\n   19 | \t\"crypto/ecdsa\"\n   20 | \t\"crypto/rand\"",
           "content_sha256": "1515eca1cc78dc2b7c4fde09c0aa059dc7c5a6a53519f5c1b42098f4eadc395d",
           "source_sha256": "f0d2594a515e856b310d5ff9ab4169d5c0a0f61fc24942e3d46e2500f928e02b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182709+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877498+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L19"
         },
         {
@@ -1211,8 +1227,8 @@
           "content": "   27 | func signECDSA(k *ecdsa.PrivateKey, digest []byte, opts bccsp.SignerOpts) ([]byte, error) {\n   28 | \tr, s, err := ecdsa.Sign(rand.Reader, k, digest)\n   29 | \tif err != nil {",
           "content_sha256": "5e03fc2ced291506b09bf90d810db18d327d592f8781b028b97d572b077c587c",
           "source_sha256": "f0d2594a515e856b310d5ff9ab4169d5c0a0f61fc24942e3d46e2500f928e02b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182712+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877503+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L28"
         },
         {
@@ -1222,8 +1238,8 @@
           "content": "   55 | \n   56 | \treturn ecdsa.Verify(k, digest, r, s), nil\n   57 | }",
           "content_sha256": "cc80b9b87564d0ae70ba183543c926e98984365178ee8a10c6384959a648b188",
           "source_sha256": "f0d2594a515e856b310d5ff9ab4169d5c0a0f61fc24942e3d46e2500f928e02b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182716+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877508+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsa.go#L56"
         },
         {
@@ -1233,8 +1249,8 @@
           "content": "   18 | import (\n   19 | \t\"crypto/ecdsa\"\n   20 | \t\"crypto/elliptic\"",
           "content_sha256": "da30811132376f3039c613505f0d52458e1593d43e0280ad13aaf57389cf7c73",
           "source_sha256": "194f71f7e0d952ec3b87a50b5287d7bd139cb41941d75cd260e2e54ab8b01ff3",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182719+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877512+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ecdsakey.go#L19"
         },
         {
@@ -1244,8 +1260,8 @@
           "content": "   10 | \t\"bytes\"\n   11 | \t\"crypto/ecdsa\"\n   12 | \t\"crypto/ed25519\"",
           "content_sha256": "e5b44015f00ef128ab2f3d1c4f1dee7dcd77a13dd2b3391fad9bc2ecb9c49ae6",
           "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182722+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877517+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L11"
         },
         {
@@ -1255,20 +1271,9 @@
           "content": "   19 | import (\n   20 | \t\"crypto/ecdsa\"\n   21 | \t\"crypto/hmac\"",
           "content_sha256": "9f85b73ac6ec142259370ca9358f25e99f4a2d13e133f7ddee639c918ed9af9b",
           "source_sha256": "fb6673a63d52fa58cdb93b3e75aeb88faf2c2c91ac3e29de9acd7f519f8ac418",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182730+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.877522+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keyderiv.go#L20"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "bccsp/sw/keygen.go",
-          "location": "line 10",
-          "content": "    9 | import (\n   10 | \t\"crypto/ecdsa\"\n   11 | \t\"crypto/ed25519\"",
-          "content_sha256": "7983932d009be78f478f371ae58c3f86b9f6b72f687b9ed011a4aee4ad95d71d",
-          "source_sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.182734+00:00",
-          "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L10"
         }
       ],
       "remediation": [
@@ -1305,8 +1310,8 @@
       ]
     },
     {
-      "id": "f2fa2528-b6de-4fa7-8bb7-aa2799a042ee",
-      "public_id": "QSI-2026-17512",
+      "id": "3fd4daab-fc24-4f80-9b93-4073d33628c0",
+      "public_id": "QSI-2026-43983",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Ed25519: role not determined (6 file(s))",
       "description": "39 reference(s) to Ed25519 across 6 file(s), e.g. bccsp/sw/ed25519.go:15. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -1325,8 +1330,8 @@
       "triage": null,
       "affected_asset": "source-code:Ed25519:general",
       "data_source": "bccsp/sw/ed25519.go",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.178784+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.873706+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1422,8 +1427,8 @@
           "content": "   14 | func signED25519(k *ed25519.PrivateKey, msg []byte, opts bccsp.SignerOpts) ([]byte, error) {\n   15 | \tsignature := ed25519.Sign(*k, msg)\n   16 | \treturn signature, nil",
           "content_sha256": "be962610d24d0e25089b18a267e417de6efea2a91e686d6803d7a04d54b8cb0c",
           "source_sha256": "071a175c9ce2398e741a262d24325b73260f7d87ea7be622eebb9f505880d580",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200159+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892955+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L15"
         },
         {
@@ -1433,8 +1438,8 @@
           "content": "   19 | func verifyED25519(k *ed25519.PublicKey, signature, msg []byte, opts bccsp.SignerOpts) (bool, error) {\n   20 | \treturn ed25519.Verify(*k, msg, signature), nil\n   21 | }",
           "content_sha256": "aa94dd71ac249c8771fc540b4bc0ae1102dafe73a0a1f2722a94d7ba614d5d79",
           "source_sha256": "071a175c9ce2398e741a262d24325b73260f7d87ea7be622eebb9f505880d580",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200167+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892963+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L20"
         },
         {
@@ -1444,8 +1449,8 @@
           "content": "   22 | \n   23 | type ed25519Signer struct{}\n   24 | ",
           "content_sha256": "6f33081caebdef556a3b8c3fe6eeca1f1c206bd80023c04d0dd16a68a6634e70",
           "source_sha256": "071a175c9ce2398e741a262d24325b73260f7d87ea7be622eebb9f505880d580",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200170+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892968+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519.go#L23"
         },
         {
@@ -1455,8 +1460,8 @@
           "content": "   17 | \n   18 | type ed25519PrivateKey struct {\n   19 | \tprivKey *ed25519.PrivateKey",
           "content_sha256": "c161f2e6d9d89ebe1d96be52c121110e7611fbcf8cb5872b5816d483a91b9152",
           "source_sha256": "5fd0b8364abab17d1378f6aba697ce2ffc0f47138f2d02056b75dd9178e9b158",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200173+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892973+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L18"
         },
         {
@@ -1466,8 +1471,8 @@
           "content": "   23 | // if this operation is allowed.\n   24 | func (k *ed25519PrivateKey) Bytes() ([]byte, error) {\n   25 | \treturn nil, errors.New(\"Not supported.\")",
           "content_sha256": "ee921a0dccc1f590e41024cdb8f552d96e7e79860fc51361bdd9e7282a296bd9",
           "source_sha256": "5fd0b8364abab17d1378f6aba697ce2ffc0f47138f2d02056b75dd9178e9b158",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200177+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892977+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L24"
         },
         {
@@ -1477,8 +1482,8 @@
           "content": "   28 | // SKI returns the subject key identifier of this key.\n   29 | func (k *ed25519PrivateKey) SKI() []byte {\n   30 | \tif k.privKey == nil {",
           "content_sha256": "488f2f75c771d7f192ac75a4d1524cd88cad84dc34abaa8f25806c126cb56d58",
           "source_sha256": "5fd0b8364abab17d1378f6aba697ce2ffc0f47138f2d02056b75dd9178e9b158",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200180+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892982+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/ed25519key.go#L29"
         },
         {
@@ -1488,8 +1493,8 @@
           "content": "  146 | \t\tcase ed25519.PrivateKey:\n  147 | \t\t\treturn &ed25519PrivateKey{&k}, nil\n  148 | \t\tcase *rsa.PrivateKey:",
           "content_sha256": "1cfe306c77e7f7694c28b313f33d969f772a0285e232590afa48e1c614905b2c",
           "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200183+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892986+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L147"
         },
         {
@@ -1499,8 +1504,8 @@
           "content": "  163 | \t\tcase ed25519.PublicKey:\n  164 | \t\t\treturn &ed25519PublicKey{&k}, nil\n  165 | \t\tcase *rsa.PublicKey:",
           "content_sha256": "749ebaa93ccb680875e11da118e180004d476946a6c4e4bcacbc5ac6dc3056b6",
           "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200186+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892991+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L164"
         },
         {
@@ -1510,8 +1515,8 @@
           "content": "  197 | \n  198 | \tcase *ed25519PrivateKey:\n  199 | \t\terr = ks.storePrivateKey(hex.EncodeToString(k.SKI()), kk.privKey)",
           "content_sha256": "070f2f8ff0382634eed998627dc8b68a8775020445d49702f7472219ea427e14",
           "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200189+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.892995+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L198"
         },
         {
@@ -1521,8 +1526,8 @@
           "content": "   35 | func (kg *ed25519KeyGenerator) KeyGen(opts bccsp.KeyGenOpts) (bccsp.Key, error) {\n   36 | \t_, privKey, err := ed25519.GenerateKey(rand.Reader)\n   37 | \tif err != nil {",
           "content_sha256": "07b0787395320c0dcb325ee82d4a64a304cd8fc2872374aa7dd3cfc78e7191c7",
           "source_sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.200192+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.893000+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L36"
         }
       ],
@@ -1560,8 +1565,8 @@
       ]
     },
     {
-      "id": "7f0f0247-e075-45fd-acbb-b3edb4d0c4b7",
-      "public_id": "QSI-2026-17513",
+      "id": "3a43e337-a603-44a9-b6f6-5731eed91c05",
+      "public_id": "QSI-2026-43984",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable RSA: role not determined (6 file(s))",
       "description": "7 reference(s) to RSA across 6 file(s), e.g. bccsp/sw/fileks.go:13. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -1580,8 +1585,8 @@
       "triage": null,
       "affected_asset": "source-code:RSA:general",
       "data_source": "bccsp/sw/fileks.go",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.196634+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.890601+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1677,8 +1682,8 @@
           "content": "   12 | \t\"crypto/ed25519\"\n   13 | \t\"crypto/rsa\"\n   14 | \t\"encoding/hex\"",
           "content_sha256": "768ee06b9c3e2ed1d6af2ed858f328bdd5acdddaccbe6d3c2ecd30aebb1ab1d7",
           "source_sha256": "a0c92a6cfdcba39bd63cd9ce550b20f3a59567e53507468644c3f82330caa6db",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.213682+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.902394+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/fileks.go#L13"
         },
         {
@@ -1688,8 +1693,8 @@
           "content": "   13 | \t\"crypto/rand\"\n   14 | \t\"crypto/rsa\"\n   15 | \t\"fmt\"",
           "content_sha256": "364e7ffecee10ae3b8e624ca22f247d6c912d5e4981f71e890c23ab5677cf5dd",
           "source_sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.213690+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.902403+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L14"
         },
         {
@@ -1699,8 +1704,8 @@
           "content": "   61 | func (kg *rsaKeyGenerator) KeyGen(opts bccsp.KeyGenOpts) (bccsp.Key, error) {\n   62 | \tlowLevelKey, err := rsa.GenerateKey(rand.Reader, int(kg.length))\n   63 | \tif err != nil {",
           "content_sha256": "b7bba74d01f03eef780ca8edc8d8f543670a53cc919dc442239153bb3820145c",
           "source_sha256": "51177e8239b008e100259033f1075396fac4711b13d71a27d7fe1fd1697db1b4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.213694+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.902409+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keygen.go#L62"
         },
         {
@@ -1710,8 +1715,8 @@
           "content": "   11 | \t\"crypto/ed25519\"\n   12 | \t\"crypto/rsa\"\n   13 | \t\"crypto/x509\"",
           "content_sha256": "7318348444f9d7d18c85c7efbf08d2965e7d68412a40ee459b218cde70685d97",
           "source_sha256": "573e238eea23ae85576a43554db460121e1ac8666fafebb84138326deedd0f25",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.213698+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.902414+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keyimport.go#L12"
         },
         {
@@ -1721,8 +1726,8 @@
           "content": "   14 | \t\"crypto/rand\"\n   15 | \t\"crypto/rsa\"\n   16 | \t\"crypto/x509\"",
           "content_sha256": "070992b7bb94b0dbc8e66fb1b57b459fe619fa742bac22418518a3f923a61864",
           "source_sha256": "cd0a974ae8900553a3f4828afcbbdd30cd479b75a51bc1723d369220e739fe3c",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.213701+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.902418+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/keys.go#L15"
         },
         {
@@ -1732,8 +1737,8 @@
           "content": "   10 | \t\"crypto/rand\"\n   11 | \t\"crypto/rsa\"\n   12 | \t\"errors\"",
           "content_sha256": "a77c4604bea38eaadc0ee9cf5c192333b6ac97a6a6ab944dce48ee75a086b6a3",
           "source_sha256": "e3112f8c38642c19ebbb5a18c26ce471ec9fd56fae78909c4ff216d5216d2c42",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.213704+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.902423+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/rsa.go#L11"
         },
         {
@@ -1743,8 +1748,8 @@
           "content": "    9 | import (\n   10 | \t\"crypto/rsa\"\n   11 | \t\"crypto/sha256\"",
           "content_sha256": "5e8f30d23b521293b331ecad3ad4d4d3b8072be834d89f4c17cd5a1a5cad919a",
           "source_sha256": "93838157dd6a4eca5ecf566fa365064df1afa290b08829ae97074ccfcd473de1",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.213707+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.902427+00:00",
           "url": "https://github.com/hyperledger/fabric-lib-go/blob/f8b4f4a833e4140a4d006fc2e0a46823952b5f1c/bccsp/sw/rsakey.go#L10"
         }
       ],
@@ -1782,8 +1787,8 @@
       ]
     },
     {
-      "id": "b88c6c63-3cad-4e2a-8243-a8dac61b5dc6",
-      "public_id": "QSI-2026-17515",
+      "id": "c1b9d2c7-36d3-4d8f-af2f-d990eedf228d",
+      "public_id": "QSI-2026-43987",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
@@ -1803,8 +1808,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.222700+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.913677+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1847,7 +1852,7 @@
           "key": "GO-2026-6603",
           "url": "https://osv.dev/vulnerability/GO-2026-6603",
           "title": "OSV advisory GO-2026-6603",
-          "status": "modified 2026-10-16T09:55:47.068117441Z",
+          "status": "modified 2026-11-14T13:12:13.462737073Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -1856,11 +1861,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6603",
           "location": "line 46",
-          "content": "{\"id\": \"GO-2026-6603\", \"aliases\": [\"BIT-golang-2026-78659\", \"CVE-2026-78659\"], \"modified\": \"2026-10-16T09:55:47.068117441Z\", \"summary\": \"HTTP/2 server memory exhaustion due to Trailer headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "9e43850e0da48e9d00589cc2bffb372f39ec5e5a280f2f4b04520a91328fd703",
+          "content": "{\"id\": \"GO-2026-6603\", \"aliases\": [\"BIT-golang-2026-78659\", \"CVE-2026-78659\"], \"modified\": \"2026-11-14T13:12:13.462737073Z\", \"summary\": \"HTTP/2 server memory exhaustion due to Trailer headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "6ac515cc0fd1d1d6952429ecee827517211426aa989a89c7e94af4efd1f38c7a",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.235547+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.922069+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6603"
         }
       ],
@@ -1883,8 +1888,8 @@
       ]
     },
     {
-      "id": "38eaee7a-a738-4bcd-bab4-5c3a80117f11",
-      "public_id": "QSI-2026-17516",
+      "id": "0e9158f9-0076-41fb-9398-1936a0d16fd5",
+      "public_id": "QSI-2026-43988",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.58.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.Transport.NewClientConn, golang.org/x/net/http2.Transport.RoundTrip, golang.org/x/net/http2.Transport.RoundTripOpt, golang.org/x/net/http2.clientConnPool.GetClientConn, golang.org/x/net/http2.clientConnReadLoop.handleResponse, golang.org/x/net/http2.noDialClientConnPool.GetClientConn …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
@@ -1904,8 +1909,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.231773+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.920237+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1948,7 +1953,7 @@
           "key": "GO-2026-6610",
           "url": "https://osv.dev/vulnerability/GO-2026-6610",
           "title": "OSV advisory GO-2026-6610",
-          "status": "modified 2026-10-16T09:56:04.364467528Z",
+          "status": "modified 2026-11-14T13:12:14.502576208Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -1957,11 +1962,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6610",
           "location": "line 46",
-          "content": "{\"id\": \"GO-2026-6610\", \"aliases\": [\"BIT-golang-2026-78660\", \"CVE-2026-78660\"], \"modified\": \"2026-10-16T09:56:04.364467528Z\", \"summary\": \"HTTP/2 transport accepts malformed framing-related headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "1b823e53f27093797b8a7909032006e1f0f818f04118ad593a4641236392faa9",
+          "content": "{\"id\": \"GO-2026-6610\", \"aliases\": [\"BIT-golang-2026-78660\", \"CVE-2026-78660\"], \"modified\": \"2026-11-14T13:12:14.502576208Z\", \"summary\": \"HTTP/2 transport accepts malformed framing-related headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "f1495629ef0bf84b8a91d8c0bd05d7d03060325f82f90f20c5231ee80abf37f7",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.242786+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.927460+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6610"
         }
       ],
@@ -1984,8 +1989,8 @@
       ]
     },
     {
-      "id": "2fea3952-74bb-4085-bf12-e20d47409502",
-      "public_id": "QSI-2026-17517",
+      "id": "6003d2ae-2110-4e48-92a3-b5b88c161351",
+      "public_id": "QSI-2026-43989",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.58.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ClientConn.addStreamLocked, golang.org/x/net/http2.ConfigureServer …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
@@ -2005,8 +2010,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.240385+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.925562+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -2049,7 +2054,7 @@
           "key": "GO-2026-6611",
           "url": "https://osv.dev/vulnerability/GO-2026-6611",
           "title": "OSV advisory GO-2026-6611",
-          "status": "modified 2026-10-16T09:55:38.952277866Z",
+          "status": "modified 2026-11-14T13:12:14.349122729Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -2058,11 +2063,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6611",
           "location": "line 46",
-          "content": "{\"id\": \"GO-2026-6611\", \"aliases\": [\"BIT-golang-2026-78669\", \"CVE-2026-78669\"], \"modified\": \"2026-10-16T09:55:38.952277866Z\", \"summary\": \"Excessive CPU consumption from repeated initial window changes in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "c9b9f78637131224c5d4073e44c47b7cce490fc5526e3d6b0697b43bc85cab2f",
+          "content": "{\"id\": \"GO-2026-6611\", \"aliases\": [\"BIT-golang-2026-78669\", \"CVE-2026-78669\"], \"modified\": \"2026-11-14T13:12:14.349122729Z\", \"summary\": \"Excessive CPU consumption from repeated initial window changes in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "89af1dfea803377889ea080898561a9e2b4a28fbe10e6c5b7793b593481f62b3",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.250650+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.933138+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6611"
         }
       ],
@@ -2085,8 +2090,8 @@
       ]
     },
     {
-      "id": "9dd8baa8-cebc-4eaa-9e84-c0e6292b742c",
-      "public_id": "QSI-2026-17518",
+      "id": "da5e80da-2246-4f6c-a61d-aa6becaaadbb",
+      "public_id": "QSI-2026-43990",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.58.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
@@ -2106,8 +2111,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.246912+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.931321+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -2150,7 +2155,7 @@
           "key": "GO-2026-6612",
           "url": "https://osv.dev/vulnerability/GO-2026-6612",
           "title": "OSV advisory GO-2026-6612",
-          "status": "modified 2026-10-16T09:55:54.129082194Z",
+          "status": "modified 2026-11-14T13:12:14.440833902Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -2159,11 +2164,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6612",
           "location": "line 46",
-          "content": "{\"id\": \"GO-2026-6612\", \"aliases\": [\"BIT-golang-2026-78663\", \"CVE-2026-78663\"], \"modified\": \"2026-10-16T09:55:54.129082194Z\", \"summary\": \"Double flow control refund on HTTP/2 server streams in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "1471910f88c9bbf8395a304fd82510f61567373756002de8bcdc3fbe305890cb",
+          "content": "{\"id\": \"GO-2026-6612\", \"aliases\": [\"BIT-golang-2026-78663\", \"CVE-2026-78663\"], \"modified\": \"2026-11-14T13:12:14.440833902Z\", \"summary\": \"Double flow control refund on HTTP/2 server streams in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "471a502807e6b891eecb00c57c4810365eef3610ae37dacb2590a2fe9d0b0677",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.257676+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.938845+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6612"
         }
       ],
@@ -2186,8 +2191,8 @@
       ]
     },
     {
-      "id": "109f3226-a2d7-4b6d-be98-bdb59ca6e37a",
-      "public_id": "QSI-2026-17519",
+      "id": "15578fd1-0c12-4fe9-bc51-cb557b2f2f9b",
+      "public_id": "QSI-2026-43991",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
@@ -2207,8 +2212,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.255375+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.936906+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -2251,7 +2256,7 @@
           "key": "GO-2026-6617",
           "url": "https://osv.dev/vulnerability/GO-2026-6617",
           "title": "OSV advisory GO-2026-6617",
-          "status": "modified 2026-10-16T09:55:57.350751224Z",
+          "status": "modified 2026-11-14T13:12:14.222191133Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -2260,11 +2265,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6617",
           "location": "line 46",
-          "content": "{\"id\": \"GO-2026-6617\", \"aliases\": [\"BIT-golang-2026-97032\", \"CVE-2026-97032\"], \"modified\": \"2026-10-16T09:55:57.350751224Z\", \"summary\": \"HTTP/2 server crash due to HPACK encoder race in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "b948c88d959bc78948c7e3b7a746ac4da179933798e9735d02870080906cfc96",
+          "content": "{\"id\": \"GO-2026-6617\", \"aliases\": [\"BIT-golang-2026-97032\", \"CVE-2026-97032\"], \"modified\": \"2026-11-14T13:12:14.222191133Z\", \"summary\": \"HTTP/2 server crash due to HPACK encoder race in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "7bad24ba5502930ee2b24af1b3153a7b5f3d3b7c98f55d994f83fbfd89b3f491",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.264770+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.944910+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6617"
         }
       ],
@@ -2287,8 +2292,8 @@
       ]
     },
     {
-      "id": "a883272f-bfdb-45d4-8fd6-4d585256931b",
-      "public_id": "QSI-2026-17520",
+      "id": "f9c07925-f555-490f-bb0c-e9733a8203f6",
+      "public_id": "QSI-2026-43992",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.58.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Parse, golang.org/x/net/html.ParseFragment, golang.org/x/net/html.ParseFragmentWithOptions, golang.org/x/net/html.ParseWithOptions, golang.org/x/net/html.parser.addText, golang.org/x/net/html.parser.fosterParent …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
@@ -2308,8 +2313,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.262719+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.942742+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -2364,8 +2369,8 @@
           "content": "{\"id\": \"GO-2026-6860\", \"aliases\": [\"CVE-2026-78661\"], \"modified\": \"2026-10-27T21:30:04.890809062Z\", \"summary\": \"Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.273564+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.950545+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6860"
         }
       ],
@@ -2388,8 +2393,8 @@
       ]
     },
     {
-      "id": "bbbea246-64e8-465c-a1a8-865c75edc5e8",
-      "public_id": "QSI-2026-17521",
+      "id": "a4e1036b-d218-4e38-8901-58969be6ada9",
+      "public_id": "QSI-2026-43993",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.58.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).",
@@ -2409,8 +2414,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T10:15:11.269629+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.948898+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -2465,8 +2470,8 @@
           "content": "{\"id\": \"GO-2026-6866\", \"aliases\": [\"CVE-2026-97045\"], \"modified\": \"2026-10-27T21:45:08.978077289Z\", \"summary\": \"Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T10:15:11.305225+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.974629+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6866"
         }
       ],
@@ -2487,6 +2492,97 @@
           "status": "todo"
         }
       ]
+    },
+    {
+      "id": "b2d13a41-b920-474c-9a17-ada397dc96e7",
+      "public_id": "QSI-2026-43985",
+      "rule_id": "DEP-NO-PQC-LIBRARY",
+      "title": "No post-quantum capable cryptographic library detected",
+      "description": "Across 2 dependency manifests, QSI found crypto libraries (github.com/miekg/pkcs11) but none from its PQC-capable list.",
+      "impact": "Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.",
+      "recommendation": "Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).",
+      "retest": "Re-scan after upgrades.",
+      "limitations": "Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.",
+      "method": "Dependency name matching.",
+      "repro": "Review the dependency manifests listed in the evidence.",
+      "category": "post_quantum",
+      "classification": "insufficient_data",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies",
+      "data_source": "dependency manifests",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:44:43.900382+00:00",
+      "risk_score": 13.3,
+      "risk_breakdown": {
+        "score": 13.3,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.24,
+          "urgency": 0.3,
+          "exposure": 0.3,
+          "severity": 0.05,
+          "exploitability": 0.0
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 19.55,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.8,
+          "urgency": 3.0,
+          "exposure": 4.5,
+          "severity": 1.25,
+          "exploitability": 0.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "FIPS203",
+          "url": "https://csrc.nist.gov/pubs/fips/203/final",
+          "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        },
+        {
+          "key": "FIPS204",
+          "url": "https://csrc.nist.gov/pubs/fips/204/final",
+          "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "dependency",
+          "source": "go.mod, tools/go.mod",
+          "location": null,
+          "content": "Crypto libraries: github.com/miekg/pkcs11",
+          "content_sha256": "c2ae5b3bb26764013a350bd1ec61ad16ea2c5fe5f78a77dbe23c62a454a063aa",
+          "source_sha256": null,
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:44:43.910412+00:00",
+          "url": null
+        }
+      ],
+      "remediation": []
     }
   ],
   "pq": {
@@ -2510,9 +2606,9 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-17511",
-      "QSI-2026-17512",
-      "QSI-2026-17513"
+      "QSI-2026-43982",
+      "QSI-2026-43983",
+      "QSI-2026-43984"
     ],
     "roles": [
       {
@@ -2536,9 +2632,9 @@
           }
         ],
         "findings": [
-          "QSI-2026-17511",
-          "QSI-2026-17512",
-          "QSI-2026-17513"
+          "QSI-2026-43982",
+          "QSI-2026-43983",
+          "QSI-2026-43984"
         ],
         "files": 22
       }
@@ -2707,7 +2803,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443).",
         "status": "todo",
-        "finding": "QSI-2026-17514",
+        "finding": "QSI-2026-43986",
         "finding_title": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)",
         "severity": "high"
       }
@@ -2727,7 +2823,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-17515",
+        "finding": "QSI-2026-43987",
         "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)",
         "severity": "info"
       },
@@ -2745,7 +2841,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-17516",
+        "finding": "QSI-2026-43988",
         "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)",
         "severity": "info"
       },
@@ -2763,7 +2859,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-17517",
+        "finding": "QSI-2026-43989",
         "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)",
         "severity": "info"
       },
@@ -2781,7 +2877,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-17518",
+        "finding": "QSI-2026-43990",
         "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)",
         "severity": "info"
       },
@@ -2799,7 +2895,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-17519",
+        "finding": "QSI-2026-43991",
         "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)",
         "severity": "info"
       },
@@ -2817,7 +2913,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-17520",
+        "finding": "QSI-2026-43992",
         "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)",
         "severity": "info"
       },
@@ -2835,7 +2931,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-17521",
+        "finding": "QSI-2026-43993",
         "finding_title": "golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)",
         "severity": "info"
       }
@@ -2855,7 +2951,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-17511",
+        "finding": "QSI-2026-43982",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (10 file(s))",
         "severity": "medium"
       },
@@ -2873,7 +2969,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-17512",
+        "finding": "QSI-2026-43983",
         "finding_title": "Quantum-vulnerable Ed25519: role not determined (6 file(s))",
         "severity": "medium"
       },
@@ -2891,7 +2987,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-17513",
+        "finding": "QSI-2026-43984",
         "finding_title": "Quantum-vulnerable RSA: role not determined (6 file(s))",
         "severity": "medium"
       },
@@ -2909,7 +3005,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-17511",
+        "finding": "QSI-2026-43982",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (10 file(s))",
         "severity": "medium"
       },
@@ -2927,7 +3023,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-17512",
+        "finding": "QSI-2026-43983",
         "finding_title": "Quantum-vulnerable Ed25519: role not determined (6 file(s))",
         "severity": "medium"
       },
@@ -2945,7 +3041,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-17513",
+        "finding": "QSI-2026-43984",
         "finding_title": "Quantum-vulnerable RSA: role not determined (6 file(s))",
         "severity": "medium"
       }
@@ -2969,20 +3065,32 @@
       "version": "1.1.0"
     },
     {
-      "name": "dependencies",
+      "name": "crediting",
       "version": "1.3.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.4"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -2993,8 +3101,20 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",
@@ -3153,35 +3273,35 @@
       "key": "GO-2026-6603",
       "url": "https://osv.dev/vulnerability/GO-2026-6603",
       "title": "OSV advisory GO-2026-6603",
-      "status": "modified 2026-10-16T09:55:47.068117441Z",
+      "status": "modified 2026-11-14T13:12:13.462737073Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6610",
       "url": "https://osv.dev/vulnerability/GO-2026-6610",
       "title": "OSV advisory GO-2026-6610",
-      "status": "modified 2026-10-16T09:56:04.364467528Z",
+      "status": "modified 2026-11-14T13:12:14.502576208Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6611",
       "url": "https://osv.dev/vulnerability/GO-2026-6611",
       "title": "OSV advisory GO-2026-6611",
-      "status": "modified 2026-10-16T09:55:38.952277866Z",
+      "status": "modified 2026-11-14T13:12:14.349122729Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6612",
       "url": "https://osv.dev/vulnerability/GO-2026-6612",
       "title": "OSV advisory GO-2026-6612",
-      "status": "modified 2026-10-16T09:55:54.129082194Z",
+      "status": "modified 2026-11-14T13:12:14.440833902Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6617",
       "url": "https://osv.dev/vulnerability/GO-2026-6617",
       "title": "OSV advisory GO-2026-6617",
-      "status": "modified 2026-10-16T09:55:57.350751224Z",
+      "status": "modified 2026-11-14T13:12:14.222191133Z",
       "publisher": "OSV.dev"
     },
     {
@@ -3392,6 +3512,19 @@
       "origin": "own"
     },
     {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "v1.1.2",
+      "usage": "Go dependency",
+      "library": "github.com/miekg/pkcs11 (PKCS#11 bindings (HSM access))",
+      "location": "go.mod:9",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
       "algorithm": "ECDSA",
       "family": "signature",
       "parameter": "",
@@ -3408,13 +3541,13 @@
       "algorithm": "ECDSA",
       "family": "signature",
       "parameter": "",
-      "usage": "source code (2 reference(s))",
+      "usage": "source code (7 reference(s))",
       "library": "",
       "location": "bccsp/pkcs11/pkcs11.go:11",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2,
+      "occurrences": 7,
       "origin": "own"
     },
     {
@@ -3756,6 +3889,18 @@
       "examples": [
         "bccsp/sw/conf.go:12",
         "bccsp/sw/new.go:12"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "v1.1.2",
+      "library": "github.com/miekg/pkcs11 (PKCS#11 bindings (HSM access))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "go.mod:9"
       ]
     },
     {

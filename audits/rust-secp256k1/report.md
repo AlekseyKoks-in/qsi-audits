@@ -4,13 +4,13 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 14:44 UTC |
+| Дата отчёта | 2026-11-23 13:04 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | f60bdd9e-700f-459c-9b4c-67ea50c39123 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | 9452eff6-9f48-407a-8628-187f247da863 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `67af5bb6b7b16a10ee76bc2008963ec51d95977d16ed2b022eae9ebd4f82b891` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `c42179dc1a7bbfed122f45feca8763d427c5c3160ae6865d005a63678086f1ab` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
@@ -46,9 +46,10 @@
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
 | dependencies | проверено | 2 | Cargo.toml: 11 dependencies parsed (0 pinned); secp256k1-sys/Cargo.toml: 2 dependencies parsed (0 pinned) |
-| source_code | проверено | 112 | secp256k1-sys/build.rs: 68 lines scanned with 16 rule patterns and 266 registry patterns; secp256k1-sys/depend/check_uint128_t.c: 16 lines scanned with 16 rule patterns and 266 registry patterns; secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.c: 150 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 112 | secp256k1-sys/build.rs: 68 lines scanned with 16 rule patterns and 340 registry patterns; secp256k1-sys/depend/check_uint128_t.c: 16 lines scanned with 16 rule patterns and 340 registry patterns; secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.c: 150 lines scanned with 16 rule patterns and 340 registry patterns |
 | secrets | проверено | 7 | src/ellswift.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); src/key/mod.rs: value(s) at line(s) 2162 (test_keypair_deserialize_serde) are declared inside a fixture and treated as test data, although the file itself is not test code; src/key/mod.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | entropy | проверено | 1 | random-number generation: 112 code files read with 143 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| mpc | проверено | 1 | Paillier in 1 file(s), 0 in a multi-party context; modulus proofs absent |
 | osv_advisories | не проверено | 1 | no exactly pinned versions to query |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -68,13 +69,13 @@ Static review of the source tree rust-secp256k1 at fe8b3bec962fc2c7052501de397fd
 
 ## 7. Подробное описание находок
 
-### QSI-2026-19314 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (23 файл(ов))
+### QSI-2026-43257 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (23 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: secp256k1-sys/build.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:44 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:04 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -114,60 +115,60 @@ _file_excerpt · [secp256k1-sys/build.rs](https://github.com/rust-bitcoin/rust-s
    23 |         .flag_if_supported("-Wno-unused-function") // some ecmult stuff is defined but not used upstream
 ```
 
-_file_excerpt · [secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h#L57) · line 57 · SHA-256 25af7e242d92af0d3c46ae8d8a48030e247c4bfdeba65068030e64eb4c88c912_
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L271) · line 271 · SHA-256 037b33dfcf630bbe5c6f6897575b017b5b89e1876d46d4947bd7a5051a5a1d8e_
 
 ```
-   56 |    files (such as tests.c) without the need to set an explicit -I flag,
-   57 |    which would be necessary to locate secp256k1.h. */
-   58 | #ifndef SECP256K1_H
+  270 |         unsafe {
+  271 |             let ret = secp256k1_ecdsa_signature_serialize_compact(
+  272 |                 secp256k1_context_no_precomp,
 ```
 
-_file_excerpt · [secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h#L59) · line 59 · SHA-256 4c35a81e99a7eaf5ea7315346f3b8cacb0832f7c4a3b1a3d003ff0bd3b6a82c1_
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L587) · line 587 · SHA-256 7f26e22027d8575b741d6598e0ffc890c11100266b3030fdd5cbe6944e368503_
 
 ```
-   58 | #ifndef SECP256K1_H
-   59 | #include <secp256k1.h>
-   60 | #endif
+  586 |     )]
+  587 |     pub fn secp256k1_ecdsa_signature_parse_der(
+  588 |         cx: *const Context,
 ```
 
-_file_excerpt · [secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h#L34) · line 34 · SHA-256 163cac24f6b60e798317e2383fb603da718e728035262dc9759d7cf3fbd47b4f_
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L598) · line 598 · SHA-256 8fbd3a3818a9e362e894042eac654200f5ac39968aff95c5bd1fead4cd271c2f_
 
 ```
-   33 |    files (such as tests.c) without the need to set an explicit -I flag,
-   34 |    which would be necessary to locate secp256k1.h. */
-   35 | #ifndef SECP256K1_H
+  597 |     )]
+  598 |     pub fn secp256k1_ecdsa_signature_parse_compact(
+  599 |         cx: *const Context,
 ```
 
-_file_excerpt · [secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h#L36) · line 36 · SHA-256 2741d1869779ddac4f151ac1740c338ba299b2bed7b98a38e6042acb62fca350_
+_file_excerpt · [secp256k1-sys/src/recovery.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/recovery.rs#L141) · line 141 · SHA-256 a1dbc77a37e7b80b427c54cae8c5a60cc7fba2abed62a81e939494ddba691e1d_
 
 ```
-   35 | #ifndef SECP256K1_H
-   36 | #include <secp256k1.h>
-   37 | #endif
+  140 |     )]
+  141 |     pub fn secp256k1_ecdsa_sign_recoverable(
+  142 |         cx: *const Context,
 ```
 
-_file_excerpt · [secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h#L4) · line 4 · SHA-256 1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4_
+_file_excerpt · [secp256k1-sys/src/recovery.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/recovery.rs#L170) · line 170 · SHA-256 5913c2d185cf756584f87ebef33fdf3326c10c322024db4964d415089c524360_
 
 ```
-    3 | 
-    4 | #include "secp256k1.h"
-    5 | 
+  169 |     /// Sets sig to msg32||full pk
+  170 |     pub unsafe fn secp256k1_ecdsa_sign_recoverable(
+  171 |         cx: *const Context,
 ```
 
-_file_excerpt · [secp256k1-sys/depend/secp256k1/include/secp256k1_ellswift.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/include/secp256k1_ellswift.h#L4) · line 4 · SHA-256 1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4_
+_file_excerpt · [src/ecdsa/mod.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/ecdsa/mod.rs#L57) · line 57 · SHA-256 b2ada6edce2fd618b5c3ab76cea1110993b0d8fb83acc023dc6fb843f3dd8ef0_
 
 ```
-    3 | 
-    4 | #include "secp256k1.h"
-    5 | 
+   56 |             let mut ret = ffi::Signature::new();
+   57 |             if ffi::secp256k1_ecdsa_signature_parse_der(
+   58 |                 ffi::secp256k1_context_no_precomp,
 ```
 
-_file_excerpt · [secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h#L4) · line 4 · SHA-256 1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4_
+_file_excerpt · [src/ecdsa/mod.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/ecdsa/mod.rs#L79) · line 79 · SHA-256 c091ae0d5c3dafe30b4237d4241f3d03cb2b679ac83e3c7e4a35aeba7c05f02a_
 
 ```
-    3 | 
-    4 | #include "secp256k1.h"
-    5 | 
+   78 |             let mut ret = ffi::Signature::new();
+   79 |             if ffi::secp256k1_ecdsa_signature_parse_compact(
+   80 |                 ffi::secp256k1_context_no_precomp,
 ```
 
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
@@ -176,13 +177,13 @@ _file_excerpt · [secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h](
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19316 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))
+### QSI-2026-43259 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
 - Источник данных: secp256k1-sys/src/lib.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:44 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:04 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -276,13 +277,13 @@ _file_excerpt · [src/schnorr.rs](https://github.com/rust-bitcoin/rust-secp256k1
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19315 — Квантово-уязвимый ECDH: роль не определена (5 файл(ов))
+### QSI-2026-43258 — Квантово-уязвимый ECDH: роль не определена (5 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDH:general`
 - Источник данных: secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:44 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:04 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -297,14 +298,6 @@ _file_excerpt · [src/schnorr.rs](https://github.com/rust-bitcoin/rust-secp256k1
 ```
 
 **Подтверждающие доказательства.**
-
-_file_excerpt · [secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h#L10) · line 10 · SHA-256 65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134_
-
-```
-    9 | 
-   10 | #include "../../../include/secp256k1_ecdh.h"
-   11 | #include "../../ecmult_const_impl.h"
-```
 
 _file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L722) · line 722 · SHA-256 e0a014b9c105dc8471d91a923ee1d9b0ddf9318d5c20ff1ed9d5f43fa20d1bbf_
 
@@ -378,19 +371,27 @@ _file_excerpt · [src/secret.rs](https://github.com/rust-bitcoin/rust-secp256k1/
     9 | use crate::key::{Keypair, SecretKey};
 ```
 
+_file_excerpt · [secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h#L10) · line 10 · SHA-256 65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134_
+
+```
+    9 | 
+   10 | #include "../../../include/secp256k1_ecdh.h"
+   11 | #include "../../ecmult_const_impl.h"
+```
+
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19317 — Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))
+### QSI-2026-43260 — Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: src/key/mod.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:44 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:04 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -468,13 +469,13 @@ _file_excerpt · [src/scalar.rs](https://github.com/rust-bitcoin/rust-secp256k1/
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19318 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (3 файл(ов))
+### QSI-2026-43261 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Schnorr (BIP-340):general`
 - Источник данных: src/key/mod.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:44 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:04 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -585,8 +586,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (23), Schnorr (BIP-340) (3) | QSI-2026-19314, QSI-2026-19316 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDH (5), ECDSA (4), Schnorr (BIP-340) (3) | QSI-2026-19315, QSI-2026-19317, QSI-2026-19318 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (23), Schnorr (BIP-340) (3) | QSI-2026-43257, QSI-2026-43259 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDH (5), ECDSA (4), Schnorr (BIP-340) (3) | QSI-2026-43258, QSI-2026-43260, QSI-2026-43261 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -622,16 +623,16 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-19314 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19316 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19315 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19317 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19318 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-19314 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19316 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-19315 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-19317 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19318 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P3 | QSI-2026-43257 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43259 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43258 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43260 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43261 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-43257 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43259 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-43258 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-43260 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43261 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
 
 ## 11. Использованные инструменты
 
@@ -639,13 +640,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы

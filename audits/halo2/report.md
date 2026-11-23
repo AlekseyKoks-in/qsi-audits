@@ -4,13 +4,13 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 13:17 UTC |
+| Дата отчёта | 2026-11-23 12:27 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 75b7308e-5b3a-4b31-90c0-40aa21c3afae (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | d1c3b2e1-32e3-41d0-99fa-e0d65eade9b8 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `3bb0813c2cff59b3362fa0f06a433514f5a3ce8f6feecd0702956a5fd9800cb0` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `9847abcca4b4e39069ca8299a971e293608743107c5413b0861a784e44403927` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
@@ -18,11 +18,11 @@
 - Критическая: **0**
 - Высокая: **0**
 - Средняя: **2**
-- Низкая: **0**
+- Низкая: **1**
 - Информационная: **3**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 0
+- Известная уязвимая версия компонента: 1
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 2
@@ -46,9 +46,9 @@
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
 | dependencies | проверено | 6 | Cargo.lock: 223 dependencies parsed (223 pinned); Cargo.toml: 25 dependencies parsed (0 pinned); halo2/Cargo.toml: 1 dependencies parsed (0 pinned) |
-| source_code | проверено | 93 | halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 266 registry patterns; halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 266 registry patterns; 474 lines in #[cfg(test)] modules ignored; halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 93 | halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 340 registry patterns; halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 340 registry patterns; 474 lines in #[cfg(test)] modules ignored; halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 340 registry patterns |
 | entropy | проверено | 1 | random-number generation: 93 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| osv_advisories | проверено | 1 | 223 pinned packages queried at OSV.dev; 3 affected (2 of them only in development or build dependencies) |
+| osv_advisories | проверено | 1 | 223 pinned packages queried at OSV.dev; 4 affected (2 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -58,22 +58,22 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree halo2 at 3442dd33754ae0d44b8970e5a4eea79b0c3360bf. 100 files analysed; of 235 files, 55 are test, fuzzing, benchmark or example code and were left out, 80 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/ISSUE_TEMPLATE/eli15.md, .github/actions/prepare/action.yml, .github/dependabot.yml, .github/workflows/bench.yml, .github/workflows/book.yml. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree halo2 at 3442dd33754ae0d44b8970e5a4eea79b0c3360bf. 100 files analysed; of 235 files, 55 are test, fuzzing, benchmark or example code and were left out, 80 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/ISSUE_TEMPLATE/eli15.md, .github/actions/prepare/action.yml, .github/dependabot.yml, .github/workflows/bench.yml, .github/workflows/book.yml. 51 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Ориентировочный индекс состояния: **99** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
 - Доля квантово-уязвимых элементов инвентаризации: 71.4%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-18047 — Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))
+### QSI-2026-41961 — Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Halo 2 (IPA):general`
 - Источник данных: halo2_gadgets/src/ecc.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:17 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:27 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -175,13 +175,13 @@ _file_excerpt · [halo2_gadgets/src/ecc/chip/mul/complete.rs](https://github.com
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18048 — Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))
+### QSI-2026-41962 — Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Sinsemilla:general`
 - Источник данных: halo2_gadgets/src/ecc/chip/mul/overflow.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:17 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:27 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -283,13 +283,47 @@ _file_excerpt · [halo2_gadgets/src/sinsemilla/chip.rs](https://github.com/zcash
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18051 — 3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
+### QSI-2026-41964 — rustix 1.1.4 затронут RUSTSEC-2026-0486 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/rustix@1.1.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 12:27 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0486 для пакета crates.io rustix версии 1.1.4: xattr functions mark unwritten bytes as initialized when given a zero-length buffer. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (rustix::fs::fgetxattr, rustix::fs::flistxattr, rustix::fs::getxattr, rustix::fs::lgetxattr, rustix::fs::listxattr, rustix::fs::llistxattr); rustix приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0486
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0486](https://osv.dev/vulnerability/RUSTSEC-2026-0486) · manifest · SHA-256 3a9db0a5ea2efefb678d315af96712a5f277c0e348371bd9630df7afe1635fbe_
+
+```
+{"id": "RUSTSEC-2026-0486", "aliases": ["GHSA-jh2m-fhpj-3vr7"], "modified": "2026-11-11T08:45:02.466292839Z", "summary": "xattr functions mark unwritten bytes as initialized when given a zero-length buffer", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (1.1.6).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-41966 — 3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:crates.io:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:17 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 12:27 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -318,13 +352,13 @@ quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18049 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-41963 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:17 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 12:27 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -352,13 +386,13 @@ Crypto libraries: halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sin
 
 **Повторная проверка.** Повторите сканирование после обновлений.
 
-### QSI-2026-18050 — ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)
+### QSI-2026-41965 — ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/ttf-parser@0.20.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:17 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 12:27 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -419,7 +453,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **роль не определена** | Halo 2 (IPA) (34), Sinsemilla (9) | QSI-2026-18047, QSI-2026-18048 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
+| **роль не определена** | Halo 2 (IPA) (34), Sinsemilla (9) | QSI-2026-41961, QSI-2026-41962 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -451,16 +485,17 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
+| P3 | QSI-2026-41964 | Разберите RUSTSEC-2026-0486; при необходимости обновите rustix до исправленной версии (1.1.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0486 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-18047 | Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18048 | Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-18047 | Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-18048 | Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-18051 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
-| P4 | QSI-2026-18050 | Замените ttf-parser поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ttf-parser заменён или решение зафиксировано. |
+| P3 | QSI-2026-41961 | Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41962 | Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-41961 | Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-41962 | Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-41966 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P4 | QSI-2026-41965 | Замените ttf-parser поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ttf-parser заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
@@ -468,13 +503,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -500,10 +541,11 @@ _Действие: взламывает — алгоритм нужно заме
 19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 21. OSV advisory RUSTSEC-2026-0192 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0192> (modified 2026-06-29T21:15:04.384453633Z)
-22. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-23. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-24. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-25. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+22. OSV advisory RUSTSEC-2026-0486 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0486> (modified 2026-11-11T08:45:02.466292839Z)
+23. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+24. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+25. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+26. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 

@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.6.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -36,85 +36,10 @@
               "helpUri": "https://osv.dev/vulnerability/GHSA-33f5-2c5q-wgwj"
             },
             {
-              "id": "CODE-HARDCODED-SECRET",
-              "name": "CodeHardcodedSecret",
-              "shortDescription": {
-                "text": "Possible hard-coded secret in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "1 secret-like value(s) of type hex_private_key_32b (first at line 21). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "1 secret-like value(s) of type hex_private_key_32b (first at line 21). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
-            },
-            {
-              "id": "SOL-DELEGATECALL",
-              "name": "SolDelegatecall",
-              "shortDescription": {
-                "text": "delegatecall usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "smart_contract",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "delegatecall at line 234. (related: SWC-112) Restrict delegatecall targets to trusted, immutable implementations. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
-              },
-              "help": {
-                "text": "delegatecall at line 234. (related: SWC-112) Restrict delegatecall targets to trusted, immutable implementations. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
-              },
-              "helpUri": "https://swcregistry.io/"
-            },
-            {
-              "id": "SOL-ECRECOVER",
-              "name": "SolEcrecover",
-              "shortDescription": {
-                "text": "Raw ecrecover usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "smart_contract",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "5.0"
-              },
-              "fullDescription": {
-                "text": "ecrecover at line 148. (related: SWC-117/SWC-121) Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
-              },
-              "help": {
-                "text": "ecrecover at line 148. (related: SWC-117/SWC-121) Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
-              },
-              "helpUri": "https://swcregistry.io/"
-            },
-            {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Quantum-vulnerable ECDSA: transaction and message signing (5 file(s))"
+                "text": "Quantum-vulnerable ECDSA: transaction and message signing (35 file(s))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -128,10 +53,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "5 reference(s) to ECDSA across 5 file(s), e.g. crates/quake/src/rpc/valset_manager.rs:25. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "41 reference(s) to ECDSA across 35 file(s), e.g. crates/quake/src/rpc/valset_manager.rs:25. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "help": {
-                "text": "5 reference(s) to ECDSA across 5 file(s), e.g. crates/quake/src/rpc/valset_manager.rs:25. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "41 reference(s) to ECDSA across 35 file(s), e.g. crates/quake/src/rpc/valset_manager.rs:25. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -211,6 +136,56 @@
               "helpUri": "https://swcregistry.io/"
             },
             {
+              "id": "SOL-ECRECOVER",
+              "name": "SolEcrecover",
+              "shortDescription": {
+                "text": "In bundled third-party code: Raw ecrecover usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "ecrecover at line 148. (related: SWC-117/SWC-121) Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "help": {
+                "text": "ecrecover at line 148. (related: SWC-117/SWC-121) Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "CODE-HARDCODED-SECRET",
+              "name": "CodeHardcodedSecret",
+              "shortDescription": {
+                "text": "In bundled third-party code: Possible hard-coded secret in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "1 secret-like value(s) of type hex_private_key_32b (first at line 21). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "1 secret-like value(s) of type hex_private_key_32b (first at line 21). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
               "id": "DEP-ADVISORY-INFORMATIONAL",
               "name": "DepAdvisoryInformational",
               "shortDescription": {
@@ -275,7 +250,7 @@
             "qsiFindingKey/v1": "33c9904ae32ebc10b0b90da3c061fd42"
           },
           "properties": {
-            "qsiId": "QSI-2026-32671",
+            "qsiId": "QSI-2026-44198",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -302,7 +277,7 @@
             "qsiFindingKey/v1": "07dca20236d01874844ce3e7e9a05564"
           },
           "properties": {
-            "qsiId": "QSI-2026-32673",
+            "qsiId": "QSI-2026-44200",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -319,36 +294,6 @@
           ]
         },
         {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 1,
-          "level": "error",
-          "message": {
-            "text": "Possible hard-coded secret in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "711ba6782d6d6ee5a726452aaddd467f"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32570",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
-                },
-                "region": {
-                  "startLine": 21
-                }
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "DEP-KNOWN-ADVISORY",
           "ruleIndex": 0,
           "level": "error",
@@ -359,7 +304,7 @@
             "qsiFindingKey/v1": "9ffe114562276776ff080d53d17fa024"
           },
           "properties": {
-            "qsiId": "QSI-2026-32624",
+            "qsiId": "QSI-2026-44151",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -386,7 +331,7 @@
             "qsiFindingKey/v1": "74c79bb63191c3124fb5e82050a763af"
           },
           "properties": {
-            "qsiId": "QSI-2026-32631",
+            "qsiId": "QSI-2026-44158",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -413,7 +358,7 @@
             "qsiFindingKey/v1": "41ff3c56a29f16b4cb348d0782e97e2d"
           },
           "properties": {
-            "qsiId": "QSI-2026-32640",
+            "qsiId": "QSI-2026-44167",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -440,7 +385,7 @@
             "qsiFindingKey/v1": "1e3d86ba73d10da99d6fcce7d4ecced8"
           },
           "properties": {
-            "qsiId": "QSI-2026-32647",
+            "qsiId": "QSI-2026-44174",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -467,7 +412,7 @@
             "qsiFindingKey/v1": "2ed65c778f0c0a1523657d6d874be13d"
           },
           "properties": {
-            "qsiId": "QSI-2026-32664",
+            "qsiId": "QSI-2026-44191",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -494,7 +439,7 @@
             "qsiFindingKey/v1": "43f00660c70e2f072efb71f9b0041e21"
           },
           "properties": {
-            "qsiId": "QSI-2026-32665",
+            "qsiId": "QSI-2026-44192",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -521,7 +466,7 @@
             "qsiFindingKey/v1": "fd894a112cb1b11c5815cbfa0622cc80"
           },
           "properties": {
-            "qsiId": "QSI-2026-32688",
+            "qsiId": "QSI-2026-44216",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -548,7 +493,7 @@
             "qsiFindingKey/v1": "875bcb61e62f8316d5fc64a016dd4675"
           },
           "properties": {
-            "qsiId": "QSI-2026-32689",
+            "qsiId": "QSI-2026-44217",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -575,7 +520,7 @@
             "qsiFindingKey/v1": "fd894a112cb1b11c5815cbfa0622cc80"
           },
           "properties": {
-            "qsiId": "QSI-2026-32690",
+            "qsiId": "QSI-2026-44218",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -592,126 +537,6 @@
           ]
         },
         {
-          "ruleId": "SOL-DELEGATECALL",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "delegatecall usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "ad79da14254f980f0ac5b7d8f80c044f"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32575",
-            "severity": "high",
-            "confidence": "low",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
-                },
-                "region": {
-                  "startLine": 234
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "SOL-DELEGATECALL",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "delegatecall usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "6a83979fd412860defa199847a143841"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32591",
-            "severity": "high",
-            "confidence": "low",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol"
-                },
-                "region": {
-                  "startLine": 97
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "SOL-DELEGATECALL",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "delegatecall usage in contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "6faf9d21aef9c35e70069d3dce8238e0"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32596",
-            "severity": "high",
-            "confidence": "low",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "contracts/lib/openzeppelin-contracts/contracts/account/utils/draft-ERC7579Utils.sol"
-                },
-                "region": {
-                  "startLine": 234
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "SOL-DELEGATECALL",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "delegatecall usage in contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "83af49fd2237672140fca3666a864d16"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32608",
-            "severity": "high",
-            "confidence": "low",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "contracts/lib/openzeppelin-contracts/contracts/utils/Address.sol"
-                },
-                "region": {
-                  "startLine": 97
-                }
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "DEP-KNOWN-ADVISORY",
           "ruleIndex": 0,
           "level": "error",
@@ -722,7 +547,7 @@
             "qsiFindingKey/v1": "03a6f0a6cee994007876d30d23ac7ee2"
           },
           "properties": {
-            "qsiId": "QSI-2026-32650",
+            "qsiId": "QSI-2026-44177",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -749,7 +574,7 @@
             "qsiFindingKey/v1": "0933c38dbc506192441b5e32db4caefe"
           },
           "properties": {
-            "qsiId": "QSI-2026-32651",
+            "qsiId": "QSI-2026-44178",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -776,7 +601,7 @@
             "qsiFindingKey/v1": "420f79409eb5af40269803a25708bd3a"
           },
           "properties": {
-            "qsiId": "QSI-2026-32652",
+            "qsiId": "QSI-2026-44179",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -803,7 +628,7 @@
             "qsiFindingKey/v1": "137148b4c898a24cd968b7d3f677caed"
           },
           "properties": {
-            "qsiId": "QSI-2026-32654",
+            "qsiId": "QSI-2026-44181",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -830,7 +655,7 @@
             "qsiFindingKey/v1": "755363ff9b962e864cbfb3fd9b3ce15e"
           },
           "properties": {
-            "qsiId": "QSI-2026-32656",
+            "qsiId": "QSI-2026-44183",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -857,7 +682,7 @@
             "qsiFindingKey/v1": "7e224d1c63a6a5ebbf76b94e741e0e22"
           },
           "properties": {
-            "qsiId": "QSI-2026-32644",
+            "qsiId": "QSI-2026-44171",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -884,7 +709,7 @@
             "qsiFindingKey/v1": "b1788cacfbfbb73f3c724e1bbb7975d7"
           },
           "properties": {
-            "qsiId": "QSI-2026-32672",
+            "qsiId": "QSI-2026-44199",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -911,7 +736,7 @@
             "qsiFindingKey/v1": "2189d656f2f4af17c46b2162df9e087f"
           },
           "properties": {
-            "qsiId": "QSI-2026-32674",
+            "qsiId": "QSI-2026-44201",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -938,7 +763,7 @@
             "qsiFindingKey/v1": "4448fa0d72c9a8efd7bb44d077c36b91"
           },
           "properties": {
-            "qsiId": "QSI-2026-32675",
+            "qsiId": "QSI-2026-44202",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -965,7 +790,7 @@
             "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
           },
           "properties": {
-            "qsiId": "QSI-2026-32683",
+            "qsiId": "QSI-2026-44210",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -992,7 +817,7 @@
             "qsiFindingKey/v1": "e670838caa3c6871cbba6c50a36ebda3"
           },
           "properties": {
-            "qsiId": "QSI-2026-32684",
+            "qsiId": "QSI-2026-44211",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1009,77 +834,17 @@
           ]
         },
         {
-          "ruleId": "SOL-ECRECOVER",
-          "ruleIndex": 3,
-          "level": "warning",
-          "message": {
-            "text": "Raw ecrecover usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "d4cd0bd42e1034a52cb9f702dbe4e7a1"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32592",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "5.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
-                },
-                "region": {
-                  "startLine": 148
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "SOL-ECRECOVER",
-          "ruleIndex": 3,
-          "level": "warning",
-          "message": {
-            "text": "Raw ecrecover usage in contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "c6206fc4c8d3e496f2d46458fc198bb5"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32609",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "5.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
-                },
-                "region": {
-                  "startLine": 148
-                }
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 4,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDSA: transaction and message signing (5 file(s))"
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (35 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-32552",
+            "qsiId": "QSI-2026-44083",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1088,16 +853,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 4,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))"
+            "text": "Quantum-vulnerable Ed25519: transaction and message signing (2 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-32553",
+            "qsiId": "QSI-2026-44084",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1106,16 +871,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 4,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDSA: role not determined (1 file(s))"
+            "text": "Quantum-vulnerable ECDSA: role not determined (2 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-32551",
+            "qsiId": "QSI-2026-44072",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1124,16 +889,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 4,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Ed25519: role not determined (4 file(s))"
+            "text": "Quantum-vulnerable Ed25519: role not determined (5 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-32554",
+            "qsiId": "QSI-2026-44082",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1151,7 +916,7 @@
             "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-32614",
+            "qsiId": "QSI-2026-44141",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1178,7 +943,7 @@
             "qsiFindingKey/v1": "7d38026e1304bdceecb5f2c55aff6973"
           },
           "properties": {
-            "qsiId": "QSI-2026-32616",
+            "qsiId": "QSI-2026-44143",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1205,7 +970,7 @@
             "qsiFindingKey/v1": "7add4ce5bace9984e4fa9126622305de"
           },
           "properties": {
-            "qsiId": "QSI-2026-32625",
+            "qsiId": "QSI-2026-44152",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1232,7 +997,7 @@
             "qsiFindingKey/v1": "380d2061837cbf664e1d7873670cef1b"
           },
           "properties": {
-            "qsiId": "QSI-2026-32633",
+            "qsiId": "QSI-2026-44160",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1259,7 +1024,7 @@
             "qsiFindingKey/v1": "72762616b0a2f00326e98c3e8c66d7da"
           },
           "properties": {
-            "qsiId": "QSI-2026-32635",
+            "qsiId": "QSI-2026-44162",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1286,7 +1051,7 @@
             "qsiFindingKey/v1": "236aacbe0ce8036f351f8f6fb3cb5a90"
           },
           "properties": {
-            "qsiId": "QSI-2026-32641",
+            "qsiId": "QSI-2026-44168",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1313,7 +1078,7 @@
             "qsiFindingKey/v1": "ffbbd8dc8e63311151df5aa3dad0af14"
           },
           "properties": {
-            "qsiId": "QSI-2026-32658",
+            "qsiId": "QSI-2026-44185",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1340,7 +1105,7 @@
             "qsiFindingKey/v1": "ce4c6575359cf9d153f43bb6f325a231"
           },
           "properties": {
-            "qsiId": "QSI-2026-32677",
+            "qsiId": "QSI-2026-44204",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1367,7 +1132,7 @@
             "qsiFindingKey/v1": "c2c7f55f264ba1c2b08a407506bcb98f"
           },
           "properties": {
-            "qsiId": "QSI-2026-32678",
+            "qsiId": "QSI-2026-44205",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1394,7 +1159,7 @@
             "qsiFindingKey/v1": "ebe3fea6258d403ad92ebc5496b5fe3b"
           },
           "properties": {
-            "qsiId": "QSI-2026-32653",
+            "qsiId": "QSI-2026-44180",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1421,7 +1186,7 @@
             "qsiFindingKey/v1": "3096cda12577b6c6e8c68fb518737710"
           },
           "properties": {
-            "qsiId": "QSI-2026-32657",
+            "qsiId": "QSI-2026-44184",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1448,7 +1213,7 @@
             "qsiFindingKey/v1": "de9d6880ad9a2af6ca3b69562ca270b4"
           },
           "properties": {
-            "qsiId": "QSI-2026-32670",
+            "qsiId": "QSI-2026-44197",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1466,7 +1231,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "Floating pragma (^0.8.29) in 29 file(s)"
@@ -1475,205 +1240,7 @@
             "qsiFindingKey/v1": "0bfdcb20d878189ffbdfbcd8249420c3"
           },
           "properties": {
-            "qsiId": "QSI-2026-32542",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (^0.8.20) in 279 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b5106ab77ad2ab496f2b2c3a7c47b8a3"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32555",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (^0.8.26) in 12 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cc94a3bbc2bdbe29ceb90e29eddead98"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32558",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (^0.8.24) in 70 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "ad4c91f080f8598ca456c14e76fe5ad3"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32559",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (^0.8.22) in 11 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "e0defcfd7d918e64bce05dffca382b42"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32569",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (>=0.8.4) in 22 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "693c145cd88da837e8808f4dc9d2384e"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32571",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (>=0.4.16) in 24 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "128f2a1c6cc8a667eb679c7821f98323"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32574",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (>=0.6.2) in 44 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "96f0840f5dba383b5f2c1b8739749ec2"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32585",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (>=0.5.0) in 28 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "8d830756f0a91a611fb00dc1fd662727"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32586",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (>=0.4.11) in 4 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "ec4b561717a1e86d91f18e1a58231c95"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32587",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (^0.8.21) in 2 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "f8f4be5a45d673b7271ad308142e1c7b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32588",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Floating pragma (>=0.6.9) in 2 file(s)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "5fa1ee8b8e65f424462f633c031061ec"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-32593",
+            "qsiId": "QSI-2026-44073",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -1691,7 +1258,7 @@
             "qsiFindingKey/v1": "43eeea5cb851368e9dc81a2f2fc1edbd"
           },
           "properties": {
-            "qsiId": "QSI-2026-32655",
+            "qsiId": "QSI-2026-44182",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1718,7 +1285,7 @@
             "qsiFindingKey/v1": "0c214321e3e7ce2b7c0a2531f71801b7"
           },
           "properties": {
-            "qsiId": "QSI-2026-32680",
+            "qsiId": "QSI-2026-44207",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1745,7 +1312,7 @@
             "qsiFindingKey/v1": "d4c7cf2a81d03919d11f20e7dc08e38b"
           },
           "properties": {
-            "qsiId": "QSI-2026-32679",
+            "qsiId": "QSI-2026-44206",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1763,7 +1330,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "anyhow 1.0.102 is affected by RUSTSEC-2026-0190 (no severity rating) (dependency: crates.io/anyhow@1.0.102)"
@@ -1772,7 +1339,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-32610",
+            "qsiId": "QSI-2026-44137",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1790,7 +1357,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "bitmaps 3.2.1 is affected by RUSTSEC-2025-0167 (no severity rating) (dependency: crates.io/bitmaps@3.2.1)"
@@ -1799,7 +1366,7 @@
             "qsiFindingKey/v1": "3185a02e448e74da6653bf7316dd240a"
           },
           "properties": {
-            "qsiId": "QSI-2026-32612",
+            "qsiId": "QSI-2026-44139",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1817,7 +1384,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating) (dependency: crates.io/crypto-bigint@0.5.5)"
@@ -1826,7 +1393,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-32618",
+            "qsiId": "QSI-2026-44145",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1844,7 +1411,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "ctutils 0.4.0 is affected by RUSTSEC-2026-0385 (no severity rating) (dependency: crates.io/ctutils@0.4.0)"
@@ -1853,7 +1420,7 @@
             "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
           },
           "properties": {
-            "qsiId": "QSI-2026-32619",
+            "qsiId": "QSI-2026-44146",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1871,7 +1438,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "event-listener 5.4.1 is affected by RUSTSEC-2026-0221 (no severity rating) (dependency: crates.io/event-listener@5.4.1)"
@@ -1880,7 +1447,7 @@
             "qsiFindingKey/v1": "f179e31043c775ec7d3bc61eae1ee9e2"
           },
           "properties": {
-            "qsiId": "QSI-2026-32621",
+            "qsiId": "QSI-2026-44148",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1898,7 +1465,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "git2 0.20.4 is affected by RUSTSEC-2026-0183 (no severity rating) (dependency: crates.io/git2@0.20.4)"
@@ -1907,7 +1474,7 @@
             "qsiFindingKey/v1": "4372919ad75ea6b36e82875954842120"
           },
           "properties": {
-            "qsiId": "QSI-2026-32622",
+            "qsiId": "QSI-2026-44149",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1925,7 +1492,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "git2 0.20.4 is affected by RUSTSEC-2026-0184 (no severity rating) (dependency: crates.io/git2@0.20.4)"
@@ -1934,7 +1501,7 @@
             "qsiFindingKey/v1": "94a1884d76a8e4e1f3cdeb6bd0c0e5c5"
           },
           "properties": {
-            "qsiId": "QSI-2026-32623",
+            "qsiId": "QSI-2026-44150",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1952,7 +1519,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0487 (CVE-2026-123572) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -1961,7 +1528,7 @@
             "qsiFindingKey/v1": "867f1e0bc74a031851fb40c87a1f1e32"
           },
           "properties": {
-            "qsiId": "QSI-2026-32626",
+            "qsiId": "QSI-2026-44153",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1979,7 +1546,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0489 (CVE-2026-123573) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -1988,7 +1555,7 @@
             "qsiFindingKey/v1": "2342536494f48a115391bf01cc3aae68"
           },
           "properties": {
-            "qsiId": "QSI-2026-32627",
+            "qsiId": "QSI-2026-44154",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2006,7 +1573,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0490 (CVE-2026-123574) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2015,7 +1582,7 @@
             "qsiFindingKey/v1": "175014a7cd1694778344b7d781850d0c"
           },
           "properties": {
-            "qsiId": "QSI-2026-32628",
+            "qsiId": "QSI-2026-44155",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2033,7 +1600,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0491 (CVE-2026-123570) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2042,7 +1609,7 @@
             "qsiFindingKey/v1": "c2dee598af8f444f4cc562cbb2470f48"
           },
           "properties": {
-            "qsiId": "QSI-2026-32629",
+            "qsiId": "QSI-2026-44156",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2060,7 +1627,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0504 (CVE-2026-123601) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2069,7 +1636,7 @@
             "qsiFindingKey/v1": "6ced42a1292a3fb67e1b6d8d599d228d"
           },
           "properties": {
-            "qsiId": "QSI-2026-32630",
+            "qsiId": "QSI-2026-44157",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2087,7 +1654,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0511 (CVE-2026-123594) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2096,7 +1663,7 @@
             "qsiFindingKey/v1": "11a8b9caed2cde551de73d320386763a"
           },
           "properties": {
-            "qsiId": "QSI-2026-32632",
+            "qsiId": "QSI-2026-44159",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2114,7 +1681,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0530 (CVE-2026-123596) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2123,7 +1690,7 @@
             "qsiFindingKey/v1": "894603421be51fe99df83338e4c066ec"
           },
           "properties": {
-            "qsiId": "QSI-2026-32634",
+            "qsiId": "QSI-2026-44161",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2141,7 +1708,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0532 (CVE-2026-123595) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2150,7 +1717,7 @@
             "qsiFindingKey/v1": "8506b335dc8356b635fe1cf04e976c78"
           },
           "properties": {
-            "qsiId": "QSI-2026-32636",
+            "qsiId": "QSI-2026-44163",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2168,7 +1735,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0549 (CVE-2026-123600) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2177,7 +1744,7 @@
             "qsiFindingKey/v1": "23df7a5e951e3c14219881b571e5bfdf"
           },
           "properties": {
-            "qsiId": "QSI-2026-32637",
+            "qsiId": "QSI-2026-44164",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2195,7 +1762,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0550 (CVE-2026-123590) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2204,7 +1771,7 @@
             "qsiFindingKey/v1": "7dec733b8fdd2d924b52bec3097f33dc"
           },
           "properties": {
-            "qsiId": "QSI-2026-32638",
+            "qsiId": "QSI-2026-44165",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2222,7 +1789,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "hickory-proto 0.25.2 is affected by RUSTSEC-2026-0551 (CVE-2026-123599) (no severity rating) (dependency: crates.io/hickory-proto@0.25.2)"
@@ -2231,7 +1798,7 @@
             "qsiFindingKey/v1": "b94eb8d9ca6cace657e856dea5371541"
           },
           "properties": {
-            "qsiId": "QSI-2026-32639",
+            "qsiId": "QSI-2026-44166",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2249,7 +1816,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "imbl-sized-chunks 0.1.3 is affected by RUSTSEC-2026-0292 (no severity rating) (dependency: crates.io/imbl-sized-chunks@0.1.3)"
@@ -2258,7 +1825,7 @@
             "qsiFindingKey/v1": "41ae157d62a7dc5bd2c77178800c1137"
           },
           "properties": {
-            "qsiId": "QSI-2026-32643",
+            "qsiId": "QSI-2026-44170",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2276,7 +1843,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "libp2p-gossipsub 0.49.4 is affected by RUSTSEC-2026-0534 (no severity rating) (dependency: crates.io/libp2p-gossipsub@0.49.4)"
@@ -2285,7 +1852,7 @@
             "qsiFindingKey/v1": "80b770119bce9f5de42088a6c6d57227"
           },
           "properties": {
-            "qsiId": "QSI-2026-32645",
+            "qsiId": "QSI-2026-44172",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2303,7 +1870,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "libp2p-gossipsub 0.49.4 is affected by RUSTSEC-2026-0536 (CVE-2026-95859) (no severity rating) (dependency: crates.io/libp2p-gossipsub@0.49.4)"
@@ -2312,7 +1879,7 @@
             "qsiFindingKey/v1": "338cd51e54b254b9e3e737da64a2e756"
           },
           "properties": {
-            "qsiId": "QSI-2026-32646",
+            "qsiId": "QSI-2026-44173",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2330,7 +1897,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "libz-sys 1.1.23 is affected by RUSTSEC-2026-0418 (no severity rating) (dependency: crates.io/libz-sys@1.1.23)"
@@ -2339,7 +1906,7 @@
             "qsiFindingKey/v1": "131155ea58c3e2fbe4aa192d418e1a3b"
           },
           "properties": {
-            "qsiId": "QSI-2026-32648",
+            "qsiId": "QSI-2026-44175",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2357,7 +1924,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "lru 0.16.3 is affected by RUSTSEC-2026-0253 (no severity rating) (dependency: crates.io/lru@0.16.3)"
@@ -2366,7 +1933,7 @@
             "qsiFindingKey/v1": "a99cb340246a5baec640a7f8aa0fb8b1"
           },
           "properties": {
-            "qsiId": "QSI-2026-32649",
+            "qsiId": "QSI-2026-44176",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2384,7 +1951,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0338 (no severity rating) (dependency: crates.io/quinn-proto@0.11.15)"
@@ -2393,7 +1960,7 @@
             "qsiFindingKey/v1": "d3ca7fccd21f67bd5f8f9561c7543a2c"
           },
           "properties": {
-            "qsiId": "QSI-2026-32662",
+            "qsiId": "QSI-2026-44189",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2411,7 +1978,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0339 (no severity rating) (dependency: crates.io/quinn-proto@0.11.15)"
@@ -2420,7 +1987,7 @@
             "qsiFindingKey/v1": "654eafedce8c5c17c2ce41da18ded4ea"
           },
           "properties": {
-            "qsiId": "QSI-2026-32663",
+            "qsiId": "QSI-2026-44190",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2438,7 +2005,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0342 (no severity rating) (dependency: crates.io/quinn-proto@0.11.15)"
@@ -2447,7 +2014,7 @@
             "qsiFindingKey/v1": "39f30a2a3ec7f5404ef71baf0e11c67a"
           },
           "properties": {
-            "qsiId": "QSI-2026-32666",
+            "qsiId": "QSI-2026-44193",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2465,7 +2032,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0523 (no severity rating) (dependency: crates.io/quinn-proto@0.11.15)"
@@ -2474,7 +2041,7 @@
             "qsiFindingKey/v1": "4a88c738ea3cc0326cde845240bc56a3"
           },
           "properties": {
-            "qsiId": "QSI-2026-32667",
+            "qsiId": "QSI-2026-44194",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2492,7 +2059,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "quinn-proto 0.11.15 is affected by RUSTSEC-2026-0524 (no severity rating) (dependency: crates.io/quinn-proto@0.11.15)"
@@ -2501,7 +2068,7 @@
             "qsiFindingKey/v1": "bd4071eb4e54632e5580a12640c6470f"
           },
           "properties": {
-            "qsiId": "QSI-2026-32668",
+            "qsiId": "QSI-2026-44195",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2519,7 +2086,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "quinn-udp 0.5.14 is affected by RUSTSEC-2026-0538 (no severity rating) (dependency: crates.io/quinn-udp@0.5.14)"
@@ -2528,7 +2095,7 @@
             "qsiFindingKey/v1": "db6b275072f2fd1b7bec0bbdaad82232"
           },
           "properties": {
-            "qsiId": "QSI-2026-32669",
+            "qsiId": "QSI-2026-44196",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2546,7 +2113,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "rustix 1.1.3 is affected by RUSTSEC-2026-0486 (no severity rating) (dependency: crates.io/rustix@1.1.3)"
@@ -2555,7 +2122,7 @@
             "qsiFindingKey/v1": "a3bce719731ef49c5ca9f79fe8cada42"
           },
           "properties": {
-            "qsiId": "QSI-2026-32676",
+            "qsiId": "QSI-2026-44203",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2573,7 +2140,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "rustls-webpki 0.103.13 is affected by RUSTSEC-2026-0382 (CVE-2026-111943) (no severity rating) (dependency: crates.io/rustls-webpki@0.103.13)"
@@ -2582,7 +2149,7 @@
             "qsiFindingKey/v1": "ba8434a29ae02f313b720c0655582a47"
           },
           "properties": {
-            "qsiId": "QSI-2026-32682",
+            "qsiId": "QSI-2026-44209",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2600,7 +2167,34 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "url 2.5.8 is affected by RUSTSEC-2026-0592 (no severity rating) (dependency: crates.io/url@2.5.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e0b513f89662ae90e9b5a3a3b124563f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44213",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "webpki-root-certs 1.0.6 is affected by RUSTSEC-2026-0383 (CVE-2026-111943) (no severity rating) (dependency: crates.io/webpki-root-certs@1.0.6)"
@@ -2609,7 +2203,7 @@
             "qsiFindingKey/v1": "3286653610c53d670e72eca21c86ab95"
           },
           "properties": {
-            "qsiId": "QSI-2026-32686",
+            "qsiId": "QSI-2026-44214",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2627,7 +2221,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "webpki-roots 1.0.6 is affected by RUSTSEC-2026-0381 (CVE-2026-111943) (no severity rating) (dependency: crates.io/webpki-roots@1.0.6)"
@@ -2636,7 +2230,7 @@
             "qsiFindingKey/v1": "75ea72e743b02165442bef2814615a03"
           },
           "properties": {
-            "qsiId": "QSI-2026-32687",
+            "qsiId": "QSI-2026-44215",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2654,7 +2248,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd 0.13.3 is affected by RUSTSEC-2026-0391 (no severity rating) (dependency: crates.io/zstd@0.13.3)"
@@ -2663,7 +2257,7 @@
             "qsiFindingKey/v1": "67973567a2d3929f8a65f995e1e7aa91"
           },
           "properties": {
-            "qsiId": "QSI-2026-32691",
+            "qsiId": "QSI-2026-44219",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2681,7 +2275,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0395 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2690,7 +2284,7 @@
             "qsiFindingKey/v1": "64c1fd5f38431b58ce6bc40e7e4e227e"
           },
           "properties": {
-            "qsiId": "QSI-2026-32692",
+            "qsiId": "QSI-2026-44220",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2708,7 +2302,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0396 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2717,7 +2311,7 @@
             "qsiFindingKey/v1": "ddd2290dd11a4be2cd0d1df793f0d2ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-32693",
+            "qsiId": "QSI-2026-44221",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2735,7 +2329,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0397 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2744,7 +2338,7 @@
             "qsiFindingKey/v1": "d382b3b77376d5f430467a2dda781ead"
           },
           "properties": {
-            "qsiId": "QSI-2026-32694",
+            "qsiId": "QSI-2026-44222",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2762,7 +2356,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0398 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2771,7 +2365,7 @@
             "qsiFindingKey/v1": "4dc3d97a34bcaae0c74ae12fdc154561"
           },
           "properties": {
-            "qsiId": "QSI-2026-32695",
+            "qsiId": "QSI-2026-44223",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2789,7 +2383,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0399 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2798,7 +2392,7 @@
             "qsiFindingKey/v1": "af7099f6a028cb26db55b7dda7ed86ea"
           },
           "properties": {
-            "qsiId": "QSI-2026-32696",
+            "qsiId": "QSI-2026-44224",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2816,7 +2410,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0400 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2825,7 +2419,7 @@
             "qsiFindingKey/v1": "f9c8da51df1c7bb095d219042d1c82ee"
           },
           "properties": {
-            "qsiId": "QSI-2026-32697",
+            "qsiId": "QSI-2026-44225",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2843,7 +2437,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0401 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2852,7 +2446,7 @@
             "qsiFindingKey/v1": "d6ac7e8d63f0f129f6fc20b7d503cca8"
           },
           "properties": {
-            "qsiId": "QSI-2026-32698",
+            "qsiId": "QSI-2026-44226",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2870,7 +2464,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0402 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2879,7 +2473,7 @@
             "qsiFindingKey/v1": "6f7f35cf9b55ea6dc2311fe171f62a01"
           },
           "properties": {
-            "qsiId": "QSI-2026-32699",
+            "qsiId": "QSI-2026-44227",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2897,7 +2491,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0403 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2906,7 +2500,7 @@
             "qsiFindingKey/v1": "29aeb0f151232cc86bd2fd6047e19579"
           },
           "properties": {
-            "qsiId": "QSI-2026-32700",
+            "qsiId": "QSI-2026-44228",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2924,7 +2518,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0404 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2933,7 +2527,7 @@
             "qsiFindingKey/v1": "93aaa6f71615d11ec32093f39cfdd5ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-32701",
+            "qsiId": "QSI-2026-44229",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2951,7 +2545,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0405 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2960,7 +2554,7 @@
             "qsiFindingKey/v1": "0769c594012687558b7f6995d6b1f215"
           },
           "properties": {
-            "qsiId": "QSI-2026-32702",
+            "qsiId": "QSI-2026-44230",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2978,7 +2572,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-safe 7.2.4 is affected by RUSTSEC-2026-0406 (no severity rating) (dependency: crates.io/zstd-safe@7.2.4)"
@@ -2987,7 +2581,7 @@
             "qsiFindingKey/v1": "71976817d2bf587b4a2e06fc1dbdab81"
           },
           "properties": {
-            "qsiId": "QSI-2026-32703",
+            "qsiId": "QSI-2026-44231",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3005,7 +2599,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "zstd-sys 2.0.16+zstd.1.5.7 is affected by RUSTSEC-2026-0410 (no severity rating) (dependency: crates.io/zstd-sys@2.0.16+zstd.1.5.7)"
@@ -3014,7 +2608,7 @@
             "qsiFindingKey/v1": "8d11754f30834ec723fd49617ffb55ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-32704",
+            "qsiId": "QSI-2026-44232",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -3032,7 +2626,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Privileged administrative functions in contracts/src/Denylist.sol: addDenylister, removeDenylister"
@@ -3041,7 +2635,7 @@
             "qsiFindingKey/v1": "dcffad3620e3ae68145cd69678bad314"
           },
           "properties": {
-            "qsiId": "QSI-2026-32543",
+            "qsiId": "QSI-2026-44074",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3059,7 +2653,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Privileged administrative functions in contracts/src/common/roles/Pausable.sol: updatePauser"
@@ -3068,7 +2662,7 @@
             "qsiFindingKey/v1": "dce79eee6f8b4e275c2f96a4a7172fe3"
           },
           "properties": {
-            "qsiId": "QSI-2026-32544",
+            "qsiId": "QSI-2026-44075",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3086,7 +2680,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Privileged administrative functions in contracts/src/protocol-config/roles/Controller.sol: updateController"
@@ -3095,7 +2689,7 @@
             "qsiFindingKey/v1": "9303dd1ed17372bffa9b7087876947c4"
           },
           "properties": {
-            "qsiId": "QSI-2026-32545",
+            "qsiId": "QSI-2026-44076",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3113,7 +2707,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Privileged administrative functions in contracts/src/proxy/AdminUpgradeableProxy.sol: upgradeTo, upgradeToAndCall, changeAdmin"
@@ -3122,7 +2716,7 @@
             "qsiFindingKey/v1": "f700e4378920646c301f880806be23ae"
           },
           "properties": {
-            "qsiId": "QSI-2026-32546",
+            "qsiId": "QSI-2026-44077",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3140,7 +2734,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Privileged administrative functions in contracts/src/validator-manager/PermissionedValidatorManager.sol: transferRegistryOwner, acceptRegistryOwnership"
@@ -3149,7 +2743,7 @@
             "qsiFindingKey/v1": "e841690e3d3a457c1e74a55d65858e13"
           },
           "properties": {
-            "qsiId": "QSI-2026-32547",
+            "qsiId": "QSI-2026-44078",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3167,7 +2761,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Privileged administrative functions in contracts/src/validator-manager/ValidatorRegistry.sol: registerValidator, activateValidator, removeValidator, updateValidatorVotingPower"
@@ -3176,7 +2770,7 @@
             "qsiFindingKey/v1": "b9f2e60aff63a580edaee6a89ef9d395"
           },
           "properties": {
-            "qsiId": "QSI-2026-32548",
+            "qsiId": "QSI-2026-44079",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3194,7 +2788,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Privileged administrative functions in contracts/src/validator-manager/roles/Controller.sol: configureController, removeController, updateVotingPowerLimit"
@@ -3203,7 +2797,7 @@
             "qsiFindingKey/v1": "bdd0428e861c327966ce92d70f1e2a6d"
           },
           "properties": {
-            "qsiId": "QSI-2026-32549",
+            "qsiId": "QSI-2026-44080",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3221,7 +2815,7 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Privileged administrative functions in contracts/src/validator-manager/roles/ValidatorRegisterer.sol: addValidatorRegisterer, removeValidatorRegisterer"
@@ -3230,7 +2824,7 @@
             "qsiFindingKey/v1": "20977c5637abd289e2ba67ac2525a261"
           },
           "properties": {
-            "qsiId": "QSI-2026-32550",
+            "qsiId": "QSI-2026-44081",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3248,16 +2842,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "ccfa14f93a4db5635ccc7a4b409a0951"
           },
           "properties": {
-            "qsiId": "QSI-2026-32556",
+            "qsiId": "QSI-2026-44086",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3275,16 +2869,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "2ff82d3f6dc6cf34fc0ec55b7694eff2"
           },
           "properties": {
-            "qsiId": "QSI-2026-32557",
+            "qsiId": "QSI-2026-44087",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3302,16 +2896,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "980633dc7ac7cf12aed1e1a43addd30a"
           },
           "properties": {
-            "qsiId": "QSI-2026-32560",
+            "qsiId": "QSI-2026-44090",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3329,16 +2923,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "c9ed5951b2f72c379d14caaa972eee6c"
           },
           "properties": {
-            "qsiId": "QSI-2026-32561",
+            "qsiId": "QSI-2026-44091",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3356,16 +2950,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol: setProposalGuardian"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorProposalGuardianUpgradeable.sol: setProposalGuardian"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "7c6939bfca410c9b208df5303827c0d5"
           },
           "properties": {
-            "qsiId": "QSI-2026-32562",
+            "qsiId": "QSI-2026-44092",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3383,16 +2977,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "1369dd25aa0e10a7d48a7a67853ed990"
           },
           "properties": {
-            "qsiId": "QSI-2026-32563",
+            "qsiId": "QSI-2026-44093",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3410,16 +3004,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "0baff6ff30769c74a3e39212def681a3"
           },
           "properties": {
-            "qsiId": "QSI-2026-32564",
+            "qsiId": "QSI-2026-44094",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3437,16 +3031,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "a0a10f2d56415c634e4eddad781ea533"
           },
           "properties": {
-            "qsiId": "QSI-2026-32565",
+            "qsiId": "QSI-2026-44095",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3464,16 +3058,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "87a0ef55a62051b1d91f889565c2850b"
           },
           "properties": {
-            "qsiId": "QSI-2026-32566",
+            "qsiId": "QSI-2026-44096",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3491,16 +3085,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "5c02f1a71993a7cbb49de2c3c6fb0f31"
           },
           "properties": {
-            "qsiId": "QSI-2026-32567",
+            "qsiId": "QSI-2026-44097",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3518,16 +3112,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol: updateSuperQuorumNumerator"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesSuperQuorumFractionUpgradeable.sol: updateSuperQuorumNumerator"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "45cb149fcf004dd921da9d5885d4a13a"
           },
           "properties": {
-            "qsiId": "QSI-2026-32568",
+            "qsiId": "QSI-2026-44098",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3545,16 +3139,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "9f0c45903786838f72fcba933c72fe9e"
           },
           "properties": {
-            "qsiId": "QSI-2026-32572",
+            "qsiId": "QSI-2026-44103",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3572,16 +3166,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "c027e913f910d58a99a70c844cfff11b"
           },
           "properties": {
-            "qsiId": "QSI-2026-32573",
+            "qsiId": "QSI-2026-44104",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3599,16 +3193,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "794a515aa00a229083e21bcd331084f7"
           },
           "properties": {
-            "qsiId": "QSI-2026-32576",
+            "qsiId": "QSI-2026-44106",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3626,16 +3220,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "cf154d999dcd058bf042cf08248b2b4f"
           },
           "properties": {
-            "qsiId": "QSI-2026-32577",
+            "qsiId": "QSI-2026-44107",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3653,16 +3247,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "77a6851702ce8f524017a9df776b3c76"
           },
           "properties": {
-            "qsiId": "QSI-2026-32578",
+            "qsiId": "QSI-2026-44108",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3680,16 +3274,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "0cd232baf52b5b65be7263b5c5aa6e7e"
           },
           "properties": {
-            "qsiId": "QSI-2026-32579",
+            "qsiId": "QSI-2026-44109",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3707,16 +3301,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "0546650664dd252b5782821fca1f58a3"
           },
           "properties": {
-            "qsiId": "QSI-2026-32580",
+            "qsiId": "QSI-2026-44110",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3734,16 +3328,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "0f2f5d5719740c98a0e6695bfd8a9007"
           },
           "properties": {
-            "qsiId": "QSI-2026-32581",
+            "qsiId": "QSI-2026-44111",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3761,16 +3355,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "fdc99088f8fa25018286d6decf703bc2"
           },
           "properties": {
-            "qsiId": "QSI-2026-32582",
+            "qsiId": "QSI-2026-44112",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3788,16 +3382,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "6f90f99a6994dad7b14f92a2f0b3bbc8"
           },
           "properties": {
-            "qsiId": "QSI-2026-32583",
+            "qsiId": "QSI-2026-44113",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3815,16 +3409,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "48bb28408ea046060a15159de458248f"
           },
           "properties": {
-            "qsiId": "QSI-2026-32584",
+            "qsiId": "QSI-2026-44114",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3842,16 +3436,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "a511339bcd940406446dcfa50d315ed5"
           },
           "properties": {
-            "qsiId": "QSI-2026-32589",
+            "qsiId": "QSI-2026-44119",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3869,16 +3463,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "51e575ad203791c6bd2a38e08c4565de"
           },
           "properties": {
-            "qsiId": "QSI-2026-32590",
+            "qsiId": "QSI-2026-44120",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3896,16 +3490,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "5ec0ff8b04a564814a68b541401f56d5"
           },
           "properties": {
-            "qsiId": "QSI-2026-32594",
+            "qsiId": "QSI-2026-44123",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3923,16 +3517,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "739b6770de0ea17c49a13d92d89a8feb"
           },
           "properties": {
-            "qsiId": "QSI-2026-32595",
+            "qsiId": "QSI-2026-44124",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3950,16 +3544,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "270c92185b00c6c00db658de44801d68"
           },
           "properties": {
-            "qsiId": "QSI-2026-32597",
+            "qsiId": "QSI-2026-44125",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -3977,16 +3571,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "70ddbba4f5660ffad5f799e5ebb450d2"
           },
           "properties": {
-            "qsiId": "QSI-2026-32598",
+            "qsiId": "QSI-2026-44126",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4004,16 +3598,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorProposalGuardian.sol: setProposalGuardian"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "b6988a3180e5a804b3ba3f7dcf9cda46"
           },
           "properties": {
-            "qsiId": "QSI-2026-32599",
+            "qsiId": "QSI-2026-44127",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4031,16 +3625,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "6885c1bc541aab70846256134ecf416d"
           },
           "properties": {
-            "qsiId": "QSI-2026-32600",
+            "qsiId": "QSI-2026-44128",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4058,16 +3652,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "ed0cb3e33a88571705ad2bc8667b3274"
           },
           "properties": {
-            "qsiId": "QSI-2026-32601",
+            "qsiId": "QSI-2026-44129",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4085,16 +3679,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "9198a625b78e9f28b2290b7240507cc7"
           },
           "properties": {
-            "qsiId": "QSI-2026-32602",
+            "qsiId": "QSI-2026-44130",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4112,16 +3706,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "69d5a412120b430c5319acad67459176"
           },
           "properties": {
-            "qsiId": "QSI-2026-32603",
+            "qsiId": "QSI-2026-44131",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4139,16 +3733,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "c18a8a6b761ab487f606db71c7ea74c2"
           },
           "properties": {
-            "qsiId": "QSI-2026-32604",
+            "qsiId": "QSI-2026-44132",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4166,16 +3760,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesSuperQuorumFraction.sol: updateSuperQuorumNumerator"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "7f5acf8be15a2c739a30fdf4457776de"
           },
           "properties": {
-            "qsiId": "QSI-2026-32605",
+            "qsiId": "QSI-2026-44133",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4193,16 +3787,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "6d55eed61a6302a666dc4b5e362783ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-32606",
+            "qsiId": "QSI-2026-44134",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4220,16 +3814,16 @@
         },
         {
           "ruleId": "SOL-ADMIN-FUNCTIONS",
-          "ruleIndex": 7,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall"
+            "text": "In bundled third-party code: Privileged administrative functions in contracts/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "3f9e60a283ef93821bc97892b0a07809"
           },
           "properties": {
-            "qsiId": "QSI-2026-32607",
+            "qsiId": "QSI-2026-44135",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4246,8 +3840,314 @@
           ]
         },
         {
+          "ruleId": "SOL-ECRECOVER",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Raw ecrecover usage in contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d4cd0bd42e1034a52cb9f702dbe4e7a1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44121",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+                },
+                "region": {
+                  "startLine": 148
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ECRECOVER",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Raw ecrecover usage in contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c6206fc4c8d3e496f2d46458fc198bb5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44136",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+                },
+                "region": {
+                  "startLine": 148
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CODE-HARDCODED-SECRET",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Possible hard-coded secret in contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "711ba6782d6d6ee5a726452aaddd467f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44100",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC6909/extensions/draft-ERC6909TokenSupplyUpgradeable.sol"
+                },
+                "region": {
+                  "startLine": 21
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (^0.8.20) in 279 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b5106ab77ad2ab496f2b2c3a7c47b8a3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44085",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (^0.8.26) in 12 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cc94a3bbc2bdbe29ceb90e29eddead98"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44088",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (^0.8.24) in 70 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ad4c91f080f8598ca456c14e76fe5ad3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44089",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (^0.8.22) in 11 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e0defcfd7d918e64bce05dffca382b42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44099",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (>=0.8.4) in 22 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "693c145cd88da837e8808f4dc9d2384e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44102",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (>=0.4.16) in 24 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "128f2a1c6cc8a667eb679c7821f98323"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44105",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (>=0.6.2) in 44 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "96f0840f5dba383b5f2c1b8739749ec2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44115",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (>=0.5.0) in 28 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8d830756f0a91a611fb00dc1fd662727"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44116",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (>=0.4.11) in 4 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ec4b561717a1e86d91f18e1a58231c95"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44117",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (^0.8.21) in 2 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f8f4be5a45d673b7271ad308142e1c7b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44118",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Floating pragma (>=0.6.9) in 2 file(s)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5fa1ee8b8e65f424462f633c031061ec"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44122",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "In bundled third-party code: Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (5 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b302032650de6c165e0e74b7d843d367"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44101",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "1.0"
+          }
+        },
+        {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "chrono 0.4.44: informational advisory RUSTSEC-2026-0543 (unmaintained) (dependency: crates.io/chrono@0.4.44)"
@@ -4256,7 +4156,7 @@
             "qsiFindingKey/v1": "7439bae337a673be840331b9becf8856"
           },
           "properties": {
-            "qsiId": "QSI-2026-32615",
+            "qsiId": "QSI-2026-44142",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4274,7 +4174,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "humantime 2.3.0: informational advisory RUSTSEC-2026-0542 (unmaintained) (dependency: crates.io/humantime@2.3.0)"
@@ -4283,7 +4183,7 @@
             "qsiFindingKey/v1": "c651e612202a9aa743853aa6459b7ac9"
           },
           "properties": {
-            "qsiId": "QSI-2026-32642",
+            "qsiId": "QSI-2026-44169",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -4301,7 +4201,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "tokio 1.52.3 is affected by RUSTSEC-2026-0386 (no severity rating) (dependency: crates.io/tokio@1.52.3)"
@@ -4310,7 +4210,7 @@
             "qsiFindingKey/v1": "0f94b12e7ce6cd766918bf059898ddff"
           },
           "properties": {
-            "qsiId": "QSI-2026-32685",
+            "qsiId": "QSI-2026-44212",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -4328,7 +4228,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-DEV",
-          "ruleIndex": 9,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "1 advisories in 1 development or build-only crates.io package(s) (dependencies: crates.io:non-runtime)"
@@ -4337,7 +4237,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-32705",
+            "qsiId": "QSI-2026-44233",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -4355,7 +4255,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-DEV",
-          "ruleIndex": 9,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "244 advisories in 61 development or build-only npm package(s) (dependencies: npm:non-runtime)"
@@ -4364,7 +4264,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-32706",
+            "qsiId": "QSI-2026-44234",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -4382,7 +4282,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained) (dependency: crates.io/bincode@1.3.3)"
@@ -4391,7 +4291,7 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-32611",
+            "qsiId": "QSI-2026-44138",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4409,7 +4309,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "bitmaps 3.2.1: informational advisory RUSTSEC-2026-0247 (unmaintained) (dependency: crates.io/bitmaps@3.2.1)"
@@ -4418,7 +4318,7 @@
             "qsiFindingKey/v1": "cd678ee5ed2549029e338d1037efc634"
           },
           "properties": {
-            "qsiId": "QSI-2026-32613",
+            "qsiId": "QSI-2026-44140",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4436,7 +4336,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "core2 0.4.0: informational advisory RUSTSEC-2026-0105 (unmaintained) (dependency: crates.io/core2@0.4.0)"
@@ -4445,7 +4345,7 @@
             "qsiFindingKey/v1": "c39206121833cacff3e0ad23bb8b2a4e"
           },
           "properties": {
-            "qsiId": "QSI-2026-32617",
+            "qsiId": "QSI-2026-44144",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4463,7 +4363,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained) (dependency: crates.io/derivative@2.2.0)"
@@ -4472,7 +4372,7 @@
             "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
           },
           "properties": {
-            "qsiId": "QSI-2026-32620",
+            "qsiId": "QSI-2026-44147",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4490,7 +4390,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained) (dependency: crates.io/paste@1.0.15)"
@@ -4499,7 +4399,7 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-32659",
+            "qsiId": "QSI-2026-44186",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4517,7 +4417,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "pin-utils 0.1.0: informational advisory RUSTSEC-2026-0441 (unmaintained) (dependency: crates.io/pin-utils@0.1.0)"
@@ -4526,7 +4426,7 @@
             "qsiFindingKey/v1": "0f6b97d0b6d3267281e6db41b755fba8"
           },
           "properties": {
-            "qsiId": "QSI-2026-32660",
+            "qsiId": "QSI-2026-44187",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4544,7 +4444,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "proc-macro-error2 2.0.1: informational advisory RUSTSEC-2026-0173 (unmaintained) (dependency: crates.io/proc-macro-error2@2.0.1)"
@@ -4553,7 +4453,7 @@
             "qsiFindingKey/v1": "8412cde0bf828d754dd3b306bfe8c506"
           },
           "properties": {
-            "qsiId": "QSI-2026-32661",
+            "qsiId": "QSI-2026-44188",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4571,7 +4471,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "rustls-pemfile 2.2.0: informational advisory RUSTSEC-2025-0134 (unmaintained) (dependency: crates.io/rustls-pemfile@2.2.0)"
@@ -4580,7 +4480,7 @@
             "qsiFindingKey/v1": "8e847c69df82b32bee45f465b3270533"
           },
           "properties": {
-            "qsiId": "QSI-2026-32681",
+            "qsiId": "QSI-2026-44208",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -4598,13 +4498,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/arc-node @ 6e764023ee65/5f265cb5-5d5a-4ea5-ac4e-6452f63cc96c"
+        "id": "qsi/arc-node @ 6e764023ee65/83fc4a73-3679-4ea2-91f6-1db7c2f42eb3"
       },
       "properties": {
-        "qsiContentSha256": "735a5c6cb5a010be77fc92cae73fd53f8416351d80a4eb79d88b74997805df81",
+        "qsiContentSha256": "55c5d2c629ebd812b42edaeb9c5dc94ab02eb3c9a5a0140280c6199e200058fd",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-19T17:43:03.178679+00:00",
+        "qsiGeneratedAt": "2026-11-23T13:53:09.976807+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

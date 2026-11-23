@@ -8,13 +8,13 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Quantum-vulnerable BLS12-381: transaction and message signing (2 file(s))"
+                "text": "Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -28,10 +28,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "3 reference(s) to BLS12-381 across 2 file(s), e.g. crates/aptos-crypto/src/bls12381/bls12381_keys.rs:77. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "26 reference(s) to X25519 across 1 file(s), e.g. crates/aptos-crypto/src/noise.rs:65. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later). Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "help": {
-                "text": "3 reference(s) to BLS12-381 across 2 file(s), e.g. crates/aptos-crypto/src/bls12381/bls12381_keys.rs:77. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "26 reference(s) to X25519 across 1 file(s), e.g. crates/aptos-crypto/src/noise.rs:65. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later). Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             }
@@ -44,13 +44,31 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable BLS12-381: transaction and message signing (2 file(s))"
+            "text": "Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "eea411a740e8c8ff6e16a6953594accc"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44065",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "ec373b0b791251d9646fe1520c3710fa"
           },
           "properties": {
-            "qsiId": "QSI-2026-19659",
+            "qsiId": "QSI-2026-44062",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,25 +86,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-19660",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (2 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19662",
+            "qsiId": "QSI-2026-44063",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,7 +104,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-19663",
+            "qsiId": "QSI-2026-44066",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -122,7 +122,25 @@
             "qsiFindingKey/v1": "165b56bf80c5202d2b78b049308c9f0c"
           },
           "properties": {
-            "qsiId": "QSI-2026-19667",
+            "qsiId": "QSI-2026-44070",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44071",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -140,7 +158,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-19661",
+            "qsiId": "QSI-2026-44064",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -158,7 +176,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-19664",
+            "qsiId": "QSI-2026-44067",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -176,7 +194,7 @@
             "qsiFindingKey/v1": "b58a222ac9ad4ea99637f155e5fe9d0f"
           },
           "properties": {
-            "qsiId": "QSI-2026-19665",
+            "qsiId": "QSI-2026-44068",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -194,7 +212,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-19666",
+            "qsiId": "QSI-2026-44069",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -203,13 +221,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/aptos-core @ 81d89f428fe8/30269b00-7b13-4dea-be58-d53a0e2a5767"
+        "id": "qsi/aptos-core @ 81d89f428fe8/73b4940e-f8b9-423e-8ae7-a8aad41085e6"
       },
       "properties": {
-        "qsiContentSha256": "496bbf2c0ceaa6407d995b8152ee8fd44f8f95ed1f641fbd08068a5bb313751f",
+        "qsiContentSha256": "b7a7dc4c731404676151f2d73f6db5c6d0e609baf47398e68952c4d8896584ea",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T16:20:34.499257+00:00",
+        "qsiGeneratedAt": "2026-11-23T13:49:11.749033+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

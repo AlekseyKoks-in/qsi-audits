@@ -1,8 +1,8 @@
 {
-  "content_sha256": "9504d578ac265b51de4004dce82ba857ca6f01624df2bbbf459dc504ecb818c6",
+  "content_sha256": "abf16677352a939d2f90ad1645ffa1c55f71b533e3809f4f8d5d2f78929d576b",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-06T13:26:17.212479+00:00",
+  "generated_at": "2026-11-23T12:39:01.335641+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "e92fddc1-7d23-4807-a236-45f2cac7befd",
     "name": "lightwalletd @ 4abfe9cd7b9b",
     "client_name": "Electric Coin Company (Zcash)",
-    "description": "Static review of the source tree lightwalletd at 4abfe9cd7b9b13f6093df59911639d1d9195dc09. 34 files analysed; of 121 files, 24 are test, fuzzing, benchmark or example code and were left out, 63 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .codecov.yml, .env.template, .github/ISSUE_TEMPLATE/bug-report.md, .github/ISSUE_TEMPLATE/feature-request.md, .github/pull_request_template.md. 46 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree lightwalletd at 4abfe9cd7b9b13f6093df59911639d1d9195dc09. 34 files analysed; of 121 files, 24 are test, fuzzing, benchmark or example code and were left out, 63 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .codecov.yml, .env.template, .github/ISSUE_TEMPLATE/bug-report.md, .github/ISSUE_TEMPLATE/feature-request.md, .github/pull_request_template.md. 57 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "6439c054-7e30-4b13-88fc-4e7ce112dd4f",
+    "id": "9f3c222e-7158-477e-a5d7-5ee96c500016",
     "mode": "document",
     "title": "Document audit: lightwalletd",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T13:26:11.254081+00:00",
-    "finished_at": "2026-11-06T13:26:17.107779+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T12:38:54.898593+00:00",
+    "finished_at": "2026-11-23T12:39:01.257313+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -264,37 +264,37 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": "cmd/connstats.go: 39 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "cmd/connstats.go: 39 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "cmd/root.go: 535 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "cmd/root.go: 535 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "cmd/version.go: 22 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "cmd/version.go: 22 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/cache.go: 380 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/cache.go: 380 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/common.go: 785 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/common.go: 785 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/darkside.go: 1064 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/darkside.go: 1064 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/generatecerts.go: 74 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/generatecerts.go: 74 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -304,12 +304,12 @@
     },
     {
       "area": "source_code",
-      "detail": "common/logging/logging.go: 52 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/logging/logging.go: 52 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "common/mempool.go: 152 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "common/mempool.go: 152 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -324,7 +324,7 @@
     },
     {
       "area": "source_code",
-      "detail": "frontend/rawrequest.go: 166 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frontend/rawrequest.go: 166 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -334,12 +334,12 @@
     },
     {
       "area": "source_code",
-      "detail": "frontend/rpc_client.go: 121 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frontend/rpc_client.go: 121 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frontend/service.go: 1355 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frontend/service.go: 1355 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -349,82 +349,82 @@
     },
     {
       "area": "source_code",
-      "detail": "hash32/hash32.go: 62 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "hash32/hash32.go: 62 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "main.go: 7 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "main.go: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "parser/block.go: 163 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "parser/block.go: 163 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "parser/block_header.go: 266 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "parser/block_header.go: 266 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "parser/bounds.go: 68 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "parser/bounds.go: 68 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "parser/fuzz.go: 15 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "parser/fuzz.go: 15 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "parser/internal/bytestring/bytestring.go: 278 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "parser/internal/bytestring/bytestring.go: 278 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "parser/transaction.go: 834 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "parser/transaction.go: 834 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "testclient/main.go: 151 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "testclient/main.go: 151 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "testtools/genblocks/main.go: 127 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "testtools/genblocks/main.go: 127 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "testtools/zap/main.go: 36 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "testtools/zap/main.go: 36 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "walletrpc/compact_formats.pb.go: 734 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "walletrpc/compact_formats.pb.go: 734 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "walletrpc/darkside.pb.go: 636 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "walletrpc/darkside.pb.go: 636 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "walletrpc/darkside_grpc.pb.go: 891 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "walletrpc/darkside_grpc.pb.go: 891 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "walletrpc/service.pb.go: 1785 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "walletrpc/service.pb.go: 1785 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "walletrpc/service_grpc.pb.go: 1051 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "walletrpc/service_grpc.pb.go: 1051 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -445,9 +445,9 @@
       "count": 28,
       "rows": 28,
       "examples": [
-        "cmd/connstats.go: 39 lines scanned with 16 rule patterns and 266 registry patterns",
-        "cmd/root.go: 535 lines scanned with 16 rule patterns and 266 registry patterns",
-        "cmd/version.go: 22 lines scanned with 16 rule patterns and 266 registry patterns"
+        "cmd/connstats.go: 39 lines scanned with 16 rule patterns and 340 registry patterns",
+        "cmd/root.go: 535 lines scanned with 16 rule patterns and 340 registry patterns",
+        "cmd/version.go: 22 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -594,8 +594,8 @@
   },
   "findings": [
     {
-      "id": "a840ced0-748b-4f47-9f1a-96dd8c494e35",
-      "public_id": "QSI-2026-18277",
+      "id": "5ce887db-986d-47db-b850-3be1ec38a525",
+      "public_id": "QSI-2026-42230",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (lightwalletd.testnet.local)",
       "description": "Сертификат lightwalletd.testnet.local использует открытый ключ RSA 2048-bit, действителен до 2029-12-15. RSA взламывается алгоритмом Шора на CRQC.",
@@ -614,12 +614,12 @@
       "triage": null,
       "affected_asset": "certificate:lightwalletd.testnet.local",
       "data_source": "docker/cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.016297+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.187621+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
-          "x": 3.11,
+          "x": 3.06,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -628,7 +628,7 @@
           "verdict": "migration_late_under_scenario",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": 0.11
+          "margin_years": 0.06
         },
         "score": 50.3,
         "factors": {
@@ -711,8 +711,8 @@
           "content": "Subject: CN=lightwalletd.testnet.local,O=MyOrg\\, Inc.,ST=CA,C=US\nIssuer: CN=lightwalletd.testnet.local,O=MyOrg\\, Inc.,ST=CA,C=US\nSerial: 7af3c04cf3fbe2a63724f13ab376b1c670bcaf1c\nNot before: 2019-12-18T14:24:54+00:00\nNot after: 2029-12-15T14:24:54+00:00\nPublic key: RSA 2048-bit\nSignature algorithm: 1.2.840.113549.1.1.11\nSignature hash: sha256\nCA: True\nSAN: -\nSHA-256 fingerprint: 907548fce41ead924e1a866da5bb154a58b5b7e503443babd2da3e6d597341c4",
           "content_sha256": "4cd9b3240260015c81d32a7359585aeb0a8fc54aafe812cd312f2fa3b2bc2e7a",
           "source_sha256": "8d44580bca050fd5b3a266b8e9c102a88cbdd88c5996c342b4ab8757b94d720c",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.027922+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.197590+00:00",
           "url": null
         }
       ],
@@ -750,8 +750,8 @@
       ]
     },
     {
-      "id": "f6d372a0-affb-41dc-af23-62fd7ace85a3",
-      "public_id": "QSI-2026-18275",
+      "id": "a9aa137e-0438-4020-ba8e-6feac1423fda",
+      "public_id": "QSI-2026-42228",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
       "description": "2 упоминаний RSA в 1 файл(ах), например common/generatecerts.go:8. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -770,8 +770,8 @@
       "triage": null,
       "affected_asset": "source-code:RSA:general",
       "data_source": "common/generatecerts.go",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:26:16.990661+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.168368+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -867,8 +867,8 @@
           "content": "    7 | \t\"crypto/rand\"\n    8 | \t\"crypto/rsa\"\n    9 | \t\"crypto/tls\"",
           "content_sha256": "9b1ce2f208b801d04fec37816b6888e4ae8b469d0344091f5c8a837ee93158f9",
           "source_sha256": "010d1a90f0fea3babe111d4e2d463b754c4d574a16ff2840e69b6f6ef92dc19b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.005932+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.178824+00:00",
           "url": "https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L8"
         },
         {
@@ -878,8 +878,8 @@
           "content": "   20 | \n   21 | \tprivKey, err := rsa.GenerateKey(rand.Reader, 2048)\n   22 | \tif err != nil {",
           "content_sha256": "7bc59a5974adbfd5570196de74190cfdee0b2b136760fe696a10a96bbe4f03d0",
           "source_sha256": "010d1a90f0fea3babe111d4e2d463b754c4d574a16ff2840e69b6f6ef92dc19b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.005943+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.178833+00:00",
           "url": "https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L21"
         }
       ],
@@ -917,8 +917,8 @@
       ]
     },
     {
-      "id": "7505f6b3-1b40-4e2b-9ed0-c98d0b5f8bd5",
-      "public_id": "QSI-2026-18278",
+      "id": "94a741a7-1740-4d6c-ace3-76efb3e31501",
+      "public_id": "QSI-2026-42231",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -938,8 +938,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:Go/golang.org/x/crypto@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.025251+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.195251+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -994,8 +994,8 @@
           "content": "{\"id\": \"GO-2026-5932\", \"aliases\": [], \"modified\": \"2026-11-02T22:15:06.677088389Z\", \"summary\": \"The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "79b7a13fb7767fbace049b5199d913b96ffabce881fc497fd2222d40644da151",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.037436+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.204328+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-5932"
         }
       ],
@@ -1018,8 +1018,8 @@
       ]
     },
     {
-      "id": "604c5588-b3e0-445f-958d-3f62af1673c0",
-      "public_id": "QSI-2026-18276",
+      "id": "5b972dfc-12cd-47c3-ad4a-c2b2591f7311",
+      "public_id": "QSI-2026-42229",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в docker/cert.key",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла docker/cert.key. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -1043,8 +1043,8 @@
       },
       "affected_asset": "file:docker/cert.key",
       "data_source": "docker/cert.key",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.001841+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.175654+00:00",
       "risk_score": 58.0,
       "risk_breakdown": {
         "cvss": {
@@ -1119,8 +1119,8 @@
           "content": "Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …",
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "4d417087d1f5076360d4260961ed5c29a58fa722450b20caf8d68765c54ab3c4",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.019567+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.190115+00:00",
           "url": "https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/docker/cert.key#L1"
         }
       ],
@@ -1158,8 +1158,8 @@
       ]
     },
     {
-      "id": "8eaa9c36-8719-47e7-8048-25dd8e9a18d7",
-      "public_id": "QSI-2026-18279",
+      "id": "115a6534-3ad9-429f-8b55-56f20dca72e2",
+      "public_id": "QSI-2026-42232",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/crypto v0.55.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6354 (CVE-2026-78662) для пакета Go golang.org/x/crypto версии v0.55.0: Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/crypto/ssh.Dial, golang.org/x/crypto/ssh.NewClientConn, golang.org/x/crypto/ssh.NewControlClientConn, golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.channel.Accept, golang.org/x/crypto/ssh.channel.handlePacket …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1179,8 +1179,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/crypto@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.034008+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.202332+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1235,8 +1235,8 @@
           "content": "{\"id\": \"GO-2026-6354\", \"aliases\": [\"CVE-2026-78662\"], \"modified\": \"2026-09-03T10:10:55.147673102Z\", \"summary\": \"Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "fb187877ccc7bca3e1e620fe5ac478176b0bfa60d40289c6b8513c063eaec76c",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.048377+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.211961+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6354"
         }
       ],
@@ -1259,8 +1259,8 @@
       ]
     },
     {
-      "id": "370a79e3-8909-428c-a14d-aa57a2755d93",
-      "public_id": "QSI-2026-18280",
+      "id": "771be6e7-df5b-4b33-8579-eb1bcd0826be",
+      "public_id": "QSI-2026-42233",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/crypto v0.55.0 затронут GO-2026-6355 (CVE-2026-56855) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6355 (CVE-2026-56855) для пакета Go golang.org/x/crypto версии v0.55.0: Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/crypto/ssh.Dial, golang.org/x/crypto/ssh.NewClientConn, golang.org/x/crypto/ssh.NewControlClientConn, golang.org/x/crypto/ssh.NewServerConn, golang.org/x/crypto/ssh.channel.handlePacket) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1280,8 +1280,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/crypto@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.044481+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.209792+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1324,7 +1324,7 @@
           "key": "GO-2026-6355",
           "url": "https://osv.dev/vulnerability/GO-2026-6355",
           "title": "OSV advisory GO-2026-6355",
-          "status": "modified 2026-09-24T10:41:42.556134596Z",
+          "status": "modified 2026-11-14T13:12:14.167817306Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -1333,11 +1333,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6355",
           "location": "line 53",
-          "content": "{\"id\": \"GO-2026-6355\", \"aliases\": [\"CVE-2026-56855\"], \"modified\": \"2026-09-24T10:41:42.556134596Z\", \"summary\": \"Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "4e6adace91e1ca1e94bf05a7bfb237f4851e56b8c982501612e1583273e4073e",
+          "content": "{\"id\": \"GO-2026-6355\", \"aliases\": [\"CVE-2026-56855\"], \"modified\": \"2026-11-14T13:12:14.167817306Z\", \"summary\": \"Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "f217becaf58633d39098707be7914bfa826cd3a88794515b0ef6387995f7cafc",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.056466+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.218010+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6355"
         }
       ],
@@ -1360,8 +1360,8 @@
       ]
     },
     {
-      "id": "05aa2059-41c4-49b7-8391-75889490d27f",
-      "public_id": "QSI-2026-18281",
+      "id": "dfa93055-a720-42f1-8821-2c8966e1e047",
+      "public_id": "QSI-2026-42234",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6603 (CVE-2026-78659) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1381,8 +1381,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.053362+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.215781+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1425,7 +1425,7 @@
           "key": "GO-2026-6603",
           "url": "https://osv.dev/vulnerability/GO-2026-6603",
           "title": "OSV advisory GO-2026-6603",
-          "status": "modified 2026-10-16T09:55:47.068117441Z",
+          "status": "modified 2026-11-14T13:12:13.462737073Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -1434,11 +1434,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6603",
           "location": "line 54",
-          "content": "{\"id\": \"GO-2026-6603\", \"aliases\": [\"BIT-golang-2026-78659\", \"CVE-2026-78659\"], \"modified\": \"2026-10-16T09:55:47.068117441Z\", \"summary\": \"HTTP/2 server memory exhaustion due to Trailer headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "9e43850e0da48e9d00589cc2bffb372f39ec5e5a280f2f4b04520a91328fd703",
+          "content": "{\"id\": \"GO-2026-6603\", \"aliases\": [\"BIT-golang-2026-78659\", \"CVE-2026-78659\"], \"modified\": \"2026-11-14T13:12:13.462737073Z\", \"summary\": \"HTTP/2 server memory exhaustion due to Trailer headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "6ac515cc0fd1d1d6952429ecee827517211426aa989a89c7e94af4efd1f38c7a",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.066609+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.223877+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6603"
         }
       ],
@@ -1461,8 +1461,8 @@
       ]
     },
     {
-      "id": "fa61ed42-6786-4e4d-a4bd-82dd722b3c1a",
-      "public_id": "QSI-2026-18282",
+      "id": "ddd97889-5fce-4752-8f2f-a13758fbeb22",
+      "public_id": "QSI-2026-42235",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6610 (CVE-2026-78660) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 transport accepts malformed framing-related headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/http2.Transport.NewClientConn, golang.org/x/net/http2.Transport.RoundTrip, golang.org/x/net/http2.Transport.RoundTripOpt, golang.org/x/net/http2.clientConnPool.GetClientConn, golang.org/x/net/http2.clientConnReadLoop.handleResponse, golang.org/x/net/http2.noDialClientConnPool.GetClientConn …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1482,8 +1482,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.062657+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.221916+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1526,7 +1526,7 @@
           "key": "GO-2026-6610",
           "url": "https://osv.dev/vulnerability/GO-2026-6610",
           "title": "OSV advisory GO-2026-6610",
-          "status": "modified 2026-10-16T09:56:04.364467528Z",
+          "status": "modified 2026-11-14T13:12:14.502576208Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -1535,11 +1535,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6610",
           "location": "line 54",
-          "content": "{\"id\": \"GO-2026-6610\", \"aliases\": [\"BIT-golang-2026-78660\", \"CVE-2026-78660\"], \"modified\": \"2026-10-16T09:56:04.364467528Z\", \"summary\": \"HTTP/2 transport accepts malformed framing-related headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "1b823e53f27093797b8a7909032006e1f0f818f04118ad593a4641236392faa9",
+          "content": "{\"id\": \"GO-2026-6610\", \"aliases\": [\"BIT-golang-2026-78660\", \"CVE-2026-78660\"], \"modified\": \"2026-11-14T13:12:14.502576208Z\", \"summary\": \"HTTP/2 transport accepts malformed framing-related headers in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "f1495629ef0bf84b8a91d8c0bd05d7d03060325f82f90f20c5231ee80abf37f7",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.075401+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.229721+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6610"
         }
       ],
@@ -1562,8 +1562,8 @@
       ]
     },
     {
-      "id": "4f15dea5-ff20-4a83-b673-c3e48ba84fb1",
-      "public_id": "QSI-2026-18283",
+      "id": "5ec3e224-d209-4a6a-b3e7-f9dd07cd799a",
+      "public_id": "QSI-2026-42236",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6611 (CVE-2026-78669) для пакета Go golang.org/x/net версии v0.58.0: Excessive CPU consumption from repeated initial window changes in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ClientConn.addStreamLocked, golang.org/x/net/http2.ConfigureServer …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1583,8 +1583,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.072063+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.227678+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1627,7 +1627,7 @@
           "key": "GO-2026-6611",
           "url": "https://osv.dev/vulnerability/GO-2026-6611",
           "title": "OSV advisory GO-2026-6611",
-          "status": "modified 2026-10-16T09:55:38.952277866Z",
+          "status": "modified 2026-11-14T13:12:14.349122729Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -1636,11 +1636,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6611",
           "location": "line 54",
-          "content": "{\"id\": \"GO-2026-6611\", \"aliases\": [\"BIT-golang-2026-78669\", \"CVE-2026-78669\"], \"modified\": \"2026-10-16T09:55:38.952277866Z\", \"summary\": \"Excessive CPU consumption from repeated initial window changes in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "c9b9f78637131224c5d4073e44c47b7cce490fc5526e3d6b0697b43bc85cab2f",
+          "content": "{\"id\": \"GO-2026-6611\", \"aliases\": [\"BIT-golang-2026-78669\", \"CVE-2026-78669\"], \"modified\": \"2026-11-14T13:12:14.349122729Z\", \"summary\": \"Excessive CPU consumption from repeated initial window changes in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "89af1dfea803377889ea080898561a9e2b4a28fbe10e6c5b7793b593481f62b3",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.082937+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.235396+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6611"
         }
       ],
@@ -1663,8 +1663,8 @@
       ]
     },
     {
-      "id": "e2ad0f49-7511-4a70-ad14-b02e9c3a0c79",
-      "public_id": "QSI-2026-18284",
+      "id": "34ac52c6-aee2-43aa-9994-ed33a70bd68e",
+      "public_id": "QSI-2026-42237",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6612 (CVE-2026-78663) для пакета Go golang.org/x/net версии v0.58.0: Double flow control refund on HTTP/2 server streams in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1684,8 +1684,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.080215+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.233564+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1728,7 +1728,7 @@
           "key": "GO-2026-6612",
           "url": "https://osv.dev/vulnerability/GO-2026-6612",
           "title": "OSV advisory GO-2026-6612",
-          "status": "modified 2026-10-16T09:55:54.129082194Z",
+          "status": "modified 2026-11-14T13:12:14.440833902Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -1737,11 +1737,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6612",
           "location": "line 54",
-          "content": "{\"id\": \"GO-2026-6612\", \"aliases\": [\"BIT-golang-2026-78663\", \"CVE-2026-78663\"], \"modified\": \"2026-10-16T09:55:54.129082194Z\", \"summary\": \"Double flow control refund on HTTP/2 server streams in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "1471910f88c9bbf8395a304fd82510f61567373756002de8bcdc3fbe305890cb",
+          "content": "{\"id\": \"GO-2026-6612\", \"aliases\": [\"BIT-golang-2026-78663\", \"CVE-2026-78663\"], \"modified\": \"2026-11-14T13:12:14.440833902Z\", \"summary\": \"Double flow control refund on HTTP/2 server streams in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "471a502807e6b891eecb00c57c4810365eef3610ae37dacb2590a2fe9d0b0677",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.090612+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.241303+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6612"
         }
       ],
@@ -1764,8 +1764,8 @@
       ]
     },
     {
-      "id": "2840b960-edbd-4730-8799-b047c3b968c6",
-      "public_id": "QSI-2026-18285",
+      "id": "df993e45-3621-4e2d-af65-ba848b5a7774",
+      "public_id": "QSI-2026-42238",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6617 (CVE-2026-97032) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server crash due to HPACK encoder race in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1785,8 +1785,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.087775+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.239347+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1829,7 +1829,7 @@
           "key": "GO-2026-6617",
           "url": "https://osv.dev/vulnerability/GO-2026-6617",
           "title": "OSV advisory GO-2026-6617",
-          "status": "modified 2026-10-16T09:55:57.350751224Z",
+          "status": "modified 2026-11-14T13:12:14.222191133Z",
           "publisher": "OSV.dev"
         }
       ],
@@ -1838,11 +1838,11 @@
           "kind": "tool_output",
           "source": "OSV.dev GO-2026-6617",
           "location": "line 54",
-          "content": "{\"id\": \"GO-2026-6617\", \"aliases\": [\"BIT-golang-2026-97032\", \"CVE-2026-97032\"], \"modified\": \"2026-10-16T09:55:57.350751224Z\", \"summary\": \"HTTP/2 server crash due to HPACK encoder race in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
-          "content_sha256": "b948c88d959bc78948c7e3b7a746ac4da179933798e9735d02870080906cfc96",
+          "content": "{\"id\": \"GO-2026-6617\", \"aliases\": [\"BIT-golang-2026-97032\", \"CVE-2026-97032\"], \"modified\": \"2026-11-14T13:12:14.222191133Z\", \"summary\": \"HTTP/2 server crash due to HPACK encoder race in net/http\", \"severity\": null, \"declared_in_manifest\": true}",
+          "content_sha256": "7bad24ba5502930ee2b24af1b3153a7b5f3d3b7c98f55d994f83fbfd89b3f491",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.097690+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.248608+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6617"
         }
       ],
@@ -1865,8 +1865,8 @@
       ]
     },
     {
-      "id": "6d4dcc30-f58e-4d40-b4e0-cfac1f8fc210",
-      "public_id": "QSI-2026-18286",
+      "id": "94bca9d4-8c79-45cb-b3b2-77f0560534dd",
+      "public_id": "QSI-2026-42239",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 затронут GO-2026-6860 (CVE-2026-78661) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6860 (CVE-2026-78661) для пакета Go golang.org/x/net версии v0.58.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/html.Parse, golang.org/x/net/html.ParseFragment, golang.org/x/net/html.ParseFragmentWithOptions, golang.org/x/net/html.ParseWithOptions, golang.org/x/net/html.parser.addText, golang.org/x/net/html.parser.fosterParent …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1886,8 +1886,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.095248+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.246808+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -1942,8 +1942,8 @@
           "content": "{\"id\": \"GO-2026-6860\", \"aliases\": [\"CVE-2026-78661\"], \"modified\": \"2026-10-27T21:30:04.890809062Z\", \"summary\": \"Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.103640+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.254051+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6860"
         }
       ],
@@ -1966,8 +1966,8 @@
       ]
     },
     {
-      "id": "a81906c4-1942-41cb-8ae3-a72da1e5a0c4",
-      "public_id": "QSI-2026-18287",
+      "id": "d82e8cd7-1ad9-4910-b04e-09563c47ee02",
+      "public_id": "QSI-2026-42240",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.58.0 затронут GO-2026-6866 (CVE-2026-97045) (без оценки серьёзности)",
       "description": "OSV.dev сообщает GO-2026-6866 (CVE-2026-97045) для пакета Go golang.org/x/net версии v0.58.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1987,8 +1987,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:26:17.101593+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:39:01.252209+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -2043,8 +2043,8 @@
           "content": "{\"id\": \"GO-2026-6866\", \"aliases\": [\"CVE-2026-97045\"], \"modified\": \"2026-10-27T21:45:08.978077289Z\", \"summary\": \"Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:26:17.124219+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:39:01.268392+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6866"
         }
       ],
@@ -2088,8 +2088,8 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-18277",
-      "QSI-2026-18275"
+      "QSI-2026-42230",
+      "QSI-2026-42228"
     ],
     "roles": [
       {
@@ -2105,7 +2105,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-18275"
+          "QSI-2026-42228"
         ],
         "files": 1
       }
@@ -2282,7 +2282,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-18276",
+        "finding": "QSI-2026-42229",
         "finding_title": "Закрытый ключ присутствует в docker/cert.key",
         "severity": "info"
       }
@@ -2302,7 +2302,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-18276",
+        "finding": "QSI-2026-42229",
         "finding_title": "Закрытый ключ присутствует в docker/cert.key",
         "severity": "info"
       },
@@ -2320,7 +2320,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-5932 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18278",
+        "finding": "QSI-2026-42231",
         "finding_title": "golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -2338,7 +2338,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6354 (CVE-2026-78662) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18279",
+        "finding": "QSI-2026-42232",
         "finding_title": "golang.org/x/crypto v0.55.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности)",
         "severity": "info"
       },
@@ -2356,7 +2356,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6355 (CVE-2026-56855) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18280",
+        "finding": "QSI-2026-42233",
         "finding_title": "golang.org/x/crypto v0.55.0 затронут GO-2026-6355 (CVE-2026-56855) (без оценки серьёзности)",
         "severity": "info"
       },
@@ -2374,7 +2374,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6603 (CVE-2026-78659) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18281",
+        "finding": "QSI-2026-42234",
         "finding_title": "golang.org/x/net v0.58.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности)",
         "severity": "info"
       },
@@ -2392,7 +2392,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6610 (CVE-2026-78660) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18282",
+        "finding": "QSI-2026-42235",
         "finding_title": "golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности)",
         "severity": "info"
       },
@@ -2410,7 +2410,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6611 (CVE-2026-78669) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18283",
+        "finding": "QSI-2026-42236",
         "finding_title": "golang.org/x/net v0.58.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности)",
         "severity": "info"
       },
@@ -2428,7 +2428,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6612 (CVE-2026-78663) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18284",
+        "finding": "QSI-2026-42237",
         "finding_title": "golang.org/x/net v0.58.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности)",
         "severity": "info"
       },
@@ -2446,7 +2446,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6617 (CVE-2026-97032) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18285",
+        "finding": "QSI-2026-42238",
         "finding_title": "golang.org/x/net v0.58.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности)",
         "severity": "info"
       },
@@ -2464,7 +2464,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6860 (CVE-2026-78661) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18286",
+        "finding": "QSI-2026-42239",
         "finding_title": "golang.org/x/net v0.58.0 затронут GO-2026-6860 (CVE-2026-78661) (без оценки серьёзности)",
         "severity": "info"
       },
@@ -2482,7 +2482,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает GO-2026-6866 (CVE-2026-97045) или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18287",
+        "finding": "QSI-2026-42240",
         "finding_title": "golang.org/x/net v0.58.0 затронут GO-2026-6866 (CVE-2026-97045) (без оценки серьёзности)",
         "severity": "info"
       }
@@ -2502,7 +2502,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18277",
+        "finding": "QSI-2026-42230",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (lightwalletd.testnet.local)",
         "severity": "medium"
       },
@@ -2520,7 +2520,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18275",
+        "finding": "QSI-2026-42228",
         "finding_title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -2538,7 +2538,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18277",
+        "finding": "QSI-2026-42230",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (lightwalletd.testnet.local)",
         "severity": "medium"
       },
@@ -2556,7 +2556,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18275",
+        "finding": "QSI-2026-42228",
         "finding_title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       }
@@ -2580,20 +2580,32 @@
       "version": "1.1.0"
     },
     {
-      "name": "dependencies",
+      "name": "crediting",
       "version": "1.3.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.4"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -2604,8 +2616,20 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",
@@ -2792,42 +2816,42 @@
       "key": "GO-2026-6355",
       "url": "https://osv.dev/vulnerability/GO-2026-6355",
       "title": "OSV advisory GO-2026-6355",
-      "status": "modified 2026-09-24T10:41:42.556134596Z",
+      "status": "modified 2026-11-14T13:12:14.167817306Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6603",
       "url": "https://osv.dev/vulnerability/GO-2026-6603",
       "title": "OSV advisory GO-2026-6603",
-      "status": "modified 2026-10-16T09:55:47.068117441Z",
+      "status": "modified 2026-11-14T13:12:13.462737073Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6610",
       "url": "https://osv.dev/vulnerability/GO-2026-6610",
       "title": "OSV advisory GO-2026-6610",
-      "status": "modified 2026-10-16T09:56:04.364467528Z",
+      "status": "modified 2026-11-14T13:12:14.502576208Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6611",
       "url": "https://osv.dev/vulnerability/GO-2026-6611",
       "title": "OSV advisory GO-2026-6611",
-      "status": "modified 2026-10-16T09:55:38.952277866Z",
+      "status": "modified 2026-11-14T13:12:14.349122729Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6612",
       "url": "https://osv.dev/vulnerability/GO-2026-6612",
       "title": "OSV advisory GO-2026-6612",
-      "status": "modified 2026-10-16T09:55:54.129082194Z",
+      "status": "modified 2026-11-14T13:12:14.440833902Z",
       "publisher": "OSV.dev"
     },
     {
       "key": "GO-2026-6617",
       "url": "https://osv.dev/vulnerability/GO-2026-6617",
       "title": "OSV advisory GO-2026-6617",
-      "status": "modified 2026-10-16T09:55:57.350751224Z",
+      "status": "modified 2026-11-14T13:12:14.222191133Z",
       "publisher": "OSV.dev"
     },
     {

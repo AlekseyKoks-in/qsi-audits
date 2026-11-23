@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.6",
-  "serialNumber": "urn:uuid:31ea9534-5c52-44f8-a6fe-955ca5e32cb6",
+  "specVersion": "1.7",
+  "serialNumber": "urn:uuid:429d2246-af79-4aed-a112-4a8b819c8d01",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-06T14:00:28Z",
+    "timestamp": "2026-11-23T13:16:57Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.3.0"
+          "version": "1.16.2"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "eec65904-e4ac-40dc-8a01-2534f9281ef8",
+      "bom-ref": "77a97db7-4c01-4147-8bbb-a7eb2d1b3f61",
       "name": "Crypto library",
       "properties": [
         {
@@ -63,7 +63,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6c847f7f-bff4-4a16-95c0-4ae13b987542",
+      "bom-ref": "e2ddfabf-a0a8-416d-93a8-3a3d673ae10d",
       "name": "Crypto library",
       "properties": [
         {
@@ -104,7 +104,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bea6b5e5-0a22-46ae-b097-008d36f39da0",
+      "bom-ref": "db47e853-ce46-42a8-aff6-a296684c91d3",
       "name": "Crypto library",
       "properties": [
         {
@@ -145,7 +145,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "20969f25-c747-4c59-8094-21d0dc36b28d",
+      "bom-ref": "7322d13a-81d2-4b34-84fe-b03a04c194bf",
       "name": "Crypto library",
       "properties": [
         {
@@ -186,7 +186,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a4c2805d-94d5-4a52-905f-4a64756a1ef1",
+      "bom-ref": "fa415824-4fc7-46cd-97b6-d6d26981f2a9",
       "name": "Crypto library",
       "properties": [
         {
@@ -227,7 +227,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "603989f9-add4-425f-b5db-757fa5ed80cb",
+      "bom-ref": "c61a8d8d-def3-48e9-a23c-44193beb70b3",
       "name": "ECDSA",
       "properties": [
         {
@@ -263,8 +263,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256r1",
           "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -277,7 +279,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e65f84a2-e814-4df4-8286-a9395162d4d5",
+      "bom-ref": "d28318b0-9987-4987-b56a-b08055354515",
       "name": "ECDSA",
       "properties": [
         {
@@ -313,8 +315,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256r1",
           "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -327,7 +331,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "62a43363-bdae-41e9-a841-6cc128a34059",
+      "bom-ref": "ed3f3fd3-ff3f-4f11-8309-b6409df62551",
       "name": "ECDSA",
       "properties": [
         {
@@ -367,8 +371,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "P-256",
           "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -381,7 +387,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "01a30291-96e4-41f3-95ed-de667405ef90",
+      "bom-ref": "36a5fa4e-12ae-45ef-980f-a71a36d62fff",
       "name": "SHA-2",
       "properties": [
         {
@@ -417,6 +423,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-384",
           "cryptoFunctions": [
             "digest"
@@ -429,7 +436,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a4c5a864-5530-4415-b1a8-9aea54e0bbdd",
+      "bom-ref": "96cd8c44-7c73-4267-837a-36f999b9208e",
       "name": "SHA-2",
       "properties": [
         {
@@ -469,6 +476,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"

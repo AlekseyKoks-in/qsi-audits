@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.6",
-  "serialNumber": "urn:uuid:1e1c0606-4b0b-42b1-942f-f4f67fc07c14",
+  "specVersion": "1.7",
+  "serialNumber": "urn:uuid:7df09f4a-80d7-439b-b03c-4d1b63d9e4b5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-06T14:35:15Z",
+    "timestamp": "2026-11-23T13:12:36Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.3.0"
+          "version": "1.16.2"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e0a87e02-df28-4d27-b881-82c8c8a4d473",
+      "bom-ref": "f8cadac6-1b6d-4282-9ca0-e10e6a727ed0",
       "name": "ECDH",
       "properties": [
         {
@@ -62,6 +62,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
           "cryptoFunctions": [
             "keygen"
           ],
@@ -71,7 +72,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f6075f93-936f-420b-9221-2bf1b603a1b1",
+      "bom-ref": "8284bf9f-85ff-4a1a-95eb-81f2bd59f960",
       "name": "ECDH",
       "properties": [
         {
@@ -111,6 +112,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
           "cryptoFunctions": [
             "keygen"
           ],
@@ -120,7 +122,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "88f71797-9598-4dae-bee3-bf71b2f84ca3",
+      "bom-ref": "580c635a-578a-41e4-a85c-51902b0d991c",
       "name": "ECDH",
       "properties": [
         {
@@ -160,6 +162,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
           "cryptoFunctions": [
             "keygen"
           ],
@@ -169,7 +172,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b379d675-5e33-4355-867a-98d8acb7271c",
+      "bom-ref": "5a7f7e8a-fca2-4642-bced-45ff76e1cc71",
       "name": "ECDH",
       "properties": [
         {
@@ -209,6 +212,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
           "cryptoFunctions": [
             "keygen"
           ],
@@ -218,7 +222,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a0fada8c-89ec-4c55-bc42-b8cb58b182e1",
+      "bom-ref": "ef076e48-8af3-48d7-a1be-df3204694381",
       "name": "ECDSA",
       "properties": [
         {
@@ -258,6 +262,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -269,7 +274,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3fdd02f4-47e8-4c00-88ab-2c997711e1e3",
+      "bom-ref": "678bbbd4-70ad-4897-a35e-2ab206ce8582",
       "name": "ECDSA",
       "properties": [
         {
@@ -309,8 +314,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -323,7 +330,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5c06f3aa-21e8-4f36-a68d-8fda5ddac7c3",
+      "bom-ref": "5bcf26d8-0bb4-4ba4-8d53-2b49e8b539e8",
       "name": "ECDSA",
       "properties": [
         {
@@ -363,6 +370,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -374,7 +382,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dc0b3e92-5562-4a40-9c8f-5422659da742",
+      "bom-ref": "cd4171ee-7af5-4e8c-856d-e0cdf7964086",
       "name": "ECDSA",
       "properties": [
         {
@@ -414,6 +422,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -425,7 +434,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c204e252-4efc-4d72-a439-a0ef0f706d6e",
+      "bom-ref": "431c787b-fea7-4c42-af3f-43a8bc7e4b56",
       "name": "ECDSA",
       "properties": [
         {
@@ -465,8 +474,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -479,7 +490,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8bbd6022-caf4-47ed-be5f-2033f93a4463",
+      "bom-ref": "1269858c-19dd-47b3-b25c-396df8fef004",
       "name": "ECDSA",
       "properties": [
         {
@@ -519,6 +530,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -530,7 +542,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "690ae661-2634-4629-bdcc-2b4369801876",
+      "bom-ref": "0d4407bc-a1c9-47f0-8ccc-65e83555b540",
       "name": "ECDSA",
       "properties": [
         {
@@ -570,8 +582,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -584,7 +598,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3cd2d6ba-9bf8-4578-85dd-19f9dccb4780",
+      "bom-ref": "685f8ffe-f6da-4c7d-a3c9-0f3afcc259c6",
       "name": "ECDSA",
       "properties": [
         {
@@ -624,8 +638,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -638,7 +654,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "09326008-5364-4497-bf0d-cf5f23128734",
+      "bom-ref": "9e3760ca-404c-4e24-9319-08c242a00995",
       "name": "ECDSA",
       "properties": [
         {
@@ -678,8 +694,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -692,7 +710,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "13414b7f-4d0e-4642-ac85-babae23e9836",
+      "bom-ref": "d3a59ca9-e5eb-4f2a-95a9-6a26f2aa255d",
       "name": "ECDSA",
       "properties": [
         {
@@ -732,8 +750,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -746,7 +766,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "822c7ce6-f8a2-488d-96f6-3defb3cbcf05",
+      "bom-ref": "28275141-50a4-440c-be4a-eb69c19289d4",
       "name": "ECDSA",
       "properties": [
         {
@@ -786,8 +806,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -800,7 +822,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6a77ea60-cfb9-4a5d-b2e8-7564594b14b9",
+      "bom-ref": "95aea152-998f-4f90-8d7c-86a512b35c30",
       "name": "ECDSA",
       "properties": [
         {
@@ -840,6 +862,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -851,7 +874,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a7a8f825-e175-48be-b09d-e8aaae7c2d5a",
+      "bom-ref": "5fbe7091-c122-42cc-9285-57c21e802040",
       "name": "ECDSA",
       "properties": [
         {
@@ -891,8 +914,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -905,7 +930,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "29d748b4-b12f-4b0f-9099-ddedac13c95e",
+      "bom-ref": "e0bd5336-cece-45d1-93e7-6cb7b7e99b64",
       "name": "ECDSA",
       "properties": [
         {
@@ -945,8 +970,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -959,7 +986,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "165d2f68-91c7-4912-966a-9e0f125419f1",
+      "bom-ref": "cd64fefe-096d-4afc-b694-0b8fbc685a73",
       "name": "ECDSA",
       "properties": [
         {
@@ -995,6 +1022,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1006,7 +1034,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b2e4e293-348e-4802-8271-fe32f9103430",
+      "bom-ref": "d4d26238-c528-4651-b620-26cb4112e41c",
       "name": "ECDSA",
       "properties": [
         {
@@ -1046,6 +1074,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1057,7 +1086,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c6aacb23-fed7-416c-b575-bb89ec8d3f38",
+      "bom-ref": "4adcf5d3-d874-4fca-921f-558390fa81ff",
       "name": "ECDSA",
       "properties": [
         {
@@ -1097,6 +1126,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1108,7 +1138,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e23f2b4e-bbd9-44f6-9309-082452cbd358",
+      "bom-ref": "112d1368-56ed-437a-a171-83cea572a31a",
       "name": "ECDSA",
       "properties": [
         {
@@ -1148,6 +1178,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1159,7 +1190,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9b1f9973-2e7c-4111-a0c1-6c28ad8a343d",
+      "bom-ref": "c42c094d-9dae-4a55-bf6b-86c43a9a65f1",
       "name": "ECDSA",
       "properties": [
         {
@@ -1199,6 +1230,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1210,7 +1242,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4b697b7c-05c1-4d84-b461-d328da0594a6",
+      "bom-ref": "414ea61f-4397-40e6-9898-e74c31e5c3bd",
       "name": "ECDSA",
       "properties": [
         {
@@ -1250,8 +1282,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1264,7 +1298,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d36073ad-01ab-4de1-8a7d-9a8e0795703d",
+      "bom-ref": "2a6af877-1610-4479-bbf8-aea1ae5f6cb4",
       "name": "ECDSA",
       "properties": [
         {
@@ -1304,8 +1338,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1318,7 +1354,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fb09fe5c-971c-4e7b-ba8b-7ce91eff52bc",
+      "bom-ref": "f9509171-fb1b-4b61-9c38-1f2401474ab7",
       "name": "ECDSA",
       "properties": [
         {
@@ -1358,8 +1394,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1372,7 +1410,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "acaba1e2-fb3c-4011-9c8b-edb40b005da4",
+      "bom-ref": "e70fcdae-cf08-4eaa-a42f-3595c37cac07",
       "name": "ECDSA",
       "properties": [
         {
@@ -1412,8 +1450,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1426,7 +1466,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4dbdf631-f9fe-43ce-8d0b-4cda7f1ac60a",
+      "bom-ref": "87e10041-a659-401c-959c-cd39a5d82de8",
       "name": "ECDSA",
       "properties": [
         {
@@ -1466,8 +1506,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1480,7 +1522,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dc46b38f-cc0d-4ade-963e-6f80713e67cd",
+      "bom-ref": "9d37badc-2f82-4a31-a8d0-a91af8276a76",
       "name": "ECDSA",
       "properties": [
         {
@@ -1520,8 +1562,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1534,7 +1578,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f0e3e84b-9ca4-461d-b628-15dc41cf0479",
+      "bom-ref": "a03ba39a-7df1-42a6-877e-1acb751a0cbc",
       "name": "ECDSA",
       "properties": [
         {
@@ -1574,6 +1618,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1585,7 +1630,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d610007c-0310-4f03-8c27-82a0f596fafd",
+      "bom-ref": "0a330128-8bdb-43fb-bdb2-43ac2776a9ab",
       "name": "ECDSA",
       "properties": [
         {
@@ -1625,8 +1670,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1639,7 +1686,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f2d579cb-8fc2-4fa4-b831-68e49cf58edf",
+      "bom-ref": "919b537f-b038-4549-a6b5-3c1614de1385",
       "name": "ECDSA",
       "properties": [
         {
@@ -1679,8 +1726,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1693,7 +1742,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e959a5f4-7e2d-4ef3-b81a-93baeb7edc51",
+      "bom-ref": "49b968e3-4d35-4461-81eb-6a91062f3bbe",
       "name": "ECDSA",
       "properties": [
         {
@@ -1733,8 +1782,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1747,7 +1798,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ea10d68f-d8d5-4090-9c8a-bf9af93bf1fb",
+      "bom-ref": "3e3ed555-a3fe-4a39-8be5-70d2c2c58381",
       "name": "ECDSA",
       "properties": [
         {
@@ -1787,8 +1838,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1801,7 +1854,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8f879e2d-7d6b-4183-9695-8bf8b72e4839",
+      "bom-ref": "d58562c4-6d62-4b2f-aad4-08be0d058f61",
       "name": "ECDSA",
       "properties": [
         {
@@ -1841,8 +1894,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1855,7 +1910,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5efc5b1c-af8e-4c7c-852c-858a0b249a23",
+      "bom-ref": "914fe3ea-a0fb-4492-9076-30d14353230d",
       "name": "ECDSA",
       "properties": [
         {
@@ -1895,6 +1950,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -1906,7 +1962,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "016e2454-da1f-4587-9186-46722b234112",
+      "bom-ref": "dc7a19c2-a940-4e9b-90ef-15febcaed8f4",
       "name": "SHA-2",
       "properties": [
         {
@@ -1946,6 +2002,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1958,7 +2015,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5e722666-cffc-4c81-b716-b4f4f44d67a5",
+      "bom-ref": "2c70edc3-68f1-44a6-8dfe-45190f9abb14",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -1998,6 +2055,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -2008,7 +2066,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c7fee21e-25de-48c5-9798-49d251bc3ae7",
+      "bom-ref": "ffdccc20-8eb7-4417-a55c-3d9a17978630",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -2048,6 +2106,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -2058,7 +2117,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a0709f42-ab97-45b1-9854-01817e55d551",
+      "bom-ref": "4e78d88f-5232-4b02-9542-a847982416ac",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -2098,6 +2157,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"

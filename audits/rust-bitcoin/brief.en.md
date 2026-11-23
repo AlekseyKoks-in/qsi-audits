@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: rust-bitcoin @ f127ba2ae14e
 
-*One-page brief* · Reviewed: 2026-11-06 13:50 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: rust-bitcoin — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 13:04 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: rust-bitcoin — public repository (passive review)
 
 Source: https://github.com/rust-bitcoin/rust-bitcoin/tree/f127ba2ae14e0447606bfee5d5783e623c423809
 
@@ -12,13 +12,13 @@ Source: https://github.com/rust-bitcoin/rust-bitcoin/tree/f127ba2ae14e0447606bfe
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s)) (QSI-2026-18748) · *preliminary*\
+1. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s)) (QSI-2026-43251) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (8 file(s)) (QSI-2026-18749) · *preliminary*\
+2. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (8 file(s)) (QSI-2026-43252) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable ECDSA: role not determined (4 file(s)) (QSI-2026-18750) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDSA: role not determined (4 file(s)) (QSI-2026-43253) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
-4. **Medium** · Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s)) (QSI-2026-18751) · *preliminary*\
+4. **Medium** · Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s)) (QSI-2026-43254) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for…
 
 ## What the quantum-vulnerable cryptography protects
@@ -32,8 +32,8 @@ Source: https://github.com/rust-bitcoin/rust-bitcoin/tree/f127ba2ae14e0447606bfe
 
 Static review of source code and manifests; files analysed: 125. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `3c66c2f5a80738810e373133f3f6a61ddd2c936670352def1ca38be290728472`
+Full report, content SHA-256: `7988c9238422112d2d73d440a21a195c43e524120ce1f6445890ef09d044c91b`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

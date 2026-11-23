@@ -4,20 +4,20 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 12:54 UTC |
+| Дата отчёта | 2026-11-23 12:00 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | abbbcbf6-c36c-4857-bacd-150b96c80177 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | 9517b8bf-09dc-46de-ada8-03335380c6ce (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `3264ceace7408f585995c63f76424727be6b2beabd09b3d6d7250a61d7c60b39` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `6bd6e8eafe68d867d344cdc3c3716c90701ef332b61341a70ba037b027c32a61` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **3**
+- Средняя: **2**
 - Низкая: **0**
 - Информационная: **0**
 
@@ -25,7 +25,7 @@
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 3
+- Долгосрочный постквантовый риск: 2
 - Рекомендация по улучшению: 0
 - Недостаточность данных: 0
 
@@ -74,32 +74,32 @@
 | Область | Статус | Подробности |
 |---|---|---|
 | dependencies | проверено | Cargo.toml: 20 dependencies parsed (0 pinned) |
-| source_code | проверено | src/descriptor/checksum.rs: 89 lines scanned with 16 rule patterns and 266 registry patterns; 52 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/descriptor/dsl.rs: 1276 lines scanned with 16 rule patterns and 266 registry patterns; 460 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/descriptor/error.rs: 139 lines scanned with 16 rule patterns and 266 registry patterns |
-| source_code | проверено | src/descriptor/mod.rs: 1049 lines scanned with 16 rule patterns and 266 registry patterns; 424 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/descriptor/policy.rs: 1956 lines scanned with 16 rule patterns and 266 registry patterns; 779 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/descriptor/template.rs: 1080 lines scanned with 16 rule patterns and 266 registry patterns; 445 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/keys/bip39.rs: 236 lines scanned with 16 rule patterns and 266 registry patterns; 84 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/keys/mod.rs: 1159 lines scanned with 16 rule patterns and 266 registry patterns; 112 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/lib.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns |
-| source_code | проверено | src/psbt/mod.rs: 170 lines scanned with 16 rule patterns and 266 registry patterns; 81 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/psbt/params.rs: 902 lines scanned with 16 rule patterns and 266 registry patterns; 231 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/types.rs: 295 lines scanned with 16 rule patterns and 266 registry patterns; 73 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/changeset.rs: 528 lines scanned with 16 rule patterns and 266 registry patterns; 101 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/coin_selection.rs: 1833 lines scanned with 16 rule patterns and 266 registry patterns; 1107 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/error.rs: 488 lines scanned with 16 rule patterns and 266 registry patterns |
-| source_code | проверено | src/wallet/event.rs: 186 lines scanned with 16 rule patterns and 266 registry patterns |
-| source_code | проверено | src/wallet/export.rs: 1122 lines scanned with 16 rule patterns and 266 registry patterns; 424 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/locked_outpoints.rs: 26 lines scanned with 16 rule patterns and 266 registry patterns |
-| source_code | проверено | src/wallet/migration.rs: 227 lines scanned with 16 rule patterns and 266 registry patterns; 123 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/mod.rs: 4207 lines scanned with 16 rule patterns and 266 registry patterns; 247 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/params.rs: 373 lines scanned with 16 rule patterns and 266 registry patterns |
-| source_code | проверено | src/wallet/persisted.rs: 432 lines scanned with 16 rule patterns and 266 registry patterns |
-| source_code | проверено | src/wallet/signer.rs: 1208 lines scanned with 16 rule patterns and 266 registry patterns; 228 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/tx_builder.rs: 1573 lines scanned with 16 rule patterns and 266 registry patterns; 560 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/checksum.rs: 89 lines scanned with 16 rule patterns and 340 registry patterns; 52 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/dsl.rs: 1276 lines scanned with 16 rule patterns and 340 registry patterns; 460 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/error.rs: 139 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | src/descriptor/mod.rs: 1049 lines scanned with 16 rule patterns and 340 registry patterns; 424 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/policy.rs: 1956 lines scanned with 16 rule patterns and 340 registry patterns; 779 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/template.rs: 1080 lines scanned with 16 rule patterns and 340 registry patterns; 445 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/keys/bip39.rs: 236 lines scanned with 16 rule patterns and 340 registry patterns; 84 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/keys/mod.rs: 1159 lines scanned with 16 rule patterns and 340 registry patterns; 112 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/lib.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | src/psbt/mod.rs: 170 lines scanned with 16 rule patterns and 340 registry patterns; 81 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/psbt/params.rs: 902 lines scanned with 16 rule patterns and 340 registry patterns; 231 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/types.rs: 295 lines scanned with 16 rule patterns and 340 registry patterns; 73 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/changeset.rs: 528 lines scanned with 16 rule patterns and 340 registry patterns; 101 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/coin_selection.rs: 1833 lines scanned with 16 rule patterns and 340 registry patterns; 1107 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/error.rs: 488 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/event.rs: 186 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/export.rs: 1122 lines scanned with 16 rule patterns and 340 registry patterns; 424 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/locked_outpoints.rs: 26 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/migration.rs: 227 lines scanned with 16 rule patterns and 340 registry patterns; 123 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/mod.rs: 4207 lines scanned with 16 rule patterns and 340 registry patterns; 247 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/params.rs: 373 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/persisted.rs: 432 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/signer.rs: 1208 lines scanned with 16 rule patterns and 340 registry patterns; 228 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/tx_builder.rs: 1573 lines scanned with 16 rule patterns and 340 registry patterns; 560 lines in #[cfg(test)] modules ignored |
 | secrets | проверено | src/wallet/tx_builder.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| source_code | проверено | src/wallet/utils.rs: 281 lines scanned with 16 rule patterns and 266 registry patterns; 115 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/utils.rs: 281 lines scanned with 16 rule patterns and 340 registry patterns; 115 lines in #[cfg(test)] modules ignored |
 | entropy | проверено | random-number generation: 25 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | не проверено | no exactly pinned versions to query |
 
@@ -109,7 +109,7 @@
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree bdk-wallet at 09c677305139e5478d57115a65e626320e809b0d. 27 files analysed; of 84 files, 22 are test, fuzzing, benchmark or example code and were left out, 35 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/enhancement_request.md, .github/ISSUE_TEMPLATE/minor_release.md, .github/ISSUE_TEMPLATE/patch_release.md. 44 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree bdk-wallet at 09c677305139e5478d57115a65e626320e809b0d. 27 files analysed; of 84 files, 22 are test, fuzzing, benchmark or example code and were left out, 35 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/enhancement_request.md, .github/ISSUE_TEMPLATE/minor_release.md, .github/ISSUE_TEMPLATE/patch_release.md. 67 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -118,27 +118,51 @@ Static review of the source tree bdk-wallet at 09c677305139e5478d57115a65e626320
 
 ## 7. Подробное описание находок
 
-### QSI-2026-17720 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (5 файл(ов))
+### QSI-2026-41572 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (6 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
-- Источник данных: src/descriptor/mod.rs
+- Источник данных: src/descriptor/dsl.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 12:54 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:00 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
-15 упоминаний ECDSA в 5 файл(ах), например src/descriptor/mod.rs:27. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+23 упоминаний ECDSA в 6 файл(ах), например src/descriptor/dsl.rs:69. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте src/descriptor/mod.rs:27 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте src/descriptor/dsl.rs:69 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
+
+_file_excerpt · [src/descriptor/dsl.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L69) · line 69 · SHA-256 691d199558b76f9bd93ca983b6b47b730778df0c9dee289cc46be1a64fd2a6ea_
+
+```
+   68 |         use $crate::keys::{DescriptorKey, IntoDescriptorKey};
+   69 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();
+   70 | 
+```
+
+_file_excerpt · [src/descriptor/dsl.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L93) · line 93 · SHA-256 3b81db41c446a7e02654911ae241096e77559545c3627d19e93112954bfd1e34_
+
+```
+   92 | 
+   93 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();
+   94 | 
+```
+
+_file_excerpt · [src/descriptor/dsl.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L266) · line 266 · SHA-256 7bd931f6b2a9bdd206071454316382983178897781b2b4931255242417f60a55_
+
+```
+  265 |     ( $build_desc:expr, sortedmulti_vec ( $thresh:expr, $keys:expr ) ) => ({
+  266 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();
+  267 |         $crate::keys::make_sortedmulti($thresh, $keys, $build_desc, &secp)
+```
 
 _file_excerpt · [src/descriptor/mod.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/mod.rs#L27) · line 27 · SHA-256 ef180cf867bd24db405b6f62715cc6bacefb4ea00699f88a2d8002dd7fed7109_
 
@@ -172,12 +196,12 @@ _file_excerpt · [src/keys/mod.rs](https://github.com/bitcoindevkit/bdk_wallet/b
   753 | 
 ```
 
-_file_excerpt · [src/keys/mod.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/keys/mod.rs#L761) · line 761 · SHA-256 36e760a8c0331fa1be0c095357d061ab5b330c723eac360f5a06541233f7a312_
+_file_excerpt · [src/keys/mod.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/keys/mod.rs#L761) · line 761 · SHA-256 f66d13222ce514da3139caa2dd685d47abe4891fcf7c42ab098b8d40a0903e93_
 
 ```
   760 |     ) -> Result<GeneratedKey<Self, Ctx>, Self::Error> {
   761 |         let inner = secp256k1::SecretKey::from_slice(&entropy)?;
-  762 |         let private_key = [REDACTED] {
+  762 |         let private_key = PrivateKey {
 ```
 
 _file_excerpt · [src/wallet/mod.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/mod.rs#L42) · line 42 · SHA-256 0d90e97bca9e904888a1c282f9a14a5eea863865793320ed516c80a35fc8669a_
@@ -196,43 +220,19 @@ _file_excerpt · [src/wallet/mod.rs](https://github.com/bitcoindevkit/bdk_wallet
    84 | #[cfg(all(bdk_wallet_unstable, feature = "bdk-tx"))]
 ```
 
-_file_excerpt · [src/wallet/signer.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L101) · line 101 · SHA-256 221a595769960622a09f27edb82a9a01b8981cf57b87606433b94c74f198377b_
-
-```
-  100 | use bitcoin::psbt::PsbtSighashType;
-  101 | use bitcoin::secp256k1::Message;
-  102 | use bitcoin::sighash::{EcdsaSighashType, TapSighash, TapSighashType};
-```
-
-_file_excerpt · [src/wallet/signer.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L105) · line 105 · SHA-256 584441038c7a33d375b26bc0046e2448660f2f3bc13b1b35f5245653b696d134_
-
-```
-  104 | use bitcoin::{ecdsa, psbt, sighash, taproot};
-  105 | use bitcoin::{key::TapTweak, key::XOnlyPublicKey, secp256k1};
-  106 | 
-```
-
-_file_excerpt · [src/wallet/signer.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L380) · line 380 · SHA-256 d8da3ab4a2d87e008c530e57382d5bbcb6c497a4c973c35371890b9057d2a300_
-
-```
-  379 | 
-  380 |         let computed_pk = secp256k1::PublicKey::from_secret_key(secp, &derived_key.private_key);
-  381 |         let valid_key = match public_key {
-```
-
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17721 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (4 файл(ов))
+### QSI-2026-41573 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
 - Источник данных: src/descriptor/mod.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 12:54 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:00 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -334,58 +334,6 @@ _file_excerpt · [src/wallet/signer.rs](https://github.com/bitcoindevkit/bdk_wal
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17719 — Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))
-
-- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `source-code:ECDSA:general`
-- Источник данных: src/descriptor/dsl.rs
-- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 12:54 UTC
-- Балл приоритета: 34.2 / 100
-- CVSS v3.1: неприменимо
-
-8 упоминаний ECDSA в 1 файл(ах), например src/descriptor/dsl.rs:69. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
-
-**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
-
-**Шаги воспроизведения.**
-
-```
-Откройте src/descriptor/dsl.rs:69 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [src/descriptor/dsl.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L69) · line 69 · SHA-256 691d199558b76f9bd93ca983b6b47b730778df0c9dee289cc46be1a64fd2a6ea_
-
-```
-   68 |         use $crate::keys::{DescriptorKey, IntoDescriptorKey};
-   69 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();
-   70 | 
-```
-
-_file_excerpt · [src/descriptor/dsl.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L93) · line 93 · SHA-256 3b81db41c446a7e02654911ae241096e77559545c3627d19e93112954bfd1e34_
-
-```
-   92 | 
-   93 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();
-   94 | 
-```
-
-_file_excerpt · [src/descriptor/dsl.rs](https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L266) · line 266 · SHA-256 7bd931f6b2a9bdd206071454316382983178897781b2b4931255242417f60a55_
-
-```
-  265 |     ( $build_desc:expr, sortedmulti_vec ( $thresh:expr, $keys:expr ) ) => ({
-  266 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();
-  267 |         $crate::keys::make_sortedmulti($thresh, $keys, $build_desc, &secp)
-```
-
-**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
-
-**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
-
-**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
-
 
 ## 8. Постквантовая оценка
 
@@ -419,8 +367,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (5), Schnorr (BIP-340) (4) | QSI-2026-17720, QSI-2026-17721 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (1) | QSI-2026-17719 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (6), Schnorr (BIP-340) (4) | QSI-2026-41572, QSI-2026-41573 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -456,12 +403,10 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-17720 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17721 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17719 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-17720 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-17721 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-17719 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P3 | QSI-2026-41572 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41573 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-41572 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-41573 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
 
 ## 11. Использованные инструменты
 
@@ -469,13 +414,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы

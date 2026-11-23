@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "KEY-PRIVATE-IN-INPUT",
@@ -114,7 +114,7 @@
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))"
+                "text": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (2 файл(ов))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -128,10 +128,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "122 упоминаний RSA в 10 файл(ах), например bogo/src/main.rs:38. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые. Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "6 упоминаний RSA в 2 файл(ах), например rustls-aws-lc-rs/src/tls12.rs:139. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "help": {
-                "text": "122 упоминаний RSA в 10 файл(ах), например bogo/src/main.rs:38. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые. Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "6 упоминаний RSA в 2 файл(ах), например rustls-aws-lc-rs/src/tls12.rs:139. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -186,6 +186,31 @@
               "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
             },
             {
+              "id": "DEP-ADVISORY-UNRATED",
+              "name": "DepAdvisoryUnrated",
+              "shortDescription": {
+                "text": "url 2.5.8 затронут RUSTSEC-2026-0592 (без оценки серьёзности)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает RUSTSEC-2026-0592 для пакета crates.io url версии 2.5.8: Stack overflow in `Url::origin()` on nested `blob:` URLs. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (url::Url::origin, url::quirks::origin); url приходит через другие зависимости, которые могут их вызывать. Разберите бюллетень; если он применим, обновите до исправленной версии (2.5.9). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "help": {
+                "text": "OSV.dev сообщает RUSTSEC-2026-0592 для пакета crates.io url версии 2.5.8: Stack overflow in `Url::origin()` on nested `blob:` URLs. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (url::Url::origin, url::quirks::origin); url приходит через другие зависимости, которые могут их вызывать. Разберите бюллетень; если он применим, обновите до исправленной версии (2.5.9). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0592"
+            },
+            {
               "id": "CERT-SELF-SIGNED",
               "name": "CertSelfSigned",
               "shortDescription": {
@@ -225,7 +250,7 @@
             "qsiFindingKey/v1": "50fe6c6a2f37614b953f8e15d9f306d8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18765",
+            "qsiId": "QSI-2026-43275",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -255,7 +280,7 @@
             "qsiFindingKey/v1": "7ade1d10ee5b0e5e745058a2056b3029"
           },
           "properties": {
-            "qsiId": "QSI-2026-18770",
+            "qsiId": "QSI-2026-43280",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -285,7 +310,7 @@
             "qsiFindingKey/v1": "ed7c46de07c5800aefb7c2f5b4d048ce"
           },
           "properties": {
-            "qsiId": "QSI-2026-18771",
+            "qsiId": "QSI-2026-43281",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -315,7 +340,7 @@
             "qsiFindingKey/v1": "06d257135b65369d0a3013eaf00dac02"
           },
           "properties": {
-            "qsiId": "QSI-2026-18777",
+            "qsiId": "QSI-2026-43287",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -345,7 +370,7 @@
             "qsiFindingKey/v1": "1656144f136119379ffd7322b7417906"
           },
           "properties": {
-            "qsiId": "QSI-2026-18782",
+            "qsiId": "QSI-2026-43292",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -375,7 +400,7 @@
             "qsiFindingKey/v1": "de1492ba604e026fac79252e1ca2ccb3"
           },
           "properties": {
-            "qsiId": "QSI-2026-18772",
+            "qsiId": "QSI-2026-43282",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -393,7 +418,7 @@
             "qsiFindingKey/v1": "79d485ceb708549ee6a35c427c8e6d81"
           },
           "properties": {
-            "qsiId": "QSI-2026-18761",
+            "qsiId": "QSI-2026-43271",
             "severity": "medium",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -411,7 +436,7 @@
             "qsiFindingKey/v1": "e9c074583b3b37e3082558b14fda3eb4"
           },
           "properties": {
-            "qsiId": "QSI-2026-18766",
+            "qsiId": "QSI-2026-43276",
             "severity": "medium",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -429,7 +454,7 @@
             "qsiFindingKey/v1": "336dbc105080a3e75cabbd6799dcafa7"
           },
           "properties": {
-            "qsiId": "QSI-2026-18773",
+            "qsiId": "QSI-2026-43283",
             "severity": "medium",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -447,7 +472,7 @@
             "qsiFindingKey/v1": "8b0a98fd99a628773c22fa0d84be5d7c"
           },
           "properties": {
-            "qsiId": "QSI-2026-18787",
+            "qsiId": "QSI-2026-43298",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -468,13 +493,31 @@
           "ruleIndex": 4,
           "level": "warning",
           "message": {
-            "text": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))"
+            "text": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (2 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "63ed1a0fe276081a1c0530a2e556915d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43296",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (8 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "cb7dd5d879e7ccc6fbf842f8dd2da6e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18783",
+            "qsiId": "QSI-2026-43293",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -492,7 +535,7 @@
             "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
           },
           "properties": {
-            "qsiId": "QSI-2026-18786",
+            "qsiId": "QSI-2026-43297",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -510,7 +553,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-18784",
+            "qsiId": "QSI-2026-43294",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -528,7 +571,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-18785",
+            "qsiId": "QSI-2026-43295",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -546,7 +589,7 @@
             "qsiFindingKey/v1": "9e314c84eaec9df4f694425094a6d0a9"
           },
           "properties": {
-            "qsiId": "QSI-2026-18758",
+            "qsiId": "QSI-2026-43268",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -564,7 +607,7 @@
             "qsiFindingKey/v1": "60ab83f80f0c1508b98dd27565359dcc"
           },
           "properties": {
-            "qsiId": "QSI-2026-18762",
+            "qsiId": "QSI-2026-43272",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -582,7 +625,7 @@
             "qsiFindingKey/v1": "b0cd9b3a1aa0f56b4ae8257bcd8c9c34"
           },
           "properties": {
-            "qsiId": "QSI-2026-18767",
+            "qsiId": "QSI-2026-43277",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -600,7 +643,7 @@
             "qsiFindingKey/v1": "f40126d347babb85458a302913682266"
           },
           "properties": {
-            "qsiId": "QSI-2026-18774",
+            "qsiId": "QSI-2026-43284",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -618,7 +661,7 @@
             "qsiFindingKey/v1": "1d6071af0cdcaf57557578606c357df0"
           },
           "properties": {
-            "qsiId": "QSI-2026-18778",
+            "qsiId": "QSI-2026-43288",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -636,7 +679,7 @@
             "qsiFindingKey/v1": "b2d3673353e654855bb7debccd5f01ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-18781",
+            "qsiId": "QSI-2026-43291",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -654,7 +697,7 @@
             "qsiFindingKey/v1": "711dc9efe2780ee8c04c764e6fd94ad2"
           },
           "properties": {
-            "qsiId": "QSI-2026-18759",
+            "qsiId": "QSI-2026-43269",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -672,7 +715,7 @@
             "qsiFindingKey/v1": "a7ae63140649e583c4c187b3f4f42bb9"
           },
           "properties": {
-            "qsiId": "QSI-2026-18763",
+            "qsiId": "QSI-2026-43273",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -690,7 +733,7 @@
             "qsiFindingKey/v1": "f5d188ef242d036cee582fe9d2790206"
           },
           "properties": {
-            "qsiId": "QSI-2026-18768",
+            "qsiId": "QSI-2026-43278",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -708,7 +751,7 @@
             "qsiFindingKey/v1": "dade2c6f245183cbf6f300f49cbb9afa"
           },
           "properties": {
-            "qsiId": "QSI-2026-18775",
+            "qsiId": "QSI-2026-43285",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -726,7 +769,7 @@
             "qsiFindingKey/v1": "f686d0f5232b8d468fff9d046b3c10bf"
           },
           "properties": {
-            "qsiId": "QSI-2026-18779",
+            "qsiId": "QSI-2026-43289",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -734,8 +777,35 @@
           }
         },
         {
-          "ruleId": "CERT-SELF-SIGNED",
+          "ruleId": "DEP-ADVISORY-UNRATED",
           "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "url 2.5.8 затронут RUSTSEC-2026-0592 (без оценки серьёзности) (dependency: crates.io/url@2.5.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e0b513f89662ae90e9b5a3a3b124563f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43299",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CERT-SELF-SIGNED",
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Самоподписанный конечный сертификат (O=bogo)"
@@ -744,7 +814,7 @@
             "qsiFindingKey/v1": "eb1e8e018ea00717ea7742964ccf2671"
           },
           "properties": {
-            "qsiId": "QSI-2026-18760",
+            "qsiId": "QSI-2026-43270",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -753,7 +823,7 @@
         },
         {
           "ruleId": "CERT-SELF-SIGNED",
-          "ruleIndex": 7,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Самоподписанный конечный сертификат (O=bogo-p256)"
@@ -762,7 +832,7 @@
             "qsiFindingKey/v1": "5dd10635e370c1c0ec0215a8aa4a7154"
           },
           "properties": {
-            "qsiId": "QSI-2026-18764",
+            "qsiId": "QSI-2026-43274",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -771,7 +841,7 @@
         },
         {
           "ruleId": "CERT-SELF-SIGNED",
-          "ruleIndex": 7,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Самоподписанный конечный сертификат (O=bogo-p384)"
@@ -780,7 +850,7 @@
             "qsiFindingKey/v1": "a30a22203c653164a06570fc7bbc2e2a"
           },
           "properties": {
-            "qsiId": "QSI-2026-18769",
+            "qsiId": "QSI-2026-43279",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -789,7 +859,7 @@
         },
         {
           "ruleId": "CERT-SELF-SIGNED",
-          "ruleIndex": 7,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Самоподписанный конечный сертификат (O=bogo-rsa1024)"
@@ -798,7 +868,7 @@
             "qsiFindingKey/v1": "b34b18b094331a3543cc08f4e3b3b28a"
           },
           "properties": {
-            "qsiId": "QSI-2026-18776",
+            "qsiId": "QSI-2026-43286",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -807,7 +877,7 @@
         },
         {
           "ruleId": "CERT-SELF-SIGNED",
-          "ruleIndex": 7,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "Самоподписанный конечный сертификат (O=bogo-chain)"
@@ -816,7 +886,7 @@
             "qsiFindingKey/v1": "dc3635ab0d685eada89e0d0d45047c66"
           },
           "properties": {
-            "qsiId": "QSI-2026-18780",
+            "qsiId": "QSI-2026-43290",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -825,13 +895,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/rustls @ 84bf9eaa9857/c7e48fbc-601f-42b9-b5b0-3f087b91a433"
+        "id": "qsi/rustls @ 84bf9eaa9857/62b4afd9-618f-4cec-b9c6-42818c4705ae"
       },
       "properties": {
-        "qsiContentSha256": "74f88c306ef6b9e01056273ab7ac0093d924ad978c4b8d8da09e3bd556de334c",
+        "qsiContentSha256": "536ef4981d43332fb99de432eed2019652d91ce70c60918a0dd8d542e0bf44d4",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:51:26.730149+00:00",
+        "qsiGeneratedAt": "2026-11-23T13:06:04.752585+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

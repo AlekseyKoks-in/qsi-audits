@@ -69,4 +69,8 @@ vectors. Re-audited at the same commit, on the same tree, the bundle in `studies
 own-code rows (was 37) and **12** Shor-breakable (unchanged). The SLH-DSA verification precompile is unaffected, and no
 other platform's figures change. The README's dated section of the same day gives the measurement.
 
+## Re-issue, 2026-11-22
+
+Every bundle of this study was re-audited on 23 November at its recorded commit, tree and analyst decisions with engine 1.16.2, and is now co-signed with ML-DSA-65 (`python3 verify.py studies/institutional/*`). Figures of the summary that move: Canton **73** own-code rows and **35** Shor-breakable (was 74 and 35): a false `IDEA` row in a CI script (`scripts/ci/todo_refs.py`) is gone; Corda **22** own-code rows and **15** Shor-breakable (was 23 and 16): one ECDSA row in `DefaultCryptoService.kt` was counted twice, with its curve and without it. No other cell changes, and no exposure named above moves. Findings moved for the reasons the README's section of the same name gives: findings in bundled third-party code are informational, rules added since a bundle's engine now run on it, and false findings were fixed in the engine first (OBP-API's example tokens, all expired, and the placeholders of its configuration template are no longer reported as secrets).
+
 *QSI — quantum-readiness inventory of cryptography. Contact: alekseykoksin@gmail.com.*

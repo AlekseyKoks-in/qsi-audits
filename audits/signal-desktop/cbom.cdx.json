@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:ee0a260f-bbb3-4bf6-8a4c-7ea8f01927bc",
+  "serialNumber": "urn:uuid:5f06e884-e27a-44bc-93a5-f011fac83c11",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-17T18:54:18Z",
+    "timestamp": "2026-11-23T13:16:11Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.6.0"
+          "version": "1.16.2"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "683040d6-26a5-4811-951a-c29a49a89b53",
+      "bom-ref": "a053141b-de7b-4e33-85d4-19aa747b8687",
       "name": "AES-256",
       "properties": [
         {
@@ -76,7 +76,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2453cc56-a2bd-4f29-937d-c68775ef6522",
+      "bom-ref": "d1b0fb04-8f08-49e6-abe1-dcdf57a33c33",
       "name": "AES-256",
       "properties": [
         {
@@ -130,7 +130,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1d7358ef-ebff-4659-8237-ecf4d5680d2e",
+      "bom-ref": "77dd233c-4f80-4163-bb9d-68c8b08d8776",
       "name": "AES-256",
       "properties": [
         {
@@ -184,7 +184,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dd480a64-9c8e-4ef2-aec1-0d221aa3b54f",
+      "bom-ref": "bce2d797-11bf-413d-bc86-7d03ef3aaa93",
       "name": "CBC mode",
       "properties": [
         {
@@ -229,7 +229,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "768d352d-210c-4306-91d2-d2ee531793d2",
+      "bom-ref": "7078e692-17a6-4f3c-b8a5-b8e722316d83",
       "name": "Crypto library",
       "properties": [
         {
@@ -270,7 +270,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "176f8504-15e6-4c60-8e54-b91715c29d44",
+      "bom-ref": "5738c54b-7afb-41dd-8a4b-0ab8dacd670e",
       "name": "Crypto library",
       "properties": [
         {
@@ -311,7 +311,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d0eb242a-dba8-4b73-b533-ccc97eee0b97",
+      "bom-ref": "c9b99c7b-927a-43e0-9ad5-61385554c9f7",
       "name": "HKDF",
       "properties": [
         {
@@ -360,7 +360,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f9137ce3-44b9-4676-9db8-278c87f2822e",
+      "bom-ref": "71d1b244-f6a7-4b72-9dac-a31dc5067813",
       "name": "HMAC",
       "properties": [
         {
@@ -409,7 +409,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1b6e5871-4d40-4dfb-a9fc-f2190d48e4e5",
+      "bom-ref": "09c3aacc-7fa9-4228-94c9-bfeea3bfdbc9",
       "name": "HMAC",
       "properties": [
         {
@@ -458,7 +458,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e879d19f-00d3-42b9-bb4b-23e624e02677",
+      "bom-ref": "3623d87d-b9cb-46fd-9aaf-78602907eb84",
       "name": "HMAC",
       "properties": [
         {
@@ -507,7 +507,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8e86a2be-1da3-480a-9d24-31c8a391d1bf",
+      "bom-ref": "b3359211-b712-4636-a405-88e7fb9dc20c",
       "name": "HMAC",
       "properties": [
         {
@@ -556,7 +556,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b8b11c70-6719-4d2a-b457-402373d974bb",
+      "bom-ref": "4e8455e1-b884-4a22-a0a9-117c7649df28",
       "name": "HMAC",
       "properties": [
         {
@@ -605,7 +605,109 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ac8edd8f-31f4-497f-b14d-600a77cea85d",
+      "bom-ref": "57372028-398d-47c8-92b7-9517d0461d5d",
+      "name": "ML-KEM",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "pqc"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ts/Curve.node.ts:66"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/signalapp/Signal-Desktop/blob/17502b9d1a9e34af689f31508c4ac4ccee5b5cb7/ts/Curve.node.ts#L66"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ml-kem"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "kem",
+          "algorithmFamily": "ML-KEM",
+          "cryptoFunctions": [
+            "keygen",
+            "encapsulate",
+            "decapsulate"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "90618d05-1ac9-4707-af8c-1d7539fdec76",
+      "name": "ML-KEM",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "pqc"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ts/SignalProtocolStore.preload.ts:416"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/signalapp/Signal-Desktop/blob/17502b9d1a9e34af689f31508c4ac4ccee5b5cb7/ts/SignalProtocolStore.preload.ts#L416"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ml-kem"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "kem",
+          "algorithmFamily": "ML-KEM",
+          "cryptoFunctions": [
+            "keygen",
+            "encapsulate",
+            "decapsulate"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e11d75aa-8b0d-4be6-b207-0b74af92bcc8",
       "name": "ML-KEM",
       "properties": [
         {
@@ -652,7 +754,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9fc9f038-dc8a-4c05-9dc7-63826d4af4f0",
+      "bom-ref": "c34ea311-6e73-4031-9f74-cbd9d454e545",
       "name": "ML-KEM",
       "properties": [
         {
@@ -699,7 +801,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b2123c8d-b4cf-48dc-a746-a2558be251ae",
+      "bom-ref": "897d62ed-2bdd-417d-a40c-9c1eae75ed74",
       "name": "SHA-2",
       "properties": [
         {
@@ -748,7 +850,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0c02e174-07d0-4e65-b1ba-6ef9397fbf3c",
+      "bom-ref": "2c57254a-2d30-4679-b2c9-116b13818e32",
       "name": "SHA-2",
       "properties": [
         {
@@ -801,7 +903,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "126dbc43-aac2-49da-bb5b-138ae3e70ee0",
+      "bom-ref": "b4156977-6419-489e-adff-bcfa0292f6fc",
       "name": "SHA-2",
       "properties": [
         {
@@ -854,7 +956,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c19a5428-fe75-4b16-9aa4-ed31711d1af4",
+      "bom-ref": "d51851b3-1e95-46a8-8f32-907aa9d5ae2f",
       "name": "SHA-2",
       "properties": [
         {
@@ -907,7 +1009,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "03c68313-0191-4b96-9fce-f4ef1f86be32",
+      "bom-ref": "73c3f4c5-4b93-4034-9e12-53d21ad75273",
       "name": "SHA-2",
       "properties": [
         {
@@ -960,7 +1062,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "972641af-ce41-4986-ae6c-46ffb160c9f9",
+      "bom-ref": "56606c1e-4be1-4619-8dbf-2b1c96a376b8",
       "name": "SHA-2",
       "properties": [
         {
@@ -1013,7 +1115,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3c094c35-9c3a-43f5-9ac2-cfe8499a8e03",
+      "bom-ref": "e190b45e-1ce1-4a71-9d5c-4ad679ddaefc",
       "name": "SHA-2",
       "properties": [
         {
@@ -1066,7 +1168,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4e5be56c-1316-4dd2-94d4-1b3d106bdfe0",
+      "bom-ref": "bda335b5-59ca-4f14-9733-849c7ba070e9",
       "name": "SHA-2",
       "properties": [
         {
@@ -1115,6 +1217,281 @@
           "nistQuantumSecurityLevel": 5
         },
         "oid": "2.16.840.1.101.3.4.2.3"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5b3dc557-b0bb-4c3d-bef2-71725ce54310",
+      "name": "X25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ts/Curve.node.ts:78"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/signalapp/Signal-Desktop/blob/17502b9d1a9e34af689f31508c4ac4ccee5b5cb7/ts/Curve.node.ts#L78"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "x25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
+          "parameterSetIdentifier": "X25519",
+          "curve": "X25519",
+          "ellipticCurve": "other/Curve25519",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.110"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "02100f8b-d880-4d22-8964-db05f77ae504",
+      "name": "X25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ts/SignalProtocolStore.preload.ts:200"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/signalapp/Signal-Desktop/blob/17502b9d1a9e34af689f31508c4ac4ccee5b5cb7/ts/SignalProtocolStore.preload.ts#L200"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (6 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "x25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
+          "parameterSetIdentifier": "X25519",
+          "curve": "X25519",
+          "ellipticCurve": "other/Curve25519",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.110"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d31eb02c-0f4e-4877-af81-c4d520c2743b",
+      "name": "X25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ts/textsecure/MessageReceiver.preload.ts:1380"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/signalapp/Signal-Desktop/blob/17502b9d1a9e34af689f31508c4ac4ccee5b5cb7/ts/textsecure/MessageReceiver.preload.ts#L1380"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "x25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
+          "parameterSetIdentifier": "X25519",
+          "curve": "X25519",
+          "ellipticCurve": "other/Curve25519",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.110"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a0734069-f6d9-4bd3-b5ee-972c06f13c8e",
+      "name": "X25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ts/textsecure/OutgoingMessage.preload.ts:562"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/signalapp/Signal-Desktop/blob/17502b9d1a9e34af689f31508c4ac4ccee5b5cb7/ts/textsecure/OutgoingMessage.preload.ts#L562"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "x25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
+          "parameterSetIdentifier": "X25519",
+          "curve": "X25519",
+          "ellipticCurve": "other/Curve25519",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.110"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "9f8d9faf-b1b0-42b6-9184-d5ddd88894f4",
+      "name": "X25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ts/textsecure/getKeysForServiceId.preload.ts:199"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/signalapp/Signal-Desktop/blob/17502b9d1a9e34af689f31508c4ac4ccee5b5cb7/ts/textsecure/getKeysForServiceId.preload.ts#L199"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "x25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agree",
+          "algorithmFamily": "ECDH",
+          "parameterSetIdentifier": "X25519",
+          "curve": "X25519",
+          "ellipticCurve": "other/Curve25519",
+          "cryptoFunctions": [
+            "keygen"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.110"
       }
     }
   ]

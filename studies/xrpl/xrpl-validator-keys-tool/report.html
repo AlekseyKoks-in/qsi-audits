@@ -12,7 +12,7 @@
   @page {
     size: A4; margin: 22mm 18mm 20mm 18mm;
     @top-left { content: "xrpl-validator-keys-tool @ 4c0fb75eec96 · Security \26  Post-Quantum Readiness Audit Report"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
-    @top-right { content: "v1 · b85785e63f89"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · 6c80fbf6ef1f"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
     @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
     @bottom-left { content: "This report presents automated and documented analysis results for the stated scope. It is not a legal opinion…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
   }
@@ -82,12 +82,12 @@
   </div>
   <table>
     <tr><td>Organization</td><td>QSI</td></tr>
-    <tr><td>Report date</td><td>2026-11-21 10:24 UTC</td></tr>
+    <tr><td>Report date</td><td>2026-11-23 14:10 UTC</td></tr>
     <tr><td>Report version</td><td>1</td></tr>
-    <tr><td>Audit run</td><td>a9bad12b-a5d9-4c48-87f2-b83026b08b85 · Document audit · 2026-11-21 10:24 UTC</td></tr>
-    <tr><td>Analyzer engine</td><td>qsi-engine 1.8.1</td></tr>
+    <tr><td>Audit run</td><td>c985c5c9-ede6-4e51-94c7-204dcc5b6410 · Document audit · 2026-11-23 14:10 UTC</td></tr>
+    <tr><td>Analyzer engine</td><td>qsi-engine 1.16.2</td></tr>
     <tr><td>Risk profile</td><td>Web3 project</td></tr>
-    <tr><td>Content SHA-256</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">b85785e63f890a58ff95dd6422534423caf8411033ded5511e5803a9181a099c</td></tr>
+    <tr><td>Content SHA-256</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">6c80fbf6ef1fde2e9b4ec20bc59ab9c5a4d6c204de73c4f1183def1a8b838901</td></tr>
 <tr><td>Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a</td></tr>  </table>
 </div>
 
@@ -130,7 +130,7 @@
   <h3>Top 5</h3>
   <table class="data">
     <tr><th>ID</th><th>Severity</th><th>Detailed findings</th><th>Priority score</th></tr>
-<tr><td>QSI-2026-34934</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable ECDSA: role not determined (1 file(s)) <span class="tag pre">preliminary</span></td><td>31.7</td></tr><tr><td>QSI-2026-34935</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable Ed25519: role not determined (1 file(s)) <span class="tag pre">preliminary</span></td><td>31.7</td></tr>  </table>
+<tr><td>QSI-2026-44411</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable ECDSA: role not determined (1 file(s)) <span class="tag pre">preliminary</span></td><td>31.7</td></tr><tr><td>QSI-2026-44412</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable Ed25519: role not determined (1 file(s)) <span class="tag pre">preliminary</span></td><td>31.7</td></tr>  </table>
   <p class="note">Mosca&#39;s inequality (x + y &gt; z): x = 5, y = 5, z = 12 → tight margin. z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
 <p class="note"><strong>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.</strong> Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p></section>
 
@@ -144,12 +144,12 @@
 
 <section class="chapter" id="methodology">
   <h2>Methodology</h2>
-  <p>The audit was performed by the QSI engine 1.8.1. Each analyzer emits facts (rule, parameters, evidence); finding texts are generated from the rule catalog. Methodology sources are listed under "Sources and normative documents".</p>
+  <p>The audit was performed by the QSI engine 1.16.2. Each analyzer emits facts (rule, parameters, evidence); finding texts are generated from the rule catalog. Methodology sources are listed under "Sources and normative documents".</p>
   <p>Prioritization uses an explainable weighted model (severity, exploitability, exposure, confidentiality/integrity/availability impact weighted by the "Web3 project" profile, asset criticality, urgency, ease of remediation) with a confidence multiplier. CVSS v3.1 is applied only to technical vulnerabilities with a defined vector. Long-term quantum risks use Mosca's inequality; their severity is capped at Medium and they are never presented as exploitable vulnerabilities.</p>
   <p>Finding classes: confirmed technical vulnerability; known vulnerable component (a dependency version named in an advisory; whether the affected code is reachable is assessed separately, and a component confirmed by review becomes a vulnerability); confirmed configuration error; potential cryptographic risk; long-term post-quantum risk; improvement recommendation; insufficient data. Heuristic findings are marked preliminary; analyst decisions are shown next to the findings.</p>
   <h3>Coverage of checks</h3>
   <table class="data"><tr><th>Area</th><th>Status</th><th>Detail</th></tr>
-<tr><td>source_code</td><td>checked</td><td>src/ValidatorKeys.cpp: 294 lines scanned with 16 rule patterns and 313 registry patterns</td></tr><tr><td>source_code</td><td>checked</td><td>src/ValidatorKeys.h: 162 lines scanned with 16 rule patterns and 313 registry patterns</td></tr><tr><td>source_code</td><td>checked</td><td>src/ValidatorKeysTool.cpp: 471 lines scanned with 16 rule patterns and 313 registry patterns</td></tr><tr><td>source_code</td><td>checked</td><td>src/ValidatorKeysTool.h: 30 lines scanned with 16 rule patterns and 313 registry patterns</td></tr><tr><td>entropy</td><td>checked</td><td>random-number generation: 4 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)</td></tr>  </table>
+<tr><td>source_code</td><td>checked</td><td>src/ValidatorKeys.cpp: 294 lines scanned with 16 rule patterns and 340 registry patterns</td></tr><tr><td>source_code</td><td>checked</td><td>src/ValidatorKeys.h: 162 lines scanned with 16 rule patterns and 340 registry patterns</td></tr><tr><td>source_code</td><td>checked</td><td>src/ValidatorKeysTool.cpp: 471 lines scanned with 16 rule patterns and 340 registry patterns</td></tr><tr><td>source_code</td><td>checked</td><td>src/ValidatorKeysTool.h: 30 lines scanned with 16 rule patterns and 340 registry patterns</td></tr><tr><td>entropy</td><td>checked</td><td>random-number generation: 4 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)</td></tr>  </table>
 </section>
 
 <section class="chapter" id="assets">
@@ -187,13 +187,13 @@
   <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
   </table>
   <table class="data"><tr><th>ID</th><th>Detailed findings</th><th>Classification</th><th>Severity</th><th>Confidence</th></tr>
-<tr><td>QSI-2026-34934</td><td>Quantum-vulnerable ECDSA: role not determined (1 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-34935</td><td>Quantum-vulnerable Ed25519: role not determined (1 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr>  </table>
+<tr><td>QSI-2026-44411</td><td>Quantum-vulnerable ECDSA: role not determined (1 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-44412</td><td>Quantum-vulnerable Ed25519: role not determined (1 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr>  </table>
 </section>
 
 <section class="chapter" id="details">
   <h2>Detailed findings</h2>
-  <article class="finding" id="QSI-2026-34934">
-    <header><span class="fid">QSI-2026-34934 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+  <article class="finding" id="QSI-2026-44411">
+    <header><span class="fid">QSI-2026-44411 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
     <h3>Quantum-vulnerable ECDSA: role not determined (1 file(s))</h3>
     <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
     <p>1 reference(s) to ECDSA across 1 file(s), e.g. src/ValidatorKeys.h:104. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.</p>
@@ -201,13 +201,13 @@
       <dt>Affected asset</dt><dd>source-code:ECDSA:general</dd>
       <dt>Data source</dt><dd>src/ValidatorKeys.h</dd>
       <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
-      <dt>Analyzer</dt><dd>source_code 1.8.1 · 2026-11-21 10:24 UTC</dd>
+      <dt>Analyzer</dt><dd>source_code 1.16.2 · 2026-11-23 14:10 UTC</dd>
       <dt>Priority score</dt><dd>31.7 / 100 (Web3 project)</dd>
       <dt>CVSS v3.1</dt><dd>not applicable</dd>
 <dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=12.0 → migration would finish too late under this scenario</dd>    </dl>
     <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
     <h4>Reproduction steps</h4><pre>Open src/ValidatorKeys.h:104 and inspect the quoted lines; the evidence lists further files.</pre>
-    <h4 id="ev-QSI-2026-34934">Evidence</h4>
+    <h4 id="ev-QSI-2026-44411">Evidence</h4>
       <div class="ev-meta">file_excerpt · <a href="https://github.com/ripple/validator-keys-tool/blob/4c0fb75eec9601c711645998c904507e87e910ae/src/ValidatorKeys.h#L104">src/ValidatorKeys.h</a> · line 104 · SHA-256 ab49ca1c1a19a77a… · File b8e33d80d5dddff7…</div>
       <pre>  103 |     boost::optional&lt;ValidatorToken&gt;
   104 |     createValidatorToken(KeyType const&amp; keyType = KeyType::Secp256k1);
@@ -216,8 +216,8 @@
     <h4>Recommendation</h4><p>Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.</p>
     <h4>Retest procedure</h4><p>Re-run the inventory after refactoring.</p>
 <p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
-  <article class="finding" id="QSI-2026-34935">
-    <header><span class="fid">QSI-2026-34935 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+  <article class="finding" id="QSI-2026-44412">
+    <header><span class="fid">QSI-2026-44412 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
     <h3>Quantum-vulnerable Ed25519: role not determined (1 file(s))</h3>
     <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
     <p>1 reference(s) to Ed25519 across 1 file(s), e.g. src/ValidatorKeysTool.cpp:64. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.</p>
@@ -225,13 +225,13 @@
       <dt>Affected asset</dt><dd>source-code:Ed25519:general</dd>
       <dt>Data source</dt><dd>src/ValidatorKeysTool.cpp</dd>
       <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
-      <dt>Analyzer</dt><dd>source_code 1.8.1 · 2026-11-21 10:24 UTC</dd>
+      <dt>Analyzer</dt><dd>source_code 1.16.2 · 2026-11-23 14:10 UTC</dd>
       <dt>Priority score</dt><dd>31.7 / 100 (Web3 project)</dd>
       <dt>CVSS v3.1</dt><dd>not applicable</dd>
 <dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=12.0 → migration would finish too late under this scenario</dd>    </dl>
     <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
     <h4>Reproduction steps</h4><pre>Open src/ValidatorKeysTool.cpp:64 and inspect the quoted lines; the evidence lists further files.</pre>
-    <h4 id="ev-QSI-2026-34935">Evidence</h4>
+    <h4 id="ev-QSI-2026-44412">Evidence</h4>
       <div class="ev-meta">file_excerpt · <a href="https://github.com/ripple/validator-keys-tool/blob/4c0fb75eec9601c711645998c904507e87e910ae/src/ValidatorKeysTool.cpp#L64">src/ValidatorKeysTool.cpp</a> · line 64 · SHA-256 4ccde58448819ac8… · File 94c1bfc7b5ca715e…</div>
       <pre>   63 | 
    64 |     ValidatorKeys const keys(KeyType::Ed25519);
@@ -245,7 +245,7 @@
 <section class="chapter" id="evidence">
   <h2>Evidence</h2>
   <table class="data"><tr><th>ID</th><th>Type</th><th>Data source</th><th>SHA-256</th></tr>
-<tr><td><a href="#ev-QSI-2026-34934">QSI-2026-34934</a></td><td>file_excerpt</td><td><a href="https://github.com/ripple/validator-keys-tool/blob/4c0fb75eec9601c711645998c904507e87e910ae/src/ValidatorKeys.h#L104">src/ValidatorKeys.h</a> (line 104)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ab49ca1c1a19a77ad484a2f6f8163e3ec955f2808563d6eb9730ce952409ce0a</td></tr><tr><td><a href="#ev-QSI-2026-34935">QSI-2026-34935</a></td><td>file_excerpt</td><td><a href="https://github.com/ripple/validator-keys-tool/blob/4c0fb75eec9601c711645998c904507e87e910ae/src/ValidatorKeysTool.cpp#L64">src/ValidatorKeysTool.cpp</a> (line 64)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4ccde58448819ac88692327683451e95a08012e9a680e95a3b808e111d60afad</td></tr>  </table>
+<tr><td><a href="#ev-QSI-2026-44411">QSI-2026-44411</a></td><td>file_excerpt</td><td><a href="https://github.com/ripple/validator-keys-tool/blob/4c0fb75eec9601c711645998c904507e87e910ae/src/ValidatorKeys.h#L104">src/ValidatorKeys.h</a> (line 104)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ab49ca1c1a19a77ad484a2f6f8163e3ec955f2808563d6eb9730ce952409ce0a</td></tr><tr><td><a href="#ev-QSI-2026-44412">QSI-2026-44412</a></td><td>file_excerpt</td><td><a href="https://github.com/ripple/validator-keys-tool/blob/4c0fb75eec9601c711645998c904507e87e910ae/src/ValidatorKeysTool.cpp#L64">src/ValidatorKeysTool.cpp</a> (line 64)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4ccde58448819ac88692327683451e95a08012e9a680e95a3b808e111d60afad</td></tr>  </table>
 </section>
 
 <section class="chapter" id="pq">
@@ -262,12 +262,12 @@
   <p class="note">Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests.</p>
   <h3>What the quantum-vulnerable algorithms do</h3>
   <table class="data"><tr><th>Role</th><th>Algorithms (files)</th><th>ID</th><th>First step</th></tr>
-<tr><td><strong>role not determined</strong></td><td>ECDSA (1), Ed25519 (1)</td><td class="small"><a href="#QSI-2026-34934">QSI-2026-34934</a>, <a href="#QSI-2026-34935">QSI-2026-34935</a></td><td class="small">Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility</td></tr>  </table>
+<tr><td><strong>role not determined</strong></td><td>ECDSA (1), Ed25519 (1)</td><td class="small"><a href="#QSI-2026-44411">QSI-2026-44411</a>, <a href="#QSI-2026-44412">QSI-2026-44412</a></td><td class="small">Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility</td></tr>  </table>
   <p class="note">Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today.</p>
   <p class="note">z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
   <table class="data"><tr><th>Quantum status</th><th>Count</th></tr>
 <tr><td>vulnerable (Shor)</td><td>2</td></tr>  </table>
-  <p><strong>Detailed findings:</strong> QSI-2026-34934, QSI-2026-34935</p>
+  <p><strong>Detailed findings:</strong> QSI-2026-44411, QSI-2026-44412</p>
   <h3>PQC readiness questionnaire</h3>
 <p class="muted">No readiness questionnaire was completed for this project.</p>  <h3>Quantum algorithms relevant to this inventory</h3>
   <table class="data"><tr><th>Quantum algorithm</th><th>Effect</th><th>Inventoried algorithms (rows)</th><th>What it means for this audit</th></tr>
@@ -287,7 +287,7 @@
 <section class="chapter" id="plan">
   <h2>Remediation plan</h2>
   <article class="finding">
-    <header><span class="fid">QSI-2026-34934 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <header><span class="fid">QSI-2026-44411 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
     <h3>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
     <dl class="meta">
       <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
@@ -299,7 +299,7 @@
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-34935 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <header><span class="fid">QSI-2026-44412 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
     <h3>Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
     <dl class="meta">
       <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
@@ -311,7 +311,7 @@
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-34934 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <header><span class="fid">QSI-2026-44411 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
     <h3>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
     <dl class="meta">
       <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
@@ -323,7 +323,7 @@
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-34935 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <header><span class="fid">QSI-2026-44412 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
     <h3>Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
     <dl class="meta">
       <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
@@ -346,18 +346,18 @@
 <tr><td colspan="4" class="muted">None</td></tr>  </table>
   <h3>90 days</h3>
   <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
-<tr><td>P3</td><td>QSI-2026-34934</td><td>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P3</td><td>QSI-2026-34935</td><td>Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P4</td><td>QSI-2026-34934</td><td>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr><tr><td>P4</td><td>QSI-2026-34935</td><td>Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr>  </table>
+<tr><td>P3</td><td>QSI-2026-44411</td><td>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P3</td><td>QSI-2026-44412</td><td>Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P4</td><td>QSI-2026-44411</td><td>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr><tr><td>P4</td><td>QSI-2026-44412</td><td>Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr>  </table>
 </section>
 
 <section class="chapter" id="retests">
   <h2>Verification after remediation</h2>
   <table class="data"><tr><th>ID</th><th>Retest procedure</th></tr>
-<tr><td>QSI-2026-34934</td><td>Re-run the inventory after refactoring.</td></tr><tr><td>QSI-2026-34935</td><td>Re-run the inventory after refactoring.</td></tr>  </table>
+<tr><td>QSI-2026-44411</td><td>Re-run the inventory after refactoring.</td></tr><tr><td>QSI-2026-44412</td><td>Re-run the inventory after refactoring.</td></tr>  </table>
 </section>
 
 <section class="chapter" id="tools">
   <h2>Tools used</h2>
-  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.2.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>crediting</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.4.3</td></tr><tr><td>hndl</td><td>1.0.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>mpc</td><td>1.0.0</td></tr><tr><td>solidity</td><td>1.5.2</td></tr><tr><td>source_code</td><td>1.7.1</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>ton_contracts</td><td>1.0.0</td></tr><tr><td>validator_keys</td><td>1.2.0</td></tr><tr><td>wallet_login</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.8.1</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.2.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>crediting</td><td>1.3.0</td></tr><tr><td>dependencies</td><td>1.4.4</td></tr><tr><td>hndl</td><td>1.0.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>mpc</td><td>1.0.0</td></tr><tr><td>solidity</td><td>1.8.1</td></tr><tr><td>source_code</td><td>1.10.2</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>ton_contracts</td><td>1.0.0</td></tr><tr><td>validator_keys</td><td>1.2.0</td></tr><tr><td>wallet_login</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.16.2</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
 </section>
 
 <section class="chapter" id="references">
@@ -372,7 +372,7 @@
   <table class="data"><tr><th>Algorithm</th><th>Parameter</th><th>Location</th><th>Quantum status</th><th>Classical status</th></tr>
 <tr><td>ECDSA</td><td>secp256k1</td><td class="small">src/ValidatorKeys.h:104</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>Ed25519</td><td>Ed25519</td><td class="small">src/ValidatorKeysTool.cpp:64</td><td>vulnerable (Shor)</td><td>acceptable</td></tr>  </table>
   <h3>B. JSON</h3>
-  <p class="small">qsi.report/1 · SHA-256 b85785e63f890a58ff95dd6422534423caf8411033ded5511e5803a9181a099c</p>
+  <p class="small">qsi.report/1 · SHA-256 6c80fbf6ef1fde2e9b4ec20bc59ab9c5a4d6c204de73c4f1183def1a8b838901</p>
 </section>
 </body>
 </html>

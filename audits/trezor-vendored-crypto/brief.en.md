@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: trezor-vendored-crypto @ 72489948b3c4
 
-*One-page brief* · Reviewed: 2026-11-18 09:37 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Trezor (vendored primitives) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 13:24 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Trezor (vendored primitives) — public repository (passive review)
 
 Source: https://github.com/trezor/trezor-firmware/tree/72489948b3c44a37598de9da658be28e4fabb4ae
 
@@ -12,11 +12,11 @@ Source: https://github.com/trezor/trezor-firmware/tree/72489948b3c44a37598de9da6
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (21 file(s)) (QSI-2026-31704) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (21 file(s)) (QSI-2026-43711) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s)) (QSI-2026-31706) · *preliminary*\
+2. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s)) (QSI-2026-43713) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable ECDH: role not determined (4 file(s)) (QSI-2026-31705) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDH: role not determined (4 file(s)) (QSI-2026-43712) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in…
 
 ## What the quantum-vulnerable cryptography protects
@@ -28,9 +28,9 @@ Source: https://github.com/trezor/trezor-firmware/tree/72489948b3c44a37598de9da6
 
 ---
 
-Static review of source code and manifests; files analysed: 505. No requests were sent to the owner's systems.
+Static review of source code and manifests; files analysed: 504. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `831cabf2c0ab5d6e4d2cc7635ea339a160d937d12e49cc68b9e9209563cc358a`
+Full report, content SHA-256: `9b69ef40818565677dd438852d5d830a74714b3fc1581aface0f8964c7725226`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

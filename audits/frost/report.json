@@ -1,8 +1,8 @@
 {
-  "content_sha256": "07e5d25ae9331bc66e93bef1261f998c4a50235411cfa4c32bd3831b4a5e1ab7",
+  "content_sha256": "9a9406107d9fe5ef2faadb68e5657117cbb591297679dc205e34190405d0cc84",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-06T13:16:45.519534+00:00",
+  "generated_at": "2026-11-23T12:26:43.792106+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "7fc7c9ca-b7ee-422a-8ccd-d0d3dda80323",
+    "id": "7dbc6bdf-1e9e-4b65-a9f8-0d1bb454079a",
     "mode": "document",
     "title": "Document audit: frost",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T13:16:40.806461+00:00",
-    "finished_at": "2026-11-06T13:16:45.400405+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T12:26:36.165453+00:00",
+    "finished_at": "2026-11-23T12:26:43.692098+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -438,82 +438,82 @@
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/batch.rs: 168 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/batch.rs: 168 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/error.rs: 185 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/error.rs: 185 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/identifier.rs: 173 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/identifier.rs: 173 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/keys.rs: 992 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/keys.rs: 992 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/keys/dkg.rs: 658 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/keys/dkg.rs: 658 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/keys/refresh.rs: 484 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/keys/refresh.rs: 484 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/keys/repairable.rs: 217 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/keys/repairable.rs: 217 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/lib.rs: 851 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/lib.rs: 851 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/round1.rs: 468 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/round1.rs: 468 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/round2.rs: 183 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/round2.rs: 183 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/scalar_mul.rs: 249 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/scalar_mul.rs: 249 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/serialization.rs: 490 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/serialization.rs: 490 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/signature.rs: 148 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/signature.rs: 148 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/signing_key.rs: 115 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/signing_key.rs: 115 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/traits.rs: 470 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/traits.rs: 470 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-core/src/verifying_key.rs: 123 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-core/src/verifying_key.rs: 123 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -523,27 +523,27 @@
     },
     {
       "area": "source_code",
-      "detail": "frost-ed25519/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ed25519/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ed25519/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ed25519/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ed25519/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 266 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "frost-ed25519/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 340 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ed25519/src/lib.rs: 447 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ed25519/src/lib.rs: 447 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ed25519/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ed25519/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -553,27 +553,27 @@
     },
     {
       "area": "source_code",
-      "detail": "frost-ed448/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ed448/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ed448/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ed448/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ed448/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 266 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "frost-ed448/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 340 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ed448/src/lib.rs: 437 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ed448/src/lib.rs: 437 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ed448/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ed448/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -583,27 +583,27 @@
     },
     {
       "area": "source_code",
-      "detail": "frost-p256/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-p256/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-p256/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-p256/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-p256/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 266 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "frost-p256/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 340 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-p256/src/lib.rs: 462 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-p256/src/lib.rs: 462 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-p256/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-p256/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -613,7 +613,7 @@
     },
     {
       "area": "source_code",
-      "detail": "frost-rerandomized/src/lib.rs: 493 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-rerandomized/src/lib.rs: 493 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -623,27 +623,27 @@
     },
     {
       "area": "source_code",
-      "detail": "frost-ristretto255/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ristretto255/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ristretto255/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ristretto255/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ristretto255/src/keys/repairable.rs: 104 lines scanned with 16 rule patterns and 266 registry patterns; 42 lines in #[cfg(test)] modules ignored",
+      "detail": "frost-ristretto255/src/keys/repairable.rs: 104 lines scanned with 16 rule patterns and 340 registry patterns; 42 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ristretto255/src/lib.rs: 436 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ristretto255/src/lib.rs: 436 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-ristretto255/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-ristretto255/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -653,27 +653,27 @@
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1-tr/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-secp256k1-tr/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1-tr/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-secp256k1-tr/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1-tr/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 266 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "frost-secp256k1-tr/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 340 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1-tr/src/lib.rs: 919 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-secp256k1-tr/src/lib.rs: 919 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1-tr/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-secp256k1-tr/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -683,27 +683,27 @@
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-secp256k1/src/keys/dkg.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-secp256k1/src/keys/refresh.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 266 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "frost-secp256k1/src/keys/repairable.rs: 102 lines scanned with 16 rule patterns and 340 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1/src/lib.rs: 461 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-secp256k1/src/lib.rs: 461 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "frost-secp256k1/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "frost-secp256k1/src/rerandomized.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -713,12 +713,12 @@
     },
     {
       "area": "source_code",
-      "detail": "gencode/src/main.rs: 392 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "gencode/src/main.rs: 392 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "plot.py: 171 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "plot.py: 171 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -728,7 +728,7 @@
     },
     {
       "area": "osv_advisories",
-      "detail": "169 pinned packages queried at OSV.dev; 4 affected",
+      "detail": "169 pinned packages queried at OSV.dev; 5 affected",
       "status": "checked"
     }
   ],
@@ -768,9 +768,9 @@
       "count": 49,
       "rows": 49,
       "examples": [
-        "frost-core/src/batch.rs: 168 lines scanned with 16 rule patterns and 266 registry patterns",
-        "frost-core/src/error.rs: 185 lines scanned with 16 rule patterns and 266 registry patterns",
-        "frost-core/src/identifier.rs: 173 lines scanned with 16 rule patterns and 266 registry patterns"
+        "frost-core/src/batch.rs: 168 lines scanned with 16 rule patterns and 340 registry patterns",
+        "frost-core/src/error.rs: 185 lines scanned with 16 rule patterns and 340 registry patterns",
+        "frost-core/src/identifier.rs: 173 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -788,7 +788,7 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "169 pinned packages queried at OSV.dev; 4 affected"
+        "169 pinned packages queried at OSV.dev; 5 affected"
       ]
     }
   ],
@@ -799,7 +799,7 @@
   "assets": {
     "registered": [],
     "examined_inputs": [
-      "169 pinned packages queried at OSV.dev; 4 affected",
+      "169 pinned packages queried at OSV.dev; 5 affected",
       "Cargo.lock",
       "Cargo.toml",
       "book/src/zcash/server.md",
@@ -871,20 +871,20 @@
       "critical": 0,
       "high": 0,
       "medium": 4,
-      "low": 3,
+      "low": 4,
       "info": 2
     },
     "by_classification": {
       "confirmed_vulnerability": 0,
-      "known_vulnerable_component": 4,
+      "known_vulnerable_component": 5,
       "confirmed_misconfiguration": 0,
       "potential_crypto_risk": 0,
       "pq_long_term_risk": 4,
       "improvement": 0,
       "insufficient_data": 1
     },
-    "total": 9,
-    "posture_index": 97,
+    "total": 10,
+    "posture_index": 96,
     "pq_vulnerable_share": 57.9,
     "inventory_total": 57,
     "inventory_by_quantum_status": {
@@ -906,8 +906,8 @@
   },
   "findings": [
     {
-      "id": "f9a27cc8-4779-487a-a0f7-df886bb83db4",
-      "public_id": "QSI-2026-18038",
+      "id": "579538a9-7ef0-449c-832b-89cb34602363",
+      "public_id": "QSI-2026-41951",
       "rule_id": "TLSCONF-NO-PQ-HYBRID",
       "title": "Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)",
       "description": "Группы обмена ключами в строка 91 (X25519, prime256v1, secp384r1) не включают гибридную группу ML-KEM, например X25519MLKEM768.",
@@ -926,8 +926,8 @@
       "triage": null,
       "affected_asset": "file:book/src/zcash/server.md",
       "data_source": "book/src/zcash/server.md",
-      "analyzer": "configs 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.310871+00:00",
+      "analyzer": "configs 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.613236+00:00",
       "risk_score": 41.2,
       "risk_breakdown": {
         "mosca": {
@@ -1030,8 +1030,8 @@
           "content": "   89 |     ssl_certificate_key /etc/ssl/localhost+2-key.pem;\n   90 |     ssl_protocols TLSv1.3;\n   91 |     ssl_ecdh_curve X25519:prime256v1:secp384r1;\n   92 |     ssl_prefer_server_ciphers off;\n   93 | ",
           "content_sha256": "b62672e65d6d90ca52b33e92ac7abb52ed2252c67a25d101f99bfba483d8cede",
           "source_sha256": "7e2a4b59e3a03468d0d48e45837a0f5b5cf0f6da2df56a22d721c84c64e912f5",
-          "collector": "configs 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.323912+00:00",
+          "collector": "configs 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.622924+00:00",
           "url": null
         }
       ],
@@ -1069,8 +1069,8 @@
       ]
     },
     {
-      "id": "17bab339-bd7d-4e56-a29e-fd32896819c0",
-      "public_id": "QSI-2026-18039",
+      "id": "a3512eb5-ae21-454a-a2ff-bb01f7c42d85",
+      "public_id": "QSI-2026-41952",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов))",
       "description": "318 упоминаний FROST в 27 файл(ах), например frost-core/src/round2.rs:68. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -1089,8 +1089,8 @@
       "triage": null,
       "affected_asset": "source-code:FROST:threshold_mpc",
       "data_source": "frost-core/src/round2.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.320084+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.619449+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -1186,8 +1186,8 @@
           "content": "   67 |         group_commitment_share: &round1::GroupCommitmentShare<C>,\n   68 |         verifying_share: &frost::keys::VerifyingShare<C>,\n   69 |         lambda_i: Scalar<C>,",
           "content_sha256": "8651173eb9746c7abdf62ed25f8a134f33e1fe46187927fcd5bb0513274f598a",
           "source_sha256": "a2d08db9973b391c710322ba06ed5aac306a029437597256c2d532b10b9a0b8b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341921+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636661+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L68"
         },
         {
@@ -1197,8 +1197,8 @@
           "content": "  127 |     signer_nonces: &round1::SigningNonces<C>,\n  128 |     key_package: &frost::keys::KeyPackage<C>,\n  129 | ) -> Result<SignatureShare<C>, Error<C>> {",
           "content_sha256": "0988e249632973670a9ae977916740daaf706c21130a4bf77482288c3c6c9e59",
           "source_sha256": "a2d08db9973b391c710322ba06ed5aac306a029437597256c2d532b10b9a0b8b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341929+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636670+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L128"
         },
         {
@@ -1208,8 +1208,8 @@
           "content": "  151 |         compute_binding_factor_list(&signing_package, &key_package.verifying_key, &[])?;\n  152 |     let binding_factor: frost::BindingFactor<C> = binding_factor_list\n  153 |         .get(&key_package.identifier)",
           "content_sha256": "23b8babcd0d741e51e2bd5007c78b14f48242ff3c1df81f5aae0cf016a8637a7",
           "source_sha256": "a2d08db9973b391c710322ba06ed5aac306a029437597256c2d532b10b9a0b8b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341934+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636675+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L152"
         },
         {
@@ -1219,8 +1219,8 @@
           "content": "   13 |     /// This package MUST NOT be sent to other participants!\n   14 |     pub type SecretPackage = frost::keys::dkg::round1::SecretPackage<E>;\n   15 | ",
           "content_sha256": "9dfbb8854872ce3e884af9f8eb4624c3f91e9cf2b8d29ff9b55524cb7a37a66e",
           "source_sha256": "3e1635cda9a61ca9349f1818ccce62403fd91d8891f1847fb30faa07c206dffc",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341938+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636680+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L14"
         },
         {
@@ -1230,8 +1230,8 @@
           "content": "   17 |     /// between the first and second parts of the DKG protocol (round 1).\n   18 |     pub type Package = frost::keys::dkg::round1::Package<E>;\n   19 | }",
           "content_sha256": "7b0f9fddd5c6a37de10783667d9404a36128d6b37f8400696727dad063f87731",
           "source_sha256": "3e1635cda9a61ca9349f1818ccce62403fd91d8891f1847fb30faa07c206dffc",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341941+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636684+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L18"
         },
         {
@@ -1241,8 +1241,8 @@
           "content": "   30 |     /// This package MUST NOT be sent to other participants!\n   31 |     pub type SecretPackage = frost::keys::dkg::round2::SecretPackage<E>;\n   32 | ",
           "content_sha256": "3e960b2a65f69aa8b89b6228dcaa8cada25ed12cb8c78afe76e629d8f6006b69",
           "source_sha256": "3e1635cda9a61ca9349f1818ccce62403fd91d8891f1847fb30faa07c206dffc",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341945+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636689+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L31"
         },
         {
@@ -1252,8 +1252,8 @@
           "content": "   18 | ) -> Result<(Vec<SecretShare>, PublicKeyPackage), Error> {\n   19 |     frost::keys::refresh::compute_refreshing_shares(old_pub_key_package, identifiers, &mut rng)\n   20 | }",
           "content_sha256": "408ed7e85e3887bb040d3dfe7fd289cdef6f0bd1292f6f1b0b1e0de50856059b",
           "source_sha256": "0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341948+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636694+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L19"
         },
         {
@@ -1263,8 +1263,8 @@
           "content": "   26 | ) -> Result<KeyPackage, Error> {\n   27 |     frost::keys::refresh::refresh_share(zero_share, current_share)\n   28 | }",
           "content_sha256": "d2a9190315a8d506a77bc3b8bd79e1beb2c5acb130a2095fa61a25be7a8da8fa",
           "source_sha256": "0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341951+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636698+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L27"
         },
         {
@@ -1274,8 +1274,8 @@
           "content": "   36 | ) -> Result<(round1::SecretPackage, round1::Package), Error> {\n   37 |     frost::keys::refresh::refresh_dkg_part1(identifier, max_signers, min_signers, &mut rng)\n   38 | }",
           "content_sha256": "716bc1a13f82dedd352d41ceb0e22b78c31a317f5a515bd2b931f4deaed0f93d",
           "source_sha256": "0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341954+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636703+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L37"
         },
         {
@@ -1285,8 +1285,8 @@
           "content": "   16 | /// A delta value which is the output of part 1 of RTS.\n   17 | pub type Delta = frost::keys::repairable::Delta<Ed25519Sha512>;\n   18 | ",
           "content_sha256": "5a88bda2ec9ca0cfa265a3bf19bf6c369997d968069f43aa48b8d087b763356c",
           "source_sha256": "da295baadb8e6db25c3887bbbff4a8da5f18ffc26a566cf800bbbc7a78b93b82",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.341958+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.636708+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/repairable.rs#L17"
         }
       ],
@@ -1324,8 +1324,8 @@
       ]
     },
     {
-      "id": "21de221a-09d5-4838-b4a7-e968409bc216",
-      "public_id": "QSI-2026-18040",
+      "id": "b62038a8-377a-44b9-9b27-4cd7bed43a7c",
+      "public_id": "QSI-2026-41953",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
       "description": "2 упоминаний ECDSA в 2 файл(ах), например frost-secp256k1-tr/src/lib.rs:185. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -1344,8 +1344,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:threshold_mpc",
       "data_source": "frost-secp256k1-tr/src/lib.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.338036+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.632857+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -1441,8 +1441,8 @@
           "content": "  184 | /// [spec]: https://www.ietf.org/archive/id/draft-irtf-cfrg-frost-14.html#section-6.5-1\n  185 | const CONTEXT_STRING: &str = \"FROST-secp256k1-SHA256-TR-v1\";\n  186 | ",
           "content_sha256": "ad879255171d873418b764ca76f6bc26b0fbefbe5dcad1931131f72986bd4270",
           "source_sha256": "5ea39038f8a2419c4a89f70918de89f8f38e31d266525ebba6ecf9087886237d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.354504+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.647927+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1-tr/src/lib.rs#L185"
         },
         {
@@ -1452,8 +1452,8 @@
           "content": "  176 | /// [spec]: https://datatracker.ietf.org/doc/html/rfc9591#section-6.5-1\n  177 | const CONTEXT_STRING: &str = \"FROST-secp256k1-SHA256-v1\";\n  178 | ",
           "content_sha256": "81d0fa0687f877480015ab8b8b7bffe783466c2a3995ba40d68261bb9809ae01",
           "source_sha256": "71f9c9a1c7a09a6db14ab2eaf1cfdac4223e87cc2198b4afefa48d254d21d25a",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.354512+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.647936+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1/src/lib.rs#L177"
         }
       ],
@@ -1491,8 +1491,8 @@
       ]
     },
     {
-      "id": "4631618f-4f86-4752-914e-93d2d009f312",
-      "public_id": "QSI-2026-18041",
+      "id": "f6249654-8ff1-4014-9d88-a3c683614430",
+      "public_id": "QSI-2026-41954",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
       "description": "10 упоминаний ECDSA в 1 файл(ах), например gencode/src/main.rs:294. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1511,8 +1511,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "gencode/src/main.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.351776+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.645456+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1608,8 +1608,8 @@
           "content": "  293 |         (\n  294 |             \"frost-secp256k1\",\n  295 |             &[",
           "content_sha256": "3ee609c196212ca75450c159926d73de8a3e2ab5a60609fab8884354e991d832",
           "source_sha256": "9abc466ef851952a0589e67e088f1a2414a48c3efbb1ca9d8d9aafd8c0b20e4a",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.362410+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.655334+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L294"
         },
         {
@@ -1619,8 +1619,8 @@
           "content": "  296 |                 \"Secp256K1Sha256\",\n  297 |                 \"secp256k1 curve\",\n  298 |                 \"Secp256K1\",",
           "content_sha256": "6bacff1527a755d3f68b7868603372ab97b8a8e35c9641e78a99e9875d527ae7",
           "source_sha256": "9abc466ef851952a0589e67e088f1a2414a48c3efbb1ca9d8d9aafd8c0b20e4a",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.362417+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.655343+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L297"
         },
         {
@@ -1630,8 +1630,8 @@
           "content": "  298 |                 \"Secp256K1\",\n  299 |                 \"FROST(secp256k1, SHA-256)\",\n  300 |                 \"FROST-secp256k1-SHA256-v1\",",
           "content_sha256": "3eda82aceab99676c30f6e7fba61b13a7964f4ae17509065685796c4f7358960",
           "source_sha256": "9abc466ef851952a0589e67e088f1a2414a48c3efbb1ca9d8d9aafd8c0b20e4a",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.362421+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.655348+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L299"
         }
       ],
@@ -1669,8 +1669,8 @@
       ]
     },
     {
-      "id": "9b3c0e20-79b9-4030-be53-6b45e86f2b5f",
-      "public_id": "QSI-2026-18043",
+      "id": "e2b9f7aa-2db1-4494-9f07-eff4019d09d5",
+      "public_id": "QSI-2026-41956",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1690,8 +1690,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/crossbeam-epoch@0.9.18",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.368609+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.660125+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -1746,8 +1746,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0204\", \"aliases\": [], \"modified\": \"2026-07-06T22:30:04.159269138Z\", \"summary\": \"Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "87f069b4fa857d22ba2571deff7f541f4622924fb5fc8545cd46d35b7d427b95",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.376224+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.667470+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0204"
         }
       ],
@@ -1770,8 +1770,8 @@
       ]
     },
     {
-      "id": "1f434964-a0c0-4d54-9620-ec76580fd866",
-      "public_id": "QSI-2026-18044",
+      "id": "546b1c24-e825-4e06-9418-c1a3416d4473",
+      "public_id": "QSI-2026-41957",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1791,8 +1791,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/crypto-bigint@0.7.5",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.374244+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.665683+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -1847,8 +1847,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0387\", \"aliases\": [], \"modified\": \"2026-10-24T03:45:02.365137418Z\", \"summary\": \"Multiple timing variability issues in operations intended to be constant-time\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.386412+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.674034+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -1871,8 +1871,8 @@
       ]
     },
     {
-      "id": "7a18fd8c-b478-464b-95fc-7e0ce90aeb25",
-      "public_id": "QSI-2026-18045",
+      "id": "b7b807c0-0920-4128-9d28-862afba030e5",
+      "public_id": "QSI-2026-41958",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1892,8 +1892,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/ctutils@0.4.2",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.383058+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.672307+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -1948,8 +1948,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0385\", \"aliases\": [], \"modified\": \"2026-10-23T08:30:02.389575143Z\", \"summary\": \"Non-constant-time mask generation and `u128` comparisons\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.393125+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.679850+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -1972,8 +1972,109 @@
       ]
     },
     {
-      "id": "351ec150-6e7d-49dd-8ab2-834d5c52e7b7",
-      "public_id": "QSI-2026-18046",
+      "id": "a78dc6cd-abb6-45eb-91bb-23e648237c60",
+      "public_id": "QSI-2026-41959",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "rustix 1.1.3 затронут RUSTSEC-2026-0486 (без оценки серьёзности)",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0486 для пакета crates.io rustix версии 1.1.3: xattr functions mark unwritten bytes as initialized when given a zero-length buffer. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (rustix::fs::fgetxattr, rustix::fs::flistxattr, rustix::fs::getxattr, rustix::fs::lgetxattr, rustix::fs::listxattr, rustix::fs::llistxattr); rustix приходит через другие зависимости, которые могут их вызывать.",
+      "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
+      "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (1.1.6).",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0486",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "low",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:crates.io/rustix@1.1.3",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.677994+00:00",
+      "risk_score": 20.3,
+      "risk_breakdown": {
+        "score": 20.3,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.25,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 39.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 6.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "RUSTSEC-2026-0486",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0486",
+          "title": "OSV advisory RUSTSEC-2026-0486",
+          "status": "modified 2026-11-11T08:45:02.466292839Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev RUSTSEC-2026-0486",
+          "location": "manifest",
+          "content": "{\"id\": \"RUSTSEC-2026-0486\", \"aliases\": [\"GHSA-jh2m-fhpj-3vr7\"], \"modified\": \"2026-11-11T08:45:02.466292839Z\", \"summary\": \"xattr functions mark unwritten bytes as initialized when given a zero-length buffer\", \"severity\": null, \"declared_in_manifest\": false}",
+          "content_sha256": "3a9db0a5ea2efefb678d315af96712a5f277c0e348371bd9630df7afe1635fbe",
+          "source_sha256": null,
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.685440+00:00",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0486"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Разберите RUSTSEC-2026-0486; при необходимости обновите rustix до исправленной версии (1.1.6).",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Возможны изменения API.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0486 или результат разбора записан.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "88af8053-5894-4d3f-94a4-cfe0a748eba3",
+      "public_id": "QSI-2026-41960",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.52.3: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -1993,8 +2094,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/tokio@1.52.3",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.391204+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.683680+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -2049,8 +2150,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0386\", \"aliases\": [], \"modified\": \"2026-10-23T14:45:03.847864944Z\", \"summary\": \"`AsyncFd::new` and related constructors violate I/O safety\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "1ebb594fd9923dc03209b41738d3f9cf8f324941e8844709473c643cd247e8b6",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.429814+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.718777+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0386"
         }
       ],
@@ -2073,8 +2174,8 @@
       ]
     },
     {
-      "id": "bc781145-4893-4827-b252-117bef6c9ad0",
-      "public_id": "QSI-2026-18042",
+      "id": "18b09f11-148b-44e8-b314-14f1e8b51b52",
+      "public_id": "QSI-2026-41955",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 11 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ed25519-dalek, k256, p256, secp256k1), но ни одной из списка поддерживающих PQC.",
@@ -2093,8 +2194,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:16:45.360077+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:26:43.653275+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -2156,8 +2257,8 @@
           "content": "Crypto libraries: curve25519-dalek, ed25519-dalek, k256, p256, secp256k1",
           "content_sha256": "d0f441833bc78a1937fd351cdba582295e79fed4719519a5eef13ae99544c4de",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:16:45.371678+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:26:43.662609+00:00",
           "url": null
         }
       ],
@@ -2185,10 +2286,10 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-18038",
-      "QSI-2026-18039",
-      "QSI-2026-18040",
-      "QSI-2026-18041"
+      "QSI-2026-41951",
+      "QSI-2026-41952",
+      "QSI-2026-41953",
+      "QSI-2026-41954"
     ],
     "roles": [
       {
@@ -2208,8 +2309,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-18039",
-          "QSI-2026-18040"
+          "QSI-2026-41952",
+          "QSI-2026-41953"
         ],
         "files": 29
       },
@@ -2226,7 +2327,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-18041"
+          "QSI-2026-41954"
         ],
         "files": 1
       }
@@ -2380,7 +2481,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18043",
+        "finding": "QSI-2026-41956",
         "finding_title": "crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -2398,7 +2499,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18044",
+        "finding": "QSI-2026-41957",
         "finding_title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -2416,8 +2517,26 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18045",
+        "finding": "QSI-2026-41958",
         "finding_title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
+        "severity": "low"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Разберите RUSTSEC-2026-0486; при необходимости обновите rustix до исправленной версии (1.1.6).",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Возможны изменения API.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0486 или результат разбора записан.",
+        "status": "todo",
+        "finding": "QSI-2026-41959",
+        "finding_title": "rustix 1.1.3 затронут RUSTSEC-2026-0486 (без оценки серьёзности)",
         "severity": "low"
       },
       {
@@ -2434,7 +2553,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18046",
+        "finding": "QSI-2026-41960",
         "finding_title": "tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)",
         "severity": "info"
       }
@@ -2454,7 +2573,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18038",
+        "finding": "QSI-2026-41951",
         "finding_title": "Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)",
         "severity": "medium"
       },
@@ -2472,7 +2591,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18039",
+        "finding": "QSI-2026-41952",
         "finding_title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов))",
         "severity": "medium"
       },
@@ -2490,7 +2609,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18040",
+        "finding": "QSI-2026-41953",
         "finding_title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
         "severity": "medium"
       },
@@ -2508,7 +2627,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18041",
+        "finding": "QSI-2026-41954",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -2526,7 +2645,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ? или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18038",
+        "finding": "QSI-2026-41951",
         "finding_title": "Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)",
         "severity": "medium"
       },
@@ -2544,7 +2663,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18039",
+        "finding": "QSI-2026-41952",
         "finding_title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов))",
         "severity": "medium"
       },
@@ -2562,7 +2681,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18040",
+        "finding": "QSI-2026-41953",
         "finding_title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
         "severity": "medium"
       },
@@ -2580,7 +2699,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18041",
+        "finding": "QSI-2026-41954",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       }
@@ -2604,20 +2723,32 @@
       "version": "1.1.0"
     },
     {
-      "name": "dependencies",
+      "name": "crediting",
       "version": "1.3.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.4"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -2628,8 +2759,20 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",
@@ -2799,6 +2942,13 @@
       "publisher": "OSV.dev"
     },
     {
+      "key": "RUSTSEC-2026-0486",
+      "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0486",
+      "title": "OSV advisory RUSTSEC-2026-0486",
+      "status": "modified 2026-11-11T08:45:02.466292839Z",
+      "publisher": "OSV.dev"
+    },
+    {
       "key": "SHOR1997",
       "url": "https://doi.org/10.1137/S0097539795293172",
       "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
@@ -2912,7 +3062,7 @@
       "family": "library",
       "parameter": "0.14.0",
       "usage": "crates.io dependency",
-      "library": "k256 (RustCrypto elliptic curves)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "location": "Cargo.lock",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -2925,7 +3075,7 @@
       "family": "library",
       "parameter": "0.14.0",
       "usage": "crates.io dependency",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "k256 (RustCrypto elliptic curves)",
       "location": "Cargo.lock",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -2977,7 +3127,7 @@
       "family": "library",
       "parameter": "0.14",
       "usage": "crates.io dependency",
-      "library": "k256 (RustCrypto elliptic curves)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "location": "Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -2990,7 +3140,7 @@
       "family": "library",
       "parameter": "0.14",
       "usage": "crates.io dependency",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "k256 (RustCrypto elliptic curves)",
       "location": "Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3094,7 +3244,7 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "secp256k1 (secp256k1 bindings)",
+      "library": "k256 (RustCrypto elliptic curves)",
       "location": "frost-secp256k1-tr/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3107,7 +3257,7 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "k256 (RustCrypto elliptic curves)",
+      "library": "secp256k1 (secp256k1 bindings)",
       "location": "frost-secp256k1-tr/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3614,7 +3764,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14.0",
-      "library": "k256 (RustCrypto elliptic curves)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3626,7 +3776,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14.0",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "k256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3674,7 +3824,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14",
-      "library": "k256 (RustCrypto elliptic curves)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3686,7 +3836,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "k256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3771,18 +3921,6 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "secp256k1 (secp256k1 bindings)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "frost-secp256k1-tr/Cargo.toml"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "workspace",
       "library": "k256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3791,6 +3929,18 @@
       "examples": [
         "frost-secp256k1-tr/Cargo.toml",
         "frost-secp256k1/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "workspace",
+      "library": "secp256k1 (secp256k1 bindings)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "frost-secp256k1-tr/Cargo.toml"
       ]
     },
     {

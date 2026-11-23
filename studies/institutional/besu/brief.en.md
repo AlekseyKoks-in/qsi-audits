@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: besu @ 1f1ebc2573e1
 
-*One-page brief* · Reviewed: 2026-11-06 15:36 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Hyperledger Besu — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 13:39 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Hyperledger Besu — public repository (passive review)
 
 Source: https://github.com/besu-eth/besu/tree/1f1ebc2573e187a1339887fbc2a859f095029f21
 
@@ -12,13 +12,13 @@ Source: https://github.com/besu-eth/besu/tree/1f1ebc2573e187a1339887fbc2a859f095
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-19546) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-43954) · *preliminary*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-2. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (6 file(s)) (QSI-2026-19543) · *preliminary*\
+2. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (6 file(s)) (QSI-2026-43951) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable BLS12-381: transaction and message signing (11 file(s)) (QSI-2026-19544) · *preliminary*\
+3. **Medium** · Quantum-vulnerable BLS12-381: transaction and message signing (11 file(s)) (QSI-2026-43952) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-4. **Medium** · Quantum-vulnerable RSA: transaction and message signing (1 file(s)) (QSI-2026-19545) · *preliminary*\
+4. **Medium** · Quantum-vulnerable RSA: transaction and message signing (1 file(s)) (QSI-2026-43953) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
 
 3 more in the full report.
@@ -35,8 +35,8 @@ Source: https://github.com/besu-eth/besu/tree/1f1ebc2573e187a1339887fbc2a859f095
 
 Static review of source code and manifests; files analysed: 2927. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `25c60fc9a59edc6c0ea69ca2871ea1967c583c30f639e09b309380192ecf324d`
+Full report, content SHA-256: `f95bff7eaf4820eb0cab0c7e4fd0115ed36f053f3a00550f325410c82d5c0eb5`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

@@ -2,8 +2,8 @@
 
 61 audit bundles over **53 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**3,982 inventory rows**, of which **1,944 fall to Shor's algorithm**, **28 are post-quantum** and
-**14 are hybrid** (post-quantum combined with classical), from **30,681 parsed files**. Those last two
+**4,065 inventory rows**, of which **2,000 fall to Shor's algorithm**, **28 are post-quantum** and
+**14 are hybrid** (post-quantum combined with classical), from **30,786 parsed files**. Those last two
 are kept apart on purpose: write-ups of mine dated before 2026-10-30 quote a single "29 post-quantum" that was
 28+14-style addition of the two, which is why one number appeared in two different places.
 
@@ -14,18 +14,18 @@ table to read before quoting any other number in this repository.
 
 | what the row rests on | rows | Shor-breakable |
 |---|---:|---:|
-| a line of source code | 2,242 | 1,454 |
-| name of a dependency in a manifest | 859 | 0 |
-| name of a source file (low confidence) | 347 | 158 |
-| a deployed smart contract | 122 | 3 |
+| a line of source code | 2,288 | 1,495 |
+| name of a dependency in a manifest | 869 | 0 |
+| name of a source file (low confidence) | 348 | 155 |
+| a deployed smart contract | 121 | 3 |
 | OpenPGP key committed to the repository | 119 | 119 |
+| the chain a wallet supports | 114 | 114 |
 | a certificate or key file | 114 | 59 |
-| the chain a wallet supports | 102 | 102 |
-| other | 77 | 49 |
+| other | 92 | 55 |
 
 Two things in that table are worth saying out loud rather than leaving for a careful reader to notice.
 
-**158 of the 1,944 Shor-breakable rows rest on the name of a source file**, not on a line of
+**155 of the 2,000 Shor-breakable rows rest on the name of a source file**, not on a line of
 code. That signal exists because `trezor-firmware/crypto/pbkdf2.c` *defines* PBKDF2 instead of calling it, so no
 call-site pattern reaches it and the inventory missed it entirely — a file named after an algorithm is the project
 telling you what is in it. It is still weaker evidence than a call, the reports mark it `confidence: low`, and a
@@ -37,7 +37,7 @@ inventory, because a quantum computer forges a release signature as readily as a
 saw only the Shor total would take them for implemented cryptography. Every one carries `usage: OpenPGP primary
 key` or `OpenPGP subkey`, so one filter removes them from any figure here.
 
-The 859 manifest rows carry no quantum status at all —
+The 869 manifest rows carry no quantum status at all —
 a dependency's name is not an algorithm — which is why they add to the row count and nothing to the Shor count.
 
 Every bundle is pinned to an upstream commit, carries an Ed25519 signature and a CycloneDX CBOM, and was produced
@@ -69,9 +69,8 @@ names a key whose signature is missing, a signature for another context, a key o
 `public_key_mldsa.pem` that differs from it all fail. `--self-test` runs the built-in verifier on five of NIST's own
 ML-DSA-65 test vectors from the ACVP server (`mldsa65-kat.json`: one valid signature, and ones with a modified
 `z`, hint, commitment and message), and the full set of NIST's ML-DSA-65 verification vectors (30) gives the
-expected answer. 12 bundles in `audits/` carry the co-signature so far, the ones re-audited from 17 to 19 November
-(below), and so do the eight XRP Ledger bundles in `studies/xrpl/` (21 November); the rest were signed before it
-existed and pass on Ed25519, as before. The publisher ML-DSA-65 key is
+expected answer. Since the re-issue of 22 November (below) every bundle here carries it except `audits/lottery-demo` and `audits/nitro`,
+signed before it existed, which pass on Ed25519 as before. The publisher ML-DSA-65 key is
 `PUBLIC-KEY-MLDSA.pem` at the root, and a bundle co-signed by any other key fails.
 
 On Windows, Git for Windows turns LF into CRLF on checkout by default (`core.autocrlf`). The signatures are over
@@ -357,6 +356,110 @@ outside SafeERC20 — each preliminary, and each read against the source before 
 more false findings, now fixed: `require(feed.latestAnswer() > 0, ...)`, which Aave runs before storing a feed, reads
 no price. The two Stellar bundles also carry advisory data as of 19 November (unrated and informational advisories).
 
+## Re-issue, 2026-11-22: every bundle again, and whose code a finding is in
+
+Every bundle published here that has an upstream commit, 59 in `audits/` and 20 in `studies/`, was
+re-audited at its recorded commit, tree, language, risk profile and analyst decisions, with engine 1.16.2, and
+each now carries the ML-DSA-65 co-signature. `audits/nitro` keeps its published bundle: its scope was never recorded, and the whole tree is a different measurement (5,714 parsed files where the published bundle parsed 1,038); `audits/lottery-demo` keeps its published bundle: it has no upstream repository. Before publication every re-issued bundle was compared
+with the one it replaces, input by input, inventory row by row and finding by finding, and passed `bundle-qa`, the
+quality gate added on 22 November. The comparison was run first on 22 November with engine 1.16.1; what it found
+wrong in the engine was fixed, as 1.16.2, and every bundle was re-issued again on 23 November: those are the bundles
+published. Every bundle, before and after, is in [reports/REISSUE-2026-11-22.md](reports/REISSUE-2026-11-22.md).
+
+**The inventory** moves from 3,982 / 1,944 to **4,065 / 2,000**, post-quantum rows stay at 28 and hybrid rows at 14 (`openpgpjs` −2, `signal-desktop` +2), and the
+Bitcoin slice from 808 / 555 to **823 / 570**. What moved it:
+
+- a Solidity contract that verifies a signature through a library (OpenZeppelin's `ECDSA.recover` and
+  `SignatureChecker`, `P256`, `WebAuthn`, `RSA.pkcs1Sha256`) now has a row, where only the `ecrecover` precompile was
+  read before;
+- a line that one pattern files under a parameter set (ECDSA on P-256) is no longer counted a second time as a bare
+  ECDSA row because a broader pattern of the same entry matched it too;
+- Cairo is read, PKCS#11 key types and mechanisms are recognised, Starknet's and Sapling's Pedersen is a hash rather
+  than a commitment, EC-ElGamal and Falcon have rows of their own, and libsignal-client's key records and key
+  agreement are Curve25519, of which Signal Desktop had no row at all;
+- files that are not shipped code are set aside: Foundry tests (`*.t.sol`), minified bundles, a documentation
+  generator's search index.
+
+| codebase | rows before | after | Shor before | after | own-code rows before | after | why |
+|---|---:|---:|---:|---:|---:|---:|---|
+| `aave-v3-origin` | 85 | **95** | 1 | **11** | 57 | **28** | OpenZeppelin's `ECDSA.recover` and `SignatureChecker` in `AToken`, `DebtTokenBase` and `BaseDelegation` (permit and delegation by signature) and in the OpenZeppelin it pins |
+| `bitbox02-firmware` | 202 | **206** | 113 | **117** | 91 | **89** | PKCS#11 mechanisms in cryptoauthlib's PKCS#11 layer (ECDSA, ECDH, finite-field DH, MQV); two duplicate bare ECDSA rows gone |
+| `bitgo-mpc` | 93 | **97** | 68 | **71** | 88 | **92** | Ed25519 in the EdDSA and RedPallas MPS utilities and in the MPCv2 EdDSA module; PBKDF2 with 200,000 iterations |
+| `cairo` | 38 | **61** | 14 | **25** | 33 | **54** | the Cairo files of the core library are read; Starknet's Pedersen is a hash, not a commitment; two cryptographic crates in `Cargo.lock` (tree 563 → 673 files) |
+| `embit` | 87 | **89** | 64 | **66** | 44 | **44** | Pedersen commitments of secp256k1-zkp's range proofs |
+| `ethers-js` | 114 | **116** | 43 | **43** | 110 | **112** | PBKDF2 of the 2014 presale wallet format in `json-crowdsale`, kept at info by an analyst decision |
+| `fireblocks-mpc-lib` | 90 | **91** | 88 | **89** | 90 | **91** | a Pedersen commitment in the range proofs |
+| `foundry` | 100 | **100** | 17 | **18** | 78 | **78** | ECDSA on secp256k1 in the Tempo session policy; Foundry's template tests (`*.t.sol`) set aside (tree 760 → 757 files) |
+| `jade` | 144 | **149** | 107 | **112** | 33 | **33** | Pedersen commitments of the libwally-core and secp256k1-zkp it carries (generator, range proofs) |
+| `krux` | 99 | **101** | 64 | **66** | 11 | **14** | Pedersen commitments of the secp256k1-zkp range proofs in the embit it pins |
+| `librustzcash` | 147 | **144** | 26 | **23** | 35 | **32** | three duplicate bare ECDSA rows gone (PCZT signer, transparent builder and signer) |
+| `libwally-core` | 103 | **108** | 81 | **86** | 45 | **46** | Pedersen commitments (Elements' generator and range proofs) |
+| `lido-core` | 69 | **70** | 7 | **8** | 42 | **43** | an OpenZeppelin signature-library call in `SignatureUtils.sol` |
+| `metamask-extension` | 51 | **53** | 13 | **13** | 17 | **17** | two cryptographic libraries in `yarn.lock` the registry now knows |
+| `noir` | 71 | **68** | 9 | **7** | 44 | **41** | Pedersen hash in the CLI's build script; the documentation search index set aside (tree 783 → 782 files) |
+| `openpgpjs` | 64 | **62** | 32 | **32** | 58 | **56** | ML-KEM and ML-DSA were each counted twice in `noble_post_quantum.ts`, with the parameter set and without it: post-quantum rows 8 → 6 |
+| `rabby` | 66 | **72** | 29 | **30** | 34 | **38** | the sample keystore `wallet.json` is read (key, scrypt, AES-128-CTR) and two cryptographic libraries (tree 1,694 → 1,695 files) |
+| `reown-appkit` | 67 | **71** | 16 | **20** | 19 | **23** | ECDSA in the browser-extension and laboratory apps |
+| `rust-bitcoin` | 48 | **47** | 25 | **24** | 43 | **42** | one duplicate bare ECDSA row gone |
+| `sapling-crypto` | 53 | **56** | 36 | **39** | 37 | **40** | Sapling's Pedersen is a hash, not a commitment: seven hash rows where there were four commitment rows |
+| `scroll` | 89 | **98** | 7 | **12** | 56 | **60** | the test keystore and Web3Signer key configuration under `common/testcontainers`, which the path rules do not yet treat as test support (key files are read since 20 November); ECDSA in the relayer and its transaction signer; a signature-library call in `L2WstETHToken.sol`; a cryptographic Go module (tree 387 → 389 files) |
+| `signal-desktop` | 22 | **29** | 0 | **5** | 20 | **27** | libsignal-client's Curve25519 identity and pre-keys, X25519 agreement and Kyber pre-keys: X25519 in five files (`ts/Curve.node.ts`, the protocol store, message sending and receiving, pre-key lookup), ML-KEM in two |
+| `trustwallet-wallet-core` | 396 | **398** | 294 | **293** | 348 | **295** | ECDSA on the STARK curve (StarkEx keys) and three cryptographic crates; three duplicate bare ECDSA rows gone |
+
+**Whose code** a row is in moved as well. A submodule that another project's submodule pins (OpenZeppelin under
+`lib/solidity-utils` in `aave-v3-origin`) and a known library copied into the tree (`trezor-crypto/` in
+`trustwallet-wallet-core`) count as third-party code now. That changes own-code figures, not the totals above.
+
+**The findings** of the deduplicated codebases move from 2,526 to **2,316**, the critical and high
+ones from 706 to **537**, for four reasons.
+
+1. A finding whose every source lies in bundled third-party code (a vendored directory, a known library inside a
+   dependency directory, a submodule another project's submodule pins) is informational and titled "In bundled
+   third-party code": 38 findings.
+2. Advisories on packages that only development or build tooling pulls in, a documentation site's included, are one
+   informational `DEP-ADVISORY-DEV` finding per ecosystem; `agave`'s Docusaurus site alone held 194. Advisory findings
+   move from 1,595 to **1,297**, with advisory data as of 23 November.
+3. False findings were fixed in the engine first. All 9 high-severity "unprotected initializer" findings
+   are gone: one was an internal library function in Aave's `ReserveLogic`, which no outside caller can reach and an
+   earlier engine already passed over, and the comparison exposed the rest (Lido's Aragon `onlyInit` and contract
+   versions, Scroll's owner-only predeploys, the OpenZeppelin 2.x proxies Aave vendors). It also exposed delegatecalls
+   whose target no caller chooses (Aave), an example key from a manual page in `rage`, OBP-API's example tokens, which
+   all expired between 2016 and 2022, and the placeholders of its configuration template, a counter
+   nonce in Aptos's Noise implementation read as a fixed one, and an ECDSA signer in OpenPGP.js read as an Ed25519 one.
+   Fixes made since a bundle's engine apply as well, such as Java's one-block `RSA/ECB/OAEP…` transform, which is not
+   the ECB mode of a block cipher (OBP-API).
+4. 74 findings are new, and none of them is critical or high: 19 post-quantum findings for the rows
+   added above; 50 dependency findings from OSV.dev's data of 23 November, 32 of them advisories
+   without a severity rating, which stay low or informational until triaged, and most of the rest informational
+   notices; and 5 from rules added since a bundle's engine, each with an analyst decision (below). The
+   other rules added since then (payment crediting, ERC-4626 inflation and more) run on every bundle now and report
+   nothing new in these codebases.
+
+Three analyst decisions were added, each with its reason in the report: ethers.js's `json-crowdsale` derives its key
+with PBKDF2 at 2,000 iterations because the 2014 presale wallet format fixes that count, and ethers.js only decrypts
+such wallets (`not_applicable`); OpenPGP.js's Ed25519 `sign()` takes the public key as an argument, but `decryptKey`
+validates a key's parameters before the key can sign (`not_applicable`); and Rabby's `wallet.json` is a sample keystore
+committed with its test set-up (`not_applicable`). The decision files as committed on 2 November carry severities
+that their notes state and the published bundles did not, and the re-issue applies them: Krux's ECB formats in
+`kef.py` are medium rather than high, crypto-bigint's timing advisory (RUSTSEC-2026-0387) in `bitbox02-firmware` and
+`trustwallet-wallet-core` is medium rather than low, and the ECDSA finding of undetermined role in `libwally-core` and
+`secp256k1` is informational. `embit`'s decisions of 29 October, signed in its bundle, had no file the runner could
+read and were restored from the evidence archive.
+
+**The studies** quote own-code rows. Every study bundle whose own-code or post-quantum figures moved:
+
+| bundle | own-code rows before | after | own Shor before | after | post-quantum before | after | why |
+|---|---:|---:|---:|---:|---:|---:|---|
+| `studies/institutional/canton` | 74 | **73** | 35 | **35** | 2 | **2** | a false `IDEA` row in a CI script (`scripts/ci/todo_refs.py`) is gone |
+| `studies/institutional/corda` | 23 | **22** | 16 | **15** | 0 | **0** | one ECDSA row in `DefaultCryptoService.kt` was counted twice, with its curve and without it |
+| `studies/l1/aptos-core` | 82 | **79** | 58 | **55** | 4 | **4** | rows counted twice are gone (bare ECDSA rows beside the secp256r1 ones, a second Ed25519 row of the signing traits) and BLS12-381 is read from the code rather than from file names |
+| `studies/l1/go-algorand` | 93 | **97** | 26 | **27** | 3 | **6** | Falcon-512 is now recognised in `crypto/falconWrapper.go`, the generated codec and `cmd/algokey`, beside the state-proof keys already counted, and Ed25519 in the p2p peer identity |
+| `studies/l1/rs-soroban-env` | 55 | **50** | 36 | **31** | 6 | **6** | a line that names its curve (ECDSA on secp256k1 or P-256, in `crypto/mod.rs` and the cost runners) was also counted as a bare ECDSA row |
+| `studies/l1/stellar-core` | 175 | **155** | 136 | **116** | 1 | **1** | the same double count, in the four protocol versions of Soroban it vendors (`src/rust/soroban/p21` to `p24`) |
+
+The three study reports carry a dated note. The bundles as they were, the logs of both runs and both comparisons are
+kept with this run.
+
 ## Institutional ledgers and bank-facing platforms
 
 A separate study, kept out of the totals above: Canton, Arc, Hyperledger Fabric and Besu, Corda and the Open Bank
@@ -388,8 +491,8 @@ These bundles use two of those three methods and **declare the third**: live net
 19 March 2027, so nobody can claim conformance to them yet.
 
 The memorandum's algorithm table names seven quantum-vulnerable algorithms and then adds "Other non-PQC
-Asymmetric Algorithms". Measured here, **40% of the 1,944 Shor-breakable rows fall only under
-that catch-all**, across 16 distinct algorithms, the largest being Ed25519 — which the memorandum never
+Asymmetric Algorithms". Measured here, **40% of the 2,000 Shor-breakable rows fall only under
+that catch-all**, across 18 distinct algorithms, the largest being Ed25519 — which the memorandum never
 names. A tool built from the seven named algorithms finds RSA and ECDSA and misses the cryptography modern
 systems are actually built from. The full mapping, and the one gap this exercise found in my own registry (MQV,
 the seventh named algorithm, which had no entry), are in
@@ -398,9 +501,9 @@ the seventh named algorithm, which had no entry), are in
 
 On 27 October 2026 NIST published **IR 8547 in final form**, stricter than its 2024 draft: ECDSA, EdDSA, RSA and
 Diffie-Hellman are now deprecated after 2030 at every key size, not only at 112 bits. Measured here, that puts a
-2030 milestone on **341 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
-and up — and says nothing at all about the 458 secp256k1 rows, a curve NIST never approved; with the
-513 rows in families no NIST standard covers, about half of the exposure here (971 of 1,944 rows) sits outside NIST's dates.
+2030 milestone on **344 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
+and up — and says nothing at all about the 475 secp256k1 rows, a curve NIST never approved; with the
+535 rows in families no NIST standard covers, about half of the exposure here (1,010 of 2,000 rows) sits outside NIST's dates.
 The split is section 3 of the same report.
 
 ## A check any project can run: does your scanner have a word for this cryptography?
@@ -508,19 +611,19 @@ exclude all 8 so nothing is counted twice.
 
 ## The Bitcoin self-custody slice
 
-Ten codebases, **808 inventory rows, 555 Shor-breakable**. This is the slice cited in grant
+Ten codebases, **823 inventory rows, 570 Shor-breakable**. This is the slice cited in grant
 applications, so it is here in full.
 
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
-| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 202 | 113 | 0 |
-| `jade` | Blockstream (Jade) | `a59d14c2b397` | 733 | 144 | 107 | 0 |
-| `libwally-core` | Blockstream (libwally) | `374df231d054` | 245 | 103 | 81 | 0 |
+| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 206 | 117 | 0 |
+| `jade` | Blockstream (Jade) | `a59d14c2b397` | 733 | 149 | 112 | 0 |
+| `libwally-core` | Blockstream (libwally) | `374df231d054` | 245 | 108 | 86 | 0 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 113 | 74 | 7 |
-| `krux` | Krux (selfcustody) | `9b3a4314a205` | 244 | 99 | 64 | 0 |
+| `krux` | Krux (selfcustody) | `9b3a4314a205` | 244 | 101 | 66 | 0 |
 | `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 114 | 49 | 48 | 0 |
 | `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 85 | 40 | 39 | 0 |
-| `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 48 | 25 | 0 |
+| `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 47 | 24 | 0 |
 | `seedsigner` | SeedSigner | `ada81cde050e` | 76 | 9 | 3 | 0 |
 | `bdk` | Bitcoin Dev Kit | `f2528da88b10` | 44 | 1 | 1 | 0 |
 
@@ -535,48 +638,48 @@ none.
 
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
-| `trustwallet-wallet-core` | Trust Wallet | `adf80f8bac98` | 1695 | 396 | 294 | 0 |
+| `trustwallet-wallet-core` | Trust Wallet | `adf80f8bac98` | 1695 | 398 | 293 | 0 |
 | `agave` | Anza (Solana) | `7700cb3128c1` | 1287 | 212 | 115 | 0 |
-| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 202 | 113 | 0 |
-| `librustzcash` | Electric Coin Company (Zcash) | `8672a4b2d60f` | 333 | 147 | 26 | 0 |
-| `zebra` | Zcash Foundation | `147a6a8bf7d3` | 439 | 146 | 68 | 0 |
-| `jade` | Blockstream (Jade) | `a59d14c2b397` | 733 | 144 | 107 | 0 |
+| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 206 | 117 | 0 |
+| `jade` | Blockstream (Jade) | `a59d14c2b397` | 733 | 149 | 112 | 0 |
+| `zebra` | Zcash Foundation | `147a6a8bf7d3` | 437 | 146 | 68 | 0 |
+| `librustzcash` | Electric Coin Company (Zcash) | `8672a4b2d60f` | 333 | 144 | 23 | 0 |
 | `monero` | Monero | `3fd0f88c20f5` | 1117 | 137 | 99 | 0 |
 | `bitwarden-sdk` | Bitwarden | `25b6c8c3860a` | 1625 | 120 | 13 | 5 |
-| `ethers-js` | ethers.js project | `3ea4c226dd0b` | 759 | 114 | 43 | 0 |
+| `ethers-js` | ethers.js project | `3ea4c226dd0b` | 759 | 116 | 43 | 0 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 113 | 74 | 7 |
 | `rustls` | rustls project | `84bf9eaa9857` | 137 | 111 | 29 | 0 |
 | `coinbase-cb-mpc` | Coinbase | `0b716706f998` | 174 | 108 | 93 | 2 |
+| `libwally-core` | Blockstream (libwally) | `374df231d054` | 245 | 108 | 86 | 0 |
 | `nitro` | Offchain Labs (Arbitrum) | `ccc5c828d9ea` | 1038 | 108 | 13 | 0 |
-| `libwally-core` | Blockstream (libwally) | `374df231d054` | 245 | 103 | 81 | 0 |
-| `foundry` | Foundry (Paradigm) | `7f0a409a5c20` | 760 | 100 | 17 | 0 |
-| `krux` | Krux (selfcustody) | `9b3a4314a205` | 244 | 99 | 64 | 0 |
-| `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 93 | 68 | 0 |
-| `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 90 | 88 | 0 |
-| `scroll` | scroll | `3046bbd18a6a` | 387 | 89 | 7 | 0 |
-| `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 140 | 87 | 64 | 0 |
-| `aave-v3-origin` | Aave DAO | `8305565ae342` | 569 | 85 | 1 | 0 |
-| `zingolib` | Zingo Labs | `81d799775f11` | 205 | 82 | 3 | 1 |
-| `noir` | Aztec / Noir | `5c98fecd3fe6` | 783 | 71 | 9 | 0 |
-| `lido-core` | Lido | `2bd532298d85` | 267 | 69 | 7 | 0 |
-| `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1249 | 67 | 16 | 0 |
+| `krux` | Krux (selfcustody) | `9b3a4314a205` | 244 | 101 | 66 | 0 |
+| `foundry` | Foundry (Paradigm) | `7f0a409a5c20` | 757 | 100 | 18 | 0 |
+| `scroll` | scroll | `3046bbd18a6a` | 389 | 98 | 12 | 0 |
+| `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 97 | 71 | 0 |
+| `aave-v3-origin` | Aave DAO | `8305565ae342` | 569 | 95 | 11 | 0 |
+| `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 91 | 89 | 0 |
+| `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 140 | 89 | 66 | 0 |
+| `zingolib` | Zingo Labs | `81d799775f11` | 204 | 82 | 3 | 1 |
+| `rabby` | Rabby Wallet (DeBank) | `663c0e80e9f6` | 1695 | 72 | 30 | 0 |
+| `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1249 | 71 | 20 | 0 |
+| `lido-core` | Lido | `2bd532298d85` | 267 | 70 | 8 | 0 |
+| `noir` | Aztec / Noir | `5c98fecd3fe6` | 782 | 68 | 7 | 0 |
 | `orchard` | Electric Coin Company (Zcash) | `616a669df8c9` | 49 | 66 | 42 | 0 |
-| `rabby` | Rabby Wallet (DeBank) | `663c0e80e9f6` | 1694 | 66 | 29 | 0 |
-| `openpgpjs` | OpenPGP.js project | `8bc35df48879` | 108 | 64 | 32 | 8 |
 | `halo2` | Electric Coin Company (Zcash) | `3442dd33754a` | 100 | 63 | 45 | 0 |
+| `openpgpjs` | OpenPGP.js project | `8bc35df48879` | 108 | 62 | 32 | 6 |
+| `cairo` | StarkWare | `68a61f6c6251` | 673 | 61 | 25 | 0 |
 | `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 57 | 33 | 0 |
-| `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 53 | 36 | 0 |
-| `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4870 | 51 | 13 | 0 |
+| `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 56 | 39 | 0 |
+| `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4870 | 53 | 13 | 0 |
 | `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 114 | 49 | 48 | 0 |
-| `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 48 | 25 | 0 |
 | `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 48 | 7 | 0 |
+| `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 47 | 24 | 0 |
 | `rage` | str4d (rage / age encryption) | `b5b68c4f4f7e` | 54 | 43 | 13 | 3 |
 | `zcash-swift-wallet-sdk` | Electric Coin Company (Zcash) | `4895ee058da9` | 205 | 43 | 3 | 0 |
 | `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 85 | 40 | 39 | 0 |
-| `cairo` | StarkWare | `68a61f6c6251` | 563 | 38 | 14 | 0 |
 | `safe-smart-account` | Safe | `247b8ce3bdbf` | 74 | 30 | 3 | 0 |
-| `tachyon` | Tachyon (Zcash) | `6cdaebccf147` | 58 | 25 | 10 | 0 |
-| `signal-desktop` | Signal Messenger | `17502b9d1a9e` | 2202 | 22 | 0 | 2 |
+| `signal-desktop` | Signal Messenger | `17502b9d1a9e` | 2202 | 29 | 5 | 4 |
+| `tachyon` | Tachyon (Zcash) | `6cdaebccf147` | 57 | 25 | 10 | 0 |
 | `bdk-wallet` | Bitcoin Dev Kit (bdk_wallet) | `09c677305139` | 27 | 14 | 11 | 0 |
 | `rustcrypto-rsa` | RustCrypto project | `f96c4b5d629a` | 35 | 11 | 6 | 0 |
 | `sigstore-js` | Sigstore project | `769a53d87132` | 180 | 10 | 3 | 0 |
@@ -616,7 +719,7 @@ inventory rows and no secp256k1 at all, because a shallow clone leaves git submo
 cryptography lives in one; materialised, it is 110 rows and 74 Shor-breakable. Krux measured 13 rows and a single
 ECDSA row, because the scanner's own directory-skip list silently overrode the audit scope that named
 `vendor/embit`, and did so before counting anything, so the report never mentioned what it had declined; read
-correctly, Krux is 99 rows and 64 Shor-breakable. A census then compared every stored audit's declared
+correctly, Krux is 101 rows and 66 Shor-breakable. A census then compared every stored audit's declared
 `.gitmodules` paths against the files its own signed bundle says it parsed and found **18 in-scope submodules
 that had never reached the scanner at all**. Both rules are now enforced by the runner and pinned by tests.
 
@@ -644,8 +747,8 @@ that is the most useful message I can get — the two corrections above both beg
 
 Подписанные комплекты аудита (61) по **53 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**3 982 строк инвентаризации**, из них **1 944 ломает алгоритм Шора**, и **28 уже
-постквантовых**; разобрано **30 681 файлов**.
+**4 065 строк инвентаризации**, из них **2 000 ломает алгоритм Шора**, и **28 уже
+постквантовых**; разобрано **30 786 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -659,12 +762,29 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 
 **Постквантовая соподпись.** Комплекты, подписанные с 13 ноября 2026 года, несут и подпись ML-DSA-65 (FIPS 204)
 над тем же payload; `verify.py` проверяет её встроенной реализацией на чистом Python (сверена со всеми 30 векторами
-NIST для ML-DSA-65) и сверяет ключ с `PUBLIC-KEY-MLDSA.pem` в корне (`dbd4e297b3213d1d`). Соподписаны комплекты,
-переаудированные 17–19 ноября (в `audits/` — 12), и восемь комплектов XRP Ledger в `studies/xrpl/` (21 ноября). Проверка зависимостей по OSV.dev до 12 ноября брала
+NIST для ML-DSA-65) и сверяет ключ с `PUBLIC-KEY-MLDSA.pem` в корне (`dbd4e297b3213d1d`). После перевыпуска 22 ноября
+соподписаны все комплекты, кроме `audits/lottery-demo` и `audits/nitro`: они подписаны до появления соподписи. Проверка зависимостей по OSV.dev до 12 ноября брала
 не больше 1000 закреплённых пакетов и не говорила об остальных; теперь до 5000, остаток назван в покрытии. Находок
 по бюллетеням в этих комплектах стало 1 454 вместо 433; инвентаризация не изменилась, кроме одной
 строки ECDH в `metamask-extension` (импорт `eciesjs`): итог стал таким — строк 3 989, по Шору
 1 947 (было 3 988 и 1 946). Тем же переаудитом заменён `arc-node` — один комплект в обоих исследованиях: пакетов 1 000 → 1 993, находок по бюллетеням 30 → 37; 37 строк своего кода и 12 по Шору, которые цитируют исследования, тогда не изменились (их меняет поправка 19 ноября). На прежнем пределе остаётся: `audits/nitro`.
+
+**Перевыпуск 22–23 ноября.** Все комплекты с апстримом, 59 в `audits/` и 20 в `studies/`,
+переаудированы 23 ноября на записанных коммите, дереве, языке, профиле риска и решениях аналитика движком 1.16.2; все
+соподписаны ML-DSA-65. `audits/nitro` сохраняет опубликованный комплект: область аудита не была записана, а всё дерево — другое измерение (5 714 разобранных файлов вместо 1 038); `audits/lottery-demo` сохраняет опубликованный комплект: у него нет апстрима. Каждый перевыпущенный комплект сверен с прежним по входам, строкам и находкам и
+прошёл `bundle-qa`; ошибки движка, найденные сверкой (первый прогон — движок 1.16.1), исправлены до публикуемого прогона;
+каждый комплект до и после — в [reports/REISSUE-2026-11-22.md](reports/REISSUE-2026-11-22.md). Итог портфеля: **строк 4 065, по Шору 2 000** (было 3 982 и 1 944), постквантовых и гибридных по-прежнему 28 и 14 (`openpgpjs` −2, `signal-desktop` +2);
+срез биткоина — 823 и 570 (было 808 и 555).
+Строки прибавили вызовы библиотек подписи в Solidity, чтение Cairo, PKCS#11, EC-ElGamal, Falcon и словарь libsignal;
+убавили дубли «ECDSA без кривой» рядом с «ECDSA P-256» и файлы, которые не являются поставляемым кодом. Находок
+2 316 вместо 2 526, критических и высоких 537 вместо 706: находки в стороннем коде
+дерева стали информационными (38), бюллетени пакетов только для разработки и сборки сведены в одну находку
+на экосистему, ложные находки исправлены в движке (все 9 «незащищённых инициализаторов»,
+delegatecall без выбора цели вызывающим, пример ключа из man-страницы rage, истёкшие примерные JWT и шаблон настроек
+OBP-API, nonce со счётчиком в Noise у Aptos, ECDSA, принятая за Ed25519, в OpenPGP.js), а правила, добавленные после
+выпуска комплекта, теперь применены к нему. Добавлены три решения аналитика (ethers.js, OpenPGP.js, Rabby), а
+серьёзности, записанные в файлах решений, теперь действуют: ECB у Krux — средняя вместо высокой, бюллетень
+crypto-bigint у BitBox02 и Trust Wallet Core — средняя вместо низкой. Таблицы — в английском разделе.
 
 **Поправка 19 ноября.** Тестовый код, который не ловили правила по путям: `testutils.rs` и `e2e_testutils.rs` в
 Soroban (собираются только для тестов), генератор PQ-векторов arc-node, `*_unittest.*`, генераторы KAT от NIST, обвязка
@@ -684,7 +804,7 @@ SPHINCS+ и ML-DSA сканер читал как Ed25519: в `trezor-vendored-c
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 
-**Срез самостоятельного хранения биткоина:** десять кодовых баз, **808 строк, 555 ломает Шор**. Та же
+**Срез самостоятельного хранения биткоина:** десять кодовых баз, **823 строки, 570 ломает Шор**. Та же
 криптография лежит в трёх разных местах — Jade вносит исходники libwally в своё дерево, Krux подключает `embit`
 как git-подмодуль, SeedSigner — тот же `embit` как релиз с PyPI с замком по хешу, — поэтому аудит, не прошедший
 по закреплению, объявляет биткоин-подписанта чистым. И три самых рекомендуемых аппаратных кошелька разошлись: у
@@ -710,7 +830,7 @@ validator-keys-tool нет постквантового типа ключа. П�
 были отозваны**. Два провала метода, найденные измерением и закрытые тестами: Jade сначала дал 7 строк и ни одного
 secp256k1 (поверхностный клон оставляет подмодули пустыми) — после подтягивания 110 строк и 74 Шора; Krux дал 13
 строк и одну ECDSA, потому что список пропускаемых каталогов молча переопределил объявленную область с
-`vendor/embit`, — прочитанный правильно, 99 строк и 64. Затем перепись сравнила у каждого аудита пути из
+`vendor/embit`, — прочитанный правильно, 101 строка и 66. Затем перепись сравнила у каждого аудита пути из
 `.gitmodules` с файлами, которые его подписанный комплект называет разобранными, и нашла **18 подмодулей в области
 аудита, которые до сканера вообще не доходили**. Любая суммарная цифра здесь — **нижняя граница**.
 

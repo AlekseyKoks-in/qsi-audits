@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.6",
-  "serialNumber": "urn:uuid:eeb96bfa-a5f8-4cdf-b01d-85b549a9b84d",
+  "specVersion": "1.7",
+  "serialNumber": "urn:uuid:4ca9fc03-a9b0-4e37-9f8b-3191f503999d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-06T10:12:16Z",
+    "timestamp": "2026-11-23T13:48:08Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.3.0"
+          "version": "1.16.2"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "44908e23-f943-491e-87e9-d9573cb54237",
+      "bom-ref": "af44514d-c0a7-4e50-b6c5-f055b7145895",
       "name": "Crypto library",
       "properties": [
         {
@@ -63,7 +63,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cc2cf01a-1f9d-4c01-8ca5-48f442284e16",
+      "bom-ref": "f3be468c-da17-4585-8ee6-0fa0ad8e763c",
       "name": "HMAC",
       "properties": [
         {
@@ -103,6 +103,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "mac",
+          "algorithmFamily": "HMAC",
           "cryptoFunctions": [
             "tag"
           ]
@@ -111,7 +112,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "eae643a8-2fc1-4ced-a370-9fadfede3f53",
+      "bom-ref": "68446513-a074-42ca-a468-820e9785ab36",
       "name": "HMAC",
       "properties": [
         {
@@ -151,6 +152,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "mac",
+          "algorithmFamily": "HMAC",
           "cryptoFunctions": [
             "tag"
           ]
@@ -159,7 +161,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c3ce2ec3-30f7-4de6-9edc-9a1cb092f4b0",
+      "bom-ref": "4ad48ec0-c37d-4c47-a374-cf20ae2426b5",
       "name": "HMAC",
       "properties": [
         {
@@ -199,6 +201,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "mac",
+          "algorithmFamily": "HMAC",
           "parameterSetIdentifier": "HS256",
           "cryptoFunctions": [
             "tag"
@@ -209,7 +212,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "543c009d-7195-4e90-a132-145fcb833a60",
+      "bom-ref": "be7730a3-19ab-4fca-8d46-d6971df6c8c3",
       "name": "HMAC",
       "properties": [
         {
@@ -249,6 +252,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "mac",
+          "algorithmFamily": "HMAC",
           "parameterSetIdentifier": "HS256",
           "cryptoFunctions": [
             "tag"
@@ -259,7 +263,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1dc8c302-6424-4e4d-85dc-1be04ebba146",
+      "bom-ref": "d53de8e2-345e-4594-a13f-cd0269d98f66",
       "name": "RSA",
       "properties": [
         {
@@ -307,7 +311,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f35485b1-daa2-4926-a5cc-489fba7a79f3",
+      "bom-ref": "734ffb94-4cdf-4de8-93c4-42b8b9f3cef7",
       "name": "RSA",
       "properties": [
         {
@@ -355,7 +359,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fd8f330d-9246-4ed5-9ad3-56f4f566b24e",
+      "bom-ref": "f2c6ec6e-44fc-4c35-86ba-21c52f737ac4",
       "name": "RSA",
       "properties": [
         {
@@ -406,7 +410,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8dd655dd-2975-4096-a7b2-0792e94857d2",
+      "bom-ref": "80aabdce-c5cf-451f-8ff8-b21c1424fc60",
       "name": "RSA",
       "properties": [
         {
@@ -458,7 +462,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cd055992-e3f7-42f8-94f4-10f72ae3f4e2",
+      "bom-ref": "16c66172-da8f-44e1-96e0-b22a0336763a",
       "name": "RSA",
       "properties": [
         {
@@ -510,7 +514,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9b47ace6-593d-434a-bf5b-dc49605b6b1e",
+      "bom-ref": "aba84c4c-c359-4cac-b1bf-2548cff5e16b",
       "name": "RSA",
       "properties": [
         {
@@ -562,7 +566,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "afac8bd5-5ab1-4939-b908-101f1168c712",
+      "bom-ref": "876b567b-a94f-474e-87cd-35070af79b4c",
       "name": "RSA",
       "properties": [
         {
@@ -614,7 +618,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7c676463-91e0-422f-bffe-97dfa79bd40c",
+      "bom-ref": "8c1c5727-0018-44a4-9451-ebe78ff5650c",
       "name": "RSA",
       "properties": [
         {
@@ -666,7 +670,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cfc2b5cf-bc10-4102-aca2-d6bf85059251",
+      "bom-ref": "34e74d1b-936e-4782-b448-001431f84553",
       "name": "RSA",
       "properties": [
         {
@@ -717,7 +721,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0e36b4b7-4264-4a60-9fa7-c674247cbd52",
+      "bom-ref": "de9ca210-f642-475b-85b2-fd84db78e389",
       "name": "RSA",
       "properties": [
         {
@@ -769,7 +773,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "724a4655-4cde-439e-89a4-052c9f97f822",
+      "bom-ref": "0d0dfddc-36a6-42a1-9f2f-0a9fc4989ccc",
       "name": "SHA-2",
       "properties": [
         {
@@ -805,6 +809,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -817,7 +822,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "429b26f4-5966-419f-a499-ce7a8770e2a3",
+      "bom-ref": "f490e430-04bf-4a33-ad34-719fa1665d94",
       "name": "SHA-2",
       "properties": [
         {
@@ -857,6 +862,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -869,7 +875,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f065cc22-0724-4d66-81f2-5f603d8969d8",
+      "bom-ref": "62dbad3a-6d59-4be5-ac3c-a23d6f32bb7c",
       "name": "SHA-2",
       "properties": [
         {
@@ -905,6 +911,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -917,7 +924,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6fa0d255-4c08-4f56-9e4c-6c9a3ab51358",
+      "bom-ref": "7d32ccab-1024-4558-b079-94274a3d80e4",
       "name": "SHA-2",
       "properties": [
         {
@@ -957,6 +964,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -969,7 +977,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d2c62f8f-80c7-4a3d-b533-dcc33af70c18",
+      "bom-ref": "8d10b009-377b-441c-a847-6539841f311b",
       "name": "SHA-2",
       "properties": [
         {
@@ -1009,6 +1017,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1021,7 +1030,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4410b274-a236-403c-995b-ac1dd8cf41c1",
+      "bom-ref": "7d1dc9f7-2bea-4c48-8457-5f417bfad84e",
       "name": "SHA-2",
       "properties": [
         {
@@ -1061,6 +1070,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1073,7 +1083,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9eb7c4a1-e4fb-466c-beac-3a954a1a87d7",
+      "bom-ref": "8b731a5a-059f-47c6-a399-06bc5a577343",
       "name": "SHA-2",
       "properties": [
         {
@@ -1113,6 +1123,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1125,7 +1136,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "147731f1-9d0c-475b-9478-3bf71ddfa56e",
+      "bom-ref": "215b0dd4-3cd8-4613-a5a2-553b8993875f",
       "name": "SHA-2",
       "properties": [
         {
@@ -1165,6 +1176,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1177,7 +1189,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7fa09cf1-c994-4462-808c-0e8a6b2e28f2",
+      "bom-ref": "0631ae9e-5b69-41cb-813a-5bf97731e8ab",
       "name": "SHA-2",
       "properties": [
         {
@@ -1217,6 +1229,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1229,7 +1242,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c1def066-7b6f-4179-b3c5-9c11a81b603a",
+      "bom-ref": "454ef227-347b-4110-b5f4-c0da8cede40e",
       "name": "SHA-2",
       "properties": [
         {
@@ -1269,6 +1282,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1281,7 +1295,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7dcf66e6-2ab7-4f80-8858-daa45b2ff4ae",
+      "bom-ref": "887225eb-bae4-410a-bcdb-5f081c31bddb",
       "name": "SHA-2",
       "properties": [
         {
@@ -1321,6 +1335,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1333,7 +1348,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "82db4cae-9119-452e-9873-3428ff9e6920",
+      "bom-ref": "d096da65-7b24-4263-8faa-870e1b3aa61a",
       "name": "SHA-2",
       "properties": [
         {
@@ -1373,6 +1388,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1385,7 +1401,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "99b83d52-7f1a-4a0e-8d92-5bd247fe4aeb",
+      "bom-ref": "2285c309-45e2-4d95-8951-0334438b4a7e",
       "name": "SHA-2",
       "properties": [
         {
@@ -1425,6 +1441,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "hash",
+          "algorithmFamily": "SHA-2",
           "parameterSetIdentifier": "SHA-256",
           "cryptoFunctions": [
             "digest"
@@ -1437,7 +1454,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dd60880a-3262-484f-b20f-7ead6ab7fcf0",
+      "bom-ref": "0f466024-b203-408b-b098-e35f167a6032",
       "name": "TLS 1.2",
       "properties": [
         {
@@ -1479,7 +1496,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "82d05e4e-d2f6-4519-8456-f047bb00ab0d",
+      "bom-ref": "109b4b62-458a-42bd-80f6-c6a507719188",
       "name": "TLS 1.3",
       "properties": [
         {
@@ -1521,7 +1538,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8a577b27-4119-49c6-bae8-03b89f0cc985",
+      "bom-ref": "9e150e1b-cfc4-4533-a170-fb8dfb831dff",
       "name": "bcrypt",
       "properties": [
         {
@@ -1561,6 +1578,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "kdf",
+          "algorithmFamily": "bcrypt",
           "cryptoFunctions": [
             "keyderive"
           ]
@@ -1569,7 +1587,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0e7000d6-08bd-4f55-88d0-c9b4771e755b",
+      "bom-ref": "387e6d43-ba52-429e-bb04-f05fce34e10a",
       "name": "bcrypt",
       "properties": [
         {
@@ -1609,6 +1627,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "kdf",
+          "algorithmFamily": "bcrypt",
           "cryptoFunctions": [
             "keyderive"
           ]
@@ -1617,7 +1636,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2c41e3fa-cd0b-44fd-b14b-5364df574209",
+      "bom-ref": "07d76cf6-06d8-4e27-9e34-950aeca0b1bb",
       "name": "bcrypt",
       "properties": [
         {
@@ -1657,6 +1676,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "kdf",
+          "algorithmFamily": "bcrypt",
           "cryptoFunctions": [
             "keyderive"
           ]

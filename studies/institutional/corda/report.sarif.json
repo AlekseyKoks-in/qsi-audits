@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CERT-EXPIRED",
@@ -28,10 +28,10 @@
                 "security-severity": "7.5"
               },
               "fullDescription": {
-                "text": "The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (112 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
+                "text": "The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (129 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
               },
               "help": {
-                "text": "The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (112 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
+                "text": "The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (129 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
               },
               "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
             },
@@ -125,7 +125,7 @@
             "qsiFindingKey/v1": "69cbd90d48fdbb9d869d36da450478c5"
           },
           "properties": {
-            "qsiId": "QSI-2026-19547",
+            "qsiId": "QSI-2026-43972",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -143,7 +143,7 @@
             "qsiFindingKey/v1": "68f28aa074209c99c24670e940551472"
           },
           "properties": {
-            "qsiId": "QSI-2026-19549",
+            "qsiId": "QSI-2026-43974",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -173,7 +173,7 @@
             "qsiFindingKey/v1": "8d2d3ca3d1ab43c130cb916386d623cd"
           },
           "properties": {
-            "qsiId": "QSI-2026-19556",
+            "qsiId": "QSI-2026-43981",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -203,7 +203,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-19553",
+            "qsiId": "QSI-2026-43978",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -221,7 +221,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-19550",
+            "qsiId": "QSI-2026-43975",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -239,7 +239,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-19551",
+            "qsiId": "QSI-2026-43976",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -257,7 +257,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-19552",
+            "qsiId": "QSI-2026-43977",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -275,7 +275,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-19554",
+            "qsiId": "QSI-2026-43979",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -293,7 +293,7 @@
             "qsiFindingKey/v1": "0aba2e2bcd7b95bfa30682b0b2fddff5"
           },
           "properties": {
-            "qsiId": "QSI-2026-19555",
+            "qsiId": "QSI-2026-43980",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -311,7 +311,7 @@
             "qsiFindingKey/v1": "156ecb21588418d24e6f0660642a9f3b"
           },
           "properties": {
-            "qsiId": "QSI-2026-19548",
+            "qsiId": "QSI-2026-43973",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -320,13 +320,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/corda @ 80033580ecfd/ab2a7138-099f-4102-a6ca-533220ad3fb9"
+        "id": "qsi/corda @ 80033580ecfd/c1422785-a96a-487f-9bb0-ce0b2d4f0fa0"
       },
       "properties": {
-        "qsiContentSha256": "09dd82bf776b5adb6af7367e5cccfe5b259eb10fde085b2eef6d9bb38f43d5c6",
+        "qsiContentSha256": "fd8dc48777a644a94728c1767e9ca2a0929e1aefdb2820ea6910253638bfa2ae",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T15:38:52.519898+00:00",
+        "qsiGeneratedAt": "2026-11-23T13:44:03.384404+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

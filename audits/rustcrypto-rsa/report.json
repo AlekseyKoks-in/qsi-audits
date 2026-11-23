@@ -1,8 +1,8 @@
 {
-  "content_sha256": "ac412823ecaa175f8be5a76d35eb3ccfb46ff2a08a22c9a4b48c91ad8b0f3e93",
+  "content_sha256": "ba85c74a0601d5b799b0ba2db96298f994029858ba23e575944427ad9cba0a26",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-06T13:50:54.096124+00:00",
+  "generated_at": "2026-11-23T13:05:26.131723+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "2bed3ea8-3288-435c-9610-29c1bcdf4aff",
     "name": "rustcrypto-rsa @ f96c4b5d629a",
     "client_name": "RustCrypto project",
-    "description": "Static review of the source tree rustcrypto-rsa at f96c4b5d629a0aeb6f680294debfd38ec8a81f68. 35 files analysed; of 75 files, 23 are test, fuzzing, benchmark or example code and were left out, 17 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 17 path(s) of the repository: .gitattributes, .github, .gitignore, .gitmodules, .typos.toml, CHANGELOG.md and 11 more; 751 files outside them were not read. Files no analyzer reads include: .gitattributes, .github/dependabot.yml, .github/workflows/ci.yml, .github/workflows/publish.yml, .github/workflows/workspace.yml. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree rustcrypto-rsa at f96c4b5d629a0aeb6f680294debfd38ec8a81f68. 35 files analysed; of 75 files, 23 are test, fuzzing, benchmark or example code and were left out, 17 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 17 path(s) of the repository: .gitattributes, .github, .gitignore, .gitmodules, .typos.toml, CHANGELOG.md and 11 more; 755 files outside them were not read. Files no analyzer reads include: .gitattributes, .github/dependabot.yml, .github/workflows/ci.yml, .github/workflows/publish.yml, .github/workflows/workspace.yml. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "5e6407f2-4f54-4e84-b4f7-dc8b548aeb62",
+    "id": "3880cf7e-40e3-4388-8098-bce263bb7e7c",
     "mode": "document",
     "title": "Document audit: rustcrypto-rsa",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T13:50:50.550479+00:00",
-    "finished_at": "2026-11-06T13:50:53.928197+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T13:05:22.262981+00:00",
+    "finished_at": "2026-11-23T13:05:26.057068+00:00",
     "risk_profile": "security_software",
     "risk_profile_name": "Разработчик ПО безопасности",
     "parameters": {
@@ -294,62 +294,62 @@
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms.rs: 22 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/algorithms.rs: 22 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 266 registry patterns; 50 lines in #[cfg(test)] modules ignored",
+      "detail": "src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 340 registry patterns; 50 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/oaep.rs: 262 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/algorithms/oaep.rs: 262 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/pad.rs: 171 lines scanned with 16 rule patterns and 266 registry patterns; 62 lines in #[cfg(test)] modules ignored",
+      "detail": "src/algorithms/pad.rs: 171 lines scanned with 16 rule patterns and 340 registry patterns; 62 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/pkcs1v15.rs: 298 lines scanned with 16 rule patterns and 266 registry patterns; 103 lines in #[cfg(test)] modules ignored",
+      "detail": "src/algorithms/pkcs1v15.rs: 298 lines scanned with 16 rule patterns and 340 registry patterns; 103 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/pss.rs: 377 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/algorithms/pss.rs: 377 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/rsa.rs: 540 lines scanned with 16 rule patterns and 266 registry patterns; 110 lines in #[cfg(test)] modules ignored",
+      "detail": "src/algorithms/rsa.rs: 540 lines scanned with 16 rule patterns and 340 registry patterns; 110 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/dummy_rng.rs: 24 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/dummy_rng.rs: 24 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/encoding.rs: 244 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/encoding.rs: 244 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/errors.rs: 141 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/errors.rs: 141 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hazmat.rs: 16 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/hazmat.rs: 16 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -364,7 +364,7 @@
     },
     {
       "area": "source_code",
-      "detail": "src/key.rs: 1368 lines scanned with 16 rule patterns and 266 registry patterns; 482 lines in #[cfg(test)] modules ignored",
+      "detail": "src/key.rs: 1368 lines scanned with 16 rule patterns and 340 registry patterns; 482 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -384,7 +384,7 @@
     },
     {
       "area": "source_code",
-      "detail": "src/lib.rs: 267 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/lib.rs: 267 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -399,17 +399,17 @@
     },
     {
       "area": "source_code",
-      "detail": "src/oaep.rs: 613 lines scanned with 16 rule patterns and 266 registry patterns; 291 lines in #[cfg(test)] modules ignored",
+      "detail": "src/oaep.rs: 613 lines scanned with 16 rule patterns and 340 registry patterns; 291 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/oaep/decrypting_key.rs: 140 lines scanned with 16 rule patterns and 266 registry patterns; 42 lines in #[cfg(test)] modules ignored",
+      "detail": "src/oaep/decrypting_key.rs: 140 lines scanned with 16 rule patterns and 340 registry patterns; 42 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/oaep/encrypting_key.rs: 112 lines scanned with 16 rule patterns and 266 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "src/oaep/encrypting_key.rs: 112 lines scanned with 16 rule patterns and 340 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -424,32 +424,32 @@
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15.rs: 712 lines scanned with 16 rule patterns and 266 registry patterns; 434 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15.rs: 712 lines scanned with 16 rule patterns and 340 registry patterns; 434 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15/decrypting_key.rs: 87 lines scanned with 16 rule patterns and 266 registry patterns; 31 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/decrypting_key.rs: 87 lines scanned with 16 rule patterns and 340 registry patterns; 31 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15/encrypting_key.rs: 59 lines scanned with 16 rule patterns and 266 registry patterns; 29 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/encrypting_key.rs: 59 lines scanned with 16 rule patterns and 340 registry patterns; 29 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15/signature.rs: 112 lines scanned with 16 rule patterns and 266 registry patterns; 15 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/signature.rs: 112 lines scanned with 16 rule patterns and 340 registry patterns; 15 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15/signing_key.rs: 362 lines scanned with 16 rule patterns and 266 registry patterns; 25 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/signing_key.rs: 362 lines scanned with 16 rule patterns and 340 registry patterns; 25 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15/verifying_key.rs: 272 lines scanned with 16 rule patterns and 266 registry patterns; 24 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/verifying_key.rs: 272 lines scanned with 16 rule patterns and 340 registry patterns; 24 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -469,47 +469,47 @@
     },
     {
       "area": "source_code",
-      "detail": "src/pss.rs: 713 lines scanned with 16 rule patterns and 266 registry patterns; 404 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pss.rs: 713 lines scanned with 16 rule patterns and 340 registry patterns; 404 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pss/blinded_signing_key.rs: 312 lines scanned with 16 rule patterns and 266 registry patterns; 24 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pss/blinded_signing_key.rs: 312 lines scanned with 16 rule patterns and 340 registry patterns; 24 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pss/signature.rs: 112 lines scanned with 16 rule patterns and 266 registry patterns; 15 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pss/signature.rs: 112 lines scanned with 16 rule patterns and 340 registry patterns; 15 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pss/signing_key.rs: 349 lines scanned with 16 rule patterns and 266 registry patterns; 25 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pss/signing_key.rs: 349 lines scanned with 16 rule patterns and 340 registry patterns; 25 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pss/verifying_key.rs: 269 lines scanned with 16 rule patterns and 266 registry patterns; 24 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pss/verifying_key.rs: 269 lines scanned with 16 rule patterns and 340 registry patterns; 24 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/traits.rs: 9 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/traits.rs: 9 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/traits/encryption.rs: 41 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/traits/encryption.rs: 41 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/traits/keys.rs: 99 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/traits/keys.rs: 99 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/traits/padding.rs: 52 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/traits/padding.rs: 52 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -519,7 +519,7 @@
     },
     {
       "area": "osv_advisories",
-      "detail": "120 pinned packages queried at OSV.dev; 2 affected",
+      "detail": "120 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies)",
       "status": "checked"
     }
   ],
@@ -541,9 +541,9 @@
       "count": 32,
       "rows": 32,
       "examples": [
-        "src/algorithms.rs: 22 lines scanned with 16 rule patterns and 266 registry patterns",
-        "src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 266 registry patterns; 50 lines in #[cfg(test)] modules ignored",
-        "src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 266 registry patterns"
+        "src/algorithms.rs: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+        "src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 340 registry patterns; 50 lines in #[cfg(test)] modules ignored",
+        "src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -594,7 +594,7 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "120 pinned packages queried at OSV.dev; 2 affected"
+        "120 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies)"
       ]
     }
   ],
@@ -633,7 +633,7 @@
   "assets": {
     "registered": [],
     "examined_inputs": [
-      "120 pinned packages queried at OSV.dev; 2 affected",
+      "120 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies)",
       "Cargo.lock",
       "Cargo.toml",
       "marvin-toolkit/Cargo.toml",
@@ -678,20 +678,20 @@
     "by_severity": {
       "critical": 0,
       "high": 0,
-      "medium": 1,
+      "medium": 2,
       "low": 2,
-      "info": 1
+      "info": 2
     },
     "by_classification": {
       "confirmed_vulnerability": 0,
       "known_vulnerable_component": 2,
       "confirmed_misconfiguration": 0,
       "potential_crypto_risk": 0,
-      "pq_long_term_risk": 1,
-      "improvement": 0,
+      "pq_long_term_risk": 2,
+      "improvement": 1,
       "insufficient_data": 1
     },
-    "total": 4,
+    "total": 6,
     "posture_index": 98,
     "pq_vulnerable_share": 54.5,
     "inventory_total": 11,
@@ -714,11 +714,178 @@
   },
   "findings": [
     {
-      "id": "bf755214-302d-411c-b171-ebb37d113190",
-      "public_id": "QSI-2026-18754",
+      "id": "cae743bd-473e-4d35-adcd-5bef67450d74",
+      "public_id": "QSI-2026-43263",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Квантово-уязвимый RSA: роль не определена (5 файл(ов))",
-      "description": "8 упоминаний RSA в 5 файл(ах), например src/encoding.rs:68. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
+      "title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
+      "description": "2 упоминаний RSA в 1 файл(ах), например src/key.rs:338. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте src/key.rs:338 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:RSA:key_wrapping",
+      "data_source": "src/key.rs",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:05:26.019304+00:00",
+      "risk_score": 38.0,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 3.0,
+          "z": 8.0,
+          "kind": "key_establishment",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life (harvest now, decrypt later)",
+          "margin_years": 5.0
+        },
+        "score": 38.0,
+        "factors": {
+          "ease": 0.3,
+          "asset": 1.0,
+          "impact": 0.62,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "security_software",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 55.9,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 10.0,
+          "impact": 12.4,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/key.rs",
+          "location": "line 338",
+          "content": "  337 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;\n  338 |         RsaPrivateKey::from_components(\n  339 |             components.n.get(),",
+          "content_sha256": "b400f8009b313e186171f142d7584b0f639b5a05524e78b44461a94f2104c7ca",
+          "source_sha256": "eeb1e8704e8643c049561837a8da28d4528513f23642f1ee3199201519049527",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.035573+00:00",
+          "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L338"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/key.rs",
+          "location": "line 364",
+          "content": "  363 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;\n  364 |         RsaPrivateKey::from_components(\n  365 |             components.n.get(),",
+          "content_sha256": "6202abba500461e188a8f64092e4524b2f6dfb3202a0694dc57bad41e0fe4ecc",
+          "source_sha256": "eeb1e8704e8643c049561837a8da28d4528513f23642f1ee3199201519049527",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.035582+00:00",
+          "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L364"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "16306531-9e57-4ccb-95f8-f3dcc4b0e0cd",
+      "public_id": "QSI-2026-43262",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый RSA: роль не определена (4 файл(ов))",
+      "description": "6 упоминаний RSA в 4 файл(ах), например src/encoding.rs:68. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
       "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
       "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.",
       "retest": "Повторите инвентаризацию после рефакторинга.",
@@ -734,8 +901,8 @@
       "triage": null,
       "affected_asset": "source-code:RSA:general",
       "data_source": "src/encoding.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:50:53.862676+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:05:26.012207+00:00",
       "risk_score": 35.3,
       "risk_breakdown": {
         "mosca": {
@@ -831,8 +998,8 @@
           "content": "   67 | \n   68 |         RsaPrivateKey::from_components(n, e, d, primes).map_err(|_| KeyMalformed)\n   69 |     }",
           "content_sha256": "848496bd7c37c63103d96a76766750a0c93994941a9810bfd3804b1d855e2f05",
           "source_sha256": "39ec4b355f95e45bf6822d9b4a9ab1d43d1c4b730b3c54dd5db993e8f222213e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.889183+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.024250+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/encoding.rs#L68"
         },
         {
@@ -842,31 +1009,9 @@
           "content": "   87 | \n   88 |         RsaPublicKey::new(n, e).map_err(|_| KeyMalformed)\n   89 |     }",
           "content_sha256": "51040fadaa40d8aefffe667c170da4266984b8003fe2220dcf044ffd55ab4c03",
           "source_sha256": "39ec4b355f95e45bf6822d9b4a9ab1d43d1c4b730b3c54dd5db993e8f222213e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.889193+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.024260+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/encoding.rs#L88"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/key.rs",
-          "location": "line 338",
-          "content": "  337 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;\n  338 |         RsaPrivateKey::from_components(\n  339 |             components.n.get(),",
-          "content_sha256": "b400f8009b313e186171f142d7584b0f639b5a05524e78b44461a94f2104c7ca",
-          "source_sha256": "eeb1e8704e8643c049561837a8da28d4528513f23642f1ee3199201519049527",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.889197+00:00",
-          "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L338"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/key.rs",
-          "location": "line 364",
-          "content": "  363 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;\n  364 |         RsaPrivateKey::from_components(\n  365 |             components.n.get(),",
-          "content_sha256": "6202abba500461e188a8f64092e4524b2f6dfb3202a0694dc57bad41e0fe4ecc",
-          "source_sha256": "eeb1e8704e8643c049561837a8da28d4528513f23642f1ee3199201519049527",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.889201+00:00",
-          "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L364"
         },
         {
           "kind": "file_excerpt",
@@ -875,8 +1020,8 @@
           "content": "   59 |         Ok(Self {\n   60 |             inner: RsaPrivateKey::new(rng, bit_size)?,\n   61 |             prefix: pkcs1v15_generate_prefix::<D>(),",
           "content_sha256": "b0263c77cb240628bb2f31d489438c088a47a65609d04db1b81f99208ac3d2b4",
           "source_sha256": "8cdeedb6de0749c22bd6e0bf0c07270b3bed15dde1d5c1477950579a20bbe2bf",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.889205+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.024265+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pkcs1v15/signing_key.rs#L60"
         },
         {
@@ -886,8 +1031,8 @@
           "content": "   88 |         Ok(Self {\n   89 |             inner: RsaPrivateKey::new(rng, bit_size)?,\n   90 |             prefix: Vec::new(),",
           "content_sha256": "96efd77715170f81d71a18c7c23d8db777764f09d7bfbc345825c9e3cf46a90a",
           "source_sha256": "8cdeedb6de0749c22bd6e0bf0c07270b3bed15dde1d5c1477950579a20bbe2bf",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.889208+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.024270+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pkcs1v15/signing_key.rs#L89"
         },
         {
@@ -897,8 +1042,8 @@
           "content": "   79 |         Ok(Self {\n   80 |             inner: RsaPrivateKey::new(rng, bit_size)?,\n   81 |             salt_len,",
           "content_sha256": "129f3a710601ea4cfcdb8113049c8c1f093d9e451247404aac20c41f11d9efdd",
           "source_sha256": "05cb7d0e84ec7fcd64c5f091828214908d202cf47d6ca2b54c0e508c77c46cb6",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.889211+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.024310+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pss/blinded_signing_key.rs#L80"
         },
         {
@@ -908,8 +1053,8 @@
           "content": "   84 |         Ok(Self {\n   85 |             inner: RsaPrivateKey::new(rng, bit_size)?,\n   86 |             salt_len,",
           "content_sha256": "00c09dc98ca719774e6d1850f1e06364da42e2119ba5c17415b5e09cb961ae53",
           "source_sha256": "95cd495708093fa3747eda26bf0e0009e48f5a2feb46cf0c2a94203e2f2fe52f",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.889215+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.024319+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pss/signing_key.rs#L85"
         }
       ],
@@ -947,8 +1092,8 @@
       ]
     },
     {
-      "id": "70c3396e-360b-4478-b175-30828aeb3856",
-      "public_id": "QSI-2026-18756",
+      "id": "36e205e7-f851-4f3a-b488-cbcf51ba508b",
+      "public_id": "QSI-2026-43265",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -968,8 +1113,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/crypto-bigint@0.7.5",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:50:53.908039+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:05:26.039914+00:00",
       "risk_score": 20.4,
       "risk_breakdown": {
         "score": 20.4,
@@ -1024,8 +1169,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0387\", \"aliases\": [], \"modified\": \"2026-10-24T03:45:02.365137418Z\", \"summary\": \"Multiple timing variability issues in operations intended to be constant-time\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "90c1f0cc3ccb6bb642d968797b426e8af0e7976cb2c08c7f8deb3d57ddb784c2",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.921432+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.047144+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -1048,8 +1193,8 @@
       ]
     },
     {
-      "id": "f4cd96ef-4258-43eb-8691-5a8949493eb9",
-      "public_id": "QSI-2026-18757",
+      "id": "b73322dc-fbfe-4c5c-9e2d-9d103b71d4f8",
+      "public_id": "QSI-2026-43266",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1069,8 +1214,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/ctutils@0.4.2",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:50:53.916527+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:05:26.045286+00:00",
       "risk_score": 20.4,
       "risk_breakdown": {
         "score": 20.4,
@@ -1125,8 +1270,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0385\", \"aliases\": [], \"modified\": \"2026-10-23T08:30:02.389575143Z\", \"summary\": \"Non-constant-time mask generation and `u128` comparisons\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.953570+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.053719+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -1149,8 +1294,108 @@
       ]
     },
     {
-      "id": "7ba3ac87-fd42-4596-a874-daf6623a7bf8",
-      "public_id": "QSI-2026-18755",
+      "id": "12b181af-ea2e-41b1-b98a-d6948fe71ef3",
+      "public_id": "QSI-2026-43267",
+      "rule_id": "DEP-ADVISORY-DEV",
+      "title": "1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки",
+      "description": "OSV.dev сообщает 1 бюллетеней (0 с оценкой high или critical) для 1 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, rustix@1.1.4 [dev]: RUSTSEC-2026-0486. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
+      "impact": "Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.",
+      "recommendation": "Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.",
+      "method": "Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.",
+      "repro": "Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в Cargo.lock.",
+      "category": "dependencies",
+      "classification": "improvement",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies:crates.io:non-runtime",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:05:26.051710+00:00",
+      "risk_score": 15.3,
+      "risk_breakdown": {
+        "score": 15.3,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.215,
+          "urgency": 0.6,
+          "exposure": 0.2,
+          "severity": 0.05,
+          "exploitability": 0.1
+        },
+        "profile": "security_software",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 22.55,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.3,
+          "urgency": 6.0,
+          "exposure": 3.0,
+          "severity": 1.25,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "OSV-DEV",
+          "url": "https://osv.dev/",
+          "title": "OSV.dev — open-source vulnerability database and API",
+          "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+          "publisher": "Open Source Security Foundation"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev (crates.io)",
+          "location": "Cargo.lock",
+          "content": "rustix@1.1.4 [dev]: RUSTSEC-2026-0486",
+          "content_sha256": "16786ffebb596deece7a51f1d09011b740e9f440a4f607293a83a05f3e57ced6",
+          "source_sha256": null,
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.067527+00:00",
+          "url": "https://osv.dev/"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Обновите зависимости разработки и сборки из доказательства.",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "4c0c89f8-1a9d-4787-bbf1-1c35611253f1",
+      "public_id": "QSI-2026-43264",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (rsa), но ни одной из списка поддерживающих PQC.",
@@ -1169,8 +1414,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:50:53.880638+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:05:26.033670+00:00",
       "risk_score": 13.5,
       "risk_breakdown": {
         "score": 13.5,
@@ -1232,8 +1477,8 @@
           "content": "Crypto libraries: rsa",
           "content_sha256": "bceb41c8a05bf5308ccf41f3394d1edb11551672e62af9fdef4204d525b694bf",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:50:53.912184+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:05:26.042331+00:00",
           "url": null
         }
       ],
@@ -1261,9 +1506,27 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Разработчик ПО безопасности», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-18754"
+      "QSI-2026-43263",
+      "QSI-2026-43262"
     ],
     "roles": [
+      {
+        "role": "key_wrapping",
+        "label": "обёртка ключей и шифрование хранимых данных",
+        "action": "Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка",
+        "criticality": 5,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "RSA",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-43263"
+        ],
+        "files": 1
+      },
       {
         "role": "general",
         "label": "роль не определена",
@@ -1273,20 +1536,22 @@
         "algorithms": [
           {
             "algorithm": "RSA",
-            "files": 5
+            "files": 4
           }
         ],
         "findings": [
-          "QSI-2026-18754"
+          "QSI-2026-43262"
         ],
-        "files": 5
+        "files": 4
       }
     ],
     "maturity": {
       "level": 0,
       "label": "постквантовой криптографии нет",
       "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
-      "facts": []
+      "facts": [
+        "Только классика — обёртка ключей и шифрование хранимых данных: RSA (1 файл(ов))"
+      ]
     },
     "quantum_algorithms": [
       {
@@ -1407,7 +1672,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18756",
+        "finding": "QSI-2026-43265",
         "finding_title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -1425,7 +1690,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-18757",
+        "finding": "QSI-2026-43266",
         "finding_title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
         "severity": "low"
       }
@@ -1445,8 +1710,26 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18754",
-        "finding_title": "Квантово-уязвимый RSA: роль не определена (5 файл(ов))",
+        "finding": "QSI-2026-43263",
+        "finding_title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-43262",
+        "finding_title": "Квантово-уязвимый RSA: роль не определена (4 файл(ов))",
         "severity": "medium"
       },
       {
@@ -1463,9 +1746,45 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18754",
-        "finding_title": "Квантово-уязвимый RSA: роль не определена (5 файл(ов))",
+        "finding": "QSI-2026-43263",
+        "finding_title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
         "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-43262",
+        "finding_title": "Квантово-уязвимый RSA: роль не определена (4 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Обновите зависимости разработки и сборки из доказательства.",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+        "status": "todo",
+        "finding": "QSI-2026-43267",
+        "finding_title": "1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки",
+        "severity": "info"
       }
     ]
   },
@@ -1487,20 +1806,32 @@
       "version": "1.1.0"
     },
     {
-      "name": "dependencies",
+      "name": "crediting",
       "version": "1.3.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.4"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -1511,8 +1842,20 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",
@@ -1645,6 +1988,13 @@
       "title": "OSV advisory RUSTSEC-2026-0387",
       "status": "modified 2026-10-24T03:45:02.365137418Z",
       "publisher": "OSV.dev"
+    },
+    {
+      "key": "OSV-DEV",
+      "url": "https://osv.dev/",
+      "title": "OSV.dev — open-source vulnerability database and API",
+      "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+      "publisher": "Open Source Security Foundation"
     },
     {
       "key": "SHOR1997",

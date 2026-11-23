@@ -1,8 +1,8 @@
 {
-  "content_sha256": "08fe88f232c6ada4a674ff9f066eba67672d9342e3074b8ca4f1ff1deafda8f1",
+  "content_sha256": "98c8fb8277adcc8a448cfbd7bf75a901e619d7d894a9a2a3ef60354e926e2928",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-06T13:47:37.417324+00:00",
+  "generated_at": "2026-11-23T12:58:46.963478+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "37a9994d-685d-4a6d-a21f-2f910638da5c",
     "name": "reddsa @ 04e973bcf8d4",
     "client_name": "Zcash Foundation",
-    "description": "Static review of the source tree reddsa at 04e973bcf8d46819db055ebd0d44304c24a156a4. 15 files analysed; of 42 files, 9 are test, fuzzing, benchmark or example code and were left out, 18 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/dependabot.yml, .github/release-drafter.yml, .github/workflows/coverage.yaml, .github/workflows/main.yml, .github/workflows/release-drafter.yml. 31 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree reddsa at 04e973bcf8d46819db055ebd0d44304c24a156a4. 15 files analysed; of 42 files, 9 are test, fuzzing, benchmark or example code and were left out, 18 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/dependabot.yml, .github/release-drafter.yml, .github/workflows/coverage.yaml, .github/workflows/main.yml, .github/workflows/release-drafter.yml. 45 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "c4c9d7c5-09f9-4c2c-b579-6fb622de2731",
+    "id": "d3c90eb6-b8d7-4c49-87ec-8f42c5ec8acb",
     "mode": "document",
     "title": "Document audit: reddsa",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T13:47:35.177136+00:00",
-    "finished_at": "2026-11-06T13:47:37.294773+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T12:58:44.726399+00:00",
+    "finished_at": "2026-11-23T12:58:46.888215+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -147,67 +147,67 @@
     },
     {
       "area": "source_code",
-      "detail": "src/batch.rs: 278 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/batch.rs: 278 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/constants.rs: 24 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/constants.rs: 24 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/error.rs: 35 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/error.rs: 35 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hash.rs: 61 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/hash.rs: 61 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/internal.rs: 14 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/internal.rs: 14 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/lib.rs: 154 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/lib.rs: 154 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/messages.rs: 277 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/messages.rs: 277 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/orchard.rs: 157 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/orchard.rs: 157 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/sapling.rs: 27 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/sapling.rs: 27 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar_mul.rs: 246 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/scalar_mul.rs: 246 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/signature.rs: 55 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/signature.rs: 55 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/signing_key.rs: 227 lines scanned with 16 rule patterns and 266 registry patterns; 29 lines in #[cfg(test)] modules ignored",
+      "detail": "src/signing_key.rs: 227 lines scanned with 16 rule patterns and 340 registry patterns; 29 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/verification_key.rs: 207 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/verification_key.rs: 207 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -217,7 +217,7 @@
     },
     {
       "area": "osv_advisories",
-      "detail": "130 pinned packages queried at OSV.dev; 1 affected (1 of them only in development or build dependencies)",
+      "detail": "130 pinned packages queried at OSV.dev; 2 affected (2 of them only in development or build dependencies)",
       "status": "checked"
     }
   ],
@@ -238,9 +238,9 @@
       "count": 13,
       "rows": 13,
       "examples": [
-        "src/batch.rs: 278 lines scanned with 16 rule patterns and 266 registry patterns",
-        "src/constants.rs: 24 lines scanned with 16 rule patterns and 266 registry patterns",
-        "src/error.rs: 35 lines scanned with 16 rule patterns and 266 registry patterns"
+        "src/batch.rs: 278 lines scanned with 16 rule patterns and 340 registry patterns",
+        "src/constants.rs: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+        "src/error.rs: 35 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -258,7 +258,7 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "130 pinned packages queried at OSV.dev; 1 affected (1 of them only in development or build dependencies)"
+        "130 pinned packages queried at OSV.dev; 2 affected (2 of them only in development or build dependencies)"
       ]
     }
   ],
@@ -269,7 +269,7 @@
   "assets": {
     "registered": [],
     "examined_inputs": [
-      "130 pinned packages queried at OSV.dev; 1 affected (1 of them only in development or build dependencies)",
+      "130 pinned packages queried at OSV.dev; 2 affected (2 of them only in development or build dependencies)",
       "Cargo.lock",
       "Cargo.toml",
       "random-number generation",
@@ -328,8 +328,8 @@
   },
   "findings": [
     {
-      "id": "684ac95d-1aa5-4643-a653-fddec034d8fc",
-      "public_id": "QSI-2026-18640",
+      "id": "99ae22d7-8d01-4cde-bf21-2966c16c518e",
+      "public_id": "QSI-2026-42850",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (1 файл(ов))",
       "description": "6 упоминаний FROST в 1 файл(ах), например src/messages.rs:39. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -348,8 +348,8 @@
       "triage": null,
       "affected_asset": "source-code:FROST:threshold_mpc",
       "data_source": "src/messages.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:47:37.257459+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:58:46.861344+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -445,8 +445,8 @@
           "content": "   38 | \n   39 | impl<S: SpendAuth> From<frost::Commitment<S>> for Commitment {\n   40 |     fn from(value: frost::Commitment<S>) -> Commitment {",
           "content_sha256": "3ad3ca50bbcc97f879d408d4ad39d2bdede892e7a9d850c58b48241992b2b359",
           "source_sha256": "c562ab55a1fd8475000bdc7149193a3a8f8651077e57de8074508fcdb835e787",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.282586+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.877763+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/messages.rs#L39"
         },
         {
@@ -456,8 +456,8 @@
           "content": "   39 | impl<S: SpendAuth> From<frost::Commitment<S>> for Commitment {\n   40 |     fn from(value: frost::Commitment<S>) -> Commitment {\n   41 |         // TODO(str4d): We need to either enforce somewhere that these messages are only",
           "content_sha256": "65d226a68df2d189afb1eaf7f3707c4560aa92f6c002f53abef1424875081306",
           "source_sha256": "c562ab55a1fd8475000bdc7149193a3a8f8651077e57de8074508fcdb835e787",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.282596+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.877772+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/messages.rs#L40"
         },
         {
@@ -467,8 +467,8 @@
           "content": "  227 | \n  228 | impl<S: SpendAuth> From<SigningPackage> for frost::SigningPackage<S> {\n  229 |     fn from(value: SigningPackage) -> frost::SigningPackage<S> {",
           "content_sha256": "62a5b176caa27cd457d4164701bc6e4f624d99ea5ddd17734ec6ee4d4af8ec5e",
           "source_sha256": "c562ab55a1fd8475000bdc7149193a3a8f8651077e57de8074508fcdb835e787",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.282599+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.877777+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/messages.rs#L228"
         }
       ],
@@ -506,8 +506,8 @@
       ]
     },
     {
-      "id": "55fd320a-1b23-4b5d-aeb0-5c9b2c49be70",
-      "public_id": "QSI-2026-18639",
+      "id": "b28468ab-c020-4d48-972e-60825bd2bb51",
+      "public_id": "QSI-2026-42849",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RedDSA: роль не определена (3 файл(ов))",
       "description": "8 упоминаний RedDSA в 3 файл(ах), например src/lib.rs:39. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -526,8 +526,8 @@
       "triage": null,
       "affected_asset": "source-code:RedDSA:general",
       "data_source": "src/lib.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:47:37.245492+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:58:46.851901+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -623,8 +623,8 @@
           "content": "   38 | /// An element of the protocol's scalar field used for randomization of public and secret keys.\n   39 | pub type Randomizer<S> = <S as private::Sealed<S>>::Scalar;\n   40 | ",
           "content_sha256": "e05154e9a56cf4aa5879e5015ea625e4b0609d7031c391602b6a94430ecbbd7f",
           "source_sha256": "0e8171122eb4d548d709e8b1e86f56041d6ec618a72ca03b9df63d3f858bbf4d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.262381+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.864980+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/lib.rs#L39"
         },
         {
@@ -634,8 +634,8 @@
           "content": "   65 | /// A trait corresponding to `SpendAuthSig` in Zcash protocols.\n   66 | pub trait SpendAuth: SigType {}\n   67 | ",
           "content_sha256": "aed9696d7fe2dfdf006f303ffe492cc9d23031cf01aa014b288d2d60e0796016",
           "source_sha256": "0e8171122eb4d548d709e8b1e86f56041d6ec618a72ca03b9df63d3f858bbf4d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.262389+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.864989+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/lib.rs#L66"
         },
         {
@@ -645,8 +645,8 @@
           "content": "   38 | #[derive(Copy, Clone, PartialEq, Eq, Debug)]\n   39 | pub enum SpendAuth {}\n   40 | // This should not exist, but is necessary to use zeroize::DefaultIsZeroes.",
           "content_sha256": "2a63a6db8262d59550636d8be561a03c127d81e0df6bb4a50505772b9d8f5460",
           "source_sha256": "bbe653123789105467c177913fc8f84c1b1da6524eac8095d4c38b315b8f1c4a",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.262394+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.864994+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/orchard.rs#L39"
         },
         {
@@ -656,8 +656,8 @@
           "content": "   45 | }\n   46 | impl SigType for SpendAuth {}\n   47 | impl super::SpendAuth for SpendAuth {}",
           "content_sha256": "cd85b4b9b8ff5ecf99380306f0320d14b675282fc54a510bab492740bcdd948d",
           "source_sha256": "bbe653123789105467c177913fc8f84c1b1da6524eac8095d4c38b315b8f1c4a",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.262397+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.864999+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/orchard.rs#L46"
         },
         {
@@ -667,8 +667,8 @@
           "content": "   57 | }\n   58 | impl SigType for Binding {}\n   59 | impl super::Binding for Binding {}",
           "content_sha256": "7775dc8a2ccad06c7bc81924918e253589f66c95749a17f63a42a8745fb55e6d",
           "source_sha256": "bbe653123789105467c177913fc8f84c1b1da6524eac8095d4c38b315b8f1c4a",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.262400+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.865003+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/orchard.rs#L58"
         },
         {
@@ -678,8 +678,8 @@
           "content": "    6 | #[derive(Copy, Clone, PartialEq, Eq, Debug)]\n    7 | pub enum SpendAuth {}\n    8 | // This should not exist, but is necessary to use zeroize::DefaultIsZeroes.",
           "content_sha256": "8c20e0abac671beca5ba5446ada21d5ead436c57b5169019ad6ec95d3cbbb242",
           "source_sha256": "e1a79c4db2d7e3d7984a6bbdfdd3d915cbdec6509064b4b726f9b9b139e1cf51",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.262403+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.865008+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/sapling.rs#L7"
         },
         {
@@ -689,8 +689,8 @@
           "content": "   13 | }\n   14 | impl SigType for SpendAuth {}\n   15 | impl super::SpendAuth for SpendAuth {}",
           "content_sha256": "ce98bcc2f0a6961c8dc1f8f8e589fb75d44de794a392e2945b741a7ba0c434c7",
           "source_sha256": "e1a79c4db2d7e3d7984a6bbdfdd3d915cbdec6509064b4b726f9b9b139e1cf51",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.262406+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.865013+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/sapling.rs#L14"
         },
         {
@@ -700,8 +700,8 @@
           "content": "   25 | }\n   26 | impl SigType for Binding {}\n   27 | impl super::Binding for Binding {}",
           "content_sha256": "6145abb25ce349b55814a6a97fda93c14c32044d2cfb405e7df16a90b8a9b83b",
           "source_sha256": "e1a79c4db2d7e3d7984a6bbdfdd3d915cbdec6509064b4b726f9b9b139e1cf51",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.262409+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.865017+00:00",
           "url": "https://github.com/ZcashFoundation/reddsa/blob/04e973bcf8d46819db055ebd0d44304c24a156a4/src/sapling.rs#L26"
         }
       ],
@@ -739,11 +739,11 @@
       ]
     },
     {
-      "id": "3d878090-bde7-45b4-8837-639418fc0c9d",
-      "public_id": "QSI-2026-18642",
+      "id": "d37448b0-377e-4b18-8e65-b87b7a3e330f",
+      "public_id": "QSI-2026-42852",
       "rule_id": "DEP-ADVISORY-DEV",
-      "title": "1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки",
-      "description": "OSV.dev сообщает 1 бюллетеней (0 с оценкой high или critical) для 1 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, bincode@1.3.3 [dev]: RUSTSEC-2025-0141. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
+      "title": "2 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
+      "description": "OSV.dev сообщает 2 бюллетеней (0 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, bincode@1.3.3 [dev]: RUSTSEC-2025-0141; rustix@1.1.5 [dev]: RUSTSEC-2026-0486. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
       "impact": "Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.",
       "recommendation": "Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.",
       "retest": "Повторите сканирование зависимостей после обновления.",
@@ -759,8 +759,8 @@
       "triage": null,
       "affected_asset": "dependencies:crates.io:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:47:37.288445+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:58:46.883217+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -812,11 +812,11 @@
           "kind": "tool_output",
           "source": "OSV.dev (crates.io)",
           "location": "Cargo.lock",
-          "content": "bincode@1.3.3 [dev]: RUSTSEC-2025-0141",
-          "content_sha256": "92b1213d0f61091716e425a9a06466220ab9c470db4d48232eff3ef32c1a1443",
+          "content": "bincode@1.3.3 [dev]: RUSTSEC-2025-0141\nrustix@1.1.5 [dev]: RUSTSEC-2026-0486",
+          "content_sha256": "fcedfdbef80a205f2c8804eec2b2313ca66266589e19035cf9ec3517fd209aaa",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.311561+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.898806+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -839,8 +839,8 @@
       ]
     },
     {
-      "id": "6d66b602-c6a9-4def-9710-b31da2feb3b6",
-      "public_id": "QSI-2026-18641",
+      "id": "382c2716-dfb5-45ab-972c-43bbcdbf4bd3",
+      "public_id": "QSI-2026-42851",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, jubjub, pasta_curves), но ни одной из списка поддерживающих PQC.",
@@ -859,8 +859,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:47:37.278809+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:58:46.875644+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -922,8 +922,8 @@
           "content": "Crypto libraries: bls12_381, jubjub, pasta_curves",
           "content_sha256": "075b070bd87081d3aa64ebb503bbde5e807966cd67ec60df515334137ed8c509",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:47:37.292302+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:58:46.885802+00:00",
           "url": null
         }
       ],
@@ -951,8 +951,8 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-18640",
-      "QSI-2026-18639"
+      "QSI-2026-42850",
+      "QSI-2026-42849"
     ],
     "roles": [
       {
@@ -968,7 +968,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-18640"
+          "QSI-2026-42850"
         ],
         "files": 1
       },
@@ -985,7 +985,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-18639"
+          "QSI-2026-42849"
         ],
         "files": 3
       }
@@ -1079,7 +1079,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18640",
+        "finding": "QSI-2026-42850",
         "finding_title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (1 файл(ов))",
         "severity": "medium"
       },
@@ -1097,7 +1097,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18639",
+        "finding": "QSI-2026-42849",
         "finding_title": "Квантово-уязвимый RedDSA: роль не определена (3 файл(ов))",
         "severity": "medium"
       },
@@ -1115,7 +1115,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18640",
+        "finding": "QSI-2026-42850",
         "finding_title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (1 файл(ов))",
         "severity": "medium"
       },
@@ -1133,7 +1133,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18639",
+        "finding": "QSI-2026-42849",
         "finding_title": "Квантово-уязвимый RedDSA: роль не определена (3 файл(ов))",
         "severity": "medium"
       },
@@ -1151,8 +1151,8 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-18642",
-        "finding_title": "1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки",
+        "finding": "QSI-2026-42852",
+        "finding_title": "2 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
         "severity": "info"
       }
     ]
@@ -1175,20 +1175,32 @@
       "version": "1.1.0"
     },
     {
-      "name": "dependencies",
+      "name": "crediting",
       "version": "1.3.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.4"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -1199,8 +1211,20 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",

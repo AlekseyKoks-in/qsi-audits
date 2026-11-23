@@ -8,33 +8,8 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
-            {
-              "id": "CODE-ECB-MODE",
-              "name": "CodeEcbMode",
-              "shortDescription": {
-                "text": "ECB block-cipher mode used in src/krux/kef.py"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "8 usage(s) of ECB mode (first at line 30). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "8 usage(s) of ECB mode (first at line 30). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
-            },
             {
               "id": "RNG-WEAK-KEYGEN",
               "name": "RngWeakKeygen",
@@ -86,6 +61,31 @@
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
             {
+              "id": "CODE-ECB-MODE",
+              "name": "CodeEcbMode",
+              "shortDescription": {
+                "text": "ECB block-cipher mode used in src/krux/kef.py"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "8 usage(s) of ECB mode (first at line 30). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "8 usage(s) of ECB mode (first at line 30). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
+            },
+            {
               "id": "CODE-WEAK-PBKDF2",
               "name": "CodeWeakPbkdf2",
               "shortDescription": {
@@ -114,7 +114,7 @@
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
-                "text": "40 advisories in 8 development or build-only PyPI package(s)"
+                "text": "41 advisories in 8 development or build-only PyPI package(s)"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -128,10 +128,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev lists 40 advisories (17 rated high or critical) for 8 PyPI package(s) that only development or build tooling pulls in (vendor/embit/poetry.lock): e.g. black@26.3.1 [dev]: GHSA-cg8m-r9f2-5wm2; certifi@2026.2.25 [dev]: GHSA-6q48-6c7w-9gw2; filelock@3.25.2 [dev]: GHSA-567q-5qvw-pf92, GHSA-69hj-f68j-2879, GHSA-8mx5-7m5m-r77g, GHSA-9vhv-jxww-xfm5, GHSA-cwqr-hh33-gh44, GHSA-fq56-3cx3-fjxp, GHSA-j8f7-rjxc-mr56, GHSA-rfpc-qcw5-3pc4, GHSA-v4x8-3wr5-3wq8; idna@3.11 [dev]: GHSA-65pc-fj4g-8rjx; mkdocs-material@9.7.6 [dev]: GHSA-xvg9-69gf-fjrf. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory dat…"
+                "text": "OSV.dev lists 41 advisories (17 rated high or critical) for 8 PyPI package(s) that only development or build tooling pulls in (vendor/embit/poetry.lock): e.g. black@26.3.1 [dev]: GHSA-cg8m-r9f2-5wm2; certifi@2026.2.25 [dev]: GHSA-6q48-6c7w-9gw2; filelock@3.25.2 [dev]: GHSA-567q-5qvw-pf92, GHSA-69hj-f68j-2879, GHSA-8mx5-7m5m-r77g, GHSA-9vhv-jxww-xfm5, GHSA-cwqr-hh33-gh44, GHSA-fq56-3cx3-fjxp, GHSA-j8f7-rjxc-mr56, GHSA-rfpc-qcw5-3pc4, GHSA-v4x8-3wr5-3wq8; idna@3.11 [dev]: GHSA-65pc-fj4g-8rjx; mkdocs-material@9.7.6 [dev]: GHSA-xvg9-69gf-fjrf. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory dat…"
               },
               "help": {
-                "text": "OSV.dev lists 40 advisories (17 rated high or critical) for 8 PyPI package(s) that only development or build tooling pulls in (vendor/embit/poetry.lock): e.g. black@26.3.1 [dev]: GHSA-cg8m-r9f2-5wm2; certifi@2026.2.25 [dev]: GHSA-6q48-6c7w-9gw2; filelock@3.25.2 [dev]: GHSA-567q-5qvw-pf92, GHSA-69hj-f68j-2879, GHSA-8mx5-7m5m-r77g, GHSA-9vhv-jxww-xfm5, GHSA-cwqr-hh33-gh44, GHSA-fq56-3cx3-fjxp, GHSA-j8f7-rjxc-mr56, GHSA-rfpc-qcw5-3pc4, GHSA-v4x8-3wr5-3wq8; idna@3.11 [dev]: GHSA-65pc-fj4g-8rjx; mkdocs-material@9.7.6 [dev]: GHSA-xvg9-69gf-fjrf. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller."
+                "text": "OSV.dev lists 41 advisories (17 rated high or critical) for 8 PyPI package(s) that only development or build tooling pulls in (vendor/embit/poetry.lock): e.g. black@26.3.1 [dev]: GHSA-cg8m-r9f2-5wm2; certifi@2026.2.25 [dev]: GHSA-6q48-6c7w-9gw2; filelock@3.25.2 [dev]: GHSA-567q-5qvw-pf92, GHSA-69hj-f68j-2879, GHSA-8mx5-7m5m-r77g, GHSA-9vhv-jxww-xfm5, GHSA-cwqr-hh33-gh44, GHSA-fq56-3cx3-fjxp, GHSA-j8f7-rjxc-mr56, GHSA-rfpc-qcw5-3pc4, GHSA-v4x8-3wr5-3wq8; idna@3.11 [dev]: GHSA-65pc-fj4g-8rjx; mkdocs-material@9.7.6 [dev]: GHSA-xvg9-69gf-fjrf. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller."
               },
               "helpUri": "https://osv.dev/"
             }
@@ -140,9 +140,135 @@
       },
       "results": [
         {
-          "ruleId": "CODE-ECB-MODE",
+          "ruleId": "RNG-WEAK-KEYGEN",
           "ruleIndex": 0,
           "level": "error",
+          "message": {
+            "text": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2489d048adfe095e50872038083902bb"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41999",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41993",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (6 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41995",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41996",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: role not determined (5 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41991",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDH: role not determined (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41994",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41998",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-ECB-MODE",
+          "ruleIndex": 2,
+          "level": "warning",
           "message": {
             "text": "ECB block-cipher mode used in src/krux/kef.py"
           },
@@ -150,11 +276,11 @@
             "qsiFindingKey/v1": "31071d4a7b431ce46c8165938bc355d2"
           },
           "properties": {
-            "qsiId": "QSI-2026-19303",
-            "severity": "high",
+            "qsiId": "QSI-2026-41990",
+            "severity": "medium",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
+            "security-severity": "5.0"
           },
           "locations": [
             {
@@ -170,134 +296,8 @@
           ]
         },
         {
-          "ruleId": "RNG-WEAK-KEYGEN",
-          "ruleIndex": 1,
-          "level": "error",
-          "message": {
-            "text": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "2489d048adfe095e50872038083902bb"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19312",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19306",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19308",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19309",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDSA: role not determined (5 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19304",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDH: role not determined (4 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19307",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19311",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
           "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 0,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "ECB block-cipher mode used in src/krux/krux_settings.py"
@@ -306,7 +306,7 @@
             "qsiFindingKey/v1": "e35ef95a522466c5cd2d6ec5edbfeca9"
           },
           "properties": {
-            "qsiId": "QSI-2026-19305",
+            "qsiId": "QSI-2026-41992",
             "severity": "info",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -336,7 +336,7 @@
             "qsiFindingKey/v1": "854cceba3797609712e7f0d3b39a3975"
           },
           "properties": {
-            "qsiId": "QSI-2026-19310",
+            "qsiId": "QSI-2026-41997",
             "severity": "info",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -360,13 +360,13 @@
           "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "40 advisories in 8 development or build-only PyPI package(s) (dependencies: PyPI:non-runtime)"
+            "text": "41 advisories in 8 development or build-only PyPI package(s) (dependencies: PyPI:non-runtime)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "090734ef78b1f0fda46107c2c0bb9ca1"
           },
           "properties": {
-            "qsiId": "QSI-2026-19313",
+            "qsiId": "QSI-2026-42000",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -384,13 +384,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/krux @ 9b3a4314a205/83f74b9a-cd9a-4256-bb2d-87bb86e7cd60"
+        "id": "qsi/krux @ 9b3a4314a205/0256d618-7066-4b65-91ab-803256ebb3e9"
       },
       "properties": {
-        "qsiContentSha256": "ba805503cf4d3237bd8f16af9c112fd492cf72db8e64a50d6cfd1577c288a0b5",
+        "qsiContentSha256": "139e27fe2d07d820e625238652e268e21f8f9c94ea38a7b488ceebdbc82bd1c5",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T14:43:31.468811+00:00",
+        "qsiGeneratedAt": "2026-11-23T12:31:50.634036+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

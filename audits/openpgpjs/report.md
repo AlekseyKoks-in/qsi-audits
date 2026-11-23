@@ -4,13 +4,13 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 13:42 UTC |
+| Дата отчёта | 2026-11-23 12:51 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | ae8d431d-0bf6-4069-a48e-f3b47b63f2c5 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | 469b2ba2-dffb-4bdd-a273-eafaba25ceaf (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `cff272bdb4c9f50966105528b2d58b2fb87a8575672ed940c834c9df415c9db3` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `224b9eaf249b4ad14e65555c86883e6eaf02c5af3903d9f4e0a9bc9f6b9e0c75` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
@@ -19,17 +19,19 @@
 - Высокая: **0**
 - Средняя: **8**
 - Низкая: **0**
-- Информационная: **1**
+- Информационная: **3**
 
 - Подтверждённая техническая уязвимость: 0
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
-- Потенциальный криптографический риск: 2
+- Потенциальный криптографический риск: 4
 - Долгосрочный постквантовый риск: 6
 - Рекомендация по улучшению: 1
 - Недостаточность данных: 0
 
 Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
+
+Проверка аналитика: подтверждено — 0, не применимо — 2, отклонено как ложные срабатывания — 0.
 
 **Постквантовая зрелость: Уровень 2 из 4 — постквантовое используется вне критичных путей.** Следующий шаг: Распространите постквантовую защиту на критичные роли, которые остаются классическими, начиная с того, что можно записать уже сегодня (обёрнутые ключи, обмен ключами в канале).
 
@@ -45,7 +47,7 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 103 | .jsdocrc.cjs: 28 lines scanned with 16 rule patterns and 266 registry patterns; docs/scripts/linenumber.js: 25 lines scanned with 16 rule patterns and 266 registry patterns; docs/scripts/prettify/lang-css.js: 3 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 103 | .jsdocrc.cjs: 28 lines scanned with 16 rule patterns and 340 registry patterns; docs/scripts/linenumber.js: 25 lines scanned with 16 rule patterns and 340 registry patterns; docs/scripts/prettify/lang-css.js: 3 lines scanned with 16 rule patterns and 340 registry patterns |
 | certificates_and_keys | проверено | 3 | README.md: certificates/keys parsed; docs/index.html: certificates/keys parsed; src/encoding/armor.js: certificates/keys parsed |
 | dependencies | проверено | 3 | lightweight/package.json: 0 dependencies parsed (0 pinned); package-lock.json: 1021 dependencies parsed (1021 pinned); package.json: 50 dependencies parsed (0 pinned) |
 | entropy | проверено | 1 | random-number generation: 103 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
@@ -59,26 +61,26 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree openpgpjs at 8bc35df4887933a3b2661e3741b33ba5f347b935. 108 files analysed; of 241 files, 61 are test, fuzzing, benchmark or example code and were left out, 72 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/ISSUE_TEMPLATE/BUG_REPORT.md, .github/ISSUE_TEMPLATE/config.yml, .github/dependabot.yml, .github/workflows/benchmark.yml. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree openpgpjs at 8bc35df4887933a3b2661e3741b33ba5f347b935. 108 files analysed; of 241 files, 61 are test, fuzzing, benchmark or example code and were left out, 72 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/ISSUE_TEMPLATE/BUG_REPORT.md, .github/ISSUE_TEMPLATE/config.yml, .github/dependabot.yml, .github/workflows/benchmark.yml. 35 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **94** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 50.0%
+- Доля квантово-уязвимых элементов инвентаризации: 51.6%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-18422 — Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (5 файл(ов))
+### QSI-2026-42437 — Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (7 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:X25519:key_wrapping`
 - Источник данных: src/crypto/crypto.js
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 36.9 / 100
 - CVSS v3.1: неприменимо
 
-41 упоминаний X25519 в 5 файл(ах), например src/crypto/crypto.js:67. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).
+45 упоминаний X25519 в 7 файл(ах), например src/crypto/crypto.js:67. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -114,6 +116,22 @@ _file_excerpt · [src/crypto/crypto.js](https://github.com/openpgpjs/openpgpjs/b
   203 |     case enums.publicKey.x448: {
 ```
 
+_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L92) · line 92 · SHA-256 ed5ef53c571b174ca285d475bdc9817ad63edd2be6f9f32f9700481b934766ae_
+
+```
+   91 |     case 'curve25519Legacy': {
+   92 |       const { sharedSecret: sharedKey, ephemeralPublicKey } = await ecdhXGenerateEphemeralEncryptionMaterial(enums.publicKey.x25519, Q.subarray(1));
+   93 |       const publicKey = util.concatUint8Array([new Uint8Array([curve.wireFormatLeadingByte]), ephemeralPublicKey]);
+```
+
+_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L158) · line 158 · SHA-256 39be20659473c15d076eae77badec95cf22dac236f79cbf68826f0be2c13da1e_
+
+```
+  157 |       const secretKey = d.slice().reverse();
+  158 |       const sharedKey = await ecdhXRecomputeSharedSecret(enums.publicKey.x25519, V.subarray(1), Q.subarray(1), secretKey);
+  159 |       return { secretKey, sharedKey }; // Note: sharedKey is little-endian here, unlike below
+```
+
 _file_excerpt · [src/crypto/public_key/elliptic/ecdh_x.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L16) · line 16 · SHA-256 6a8eddf288a9c2a77149db1f401d401b0b95e3d4a1215b63173ffa115a3c1d3f_
 
 ```
@@ -138,36 +156,20 @@ _file_excerpt · [src/crypto/public_key/elliptic/ecdh_x.js](https://github.com/o
    58 |         // k stays in little-endian, unlike legacy ECDH over curve25519
 ```
 
-_file_excerpt · [src/key/helper.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L425) · line 425 · SHA-256 59adffecad14d86080d43ea51a008d5eed02ea566984f5458a383bd909e5ad53_
+_file_excerpt · [src/enums.d.ts](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L77) · line 77 · SHA-256 51bcc65cc5abe5fd7bb19e52368c5e477cac45493cdb751d3a8e4abe399ccdb6_
 
 ```
-  424 |       break;
-  425 |     case 'ecc': // NB: this case also handles legacy eddsa and x25519 keys, based on `options.curve`
-  426 |       try {
+   76 | 
+   77 |   export type publicKeyNames = 'rsaEncryptSign' | 'rsaEncrypt' | 'rsaSign' | 'elgamal' | 'dsa' | 'ecdh' | 'ecdsa' | 'eddsaLegacy' | 'aedh' | 'aedsa' | 'ed25519' | 'x25519' | 'ed448' | 'x448' | 'mlkem768X25519' | 'mldsa65Ed25519';
+   78 |   export enum publicKey {
 ```
 
-_file_excerpt · [src/key/helper.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L442) · line 442 · SHA-256 0cee2e279a6b5fe687f969526552efa361b0132a03e1b834689ac210cb80a418_
+_file_excerpt · [src/enums.d.ts](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L89) · line 89 · SHA-256 3e0f0dc265cee6d852a925e4e23941bd5bae8987249ecfe7607016fe88d0fb48_
 
 ```
-  441 |     case 'curve25519':
-  442 |       options.algorithm = options.sign ? enums.publicKey.ed25519 : enums.publicKey.x25519;
-  443 |       break;
-```
-
-_file_excerpt · [src/key/helper.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L482) · line 482 · SHA-256 e5505ee4ae066a442ec272a51ad1f32a27704ddf9d13d5f4ce1205af1d8d11cf_
-
-```
-  481 |     case enums.publicKey.ecdh:
-  482 |     case enums.publicKey.x25519:
-  483 |     case enums.publicKey.x448:
-```
-
-_file_excerpt · [src/message.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/message.js#L367) · line 367 · SHA-256 16b37e58a27065ccebe12db67a707b30d29ed30a225cd9e99bcd10e2b1af24ac_
-
-```
-  366 |       .then(maybeKey => {
-  367 |         if (maybeKey && (maybeKey.keyPacket.algorithm === enums.publicKey.x25519 || maybeKey.keyPacket.algorithm === enums.publicKey.x448) &&
-  368 |           !aeadAlgoName && !util.isAES(symmetricAlgo)) { // if AEAD is defined, then PKESK v6 are used, and the algo info is encrypted
+   88 |     aedsa = 24,
+   89 |     x25519 = 25,
+   90 |     x448 = 26,
 ```
 
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
@@ -176,27 +178,51 @@ _file_excerpt · [src/message.js](https://github.com/openpgpjs/openpgpjs/blob/8b
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18427 — Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов))
+### QSI-2026-42440 — Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDH:key_wrapping`
-- Источник данных: src/crypto/public_key/elliptic/ecdh_x.js
+- Источник данных: src/crypto/public_key/elliptic/ecdh.js
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 36.9 / 100
 - CVSS v3.1: неприменимо
 
-8 упоминаний ECDH в 1 файл(ах), например src/crypto/public_key/elliptic/ecdh_x.js:69. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).
+16 упоминаний ECDH в 2 файл(ах), например src/crypto/public_key/elliptic/ecdh.js:249. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте src/crypto/public_key/elliptic/ecdh_x.js:69 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте src/crypto/public_key/elliptic/ecdh.js:249 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
+
+_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L249) · line 249 · SHA-256 3454cba51223c0daf016a91dac4294f475ec4f66b4f481c989050ea86ad3ee90_
+
+```
+  248 |     {
+  249 |       name: 'ECDH',
+  250 |       namedCurve: curve.web
+```
+
+_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L260) · line 260 · SHA-256 3e270aa8dd1322e70e5a4ce00d678ee9e1891c5a88f54924881a592cdfcee43e_
+
+```
+  259 |     {
+  260 |       name: 'ECDH',
+  261 |       namedCurve: curve.web
+```
+
+_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L269) · line 269 · SHA-256 a4b9152c04c73f78c219aef1b6c7e22425768c871b4ec13008e117d0efd76c1d_
+
+```
+  268 |     {
+  269 |       name: 'ECDH',
+  270 |       namedCurve: curve.web,
+```
 
 _file_excerpt · [src/crypto/public_key/elliptic/ecdh_x.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L69) · line 69 · SHA-256 30222de3219cc99164d9b95fb8c95d2b149f5e65081439fc8f66d5ab949cf0cf_
 
@@ -228,13 +254,13 @@ _file_excerpt · [src/crypto/public_key/elliptic/ecdh_x.js](https://github.com/o
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18421 — Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))
+### QSI-2026-42436 — Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: src/config.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -336,51 +362,27 @@ _file_excerpt · [src/type/oid.js](https://github.com/openpgpjs/openpgpjs/blob/8
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18425 — Квантово-уязвимый ECDH: роль не определена (2 файл(ов))
+### QSI-2026-42443 — Квантово-уязвимый ECDH: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDH:general`
-- Источник данных: src/crypto/public_key/elliptic/ecdh.js
+- Источник данных: src/crypto/public_key/elliptic/oid_curves.js
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
-9 упоминаний ECDH в 2 файл(ах), например src/crypto/public_key/elliptic/ecdh.js:249. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+1 упоминаний ECDH в 1 файл(ах), например src/crypto/public_key/elliptic/oid_curves.js:324. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте src/crypto/public_key/elliptic/ecdh.js:249 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте src/crypto/public_key/elliptic/oid_curves.js:324 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
-
-_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L249) · line 249 · SHA-256 3454cba51223c0daf016a91dac4294f475ec4f66b4f481c989050ea86ad3ee90_
-
-```
-  248 |     {
-  249 |       name: 'ECDH',
-  250 |       namedCurve: curve.web
-```
-
-_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L260) · line 260 · SHA-256 3e270aa8dd1322e70e5a4ce00d678ee9e1891c5a88f54924881a592cdfcee43e_
-
-```
-  259 |     {
-  260 |       name: 'ECDH',
-  261 |       namedCurve: curve.web
-```
-
-_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L269) · line 269 · SHA-256 a4b9152c04c73f78c219aef1b6c7e22425768c871b4ec13008e117d0efd76c1d_
-
-```
-  268 |     {
-  269 |       name: 'ECDH',
-  270 |       namedCurve: curve.web,
-```
 
 _file_excerpt · [src/crypto/public_key/elliptic/oid_curves.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L324) · line 324 · SHA-256 dbae0069b965a134528d3224723dbe1cd05dd4c423c0cd22d845e0b96c3a9996_
 
@@ -396,50 +398,34 @@ _file_excerpt · [src/crypto/public_key/elliptic/oid_curves.js](https://github.c
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18426 — Квантово-уязвимый X25519: роль не определена (5 файл(ов))
+### QSI-2026-42444 — Квантово-уязвимый X25519: роль не определена (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:X25519:general`
-- Источник данных: src/crypto/public_key/elliptic/ecdh.js
+- Источник данных: src/crypto/public_key/elliptic/oid_curves.js
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
-11 упоминаний X25519 в 5 файл(ах), например src/crypto/public_key/elliptic/ecdh.js:92. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+7 упоминаний X25519 в 3 файл(ах), например src/crypto/public_key/elliptic/oid_curves.js:189. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте src/crypto/public_key/elliptic/ecdh.js:92 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте src/crypto/public_key/elliptic/oid_curves.js:189 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
 
-_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L92) · line 92 · SHA-256 33754afed28e070c6fe889d3028e51b53ef1b222bbaf8f8fb6756bf243d4c20e_
-
-```
-   91 |     case 'curve25519Legacy': {
-   92 |       const { sharedSecret: [REDACTED] ephemeralPublicKey } = await ecdhXGenerateEphemeralEncryptionMaterial(enums.publicKey.x25519, Q.subarray(1));
-   93 |       const publicKey = util.concatUint8Array([new Uint8Array([curve.wireFormatLeadingByte]), ephemeralPublicKey]);
-```
-
-_file_excerpt · [src/crypto/public_key/elliptic/ecdh.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L158) · line 158 · SHA-256 294a3fb06da976751217f842b6f6103deff0a00f190f61bc434ea854ef0e4cb5_
-
-```
-  157 |       const secretKey = [REDACTED]
-  158 |       const sharedKey = await ecdhXRecomputeSharedSecret(enums.publicKey.x25519, V.subarray(1), Q.subarray(1), secretKey);
-  159 |       return { secretKey, sharedKey }; // Note: sharedKey is little-endian here, unlike below
-```
-
-_file_excerpt · [src/crypto/public_key/elliptic/oid_curves.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L189) · line 189 · SHA-256 085af22a63073285f9b41c8fd1580f25e34eee786fc9c93549f81de299b1dc3a_
+_file_excerpt · [src/crypto/public_key/elliptic/oid_curves.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L189) · line 189 · SHA-256 19822fd1b04f69f76d006371218b2b9d9c4727c475cb8f2b44769f78b476cea5_
 
 ```
   188 |         // the private key must be stored in big endian and already clamped: https://www.ietf.org/archive/id/draft-ietf-openpgp-crypto-refresh-13.html#section-5.5.5.6.1.1-3
   189 |         const { k, A } = await ecdhXGenerate(enums.publicKey.x25519);
-  190 |         const privateKey = [REDACTED]
+  190 |         const privateKey = k.slice().reverse();
 ```
 
 _file_excerpt · [src/crypto/public_key/elliptic/oid_curves.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L263) · line 263 · SHA-256 06a2e4b692ec06cd2f2668c4defc241cabf6aa423908d36123d1b82fa220a96e_
@@ -458,11 +444,11 @@ _file_excerpt · [src/crypto/public_key/post_quantum/kem/ecc_kem.js](https://git
    10 |       return {
 ```
 
-_file_excerpt · [src/crypto/public_key/post_quantum/kem/ecc_kem.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L23) · line 23 · SHA-256 a072232312f37979fc0f350cae28c9be08729c30e6d4b0a81c003d5a2f924fd0_
+_file_excerpt · [src/crypto/public_key/post_quantum/kem/ecc_kem.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L23) · line 23 · SHA-256 6c46d55fed64bed84037321c3565f81a2b689acf7377be620711a470ee885f15_
 
 ```
    22 |     case enums.publicKey.mlkem768X25519: {
-   23 |       const { ephemeralPublicKey: eccCipherText, sharedSecret: [REDACTED] } = await ecdhX.generateEphemeralEncryptionMaterial(enums.publicKey.x25519, eccRecipientPublicKey);
+   23 |       const { ephemeralPublicKey: eccCipherText, sharedSecret: eccKeyShare } = await ecdhX.generateEphemeralEncryptionMaterial(enums.publicKey.x25519, eccRecipientPublicKey);
    24 | 
 ```
 
@@ -472,22 +458,6 @@ _file_excerpt · [src/crypto/public_key/post_quantum/kem/ecc_kem.js](https://git
    37 |     case enums.publicKey.mlkem768X25519: {
    38 |       const eccKeyShare = await ecdhX.recomputeSharedSecret(enums.publicKey.x25519, eccCipherText, eccPublicKey, eccSecretKey);
    39 |       return eccKeyShare;
-```
-
-_file_excerpt · [src/enums.d.ts](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L77) · line 77 · SHA-256 51bcc65cc5abe5fd7bb19e52368c5e477cac45493cdb751d3a8e4abe399ccdb6_
-
-```
-   76 | 
-   77 |   export type publicKeyNames = 'rsaEncryptSign' | 'rsaEncrypt' | 'rsaSign' | 'elgamal' | 'dsa' | 'ecdh' | 'ecdsa' | 'eddsaLegacy' | 'aedh' | 'aedsa' | 'ed25519' | 'x25519' | 'ed448' | 'x448' | 'mlkem768X25519' | 'mldsa65Ed25519';
-   78 |   export enum publicKey {
-```
-
-_file_excerpt · [src/enums.d.ts](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L89) · line 89 · SHA-256 3e0f0dc265cee6d852a925e4e23941bd5bae8987249ecfe7607016fe88d0fb48_
-
-```
-   88 |     aedsa = 24,
-   89 |     x25519 = 25,
-   90 |     x448 = 26,
 ```
 
 _file_excerpt · [src/enums.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.js#L93) · line 93 · SHA-256 2abe536f7602f2ea77e7707a22b274dd3d1d46f3120d3844e4c048920a94af2e_
@@ -504,13 +474,13 @@ _file_excerpt · [src/enums.js](https://github.com/openpgpjs/openpgpjs/blob/8bc3
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18428 — Квантово-уязвимый RSA: роль не определена (1 файл(ов))
+### QSI-2026-42445 — Квантово-уязвимый RSA: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RSA:general`
 - Источник данных: src/crypto/public_key/rsa.js
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -556,13 +526,13 @@ _file_excerpt · [src/crypto/public_key/rsa.js](https://github.com/openpgpjs/ope
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18423 — Использование MD5 в src/crypto/hash/index.js
+### QSI-2026-42438 — Использование MD5 в src/crypto/hash/index.js
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:src/crypto/hash/index.js`
 - Источник данных: src/crypto/hash/index.js
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 33.7 / 100
 - CVSS v3.1: неприменимо
 
@@ -594,13 +564,13 @@ _file_excerpt · [src/crypto/hash/index.js](https://github.com/openpgpjs/openpgp
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-18424 — Использование SHA-1 в src/crypto/hash/index.js
+### QSI-2026-42439 — Использование SHA-1 в src/crypto/hash/index.js
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:src/crypto/hash/index.js`
 - Источник данных: src/crypto/hash/index.js
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 33.7 / 100
 - CVSS v3.1: неприменимо
 
@@ -632,17 +602,95 @@ _file_excerpt · [src/crypto/hash/index.js](https://github.com/openpgpjs/openpgp
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-18429 — 76 бюллетеней в 28 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-42441 — Функция подписи Ed25519 принимает открытый ключ отдельным аргументом в src/crypto/public_key/elliptic/eddsa.js
+
+- Серьёзность: **Информационная** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая
+> **Проверка аналитика (QSI review, 2026-11-22): не применимо к этому коду.** eddsa.js sign(algo, hashAlgo, message, publicKey, privateKey, hashed) does take the public key as its own argument: WebCrypto imports a JWK built from both halves, and the tweetnacl fallback signs with concatUint8Array([privateKey, publicKey]); eddsa_legacy.js passes its point through to it. The double-public-key oracle needs a caller who can make the library sign one message under the right secret with a public key that does not belong to it. OpenPGP.js closes that at the key, not in this function: openpgp.decryptKey runs PrivateKey.validate() on every decrypted key (src/openpgp.js:201), and for Ed25519 validateParams sign-verifies random data with both halves through WebCrypto or re-derives the public key from the seed with tweetnacl (eddsa.js validateParams); a key encrypted with AEAD binds the public key as associated data (SecretKeyPacket.decrypt, writePublicKey()). This is the defence OpenPGP.js added after the key-overwriting attacks of 2022. Kept visible at info: an application that hands sign() key material it never validated would still be exposed, and that is the integrator's to check. _автоматическая серьёзность: Высокая._
+- Затронутый актив: `file:src/crypto/public_key/elliptic/eddsa.js`
+- Источник данных: src/crypto/public_key/elliptic/eddsa.js
+- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
+- Балл приоритета: 22.9 / 100
+- CVSS v3.1: неприменимо
+
+Функция подписи в строка 91 (1 мест) получает и секретный, и открытый ключ, а в её теле открытый ключ не выводится из секретного и не сравнивается с ним.
+
+**Возможные последствия.** Если вызывающий может заставить подписать одно сообщение верным секретом, но с двумя разными открытыми ключами, две подписи разделяют nonce и раскрывают секретный скаляр: «double public key oracle» 2022 года затронул около сорока библиотек Ed25519. Эксплуатируемо везде, где открытый ключ приходит из хранилища, запроса или другого компонента.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 91 в предоставленном файле src/crypto/public_key/elliptic/eddsa.js и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/crypto/public_key/elliptic/eddsa.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/eddsa.js#L91) · line 91 · SHA-256 89dbdc013837696045ec126ba6e56e8de1906daaee2ec68c185b1d9f39a1b293_
+
+```
+   89 |  * @async
+   90 |  */
+   91 | export async function sign(algo, hashAlgo, message, publicKey, privateKey, hashed) {
+   92 |   switch (algo) {
+   93 |     case enums.publicKey.ed25519:
+```
+
+**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Выводите открытый ключ из секретного внутри функции подписи (или храните их одним объектом пары) и уберите отдельный аргумент; до тех пор сверяйте его сравнением за постоянное время.
+
+**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
+
+### QSI-2026-42442 — Функция подписи Ed25519 принимает открытый ключ отдельным аргументом в src/crypto/public_key/elliptic/eddsa_legacy.js
+
+- Серьёзность: **Информационная** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая
+> **Проверка аналитика (QSI review, 2026-11-22): не применимо к этому коду.** eddsa.js sign(algo, hashAlgo, message, publicKey, privateKey, hashed) does take the public key as its own argument: WebCrypto imports a JWK built from both halves, and the tweetnacl fallback signs with concatUint8Array([privateKey, publicKey]); eddsa_legacy.js passes its point through to it. The double-public-key oracle needs a caller who can make the library sign one message under the right secret with a public key that does not belong to it. OpenPGP.js closes that at the key, not in this function: openpgp.decryptKey runs PrivateKey.validate() on every decrypted key (src/openpgp.js:201), and for Ed25519 validateParams sign-verifies random data with both halves through WebCrypto or re-derives the public key from the seed with tweetnacl (eddsa.js validateParams); a key encrypted with AEAD binds the public key as associated data (SecretKeyPacket.decrypt, writePublicKey()). This is the defence OpenPGP.js added after the key-overwriting attacks of 2022. Kept visible at info: an application that hands sign() key material it never validated would still be exposed, and that is the integrator's to check. _автоматическая серьёзность: Высокая._
+- Затронутый актив: `file:src/crypto/public_key/elliptic/eddsa_legacy.js`
+- Источник данных: src/crypto/public_key/elliptic/eddsa_legacy.js
+- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:51 UTC
+- Балл приоритета: 22.9 / 100
+- CVSS v3.1: неприменимо
+
+Функция подписи в строка 44 (1 мест) получает и секретный, и открытый ключ, а в её теле открытый ключ не выводится из секретного и не сравнивается с ним.
+
+**Возможные последствия.** Если вызывающий может заставить подписать одно сообщение верным секретом, но с двумя разными открытыми ключами, две подписи разделяют nonce и раскрывают секретный скаляр: «double public key oracle» 2022 года затронул около сорока библиотек Ed25519. Эксплуатируемо везде, где открытый ключ приходит из хранилища, запроса или другого компонента.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 44 в предоставленном файле src/crypto/public_key/elliptic/eddsa_legacy.js и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/crypto/public_key/elliptic/eddsa_legacy.js](https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/eddsa_legacy.js#L44) · line 44 · SHA-256 473bd8974297555bcb12db6ca433010eea47d6dc40d6675880cb52cae8561d61_
+
+```
+   42 |  * @async
+   43 |  */
+   44 | export async function sign(oid, hashAlgo, message, publicKey, privateKey, hashed) {
+   45 |   const curve = new CurveWithOID(oid);
+   46 |   checkPublicPointEnconding(curve, publicKey);
+```
+
+**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Выводите открытый ключ из секретного внутри функции подписи (или храните их одним объектом пары) и уберите отдельный аргумент; до тех пор сверяйте его сравнением за постоянное время.
+
+**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
+
+### QSI-2026-42446 — 78 бюллетеней в 28 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:42 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 12:51 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает 76 бюллетеней (30 с оценкой high или critical) для 28 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+OSV.dev сообщает 78 бюллетеней (30 с оценкой high или critical) для 28 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; basic-ftp@5.3.1 [dev]: GHSA-5pm8-86m8-9m6r, GHSA-c475-qrg2-pj4r, GHSA-r4jh-29pc-gfqr; brace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
 **Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
@@ -654,19 +702,19 @@ OSV.dev сообщает 76 бюллетеней (30 с оценкой high ил
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev (npm)](https://osv.dev/) · package-lock.json · SHA-256 9af61d3a3c3a01c7e8a5a3ba0bd27e5cbc5f39a396a0aabafa66568e45d92566_
+_tool_output · [OSV.dev (npm)](https://osv.dev/) · package-lock.json · SHA-256 b5dec7a65e2253d553c181df214e57412cee37043e5d6c790ad9919b2d790a6c_
 
 ```
 @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g
-basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r
+basic-ftp@5.3.1 [dev]: GHSA-5pm8-86m8-9m6r, GHSA-c475-qrg2-pj4r, GHSA-r4jh-29pc-gfqr
 brace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7
 brace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7
 brace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895
 brace-expansion@5.0.9 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7
-deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4
 deepmerge-ts@7.1.6 [dev]: GHSA-ggr8-5vv4-36mx
 diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx
 extract-zip@2.0.1 [dev]: GHSA-7pqw-9j4j-h8q3, GHSA-jmr9-qjv8-65gv
+fast-xml-parser@5.11.1 [dev]: GHSA-474x-hrwr-fgx4
 glob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4
 glob@13.0.6 [dev]: GHSA-3g3m-2fjr-6pw4
 ip-address@10.5.0 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5
@@ -721,7 +769,7 @@ _Допущения планирования: x для обмена ключам
 - Есть, но не подключено: ML-KEM — src/crypto/public_key/post_quantum/kem/ml_kem.js
 - Есть, но не подключено: ML-DSA — src/crypto/public_key/post_quantum/signature/ml_dsa.js
 - Постквантовая библиотека объявлена в зависимостях
-- Только классика — обёртка ключей и шифрование хранимых данных: ECDH, X25519 (5 файл(ов))
+- Только классика — обёртка ключей и шифрование хранимых данных: ECDH, X25519 (7 файл(ов))
 
 **Следующий шаг:** Распространите постквантовую защиту на критичные роли, которые остаются классическими, начиная с того, что можно записать уже сегодня (обёрнутые ключи, обмен ключами в канале).
 
@@ -731,8 +779,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **обёртка ключей и шифрование хранимых данных** | X25519 (5), ECDH (1) | QSI-2026-18422, QSI-2026-18427 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
-| **роль не определена** | ECDSA (7), X25519 (5), ECDH (2), RSA (1) | QSI-2026-18421, QSI-2026-18425, QSI-2026-18426, QSI-2026-18428 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **обёртка ключей и шифрование хранимых данных** | X25519 (7), ECDH (2) | QSI-2026-42437, QSI-2026-42440 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
+| **роль не определена** | ECDSA (7), X25519 (3), ECDH (1), RSA (1) | QSI-2026-42436, QSI-2026-42443, QSI-2026-42444, QSI-2026-42445 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -746,7 +794,7 @@ _Роль определяется по путям файлов, именам ф
 | Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (5), ECDSA (11), Ed25519 (2), X25519 (10) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | 3DES (2), Argon2 (1), Blowfish (2), CAST5 (4), CMAC (1), DES (1), HKDF (1), HMAC (1), IDEA (1), Twofish (1) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Алгоритм Саймона — суперпозиционные атаки на симметричные конструкции | только при суперпозиционных запросах | Q2 | GCM mode (1) | Для обычного применения AES-GCM или CBC-MAC действий не требуется — модель атаки неприменима. Зафиксируйте это как допущение модели; для конструкций типа Even–Mansour см. офлайн-вариант. |
-| Квантовое решетчатое просеивание | учтено в стандартных параметрах | Q1 | ML-DSA (3), ML-KEM (3) | Для ML-KEM и ML-DSA в стандартных наборах параметров ничего менять не нужно. Заявление 2024 года о полиномиальном квантовом алгоритме для LWE отозвано после обнаружения ошибки (см. заявления). |
+| Квантовое решетчатое просеивание | учтено в стандартных параметрах | Q1 | ML-DSA (2), ML-KEM (2) | Для ML-KEM и ML-DSA в стандартных наборах параметров ничего менять не нужно. Заявление 2024 года о полиномиальном квантовом алгоритме для LWE отозвано после обнаружения ошибки (см. заявления). |
 
 _Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
@@ -766,25 +814,27 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-18423 | Проверьте каждое использование MD5 в src/crypto/hash/index.js; замените влияющие на безопасность на SHA-256 или функцию хеширования паролей. | устранение первопричины | Не осталось использований MD5, влияющих на безопасность. |
-| P3 | QSI-2026-18424 | Проверьте каждое использование SHA-1 в src/crypto/hash/index.js; замените влияющие на безопасность на SHA-256 или функцию хеширования паролей. | устранение первопричины | Не осталось использований SHA-1, влияющих на безопасность. |
+| P3 | QSI-2026-42438 | Проверьте каждое использование MD5 в src/crypto/hash/index.js; замените влияющие на безопасность на SHA-256 или функцию хеширования паролей. | устранение первопричины | Не осталось использований MD5, влияющих на безопасность. |
+| P3 | QSI-2026-42439 | Проверьте каждое использование SHA-1 в src/crypto/hash/index.js; замените влияющие на безопасность на SHA-256 или функцию хеширования паролей. | устранение первопричины | Не осталось использований SHA-1, влияющих на безопасность. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-18422 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18427 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18421 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18425 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18426 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-18428 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-18422 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-18427 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-18421 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-18425 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-18426 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-18428 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-18429 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-42437 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-42440 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-42436 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-42443 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-42444 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-42445 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-42437 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-42440 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-42436 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-42443 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-42444 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-42445 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-42441 | Выводите открытый ключ из секретного внутри функции подписи (или храните их одним объектом пары) и уберите отдельный аргумент; до тех пор сверяйте его сравнением за постоянное время. | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P4 | QSI-2026-42442 | Выводите открытый ключ из секретного внутри функции подписи (или храните их одним объектом пары) и уберите отдельный аргумент; до тех пор сверяйте его сравнением за постоянное время. | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P4 | QSI-2026-42446 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -792,13 +842,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -810,32 +866,33 @@ _Действие: взламывает — алгоритм нужно заме
 5. C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <https://doi.org/10.22331/q-2021-04-15-433> (peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)
 6. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
 7. CRYSTALS-Kyber — Algorithm Specifications and Supporting Documentation (round 3, 2021-08-04) — CRYSTALS team. <https://pq-crystals.org/kyber/data/kyber-specification-round3-20210804.pdf> (NIST round-3 submission: core-SVP cost 2^{0.292β} classical, 2^{0.265β} quantum; Kyber768 166 quantum bits)
-8. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-9. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-10. D. R. Simon — On the Power of Quantum Computation (SIAM J. Comput. 26, 1997) — SIAM. <https://doi.org/10.1137/S0097539796298637> (peer-reviewed article)
-11. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-12. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-13. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-14. H. Kuwakado, M. Morii — Quantum distinguisher between the 3-round Feistel cipher and the random permutation (IEEE ISIT 2010) — IEEE. <https://ieeexplore.ieee.org/document/5513654> (peer-reviewed conference paper)
-15. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-16. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-17. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-18. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-19. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
-20. M. Kaplan, G. Leurent, A. Leverrier, M. Naya-Plasencia — Breaking Symmetric Cryptosystems using Quantum Period Finding (CRYPTO 2016; arXiv:1602.05973) — Springer / arXiv. <https://arxiv.org/abs/1602.05973> (peer-reviewed article: superposition-query forgeries on CBC-MAC, PMAC, GMAC, GCM, OCB)
-21. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-22. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-23. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
-24. NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths — NIST. <https://csrc.nist.gov/pubs/sp/800/131/a/r2/final> (final (2019))
-25. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-26. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-27. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-28. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-29. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+8. CWE-347 — Improper Verification of Cryptographic Signature — MITRE. <https://cwe.mitre.org/data/definitions/347.html> (weakness catalogue entry; the Ed25519 double-public-key oracle (2022) is the signing-side variant: an unchecked public-key argument lets two signatures reveal the secret)
+9. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+10. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+11. D. R. Simon — On the Power of Quantum Computation (SIAM J. Comput. 26, 1997) — SIAM. <https://doi.org/10.1137/S0097539796298637> (peer-reviewed article)
+12. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+13. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+14. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+15. H. Kuwakado, M. Morii — Quantum distinguisher between the 3-round Feistel cipher and the random permutation (IEEE ISIT 2010) — IEEE. <https://ieeexplore.ieee.org/document/5513654> (peer-reviewed conference paper)
+16. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+17. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+18. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+19. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+20. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
+21. M. Kaplan, G. Leurent, A. Leverrier, M. Naya-Plasencia — Breaking Symmetric Cryptosystems using Quantum Period Finding (CRYPTO 2016; arXiv:1602.05973) — Springer / arXiv. <https://arxiv.org/abs/1602.05973> (peer-reviewed article: superposition-query forgeries on CBC-MAC, PMAC, GMAC, GCM, OCB)
+22. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+23. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+24. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+25. NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths — NIST. <https://csrc.nist.gov/pubs/sp/800/131/a/r2/final> (final (2019))
+26. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+27. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+28. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+29. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+30. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
-По происхождению: манифесты зависимостей 6 (0 уязвимы для алгоритма Шора) · собственный код 58 (32 уязвимы для алгоритма Шора).
+По происхождению: манифесты зависимостей 6 (0 уязвимы для алгоритма Шора) · собственный код 56 (32 уязвимы для алгоритма Шора).
 
 | Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
@@ -853,14 +910,12 @@ _Действие: взламывает — алгоритм нужно заме
 | CFB mode |  |  | н/п | допустимо | 1 | 1 | src/crypto/cipherMode/cfb.js:42 |
 | Crypto library | 2.4.0 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
 | Crypto library | 2.4.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
-| Crypto library | ^2.4.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package.json |
 | Crypto library | ^2.4.0 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package.json |
+| Crypto library | ^2.4.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package.json |
 | GCM mode |  |  | н/п | допустимо | 1 | 1 | src/crypto/cipherMode/gcm.js:36 |
 | OpenPGP |  |  | н/п | допустимо | 1 | 1 | src/openpgp.js |
-| ML-DSA |  |  | постквантовый | допустимо | 1 | 1 | src/crypto/public_key/post_quantum/noble_post_quantum.ts:10 |
 | ML-DSA | ML-DSA-65 |  | постквантовый | допустимо | 2 | 2 | src/crypto/public_key/post_quantum/noble_post_quantum.ts:10; src/crypto/public_key/post_quantum/signature/ml_dsa.js:30 |
 | ML-KEM | ML-KEM-768 |  | постквантовый | допустимо | 2 | 2 | src/crypto/public_key/post_quantum/kem/ml_kem.js:30; src/crypto/public_key/post_quantum/noble_post_quantum.ts:9 |
-| ML-KEM |  |  | постквантовый | допустимо | 1 | 1 | src/crypto/public_key/post_quantum/noble_post_quantum.ts:9 |
 | PQC library | 0.7.1 | @noble/post-quantum (noble post-quantum) | постквантовый | допустимо | 1 | 1 | package-lock.json |
 | PQC library | ^0.7.1 | @noble/post-quantum (noble post-quantum) | постквантовый | допустимо | 1 | 1 | package.json |
 | DSA |  |  | уязвим (Шор) | устаревший | 1 | 1 | src/crypto/public_key/dsa.js |

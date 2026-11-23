@@ -1,27 +1,27 @@
 # Post-quantum cryptography review: coinbase-cb-mpc @ 0b716706f998
 
-*One-page brief* · Reviewed: 2026-11-06 13:11 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Coinbase — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 12:20 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Coinbase — public repository (passive review)
 
 Source: https://github.com/coinbase/cb-mpc/tree/0b716706f998633912ee2be9b9bf8909aed66088
 
 **Post-quantum maturity:** Level 1 of 4 — post-quantum code present, not wired. **Next step:** Wire the existing post-quantum primitive into a critical path (key wrapping or the channel) behind a hybrid construction, and test interoperability.
 
-**Findings:** Critical 0 · High 0 · Medium 11 · Low 0 · Info 0
+**Findings:** Critical 0 · High 0 · Medium 12 · Low 0 · Info 0
 
 **Quantum timeline (Mosca: x + y − z):** Key establishment 10 + 5 − 8 = 7 → too late; Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (5 file(s)) (QSI-2026-17961) · *confirmed by the analyst*\
+1. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (5 file(s)) (QSI-2026-41850) · *confirmed by the analyst*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-2. **Medium** · Quantum-vulnerable Paillier: threshold signing and MPC protocols (15 file(s)) (QSI-2026-17956) · *confirmed by the analyst*\
+2. **Medium** · Quantum-vulnerable Paillier: threshold signing and MPC protocols (15 file(s)) (QSI-2026-41844) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-3. **Medium** · Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (13 file(s)) (QSI-2026-17959) · *confirmed by the analyst*\
+3. **Medium** · Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (13 file(s)) (QSI-2026-41848) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-4. **Medium** · Quantum-vulnerable Ed25519: threshold signing and MPC protocols (9 file(s)) (QSI-2026-17960) · *confirmed by the analyst*\
+4. **Medium** · Quantum-vulnerable Ed25519: threshold signing and MPC protocols (9 file(s)) (QSI-2026-41849) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
 
-7 more in the full report.
+8 more in the full report.
 
 ## What the quantum-vulnerable cryptography protects
 
@@ -30,7 +30,7 @@ Source: https://github.com/coinbase/cb-mpc/tree/0b716706f998633912ee2be9b9bf8909
 | **Medium** · key wrapping and data encryption at rest | ECDH | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may… |
 | **Medium** · threshold signing and MPC protocols | Paillier, Threshold ECDSA, Ed25519, Pedersen commitment … | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the… |
 | **Medium** · transaction and message signing | ECDSA | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum… |
-| **Medium** · role not determined | ECDSA, Ed25519, Schnorr (BIP-340), RSA | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205)… |
+| **Medium** · role not determined | ECDSA, EC-ElGamal, Ed25519, Schnorr (BIP-340) … | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205)… |
 
 Analyst review: 10 confirmed, 0 not applicable, 0 dismissed as false positives. (QSI review, 2026-10-28)
 
@@ -38,8 +38,8 @@ Analyst review: 10 confirmed, 0 not applicable, 0 dismissed as false positives. 
 
 Static review of source code and manifests; files analysed: 174. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `30857ab4a6ad6b67bcd5d68ff21a17577fef7b50e63cb6a8d0f2cf6f729c8462`
+Full report, content SHA-256: `50aba3c226373904e9dadd2a262825a5b7a54fccf7d9caba03cab53d4f50593c`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

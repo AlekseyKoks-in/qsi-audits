@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CERT-EXPIRED",
@@ -28,10 +28,10 @@
                 "security-severity": "7.5"
               },
               "fullDescription": {
-                "text": "The X.509 certificate with subject app.example.com expired on 2025-11-26 (344 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
+                "text": "The X.509 certificate with subject app.example.com expired on 2025-11-26 (362 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
               },
               "help": {
-                "text": "The X.509 certificate with subject app.example.com expired on 2025-11-26 (344 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
+                "text": "The X.509 certificate with subject app.example.com expired on 2025-11-26 (362 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
               },
               "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
             },
@@ -86,35 +86,10 @@
               "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
             },
             {
-              "id": "CODE-ECB-MODE",
-              "name": "CodeEcbMode",
-              "shortDescription": {
-                "text": "ECB block-cipher mode used in obp-api/src/main/scala/code/api/util/RSAUtil.scala"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "1 usage(s) of ECB mode (first at line 44). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "1 usage(s) of ECB mode (first at line 44). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
-            },
-            {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Quantum-vulnerable RSA: key wrapping and data encryption at rest (1 file(s))"
+                "text": "Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (5 file(s))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -128,10 +103,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "1 reference(s) to RSA across 1 file(s), e.g. obp-api/src/main/scala/code/api/util/CertificateUtil.scala:232. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later). Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "8 reference(s) to RSA across 5 file(s), e.g. obp-api/src/main/scala/code/api/util/BerlinGroupSigning.scala:95. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier. Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "help": {
-                "text": "1 reference(s) to RSA across 1 file(s), e.g. obp-api/src/main/scala/code/api/util/CertificateUtil.scala:232. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later). Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "8 reference(s) to RSA across 5 file(s), e.g. obp-api/src/main/scala/code/api/util/BerlinGroupSigning.scala:95. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier. Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -250,7 +225,7 @@
             "qsiFindingKey/v1": "9f30684c251e6c15a7ed10176261da83"
           },
           "properties": {
-            "qsiId": "QSI-2026-17438",
+            "qsiId": "QSI-2026-44024",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -280,7 +255,7 @@
             "qsiFindingKey/v1": "9f30684c251e6c15a7ed10176261da83"
           },
           "properties": {
-            "qsiId": "QSI-2026-17443",
+            "qsiId": "QSI-2026-44028",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -310,7 +285,7 @@
             "qsiFindingKey/v1": "8ecd1f2461d1e6b28f077c89cb7ba1a3"
           },
           "properties": {
-            "qsiId": "QSI-2026-17463",
+            "qsiId": "QSI-2026-44043",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -328,7 +303,7 @@
             "qsiFindingKey/v1": "59fc4fd7ad19f1fb3ba0c379700f744f"
           },
           "properties": {
-            "qsiId": "QSI-2026-17464",
+            "qsiId": "QSI-2026-44044",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -346,7 +321,7 @@
             "qsiFindingKey/v1": "dec256294cc94947fca207423f2cc7f6"
           },
           "properties": {
-            "qsiId": "QSI-2026-17465",
+            "qsiId": "QSI-2026-44045",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -364,7 +339,7 @@
             "qsiFindingKey/v1": "ed5a0b06001324d900980e2f9bb80790"
           },
           "properties": {
-            "qsiId": "QSI-2026-17468",
+            "qsiId": "QSI-2026-44048",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -382,7 +357,7 @@
             "qsiFindingKey/v1": "3952a60483c5fc444e2eafdded57d949"
           },
           "properties": {
-            "qsiId": "QSI-2026-17472",
+            "qsiId": "QSI-2026-44052",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -400,7 +375,7 @@
             "qsiFindingKey/v1": "f0b2620d40943640196c3f6db0bfb814"
           },
           "properties": {
-            "qsiId": "QSI-2026-17473",
+            "qsiId": "QSI-2026-44053",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -418,7 +393,7 @@
             "qsiFindingKey/v1": "1f67ffc887da0131ba011ff900e470e2"
           },
           "properties": {
-            "qsiId": "QSI-2026-17475",
+            "qsiId": "QSI-2026-44055",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -436,7 +411,7 @@
             "qsiFindingKey/v1": "ccc76d975ff1ab509a8f072b02c029c1"
           },
           "properties": {
-            "qsiId": "QSI-2026-17478",
+            "qsiId": "QSI-2026-44058",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -454,7 +429,7 @@
             "qsiFindingKey/v1": "5343235b9a2bdd329e6221382c960a79"
           },
           "properties": {
-            "qsiId": "QSI-2026-17437",
+            "qsiId": "QSI-2026-44023",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -478,43 +453,13 @@
           "ruleIndex": 2,
           "level": "error",
           "message": {
-            "text": "Possible hard-coded secret in obp-api/src/main/resources/props/sample.props.template"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "a0428d364abb9e1fc61c784ff6ec06cf"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-17442",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "obp-api/src/main/resources/props/sample.props.template"
-                },
-                "region": {
-                  "startLine": 188
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
             "text": "Possible hard-coded secret in obp-api/src/main/scala/code/api/util/APIUtil.scala"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "5f0dc02832e735d780476849996e64a6"
           },
           "properties": {
-            "qsiId": "QSI-2026-17447",
+            "qsiId": "QSI-2026-44032",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -544,7 +489,7 @@
             "qsiFindingKey/v1": "535394310395d484c02a89e96458816b"
           },
           "properties": {
-            "qsiId": "QSI-2026-17450",
+            "qsiId": "QSI-2026-44034",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -574,7 +519,7 @@
             "qsiFindingKey/v1": "7e101e7e52cf5784b9649489cf9cd2fe"
           },
           "properties": {
-            "qsiId": "QSI-2026-17452",
+            "qsiId": "QSI-2026-44036",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -587,97 +532,7 @@
                   "uri": "obp-api/src/main/scala/code/api/util/Glossary.scala"
                 },
                 "region": {
-                  "startLine": 1921
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "Possible hard-coded secret in obp-api/src/main/scala/code/api/util/JwtUtil.scala"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "f8b3c60d320c6d3bcd32e0c57c3d12b1"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-17453",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "obp-api/src/main/scala/code/api/util/JwtUtil.scala"
-                },
-                "region": {
-                  "startLine": 361
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "Possible hard-coded secret in obp-api/src/main/scala/code/api/v3_1_0/Http4s310.scala"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "6f580dfa05223ec4f5fc7171e7e83cd4"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-17455",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "obp-api/src/main/scala/code/api/v3_1_0/Http4s310.scala"
-                },
-                "region": {
-                  "startLine": 4917
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "Possible hard-coded secret in obp-api/src/main/scala/code/api/v4_0_0/Http4s400.scala"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "1c226c818183576252c87aa7161c0379"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-17456",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "obp-api/src/main/scala/code/api/v4_0_0/Http4s400.scala"
-                },
-                "region": {
-                  "startLine": 5587
+                  "startLine": 3125
                 }
               }
             }
@@ -694,7 +549,7 @@
             "qsiFindingKey/v1": "4a99ea26afd80959babe7afa52af6fd0"
           },
           "properties": {
-            "qsiId": "QSI-2026-17457",
+            "qsiId": "QSI-2026-44037",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -724,7 +579,7 @@
             "qsiFindingKey/v1": "d1173e6ce54152feec112641593306bc"
           },
           "properties": {
-            "qsiId": "QSI-2026-17458",
+            "qsiId": "QSI-2026-44038",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -737,7 +592,7 @@
                   "uri": "obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala"
                 },
                 "region": {
-                  "startLine": 13221
+                  "startLine": 9610
                 }
               }
             }
@@ -754,7 +609,7 @@
             "qsiFindingKey/v1": "77eae3369620e9a0d4e3de4395811f5e"
           },
           "properties": {
-            "qsiId": "QSI-2026-17459",
+            "qsiId": "QSI-2026-44039",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -784,7 +639,7 @@
             "qsiFindingKey/v1": "7683c95a8e70442a25ed66a28e120cb3"
           },
           "properties": {
-            "qsiId": "QSI-2026-17460",
+            "qsiId": "QSI-2026-44040",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -814,7 +669,7 @@
             "qsiFindingKey/v1": "1acff5b03fa017e3a956f97d622e14a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-17461",
+            "qsiId": "QSI-2026-44041",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -827,37 +682,7 @@
                   "uri": "scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json"
                 },
                 "region": {
-                  "startLine": 2038
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 3,
-          "level": "error",
-          "message": {
-            "text": "ECB block-cipher mode used in obp-api/src/main/scala/code/api/util/RSAUtil.scala"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "5b02dca254e9ba19ca4c2acefcd3cb03"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-17454",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "obp-api/src/main/scala/code/api/util/RSAUtil.scala"
-                },
-                "region": {
-                  "startLine": 44
+                  "startLine": 784
                 }
               }
             }
@@ -874,7 +699,7 @@
             "qsiFindingKey/v1": "a631bd07dff3b1dcfc472866cfff7239"
           },
           "properties": {
-            "qsiId": "QSI-2026-17466",
+            "qsiId": "QSI-2026-44046",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -892,7 +717,7 @@
             "qsiFindingKey/v1": "a912fd0dcad4088d25dc9ce1c414325b"
           },
           "properties": {
-            "qsiId": "QSI-2026-17467",
+            "qsiId": "QSI-2026-44047",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -910,7 +735,7 @@
             "qsiFindingKey/v1": "a9984dba09ea23461deb2b204ca40c99"
           },
           "properties": {
-            "qsiId": "QSI-2026-17469",
+            "qsiId": "QSI-2026-44049",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -928,7 +753,7 @@
             "qsiFindingKey/v1": "c4d255e4972549248786960d710ef9ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-17470",
+            "qsiId": "QSI-2026-44050",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -946,7 +771,7 @@
             "qsiFindingKey/v1": "8b13a930fa85a7988646f0e540f793dd"
           },
           "properties": {
-            "qsiId": "QSI-2026-17474",
+            "qsiId": "QSI-2026-44054",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -964,7 +789,7 @@
             "qsiFindingKey/v1": "b91d55d512cd79b1785ae53401059f4e"
           },
           "properties": {
-            "qsiId": "QSI-2026-17476",
+            "qsiId": "QSI-2026-44056",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -982,7 +807,7 @@
             "qsiFindingKey/v1": "88886c774623d8c6bfec9d3efd2c282c"
           },
           "properties": {
-            "qsiId": "QSI-2026-17477",
+            "qsiId": "QSI-2026-44057",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1000,7 +825,7 @@
             "qsiFindingKey/v1": "a876e48105361c9c001b6d0489ff2499"
           },
           "properties": {
-            "qsiId": "QSI-2026-17479",
+            "qsiId": "QSI-2026-44059",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1018,7 +843,25 @@
             "qsiFindingKey/v1": "b98f733018b7d767b653976bbac2f742"
           },
           "properties": {
-            "qsiId": "QSI-2026-17480",
+            "qsiId": "QSI-2026-44060",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "org.json:json 20250107 is affected by GHSA-ghc9-756g-vrcv (CVE-2026-59171) (dependency: Maven/org.json:json@20250107)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c3ce3725b09acb03f6b8f64434d9deb4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-44061",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1027,34 +870,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable RSA: key wrapping and data encryption at rest (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "63ed1a0fe276081a1c0530a2e556915d"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-17449",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 4,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (4 file(s))"
+            "text": "Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (5 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "b302032650de6c165e0e74b7d843d367"
           },
           "properties": {
-            "qsiId": "QSI-2026-17448",
+            "qsiId": "QSI-2026-44033",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1063,7 +888,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA: role not determined (3 file(s))"
@@ -1072,7 +897,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-17451",
+            "qsiId": "QSI-2026-44035",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1090,7 +915,7 @@
             "qsiFindingKey/v1": "434ecfb6e1caab6b55b381d81438dd3a"
           },
           "properties": {
-            "qsiId": "QSI-2026-17471",
+            "qsiId": "QSI-2026-44051",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1099,7 +924,7 @@
         },
         {
           "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 5,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Quantum-vulnerable RSA key in certificate (app.example.com)"
@@ -1108,7 +933,7 @@
             "qsiFindingKey/v1": "383b1e0263774ae538b44269c69fa4d7"
           },
           "properties": {
-            "qsiId": "QSI-2026-17439",
+            "qsiId": "QSI-2026-44025",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -1129,7 +954,7 @@
         },
         {
           "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 5,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Quantum-vulnerable RSA key in certificate (app.example.com)"
@@ -1138,7 +963,7 @@
             "qsiFindingKey/v1": "383b1e0263774ae538b44269c69fa4d7"
           },
           "properties": {
-            "qsiId": "QSI-2026-17444",
+            "qsiId": "QSI-2026-44029",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -1159,7 +984,7 @@
         },
         {
           "ruleId": "CERT-LONG-VALIDITY",
-          "ruleIndex": 6,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
             "text": "Leaf certificate validity of 730 days (app.example.com)"
@@ -1168,7 +993,7 @@
             "qsiFindingKey/v1": "508f4eeb279d1d6810cb740e82332273"
           },
           "properties": {
-            "qsiId": "QSI-2026-17440",
+            "qsiId": "QSI-2026-44026",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -1189,7 +1014,7 @@
         },
         {
           "ruleId": "CERT-LONG-VALIDITY",
-          "ruleIndex": 6,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
             "text": "Leaf certificate validity of 730 days (app.example.com)"
@@ -1198,7 +1023,7 @@
             "qsiFindingKey/v1": "508f4eeb279d1d6810cb740e82332273"
           },
           "properties": {
-            "qsiId": "QSI-2026-17445",
+            "qsiId": "QSI-2026-44030",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -1219,7 +1044,7 @@
         },
         {
           "ruleId": "CERT-SELF-SIGNED",
-          "ruleIndex": 7,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
             "text": "Self-signed end-entity certificate (app.example.com)"
@@ -1228,7 +1053,7 @@
             "qsiFindingKey/v1": "faf1421fc059cc7873b81b92e4d900cd"
           },
           "properties": {
-            "qsiId": "QSI-2026-17441",
+            "qsiId": "QSI-2026-44027",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1249,7 +1074,7 @@
         },
         {
           "ruleId": "CERT-SELF-SIGNED",
-          "ruleIndex": 7,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
             "text": "Self-signed end-entity certificate (app.example.com)"
@@ -1258,7 +1083,7 @@
             "qsiFindingKey/v1": "faf1421fc059cc7873b81b92e4d900cd"
           },
           "properties": {
-            "qsiId": "QSI-2026-17446",
+            "qsiId": "QSI-2026-44031",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1279,7 +1104,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "No post-quantum capable cryptographic library detected"
@@ -1288,7 +1113,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-17462",
+            "qsiId": "QSI-2026-44042",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -1297,13 +1122,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/obp-api @ 6a4a13ef079f/78a831be-14ad-42a7-b5fb-ace36174c24c"
+        "id": "qsi/obp-api @ 6a4a13ef079f/b6defd6d-fe8e-4556-848f-ecaee3103f46"
       },
       "properties": {
-        "qsiContentSha256": "6e83fddb11fe4c5dcc78ace863f481960b11f629a8378ee1992ce77d9bae882f",
+        "qsiContentSha256": "ff8c7de416fb7b8f67263000d05d98e6b20bf754fa6321d21dbaa974a1c43f15",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T10:11:50.698820+00:00",
+        "qsiGeneratedAt": "2026-11-23T13:47:47.264571+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

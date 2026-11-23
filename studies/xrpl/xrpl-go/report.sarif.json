@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.8.1",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -125,7 +125,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-34924",
+            "qsiId": "QSI-2026-44366",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -143,7 +143,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-34926",
+            "qsiId": "QSI-2026-44368",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -161,7 +161,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-34925",
+            "qsiId": "QSI-2026-44367",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -179,7 +179,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-34929",
+            "qsiId": "QSI-2026-44371",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -197,7 +197,7 @@
             "qsiFindingKey/v1": "efdc4d587b2d71d3dce86b3cee0780ad"
           },
           "properties": {
-            "qsiId": "QSI-2026-34927",
+            "qsiId": "QSI-2026-44369",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -215,7 +215,7 @@
             "qsiFindingKey/v1": "0904b31236bfd574348786617dde92ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-34930",
+            "qsiId": "QSI-2026-44372",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -233,7 +233,7 @@
             "qsiFindingKey/v1": "fa34198662ed4654d505a0eac8a789b5"
           },
           "properties": {
-            "qsiId": "QSI-2026-34928",
+            "qsiId": "QSI-2026-44370",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -251,7 +251,7 @@
             "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
           },
           "properties": {
-            "qsiId": "QSI-2026-34932",
+            "qsiId": "QSI-2026-44374",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -269,7 +269,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-34933",
+            "qsiId": "QSI-2026-44375",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -296,7 +296,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-34931",
+            "qsiId": "QSI-2026-44373",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -305,13 +305,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/xrpl-go @ 23275f007b47/e2c0bd2f-aaed-4cdb-baf8-25224d63c391"
+        "id": "qsi/xrpl-go @ 23275f007b47/1616e6a4-3b74-4e9d-a39a-f5059eddd2d3"
       },
       "properties": {
-        "qsiContentSha256": "fdc2d49d507c44f6cbd5efb2c1ed267838cb784520e897471e93609d4941bb39",
+        "qsiContentSha256": "45a33e87c2d61c676a91f30558f03682a44b17a171ce8745b362e065e9c9ed89",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "web3",
-        "qsiGeneratedAt": "2026-11-21T10:23:42.929825+00:00",
+        "qsiGeneratedAt": "2026-11-23T14:05:41.993972+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

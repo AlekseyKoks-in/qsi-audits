@@ -147,3 +147,7 @@ To list every EC-ElGamal row of one bundle with nothing but Python:
 ```
 python3 -c "import json,sys; [print(r['algorithm'], r['location']) for r in json.load(open(sys.argv[1]))['inventory'] if 'ElGamal' in r['algorithm']]" studies/xrpl/xrpl-rippled/report.json
 ```
+
+## Re-issue, 2026-11-22
+
+Every bundle of this study was re-audited on 23 November at its recorded commit, tree and analyst decisions with engine 1.16.2, and is now co-signed with ML-DSA-65 (`python3 verify.py studies/xrpl/*`). No figure in this report moves.

@@ -4,25 +4,25 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-06 16:16 UTC |
+| Report date | 2026-11-23 13:55 UTC |
 | Report version | 1 |
-| Audit run | 96d950eb-cb91-4272-91ed-00709f332206 (Document audit) |
-| Analyzer engine | qsi-engine 1.3.0 |
+| Audit run | e27ac0b6-c464-4c26-aa99-af4508d057e0 (Document audit) |
+| Analyzer engine | qsi-engine 1.16.2 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `6d145d52c9c066144e055074447ebfbd4d0fe3daaa4654cbf36de67ea6eb5165` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| Content SHA-256 | `1769683321d4d292df9e2cb83c4c80081e5088fc5268f2c9f6e75f02d4c5f07e` |
+| Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
 - High: **1**
-- Medium: **11**
+- Medium: **13**
 - Low: **3**
 - Info: **7**
 
 - Confirmed technical vulnerability: 0
-- Known vulnerable component: 14
+- Known vulnerable component: 16
 - Confirmed configuration error: 1
 - Potential cryptographic risk: 0
 - Long-term post-quantum risk: 7
@@ -45,11 +45,13 @@ Repository: <https://github.com/algorand/go-algorand> @ `e46aea5466a1152af6e08f8
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 1152 | agreement/abstractions.go: 335 lines scanned with 16 rule patterns and 267 registry patterns; agreement/actions.go: 569 lines scanned with 16 rule patterns and 267 registry patterns; agreement/actiontype_string.go: 39 lines scanned with 16 rule patterns and 267 registry patterns |
+| source_code | checked | 1152 | agreement/abstractions.go: 335 lines scanned with 16 rule patterns and 340 registry patterns; agreement/actions.go: 569 lines scanned with 16 rule patterns and 340 registry patterns; agreement/actiontype_string.go: 39 lines scanned with 16 rule patterns and 340 registry patterns |
 | dependencies | checked | 6 | cmd/partitiontest_linter/go.mod: 4 dependencies parsed (4 pinned); go.mod: 185 dependencies parsed (185 pinned); tools/block-generator/go.mod: 166 dependencies parsed (166 pinned) |
 | certificates_and_keys | checked | 1 | installer/rpm/RPM-GPG-KEY-Algorand: certificates/keys parsed |
 | entropy | checked | 1 | random-number generation: 1152 code files read with 537 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| osv_advisories | checked | 1 | 193 pinned packages queried at OSV.dev; 10 affected |
+| mpc | checked | 1 | Paillier in 1 file(s), 0 in a multi-party context; modulus proofs absent |
+| crediting | checked | 1 | payment crediting: 3 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 1 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| osv_advisories | checked | 1 | 193 pinned packages queried at OSV.dev; 12 affected |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -59,22 +61,22 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree go-algorand at e46aea5466a1152af6e08f83555ed16cfcd89f49. 1160 files analysed; of 3096 files, 1393 are test, fuzzing, benchmark or example code and were left out, 542 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .aptly.conf, .claude/skills/combine-dependabot-prs/SKILL.md, .claude/skills/promote-vfuture/SKILL.md, .claude/skills/spec-consensus-param/SKILL.md, .codecov.yml. 64 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree go-algorand at e46aea5466a1152af6e08f83555ed16cfcd89f49. 1160 files analysed; of 3096 files, 1393 are test, fuzzing, benchmark or example code and were left out, 542 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .aptly.conf, .claude/skills/combine-dependabot-prs/SKILL.md, .claude/skills/promote-vfuture/SKILL.md, .claude/skills/spec-consensus-param/SKILL.md, .codecov.yml. 67 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
-- Indicative posture index: **70** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 33.4%
+- Indicative posture index: **60** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
+- Quantum-vulnerable share of inventory: 33.3%
 
 ## 7. Detailed findings
 
-### QSI-2026-19631 — Possible hard-coded secret in logging/telemetryConfig.go
+### QSI-2026-44241 — Possible hard-coded secret in logging/telemetryConfig.go
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `file:logging/telemetryConfig.go`
 - Data source: logging/telemetryConfig.go
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 47.1 / 100
 - CVSS v3.1: not applicable
 
@@ -102,13 +104,13 @@ _file_excerpt · [logging/telemetryConfig.go](https://github.com/algorand/go-alg
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-19630 — Quantum-vulnerable RSA key (2048-bit) in installer/rpm/RPM-GPG-KEY-Algorand
+### QSI-2026-44240 — Quantum-vulnerable RSA key (2048-bit) in installer/rpm/RPM-GPG-KEY-Algorand
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:installer/rpm/RPM-GPG-KEY-Algorand#line 1`
 - Data source: installer/rpm/RPM-GPG-KEY-Algorand
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -142,13 +144,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-19635 — github.com/labstack/echo/v4 v4.16.1 is affected by GHSA-246p-cpwv-v3jq (CVE-2026-118653, GO-2026-6872)
+### QSI-2026-44245 — github.com/labstack/echo/v4 v4.16.1 is affected by GHSA-246p-cpwv-v3jq (CVE-2026-118653, GO-2026-6872)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Go/github.com/labstack/echo/v4@v4.16.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -176,13 +178,13 @@ _tool_output · [OSV.dev GHSA-246p-cpwv-v3jq](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19636 — github.com/labstack/echo/v4 v4.16.1 is affected by GHSA-99jh-6h7p-pp36 (CVE-2026-118651, GO-2026-6875)
+### QSI-2026-44246 — github.com/labstack/echo/v4 v4.16.1 is affected by GHSA-99jh-6h7p-pp36 (CVE-2026-118651, GO-2026-6875)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Go/github.com/labstack/echo/v4@v4.16.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -210,13 +212,13 @@ _tool_output · [OSV.dev GHSA-99jh-6h7p-pp36](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19642 — github.com/pion/dtls/v2 v2.2.12 is affected by GHSA-9f3f-wv7r-qc8r (CVE-2026-26014, GO-2026-4479)
+### QSI-2026-44252 — github.com/pion/dtls/v2 v2.2.12 is affected by GHSA-9f3f-wv7r-qc8r (CVE-2026-26014, GO-2026-4479)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Go/github.com/pion/dtls/v2@v2.2.12`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -244,13 +246,13 @@ _tool_output · [OSV.dev GHSA-9f3f-wv7r-qc8r](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19643 — github.com/pion/stun v0.6.1 is affected by GHSA-34rh-wp3j-6cxc (CVE-2026-54909)
+### QSI-2026-44253 — github.com/pion/stun v0.6.1 is affected by GHSA-34rh-wp3j-6cxc (CVE-2026-54909)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Go/github.com/pion/stun@v0.6.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -278,13 +280,81 @@ _tool_output · [OSV.dev GHSA-34rh-wp3j-6cxc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19627 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
+### QSI-2026-44254 — go.opentelemetry.io/otel/sdk v1.45.0 is affected by GHSA-q7gw-24fr-5p69 (CVE-2026-128085)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:Go/go.opentelemetry.io/otel/sdk@v1.45.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
+- Priority score: 44.2 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev reports GHSA-q7gw-24fr-5p69 (CVE-2026-128085) for Go package go.opentelemetry.io/otel/sdk at version v1.45.0: opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-q7gw-24fr-5p69
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-q7gw-24fr-5p69](https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69) · line 179 · SHA-256 9b8f4481765ce2bc20b1dd3cb161379178bfe50aa67817508810d48a5d57e7af_
+
+```
+{"id": "GHSA-q7gw-24fr-5p69", "aliases": ["CVE-2026-128085"], "modified": "2026-11-13T19:15:05.908318974Z", "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+
+**Recommendation.** Upgrade to a fixed version (1.47.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44255 — go.opentelemetry.io/otel/trace v1.45.0 is affected by GHSA-q7gw-24fr-5p69 (CVE-2026-128085)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:Go/go.opentelemetry.io/otel/trace@v1.45.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
+- Priority score: 44.2 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev reports GHSA-q7gw-24fr-5p69 (CVE-2026-128085) for Go package go.opentelemetry.io/otel/trace at version v1.45.0: opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-q7gw-24fr-5p69
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-q7gw-24fr-5p69](https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69) · line 180 · SHA-256 9b8f4481765ce2bc20b1dd3cb161379178bfe50aa67817508810d48a5d57e7af_
+
+```
+{"id": "GHSA-q7gw-24fr-5p69", "aliases": ["CVE-2026-128085"], "modified": "2026-11-13T19:15:05.908318974Z", "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+
+**Recommendation.** Upgrade to a fixed version (1.47.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-44237 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:X25519:key_wrapping`
 - Data source: crypto/libsodium-fork/src/libsodium/crypto_box/crypto_box_seal.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 36.9 / 100
 - CVSS v3.1: not applicable
 
@@ -314,13 +384,13 @@ _file_excerpt · [crypto/libsodium-fork/src/libsodium/crypto_box/crypto_box_seal
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19628 — Quantum-vulnerable ECDSA: transaction and message signing (26 file(s))
+### QSI-2026-44238 — Quantum-vulnerable ECDSA: transaction and message signing (26 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: crypto/secp256k1/curve.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -422,17 +492,17 @@ _file_excerpt · [crypto/secp256k1/libsecp256k1/contrib/lax_der_parsing.c](https
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19625 — Quantum-vulnerable Ed25519: role not determined (19 file(s))
+### QSI-2026-44235 — Quantum-vulnerable Ed25519: role not determined (20 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: crypto/batchverifier.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
-253 reference(s) to Ed25519 across 19 file(s), e.g. crypto/batchverifier.c:16. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+255 reference(s) to Ed25519 across 20 file(s), e.g. crypto/batchverifier.c:16. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -530,13 +600,13 @@ _file_excerpt · [crypto/include/sodium/crypto_sign.h](https://github.com/algora
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19626 — Quantum-vulnerable X25519: role not determined (12 file(s))
+### QSI-2026-44236 — Quantum-vulnerable X25519: role not determined (12 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:X25519:general`
 - Data source: crypto/include/sodium.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -638,13 +708,13 @@ _file_excerpt · [crypto/libsodium-fork/src/libsodium/crypto_scalarmult/crypto_s
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19629 — Quantum-vulnerable ECDH: role not determined (4 file(s))
+### QSI-2026-44239 — Quantum-vulnerable ECDH: role not determined (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDH:general`
 - Data source: crypto/secp256k1/libsecp256k1/include/secp256k1_ecdh.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -722,13 +792,13 @@ _file_excerpt · [crypto/secp256k1/libsecp256k1/src/modules/ecdh/main_impl.h](ht
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19632 — Quantum-vulnerable RSA: role not determined (1 file(s))
+### QSI-2026-44242 — Quantum-vulnerable RSA: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:general`
 - Data source: tools/network/dnssec/testHarness.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -758,13 +828,13 @@ _file_excerpt · [tools/network/dnssec/testHarness.go](https://github.com/algora
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19637 — github.com/libp2p/go-libp2p-kad-dht v0.38.0 is affected by GO-2024-3218 (CVE-2023-26248) (no severity rating)
+### QSI-2026-44247 — github.com/libp2p/go-libp2p-kad-dht v0.38.0 is affected by GO-2024-3218 (CVE-2023-26248) (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/github.com/libp2p/go-libp2p-kad-dht@v0.38.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -792,13 +862,13 @@ _tool_output · [OSV.dev GO-2024-3218](https://osv.dev/vulnerability/GO-2024-321
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19638 — golang.org/x/crypto v0.57.0 is affected by GO-2026-5932 (no severity rating)
+### QSI-2026-44248 — golang.org/x/crypto v0.57.0 is affected by GO-2026-5932 (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/crypto@v0.57.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -826,13 +896,13 @@ _tool_output · [OSV.dev GO-2026-5932](https://osv.dev/vulnerability/GO-2026-593
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19644 — golang.org/x/net v0.60.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)
+### QSI-2026-44256 — golang.org/x/net v0.60.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.60.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
@@ -860,13 +930,13 @@ _tool_output · [OSV.dev GO-2026-6860](https://osv.dev/vulnerability/GO-2026-686
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19639 — github.com/ipld/go-ipld-prime v0.22.0 is affected by GHSA-w239-58x2-q8p5 (CVE-2026-42328, GO-2026-5684)
+### QSI-2026-44249 — github.com/ipld/go-ipld-prime v0.22.0 is affected by GHSA-w239-58x2-q8p5 (CVE-2026-42328, GO-2026-5684)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/github.com/ipld/go-ipld-prime@v0.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 29.9 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -894,13 +964,13 @@ _tool_output · [OSV.dev GHSA-w239-58x2-q8p5](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19640 — github.com/klauspost/compress v1.18.0 is affected by GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841)
+### QSI-2026-44250 — github.com/klauspost/compress v1.18.0 is affected by GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/github.com/klauspost/compress@v1.18.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 29.9 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -928,13 +998,13 @@ _tool_output · [OSV.dev GHSA-259r-337f-4rfw](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19633 — github.com/aws/aws-sdk-go v1.34.0 is affected by GO-2022-0635 (CVE-2020-8912) (no severity rating)
+### QSI-2026-44243 — github.com/aws/aws-sdk-go v1.34.0 is affected by GO-2022-0635 (CVE-2020-8912) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/github.com/aws/aws-sdk-go@v1.34.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
@@ -962,13 +1032,13 @@ _tool_output · [OSV.dev GO-2022-0635](https://osv.dev/vulnerability/GO-2022-063
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19634 — github.com/aws/aws-sdk-go v1.34.0 is affected by GO-2022-0646 (CVE-2020-8911) (no severity rating)
+### QSI-2026-44244 — github.com/aws/aws-sdk-go v1.34.0 is affected by GO-2022-0646 (CVE-2020-8911) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/github.com/aws/aws-sdk-go@v1.34.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
@@ -996,13 +1066,13 @@ _tool_output · [OSV.dev GO-2022-0646](https://osv.dev/vulnerability/GO-2022-064
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19641 — github.com/klauspost/compress v1.18.0 is affected by GO-2026-6865 (CVE-2026-116591) (no severity rating)
+### QSI-2026-44251 — github.com/klauspost/compress v1.18.0 is affected by GO-2026-6865 (CVE-2026-116591) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/github.com/klauspost/compress@v1.18.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1030,13 +1100,13 @@ _tool_output · [OSV.dev GO-2026-6865](https://osv.dev/vulnerability/GO-2026-686
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19645 — golang.org/x/net v0.60.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)
+### QSI-2026-44257 — golang.org/x/net v0.60.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.60.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1064,13 +1134,13 @@ _tool_output · [OSV.dev GO-2026-6866](https://osv.dev/vulnerability/GO-2026-686
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-19646 — github.com/klauspost/compress v1.18.7 is affected by GO-2026-6865 (CVE-2026-116591) (no severity rating)
+### QSI-2026-44258 — github.com/klauspost/compress v1.18.7 is affected by GO-2026-6865 (CVE-2026-116591) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/github.com/klauspost/compress@v1.18.7`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 16:16 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 13:55 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1122,6 +1192,8 @@ _Planning assumptions: x for key establishment, x for signatures, y are the defa
 
 ### Post-quantum maturity: Level 2 of 4 — post-quantum in use outside the critical paths
 
+- In use: FN-DSA — cmd/algokey/salted_scheme.go
+- In use: FN-DSA — crypto/msgp_gen.go
 - In use: FN-DSA — data/transactions/logic/doc.go
 - In use: FN-DSA — data/transactions/logic/opcodes.go
 - Present, not wired: FN-DSA — crypto/falconWrapper.go
@@ -1135,9 +1207,9 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **key wrapping and data encryption at rest** | X25519 (1) | QSI-2026-19627 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **transaction and message signing** | ECDSA (26) | QSI-2026-19628 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | Ed25519 (19), X25519 (12), ECDH (4), RSA (1) | QSI-2026-19625, QSI-2026-19626, QSI-2026-19629, QSI-2026-19632 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | X25519 (1) | QSI-2026-44237 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **transaction and message signing** | ECDSA (26) | QSI-2026-44238 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | Ed25519 (20), X25519 (12), ECDH (4), RSA (1) | QSI-2026-44235, QSI-2026-44236, QSI-2026-44239, QSI-2026-44242 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -1147,10 +1219,10 @@ No readiness questionnaire was completed for this project.
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
 | Shor's algorithm — factoring | breaks | Q1 | RSA (3) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (4), ECDSA (41), Ed25519 (32), X25519 (22) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (4), ECDSA (41), Ed25519 (33), X25519 (22) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
 | Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (3), Argon2 (21), BLAKE2 (33), ChaCha20-Poly1305 (28), HKDF (1), HMAC (6), Keccak-256 (2), PBKDF2 (2), Poly1305 (21), Poseidon (5), SHA-2 (25), SHA-3 (2), SHAKE (1), XSalsa20-Poly1305 (43), scrypt (4) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | BLAKE2 (33), Keccak-256 (2), Poseidon (5), SHA-2 (25), SHA-3 (2), SHAKE (1) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
-| Quantum lattice sieving | included in standard parameters | Q1 | FN-DSA (3) | No change for ML-KEM or ML-DSA at the standard parameter sets. A 2024 claim of a polynomial-time quantum LWE algorithm was withdrawn after a bug was found (see claims). |
+| Quantum lattice sieving | included in standard parameters | Q1 | FN-DSA (6) | No change for ML-KEM or ML-DSA at the standard parameter sets. A 2024 claim of a polynomial-time quantum LWE algorithm was withdrawn after a bug was found (see claims). |
 
 _Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
 
@@ -1166,43 +1238,45 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-19631 | Rotate and remove secrets found in logging/telemetryConfig.go. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P2 | QSI-2026-19635 | Upgrade github.com/labstack/echo/v4 to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-246p-cpwv-v3jq (CVE-2026-118653, GO-2026-6872). |
-| P2 | QSI-2026-19636 | Upgrade github.com/labstack/echo/v4 to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-99jh-6h7p-pp36 (CVE-2026-118651, GO-2026-6875). |
-| P2 | QSI-2026-19642 | Upgrade github.com/pion/dtls/v2 to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-9f3f-wv7r-qc8r (CVE-2026-26014, GO-2026-4479). |
-| P2 | QSI-2026-19643 | Upgrade github.com/pion/stun to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-34rh-wp3j-6cxc (CVE-2026-54909). |
-| P2 | QSI-2026-19639 | Upgrade github.com/ipld/go-ipld-prime to a fixed version (0.23.0). | root-cause fix | Dependency scan no longer reports GHSA-w239-58x2-q8p5 (CVE-2026-42328, GO-2026-5684). |
-| P2 | QSI-2026-19640 | Upgrade github.com/klauspost/compress to a fixed version (1.18.7). | root-cause fix | Dependency scan no longer reports GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841). |
+| P1 | QSI-2026-44241 | Rotate and remove secrets found in logging/telemetryConfig.go. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
+| P2 | QSI-2026-44245 | Upgrade github.com/labstack/echo/v4 to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-246p-cpwv-v3jq (CVE-2026-118653, GO-2026-6872). |
+| P2 | QSI-2026-44246 | Upgrade github.com/labstack/echo/v4 to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-99jh-6h7p-pp36 (CVE-2026-118651, GO-2026-6875). |
+| P2 | QSI-2026-44252 | Upgrade github.com/pion/dtls/v2 to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-9f3f-wv7r-qc8r (CVE-2026-26014, GO-2026-4479). |
+| P2 | QSI-2026-44253 | Upgrade github.com/pion/stun to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-34rh-wp3j-6cxc (CVE-2026-54909). |
+| P2 | QSI-2026-44254 | Upgrade go.opentelemetry.io/otel/sdk to a fixed version (1.47.0). | root-cause fix | Dependency scan no longer reports GHSA-q7gw-24fr-5p69 (CVE-2026-128085). |
+| P2 | QSI-2026-44255 | Upgrade go.opentelemetry.io/otel/trace to a fixed version (1.47.0). | root-cause fix | Dependency scan no longer reports GHSA-q7gw-24fr-5p69 (CVE-2026-128085). |
+| P2 | QSI-2026-44249 | Upgrade github.com/ipld/go-ipld-prime to a fixed version (0.23.0). | root-cause fix | Dependency scan no longer reports GHSA-w239-58x2-q8p5 (CVE-2026-42328, GO-2026-5684). |
+| P2 | QSI-2026-44250 | Upgrade github.com/klauspost/compress to a fixed version (1.18.7). | root-cause fix | Dependency scan no longer reports GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841). |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-19637 | Triage GO-2024-3218 (CVE-2023-26248); upgrade github.com/libp2p/go-libp2p-kad-dht to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports GO-2024-3218 (CVE-2023-26248), or the triage is recorded. |
-| P3 | QSI-2026-19638 | Triage GO-2026-5932; upgrade golang.org/x/crypto to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5932, or the triage is recorded. |
-| P3 | QSI-2026-19644 | Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded. |
-| P3 | QSI-2026-19633 | Triage GO-2022-0635 (CVE-2020-8912); upgrade github.com/aws/aws-sdk-go to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports GO-2022-0635 (CVE-2020-8912), or the triage is recorded. |
-| P3 | QSI-2026-19634 | Triage GO-2022-0646 (CVE-2020-8911); upgrade github.com/aws/aws-sdk-go to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports GO-2022-0646 (CVE-2020-8911), or the triage is recorded. |
-| P3 | QSI-2026-19641 | Triage GO-2026-6865 (CVE-2026-116591); upgrade github.com/klauspost/compress to a fixed version (1.20.2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6865 (CVE-2026-116591), or the triage is recorded. |
-| P3 | QSI-2026-19645 | Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded. |
-| P3 | QSI-2026-19646 | Triage GO-2026-6865 (CVE-2026-116591); upgrade github.com/klauspost/compress to a fixed version (1.20.2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6865 (CVE-2026-116591), or the triage is recorded. |
+| P3 | QSI-2026-44247 | Triage GO-2024-3218 (CVE-2023-26248); upgrade github.com/libp2p/go-libp2p-kad-dht to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports GO-2024-3218 (CVE-2023-26248), or the triage is recorded. |
+| P3 | QSI-2026-44248 | Triage GO-2026-5932; upgrade golang.org/x/crypto to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5932, or the triage is recorded. |
+| P3 | QSI-2026-44256 | Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded. |
+| P3 | QSI-2026-44243 | Triage GO-2022-0635 (CVE-2020-8912); upgrade github.com/aws/aws-sdk-go to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports GO-2022-0635 (CVE-2020-8912), or the triage is recorded. |
+| P3 | QSI-2026-44244 | Triage GO-2022-0646 (CVE-2020-8911); upgrade github.com/aws/aws-sdk-go to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports GO-2022-0646 (CVE-2020-8911), or the triage is recorded. |
+| P3 | QSI-2026-44251 | Triage GO-2026-6865 (CVE-2026-116591); upgrade github.com/klauspost/compress to a fixed version (1.20.2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6865 (CVE-2026-116591), or the triage is recorded. |
+| P3 | QSI-2026-44257 | Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded. |
+| P3 | QSI-2026-44258 | Triage GO-2026-6865 (CVE-2026-116591); upgrade github.com/klauspost/compress to a fixed version (1.20.2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6865 (CVE-2026-116591), or the triage is recorded. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-19630 | Add RSA usages at file:installer/rpm/RPM-GPG-KEY-Algorand to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19627 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19628 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19625 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19626 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19629 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19632 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-19630 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-19627 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-19628 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19625 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19626 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-19629 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-19632 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-44240 | Add RSA usages at file:installer/rpm/RPM-GPG-KEY-Algorand to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44237 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44238 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44235 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44236 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44239 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44242 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-44240 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-44237 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-44238 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44235 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44236 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-44239 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-44242 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -1210,13 +1284,19 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -1249,22 +1329,23 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 26. OSV advisory GHSA-34rh-wp3j-6cxc — OSV.dev. <https://osv.dev/vulnerability/GHSA-34rh-wp3j-6cxc> (modified 2026-09-10T03:50:51.344851444Z)
 27. OSV advisory GHSA-99jh-6h7p-pp36 — OSV.dev. <https://osv.dev/vulnerability/GHSA-99jh-6h7p-pp36> (modified 2026-11-05T23:25:35.191121662Z)
 28. OSV advisory GHSA-9f3f-wv7r-qc8r — OSV.dev. <https://osv.dev/vulnerability/GHSA-9f3f-wv7r-qc8r> (modified 2026-09-10T03:50:34.689023565Z)
-29. OSV advisory GHSA-w239-58x2-q8p5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w239-58x2-q8p5> (modified 2026-09-10T03:51:07.104837244Z)
-30. OSV advisory GO-2022-0635 — OSV.dev. <https://osv.dev/vulnerability/GO-2022-0635> (modified 2026-02-04T02:41:58.893164Z)
-31. OSV advisory GO-2022-0646 — OSV.dev. <https://osv.dev/vulnerability/GO-2022-0646> (modified 2026-02-04T02:16:32.066930Z)
-32. OSV advisory GO-2024-3218 — OSV.dev. <https://osv.dev/vulnerability/GO-2024-3218> (modified 2026-07-01T14:59:24.616695200Z)
-33. OSV advisory GO-2026-5932 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5932> (modified 2026-11-02T22:15:06.677088389Z)
-34. OSV advisory GO-2026-6860 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6860> (modified 2026-10-27T21:30:04.890809062Z)
-35. OSV advisory GO-2026-6865 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6865> (modified 2026-11-05T23:15:14.472777299Z)
-36. OSV advisory GO-2026-6866 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6866> (modified 2026-10-27T21:45:08.978077289Z)
-37. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
-38. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-39. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-40. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+29. OSV advisory GHSA-q7gw-24fr-5p69 — OSV.dev. <https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69> (modified 2026-11-13T19:15:05.908318974Z)
+30. OSV advisory GHSA-w239-58x2-q8p5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w239-58x2-q8p5> (modified 2026-09-10T03:51:07.104837244Z)
+31. OSV advisory GO-2022-0635 — OSV.dev. <https://osv.dev/vulnerability/GO-2022-0635> (modified 2026-02-04T02:41:58.893164Z)
+32. OSV advisory GO-2022-0646 — OSV.dev. <https://osv.dev/vulnerability/GO-2022-0646> (modified 2026-02-04T02:16:32.066930Z)
+33. OSV advisory GO-2024-3218 — OSV.dev. <https://osv.dev/vulnerability/GO-2024-3218> (modified 2026-07-01T14:59:24.616695200Z)
+34. OSV advisory GO-2026-5932 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5932> (modified 2026-11-02T22:15:06.677088389Z)
+35. OSV advisory GO-2026-6860 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6860> (modified 2026-10-27T21:30:04.890809062Z)
+36. OSV advisory GO-2026-6865 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6865> (modified 2026-11-05T23:15:14.472777299Z)
+37. OSV advisory GO-2026-6866 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6866> (modified 2026-10-27T21:45:08.978077289Z)
+38. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+39. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+40. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+41. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Appendices: Cryptographic inventory
 
-By origin: dependency manifests 3 (0 Shor-breakable) · own code 93 (26 Shor-breakable) · third-party code in the tree 209 (76 Shor-breakable).
+By origin: dependency manifests 3 (0 Shor-breakable) · own code 97 (27 Shor-breakable) · third-party code in the tree 209 (76 Shor-breakable).
 
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
@@ -1288,12 +1369,13 @@ By origin: dependency manifests 3 (0 Shor-breakable) · own code 93 (26 Shor-bre
 | SHA-3 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 2 | 2 | crypto/stateproof/coinGenerator.go:23; data/transactions/logic/crypto.go:24 |
 | SHAKE |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | crypto/stateproof/coinGenerator.go:78 |
 | Crypto library | v0.57.0 | golang.org/x/crypto (Go x/crypto) | n/a | acceptable | 3 | 3 | go.mod:59; tools/block-generator/go.mod:166; tools/debug/algodump/go.mod:145 |
+| FN-DSA | Falcon-512 |  | post-quantum | acceptable | 3 | 3 | cmd/algokey/salted_scheme.go:189; crypto/falconWrapper.go:192; crypto/msgp_gen.go:1052 |
 | FN-DSA |  |  | post-quantum | acceptable | 3 | 3 | crypto/falconWrapper.go:22; data/transactions/logic/doc.go:50; data/transactions/logic/opcodes.go:860 |
 | ECDH |  |  | vulnerable (Shor) | acceptable | 4 | 4 | crypto/secp256k1/libsecp256k1/include/secp256k1_ecdh.h:20; crypto/secp256k1/libsecp256k1/src/java/org/bitcoin/NativeSecp256k1.java:381; crypto/secp256k1/libsecp256k1/src/java/org_bitcoin_NativeSecp256k1.c:6 |
 | ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 21 | 21 | crypto/secp256k1/curve.go:33; crypto/secp256k1/dummy.go:14; crypto/secp256k1/libsecp256k1/contrib/lax_der_parsing.c:8 |
 | ECDSA |  |  | vulnerable (Shor) | acceptable | 17 | 17 | crypto/secp256k1/ext.h:53; crypto/secp256k1/libsecp256k1/contrib/lax_der_parsing.c:12; crypto/secp256k1/libsecp256k1/contrib/lax_der_parsing.h:82 |
 | ECDSA | P-256 |  | vulnerable (Shor) | acceptable | 3 | 3 | data/transactions/logic/crypto.go:363; data/transactions/logic/fields.go:769; data/transactions/logic/opcodes.go:69 |
-| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 32 | 32 | crypto/batchverifier.c:16; crypto/batchverifier.go:190; crypto/curve25519.go:69 |
+| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 33 | 33 | crypto/batchverifier.c:16; crypto/batchverifier.go:190; crypto/curve25519.go:69 |
 | RSA | 2048-bit |  | vulnerable (Shor) | acceptable | 2 | 2 | installer/rpm/RPM-GPG-KEY-Algorand (line 1) |
 | RSA |  |  | vulnerable (Shor) | acceptable | 1 | 1 | tools/network/dnssec/testHarness.go:22 |
 | X25519 |  |  | vulnerable (Shor) | acceptable | 7 | 7 | crypto/curve25519.go; crypto/include/sodium/crypto_scalarmult_curve25519.h; crypto/libsodium-fork/src/libsodium/crypto_scalarmult/curve25519/sandy2x/curve25519_sandy2x.c |

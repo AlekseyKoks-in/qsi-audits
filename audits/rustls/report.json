@@ -1,8 +1,8 @@
 {
-  "content_sha256": "74f88c306ef6b9e01056273ab7ac0093d924ad978c4b8d8da09e3bd556de334c",
+  "content_sha256": "536ef4981d43332fb99de432eed2019652d91ce70c60918a0dd8d542e0bf44d4",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-06T13:51:26.730149+00:00",
+  "generated_at": "2026-11-23T13:06:04.752585+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "c7e48fbc-601f-42b9-b5b0-3f087b91a433",
+    "id": "62b4afd9-618f-4cec-b9c6-42818c4705ae",
     "mode": "document",
     "title": "Document audit: rustls",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T13:51:14.818747+00:00",
-    "finished_at": "2026-11-06T13:51:26.569963+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T13:05:50.982520+00:00",
+    "finished_at": "2026-11-23T13:06:04.627017+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -879,7 +879,7 @@
     },
     {
       "area": "source_code",
-      "detail": "admin/threads-seq.rs: 51 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "admin/threads-seq.rs: 51 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -889,7 +889,7 @@
     },
     {
       "area": "source_code",
-      "detail": "bogo/check.py: 75 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bogo/check.py: 75 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -944,7 +944,7 @@
     },
     {
       "area": "source_code",
-      "detail": "bogo/src/client.rs: 426 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bogo/src/client.rs: 426 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -954,7 +954,7 @@
     },
     {
       "area": "source_code",
-      "detail": "bogo/src/compress.rs: 138 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bogo/src/compress.rs: 138 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -964,7 +964,7 @@
     },
     {
       "area": "source_code",
-      "detail": "bogo/src/main.rs: 1152 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bogo/src/main.rs: 1152 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -974,7 +974,7 @@
     },
     {
       "area": "source_code",
-      "detail": "bogo/src/opts.rs: 787 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bogo/src/opts.rs: 787 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -984,7 +984,7 @@
     },
     {
       "area": "source_code",
-      "detail": "bogo/src/server.rs: 244 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "bogo/src/server.rs: 244 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1029,7 +1029,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/hash.rs: 58 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-aws-lc-rs/src/hash.rs: 58 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1039,7 +1039,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/hmac.rs: 47 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-aws-lc-rs/src/hmac.rs: 47 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1049,7 +1049,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/hpke.rs: 1279 lines scanned with 16 rule patterns and 266 registry patterns; 335 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-aws-lc-rs/src/hpke.rs: 1279 lines scanned with 16 rule patterns and 340 registry patterns; 335 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1059,7 +1059,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/kx.rs: 346 lines scanned with 16 rule patterns and 266 registry patterns; 34 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-aws-lc-rs/src/kx.rs: 346 lines scanned with 16 rule patterns and 340 registry patterns; 34 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1069,7 +1069,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/lib.rs: 308 lines scanned with 16 rule patterns and 266 registry patterns; 34 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-aws-lc-rs/src/lib.rs: 308 lines scanned with 16 rule patterns and 340 registry patterns; 34 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1079,7 +1079,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/quic.rs: 440 lines scanned with 16 rule patterns and 266 registry patterns; 220 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-aws-lc-rs/src/quic.rs: 440 lines scanned with 16 rule patterns and 340 registry patterns; 220 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1089,7 +1089,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/sign.rs: 1001 lines scanned with 16 rule patterns and 266 registry patterns; 539 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-aws-lc-rs/src/sign.rs: 1001 lines scanned with 16 rule patterns and 340 registry patterns; 539 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1099,7 +1099,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/ticketer.rs: 245 lines scanned with 16 rule patterns and 266 registry patterns; 59 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-aws-lc-rs/src/ticketer.rs: 245 lines scanned with 16 rule patterns and 340 registry patterns; 59 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1109,7 +1109,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/tls12.rs: 659 lines scanned with 16 rule patterns and 266 registry patterns; 82 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-aws-lc-rs/src/tls12.rs: 659 lines scanned with 16 rule patterns and 340 registry patterns; 82 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1119,7 +1119,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/tls13.rs: 576 lines scanned with 16 rule patterns and 266 registry patterns; 78 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-aws-lc-rs/src/tls13.rs: 576 lines scanned with 16 rule patterns and 340 registry patterns; 78 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1129,7 +1129,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-aws-lc-rs/src/verify.rs: 382 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-aws-lc-rs/src/verify.rs: 382 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1144,7 +1144,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-fuzzing-provider/src/lib.rs: 529 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-fuzzing-provider/src/lib.rs: 529 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1159,7 +1159,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-post-quantum/src/lib.rs: 12 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-post-quantum/src/lib.rs: 12 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1204,7 +1204,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/hash.rs: 58 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-ring/src/hash.rs: 58 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1214,7 +1214,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/hmac.rs: 47 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-ring/src/hmac.rs: 47 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1224,7 +1224,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/kx.rs: 189 lines scanned with 16 rule patterns and 266 registry patterns; 34 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-ring/src/kx.rs: 189 lines scanned with 16 rule patterns and 340 registry patterns; 34 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1234,7 +1234,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/lib.rs: 202 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-ring/src/lib.rs: 202 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1244,7 +1244,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/quic.rs: 440 lines scanned with 16 rule patterns and 266 registry patterns; 220 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-ring/src/quic.rs: 440 lines scanned with 16 rule patterns and 340 registry patterns; 220 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1254,7 +1254,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/sign.rs: 805 lines scanned with 16 rule patterns and 266 registry patterns; 392 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-ring/src/sign.rs: 805 lines scanned with 16 rule patterns and 340 registry patterns; 392 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1264,7 +1264,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/ticketer.rs: 201 lines scanned with 16 rule patterns and 266 registry patterns; 46 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-ring/src/ticketer.rs: 201 lines scanned with 16 rule patterns and 340 registry patterns; 46 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1274,7 +1274,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/tls12.rs: 529 lines scanned with 16 rule patterns and 266 registry patterns; 83 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-ring/src/tls12.rs: 529 lines scanned with 16 rule patterns and 340 registry patterns; 83 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1284,7 +1284,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/tls13.rs: 491 lines scanned with 16 rule patterns and 266 registry patterns; 142 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-ring/src/tls13.rs: 491 lines scanned with 16 rule patterns and 340 registry patterns; 142 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1294,7 +1294,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-ring/src/verify.rs: 270 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-ring/src/verify.rs: 270 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1309,7 +1309,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-util/src/key_log_file.rs: 217 lines scanned with 16 rule patterns and 266 registry patterns; 72 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-util/src/key_log_file.rs: 217 lines scanned with 16 rule patterns and 340 registry patterns; 72 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1319,7 +1319,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-util/src/lib.rs: 202 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls-util/src/lib.rs: 202 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1329,7 +1329,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls-util/src/stream.rs: 444 lines scanned with 16 rule patterns and 266 registry patterns; 23 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls-util/src/stream.rs: 444 lines scanned with 16 rule patterns and 340 registry patterns; 23 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1344,12 +1344,12 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/bs_debug.rs: 80 lines scanned with 16 rule patterns and 266 registry patterns; 39 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/bs_debug.rs: 80 lines scanned with 16 rule patterns and 340 registry patterns; 39 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/builder.rs: 173 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/builder.rs: 173 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1359,7 +1359,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/check.rs: 70 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/check.rs: 70 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1369,7 +1369,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/client/config.rs: 837 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/client/config.rs: 837 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1379,12 +1379,12 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/client/connection.rs: 426 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/client/connection.rs: 426 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/client/ech.rs: 1548 lines scanned with 16 rule patterns and 266 registry patterns; 666 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/client/ech.rs: 1548 lines scanned with 16 rule patterns and 340 registry patterns; 666 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1394,42 +1394,42 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/client/handy.rs: 307 lines scanned with 16 rule patterns and 266 registry patterns; 126 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/client/handy.rs: 307 lines scanned with 16 rule patterns and 340 registry patterns; 126 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/client/hs.rs: 1166 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/client/hs.rs: 1166 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/client/mod.rs: 534 lines scanned with 16 rule patterns and 266 registry patterns; 51 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/client/mod.rs: 534 lines scanned with 16 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/client/tls12.rs: 1271 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/client/tls12.rs: 1271 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/client/tls13.rs: 1772 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/client/tls13.rs: 1772 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/common_state.rs: 454 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/common_state.rs: 454 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/compress.rs: 711 lines scanned with 16 rule patterns and 266 registry patterns; 255 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/compress.rs: 711 lines scanned with 16 rule patterns and 340 registry patterns; 255 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/conn/handshake.rs: 332 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/conn/handshake.rs: 332 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1439,7 +1439,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/conn/kernel.rs: 221 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/conn/kernel.rs: 221 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1449,7 +1449,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/conn/mod.rs: 798 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/conn/mod.rs: 798 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1459,7 +1459,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/conn/receive.rs: 1225 lines scanned with 16 rule patterns and 266 registry patterns; 72 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/conn/receive.rs: 1225 lines scanned with 16 rule patterns and 340 registry patterns; 72 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1469,12 +1469,12 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/conn/send.rs: 536 lines scanned with 16 rule patterns and 266 registry patterns; 43 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/conn/send.rs: 536 lines scanned with 16 rule patterns and 340 registry patterns; 43 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/conn/split.rs: 697 lines scanned with 16 rule patterns and 266 registry patterns; 101 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/conn/split.rs: 697 lines scanned with 16 rule patterns and 340 registry patterns; 101 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1484,42 +1484,42 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/cipher/messages.rs: 876 lines scanned with 16 rule patterns and 266 registry patterns; 305 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/crypto/cipher/messages.rs: 876 lines scanned with 16 rule patterns and 340 registry patterns; 305 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/cipher/mod.rs: 599 lines scanned with 16 rule patterns and 266 registry patterns; 150 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/crypto/cipher/mod.rs: 599 lines scanned with 16 rule patterns and 340 registry patterns; 150 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/enums.rs: 554 lines scanned with 16 rule patterns and 266 registry patterns; 48 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/crypto/enums.rs: 554 lines scanned with 16 rule patterns and 340 registry patterns; 48 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/hash.rs: 83 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/crypto/hash.rs: 83 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/hmac.rs: 118 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/crypto/hmac.rs: 118 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/hpke.rs: 254 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/crypto/hpke.rs: 254 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/kx/ffdhe.rs: 274 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/crypto/kx/ffdhe.rs: 274 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/kx/mod.rs: 689 lines scanned with 16 rule patterns and 266 registry patterns; 30 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/crypto/kx/mod.rs: 689 lines scanned with 16 rule patterns and 340 registry patterns; 30 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1529,7 +1529,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/mod.rs: 640 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/crypto/mod.rs: 640 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1539,7 +1539,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/signer.rs: 490 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/crypto/signer.rs: 490 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1549,22 +1549,22 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/tls12.rs: 118 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/crypto/tls12.rs: 118 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/crypto/tls13.rs: 269 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/crypto/tls13.rs: 269 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/enums.rs: 256 lines scanned with 16 rule patterns and 266 registry patterns; 16 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/enums.rs: 256 lines scanned with 16 rule patterns and 340 registry patterns; 16 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/error/mod.rs: 1764 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/error/mod.rs: 1764 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1574,12 +1574,12 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/hash_hs.rs: 346 lines scanned with 16 rule patterns and 266 registry patterns; 166 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/hash_hs.rs: 346 lines scanned with 16 rule patterns and 340 registry patterns; 166 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/key_log.rs: 62 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/key_log.rs: 62 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1589,7 +1589,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/lib.rs: 471 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/lib.rs: 471 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1599,17 +1599,17 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/limited_cache.rs: 262 lines scanned with 16 rule patterns and 266 registry patterns; 148 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/limited_cache.rs: 262 lines scanned with 16 rule patterns and 340 registry patterns; 148 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/lock.rs: 34 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/lock.rs: 34 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/manual/defaults.rs: 56 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/manual/defaults.rs: 56 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1619,7 +1619,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/manual/features.rs: 104 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/manual/features.rs: 104 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1629,7 +1629,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/manual/fips.rs: 35 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/manual/fips.rs: 35 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1639,7 +1639,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/manual/howto.rs: 123 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/manual/howto.rs: 123 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1649,7 +1649,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/manual/implvulns.rs: 104 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/manual/implvulns.rs: 104 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1659,7 +1659,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/manual/mod.rs: 33 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/manual/mod.rs: 33 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1669,7 +1669,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/manual/tlsvulns.rs: 175 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/manual/tlsvulns.rs: 175 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1679,27 +1679,27 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/client_hello.rs: 906 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/msgs/client_hello.rs: 906 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/codec.rs: 628 lines scanned with 16 rule patterns and 266 registry patterns; 20 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/msgs/codec.rs: 628 lines scanned with 16 rule patterns and 340 registry patterns; 20 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/deframer/buffers.rs: 78 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/msgs/deframer/buffers.rs: 78 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/deframer/mod.rs: 768 lines scanned with 16 rule patterns and 266 registry patterns; 314 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/msgs/deframer/mod.rs: 768 lines scanned with 16 rule patterns and 340 registry patterns; 314 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/enums.rs: 287 lines scanned with 16 rule patterns and 266 registry patterns; 89 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/msgs/enums.rs: 287 lines scanned with 16 rule patterns and 340 registry patterns; 89 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1709,12 +1709,12 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/fragmenter.rs: 269 lines scanned with 16 rule patterns and 266 registry patterns; 156 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/msgs/fragmenter.rs: 269 lines scanned with 16 rule patterns and 340 registry patterns; 156 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/handshake.rs: 1530 lines scanned with 16 rule patterns and 266 registry patterns; 19 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/msgs/handshake.rs: 1530 lines scanned with 16 rule patterns and 340 registry patterns; 19 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1724,7 +1724,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/macros.rs: 368 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/msgs/macros.rs: 368 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1734,22 +1734,22 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/mod.rs: 841 lines scanned with 16 rule patterns and 266 registry patterns; 143 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/msgs/mod.rs: 841 lines scanned with 16 rule patterns and 340 registry patterns; 143 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/msgs/server_hello.rs: 649 lines scanned with 16 rule patterns and 266 registry patterns; 55 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/msgs/server_hello.rs: 649 lines scanned with 16 rule patterns and 340 registry patterns; 55 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/quic.rs: 1061 lines scanned with 16 rule patterns and 266 registry patterns; 83 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/quic.rs: 1061 lines scanned with 16 rule patterns and 340 registry patterns; 83 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/server/config.rs: 955 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/server/config.rs: 955 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1759,37 +1759,37 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/server/connection.rs: 183 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/server/connection.rs: 183 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/server/handy.rs: 290 lines scanned with 16 rule patterns and 266 registry patterns; 119 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/server/handy.rs: 290 lines scanned with 16 rule patterns and 340 registry patterns; 119 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/server/hs.rs: 919 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/server/hs.rs: 919 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/server/mod.rs: 217 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/server/mod.rs: 217 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/server/tls12.rs: 1156 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/server/tls12.rs: 1156 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/server/tls13.rs: 1752 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/server/tls13.rs: 1752 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/suites.rs: 219 lines scanned with 16 rule patterns and 266 registry patterns; 20 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/suites.rs: 219 lines scanned with 16 rule patterns and 340 registry patterns; 20 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1799,17 +1799,17 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/ticketer.rs: 318 lines scanned with 16 rule patterns and 266 registry patterns; 132 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/ticketer.rs: 318 lines scanned with 16 rule patterns and 340 registry patterns; 132 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/time_provider.rs: 29 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/time_provider.rs: 29 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/tls12.rs: 446 lines scanned with 16 rule patterns and 266 registry patterns; 28 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/tls12.rs: 446 lines scanned with 16 rule patterns and 340 registry patterns; 28 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1819,12 +1819,12 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/tls13/key_schedule.rs: 1456 lines scanned with 16 rule patterns and 266 registry patterns; 223 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/tls13/key_schedule.rs: 1456 lines scanned with 16 rule patterns and 340 registry patterns; 223 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/tls13/mod.rs: 245 lines scanned with 16 rule patterns and 266 registry patterns; 54 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/tls13/mod.rs: 245 lines scanned with 16 rule patterns and 340 registry patterns; 54 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1834,7 +1834,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/verify.rs: 485 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/verify.rs: 485 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1844,7 +1844,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/versions.rs: 94 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/versions.rs: 94 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1854,7 +1854,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/webpki/anchors.rs: 144 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "rustls/src/webpki/anchors.rs: 144 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1864,7 +1864,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/webpki/client_verifier.rs: 611 lines scanned with 16 rule patterns and 266 registry patterns; 201 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/webpki/client_verifier.rs: 611 lines scanned with 16 rule patterns and 340 registry patterns; 201 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1874,7 +1874,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/webpki/mod.rs: 282 lines scanned with 16 rule patterns and 266 registry patterns; 121 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/webpki/mod.rs: 282 lines scanned with 16 rule patterns and 340 registry patterns; 121 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1884,17 +1884,17 @@
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/webpki/server_verifier.rs: 410 lines scanned with 16 rule patterns and 266 registry patterns; 125 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/webpki/server_verifier.rs: 410 lines scanned with 16 rule patterns and 340 registry patterns; 125 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/webpki/verify.rs: 257 lines scanned with 16 rule patterns and 266 registry patterns; 55 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/webpki/verify.rs: 257 lines scanned with 16 rule patterns and 340 registry patterns; 55 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rustls/src/x509.rs: 134 lines scanned with 16 rule patterns and 266 registry patterns; 84 lines in #[cfg(test)] modules ignored",
+      "detail": "rustls/src/x509.rs: 134 lines scanned with 16 rule patterns and 340 registry patterns; 84 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1904,7 +1904,7 @@
     },
     {
       "area": "osv_advisories",
-      "detail": "281 pinned packages queried at OSV.dev; 1 affected",
+      "detail": "281 pinned packages queried at OSV.dev; 2 affected",
       "status": "checked"
     }
   ],
@@ -1926,9 +1926,9 @@
       "count": 110,
       "rows": 110,
       "examples": [
-        "admin/threads-seq.rs: 51 lines scanned with 16 rule patterns and 266 registry patterns",
-        "bogo/check.py: 75 lines scanned with 16 rule patterns and 266 registry patterns",
-        "bogo/src/client.rs: 426 lines scanned with 16 rule patterns and 266 registry patterns"
+        "admin/threads-seq.rs: 51 lines scanned with 16 rule patterns and 340 registry patterns",
+        "bogo/check.py: 75 lines scanned with 16 rule patterns and 340 registry patterns",
+        "bogo/src/client.rs: 426 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -1979,7 +1979,7 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "281 pinned packages queried at OSV.dev; 1 affected"
+        "281 pinned packages queried at OSV.dev; 2 affected"
       ]
     }
   ],
@@ -2033,7 +2033,7 @@
   "assets": {
     "registered": [],
     "examined_inputs": [
-      "281 pinned packages queried at OSV.dev; 1 affected",
+      "281 pinned packages queried at OSV.dev; 2 affected",
       "Cargo.lock",
       "Cargo.toml",
       "admin/threads-seq.rs",
@@ -2178,21 +2178,21 @@
     "by_severity": {
       "critical": 0,
       "high": 6,
-      "medium": 8,
-      "low": 11,
+      "medium": 9,
+      "low": 12,
       "info": 5
     },
     "by_classification": {
       "confirmed_vulnerability": 5,
-      "known_vulnerable_component": 1,
+      "known_vulnerable_component": 2,
       "confirmed_misconfiguration": 4,
       "potential_crypto_risk": 0,
-      "pq_long_term_risk": 10,
+      "pq_long_term_risk": 11,
       "improvement": 10,
       "insufficient_data": 0
     },
-    "total": 30,
-    "posture_index": 8,
+    "total": 32,
+    "posture_index": 7,
     "pq_vulnerable_share": 26.1,
     "inventory_total": 111,
     "inventory_by_quantum_status": {
@@ -2220,8 +2220,8 @@
   },
   "findings": [
     {
-      "id": "0d491029-7def-44ff-bd5a-5931fc26031b",
-      "public_id": "QSI-2026-18765",
+      "id": "c68390c5-6591-4c23-a99e-0a96bfb8aed8",
+      "public_id": "QSI-2026-43275",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p256_key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/ecdsa_p256_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2240,8 +2240,8 @@
       "triage": null,
       "affected_asset": "file:bogo/keys/ecdsa_p256_key.pem",
       "data_source": "bogo/keys/ecdsa_p256_key.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.389716+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.480139+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2316,8 +2316,8 @@
           "content": "Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …",
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "b181dfde192465a0c57146cfe4f4b9a8b535a1fd7ce1971a421cafcad63676cf",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.396721+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.487189+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/ecdsa_p256_key.pem#L1"
         }
       ],
@@ -2355,8 +2355,8 @@
       ]
     },
     {
-      "id": "928723c4-a9c5-4498-9282-2648f0049699",
-      "public_id": "QSI-2026-18770",
+      "id": "f13e423d-e4d6-48ae-b3ad-d2619ab07808",
+      "public_id": "QSI-2026-43280",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p384_key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/ecdsa_p384_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2375,8 +2375,8 @@
       "triage": null,
       "affected_asset": "file:bogo/keys/ecdsa_p384_key.pem",
       "data_source": "bogo/keys/ecdsa_p384_key.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.424085+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.505188+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2451,8 +2451,8 @@
           "content": "Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …",
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "993c5c04104591939eba5820d1bd27bf90de98bc588b81a9182a91887d03437e",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.432131+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.511135+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/ecdsa_p384_key.pem#L1"
         }
       ],
@@ -2490,8 +2490,8 @@
       ]
     },
     {
-      "id": "f48cbf2f-0619-4055-bc98-7b55b2052515",
-      "public_id": "QSI-2026-18771",
+      "id": "49b03fad-3950-433c-ace3-11ee1ddcf891",
+      "public_id": "QSI-2026-43281",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2510,8 +2510,8 @@
       "triage": null,
       "affected_asset": "file:bogo/keys/key.pem",
       "data_source": "bogo/keys/key.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.429284+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.509529+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2586,8 +2586,8 @@
           "content": "Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …",
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "a3673a3ea47f8fda764bb4ff5ad2f10f238634fe3779cc21a8de59eee59dbcc8",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.441195+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.515913+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/key.pem#L1"
         }
       ],
@@ -2625,8 +2625,8 @@
       ]
     },
     {
-      "id": "4b9afdda-a2f0-4ff3-a8d0-59f6a7fbcab8",
-      "public_id": "QSI-2026-18777",
+      "id": "5e6553b3-c8e6-4eef-b389-548af7f2806a",
+      "public_id": "QSI-2026-43287",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/rsa_1024_key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/rsa_1024_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2645,8 +2645,8 @@
       "triage": null,
       "affected_asset": "file:bogo/keys/rsa_1024_key.pem",
       "data_source": "bogo/keys/rsa_1024_key.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.473585+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.537431+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2721,8 +2721,8 @@
           "content": "Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …",
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "e750fef901c55a35482e7d41eb20ce50116f7e98f1c3d0d17140a643f3175fa3",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.483365+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.543362+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/rsa_1024_key.pem#L1"
         }
       ],
@@ -2760,8 +2760,8 @@
       ]
     },
     {
-      "id": "683ea8eb-6617-443d-b439-782a93aa0060",
-      "public_id": "QSI-2026-18782",
+      "id": "7c3cba01-8ecf-4662-960c-fa78b5da3237",
+      "public_id": "QSI-2026-43292",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/rsa_chain_key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/rsa_chain_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2780,8 +2780,8 @@
       "triage": null,
       "affected_asset": "file:bogo/keys/rsa_chain_key.pem",
       "data_source": "bogo/keys/rsa_chain_key.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.508786+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.560345+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2856,8 +2856,8 @@
           "content": "Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …",
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "222931bc4617f0de6a4b2be8d02b1e4b96f0cf2d78e85c07e4617855f5fa63bd",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.518528+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.567408+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/rsa_chain_key.pem#L1"
         }
       ],
@@ -2895,8 +2895,8 @@
       ]
     },
     {
-      "id": "0e5448c9-8464-42ce-ac27-eaf895029f1d",
-      "public_id": "QSI-2026-18772",
+      "id": "bd03e616-ab9f-4c7e-9876-cc5175fe9a92",
+      "public_id": "QSI-2026-43282",
       "rule_id": "CERT-WEAK-RSA",
       "title": "RSA-ключ короче 2048 бит (1024 бит, O=bogo-rsa1024)",
       "description": "Сертификат O=bogo-rsa1024 использует RSA-ключ длиной 1024 бит. NIST SP 800-131A запрещает RSA-ключи короче 2048 бит.",
@@ -2915,8 +2915,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.439002+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.514697+00:00",
       "risk_score": 68.8,
       "risk_breakdown": {
         "score": 68.8,
@@ -2978,8 +2978,8 @@
           "content": "Subject: O=bogo-rsa1024\nIssuer: O=bogo-rsa1024\nSerial: f757e6886bee4862\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 1024-bit\nSignature algorithm: 1.2.840.113549.1.1.5\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 20c2a582931b2b285d1cd04f0aad51e57c396d4e5c43ef4336e437e2a3a5ea4c",
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.448366+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.520868+00:00",
           "url": null
         }
       ],
@@ -3002,8 +3002,8 @@
       ]
     },
     {
-      "id": "6bd30313-4463-4113-bf13-2c4456e66fbd",
-      "public_id": "QSI-2026-18761",
+      "id": "eccc73f3-a71c-42d2-a072-08bb5a815bf2",
+      "public_id": "QSI-2026-43271",
       "rule_id": "CERT-WEAK-SIGNATURE-HASH",
       "title": "Сертификат подписан с SHA1 (O=bogo-p256)",
       "description": "Подпись сертификата использует SHA1, недопустимый для генерации цифровых подписей.",
@@ -3022,8 +3022,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-p256",
       "data_source": "bogo/keys/ecdsa_p256_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.360347+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.457748+00:00",
       "risk_score": 54.8,
       "risk_breakdown": {
         "score": 54.8,
@@ -3078,8 +3078,8 @@
           "content": "Subject: O=bogo-p256\nIssuer: O=bogo-p256\nSerial: bd2d56ff2f45249d\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: ECDSA secp256r1\nSignature algorithm: 1.2.840.10045.4.1 (ECDSA)\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: d63b0780beedd4d79abea3caa1e8703aa88fb434c7b1fbc9c2c18d853fbad396",
           "content_sha256": "aadb2d647432f5f4619a7b159584f2b08b1dd2ea7ea196c5653583c8a0aef9c4",
           "source_sha256": "0ed91efd9ab1677924bd95214bc191ea506bf3fc3edde33892e210fae025e47f",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.369738+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.465194+00:00",
           "url": null
         }
       ],
@@ -3102,8 +3102,8 @@
       ]
     },
     {
-      "id": "319d7bde-812c-4193-9f5e-15ee578e3f6d",
-      "public_id": "QSI-2026-18766",
+      "id": "6f2d6e4c-2393-4ca2-8c76-8ba34349f3b0",
+      "public_id": "QSI-2026-43276",
       "rule_id": "CERT-WEAK-SIGNATURE-HASH",
       "title": "Сертификат подписан с SHA1 (O=bogo-p384)",
       "description": "Подпись сертификата использует SHA1, недопустимый для генерации цифровых подписей.",
@@ -3122,8 +3122,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-p384",
       "data_source": "bogo/keys/ecdsa_p384_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.395078+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.485785+00:00",
       "risk_score": 54.8,
       "risk_breakdown": {
         "score": 54.8,
@@ -3178,8 +3178,8 @@
           "content": "Subject: O=bogo-p384\nIssuer: O=bogo-p384\nSerial: 9daae883165eedc6\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: ECDSA secp384r1\nSignature algorithm: 1.2.840.10045.4.1 (ECDSA)\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 1e256d34ee1ceb1d5885608ab9077d3e423ec5b96679d6b7dc3d9bc3edfe1068",
           "content_sha256": "f8c42a96d8061f0be20b58aebdb732d255783cda1d9a67208577c36343e488bc",
           "source_sha256": "17ba7999b13cd51daf9be90fb2c666801b5e58fa469e1f6e3971c84eb5a963c7",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.404844+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.492726+00:00",
           "url": null
         }
       ],
@@ -3202,8 +3202,8 @@
       ]
     },
     {
-      "id": "a601d060-5398-4734-9467-0cd5b1979f9f",
-      "public_id": "QSI-2026-18773",
+      "id": "796081fe-d339-4c8c-98b6-992b9a782f28",
+      "public_id": "QSI-2026-43283",
       "rule_id": "CERT-WEAK-SIGNATURE-HASH",
       "title": "Сертификат подписан с SHA1 (O=bogo-rsa1024)",
       "description": "Подпись сертификата использует SHA1, недопустимый для генерации цифровых подписей.",
@@ -3222,8 +3222,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.446641+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.519609+00:00",
       "risk_score": 54.8,
       "risk_breakdown": {
         "score": 54.8,
@@ -3278,8 +3278,8 @@
           "content": "Subject: O=bogo-rsa1024\nIssuer: O=bogo-rsa1024\nSerial: f757e6886bee4862\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 1024-bit\nSignature algorithm: 1.2.840.113549.1.1.5\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 20c2a582931b2b285d1cd04f0aad51e57c396d4e5c43ef4336e437e2a3a5ea4c",
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.454622+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.525517+00:00",
           "url": null
         }
       ],
@@ -3302,8 +3302,8 @@
       ]
     },
     {
-      "id": "3d578f33-bec0-4746-8d13-79cc2be28e5c",
-      "public_id": "QSI-2026-18787",
+      "id": "5207f97c-7e06-4674-939d-bbff262c85ca",
+      "public_id": "QSI-2026-43298",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "tokio 1.54.0 затронут GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384)",
       "description": "OSV.dev сообщает GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384) для пакета crates.io tokio версии 1.54.0: Tokio: Race condition in `tokio::time::Interval`. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3323,8 +3323,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/tokio@1.54.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.557570+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.608863+00:00",
       "risk_score": 44.2,
       "risk_breakdown": {
         "score": 44.2,
@@ -3379,8 +3379,8 @@
           "content": "{\"id\": \"GHSA-5wjr-9356-4wc8\", \"aliases\": [\"CVE-2026-115567\", \"RUSTSEC-2026-0384\"], \"modified\": \"2026-10-23T21:10:33.527479876Z\", \"summary\": \"Tokio: Race condition in `tokio::time::Interval`\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:L/AC:H/AT:P/PR:L/UI:N/VC:N/VI:L/VA:H/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": true}",
           "content_sha256": "3dc0a6e90412029dd332ffb894bc27eec732a866dcbc20a92ce043a94998a1f0",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.625454+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.617265+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-5wjr-9356-4wc8"
         }
       ],
@@ -3403,11 +3403,222 @@
       ]
     },
     {
-      "id": "a89764c0-7958-40ea-a665-cf31751f0041",
-      "public_id": "QSI-2026-18783",
+      "id": "fcabe373-6712-48df-b7d2-9dc21212bedd",
+      "public_id": "QSI-2026-43296",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))",
-      "description": "122 упоминаний RSA в 10 файл(ах), например bogo/src/main.rs:38. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.",
+      "title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (2 файл(ов))",
+      "description": "6 упоминаний RSA в 2 файл(ах), например rustls-aws-lc-rs/src/tls12.rs:139. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте rustls-aws-lc-rs/src/tls12.rs:139 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:RSA:key_wrapping",
+      "data_source": "rustls-aws-lc-rs/src/tls12.rs",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.591784+00:00",
+      "risk_score": 36.9,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "key_establishment",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life (harvest now, decrypt later)",
+          "margin_years": 7.0
+        },
+        "score": 36.9,
+        "factors": {
+          "ease": 0.3,
+          "asset": 1.0,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 54.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 10.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "rustls-aws-lc-rs/src/tls12.rs",
+          "location": "line 139",
+          "content": "  138 | static TLS12_RSA_SCHEMES: &[SignatureScheme] = &[\n  139 |     SignatureScheme::RSA_PSS_SHA512,\n  140 |     SignatureScheme::RSA_PSS_SHA384,",
+          "content_sha256": "0b570c81a37b449fc919861a0767341a12b68565cbd749419fee438e27bd00a0",
+          "source_sha256": "60de6a06560687802e2a736b175e12f28a57a4b68fa0cac2a53c93257820682e",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.602759+00:00",
+          "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/tls12.rs#L139"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "rustls-aws-lc-rs/src/tls12.rs",
+          "location": "line 140",
+          "content": "  139 |     SignatureScheme::RSA_PSS_SHA512,\n  140 |     SignatureScheme::RSA_PSS_SHA384,\n  141 |     SignatureScheme::RSA_PSS_SHA256,",
+          "content_sha256": "34d48c586fa9ab549f66562e36bb2064648181df60aa6529a4403e9b12ebe303",
+          "source_sha256": "60de6a06560687802e2a736b175e12f28a57a4b68fa0cac2a53c93257820682e",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.602767+00:00",
+          "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/tls12.rs#L140"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "rustls-aws-lc-rs/src/tls12.rs",
+          "location": "line 141",
+          "content": "  140 |     SignatureScheme::RSA_PSS_SHA384,\n  141 |     SignatureScheme::RSA_PSS_SHA256,\n  142 |     SignatureScheme::RSA_PKCS1_SHA512,",
+          "content_sha256": "133d03b467dfc311015e2067ebb911bbf918e45174ce9b5e3dcbaaf676bd32bd",
+          "source_sha256": "60de6a06560687802e2a736b175e12f28a57a4b68fa0cac2a53c93257820682e",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.602772+00:00",
+          "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/tls12.rs#L141"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "rustls-ring/src/tls12.rs",
+          "location": "line 126",
+          "content": "  125 | static TLS12_RSA_SCHEMES: &[SignatureScheme] = &[\n  126 |     SignatureScheme::RSA_PSS_SHA512,\n  127 |     SignatureScheme::RSA_PSS_SHA384,",
+          "content_sha256": "29e3c573057b83a9b9f59896d4d6fd0c259c51050c089518fed648b6780bb4d7",
+          "source_sha256": "8d0708d095fb964399077c6098b1517a9f253e1a0b8779c19f8662853b3105a2",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.602776+00:00",
+          "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/tls12.rs#L126"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "rustls-ring/src/tls12.rs",
+          "location": "line 127",
+          "content": "  126 |     SignatureScheme::RSA_PSS_SHA512,\n  127 |     SignatureScheme::RSA_PSS_SHA384,\n  128 |     SignatureScheme::RSA_PSS_SHA256,",
+          "content_sha256": "7c2e8cf33230bad61e0cacc8e1a7f3b0548f412b02bb0e6bf243f0d247f74de2",
+          "source_sha256": "8d0708d095fb964399077c6098b1517a9f253e1a0b8779c19f8662853b3105a2",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.602781+00:00",
+          "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/tls12.rs#L127"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "rustls-ring/src/tls12.rs",
+          "location": "line 128",
+          "content": "  127 |     SignatureScheme::RSA_PSS_SHA384,\n  128 |     SignatureScheme::RSA_PSS_SHA256,\n  129 |     SignatureScheme::RSA_PKCS1_SHA512,",
+          "content_sha256": "30bb30de910aed702e46cd517f004de5e00a8d5d2654aae11710de5665b5f0c5",
+          "source_sha256": "8d0708d095fb964399077c6098b1517a9f253e1a0b8779c19f8662853b3105a2",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.602786+00:00",
+          "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/tls12.rs#L128"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "b66b7565-3795-4d2e-b535-326c05c8bcae",
+      "public_id": "QSI-2026-43293",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (8 файл(ов))",
+      "description": "116 упоминаний RSA в 8 файл(ах), например bogo/src/main.rs:38. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.",
       "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
       "recommendation": "Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise).",
       "retest": "Повторите инвентаризацию после рефакторинга.",
@@ -3423,8 +3634,8 @@
       "triage": null,
       "affected_asset": "source-code:RSA:channel",
       "data_source": "bogo/src/main.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.516159+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.565643+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -3520,8 +3731,8 @@
           "content": "   37 |     ECDSA_P384_SHA512, ECDSA_P521_SHA256, ECDSA_P521_SHA384, ECDSA_P521_SHA512, ED25519,\n   38 |     RSA_PKCS1_2048_8192_SHA256, RSA_PKCS1_2048_8192_SHA256_ABSENT_PARAMS,\n   39 |     RSA_PKCS1_2048_8192_SHA384, RSA_PKCS1_2048_8192_SHA384_ABSENT_PARAMS,",
           "content_sha256": "ae93639ea90759944ff6c9ac3ea3f2d3ff17841a2655526be6a8e94ea86bb1d6",
           "source_sha256": "e45f12d86e375ecb013e99a3e0edc5b4a5a6695ff941b95ef39fcacf13617eb8",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528069+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575414+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/src/main.rs#L38"
         },
         {
@@ -3531,8 +3742,8 @@
           "content": "   38 |     RSA_PKCS1_2048_8192_SHA256, RSA_PKCS1_2048_8192_SHA256_ABSENT_PARAMS,\n   39 |     RSA_PKCS1_2048_8192_SHA384, RSA_PKCS1_2048_8192_SHA384_ABSENT_PARAMS,\n   40 |     RSA_PKCS1_2048_8192_SHA512, RSA_PKCS1_2048_8192_SHA512_ABSENT_PARAMS,",
           "content_sha256": "ac65861d1f71343dfbc693d933128a251d8fc6e456375a026862837216789214",
           "source_sha256": "e45f12d86e375ecb013e99a3e0edc5b4a5a6695ff941b95ef39fcacf13617eb8",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528076+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575422+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/src/main.rs#L39"
         },
         {
@@ -3542,8 +3753,8 @@
           "content": "   39 |     RSA_PKCS1_2048_8192_SHA384, RSA_PKCS1_2048_8192_SHA384_ABSENT_PARAMS,\n   40 |     RSA_PKCS1_2048_8192_SHA512, RSA_PKCS1_2048_8192_SHA512_ABSENT_PARAMS,\n   41 |     RSA_PSS_2048_8192_SHA256_LEGACY_KEY, RSA_PSS_2048_8192_SHA384_LEGACY_KEY,",
           "content_sha256": "04b5641cdbcd74d1958b78ad94e77e373dbd0426282d275502844df765867978",
           "source_sha256": "e45f12d86e375ecb013e99a3e0edc5b4a5a6695ff941b95ef39fcacf13617eb8",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528080+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575427+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/src/main.rs#L40"
         },
         {
@@ -3553,8 +3764,8 @@
           "content": "   84 |     ECDSA_P521_SHA384, ECDSA_P521_SHA512, ED25519, ML_DSA_44, ML_DSA_65, ML_DSA_87,\n   85 |     RSA_PKCS1_2048_8192_SHA256, RSA_PKCS1_2048_8192_SHA256_ABSENT_PARAMS,\n   86 |     RSA_PKCS1_2048_8192_SHA384, RSA_PKCS1_2048_8192_SHA384_ABSENT_PARAMS,",
           "content_sha256": "9f6f98d1de7e2b3840b592c0c63f0603942c576b3a5660e0c25b854a20c8b4c5",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528083+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575432+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L85"
         },
         {
@@ -3564,8 +3775,8 @@
           "content": "   85 |     RSA_PKCS1_2048_8192_SHA256, RSA_PKCS1_2048_8192_SHA256_ABSENT_PARAMS,\n   86 |     RSA_PKCS1_2048_8192_SHA384, RSA_PKCS1_2048_8192_SHA384_ABSENT_PARAMS,\n   87 |     RSA_PKCS1_2048_8192_SHA512, RSA_PKCS1_2048_8192_SHA512_ABSENT_PARAMS,",
           "content_sha256": "200d9072d978f659916b5a162ce0256cf663a721c5215a2656131557d3ad99fa",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528086+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575436+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L86"
         },
         {
@@ -3575,8 +3786,8 @@
           "content": "   86 |     RSA_PKCS1_2048_8192_SHA384, RSA_PKCS1_2048_8192_SHA384_ABSENT_PARAMS,\n   87 |     RSA_PKCS1_2048_8192_SHA512, RSA_PKCS1_2048_8192_SHA512_ABSENT_PARAMS,\n   88 |     RSA_PKCS1_3072_8192_SHA384, RSA_PSS_2048_8192_SHA256_LEGACY_KEY,",
           "content_sha256": "1cad07b3681447a6e10b4c7b464253b8ca072090a7ec6e0ecedc313269c4e986",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528090+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575441+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L87"
         },
         {
@@ -3586,8 +3797,8 @@
           "content": "   30 |             SignatureScheme::RSA_PKCS1_SHA512 => &signature::RSA_PKCS1_SHA512,\n   31 |             SignatureScheme::RSA_PSS_SHA256 => &signature::RSA_PSS_SHA256,\n   32 |             SignatureScheme::RSA_PSS_SHA384 => &signature::RSA_PSS_SHA384,",
           "content_sha256": "1c69ad0d035f3aa9ee3e7961f7c6f8af824eeecff0e82e564d0b9ce38314b555",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528094+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575445+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L31"
         },
         {
@@ -3597,8 +3808,8 @@
           "content": "   31 |             SignatureScheme::RSA_PSS_SHA256 => &signature::RSA_PSS_SHA256,\n   32 |             SignatureScheme::RSA_PSS_SHA384 => &signature::RSA_PSS_SHA384,\n   33 |             SignatureScheme::RSA_PSS_SHA512 => &signature::RSA_PSS_SHA512,",
           "content_sha256": "67019936386f3abd23d0099a05e090be0b449efe244ebfae638a4efe2181d00f",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528097+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575450+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L32"
         },
         {
@@ -3608,20 +3819,20 @@
           "content": "   32 |             SignatureScheme::RSA_PSS_SHA384 => &signature::RSA_PSS_SHA384,\n   33 |             SignatureScheme::RSA_PSS_SHA512 => &signature::RSA_PSS_SHA512,\n   34 |             _ => unreachable!(),",
           "content_sha256": "54fd4d85c9235a51488a6453e4d0efb85e9feb6bf184603cb4e1aee7dc85e8d5",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528100+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575454+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L33"
         },
         {
           "kind": "file_excerpt",
-          "source": "rustls-aws-lc-rs/src/tls12.rs",
-          "location": "line 139",
-          "content": "  138 | static TLS12_RSA_SCHEMES: &[SignatureScheme] = &[\n  139 |     SignatureScheme::RSA_PSS_SHA512,\n  140 |     SignatureScheme::RSA_PSS_SHA384,",
-          "content_sha256": "0b570c81a37b449fc919861a0767341a12b68565cbd749419fee438e27bd00a0",
-          "source_sha256": "60de6a06560687802e2a736b175e12f28a57a4b68fa0cac2a53c93257820682e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.528103+00:00",
-          "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/tls12.rs#L139"
+          "source": "rustls-aws-lc-rs/src/verify.rs",
+          "location": "line 27",
+          "content": "   26 |         RSA_PSS_2048_8192_SHA512_LEGACY_KEY,\n   27 |         RSA_PKCS1_2048_8192_SHA256,\n   28 |         RSA_PKCS1_2048_8192_SHA384,",
+          "content_sha256": "0cc2b2a0ba75f85fd986c0da7956e36080adcbf9591cd94cbea02dd96e1109e1",
+          "source_sha256": "66de1a664e95fccb36d9349f2652b2f59bf764f21eacdfdf682fd6f79750b674",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.575459+00:00",
+          "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/verify.rs#L27"
         }
       ],
       "remediation": [
@@ -3658,8 +3869,8 @@
       ]
     },
     {
-      "id": "167dc647-dc7f-40dc-b9ed-a5dc4923296e",
-      "public_id": "QSI-2026-18786",
+      "id": "408668c1-6fb7-4724-9314-04a668937382",
+      "public_id": "QSI-2026-43297",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
       "description": "3 упоминаний X25519 в 1 файл(ах), например rustls/src/manual/defaults.rs:14. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.",
@@ -3678,8 +3889,8 @@
       "triage": null,
       "affected_asset": "source-code:X25519:channel",
       "data_source": "rustls/src/manual/defaults.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.548362+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.600586+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -3775,8 +3986,8 @@
           "content": "   13 | \n   14 | ### Why is x25519 preferred for key exchange over nistp256?\n   15 | ",
           "content_sha256": "c4904a16b5b5ac7d3a8668957407466f09ca9be08c266e44ab36803e82a9e655",
           "source_sha256": "0b90e4ebfe8c82b152cf31c11c94cd83b4e75f5690cdad862121776db73f56e3",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.559790+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.610632+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls/src/manual/defaults.rs#L14"
         },
         {
@@ -3786,8 +3997,8 @@
           "content": "   15 | \n   16 | Both provide roughly the same classical security level, but x25519 has better performance and\n   17 | it's _much_ more likely that both peers will have good quality implementations.",
           "content_sha256": "ac055dfd6ec9dd2cc3082d4b7355f386f93794a6bf6989e209eb5baa445facf2",
           "source_sha256": "0b90e4ebfe8c82b152cf31c11c94cd83b4e75f5690cdad862121776db73f56e3",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.559797+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.610641+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls/src/manual/defaults.rs#L16"
         },
         {
@@ -3797,8 +4008,8 @@
           "content": "   51 | [Chrome]: <https://security.googleblog.com/2024/09/a-new-path-for-kyber-on-web.html>\n   52 | [Cloudflare]: <https://blog.cloudflare.com/pq-2024/#ml-kem-768-and-x25519>\n   53 | [interop-bug]: <https://github.com/rustls/rustls/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=>",
           "content_sha256": "50d4ee783648035b748605e8ae5d17e5cc332c126627289221b5e9967327abfd",
           "source_sha256": "0b90e4ebfe8c82b152cf31c11c94cd83b4e75f5690cdad862121776db73f56e3",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.559801+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.610646+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls/src/manual/defaults.rs#L52"
         }
       ],
@@ -3836,8 +4047,8 @@
       ]
     },
     {
-      "id": "ef268011-55e4-45d5-9dae-eadddb2736c3",
-      "public_id": "QSI-2026-18784",
+      "id": "e5d109bf-d3f3-472b-bc86-5fcf04d97048",
+      "public_id": "QSI-2026-43294",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
       "description": "15 упоминаний ECDSA в 7 файл(ах), например rustls-aws-lc-rs/src/kx.rs:259. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -3856,8 +4067,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "rustls-aws-lc-rs/src/kx.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.525283+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.572878+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -3953,8 +4164,8 @@
           "content": "  258 | pub static SECP256R1: &dyn SupportedKxGroup = &KxGroup {\n  259 |     name: NamedGroup::secp256r1,\n  260 |     agreement_algorithm: &agreement::ECDH_P256,",
           "content_sha256": "e90b05d40e87aa3e84924919b80fa897cee3d5136f6eef0b9d9c29ac35bd3229",
           "source_sha256": "e3a9ec3bf6b4c399d82178da9e14886bf0b66903dee98dc38df3c5d253f9c65d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540491+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584577+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/kx.rs#L259"
         },
         {
@@ -3964,8 +4175,8 @@
           "content": "  222 |             SignatureScheme::ECDSA_NISTP256_SHA256,\n  223 |             &signature::ECDSA_P256_SHA256_ASN1_SIGNING,\n  224 |         ) {",
           "content_sha256": "aac6804cbd00e97c81daef291f37f06862a5c2a96f5eb5c4b1f03974a204471f",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540499+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584585+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L223"
         },
         {
@@ -3975,8 +4186,8 @@
           "content": "  230 |             SignatureScheme::ECDSA_NISTP384_SHA384,\n  231 |             &signature::ECDSA_P384_SHA384_ASN1_SIGNING,\n  232 |         ) {",
           "content_sha256": "99393b8467433b90dd91ebeacd1c5b474075b6fcd99765db09b417bfb4f5d690",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540502+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584590+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L231"
         },
         {
@@ -3986,8 +4197,8 @@
           "content": "  171 |     signature_alg_id: alg_id::ECDSA_SHA256,\n  172 |     verification_alg: &signature::ECDSA_P256_SHA256_ASN1,\n  173 | };",
           "content_sha256": "044ffd42bffa3af0f281b3b8def3b2e9b37f67e214354bba5a16d72350d0962e",
           "source_sha256": "66de1a664e95fccb36d9349f2652b2f59bf764f21eacdfdf682fd6f79750b674",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540505+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584594+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/verify.rs#L172"
         },
         {
@@ -3997,8 +4208,8 @@
           "content": "  178 |     signature_alg_id: alg_id::ECDSA_SHA384,\n  179 |     verification_alg: &signature::ECDSA_P256_SHA384_ASN1,\n  180 | };",
           "content_sha256": "46eb6dd52ef04efcbe1e3a7af505796087870c4d7ebdc3e0d03ed013ecac532c",
           "source_sha256": "66de1a664e95fccb36d9349f2652b2f59bf764f21eacdfdf682fd6f79750b674",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540508+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584599+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/verify.rs#L179"
         },
         {
@@ -4008,8 +4219,8 @@
           "content": "  192 |     signature_alg_id: alg_id::ECDSA_SHA256,\n  193 |     verification_alg: &signature::ECDSA_P384_SHA256_ASN1,\n  194 | };",
           "content_sha256": "86ef4c6e3d99b55784b3e60037654c2fc846b056319893165b2ef48e905b153e",
           "source_sha256": "66de1a664e95fccb36d9349f2652b2f59bf764f21eacdfdf682fd6f79750b674",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540512+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584603+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/verify.rs#L193"
         },
         {
@@ -4019,8 +4230,8 @@
           "content": "  101 | pub static SECP256R1: &dyn SupportedKxGroup = &KxGroup {\n  102 |     name: NamedGroup::secp256r1,\n  103 |     agreement_algorithm: &agreement::ECDH_P256,",
           "content_sha256": "680570864dbab8d6039188c7392870a498c1e7b3a0e11e4d2576babb43d9daca",
           "source_sha256": "b20262e8adfdee4e7f32749048cb5936a140237e5123de4f9d69bf0cc30ebad9",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540515+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584608+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/kx.rs#L102"
         },
         {
@@ -4030,8 +4241,8 @@
           "content": "  259 |             SignatureScheme::ECDSA_NISTP256_SHA256,\n  260 |             &signature::ECDSA_P256_SHA256_ASN1_SIGNING,\n  261 |         ) {",
           "content_sha256": "0fa048cbe1f8ef5c2d59ed0cf4447e6152d1c22ebecc390085710021dc013deb",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540518+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584612+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L260"
         },
         {
@@ -4041,8 +4252,8 @@
           "content": "  267 |             SignatureScheme::ECDSA_NISTP384_SHA384,\n  268 |             &signature::ECDSA_P384_SHA384_ASN1_SIGNING,\n  269 |         ) {",
           "content_sha256": "442697233c12c5bba405c785c8418763caf17e601b5f424d059dd0494ceaf288",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540521+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584617+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L268"
         },
         {
@@ -4052,8 +4263,8 @@
           "content": "  119 |     signature_alg_id: alg_id::ECDSA_SHA256,\n  120 |     verification_alg: &signature::ECDSA_P256_SHA256_ASN1,\n  121 | };",
           "content_sha256": "11451f26a762786f4f7a20a4ff7cf1c0e706ea18df036bfac69dc1262c41d404",
           "source_sha256": "afdcbc5d088d62bd9bc2a349fc7b83936797a3127012e07a96e11491fc28b24a",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.540524+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.584621+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/verify.rs#L120"
         }
       ],
@@ -4091,8 +4302,8 @@
       ]
     },
     {
-      "id": "60eb7cdf-7c24-424a-b1a9-5b9c992b68a8",
-      "public_id": "QSI-2026-18785",
+      "id": "3915fdf5-9d89-4fa2-9518-627ffdce7610",
+      "public_id": "QSI-2026-43295",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Ed25519: роль не определена (4 файл(ов))",
       "description": "24 упоминаний Ed25519 в 4 файл(ах), например rustls-aws-lc-rs/src/lib.rs:58. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -4111,8 +4322,8 @@
       "triage": null,
       "affected_asset": "source-code:Ed25519:general",
       "data_source": "rustls-aws-lc-rs/src/lib.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.537702+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.582495+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -4208,8 +4419,8 @@
           "content": "   57 | pub mod sign;\n   58 | use sign::{EcdsaSigner, Ed25519Signer, PqdsaSigningKey, RsaSigningKey};\n   59 | ",
           "content_sha256": "2f5d04777da0adf0765b0d10d4fcc48101680b39f3c282cfc2009d5eda1bb14d",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550958+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593907+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L58"
         },
         {
@@ -4219,8 +4430,8 @@
           "content": "  165 |         if let PrivateKeyDer::Pkcs8(pkcs8) = &*key_der {\n  166 |             if let Ok(eddsa) = Ed25519Signer::try_from(pkcs8) {\n  167 |                 return Ok(Box::new(eddsa));",
           "content_sha256": "48c2d267c7fb79dbdb3d52a32489bd62ad84a3da1fba65163297e2ed0fc3e0f4",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550965+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593916+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L166"
         },
         {
@@ -4230,8 +4441,8 @@
           "content": "    9 | use aws_lc_rs::signature::{\n   10 |     self, EcdsaKeyPair, Ed25519KeyPair, KeyPair, PqdsaKeyPair, PqdsaSigningAlgorithm, RsaKeyPair,\n   11 | };",
           "content_sha256": "e89cfc90640fdc280a473a9ce59f6e1caf4f1af5350b01391e5e5fcaad19a4c1",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550969+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593920+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L10"
         },
         {
@@ -4241,8 +4452,8 @@
           "content": "  386 | #[derive(Clone)]\n  387 | pub(super) struct Ed25519Signer {\n  388 |     key: Arc<Ed25519KeyPair>,",
           "content_sha256": "4230d55d90cea49266dd814eae2b59d6282d584cc0d7b2e39010a00ba0bf08b4",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550972+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593925+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L387"
         },
         {
@@ -4252,8 +4463,8 @@
           "content": "  387 | pub(super) struct Ed25519Signer {\n  388 |     key: Arc<Ed25519KeyPair>,\n  389 |     scheme: SignatureScheme,",
           "content_sha256": "10a58f0dd4e25c231e7ff7d70ed71d9f06b1320cc75635ddb1bdd9c8734b7b6c",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550976+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593930+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L388"
         },
         {
@@ -4263,8 +4474,8 @@
           "content": "   33 | pub mod sign;\n   34 | use sign::{EcdsaSigner, Ed25519Signer, RsaSigningKey};\n   35 | ",
           "content_sha256": "adb9e4b1cf5ef2adc5b99ca288bf15b1c41b0243b9081ad7b60b1dd1f2a5c1e4",
           "source_sha256": "c61d10ea2c3871de1e0b59c7ca3e3071da46af0d16c226c59f1777b455e9d2da",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550979+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593934+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/lib.rs#L34"
         },
         {
@@ -4274,8 +4485,8 @@
           "content": "  122 |         if let PrivateKeyDer::Pkcs8(pkcs8) = &*key_der {\n  123 |             if let Ok(eddsa) = Ed25519Signer::try_from(pkcs8) {\n  124 |                 return Ok(Box::new(eddsa));",
           "content_sha256": "c114ba38c9c2c4e7e7244ef556318b05f1210903b712a2b940e0a509d0cdafcb",
           "source_sha256": "c61d10ea2c3871de1e0b59c7ca3e3071da46af0d16c226c59f1777b455e9d2da",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550982+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593939+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/lib.rs#L123"
         },
         {
@@ -4285,8 +4496,8 @@
           "content": "    9 | use ring::rand::{SecureRandom, SystemRandom};\n   10 | use ring::signature::{self, EcdsaKeyPair, Ed25519KeyPair, KeyPair, RsaKeyPair};\n   11 | #[cfg(test)]",
           "content_sha256": "1b578343e091d9647b538fff9f4fb9cc652edf078859680842dfa567c3061d74",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550985+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593943+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L10"
         },
         {
@@ -4296,8 +4507,8 @@
           "content": "  291 | #[derive(Clone)]\n  292 | pub(super) struct Ed25519Signer {\n  293 |     key: Arc<Ed25519KeyPair>,",
           "content_sha256": "5ad3a2f1d0c67b220d40bc141597232e02b1caa0f803799e3e5369aca19f5845",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550988+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593948+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L292"
         },
         {
@@ -4307,8 +4518,8 @@
           "content": "  292 | pub(super) struct Ed25519Signer {\n  293 |     key: Arc<Ed25519KeyPair>,\n  294 |     scheme: SignatureScheme,",
           "content_sha256": "d06ac3f3e5effbf534b75da8ef14f39b5ebc9614b13aa7fd68b3922f3a8e8072",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.550991+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.593952+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L293"
         }
       ],
@@ -4346,8 +4557,8 @@
       ]
     },
     {
-      "id": "b61f8009-8fc8-4513-9e7e-9795ded6beda",
-      "public_id": "QSI-2026-18758",
+      "id": "056def81-9f87-47d4-ad8b-2c22045005f6",
+      "public_id": "QSI-2026-43268",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo)",
       "description": "Сертификат O=bogo использует открытый ключ RSA 2048-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC.",
@@ -4366,12 +4577,12 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo",
       "data_source": "bogo/keys/cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.323939+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.432822+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.8,
+          "x": 0.76,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4380,7 +4591,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.2
+          "margin_years": -2.24
         },
         "score": 40.0,
         "factors": {
@@ -4463,8 +4674,8 @@
           "content": "Subject: O=bogo\nIssuer: O=bogo\nSerial: ebe4fdc398c7b411\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 2048-bit\nSignature algorithm: 1.2.840.113549.1.1.11\nSignature hash: sha256\nCA: False\nSAN: test, example.com\nSHA-256 fingerprint: d9a838ced629b5ff12f77bc57382692bc5bcf6b5a2510d3bc7cada91d69ec3db",
           "content_sha256": "93bcf57d0ec2460c76444157005b6f7c66256c0541bfbadfbdaad0fce036fdfd",
           "source_sha256": "f6f857830e095d1fa16827b0f32ca462a59ddfc36580eb4432bfd537a8be191c",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.341722+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.444256+00:00",
           "url": null
         }
       ],
@@ -4502,8 +4713,8 @@
       ]
     },
     {
-      "id": "f75bae82-b500-4e87-8ff2-5f30ce2d5c21",
-      "public_id": "QSI-2026-18762",
+      "id": "4f1aaecf-c9fa-4572-b348-947df497af0c",
+      "public_id": "QSI-2026-43272",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p256)",
       "description": "Сертификат O=bogo-p256 использует открытый ключ ECDSA secp256r1, действителен до 2027-08-26. ECDSA взламывается алгоритмом Шора на CRQC.",
@@ -4522,12 +4733,12 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-p256",
       "data_source": "bogo/keys/ecdsa_p256_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.367225+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.463055+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.8,
+          "x": 0.76,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4536,7 +4747,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.2
+          "margin_years": -2.24
         },
         "score": 40.0,
         "factors": {
@@ -4619,8 +4830,8 @@
           "content": "Subject: O=bogo-p256\nIssuer: O=bogo-p256\nSerial: bd2d56ff2f45249d\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: ECDSA secp256r1\nSignature algorithm: 1.2.840.10045.4.1 (ECDSA)\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: d63b0780beedd4d79abea3caa1e8703aa88fb434c7b1fbc9c2c18d853fbad396",
           "content_sha256": "aadb2d647432f5f4619a7b159584f2b08b1dd2ea7ea196c5653583c8a0aef9c4",
           "source_sha256": "0ed91efd9ab1677924bd95214bc191ea506bf3fc3edde33892e210fae025e47f",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.378180+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.470850+00:00",
           "url": null
         }
       ],
@@ -4658,8 +4869,8 @@
       ]
     },
     {
-      "id": "61b9adf3-3c0f-4f94-965b-34c664359257",
-      "public_id": "QSI-2026-18767",
+      "id": "b5bcc857-bf60-486e-9ce6-337571e88dfc",
+      "public_id": "QSI-2026-43277",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p384)",
       "description": "Сертификат O=bogo-p384 использует открытый ключ ECDSA secp384r1, действителен до 2027-08-26. ECDSA взламывается алгоритмом Шора на CRQC.",
@@ -4678,12 +4889,12 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-p384",
       "data_source": "bogo/keys/ecdsa_p384_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.402769+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.491138+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.8,
+          "x": 0.76,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4692,7 +4903,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.2
+          "margin_years": -2.24
         },
         "score": 40.0,
         "factors": {
@@ -4775,8 +4986,8 @@
           "content": "Subject: O=bogo-p384\nIssuer: O=bogo-p384\nSerial: 9daae883165eedc6\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: ECDSA secp384r1\nSignature algorithm: 1.2.840.10045.4.1 (ECDSA)\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 1e256d34ee1ceb1d5885608ab9077d3e423ec5b96679d6b7dc3d9bc3edfe1068",
           "content_sha256": "f8c42a96d8061f0be20b58aebdb732d255783cda1d9a67208577c36343e488bc",
           "source_sha256": "17ba7999b13cd51daf9be90fb2c666801b5e58fa469e1f6e3971c84eb5a963c7",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.412430+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.497672+00:00",
           "url": null
         }
       ],
@@ -4814,8 +5025,8 @@
       ]
     },
     {
-      "id": "ff15a11f-feb9-4b5d-bfc5-42135fe42f70",
-      "public_id": "QSI-2026-18774",
+      "id": "e3e8e7d6-048b-4509-b24c-463b9d56be4c",
+      "public_id": "QSI-2026-43284",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-rsa1024)",
       "description": "Сертификат O=bogo-rsa1024 использует открытый ключ RSA 1024-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC.",
@@ -4834,12 +5045,12 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.451689+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.524055+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.8,
+          "x": 0.76,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4848,7 +5059,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.2
+          "margin_years": -2.24
         },
         "score": 40.0,
         "factors": {
@@ -4931,8 +5142,8 @@
           "content": "Subject: O=bogo-rsa1024\nIssuer: O=bogo-rsa1024\nSerial: f757e6886bee4862\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 1024-bit\nSignature algorithm: 1.2.840.113549.1.1.5\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 20c2a582931b2b285d1cd04f0aad51e57c396d4e5c43ef4336e437e2a3a5ea4c",
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.461370+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.529841+00:00",
           "url": null
         }
       ],
@@ -4970,8 +5181,8 @@
       ]
     },
     {
-      "id": "a98c4bdc-58a3-46f4-8aeb-70eb2a959c9b",
-      "public_id": "QSI-2026-18778",
+      "id": "61c185f4-d523-4293-889c-4f5c22333c58",
+      "public_id": "QSI-2026-43288",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-chain)",
       "description": "Сертификат O=bogo-chain использует открытый ключ RSA 2048-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC.",
@@ -4990,12 +5201,12 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-chain",
       "data_source": "bogo/keys/rsa_chain_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.480922+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.541932+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.8,
+          "x": 0.76,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -5004,7 +5215,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.2
+          "margin_years": -2.24
         },
         "score": 40.0,
         "factors": {
@@ -5087,8 +5298,8 @@
           "content": "Subject: O=bogo-chain\nIssuer: O=bogo-chain\nSerial: cc68a754c034e517\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 2048-bit\nSignature algorithm: 1.2.840.113549.1.1.11\nSignature hash: sha256\nCA: False\nSAN: test\nSHA-256 fingerprint: 7f4a91d449f2f1bdaa9fbf1e7658a473ce89bf72543cfb5146409018d3c457dd",
           "content_sha256": "8cdcf8cf8bcccb55594356b4f726d8f7a9b2bf48e60e18ebab3db68ec926121b",
           "source_sha256": "840345f473ae756167fe7789c9b93d7d88cba6cb7a552b6fae6a55ee5da0540a",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.491319+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.548350+00:00",
           "url": null
         }
       ],
@@ -5126,8 +5337,8 @@
       ]
     },
     {
-      "id": "9ee339e3-3a3b-4962-927d-f548759bdc4a",
-      "public_id": "QSI-2026-18781",
+      "id": "712038c0-7fe6-4db6-a689-192353e6cda0",
+      "public_id": "QSI-2026-43291",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (O=Internet Widgits Pty Ltd,ST=Some-State,C=AU)",
       "description": "Сертификат O=Internet Widgits Pty Ltd,ST=Some-State,C=AU использует открытый ключ RSA 2048-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC.",
@@ -5146,12 +5357,12 @@
       "triage": null,
       "affected_asset": "certificate:O=Internet Widgits Pty Ltd,ST=Some-State,C=AU",
       "data_source": "bogo/keys/rsa_chain_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.501537+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.555770+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.8,
+          "x": 0.76,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -5160,7 +5371,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.2
+          "margin_years": -2.24
         },
         "score": 40.0,
         "factors": {
@@ -5243,8 +5454,8 @@
           "content": "Subject: O=Internet Widgits Pty Ltd,ST=Some-State,C=AU\nIssuer: O=Internet Widgits Pty Ltd,ST=Some-State,C=AU\nSerial: ccd5007a7e0cb31a\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 2048-bit\nSignature algorithm: 1.2.840.113549.1.1.11\nSignature hash: sha256\nCA: True\nSAN: -\nSHA-256 fingerprint: f7fc881ed1822b6707811ad68e587fbacbc40bd51ee5f4e679e05b6d8d8efb29",
           "content_sha256": "5c0d8fc4cb2cd522b76557f25e7ca752a25be0f21cf4220ae81b3c99f96c85e9",
           "source_sha256": "840345f473ae756167fe7789c9b93d7d88cba6cb7a552b6fae6a55ee5da0540a",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.511285+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.561874+00:00",
           "url": null
         }
       ],
@@ -5282,8 +5493,8 @@
       ]
     },
     {
-      "id": "56f1d502-4128-4fcd-b615-323573c226ac",
-      "public_id": "QSI-2026-18759",
+      "id": "05a977f5-3a16-4094-81a8-09dcbf74d24c",
+      "public_id": "QSI-2026-43269",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5302,8 +5513,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo",
       "data_source": "bogo/keys/cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.332734+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.441421+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5358,8 +5569,8 @@
           "content": "Subject: O=bogo\nIssuer: O=bogo\nSerial: ebe4fdc398c7b411\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 2048-bit\nSignature algorithm: 1.2.840.113549.1.1.11\nSignature hash: sha256\nCA: False\nSAN: test, example.com\nSHA-256 fingerprint: d9a838ced629b5ff12f77bc57382692bc5bcf6b5a2510d3bc7cada91d69ec3db",
           "content_sha256": "93bcf57d0ec2460c76444157005b6f7c66256c0541bfbadfbdaad0fce036fdfd",
           "source_sha256": "f6f857830e095d1fa16827b0f32ca462a59ddfc36580eb4432bfd537a8be191c",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.354754+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.453459+00:00",
           "url": null
         }
       ],
@@ -5382,8 +5593,8 @@
       ]
     },
     {
-      "id": "e9a9fceb-f434-44e5-813e-65c77d4a50f0",
-      "public_id": "QSI-2026-18763",
+      "id": "d3694e85-1c35-47fb-9e7c-b66f1c792115",
+      "public_id": "QSI-2026-43273",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo-p256)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5402,8 +5613,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-p256",
       "data_source": "bogo/keys/ecdsa_p256_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.375007+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.469037+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5458,8 +5669,8 @@
           "content": "Subject: O=bogo-p256\nIssuer: O=bogo-p256\nSerial: bd2d56ff2f45249d\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: ECDSA secp256r1\nSignature algorithm: 1.2.840.10045.4.1 (ECDSA)\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: d63b0780beedd4d79abea3caa1e8703aa88fb434c7b1fbc9c2c18d853fbad396",
           "content_sha256": "aadb2d647432f5f4619a7b159584f2b08b1dd2ea7ea196c5653583c8a0aef9c4",
           "source_sha256": "0ed91efd9ab1677924bd95214bc191ea506bf3fc3edde33892e210fae025e47f",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.385613+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.476097+00:00",
           "url": null
         }
       ],
@@ -5482,8 +5693,8 @@
       ]
     },
     {
-      "id": "96ca400d-01b1-47cb-a54b-1d6e67467461",
-      "public_id": "QSI-2026-18768",
+      "id": "170a297d-dc7b-4d99-8490-101ba0c555b3",
+      "public_id": "QSI-2026-43278",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo-p384)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5502,8 +5713,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-p384",
       "data_source": "bogo/keys/ecdsa_p384_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.410280+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.496352+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5558,8 +5769,8 @@
           "content": "Subject: O=bogo-p384\nIssuer: O=bogo-p384\nSerial: 9daae883165eedc6\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: ECDSA secp384r1\nSignature algorithm: 1.2.840.10045.4.1 (ECDSA)\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 1e256d34ee1ceb1d5885608ab9077d3e423ec5b96679d6b7dc3d9bc3edfe1068",
           "content_sha256": "f8c42a96d8061f0be20b58aebdb732d255783cda1d9a67208577c36343e488bc",
           "source_sha256": "17ba7999b13cd51daf9be90fb2c666801b5e58fa469e1f6e3971c84eb5a963c7",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.419722+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.502488+00:00",
           "url": null
         }
       ],
@@ -5582,8 +5793,8 @@
       ]
     },
     {
-      "id": "cffa15b9-683f-497e-9b19-c3a30396f8ad",
-      "public_id": "QSI-2026-18775",
+      "id": "f5ad8fcc-0246-4146-a04f-35290f487e38",
+      "public_id": "QSI-2026-43285",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo-rsa1024)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5602,8 +5813,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.459384+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.528641+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5658,8 +5869,8 @@
           "content": "Subject: O=bogo-rsa1024\nIssuer: O=bogo-rsa1024\nSerial: f757e6886bee4862\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 1024-bit\nSignature algorithm: 1.2.840.113549.1.1.5\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 20c2a582931b2b285d1cd04f0aad51e57c396d4e5c43ef4336e437e2a3a5ea4c",
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.468896+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.534522+00:00",
           "url": null
         }
       ],
@@ -5682,8 +5893,8 @@
       ]
     },
     {
-      "id": "8acfdebe-d03d-43b9-ba22-4964fab89155",
-      "public_id": "QSI-2026-18779",
+      "id": "ee4b9639-37dd-4d0f-a8a2-828df009c7cd",
+      "public_id": "QSI-2026-43289",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo-chain)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5702,8 +5913,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-chain",
       "data_source": "bogo/keys/rsa_chain_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.488326+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.547147+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5758,8 +5969,8 @@
           "content": "Subject: O=bogo-chain\nIssuer: O=bogo-chain\nSerial: cc68a754c034e517\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 2048-bit\nSignature algorithm: 1.2.840.113549.1.1.11\nSignature hash: sha256\nCA: False\nSAN: test\nSHA-256 fingerprint: 7f4a91d449f2f1bdaa9fbf1e7658a473ce89bf72543cfb5146409018d3c457dd",
           "content_sha256": "8cdcf8cf8bcccb55594356b4f726d8f7a9b2bf48e60e18ebab3db68ec926121b",
           "source_sha256": "840345f473ae756167fe7789c9b93d7d88cba6cb7a552b6fae6a55ee5da0540a",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.497940+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.552851+00:00",
           "url": null
         }
       ],
@@ -5782,8 +5993,109 @@
       ]
     },
     {
-      "id": "4e6e4d2a-ad94-4df8-a9f5-67d92330dd79",
-      "public_id": "QSI-2026-18760",
+      "id": "ec3f0345-9ed5-4617-8bf4-6d517d732111",
+      "public_id": "QSI-2026-43299",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "url 2.5.8 затронут RUSTSEC-2026-0592 (без оценки серьёзности)",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0592 для пакета crates.io url версии 2.5.8: Stack overflow in `Url::origin()` on nested `blob:` URLs. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (url::Url::origin, url::quirks::origin); url приходит через другие зависимости, которые могут их вызывать.",
+      "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
+      "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (2.5.9).",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0592",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "low",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "not_referenced",
+      "affected_asset": "dependency:crates.io/url@2.5.8",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.615510+00:00",
+      "risk_score": 20.3,
+      "risk_breakdown": {
+        "score": 20.3,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.25,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 39.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 6.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "RUSTSEC-2026-0592",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0592",
+          "title": "OSV advisory RUSTSEC-2026-0592",
+          "status": "modified 2026-11-22T10:00:02.260974192Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev RUSTSEC-2026-0592",
+          "location": "manifest",
+          "content": "{\"id\": \"RUSTSEC-2026-0592\", \"aliases\": [\"GHSA-hrj5-67jp-wqp9\"], \"modified\": \"2026-11-22T10:00:02.260974192Z\", \"summary\": \"Stack overflow in `Url::origin()` on nested `blob:` URLs\", \"severity\": null, \"declared_in_manifest\": false}",
+          "content_sha256": "5b6f5b2af956a84d0c6c5d82148aa3ab5a44c9851f4ad05cc6ee04bd9059f6e6",
+          "source_sha256": null,
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.670859+00:00",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0592"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Разберите RUSTSEC-2026-0592; при необходимости обновите url до исправленной версии (2.5.9).",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Возможны изменения API.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0592 или результат разбора записан.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "fcd61912-8b7a-40ba-b374-c904b2c33c65",
+      "public_id": "QSI-2026-43270",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -5802,8 +6114,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo",
       "data_source": "bogo/keys/cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.351259+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.451762+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -5858,8 +6170,8 @@
           "content": "Subject: O=bogo\nIssuer: O=bogo\nSerial: ebe4fdc398c7b411\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 2048-bit\nSignature algorithm: 1.2.840.113549.1.1.11\nSignature hash: sha256\nCA: False\nSAN: test, example.com\nSHA-256 fingerprint: d9a838ced629b5ff12f77bc57382692bc5bcf6b5a2510d3bc7cada91d69ec3db",
           "content_sha256": "93bcf57d0ec2460c76444157005b6f7c66256c0541bfbadfbdaad0fce036fdfd",
           "source_sha256": "f6f857830e095d1fa16827b0f32ca462a59ddfc36580eb4432bfd537a8be191c",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.362586+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.459376+00:00",
           "url": null
         }
       ],
@@ -5882,8 +6194,8 @@
       ]
     },
     {
-      "id": "6a967a50-0b38-43d3-8626-62f3c50534c1",
-      "public_id": "QSI-2026-18764",
+      "id": "21ad7ce1-196a-46e8-beb3-72829ffcf962",
+      "public_id": "QSI-2026-43274",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo-p256)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -5902,8 +6214,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-p256",
       "data_source": "bogo/keys/ecdsa_p256_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.383456+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.474689+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -5958,8 +6270,8 @@
           "content": "Subject: O=bogo-p256\nIssuer: O=bogo-p256\nSerial: bd2d56ff2f45249d\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: ECDSA secp256r1\nSignature algorithm: 1.2.840.10045.4.1 (ECDSA)\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: d63b0780beedd4d79abea3caa1e8703aa88fb434c7b1fbc9c2c18d853fbad396",
           "content_sha256": "aadb2d647432f5f4619a7b159584f2b08b1dd2ea7ea196c5653583c8a0aef9c4",
           "source_sha256": "0ed91efd9ab1677924bd95214bc191ea506bf3fc3edde33892e210fae025e47f",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.391654+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.482015+00:00",
           "url": null
         }
       ],
@@ -5982,8 +6294,8 @@
       ]
     },
     {
-      "id": "4d0cf9e4-f463-4ac5-81c7-cbd01eb83ac4",
-      "public_id": "QSI-2026-18769",
+      "id": "595f25c8-9cc0-4882-986c-9988a52751ed",
+      "public_id": "QSI-2026-43279",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo-p384)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -6002,8 +6314,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-p384",
       "data_source": "bogo/keys/ecdsa_p384_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.416943+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.501026+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -6058,8 +6370,8 @@
           "content": "Subject: O=bogo-p384\nIssuer: O=bogo-p384\nSerial: 9daae883165eedc6\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: ECDSA secp384r1\nSignature algorithm: 1.2.840.10045.4.1 (ECDSA)\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 1e256d34ee1ceb1d5885608ab9077d3e423ec5b96679d6b7dc3d9bc3edfe1068",
           "content_sha256": "f8c42a96d8061f0be20b58aebdb732d255783cda1d9a67208577c36343e488bc",
           "source_sha256": "17ba7999b13cd51daf9be90fb2c666801b5e58fa469e1f6e3971c84eb5a963c7",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.425946+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.506714+00:00",
           "url": null
         }
       ],
@@ -6082,8 +6394,8 @@
       ]
     },
     {
-      "id": "fa63eebb-fc6d-4e92-b2eb-571a6876aa84",
-      "public_id": "QSI-2026-18776",
+      "id": "cb920d0d-5e29-4ac3-8419-757f30e2fb41",
+      "public_id": "QSI-2026-43286",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo-rsa1024)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -6102,8 +6414,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.465915+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.533178+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -6158,8 +6470,8 @@
           "content": "Subject: O=bogo-rsa1024\nIssuer: O=bogo-rsa1024\nSerial: f757e6886bee4862\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 1024-bit\nSignature algorithm: 1.2.840.113549.1.1.5\nSignature hash: sha1\nCA: False\nSAN: test\nSHA-256 fingerprint: 20c2a582931b2b285d1cd04f0aad51e57c396d4e5c43ef4336e437e2a3a5ea4c",
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.476249+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.538966+00:00",
           "url": null
         }
       ],
@@ -6182,8 +6494,8 @@
       ]
     },
     {
-      "id": "3106efe1-8ecc-430c-a821-99ca0ad69d4c",
-      "public_id": "QSI-2026-18780",
+      "id": "4112618d-fb89-4a65-8c38-0f703291f84f",
+      "public_id": "QSI-2026-43290",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo-chain)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -6202,8 +6514,8 @@
       "triage": null,
       "affected_asset": "certificate:O=bogo-chain",
       "data_source": "bogo/keys/rsa_chain_cert.pem",
-      "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-06T13:51:26.495828+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T13:06:04.551497+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -6258,8 +6570,8 @@
           "content": "Subject: O=bogo-chain\nIssuer: O=bogo-chain\nSerial: cc68a754c034e517\nNot before: 2017-08-28T14:35:23+00:00\nNot after: 2027-08-26T14:35:23+00:00\nPublic key: RSA 2048-bit\nSignature algorithm: 1.2.840.113549.1.1.11\nSignature hash: sha256\nCA: False\nSAN: test\nSHA-256 fingerprint: 7f4a91d449f2f1bdaa9fbf1e7658a473ce89bf72543cfb5146409018d3c457dd",
           "content_sha256": "8cdcf8cf8bcccb55594356b4f726d8f7a9b2bf48e60e18ebab3db68ec926121b",
           "source_sha256": "840345f473ae756167fe7789c9b93d7d88cba6cb7a552b6fae6a55ee5da0540a",
-          "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-06T13:51:26.504236+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T13:06:04.557263+00:00",
           "url": null
         }
       ],
@@ -6303,18 +6615,36 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-18783",
-      "QSI-2026-18786",
-      "QSI-2026-18784",
-      "QSI-2026-18785",
-      "QSI-2026-18758",
-      "QSI-2026-18762",
-      "QSI-2026-18767",
-      "QSI-2026-18774",
-      "QSI-2026-18778",
-      "QSI-2026-18781"
+      "QSI-2026-43296",
+      "QSI-2026-43293",
+      "QSI-2026-43297",
+      "QSI-2026-43294",
+      "QSI-2026-43295",
+      "QSI-2026-43268",
+      "QSI-2026-43272",
+      "QSI-2026-43277",
+      "QSI-2026-43284",
+      "QSI-2026-43288",
+      "QSI-2026-43291"
     ],
     "roles": [
+      {
+        "role": "key_wrapping",
+        "label": "обёртка ключей и шифрование хранимых данных",
+        "action": "Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка",
+        "criticality": 5,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "RSA",
+            "files": 2
+          }
+        ],
+        "findings": [
+          "QSI-2026-43296"
+        ],
+        "files": 2
+      },
       {
         "role": "channel",
         "label": "обмен ключами в канале (TLS, Noise, рукопожатия)",
@@ -6324,7 +6654,7 @@
         "algorithms": [
           {
             "algorithm": "RSA",
-            "files": 10
+            "files": 8
           },
           {
             "algorithm": "X25519",
@@ -6332,10 +6662,10 @@
           }
         ],
         "findings": [
-          "QSI-2026-18783",
-          "QSI-2026-18786"
+          "QSI-2026-43293",
+          "QSI-2026-43297"
         ],
-        "files": 11
+        "files": 9
       },
       {
         "role": "general",
@@ -6354,16 +6684,16 @@
           }
         ],
         "findings": [
-          "QSI-2026-18784",
-          "QSI-2026-18785"
+          "QSI-2026-43294",
+          "QSI-2026-43295"
         ],
         "files": 11
       }
     ],
     "maturity": {
-      "level": 4,
-      "label": "постквантовое по умолчанию в критичных путях",
-      "next": "Поддерживайте инвентарь в актуальном состоянии и проверяйте новые пути кода перед выпуском.",
+      "level": 3,
+      "label": "гибридная защита в критичном пути",
+      "next": "Закройте оставшиеся классические критичные роли и запланируйте, когда можно будет отказаться от классической половины.",
       "facts": [
         "Гибрид — обмен ключами в канале (TLS, Noise, рукопожатия): rustls-aws-lc-rs/src/lib.rs (RSA + X25519MLKEM768)",
         "Гибрид — обмен ключами в канале (TLS, Noise, рукопожатия): rustls/src/manual/defaults.rs (X25519 + X25519MLKEM768)",
@@ -6374,7 +6704,8 @@
         "Используется: SecP256r1MLKEM768, X25519MLKEM768 — rustls-aws-lc-rs/src/kx.rs",
         "Используется: X25519MLKEM768 — rustls-aws-lc-rs/src/lib.rs",
         "Используется: SecP256r1MLKEM768, SecP384r1MLKEM1024, X25519MLKEM768 — rustls/src/crypto/kx/mod.rs",
-        "Используется: X25519MLKEM768 — rustls/src/manual/defaults.rs"
+        "Используется: X25519MLKEM768 — rustls/src/manual/defaults.rs",
+        "Только классика — обёртка ключей и шифрование хранимых данных: RSA (2 файл(ов))"
       ]
     },
     "quantum_algorithms": [
@@ -6617,7 +6948,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-18765",
+        "finding": "QSI-2026-43275",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p256_key.pem",
         "severity": "high"
       },
@@ -6635,7 +6966,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-18770",
+        "finding": "QSI-2026-43280",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p384_key.pem",
         "severity": "high"
       },
@@ -6653,7 +6984,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-18771",
+        "finding": "QSI-2026-43281",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/key.pem",
         "severity": "high"
       },
@@ -6671,7 +7002,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-18777",
+        "finding": "QSI-2026-43287",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/rsa_1024_key.pem",
         "severity": "high"
       },
@@ -6689,7 +7020,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-18782",
+        "finding": "QSI-2026-43292",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/rsa_chain_key.pem",
         "severity": "high"
       },
@@ -6707,7 +7038,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Ключ сертификата RSA ≥ 2048 (лучше 3072) или ECDSA ≥ P-256.",
         "status": "todo",
-        "finding": "QSI-2026-18772",
+        "finding": "QSI-2026-43282",
         "finding_title": "RSA-ключ короче 2048 бит (1024 бит, O=bogo-rsa1024)",
         "severity": "high"
       },
@@ -6725,7 +7056,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Хеш подписи — SHA-256 или сильнее.",
         "status": "todo",
-        "finding": "QSI-2026-18761",
+        "finding": "QSI-2026-43271",
         "finding_title": "Сертификат подписан с SHA1 (O=bogo-p256)",
         "severity": "medium"
       },
@@ -6743,7 +7074,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Хеш подписи — SHA-256 или сильнее.",
         "status": "todo",
-        "finding": "QSI-2026-18766",
+        "finding": "QSI-2026-43276",
         "finding_title": "Сертификат подписан с SHA1 (O=bogo-p384)",
         "severity": "medium"
       },
@@ -6761,7 +7092,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Хеш подписи — SHA-256 или сильнее.",
         "status": "todo",
-        "finding": "QSI-2026-18773",
+        "finding": "QSI-2026-43283",
         "finding_title": "Сертификат подписан с SHA1 (O=bogo-rsa1024)",
         "severity": "medium"
       },
@@ -6779,7 +7110,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384).",
         "status": "todo",
-        "finding": "QSI-2026-18787",
+        "finding": "QSI-2026-43298",
         "finding_title": "tokio 1.54.0 затронут GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384)",
         "severity": "medium"
       }
@@ -6799,7 +7130,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-18765",
+        "finding": "QSI-2026-43275",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p256_key.pem",
         "severity": "high"
       },
@@ -6817,7 +7148,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-18770",
+        "finding": "QSI-2026-43280",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p384_key.pem",
         "severity": "high"
       },
@@ -6835,7 +7166,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-18771",
+        "finding": "QSI-2026-43281",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/key.pem",
         "severity": "high"
       },
@@ -6853,7 +7184,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-18777",
+        "finding": "QSI-2026-43287",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/rsa_1024_key.pem",
         "severity": "high"
       },
@@ -6871,9 +7202,27 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-18782",
+        "finding": "QSI-2026-43292",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/rsa_chain_key.pem",
         "severity": "high"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Разберите RUSTSEC-2026-0592; при необходимости обновите url до исправленной версии (2.5.9).",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Возможны изменения API.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0592 или результат разбора записан.",
+        "status": "todo",
+        "finding": "QSI-2026-43299",
+        "finding_title": "url 2.5.8 затронут RUSTSEC-2026-0592 (без оценки серьёзности)",
+        "severity": "low"
       }
     ],
     "90": [
@@ -6891,8 +7240,26 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18783",
-        "finding_title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))",
+        "finding": "QSI-2026-43296",
+        "finding_title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (2 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-43293",
+        "finding_title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (8 файл(ов))",
         "severity": "medium"
       },
       {
@@ -6909,7 +7276,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18786",
+        "finding": "QSI-2026-43297",
         "finding_title": "Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
         "severity": "medium"
       },
@@ -6927,7 +7294,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18784",
+        "finding": "QSI-2026-43294",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
         "severity": "medium"
       },
@@ -6945,7 +7312,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18785",
+        "finding": "QSI-2026-43295",
         "finding_title": "Квантово-уязвимый Ed25519: роль не определена (4 файл(ов))",
         "severity": "medium"
       },
@@ -6963,7 +7330,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18758",
+        "finding": "QSI-2026-43268",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo)",
         "severity": "low"
       },
@@ -6981,7 +7348,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18762",
+        "finding": "QSI-2026-43272",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p256)",
         "severity": "low"
       },
@@ -6999,7 +7366,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18767",
+        "finding": "QSI-2026-43277",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p384)",
         "severity": "low"
       },
@@ -7017,7 +7384,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18774",
+        "finding": "QSI-2026-43284",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-rsa1024)",
         "severity": "low"
       },
@@ -7035,7 +7402,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18778",
+        "finding": "QSI-2026-43288",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-chain)",
         "severity": "low"
       },
@@ -7053,7 +7420,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-18781",
+        "finding": "QSI-2026-43291",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=Internet Widgits Pty Ltd,ST=Some-State,C=AU)",
         "severity": "low"
       },
@@ -7071,7 +7438,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-18759",
+        "finding": "QSI-2026-43269",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo)",
         "severity": "low"
       },
@@ -7089,7 +7456,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-18763",
+        "finding": "QSI-2026-43273",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo-p256)",
         "severity": "low"
       },
@@ -7107,7 +7474,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-18768",
+        "finding": "QSI-2026-43278",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo-p384)",
         "severity": "low"
       },
@@ -7125,7 +7492,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-18775",
+        "finding": "QSI-2026-43285",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo-rsa1024)",
         "severity": "low"
       },
@@ -7143,7 +7510,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-18779",
+        "finding": "QSI-2026-43289",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo-chain)",
         "severity": "low"
       },
@@ -7161,8 +7528,26 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18783",
-        "finding_title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))",
+        "finding": "QSI-2026-43296",
+        "finding_title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (2 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-43293",
+        "finding_title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (8 файл(ов))",
         "severity": "medium"
       },
       {
@@ -7179,7 +7564,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18786",
+        "finding": "QSI-2026-43297",
         "finding_title": "Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
         "severity": "medium"
       },
@@ -7197,7 +7582,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18784",
+        "finding": "QSI-2026-43294",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
         "severity": "medium"
       },
@@ -7215,7 +7600,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18785",
+        "finding": "QSI-2026-43295",
         "finding_title": "Квантово-уязвимый Ed25519: роль не определена (4 файл(ов))",
         "severity": "medium"
       },
@@ -7233,7 +7618,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18758",
+        "finding": "QSI-2026-43268",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo)",
         "severity": "low"
       },
@@ -7251,7 +7636,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18762",
+        "finding": "QSI-2026-43272",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p256)",
         "severity": "low"
       },
@@ -7269,7 +7654,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18767",
+        "finding": "QSI-2026-43277",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p384)",
         "severity": "low"
       },
@@ -7287,7 +7672,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18774",
+        "finding": "QSI-2026-43284",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-rsa1024)",
         "severity": "low"
       },
@@ -7305,7 +7690,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18778",
+        "finding": "QSI-2026-43288",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-chain)",
         "severity": "low"
       },
@@ -7323,7 +7708,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-18781",
+        "finding": "QSI-2026-43291",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=Internet Widgits Pty Ltd,ST=Some-State,C=AU)",
         "severity": "low"
       },
@@ -7341,7 +7726,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-18760",
+        "finding": "QSI-2026-43270",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo)",
         "severity": "info"
       },
@@ -7359,7 +7744,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-18764",
+        "finding": "QSI-2026-43274",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo-p256)",
         "severity": "info"
       },
@@ -7377,7 +7762,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-18769",
+        "finding": "QSI-2026-43279",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo-p384)",
         "severity": "info"
       },
@@ -7395,7 +7780,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-18776",
+        "finding": "QSI-2026-43286",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo-rsa1024)",
         "severity": "info"
       },
@@ -7413,7 +7798,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-18780",
+        "finding": "QSI-2026-43290",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo-chain)",
         "severity": "info"
       }
@@ -7437,20 +7822,32 @@
       "version": "1.1.0"
     },
     {
-      "name": "dependencies",
+      "name": "crediting",
       "version": "1.3.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.4"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -7461,8 +7858,20 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",
@@ -7657,6 +8066,13 @@
       "url": "https://osv.dev/vulnerability/GHSA-5wjr-9356-4wc8",
       "title": "OSV advisory GHSA-5wjr-9356-4wc8",
       "status": "modified 2026-10-23T21:10:33.527479876Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "RUSTSEC-2026-0592",
+      "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0592",
+      "title": "OSV advisory RUSTSEC-2026-0592",
+      "status": "modified 2026-11-22T10:00:02.260974192Z",
       "publisher": "OSV.dev"
     },
     {

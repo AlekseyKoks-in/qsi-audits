@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.6",
-  "serialNumber": "urn:uuid:de051f05-650e-4d6b-93bf-e62552a178db",
+  "specVersion": "1.7",
+  "serialNumber": "urn:uuid:bd846578-e48f-4a7b-aa8b-ad93131a0631",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-06T13:11:04Z",
+    "timestamp": "2026-11-23T12:19:05Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.3.0"
+          "version": "1.16.2"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "caa322ae-2fb9-462a-8f37-d26e35a95c21",
+      "bom-ref": "b2a132d3-e4f1-4f6a-b3a4-adc43ab84daf",
       "name": "Crypto library",
       "properties": [
         {
@@ -63,7 +63,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b62df485-598c-4c8a-b462-a76629114bba",
+      "bom-ref": "b609cdb5-28b0-4562-ab2c-44e768274bc9",
       "name": "Crypto library",
       "properties": [
         {
@@ -104,7 +104,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fc09a79e-f121-4e21-b4bd-d0a0ad154aa5",
+      "bom-ref": "c56d97dc-f945-4355-8e03-4cbff80973a9",
       "name": "Crypto library",
       "properties": [
         {
@@ -145,7 +145,89 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b080963b-4090-4aac-904d-d293df2afe1e",
+      "bom-ref": "e2f383bc-0b68-448c-9920-7c582c3df12f",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "starknet-crypto (starknet-rs)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "29d36d73-d6e6-4b02-8b7e-3e94fd31a280",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "starknet-curve (starknet-rs)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "da5bdc5a-caf6-42c7-9961-18bb550087b0",
       "name": "Crypto library",
       "properties": [
         {
@@ -186,7 +268,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a3725f80-04c8-4168-9c0a-868ce15b8396",
+      "bom-ref": "71e9c255-a643-4d1d-88e8-6046f5e83330",
       "name": "Crypto library",
       "properties": [
         {
@@ -227,7 +309,386 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "300441e1-42a9-441e-9462-dc85e4366aa6",
+      "bom-ref": "12fb12ad-03b3-4619-a0fc-a5b871e2d23c",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/ecdsa.cairo:58"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/ecdsa.cairo#L58"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "STARK curve",
+          "curve": "STARK curve",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 125,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d685e602-4ad3-4a8c-8282-9eef036cfbdd",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/starknet.cairo:48"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/starknet.cairo#L48"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2508b623-df37-4571-b79f-df92987beb16",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/starknet.cairo:49"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/starknet.cairo#L49"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "P-256",
+          "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.3.1.7"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d6f6f057-e79e-4f77-9809-0072b0e39115",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/starknet/eth_signature.cairo:14"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/starknet/eth_signature.cairo#L14"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "parameterSetIdentifier": "secp256k1",
+          "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.132.0.10"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "77b5bdb8-b471-405a-ad17-1009d88a5cd0",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/starknet/secp256_trait.cairo:113"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/starknet/secp256_trait.cairo#L113"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: secp256k1 group order n"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "278d3c87-d256-4c2e-9811-686efcbf091b",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/starknet/secp256k1.cairo:10"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/starknet/secp256k1.cairo#L10"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: secp256k1 field prime p"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0e68b3d5-6b93-42bb-b219-c24b636bed78",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/starknet/secp256r1.cairo:11"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/starknet/secp256r1.cairo#L11"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: P-256 group order n"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "algorithmFamily": "ECDSA",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0999af4d-0745-441d-ab99-358557737eed",
       "name": "ECDSA",
       "properties": [
         {
@@ -267,8 +728,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -281,7 +744,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "50457d27-2d94-4b63-9db2-1a1befe4b329",
+      "bom-ref": "95a78a50-7bb1-485b-b198-a2d1172d9dff",
       "name": "ECDSA",
       "properties": [
         {
@@ -321,8 +784,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "P-256",
           "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -335,7 +800,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5f5bc94a-9ec1-4836-9900-655f74aba3c7",
+      "bom-ref": "f7feb544-93af-443b-ad49-9656f728d2a0",
       "name": "ECDSA",
       "properties": [
         {
@@ -375,8 +840,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -389,7 +856,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7bee0892-8473-446e-8a14-ea746f9413f6",
+      "bom-ref": "9a9fbaab-79e0-4272-ba14-df00588d3c39",
       "name": "ECDSA",
       "properties": [
         {
@@ -429,8 +896,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "P-256",
           "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -443,7 +912,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1d1fa9d2-9fda-4634-86f2-d7cf190a452e",
+      "bom-ref": "b8c73f3e-2643-4265-9f40-be835399b4f4",
       "name": "ECDSA",
       "properties": [
         {
@@ -483,8 +952,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -497,7 +968,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9a63ef7d-7185-4161-819b-cb61527dfa65",
+      "bom-ref": "d886be11-58b9-4bbb-abed-31bc051693bf",
       "name": "ECDSA",
       "properties": [
         {
@@ -537,8 +1008,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "P-256",
           "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -551,7 +1024,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c24a911d-a117-4245-b131-38feb740b80c",
+      "bom-ref": "06defa1d-5779-4259-bd1d-f78087acef16",
       "name": "ECDSA",
       "properties": [
         {
@@ -591,8 +1064,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -605,7 +1080,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0339ec34-47b8-4cd5-a75b-187363c5a7fd",
+      "bom-ref": "be833e10-8d91-4ceb-aa00-7b35da53de83",
       "name": "ECDSA",
       "properties": [
         {
@@ -645,8 +1120,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "P-256",
           "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -659,7 +1136,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "543fbb92-1d94-4c92-829c-ffd60e7aa47c",
+      "bom-ref": "5913d945-6057-4f31-b8d9-51585a6fae21",
       "name": "ECDSA",
       "properties": [
         {
@@ -699,8 +1176,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "secp256k1",
           "curve": "secp256k1",
+          "ellipticCurve": "secg/secp256k1",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -713,7 +1192,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f1c314f7-ba78-403f-ae05-98e4015b93c1",
+      "bom-ref": "7d8bb7b7-ef48-4c04-9b0d-710d0cfe1264",
       "name": "ECDSA",
       "properties": [
         {
@@ -753,8 +1232,10 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
+          "algorithmFamily": "ECDSA",
           "parameterSetIdentifier": "P-256",
           "curve": "P-256",
+          "ellipticCurve": "nist/P-256",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -767,7 +1248,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6f9de748-d08c-4040-808c-b625de39e24f",
+      "bom-ref": "fade8011-a617-4551-ae2f-7914cfb2c3ed",
       "name": "Keccak-256",
       "properties": [
         {
@@ -817,7 +1298,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a543cf08-65a1-4759-bf5e-f7a9f127d19b",
+      "bom-ref": "b3862fc3-f589-468f-8a5d-d6c822f693b0",
       "name": "Keccak-256",
       "properties": [
         {
@@ -867,7 +1348,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1efebd60-d3f4-45b1-b95f-1b310b702450",
+      "bom-ref": "7afd8417-8ea0-4693-aa74-a69002d5dd79",
       "name": "Keccak-256",
       "properties": [
         {
@@ -917,8 +1398,212 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0f844786-2132-4377-99b2-30b9f441ad63",
-      "name": "Pedersen commitment",
+      "bom-ref": "1757ea39-38d2-41df-8ba7-3a0e38c16b5e",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/hash.cairo:122"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/hash.cairo#L122"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "Pedersen (STARK curve)",
+          "curve": "Pedersen (STARK curve)",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "db80fae4-a4e6-4c35-a1e1-8dd1c14a1eb8",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/pedersen.cairo:44"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/pedersen.cairo#L44"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "Pedersen (STARK curve)",
+          "curve": "Pedersen (STARK curve)",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "40e37cc3-0b23-4d02-8a44-fe5481565ba7",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/starknet/storage.cairo:144"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/starknet/storage.cairo#L144"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "Pedersen (STARK curve)",
+          "curve": "Pedersen (STARK curve)",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "93fdc1cf-98be-4eb5-9fd7-273affc87f80",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-runner/src/casm_run/contract_address.rs:22"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-runner/src/casm_run/contract_address.rs#L22"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "Pedersen (STARK curve)",
+          "curve": "Pedersen (STARK curve)",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "95a80fa8-0d20-412e-b575-f007ddfe6ca2",
+      "name": "Pedersen hash",
       "properties": [
         {
           "name": "qsi:quantum_status",
@@ -950,21 +1635,24 @@
         },
         {
           "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
+          "value": "pedersen-hash"
         }
       ],
       "cryptoProperties": {
         "assetType": "algorithm",
         "algorithmProperties": {
-          "primitive": "other",
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "79a58268-dc93-4ea1-a726-feb0cf0cb25e",
-      "name": "Pedersen commitment",
+      "bom-ref": "614fd956-1e10-489c-954a-783c8506c9b2",
+      "name": "Pedersen hash",
       "properties": [
         {
           "name": "qsi:quantum_status",
@@ -996,21 +1684,24 @@
         },
         {
           "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
+          "value": "pedersen-hash"
         }
       ],
       "cryptoProperties": {
         "assetType": "algorithm",
         "algorithmProperties": {
-          "primitive": "other",
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8b984c7a-b33f-4e05-ae35-554b6e052a85",
-      "name": "Pedersen commitment",
+      "bom-ref": "c5320403-f5da-464e-8f4b-14ce0ec7a50f",
+      "name": "Pedersen hash",
       "properties": [
         {
           "name": "qsi:quantum_status",
@@ -1042,21 +1733,24 @@
         },
         {
           "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
+          "value": "pedersen-hash"
         }
       ],
       "cryptoProperties": {
         "assetType": "algorithm",
         "algorithmProperties": {
-          "primitive": "other",
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "31a27ea8-3e6f-4a1d-affa-74030bc5ac79",
-      "name": "Pedersen commitment",
+      "bom-ref": "8ff89cda-4ccd-4beb-8819-eba4e81dbd0d",
+      "name": "Pedersen hash",
       "properties": [
         {
           "name": "qsi:quantum_status",
@@ -1088,20 +1782,313 @@
         },
         {
           "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
+          "value": "pedersen-hash"
         }
       ],
       "cryptoProperties": {
         "assetType": "algorithm",
         "algorithmProperties": {
-          "primitive": "other",
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8cc10c9d-e1ae-4fe4-8c27-be2f148a1cae",
+      "bom-ref": "c68f445d-db3e-4ba3-878b-683f9963dc0e",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/lib.cairo:394"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/lib.cairo#L394"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a86c5f54-0933-4f9f-bcf4-ac971d3e36e7",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/poseidon.cairo:29"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/poseidon.cairo#L29"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (5 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b8bcf676-c0cb-4f18-8b94-92d08427c3c2",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/poseidon.cairo:31"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/poseidon.cairo#L31"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (8 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "Poseidon (STARK field)",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "45b1a699-9f55-4692-a883-242ef5aed619",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/prelude/v2023_01.cairo:37"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/prelude/v2023_01.cairo#L37"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d5700ad5-06ae-4bcb-8363-cb34944aae8d",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/prelude/v2023_10.cairo:20"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/prelude/v2023_10.cairo#L20"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ae6c0062-c22c-448b-94d3-a05ccd7f4132",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/starknet/storage_access.cairo:884"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/corelib/src/starknet/storage_access.cairo#L884"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "Poseidon (STARK field)",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "9bc8f11a-a7c6-4ffb-a9fa-9b70090587c1",
       "name": "Poseidon",
       "properties": [
         {
@@ -1149,7 +2136,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e7e1479d-5418-41da-98bd-bdc40f3f4b71",
+      "bom-ref": "1b8fe878-118f-4e5b-a6cf-43efd0f3665e",
       "name": "Poseidon",
       "properties": [
         {
@@ -1197,7 +2184,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3b81e992-f517-4404-8a61-0fb21807e7bf",
+      "bom-ref": "16fb60fe-6e52-42ef-8d98-2155fd5a3e51",
       "name": "Poseidon",
       "properties": [
         {
@@ -1245,7 +2232,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "807e18e6-6d4d-4c00-8a33-b8641dddaf5a",
+      "bom-ref": "a0516d78-a230-4585-a73c-f46c2d89b77e",
       "name": "Poseidon",
       "properties": [
         {
@@ -1293,7 +2280,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0e9f20bb-0895-41d7-a352-d52d34221556",
+      "bom-ref": "30a5cd67-2ace-4eb4-9631-d2e6fb32cf7e",
       "name": "Poseidon",
       "properties": [
         {
@@ -1341,7 +2328,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "17369256-5230-4300-a225-6bd9f77f70c1",
+      "bom-ref": "1884cbdb-080f-465e-9269-3140b1e5943f",
       "name": "Poseidon",
       "properties": [
         {
@@ -1389,7 +2376,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8ffce3c8-80c1-4359-a9a8-9a62121bcfce",
+      "bom-ref": "bcd1be3d-d4c6-4b75-b5ef-4bbcef8e5357",
       "name": "Poseidon",
       "properties": [
         {
@@ -1437,7 +2424,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9b321354-0372-49e8-866e-c577a3486331",
+      "bom-ref": "6269254d-de10-4397-94ff-ebb5a9cae2ef",
       "name": "Poseidon",
       "properties": [
         {
@@ -1485,7 +2472,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d4bbf19a-d5eb-428e-bdb8-0ac345cded4f",
+      "bom-ref": "b87d0ef1-81bc-4a8e-962c-fa01b0963eec",
       "name": "Poseidon",
       "properties": [
         {
@@ -1533,7 +2520,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0f4a14d2-dfc5-49fc-a3de-fc417a742f42",
+      "bom-ref": "258f4a9d-82d3-46d9-99ea-d78f5680387f",
       "name": "Poseidon",
       "properties": [
         {
@@ -1581,7 +2568,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "93b021b1-13bb-4dc7-a1b1-a87f27eb2d24",
+      "bom-ref": "4723cf03-0fc2-45b9-a712-ad1e4483e51b",
       "name": "Poseidon",
       "properties": [
         {
@@ -1629,7 +2616,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "943ba5db-ff96-4821-847e-be23264b034b",
+      "bom-ref": "a672287d-4c54-46bd-b107-a7b377ad41bd",
       "name": "Poseidon",
       "properties": [
         {
@@ -1677,7 +2664,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5339e33d-09a7-405f-9012-498e8155c980",
+      "bom-ref": "82a0cc1a-00f9-4917-917a-2c91f9b7cfeb",
       "name": "Poseidon",
       "properties": [
         {
@@ -1725,7 +2712,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b46bfffb-17bb-485e-83e4-f061536abebe",
+      "bom-ref": "5710f751-216f-42c4-8725-480f386c8da2",
       "name": "Poseidon",
       "properties": [
         {
@@ -1773,7 +2760,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "13c84760-9e83-4cb6-ae47-56070fee1f9c",
+      "bom-ref": "6d3a4ec4-4a18-4a4c-833e-66017d478a47",
       "name": "Poseidon",
       "properties": [
         {
@@ -1821,7 +2808,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3c3b3130-5c58-4db8-b684-b330cfae1fb9",
+      "bom-ref": "15d1e57e-2ba2-4218-b792-588d18b3fe8d",
       "name": "Poseidon",
       "properties": [
         {
@@ -1865,6 +2852,198 @@
             "digest"
           ]
         }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6f6fef84-636f-423d-bd71-3095834c2ec8",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/sha256.cairo"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implemented in a file of this name"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "low"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "551d08db-c761-4d0b-b02a-2aa80112a21b",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/sha2_64_core.cairo"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implemented in a file of this name"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "low"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "cb51555c-690d-480e-9875-80fa8a26e0f4",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/sha384.cairo"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implemented in a file of this name"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "low"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "parameterSetIdentifier": "SHA-384",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 192,
+          "nistQuantumSecurityLevel": 4
+        },
+        "oid": "2.16.840.1.101.3.4.2.2"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d59f76d6-b148-4e0c-a0ad-a8c4ccf11d81",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "corelib/src/sha512.cairo"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implemented in a file of this name"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "low"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "algorithmFamily": "SHA-2",
+          "parameterSetIdentifier": "SHA-512",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 256,
+          "nistQuantumSecurityLevel": 5
+        },
+        "oid": "2.16.840.1.101.3.4.2.3"
       }
     }
   ]

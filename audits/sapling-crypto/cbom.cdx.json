@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.6",
-  "serialNumber": "urn:uuid:67a192b9-5610-4a0f-b139-1986915df7a6",
+  "specVersion": "1.7",
+  "serialNumber": "urn:uuid:84a91998-c41e-4caf-8035-d2dab3febc4e",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-06T13:53:44Z",
+    "timestamp": "2026-11-23T13:07:58Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.3.0"
+          "version": "1.16.2"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "abaffc75-2359-472b-bfc1-d9b608dcd542",
+      "bom-ref": "8fb5d680-e03f-41b5-a09e-e61185198fc9",
       "name": "AES-256",
       "properties": [
         {
@@ -62,6 +62,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "block-cipher",
+          "algorithmFamily": "AES",
           "parameterSetIdentifier": "AES-256",
           "cryptoFunctions": [
             "encrypt",
@@ -75,7 +76,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b57345f3-495d-4127-aa63-9e83b743e8ab",
+      "bom-ref": "3157fb79-8260-4cb6-91da-c89c303dbf1e",
       "name": "BLS12-381",
       "properties": [
         {
@@ -115,13 +116,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d3b471e7-c7c3-406c-8be4-555fd1d651dc",
+      "bom-ref": "d43f28ba-6c79-42bb-b460-5400a0ee7ca3",
       "name": "BLS12-381",
       "properties": [
         {
@@ -161,13 +164,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "676d0cdf-8e8e-467a-bc6b-ce80e261f9da",
+      "bom-ref": "2e1434be-c428-4236-8fcf-743827b20814",
       "name": "BLS12-381",
       "properties": [
         {
@@ -207,13 +212,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fd87ee0a-2d31-4b9b-ba23-80fde22675d2",
+      "bom-ref": "8c434bb7-fa3c-4057-923e-e4851723161d",
       "name": "BLS12-381",
       "properties": [
         {
@@ -253,13 +260,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d9ea9970-1a22-43e5-aa1a-0d5cb832dd31",
+      "bom-ref": "94b2bdf8-2a4b-48a1-87ff-74cb1a41885c",
       "name": "BLS12-381",
       "properties": [
         {
@@ -299,13 +308,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b01f75f8-de8f-4c62-99e9-6d21ef16960a",
+      "bom-ref": "bedaade6-b7bf-4b9e-a6e0-6cd7998b9f10",
       "name": "BLS12-381",
       "properties": [
         {
@@ -345,13 +356,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "200ab289-4c2f-4048-a32c-ceae86396bd6",
+      "bom-ref": "23882516-9047-476f-93b5-f6fe410370eb",
       "name": "BLS12-381",
       "properties": [
         {
@@ -391,13 +404,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b1e7a067-ae9b-452c-8e5a-85836d8d68f0",
+      "bom-ref": "9f5f649e-c730-4e41-832a-5042238a4768",
       "name": "BLS12-381",
       "properties": [
         {
@@ -437,13 +452,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0c16e369-4da7-47fa-aee9-deff52b8b2f1",
+      "bom-ref": "5d77e000-fd1a-4b5a-a195-ce24ca0fe6ee",
       "name": "BLS12-381",
       "properties": [
         {
@@ -483,13 +500,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ed84f131-a908-4a10-b416-3a2b90703da7",
+      "bom-ref": "c8771992-fc43-4d11-b1d9-9a000ea6a596",
       "name": "BLS12-381",
       "properties": [
         {
@@ -529,13 +548,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7f9d779b-b806-4dfc-9ee3-e8bd284f4b81",
+      "bom-ref": "dda18c78-0b1a-43f1-83a0-e42a13b47c26",
       "name": "BLS12-381",
       "properties": [
         {
@@ -575,13 +596,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7da33fc3-5ea2-4e73-bf9b-1fc96e937b43",
+      "bom-ref": "8994da68-912c-41c2-9d04-5933131be754",
       "name": "BLS12-381",
       "properties": [
         {
@@ -621,13 +644,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "196ce28a-f609-4b80-8477-339078bdaf2c",
+      "bom-ref": "3df0e5dc-3bdd-47c7-81c6-da96ef377cff",
       "name": "BLS12-381",
       "properties": [
         {
@@ -667,13 +692,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1a449a41-191e-45fb-9672-e6f3743206c2",
+      "bom-ref": "4a76e8ad-e379-49bf-989f-f7f09ff3210d",
       "name": "BLS12-381",
       "properties": [
         {
@@ -713,13 +740,15 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "other",
+          "algorithmFamily": "BLS",
+          "ellipticCurve": "bls/BLS12-381",
           "nistQuantumSecurityLevel": 0
         }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b87ec7bb-7c7a-45fb-84a1-f9286f666213",
+      "bom-ref": "4922e608-da84-43a0-b5ac-c01c07693587",
       "name": "Crypto library",
       "properties": [
         {
@@ -760,7 +789,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8a24a452-2253-4aad-8388-6593a03f6611",
+      "bom-ref": "4560f184-50e2-4199-a00c-2fa319ea837a",
       "name": "Crypto library",
       "properties": [
         {
@@ -801,7 +830,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "afc02cc4-e795-47d8-a51e-8e3bedf13b5c",
+      "bom-ref": "0b9e5723-3eec-4476-b01e-cf1e1f89f4b0",
       "name": "Crypto library",
       "properties": [
         {
@@ -842,7 +871,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "25d13c47-4239-4089-a23d-b66ae71fb4b5",
+      "bom-ref": "aeb6fe15-0802-48ac-b4d5-ce91b913d3ff",
       "name": "Crypto library",
       "properties": [
         {
@@ -883,7 +912,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "879509cc-cec4-4a87-b1b2-eca23f28eaf6",
+      "bom-ref": "04d7c97f-86bd-4c16-8fe8-5e170943478f",
       "name": "Crypto library",
       "properties": [
         {
@@ -924,7 +953,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4382f64d-483f-4a07-8338-98c9f610cd08",
+      "bom-ref": "67f17ca9-91fd-4d24-bf86-13e1c226e2e6",
       "name": "Crypto library",
       "properties": [
         {
@@ -965,7 +994,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c9051970-fea2-416f-9014-fc2fb104bbb4",
+      "bom-ref": "49a20bf6-84bb-4ab9-b025-e9fe5a2fe660",
       "name": "Crypto library",
       "properties": [
         {
@@ -1006,7 +1035,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1b25ff3a-23c6-4a88-ae49-04082e8a8ad0",
+      "bom-ref": "75b9cd61-98dd-415b-8b10-7b4d69478c9c",
       "name": "Crypto library",
       "properties": [
         {
@@ -1047,7 +1076,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7fec840f-b9aa-483e-a4de-cbfc85e58098",
+      "bom-ref": "ae85fca0-951c-4ff3-b968-3ee3ea226c72",
       "name": "Crypto library",
       "properties": [
         {
@@ -1088,89 +1117,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "46c24006-9275-4542-9bd2-d21c55e9ab00",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "zcash_note_encryption (Zcash protocol crates)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "98fceead-bd76-42c8-9034-3d739ee1c7b2",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "bls12_381 (bls12_381)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "02597964-005a-446b-8336-c38ac7280fc0",
+      "bom-ref": "83ee207f-b7f8-4887-b621-5a58574e90e6",
       "name": "Crypto library",
       "properties": [
         {
@@ -1211,7 +1158,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "35f34147-a380-419c-8d69-fdc304e8e3fe",
+      "bom-ref": "15b34011-3381-4d1e-a00b-3fb8718ed087",
       "name": "Crypto library",
       "properties": [
         {
@@ -1240,7 +1187,7 @@
         },
         {
           "name": "qsi:library",
-          "value": "zip32 (Zcash protocol crates)"
+          "value": "zcash_note_encryption (Zcash protocol crates)"
         }
       ],
       "cryptoProperties": {
@@ -1252,7 +1199,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5f74a3bd-cb5f-4ab4-90d7-8c55b27f1458",
+      "bom-ref": "e02ec147-c3f2-4493-a896-7d5ff9117961",
       "name": "Crypto library",
       "properties": [
         {
@@ -1293,7 +1240,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "acb67f61-3817-4653-9152-88eabe38eeb9",
+      "bom-ref": "35c0d324-a40b-4588-84df-f7de5010c32c",
       "name": "Crypto library",
       "properties": [
         {
@@ -1334,7 +1281,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fa566c50-1228-41d3-bcf4-e567fe00eb0e",
+      "bom-ref": "9ad7720d-471c-498d-b482-46082f248d9e",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "zip32 (Zcash protocol crates)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c6ed24f7-2f3f-4c17-a0e8-ddeb578cb68d",
       "name": "Crypto library",
       "properties": [
         {
@@ -1375,7 +1363,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a63933d6-fe88-47d8-8c85-c5965b8b837c",
+      "bom-ref": "c6d8abed-606e-4dfc-ac80-6af6047962c7",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "bls12_381 (bls12_381)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b27e6492-83f3-499a-9bd1-d75756934997",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1421,7 +1450,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7afcca48-1f26-4a7d-aa6f-165b093ce75d",
+      "bom-ref": "908c3594-e7af-41d0-aa5a-3d77adc70c1c",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1467,7 +1496,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7ad07d27-2cce-4a1d-b636-7768b816d70c",
+      "bom-ref": "6bd4a376-b94f-462f-b7a5-ea55a6c05e66",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1480,15 +1509,15 @@
         },
         {
           "name": "qsi:location",
-          "value": "src/circuit.rs:30"
+          "value": "src/circuit.rs:34"
         },
         {
           "name": "qsi:url",
-          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L30"
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L34"
         },
         {
           "name": "qsi:usage",
-          "value": "source code (21 reference(s))"
+          "value": "source code (8 reference(s))"
         },
         {
           "name": "qsi:confidence",
@@ -1513,7 +1542,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3d09c08e-42f1-4564-a440-e75288b8c8ba",
+      "bom-ref": "bcbe566f-5071-4956-bb3b-cbba55971549",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1526,11 +1555,11 @@
         },
         {
           "name": "qsi:location",
-          "value": "src/circuit/pedersen_hash.rs:4"
+          "value": "src/note/commitment.rs:9"
         },
         {
           "name": "qsi:url",
-          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit/pedersen_hash.rs#L4"
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/note/commitment.rs#L9"
         },
         {
           "name": "qsi:usage",
@@ -1559,99 +1588,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3f004ccd-94be-4cd0-99be-17cd5fbc148e",
-      "name": "Pedersen commitment",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "src/lib.rs:38"
-        },
-        {
-          "name": "qsi:url",
-          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/lib.rs#L38"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "source code (1 reference(s))"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "medium"
-        },
-        {
-          "name": "qsi:source",
-          "value": "source_code"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "other",
-          "nistQuantumSecurityLevel": 0
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "1f7d431e-d5b3-4c48-8fc0-a5cc9dfd1b5a",
-      "name": "Pedersen commitment",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "src/note/commitment.rs:8"
-        },
-        {
-          "name": "qsi:url",
-          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/note/commitment.rs#L8"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "source code (1 reference(s))"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "medium"
-        },
-        {
-          "name": "qsi:source",
-          "value": "source_code"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "other",
-          "nistQuantumSecurityLevel": 0
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "e5a3629f-63ec-4950-8e35-ad916ff86ade",
+      "bom-ref": "5117f1af-3a12-403b-9ac2-f19b18c40298",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1697,7 +1634,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "028cb91e-58dd-4ce6-bbbd-65d237f746c8",
+      "bom-ref": "0bf10774-d1b0-462a-b0b9-384fab060229",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1743,7 +1680,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "541c3704-869c-4be9-8c90-c8a3ace46f64",
+      "bom-ref": "0754c3d0-9f86-43d8-8e88-6af9f064bfc5",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1789,7 +1726,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bdbe042d-9dc2-4f3f-84df-cc92eec7637f",
+      "bom-ref": "a5c3e421-82ef-490b-b009-fd49eb929160",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1835,7 +1772,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9064f415-c66b-46fb-a018-5cd13674bc8f",
+      "bom-ref": "a6317b14-2df1-48dd-88a1-24e0bd57a5e8",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1881,53 +1818,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3864ef35-9c52-4c6f-a530-001c83698bd6",
-      "name": "Pedersen commitment",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "src/pedersen_hash.rs:32"
-        },
-        {
-          "name": "qsi:url",
-          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/pedersen_hash.rs#L32"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "source code (1 reference(s))"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "medium"
-        },
-        {
-          "name": "qsi:source",
-          "value": "source_code"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "other",
-          "nistQuantumSecurityLevel": 0
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "27729cde-c028-45f3-8025-73eb1af600c1",
+      "bom-ref": "d50baba0-afe9-4d05-abd1-6e156dcbca2d",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1973,7 +1864,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "627dfb5a-9511-4316-9162-18b5e665c838",
+      "bom-ref": "3bcf0619-4e42-4e55-b082-554cab529ea4",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1986,15 +1877,15 @@
         },
         {
           "name": "qsi:location",
-          "value": "src/spec.rs:12"
+          "value": "src/spec.rs:143"
         },
         {
           "name": "qsi:url",
-          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/spec.rs#L12"
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/spec.rs#L143"
         },
         {
           "name": "qsi:usage",
-          "value": "source code (2 reference(s))"
+          "value": "source code (1 reference(s))"
         },
         {
           "name": "qsi:confidence",
@@ -2019,53 +1910,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a7d6b3ea-9153-4c87-a778-a382f67f01d8",
-      "name": "Pedersen commitment",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "src/tree.rs:12"
-        },
-        {
-          "name": "qsi:url",
-          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/tree.rs#L12"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "source code (2 reference(s))"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "medium"
-        },
-        {
-          "name": "qsi:source",
-          "value": "source_code"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "other",
-          "nistQuantumSecurityLevel": 0
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "1f65c1c3-7973-46ea-a9c0-92c9d7506d1e",
+      "bom-ref": "a5fb1bca-ae93-42f2-b4e5-a2165b27d11b",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2111,7 +1956,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ef5714e0-c0c9-49c8-b5ff-8a15e8b1aa46",
+      "bom-ref": "a7f67901-bc3e-4821-98e9-bbac3dcd3d01",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2157,7 +2002,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "91d09d91-32dd-4803-a0e2-32c50bd6ed2e",
+      "bom-ref": "71bc7209-a17e-46ef-89e6-e3aa80402415",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2203,7 +2048,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ec901259-8794-482d-89f2-008ea1353abb",
+      "bom-ref": "3f7350dc-e9ab-426a-a364-74935c4c5f37",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2249,7 +2094,350 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1ea7be2b-af36-4962-a8ec-8b53f73e836d",
+      "bom-ref": "27f9bf1f-ec41-49e1-8e2e-e5cab12aad12",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/circuit.rs:30"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L30"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (13 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5cf2bfe5-478b-447c-b025-d23e3b0b9677",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/circuit/pedersen_hash.rs:4"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit/pedersen_hash.rs#L4"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "668cee2a-14d8-479a-9587-0e3bf9cf631f",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/lib.rs:38"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/lib.rs#L38"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a144fcf0-979e-49ca-8123-13ed3945fd70",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/note/commitment.rs:8"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/note/commitment.rs#L8"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "31832df8-5399-4de8-ab94-0163079372fb",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/pedersen_hash.rs:32"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/pedersen_hash.rs#L32"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ec77404c-3042-4ca4-aaad-00e281b46bf4",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/spec.rs:12"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/spec.rs#L12"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b47b1343-c8d7-49ce-b234-ead6cbcec34a",
+      "name": "Pedersen hash",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/tree.rs:12"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/tree.rs#L12"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-hash"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1a89fc2e-cc05-4419-a5e5-1f9ea59bf1c5",
       "name": "RedDSA",
       "properties": [
         {
@@ -2299,7 +2487,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "807e1792-ff8b-45d0-811d-72ceffdffa8e",
+      "bom-ref": "6d4238ea-bb88-4efe-8048-aea2a0f214b4",
       "name": "RedDSA",
       "properties": [
         {
@@ -2341,6 +2529,7 @@
           "primitive": "signature",
           "parameterSetIdentifier": "RedJubjub",
           "curve": "RedJubjub",
+          "ellipticCurve": "other/JubJub",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -2352,7 +2541,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a8fd77c8-c7ea-49f8-bf8f-33333b2b719a",
+      "bom-ref": "90624e53-c82b-4ce0-8f76-802c4f0c379f",
       "name": "RedDSA",
       "properties": [
         {

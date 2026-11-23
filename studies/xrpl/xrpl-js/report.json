@@ -1,8 +1,8 @@
 {
-  "content_sha256": "354bd32ed8a7a38635cdea7d11eaf989ea99a47c53db5c13c78a9e8e0397224d",
+  "content_sha256": "fb68b22583eae87f45a54396ee016e42626be38e84c07e364adae962242556f8",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-21T10:21:15.329137+00:00",
+  "generated_at": "2026-11-23T14:06:34.975840+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "f40c8824-e17f-423c-b117-8e250cc80c47",
+    "id": "a00fb235-2a69-45d6-844c-d0fd9b27795a",
     "mode": "document",
     "title": "Document audit: xrpl-js",
     "status": "completed",
-    "engine_version": "1.8.1",
-    "started_at": "2026-11-21T10:20:53.260443+00:00",
-    "finished_at": "2026-11-21T10:21:15.222915+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T14:06:12.725794+00:00",
+    "finished_at": "2026-11-23T14:06:34.871758+00:00",
     "risk_profile": "web3",
     "risk_profile_name": "Web3 project",
     "parameters": {
@@ -2309,47 +2309,47 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": ".ci-config/getNewAmendments.js: 56 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": ".ci-config/getNewAmendments.js: 56 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "docs/assets/hierarchy.js: 1 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "docs/assets/hierarchy.js: 1 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "docs/assets/icons.js: 18 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "docs/assets/icons.js: 18 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "docs/assets/main.js: 60 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "docs/assets/main.js: 60 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "docs/assets/navigation.js: 1 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "docs/assets/navigation.js: 1 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "docs/assets/search.js: 1 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "docs/assets/search.js: 1 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "jest.config.base.js: 67 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "jest.config.base.js: 67 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "jest.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "jest.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "karma.config.js: 28 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "karma.config.js: 28 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2364,17 +2364,17 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/eslint.config.js: 89 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/eslint.config.js: 89 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/jest.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/jest.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/karma.config.js: 15 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/karma.config.js: 15 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2399,82 +2399,82 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/internal/normalizeInput.ts: 19 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/internal/normalizeInput.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/internal/types.ts: 33 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/internal/types.ts: 33 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/internal/wrapCryptoCreateHash.ts: 32 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/internal/wrapCryptoCreateHash.ts: 32 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/internal/wrapNoble.ts: 28 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/internal/wrapNoble.ts: 28 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/ripemd160/browser.ts: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/ripemd160/browser.ts: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/ripemd160/index.ts: 7 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/ripemd160/index.ts: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/sha256/browser.ts: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/sha256/browser.ts: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/sha256/index.ts: 7 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/sha256/index.ts: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/sha512/browser.ts: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/sha512/browser.ts: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/sha512/index.ts: 7 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/sha512/index.ts: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/utils/browser.ts: 54 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/utils/browser.ts: 54 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/utils/index.ts: 93 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/utils/index.ts: 93 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/utils/shared.ts: 21 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/utils/shared.ts: 21 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/utils/types.ts: 37 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/utils/types.ts: 37 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/ws/browser.ts: 105 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/ws/browser.ts: 105 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/isomorphic/src/ws/index.ts: 10 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/isomorphic/src/ws/index.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2489,12 +2489,12 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/eslint.config.js: 66 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/eslint.config.js: 66 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/jest.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/jest.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2504,102 +2504,102 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/scripts/finalize-esm.js: 39 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/scripts/finalize-esm.js: 39 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/constants.ts: 52 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/constants.ts: 52 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/context.ts: 162 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/context.ts: 162 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/hex.ts: 51 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/hex.ts: 51 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/homomorphic.ts: 98 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/homomorphic.ts: 98 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/index.ts: 51 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/index.ts: 51 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/internal.ts: 119 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/internal.ts: 119 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/marshal.ts: 150 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/marshal.ts: 150 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/module.ts: 221 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/module.ts: 221 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/primitives.ts: 145 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/primitives.ts: 145 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/proofs.ts: 221 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/proofs.ts: 221 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/runtime.ts: 23 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/runtime.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/types.ts: 51 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/types.ts: 51 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/src/wasm.d.ts: 12 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/src/wasm.d.ts: 12 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/wasm/mpt_crypto.js: 2 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/wasm/mpt_crypto.js: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/wasm/mpt_crypto.mjs: 2 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/wasm/mpt_crypto.mjs: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/mpt-crypto/wasm/mpt_crypto.web.mjs: 2 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/mpt-crypto/wasm/mpt_crypto.web.mjs: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-address-codec/eslint.config.js: 60 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-address-codec/eslint.config.js: 60 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-address-codec/jest.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-address-codec/jest.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-address-codec/karma.config.js: 15 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-address-codec/karma.config.js: 15 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2609,32 +2609,32 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-address-codec/src/index.ts: 185 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-address-codec/src/index.ts: 185 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-address-codec/src/utils.ts: 46 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-address-codec/src/utils.ts: 46 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-address-codec/src/xrp-codec.ts: 259 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-address-codec/src/xrp-codec.ts: 259 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/eslint.config.js: 130 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/eslint.config.js: 130 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/jest.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/jest.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/karma.config.js: 15 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/karma.config.js: 15 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2644,227 +2644,227 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/binary.ts: 269 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/binary.ts: 269 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/coretypes.ts: 31 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/coretypes.ts: 31 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/enums/bytes.ts: 77 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/enums/bytes.ts: 77 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/enums/constants.ts: 5 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/enums/constants.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/enums/field.ts: 84 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/enums/field.ts: 84 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/enums/index.ts: 34 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/enums/index.ts: 34 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/enums/utils-renumber.ts: 134 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/enums/utils-renumber.ts: 134 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/enums/xrpl-definitions-base.ts: 168 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/enums/xrpl-definitions-base.ts: 168 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/enums/xrpl-definitions.ts: 33 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/enums/xrpl-definitions.ts: 33 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/hash-prefixes.ts: 50 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/hash-prefixes.ts: 50 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/hashes.ts: 75 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/hashes.ts: 75 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/index.ts: 264 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/index.ts: 264 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/ledger-hashes.ts: 191 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/ledger-hashes.ts: 191 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/quality.ts: 48 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/quality.ts: 48 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/serdes/binary-parser.ts: 238 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/serdes/binary-parser.ts: 238 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/serdes/binary-serializer.ts: 166 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/serdes/binary-serializer.ts: 166 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/shamap.ts: 189 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/shamap.ts: 189 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/account-id.ts: 86 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/account-id.ts: 86 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/amount.ts: 377 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/amount.ts: 377 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/blob.ts: 46 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/blob.ts: 46 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/currency.ts: 140 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/currency.ts: 140 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/hash-128.ts: 33 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/hash-128.ts: 33 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/hash-160.ts: 19 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/hash-160.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/hash-192.ts: 19 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/hash-192.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/hash-256.ts: 15 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/hash-256.ts: 15 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/hash.ts: 86 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/hash.ts: 86 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/index.ts: 74 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/index.ts: 74 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/int-32.ts: 72 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/int-32.ts: 72 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/int.ts: 75 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/int.ts: 75 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/issue.ts: 163 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/issue.ts: 163 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/path-set.ts: 290 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/path-set.ts: 290 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/serialized-type.ts: 122 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/serialized-type.ts: 122 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/signed-amount.ts: 92 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/signed-amount.ts: 92 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/st-array.ts: 113 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/st-array.ts: 113 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/st-number.ts: 310 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/st-number.ts: 310 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/st-object.ts: 206 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/st-object.ts: 206 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/uint-16.ts: 53 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/uint-16.ts: 53 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/uint-32.ts: 59 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/uint-32.ts: 59 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/uint-64.ts: 137 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/uint-64.ts: 137 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/uint-8.ts: 52 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/uint-8.ts: 52 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/uint.ts: 60 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/uint.ts: 60 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/vector-256.ts: 79 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/vector-256.ts: 79 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/types/xchain-bridge.ts: 128 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/types/xchain-bridge.ts: 128 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/src/utils.ts: 220 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/src/utils.ts: 220 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-binary-codec/tools/generateDefinitions.js: 413 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-binary-codec/tools/generateDefinitions.js: 413 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2874,17 +2874,17 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/eslint.config.js: 73 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/eslint.config.js: 73 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/jest.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/jest.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/karma.config.js: 15 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/karma.config.js: 15 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2894,57 +2894,57 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/src/index.ts: 147 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/src/index.ts: 147 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/src/signing-schemes/ed25519/index.ts: 58 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/src/signing-schemes/ed25519/index.ts: 58 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/src/signing-schemes/secp256k1/index.ts: 74 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/src/signing-schemes/secp256k1/index.ts: 74 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/src/signing-schemes/secp256k1/utils.ts: 74 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/src/signing-schemes/secp256k1/utils.ts: 74 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/src/types.ts: 35 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/src/types.ts: 35 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/src/utils/Sha512.ts: 36 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/src/utils/Sha512.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/src/utils/assert.ts: 11 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/src/utils/assert.ts: 11 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/ripple-keypairs/src/utils/getAlgorithmFromKey.ts: 123 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/ripple-keypairs/src/utils/getAlgorithmFromKey.ts: 123 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/secret-numbers/eslint.config.js: 59 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/secret-numbers/eslint.config.js: 59 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/secret-numbers/jest.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/secret-numbers/jest.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/secret-numbers/karma.config.js: 14 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/secret-numbers/karma.config.js: 14 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2954,52 +2954,52 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/secret-numbers/src/index.ts: 2 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/secret-numbers/src/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/secret-numbers/src/schema/Account.ts: 114 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/secret-numbers/src/schema/Account.ts: 114 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/secret-numbers/src/utils/index.ts: 95 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/secret-numbers/src/utils/index.ts: 95 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/secret-numbers/webpack.base.config.js: 14 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/secret-numbers/webpack.base.config.js: 14 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/secret-numbers/webpack.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/secret-numbers/webpack.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/eslint.config.js: 132 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/eslint.config.js: 132 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/jest.config.faucet.js: 13 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/jest.config.faucet.js: 13 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/jest.config.integration.js: 14 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/jest.config.integration.js: 14 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/jest.config.unit.js: 14 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/jest.config.unit.js: 14 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/karma.config.js: 62 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/karma.config.js: 62 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -3009,37 +3009,37 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/ECDSA.ts: 6 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/ECDSA.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/authorizeChannel.ts: 26 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/authorizeChannel.ts: 26 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/batchSigner.ts: 272 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/batchSigner.ts: 272 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/counterpartySigner.ts: 226 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/counterpartySigner.ts: 226 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/defaultFaucets.ts: 67 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/defaultFaucets.ts: 67 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/fundWallet.ts: 289 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/fundWallet.ts: 289 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/index.ts: 522 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/index.ts: 522 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -3049,1147 +3049,1147 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/rfc1751.ts: 219 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/rfc1751.ts: 219 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/signer.ts: 128 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/signer.ts: 128 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/sponsorSigner.ts: 327 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/sponsorSigner.ts: 327 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/utils.ts: 236 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/utils.ts: 236 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/Wallet/walletFromSecretNumbers.ts: 39 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/Wallet/walletFromSecretNumbers.ts: 39 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/client/ConnectionManager.ts: 40 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/client/ConnectionManager.ts: 40 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/client/ExponentialBackoff.ts: 71 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/client/ExponentialBackoff.ts: 71 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/client/RequestManager.ts: 228 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/client/RequestManager.ts: 228 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/client/connection.ts: 661 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/client/connection.ts: 661 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/client/index.ts: 1271 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/client/index.ts: 1271 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/client/partialPayment.ts: 210 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/client/partialPayment.ts: 210 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/confidential/batch.ts: 794 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/confidential/batch.ts: 794 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/confidential/convert.ts: 222 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/confidential/convert.ts: 222 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/confidential/index.ts: 50 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/confidential/index.ts: 50 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/confidential/keys.ts: 35 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/confidential/keys.ts: 35 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/confidential/ledger.ts: 286 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/confidential/ledger.ts: 286 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/confidential/loader.ts: 36 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/confidential/loader.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/confidential/transfer.ts: 232 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/confidential/transfer.ts: 232 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/confidential/types.ts: 249 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/confidential/types.ts: 249 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/errors.ts: 159 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/errors.ts: 159 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/index.ts: 27 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/index.ts: 27 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/common/index.ts: 360 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/common/index.ts: 360 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/index.ts: 25 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/index.ts: 25 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/AMM.ts: 78 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/AMM.ts: 78 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/AccountRoot.ts: 256 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/AccountRoot.ts: 256 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Amendments.ts: 46 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Amendments.ts: 46 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/BaseLedgerEntry.ts: 31 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/BaseLedgerEntry.ts: 31 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Bridge.ts: 72 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Bridge.ts: 72 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Check.ts: 76 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Check.ts: 76 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Credential.ts: 54 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Credential.ts: 54 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/DID.ts: 22 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/DID.ts: 22 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Delegate.ts: 46 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Delegate.ts: 46 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/DepositPreauth.ts: 36 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/DepositPreauth.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/DirectoryNode.ts: 50 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/DirectoryNode.ts: 50 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Escrow.ts: 84 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Escrow.ts: 84 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/FeeSettings.ts: 53 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/FeeSettings.ts: 53 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Ledger.ts: 107 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Ledger.ts: 107 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/LedgerEntry.ts: 98 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/LedgerEntry.ts: 98 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/LedgerHashes.ts: 24 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/LedgerHashes.ts: 24 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Loan.ts: 162 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Loan.ts: 162 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/LoanBroker.ts: 95 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/LoanBroker.ts: 95 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/MPToken.ts: 29 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/MPToken.ts: 29 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/MPTokenIssuance.ts: 174 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/MPTokenIssuance.ts: 174 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/NFTokenOffer.ts: 15 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/NFTokenOffer.ts: 15 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/NFTokenPage.ts: 19 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/NFTokenPage.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/NegativeUNL.ts: 35 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/NegativeUNL.ts: 35 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Offer.ts: 63 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Offer.ts: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Oracle.ts: 43 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Oracle.ts: 43 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/PayChannel.ts: 103 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/PayChannel.ts: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/PermissionedDomain.ts: 28 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/PermissionedDomain.ts: 28 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/RippleState.ts: 96 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/RippleState.ts: 96 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/SignerList.ts: 52 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/SignerList.ts: 52 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Sponsorship.ts: 74 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Sponsorship.ts: 74 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Ticket.ts: 26 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Ticket.ts: 26 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/Vault.ts: 119 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/Vault.ts: 119 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/XChainOwnedClaimID.ts: 78 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/XChainOwnedClaimID.ts: 78 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/XChainOwnedCreateAccountClaimID.ts: 64 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/XChainOwnedCreateAccountClaimID.ts: 64 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/ledger/index.ts: 104 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/ledger/index.ts: 104 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountChannels.ts: 155 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountChannels.ts: 155 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountCurrencies.ts: 44 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountCurrencies.ts: 44 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountInfo.ts: 228 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountInfo.ts: 228 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountLines.ts: 147 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountLines.ts: 147 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountNFTs.ts: 82 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountNFTs.ts: 82 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountObjects.ts: 103 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountObjects.ts: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountOffers.ts: 99 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountOffers.ts: 99 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountSponsoring.ts: 92 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountSponsoring.ts: 92 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/accountTx.ts: 150 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/accountTx.ts: 150 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/ammInfo.ts: 155 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/ammInfo.ts: 155 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/baseMethod.ts: 59 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/baseMethod.ts: 59 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/bookOffers.ts: 103 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/bookOffers.ts: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/channelVerify.ts: 41 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/channelVerify.ts: 41 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/depositAuthorized.ts: 65 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/depositAuthorized.ts: 65 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/feature.ts: 68 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/feature.ts: 68 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/fee.ts: 91 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/fee.ts: 91 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/gatewayBalances.ts: 84 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/gatewayBalances.ts: 84 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/getAggregatePrice.ts: 119 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/getAggregatePrice.ts: 119 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/index.ts: 688 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/index.ts: 688 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/ledger.ts: 299 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/ledger.ts: 299 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/ledgerClosed.ts: 32 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/ledgerClosed.ts: 32 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/ledgerCurrent.ts: 31 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/ledgerCurrent.ts: 31 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/ledgerData.ts: 81 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/ledgerData.ts: 81 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/ledgerEntry.ts: 309 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/ledgerEntry.ts: 309 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/manifest.ts: 54 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/manifest.ts: 54 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/nftBuyOffers.ts: 55 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/nftBuyOffers.ts: 55 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/nftHistory.ts: 113 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/nftHistory.ts: 113 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/nftInfo.ts: 25 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/nftInfo.ts: 25 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/nftSellOffers.ts: 55 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/nftSellOffers.ts: 55 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/nftsByIssuer.ts: 67 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/nftsByIssuer.ts: 67 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/norippleCheck.ts: 82 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/norippleCheck.ts: 82 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/pathFind.ts: 124 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/pathFind.ts: 124 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/ping.ts: 21 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/ping.ts: 21 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/random.ts: 23 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/random.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/ripplePathFind.ts: 85 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/ripplePathFind.ts: 85 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/serverDefinitions.ts: 98 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/serverDefinitions.ts: 98 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/serverInfo.ts: 271 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/serverInfo.ts: 271 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/serverState.ts: 78 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/serverState.ts: 78 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/simulate.ts: 89 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/simulate.ts: 89 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/submit.ts: 94 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/submit.ts: 94 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/submitMultisigned.ts: 83 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/submitMultisigned.ts: 83 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/subscribe.ts: 527 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/subscribe.ts: 527 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/transactionEntry.ts: 46 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/transactionEntry.ts: 46 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/tx.ts: 134 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/tx.ts: 134 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/unsubscribe.ts: 49 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/unsubscribe.ts: 49 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/methods/vaultInfo.ts: 255 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/methods/vaultInfo.ts: 255 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/AMMBid.ts: 112 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/AMMBid.ts: 112 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/AMMClawback.ts: 117 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/AMMClawback.ts: 117 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/AMMCreate.ts: 68 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/AMMCreate.ts: 68 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/AMMDelete.ts: 47 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/AMMDelete.ts: 47 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/AMMDeposit.ts: 108 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/AMMDeposit.ts: 108 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/AMMVote.ts: 59 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/AMMVote.ts: 59 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/AMMWithdraw.ts: 102 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/AMMWithdraw.ts: 102 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTClawback.ts: 70 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTClawback.ts: 70 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTConvert.ts: 131 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTConvert.ts: 131 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTConvertBack.ts: 114 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTConvertBack.ts: 114 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTMergeInbox.ts: 42 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTMergeInbox.ts: 42 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTSend.ts: 132 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/ConfidentialMPTSend.ts: 132 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/CredentialAccept.ts: 44 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/CredentialAccept.ts: 44 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/CredentialCreate.ts: 81 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/CredentialCreate.ts: 81 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/CredentialDelete.ts: 55 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/CredentialDelete.ts: 55 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/DIDDelete.ts: 20 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/DIDDelete.ts: 20 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/DIDSet.ts: 49 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/DIDSet.ts: 49 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/MPTokenAuthorize.ts: 67 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/MPTokenAuthorize.ts: 67 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/MPTokenIssuanceCreate.ts: 389 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/MPTokenIssuanceCreate.ts: 389 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/MPTokenIssuanceDestroy.ts: 34 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/MPTokenIssuanceDestroy.ts: 34 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/MPTokenIssuanceSet.ts: 340 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/MPTokenIssuanceSet.ts: 340 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/NFTokenAcceptOffer.ts: 110 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/NFTokenAcceptOffer.ts: 110 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/NFTokenBurn.ts: 52 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/NFTokenBurn.ts: 52 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/NFTokenCancelOffer.ts: 54 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/NFTokenCancelOffer.ts: 54 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/NFTokenCreateOffer.ts: 168 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/NFTokenCreateOffer.ts: 168 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/NFTokenMint.ts: 179 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/NFTokenMint.ts: 179 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/NFTokenModify.ts: 68 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/NFTokenModify.ts: 68 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/UNLModify.ts: 22 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/UNLModify.ts: 22 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/XChainAccountCreateCommit.ts: 69 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/XChainAccountCreateCommit.ts: 69 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/XChainAddAccountCreateAttestation.ts: 124 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/XChainAddAccountCreateAttestation.ts: 124 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/XChainAddClaimAttestation.ts: 118 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/XChainAddClaimAttestation.ts: 118 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/XChainClaim.ts: 79 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/XChainClaim.ts: 79 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/XChainCommit.ts: 76 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/XChainCommit.ts: 76 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/XChainCreateBridge.ts: 56 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/XChainCreateBridge.ts: 56 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/XChainCreateClaimID.ts: 54 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/XChainCreateClaimID.ts: 54 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/XChainModifyBridge.ts: 77 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/XChainModifyBridge.ts: 77 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/accountDelete.ts: 59 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/accountDelete.ts: 59 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/accountSet.ts: 212 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/accountSet.ts: 212 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/batch.ts: 164 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/batch.ts: 164 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/checkCancel.ts: 35 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/checkCancel.ts: 35 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/checkCash.ts: 64 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/checkCash.ts: 64 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/checkCreate.ts: 74 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/checkCreate.ts: 74 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/clawback.ts: 65 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/clawback.ts: 65 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/common.ts: 1216 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/common.ts: 1216 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/delegateSet.ts: 113 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/delegateSet.ts: 113 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/depositPreauth.ts: 103 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/depositPreauth.ts: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/enableAmendment.ts: 26 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/enableAmendment.ts: 26 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/escrowCancel.ts: 49 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/escrowCancel.ts: 49 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/escrowCreate.ts: 84 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/escrowCreate.ts: 84 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/escrowFinish.ts: 77 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/escrowFinish.ts: 77 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/index.ts: 165 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/index.ts: 165 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanBrokerCoverClawback.ts: 68 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanBrokerCoverClawback.ts: 68 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanBrokerCoverDeposit.ts: 51 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanBrokerCoverDeposit.ts: 51 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanBrokerCoverWithdraw.ts: 82 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanBrokerCoverWithdraw.ts: 82 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanBrokerDelete.ts: 41 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanBrokerDelete.ts: 41 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanBrokerSet.ts: 152 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanBrokerSet.ts: 152 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanDelete.ts: 41 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanDelete.ts: 41 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanManage.ts: 106 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanManage.ts: 106 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanPay.ts: 114 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanPay.ts: 114 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/loanSet.ts: 320 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/loanSet.ts: 320 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/metadata.ts: 108 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/metadata.ts: 108 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/offerCancel.ts: 34 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/offerCancel.ts: 34 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/offerCreate.ts: 151 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/offerCreate.ts: 151 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/oracleDelete.ts: 32 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/oracleDelete.ts: 32 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/oracleSet.ts: 195 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/oracleSet.ts: 195 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/payment.ts: 372 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/payment.ts: 372 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/paymentChannelClaim.ts: 167 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/paymentChannelClaim.ts: 167 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/paymentChannelCreate.ts: 78 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/paymentChannelCreate.ts: 78 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/paymentChannelFund.ts: 55 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/paymentChannelFund.ts: 55 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/permissionedDomainDelete.ts: 28 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/permissionedDomainDelete.ts: 28 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/permissionedDomainSet.ts: 50 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/permissionedDomainSet.ts: 50 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/setFee.ts: 48 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/setFee.ts: 48 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/setRegularKey.ts: 34 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/setRegularKey.ts: 34 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/signerListSet.ts: 88 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/signerListSet.ts: 88 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/sponsorshipSet.ts: 409 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/sponsorshipSet.ts: 409 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/sponsorshipTransfer.ts: 243 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/sponsorshipTransfer.ts: 243 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/ticketCreate.ts: 48 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/ticketCreate.ts: 48 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/transaction.ts: 642 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/transaction.ts: 642 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/trustSet.ts: 144 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/trustSet.ts: 144 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/vaultClawback.ts: 55 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/vaultClawback.ts: 55 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/vaultCreate.ts: 321 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/vaultCreate.ts: 321 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/vaultDelete.ts: 61 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/vaultDelete.ts: 61 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/vaultDeposit.ts: 42 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/vaultDeposit.ts: 42 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/vaultSet.ts: 72 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/vaultSet.ts: 72 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/transactions/vaultWithdraw.ts: 73 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/transactions/vaultWithdraw.ts: 73 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/utils/flags.ts: 242 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/utils/flags.ts: 242 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/utils/index.ts: 62 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/utils/index.ts: 62 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/models/utils/mptokenMetadata.ts: 529 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/models/utils/mptokenMetadata.ts: 529 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/sugar/autofill.ts: 669 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/sugar/autofill.ts: 669 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/sugar/balances.ts: 15 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/sugar/balances.ts: 15 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/sugar/getFeeXrp.ts: 46 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/sugar/getFeeXrp.ts: 46 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/sugar/getOrderbook.ts: 230 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/sugar/getOrderbook.ts: 230 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/sugar/index.ts: 5 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/sugar/index.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/sugar/submit.ts: 309 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/sugar/submit.ts: 309 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/sugar/utils.ts: 29 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/sugar/utils.ts: 29 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/sugar/validateSponsorship.ts: 281 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/sugar/validateSponsorship.ts: 281 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/collections.ts: 57 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/collections.ts: 57 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/derive.ts: 23 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/derive.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/getBalanceChanges.ts: 185 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/getBalanceChanges.ts: 185 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/getNFTokenID.ts: 99 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/getNFTokenID.ts: 99 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/getXChainClaimID.ts: 64 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/getXChainClaimID.ts: 64 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/HashPrefix.ts: 40 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/HashPrefix.ts: 40 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/SHAMap/InnerNode.ts: 124 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/SHAMap/InnerNode.ts: 124 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/SHAMap/LeafNode.ts: 70 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/SHAMap/LeafNode.ts: 70 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/SHAMap/index.ts: 41 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/SHAMap/index.ts: 41 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/SHAMap/node.ts: 14 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/SHAMap/node.ts: 14 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/hashLedger.ts: 243 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/hashLedger.ts: 243 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/index.ts: 236 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/index.ts: 236 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/ledgerSpaces.ts: 37 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/ledgerSpaces.ts: 37 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/hashes/sha512Half.ts: 16 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/hashes/sha512Half.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/index.ts: 250 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/index.ts: 250 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/parseNFTokenID.ts: 95 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/parseNFTokenID.ts: 95 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/quality.ts: 175 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/quality.ts: 175 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/signPaymentChannelClaim.ts: 27 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/signPaymentChannelClaim.ts: 27 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/stringConversion.ts: 32 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/stringConversion.ts: 32 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/timeConversion.ts: 53 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/timeConversion.ts: 53 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/verifyPaymentChannelClaim.ts: 30 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/verifyPaymentChannelClaim.ts: 30 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/src/utils/xrpConversion.ts: 104 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/src/utils/xrpConversion.ts: 104 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/tools/createValidate.js: 154 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/tools/createValidate.js: 154 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/tools/createValidateTests.js: 203 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/tools/createValidateTests.js: 203 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/tools/generateModels.js: 297 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/tools/generateModels.js: 297 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/webpack.base.config.js: 14 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/webpack.base.config.js: 14 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/xrpl/webpack.config.js: 8 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "packages/xrpl/webpack.config.js: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "webpack.config.js: 67 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "webpack.config.js: 67 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "webpack.test.config.js: 63 lines scanned with 16 rule patterns and 313 registry patterns",
+      "detail": "webpack.test.config.js: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -4199,7 +4199,7 @@
     },
     {
       "area": "crediting",
-      "detail": "payment crediting: 72 file(s) read incoming transfers on TON, the XRP Ledger, Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked",
+      "detail": "payment crediting: 72 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked",
       "status": "checked"
     },
     {
@@ -4215,9 +4215,9 @@
       "count": 361,
       "rows": 361,
       "examples": [
-        ".ci-config/getNewAmendments.js: 56 lines scanned with 16 rule patterns and 313 registry patterns",
-        "docs/assets/hierarchy.js: 1 lines scanned with 16 rule patterns and 313 registry patterns",
-        "docs/assets/icons.js: 18 lines scanned with 16 rule patterns and 313 registry patterns"
+        ".ci-config/getNewAmendments.js: 56 lines scanned with 16 rule patterns and 340 registry patterns",
+        "docs/assets/hierarchy.js: 1 lines scanned with 16 rule patterns and 340 registry patterns",
+        "docs/assets/icons.js: 18 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -4264,7 +4264,7 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "payment crediting: 72 file(s) read incoming transfers on TON, the XRP Ledger, Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked"
+        "payment crediting: 72 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked"
       ]
     },
     {
@@ -4710,8 +4710,8 @@
   },
   "findings": [
     {
-      "id": "72378c3a-895c-452c-87f6-995697bcf39e",
-      "public_id": "QSI-2026-34902",
+      "id": "0f21622d-9834-4e2b-b7bf-d63433355494",
+      "public_id": "QSI-2026-44378",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))",
       "description": "11 reference(s) to Pedersen commitment across 8 file(s), e.g. packages/mpt-crypto/src/index.ts:34. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -4730,8 +4730,8 @@
       "triage": null,
       "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
       "data_source": "packages/mpt-crypto/src/index.ts",
-      "analyzer": "source_code 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.164522+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.816680+00:00",
       "risk_score": 33.0,
       "risk_breakdown": {
         "mosca": {
@@ -4827,8 +4827,8 @@
           "content": "   33 |   decryptAmount,\n   34 |   getPedersenCommitment,\n   35 | } from './primitives'",
           "content_sha256": "272811dd801e9be1a20ee049444545977f35da9c4876676955bd6efa4b2503e6",
           "source_sha256": "9692cfe48da2edff902b4649324e1833c031f5e54d9eb49d37c1162cf129d898",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177830+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830258+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/index.ts#L34"
         },
         {
@@ -4838,8 +4838,8 @@
           "content": "   33 |   ) => number\n   34 |   _mpt_get_pedersen_commitment: (\n   35 |     amount: bigint,",
           "content_sha256": "873c48d7a7faeb88edea9f22461b42509302d05914087c7b82324c1e9ee3fe4d",
           "source_sha256": "b33902e3c655bae56b8b9164d5b28e6ed66b74001029f314561f41abbb9d47b7",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177838+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830267+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/module.ts#L34"
         },
         {
@@ -4849,8 +4849,8 @@
           "content": "  124 |  */\n  125 | export async function getPedersenCommitment(\n  126 |   amount: bigint,",
           "content_sha256": "9d034bd632b0a946d4490920309bd39f0ecacc00af6bf8c52d5676b0c268a726",
           "source_sha256": "f8582f32a0b8f321fd561c0dddc50c49f6b4f56e7e3b51150f412e7dd6ff9aea",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177843+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830273+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/primitives.ts#L125"
         },
         {
@@ -4860,8 +4860,8 @@
           "content": "  139 |     const outPtr = marshaller.alloc(PEDERSEN_COMMIT_SIZE)\n  140 |     if (mod._mpt_get_pedersen_commitment(amount, blindingPtr, outPtr) !== 0) {\n  141 |       throw new Error('mpt_get_pedersen_commitment failed')",
           "content_sha256": "926b86bf4f64f49cb41a4f350dab2254002d97ec4b4b088b8a99a5155f32bfdf",
           "source_sha256": "f8582f32a0b8f321fd561c0dddc50c49f6b4f56e7e3b51150f412e7dd6ff9aea",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177848+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830278+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/primitives.ts#L140"
         },
         {
@@ -4871,8 +4871,8 @@
           "content": "  140 |     if (mod._mpt_get_pedersen_commitment(amount, blindingPtr, outPtr) !== 0) {\n  141 |       throw new Error('mpt_get_pedersen_commitment failed')\n  142 |     }",
           "content_sha256": "f48a257d8922a8ac74f545c6e778ef499aba191664206fa8e840b51f38655f0f",
           "source_sha256": "f8582f32a0b8f321fd561c0dddc50c49f6b4f56e7e3b51150f412e7dd6ff9aea",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177853+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830282+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/primitives.ts#L141"
         },
         {
@@ -4882,8 +4882,8 @@
           "content": "    1 | var MptCrypto=(()=>{var _scriptName=globalThis.document?.currentScript?.src;return async function(moduleArg={}){var Module=moduleArg;var ENVIRONMENT_IS_WEB=!!globalThis.window;var ENVIRONMENT_IS_WORKER=!!globalThis.WorkerGlobalScope;var ENVIRONMENT_IS_NODE=globalThis.process?.versions?.node&&globalT\n    2 | ;return Module}})();if(typeof exports===\"object\"&&typeof module===\"object\"){module.exports=MptCrypto;module.exports.default=MptCrypto}else if(typeof define===\"function\"&&define[\"amd\"])define([],()=>MptCrypto);",
           "content_sha256": "beda46149a036ede838fefe450f8ebc0df16a6ceacc5d6bd9f91ddcee15e2c65",
           "source_sha256": "2d568a94344685d53712593678230f56696f1483f5e5859a32ce266c10fc8af2",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177858+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830287+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/wasm/mpt_crypto.js#L1"
         },
         {
@@ -4893,8 +4893,8 @@
           "content": "    1 | async function MptCrypto(moduleArg={}){var Module=moduleArg;var ENVIRONMENT_IS_WEB=!!globalThis.window;var ENVIRONMENT_IS_WORKER=!!globalThis.WorkerGlobalScope;var ENVIRONMENT_IS_NODE=globalThis.process?.versions?.node&&globalThis.process?.type!=\"renderer\";if(ENVIRONMENT_IS_NODE){const{createRequire\n    2 | ;return Module}export default MptCrypto;",
           "content_sha256": "b452b444f90f48b742052febc8d226744196e6f3cabd5ca015b481bec994a1b0",
           "source_sha256": "8ae3ad22a8c706ffec63d5d90066d5a2379d3c8f449da8537b05d9e66ab67a1b",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177863+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830293+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/wasm/mpt_crypto.mjs#L1"
         },
         {
@@ -4904,8 +4904,8 @@
           "content": "    1 | async function MptCrypto(moduleArg={}){var Module=moduleArg;var ENVIRONMENT_IS_WEB=!!globalThis.window;var ENVIRONMENT_IS_WORKER=!!globalThis.WorkerGlobalScope;var ENVIRONMENT_IS_NODE=globalThis.process?.versions?.node&&globalThis.process?.type!=\"renderer\";var programArgs=[];var thisProgram=\"./this.\n    2 | ;return Module}export default MptCrypto;",
           "content_sha256": "92544b1af8f4256bf82285e006d4043ff7d0f3d06e04aec5d26e4a457a48ab0c",
           "source_sha256": "d3a8aad8ce2547e6b17c8ef1abd13c69eda8ae7b77f89ce602adbdcb1efbac4d",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177868+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830299+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/wasm/mpt_crypto.web.mjs#L1"
         },
         {
@@ -4915,8 +4915,8 @@
           "content": "  161 |   ])\n  162 |   const balanceCommitment = await crypto.getPedersenCommitment(balance, rho)\n  163 |   const [holderEncryptedAmount, issuerEncryptedAmount, zkProof] =",
           "content_sha256": "454c0b50821f443f184484db1da7b1fb465d234acb98a2f3e9d518a73db564db",
           "source_sha256": "85dda6739e2e5d29701c7bb0d7fc09d502ae119a43858d0abd3970602efbd6c0",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177873+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830303+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/xrpl/src/confidential/convert.ts#L162"
         },
         {
@@ -4926,8 +4926,8 @@
           "content": "   96 |     await Promise.all([\n   97 |       crypto.getPedersenCommitment(amount, txBlinding),\n   98 |       crypto.getPedersenCommitment(balance, rho),",
           "content_sha256": "c082068b53776d80f715ec37d6e14204904770ed786a038e1cb0665fb0f5b3c0",
           "source_sha256": "281ab39d336d338855b42687e3dc600f95e7b160ae86fb9a3180192e9963ef29",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.177877+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.830308+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/xrpl/src/confidential/transfer.ts#L97"
         }
       ],
@@ -4965,8 +4965,8 @@
       ]
     },
     {
-      "id": "60447f41-0d87-4d2b-9638-7c97fefda89f",
-      "public_id": "QSI-2026-34904",
+      "id": "9c95ed23-2c4f-4927-b6c7-adf43c10d785",
+      "public_id": "QSI-2026-44380",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))",
       "description": "33 reference(s) to ECDSA across 8 file(s), e.g. packages/ripple-address-codec/src/xrp-codec.ts:49. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -4985,8 +4985,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "packages/ripple-address-codec/src/xrp-codec.ts",
-      "analyzer": "source_code 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.184785+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.837246+00:00",
       "risk_score": 33.0,
       "risk_breakdown": {
         "mosca": {
@@ -5082,8 +5082,8 @@
           "content": "   48 |       expectedLength?: number\n   49 |       versionTypes?: ['ed25519', 'secp256k1']\n   50 |     },",
           "content_sha256": "a7ce798a6d19415f2fd5a328fedb10a94b9f6593eaafe055979b90d1ef939bdc",
           "source_sha256": "dcb66f9db95d69491b00beb47d6da7e5545ac5c77f15b901a804b70c2349f951",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196891+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847568+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-address-codec/src/xrp-codec.ts#L49"
         },
         {
@@ -5093,8 +5093,8 @@
           "content": "   53 |     bytes: Uint8Array\n   54 |     type: 'ed25519' | 'secp256k1' | null\n   55 |   } {",
           "content_sha256": "7932e17040b0c16019f170c74b61090e355dfc5a7d26e8eb0183142bc8a2353e",
           "source_sha256": "dcb66f9db95d69491b00beb47d6da7e5545ac5c77f15b901a804b70c2349f951",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196900+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847577+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-address-codec/src/xrp-codec.ts#L54"
         },
         {
@@ -5104,8 +5104,8 @@
           "content": "  168 |   entropy: ByteArray,\n  169 |   type: 'ed25519' | 'secp256k1',\n  170 | ): string {",
           "content_sha256": "c323ee667704fa5309cc04ea56c0d81b9331785f3b44298fdd4909e17ffb7f09",
           "source_sha256": "dcb66f9db95d69491b00beb47d6da7e5545ac5c77f15b901a804b70c2349f951",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196905+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847582+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-address-codec/src/xrp-codec.ts#L169"
         },
         {
@@ -5115,8 +5115,8 @@
           "content": "   10 | \n   11 | import { accountPublicFromPublicGenerator } from './signing-schemes/secp256k1/utils'\n   12 | import Sha512 from './utils/Sha512'",
           "content_sha256": "6633fbb58408b007bfaec243c4d2d46e959b3c67640cfc58021ac9bc82353410",
           "source_sha256": "319b2a16df95930e926a4c33799f2ef1a0c3e382c337ba11f5b5075621e2e497",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196911+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847588+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-keypairs/src/index.ts#L11"
         },
         {
@@ -5126,8 +5126,8 @@
           "content": "   19 | \n   20 | import secp256k1 from './signing-schemes/secp256k1'\n   21 | import ed25519 from './signing-schemes/ed25519'",
           "content_sha256": "c782e83f709f2b4f4a6db880d248f2ca5fea537e160269e83bacb41db5f95571",
           "source_sha256": "319b2a16df95930e926a4c33799f2ef1a0c3e382c337ba11f5b5075621e2e497",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196916+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847593+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-keypairs/src/index.ts#L20"
         },
         {
@@ -5137,8 +5137,8 @@
           "content": "   44 | function getSigningScheme(algorithm: Algorithm): SigningScheme {\n   45 |   const schemes = { 'ecdsa-secp256k1': secp256k1, ed25519 }\n   46 |   return schemes[algorithm]",
           "content_sha256": "3f197b6be35f7623e516244d987fae898562c76cf380ea797920845d547843a0",
           "source_sha256": "319b2a16df95930e926a4c33799f2ef1a0c3e382c337ba11f5b5075621e2e497",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196921+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847597+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-keypairs/src/index.ts#L45"
         },
         {
@@ -5148,8 +5148,8 @@
           "content": "    1 | import { numberToBytesBE } from '@noble/curves/utils.js'\n    2 | import { secp256k1 as nobleSecp256k1 } from '@noble/curves/secp256k1.js'\n    3 | import { bytesToHex, hexToBytes } from '@xrplf/isomorphic/utils'",
           "content_sha256": "ca87b12d95c1b77983ee9ac5e0c02f7e97fb01244a0380220445783dd74056ab",
           "source_sha256": "9fb40db24a6ff49e8fb2609d0528cb06cf05e28a3bb26488d1a9b9eae59895e5",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196925+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847602+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-keypairs/src/signing-schemes/secp256k1/index.ts#L2"
         },
         {
@@ -5159,8 +5159,8 @@
           "content": "   16 | \n   17 | const secp256k1: SigningScheme = {\n   18 |   deriveKeypair(",
           "content_sha256": "b4e331fbe4db257b7c1bff25143b9d1da12a62e4f768c944be8dbdb0f42e6f24",
           "source_sha256": "9fb40db24a6ff49e8fb2609d0528cb06cf05e28a3bb26488d1a9b9eae59895e5",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196930+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847607+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-keypairs/src/signing-schemes/secp256k1/index.ts#L17"
         },
         {
@@ -5170,8 +5170,8 @@
           "content": "   73 | \n   74 | export default secp256k1",
           "content_sha256": "1fc4d4bf3a78ad0e4060c6eed3b153cd7e3e87e7fd438aeaab9392a13ecc1cd9",
           "source_sha256": "9fb40db24a6ff49e8fb2609d0528cb06cf05e28a3bb26488d1a9b9eae59895e5",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196935+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847612+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-keypairs/src/signing-schemes/secp256k1/index.ts#L74"
         },
         {
@@ -5181,8 +5181,8 @@
           "content": "    1 | import { secp256k1 } from '@noble/curves/secp256k1.js'\n    2 | ",
           "content_sha256": "93125f0d057c71035b8645323520837aeb14c0345cfaf304d4086664b50b9368",
           "source_sha256": "f9016d3e40bac72e6093ae8b5e1b960ac99c617109ff1d6f6202372fed2553ce",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.196939+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.847616+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-keypairs/src/signing-schemes/secp256k1/utils.ts#L1"
         }
       ],
@@ -5220,8 +5220,8 @@
       ]
     },
     {
-      "id": "67432523-fc39-4d25-970f-163ac7421764",
-      "public_id": "QSI-2026-34906",
+      "id": "c9ec4808-d51f-48d4-8bd1-4a3772bef797",
+      "public_id": "QSI-2026-44382",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))",
       "description": "1 reference(s) to Ed25519 across 1 file(s), e.g. packages/ripple-keypairs/src/signing-schemes/ed25519/index.ts:1. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -5240,8 +5240,8 @@
       "triage": null,
       "affected_asset": "source-code:Ed25519:transaction_signing",
       "data_source": "packages/ripple-keypairs/src/signing-schemes/ed25519/index.ts",
-      "analyzer": "source_code 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.203944+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.853668+00:00",
       "risk_score": 33.0,
       "risk_breakdown": {
         "mosca": {
@@ -5337,8 +5337,8 @@
           "content": "    1 | import { ed25519 as nobleEd25519 } from '@noble/curves/ed25519.js'\n    2 | import { bytesToHex, hexToBytes } from '@xrplf/isomorphic/utils'",
           "content_sha256": "6d60f80f9d57cc05d6757b0f6598c903cccf4c80d9e1be85936ff490218c2487",
           "source_sha256": "feed31ab6fd2da0fc165db76c54ea56c90e44917dfa8899723dbef0ee459c04f",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.212735+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.861953+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/ripple-keypairs/src/signing-schemes/ed25519/index.ts#L1"
         }
       ],
@@ -5376,8 +5376,8 @@
       ]
     },
     {
-      "id": "4979cfcd-b538-4067-b072-d33ffbc53758",
-      "public_id": "QSI-2026-34900",
+      "id": "c158f3c1-d969-47b7-80a5-39ec4ea1bce5",
+      "public_id": "QSI-2026-44376",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: role not determined (4 file(s))",
       "description": "5 reference(s) to ECDSA across 4 file(s), e.g. packages/mpt-crypto/src/homomorphic.ts:40. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5396,8 +5396,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "packages/mpt-crypto/src/homomorphic.ts",
-      "analyzer": "source_code 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.141313+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.790626+00:00",
       "risk_score": 31.7,
       "risk_breakdown": {
         "mosca": {
@@ -5493,8 +5493,8 @@
           "content": "   39 |     if (ctx === 0) {\n   40 |       throw new Error('mpt-crypto: secp256k1 context unavailable')\n   41 |     }",
           "content_sha256": "cf13ea6ac7d49a8bf63a8cdb39fde812d984e5c2cf881c4f3e539d1565a2c45b",
           "source_sha256": "dd57886cbb24e738a7159e1c94321c13369e3a58b73e0a807a94662f044f8925",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.152738+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.802986+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/homomorphic.ts#L40"
         },
         {
@@ -5504,8 +5504,8 @@
           "content": "  161 |   if (instance._mpt_secp256k1_context() === 0) {\n  162 |     throw new Error('mpt-crypto: failed to initialize the secp256k1 context')\n  163 |   }",
           "content_sha256": "8ad912e0ff49d249dedb96654aefe463fe2f85c4aaf0eb624a969410907208b9",
           "source_sha256": "b33902e3c655bae56b8b9164d5b28e6ed66b74001029f314561f41abbb9d47b7",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.152746+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.802997+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/module.ts#L162"
         },
         {
@@ -5515,8 +5515,8 @@
           "content": "    2 |   ed25519 = 'ed25519',\n    3 |   secp256k1 = 'ecdsa-secp256k1',\n    4 | }",
           "content_sha256": "a9262e2dcbe7e50501c2dad0fb797c2f4faab36c6bdcde29ee2a5f69b81b5ec1",
           "source_sha256": "cbcbad367ed3f2daf8a962801517ce8d837ee06e8d8e0e830072290dc4b78d5b",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.152751+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.803002+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/xrpl/src/ECDSA.ts#L3"
         },
         {
@@ -5526,8 +5526,8 @@
           "content": "   27 | export function deriveConfidentialKeypair(seed?: string): ConfidentialKeypair {\n   28 |   const familySeed = seed ?? generateSeed({ algorithm: ECDSA.secp256k1 })\n   29 |   const { publicKey, privateKey } = deriveKeypair(familySeed, {",
           "content_sha256": "32e295c55418d697363fa33a6609e8a96a65876495a9fe794550b60d08ed3a9a",
           "source_sha256": "24367729fa75d6d2b9919a82bcdda317d1c62a3b3e120dd253224b590c773ca4",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.152756+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.803007+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/xrpl/src/confidential/keys.ts#L28"
         },
         {
@@ -5537,8 +5537,8 @@
           "content": "   29 |   const { publicKey, privateKey } = deriveKeypair(familySeed, {\n   30 |     algorithm: ECDSA.secp256k1,\n   31 |   })",
           "content_sha256": "37b1888377a6487efb05999f94a9bebe35e83716ccb24eff5a862ecbef60851a",
           "source_sha256": "24367729fa75d6d2b9919a82bcdda317d1c62a3b3e120dd253224b590c773ca4",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.152760+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.803011+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/xrpl/src/confidential/keys.ts#L30"
         }
       ],
@@ -5576,8 +5576,8 @@
       ]
     },
     {
-      "id": "bcf9b64e-13fc-4059-bc48-9faacb2b6bf6",
-      "public_id": "QSI-2026-34905",
+      "id": "88371bef-cc8e-41a1-9d95-c2cdf6615715",
+      "public_id": "QSI-2026-44381",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Quantum-vulnerable RSA key (4096-bit) in packages/ripple-keypairs/SECURITY.md",
       "description": "A RSA 4096-bit public key was found (line 28).",
@@ -5596,8 +5596,8 @@
       "triage": null,
       "affected_asset": "file:packages/ripple-keypairs/SECURITY.md#line 28",
       "data_source": "packages/ripple-keypairs/SECURITY.md",
-      "analyzer": "certificates 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.193972+00:00",
+      "analyzer": "certificates 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.845344+00:00",
       "risk_score": 37.1,
       "risk_breakdown": {
         "mosca": {
@@ -5686,8 +5686,8 @@
           "content": "OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit",
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "3570584b3f97cba7d811ee8256c133fb9d532b6d1d9066160152f64e91a8838b",
-          "collector": "certificates 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.205953+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.855675+00:00",
           "url": null
         },
         {
@@ -5697,8 +5697,8 @@
           "content": "OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit",
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "3570584b3f97cba7d811ee8256c133fb9d532b6d1d9066160152f64e91a8838b",
-          "collector": "certificates 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.205962+00:00",
+          "collector": "certificates 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.855685+00:00",
           "url": null
         }
       ],
@@ -5736,8 +5736,8 @@
       ]
     },
     {
-      "id": "4df81ec2-b7d2-4198-a677-6b41ed2f40cc",
-      "public_id": "QSI-2026-34903",
+      "id": "b08bca14-fa9b-43f2-ac7f-31f7f57b4870",
+      "public_id": "QSI-2026-44379",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (1 file(s))",
       "description": "4 reference(s) to EC-ElGamal across 1 file(s), e.g. packages/mpt-crypto/src/module.ts:21. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later).",
@@ -5756,8 +5756,8 @@
       "triage": null,
       "affected_asset": "source-code:EC-ElGamal:key_wrapping",
       "data_source": "packages/mpt-crypto/src/module.ts",
-      "analyzer": "source_code 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.175383+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.827821+00:00",
       "risk_score": 27.9,
       "risk_breakdown": {
         "mosca": {
@@ -5853,8 +5853,8 @@
           "content": "   20 |   _mpt_generate_blinding_factor: (outFactor: number) => number\n   21 |   _mpt_encrypt_amount: (\n   22 |     amount: bigint,",
           "content_sha256": "39db9614e8eb03ee3884b922f5c476e76cf6462df13096bc896b9db09b089580",
           "source_sha256": "b33902e3c655bae56b8b9164d5b28e6ed66b74001029f314561f41abbb9d47b7",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.187520+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.839439+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/module.ts#L21"
         },
         {
@@ -5864,8 +5864,8 @@
           "content": "   26 |   ) => number\n   27 |   _mpt_decrypt_amount: (\n   28 |     ciphertext: number,",
           "content_sha256": "cbdbe530e2b55b320eb0b504f955d2bcd5ce8dfe8a7ae9f2548d0606255f809a",
           "source_sha256": "b33902e3c655bae56b8b9164d5b28e6ed66b74001029f314561f41abbb9d47b7",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.187529+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.839448+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/module.ts#L27"
         },
         {
@@ -5875,8 +5875,8 @@
           "content": "  108 |   // A `secp256k1_pubkey` is a 64-byte opaque struct. Both return 1 on success.\n  109 |   _mpt_make_ec_pair: (buffer: number, out1: number, out2: number) => number\n  110 |   _mpt_serialize_ec_pair: (in1: number, in2: number, out: number) => number",
           "content_sha256": "d03b85eaf371a1806d9ba307815e6c9a5b7a02fc18609f78874d058830ca2ed1",
           "source_sha256": "b33902e3c655bae56b8b9164d5b28e6ed66b74001029f314561f41abbb9d47b7",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.187569+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.839453+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/module.ts#L109"
         }
       ],
@@ -5914,8 +5914,8 @@
       ]
     },
     {
-      "id": "52497143-8ce5-4731-8ed9-1b22fb166397",
-      "public_id": "QSI-2026-34901",
+      "id": "91694f83-702c-4b84-a68a-b6ce3afeda9c",
+      "public_id": "QSI-2026-44377",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable EC-ElGamal: role not determined (5 file(s))",
       "description": "10 reference(s) to EC-ElGamal across 5 file(s), e.g. packages/mpt-crypto/src/homomorphic.ts:51. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5934,8 +5934,8 @@
       "triage": null,
       "affected_asset": "source-code:EC-ElGamal:general",
       "data_source": "packages/mpt-crypto/src/homomorphic.ts",
-      "analyzer": "source_code 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.149317+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.799158+00:00",
       "risk_score": 25.2,
       "risk_breakdown": {
         "mosca": {
@@ -6031,8 +6031,8 @@
           "content": "   50 |     const o2 = marshaller.alloc(PUBKEY_STRUCT_SIZE)\n   51 |     if (mod._mpt_make_ec_pair(aPtr, a1, a2) !== WASM_OK) {\n   52 |       throw new Error('mpt-crypto: failed to parse ciphertext a')",
           "content_sha256": "5052b2046a45d44bfde31d664276238ba194316260b327712f4493ac2270e813",
           "source_sha256": "dd57886cbb24e738a7159e1c94321c13369e3a58b73e0a807a94662f044f8925",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167070+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819246+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/homomorphic.ts#L51"
         },
         {
@@ -6042,8 +6042,8 @@
           "content": "   53 |     }\n   54 |     if (mod._mpt_make_ec_pair(bPtr, b1, b2) !== WASM_OK) {\n   55 |       throw new Error('mpt-crypto: failed to parse ciphertext b')",
           "content_sha256": "b5031532f540e1b3067c6a7ae9a60848dab533fadb14f0cef036a50dbb0b8251",
           "source_sha256": "dd57886cbb24e738a7159e1c94321c13369e3a58b73e0a807a94662f044f8925",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167079+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819256+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/homomorphic.ts#L54"
         },
         {
@@ -6053,8 +6053,8 @@
           "content": "   64 |     const outPtr = marshaller.alloc(ELGAMAL_TOTAL_SIZE)\n   65 |     if (mod._mpt_serialize_ec_pair(o1, o2, outPtr) !== WASM_OK) {\n   66 |       throw new Error('mpt-crypto: failed to serialize combined ciphertext')",
           "content_sha256": "b133e07edd70a11830096f2cc0f23d76c7455b814315ff0ea01e75c6a7859a5e",
           "source_sha256": "dd57886cbb24e738a7159e1c94321c13369e3a58b73e0a807a94662f044f8925",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167084+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819261+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/homomorphic.ts#L65"
         },
         {
@@ -6064,8 +6064,8 @@
           "content": "   65 |     const outPtr = marshaller.alloc(ELGAMAL_TOTAL_SIZE)\n   66 |     if (mod._mpt_encrypt_amount(amount, pubPtr, blindingPtr, outPtr) !== 0) {\n   67 |       throw new Error('mpt_encrypt_amount failed')",
           "content_sha256": "a446bf9cd313a1fb8da26a2de8eb0a0babe7720889248f4449ef3a148bc3b9e9",
           "source_sha256": "f8582f32a0b8f321fd561c0dddc50c49f6b4f56e7e3b51150f412e7dd6ff9aea",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167089+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819266+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/primitives.ts#L66"
         },
         {
@@ -6075,8 +6075,8 @@
           "content": "   66 |     if (mod._mpt_encrypt_amount(amount, pubPtr, blindingPtr, outPtr) !== 0) {\n   67 |       throw new Error('mpt_encrypt_amount failed')\n   68 |     }",
           "content_sha256": "1129c3dec810e80206e77a675f5d82f49ad4642bb3c029e5456b4324bd9b648f",
           "source_sha256": "f8582f32a0b8f321fd561c0dddc50c49f6b4f56e7e3b51150f412e7dd6ff9aea",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167093+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819270+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/primitives.ts#L67"
         },
         {
@@ -6086,8 +6086,8 @@
           "content": "  102 |     if (\n  103 |       mod._mpt_decrypt_amount(\n  104 |         ctPtr,",
           "content_sha256": "a880166145740464edf2c5ab4cd423892b9a701f095904270c4f1e89469a02e8",
           "source_sha256": "f8582f32a0b8f321fd561c0dddc50c49f6b4f56e7e3b51150f412e7dd6ff9aea",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167098+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819275+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/src/primitives.ts#L103"
         },
         {
@@ -6097,8 +6097,8 @@
           "content": "    1 | var MptCrypto=(()=>{var _scriptName=globalThis.document?.currentScript?.src;return async function(moduleArg={}){var Module=moduleArg;var ENVIRONMENT_IS_WEB=!!globalThis.window;var ENVIRONMENT_IS_WORKER=!!globalThis.WorkerGlobalScope;var ENVIRONMENT_IS_NODE=globalThis.process?.versions?.node&&globalT\n    2 | ;return Module}})();if(typeof exports===\"object\"&&typeof module===\"object\"){module.exports=MptCrypto;module.exports.default=MptCrypto}else if(typeof define===\"function\"&&define[\"amd\"])define([],()=>MptCrypto);",
           "content_sha256": "beda46149a036ede838fefe450f8ebc0df16a6ceacc5d6bd9f91ddcee15e2c65",
           "source_sha256": "2d568a94344685d53712593678230f56696f1483f5e5859a32ce266c10fc8af2",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167103+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819280+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/wasm/mpt_crypto.js#L1"
         },
         {
@@ -6108,8 +6108,8 @@
           "content": "    1 | async function MptCrypto(moduleArg={}){var Module=moduleArg;var ENVIRONMENT_IS_WEB=!!globalThis.window;var ENVIRONMENT_IS_WORKER=!!globalThis.WorkerGlobalScope;var ENVIRONMENT_IS_NODE=globalThis.process?.versions?.node&&globalThis.process?.type!=\"renderer\";if(ENVIRONMENT_IS_NODE){const{createRequire\n    2 | ;return Module}export default MptCrypto;",
           "content_sha256": "b452b444f90f48b742052febc8d226744196e6f3cabd5ca015b481bec994a1b0",
           "source_sha256": "8ae3ad22a8c706ffec63d5d90066d5a2379d3c8f449da8537b05d9e66ab67a1b",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167108+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819285+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/wasm/mpt_crypto.mjs#L1"
         },
         {
@@ -6119,8 +6119,8 @@
           "content": "    1 | async function MptCrypto(moduleArg={}){var Module=moduleArg;var ENVIRONMENT_IS_WEB=!!globalThis.window;var ENVIRONMENT_IS_WORKER=!!globalThis.WorkerGlobalScope;var ENVIRONMENT_IS_NODE=globalThis.process?.versions?.node&&globalThis.process?.type!=\"renderer\";var programArgs=[];var thisProgram=\"./this.\n    2 | ;return Module}export default MptCrypto;",
           "content_sha256": "92544b1af8f4256bf82285e006d4043ff7d0f3d06e04aec5d26e4a457a48ab0c",
           "source_sha256": "d3a8aad8ce2547e6b17c8ef1abd13c69eda8ae7b77f89ce602adbdcb1efbac4d",
-          "collector": "source_code 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.167114+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.819290+00:00",
           "url": "https://github.com/XRPLF/xrpl.js/blob/126168271b8cbe784baf77fec05d2cd8c1837815/packages/mpt-crypto/wasm/mpt_crypto.web.mjs#L1"
         }
       ],
@@ -6158,8 +6158,8 @@
       ]
     },
     {
-      "id": "0b02b871-5599-4a31-b32d-8c157e8c917e",
-      "public_id": "QSI-2026-34908",
+      "id": "da7a0dd9-b82f-469e-8e74-96f63b998477",
+      "public_id": "QSI-2026-44384",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "23 advisories in 6 development or build-only npm package(s)",
       "description": "OSV.dev lists 23 advisories (6 rated high or critical) for 6 npm package(s) that only development or build tooling pulls in (package-lock.json): e.g. glob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4; glob@13.0.7 [dev]: GHSA-3g3m-2fjr-6pw4; minimatch@10.2.5 [dev]: GHSA-g3hv-75wg-m249; minimatch@10.2.6 [dev]: GHSA-g3hv-75wg-m249; minimatch@9.0.9 [dev]: GHSA-g3hv-75wg-m249. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships.",
@@ -6178,8 +6178,8 @@
       "triage": null,
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.216407+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.865416+00:00",
       "risk_score": 13.7,
       "risk_breakdown": {
         "score": 13.7,
@@ -6234,8 +6234,8 @@
           "content": "glob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4\nglob@13.0.7 [dev]: GHSA-3g3m-2fjr-6pw4\nminimatch@10.2.5 [dev]: GHSA-g3hv-75wg-m249\nminimatch@10.2.6 [dev]: GHSA-g3hv-75wg-m249\nminimatch@9.0.9 [dev]: GHSA-g3hv-75wg-m249\nundici@7.29.0 [dev]: GHSA-2gqq-gqf2-x968, GHSA-2jfj-6hjv-fm6j, GHSA-2m5v-pch6-74hx, GHSA-3wwx-pv8p-q78v, GHSA-3xpg-4rpp-hhhm, GHSA-4qv8-2p9j-2685, GHSA-4w7w-5xrc-9h26, GHSA-55wc-3pg8-jfw6, GHSA-8436-99hf-9mmv, GHSA-9fm3-97px-rjf6, GHSA-f72v-6w45-q472, GHSA-pmjh-fq2x-6v4x, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-rfgv-xxqx-mfg5, GHSA-rx4f-c7p8-82vq, GHSA-w293-vg96-wgc3, GHSA-xjj6-f33q-929c",
           "content_sha256": "62ba07b0907ef934900081803d218d4e4c02a75ddb2d468c8ea9aaf4ab2afb64",
           "source_sha256": null,
-          "collector": "dependencies 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.251675+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.897444+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -6258,8 +6258,8 @@
       ]
     },
     {
-      "id": "ec062a31-e033-4ef9-8eed-49f9e1f6518b",
-      "public_id": "QSI-2026-34907",
+      "id": "8e16964c-7cb3-4394-bf21-aab59515e7d9",
+      "public_id": "QSI-2026-44383",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "No post-quantum capable cryptographic library detected",
       "description": "Across 14 dependency manifests, QSI found crypto libraries (@noble/curves, @noble/hashes, @xrplf/mpt-crypto, ripple-keypairs, xrpl) but none from its PQC-capable list.",
@@ -6278,8 +6278,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.8.1",
-      "detected_at": "2026-11-21T10:21:15.210812+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T14:06:34.860092+00:00",
       "risk_score": 12.2,
       "risk_breakdown": {
         "score": 12.2,
@@ -6341,8 +6341,8 @@
           "content": "Crypto libraries: @noble/curves, @noble/hashes, @xrplf/mpt-crypto, ripple-keypairs, xrpl",
           "content_sha256": "1586510d5ea94b68b5494769ddaf63737891452f40b45675043ce7dad8633c9b",
           "source_sha256": null,
-          "collector": "dependencies 1.8.1",
-          "collected_at": "2026-11-21T10:21:15.218151+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T14:06:34.867121+00:00",
           "url": null
         }
       ],
@@ -6370,13 +6370,13 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Web3 project”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-34902",
-      "QSI-2026-34904",
-      "QSI-2026-34906",
-      "QSI-2026-34900",
-      "QSI-2026-34905",
-      "QSI-2026-34903",
-      "QSI-2026-34901"
+      "QSI-2026-44378",
+      "QSI-2026-44380",
+      "QSI-2026-44382",
+      "QSI-2026-44376",
+      "QSI-2026-44381",
+      "QSI-2026-44379",
+      "QSI-2026-44377"
     ],
     "roles": [
       {
@@ -6392,7 +6392,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-34903"
+          "QSI-2026-44379"
         ],
         "files": 1
       },
@@ -6409,7 +6409,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-34902"
+          "QSI-2026-44378"
         ],
         "files": 8
       },
@@ -6430,8 +6430,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-34904",
-          "QSI-2026-34906"
+          "QSI-2026-44380",
+          "QSI-2026-44382"
         ],
         "files": 9
       },
@@ -6452,8 +6452,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-34900",
-          "QSI-2026-34901"
+          "QSI-2026-44376",
+          "QSI-2026-44377"
         ],
         "files": 9
       }
@@ -6622,7 +6622,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-34902",
+        "finding": "QSI-2026-44378",
         "finding_title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))",
         "severity": "medium"
       },
@@ -6640,7 +6640,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-34904",
+        "finding": "QSI-2026-44380",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))",
         "severity": "medium"
       },
@@ -6658,7 +6658,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-34906",
+        "finding": "QSI-2026-44382",
         "finding_title": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -6676,7 +6676,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-34900",
+        "finding": "QSI-2026-44376",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (4 file(s))",
         "severity": "medium"
       },
@@ -6694,7 +6694,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-34905",
+        "finding": "QSI-2026-44381",
         "finding_title": "Quantum-vulnerable RSA key (4096-bit) in packages/ripple-keypairs/SECURITY.md",
         "severity": "low"
       },
@@ -6712,7 +6712,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-34903",
+        "finding": "QSI-2026-44379",
         "finding_title": "Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (1 file(s))",
         "severity": "low"
       },
@@ -6730,7 +6730,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-34901",
+        "finding": "QSI-2026-44377",
         "finding_title": "Quantum-vulnerable EC-ElGamal: role not determined (5 file(s))",
         "severity": "low"
       },
@@ -6748,7 +6748,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-34902",
+        "finding": "QSI-2026-44378",
         "finding_title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))",
         "severity": "medium"
       },
@@ -6766,7 +6766,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-34904",
+        "finding": "QSI-2026-44380",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))",
         "severity": "medium"
       },
@@ -6784,7 +6784,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-34906",
+        "finding": "QSI-2026-44382",
         "finding_title": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -6802,7 +6802,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-34900",
+        "finding": "QSI-2026-44376",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (4 file(s))",
         "severity": "medium"
       },
@@ -6820,7 +6820,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-34905",
+        "finding": "QSI-2026-44381",
         "finding_title": "Quantum-vulnerable RSA key (4096-bit) in packages/ripple-keypairs/SECURITY.md",
         "severity": "low"
       },
@@ -6838,7 +6838,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-34903",
+        "finding": "QSI-2026-44379",
         "finding_title": "Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (1 file(s))",
         "severity": "low"
       },
@@ -6856,7 +6856,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-34901",
+        "finding": "QSI-2026-44377",
         "finding_title": "Quantum-vulnerable EC-ElGamal: role not determined (5 file(s))",
         "severity": "low"
       },
@@ -6874,7 +6874,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded.",
         "status": "todo",
-        "finding": "QSI-2026-34908",
+        "finding": "QSI-2026-44384",
         "finding_title": "23 advisories in 6 development or build-only npm package(s)",
         "severity": "info"
       }
@@ -6899,11 +6899,11 @@
     },
     {
       "name": "crediting",
-      "version": "1.1.0"
+      "version": "1.3.0"
     },
     {
       "name": "dependencies",
-      "version": "1.4.3"
+      "version": "1.4.4"
     },
     {
       "name": "hndl",
@@ -6919,11 +6919,11 @@
     },
     {
       "name": "solidity",
-      "version": "1.5.2"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.7.1"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -6947,7 +6947,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.8.1"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",
@@ -7170,7 +7170,7 @@
       "family": "library",
       "parameter": "2.4.0",
       "usage": "npm dependency",
-      "library": "@noble/curves (noble-curves)",
+      "library": "@noble/hashes (noble-hashes)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -7183,20 +7183,7 @@
       "family": "library",
       "parameter": "2.4.0",
       "usage": "npm dependency",
-      "library": "@noble/hashes (noble-hashes)",
-      "location": "package-lock.json",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1,
-      "origin": "dependency"
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "unpinned",
-      "usage": "npm dependency",
-      "library": "@xrplf/mpt-crypto (xrpl.js)",
+      "library": "@noble/curves (noble-curves)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -7210,6 +7197,19 @@
       "parameter": "unpinned",
       "usage": "npm dependency",
       "library": "xrpl (xrpl.js)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "unpinned",
+      "usage": "npm dependency",
+      "library": "@xrplf/mpt-crypto (xrpl.js)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -7739,18 +7739,6 @@
     {
       "algorithm": "Crypto library",
       "parameter": "2.4.0",
-      "library": "@noble/curves (noble-curves)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "package-lock.json"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "2.4.0",
       "library": "@noble/hashes (noble-hashes)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -7762,8 +7750,8 @@
     },
     {
       "algorithm": "Crypto library",
-      "parameter": "unpinned",
-      "library": "@xrplf/mpt-crypto (xrpl.js)",
+      "parameter": "2.4.0",
+      "library": "@noble/curves (noble-curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -7776,6 +7764,18 @@
       "algorithm": "Crypto library",
       "parameter": "unpinned",
       "library": "xrpl (xrpl.js)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "unpinned",
+      "library": "@xrplf/mpt-crypto (xrpl.js)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,

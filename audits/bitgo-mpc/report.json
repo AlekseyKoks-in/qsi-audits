@@ -1,8 +1,8 @@
 {
-  "content_sha256": "f0cceba44889b2d98b6f09218bf1db4d3057b725742651671b1f4852a187181d",
+  "content_sha256": "909c91e3dc03c3012c0aaf109c82f05e44e5f4a1158686c9721d830548f4449d",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-06T13:06:52.915140+00:00",
+  "generated_at": "2026-11-23T12:14:51.769117+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "cbb8c54d-6a78-49ee-9b47-af8d4318f938",
+    "id": "231d1bd1-4e46-4e3f-bb39-93b154cbd185",
     "mode": "document",
     "title": "Document audit: bitgo-mpc",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T13:06:40.857952+00:00",
-    "finished_at": "2026-11-06T13:06:52.726204+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T12:14:35.479616+00:00",
+    "finished_at": "2026-11-23T12:14:51.638284+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -1754,562 +1754,562 @@
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseKeyPair.ts: 30 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseKeyPair.ts: 30 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseTransaction.ts: 101 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseTransaction.ts: 101 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseTransactionBuilder.ts: 222 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseTransactionBuilder.ts: 222 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseTransactionBuilderFactory.ts: 34 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseTransactionBuilderFactory.ts: 34 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseUtils.ts: 49 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/baseUtils.ts: 49 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts: 143 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts: 143 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/enum.ts: 205 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/enum.ts: 205 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/errors.ts: 111 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/errors.ts: 111 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/iface.ts: 188 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/iface.ts: 188 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/index.ts: 11 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/index.ts: 11 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/baseMessage.ts: 183 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/baseMessage.ts: 183 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/baseMessageBuilder.ts: 170 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/baseMessageBuilder.ts: 170 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/baseMessageBuilderFactory.ts: 55 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/baseMessageBuilderFactory.ts: 55 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/iface.ts: 190 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/iface.ts: 190 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/index.ts: 5 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/index.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/simple/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/simple/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/simple/simpleMessage.ts: 25 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/simple/simpleMessage.ts: 25 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/simple/simpleMessageBuilder.ts: 27 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/messages/simple/simpleMessageBuilder.ts: 27 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/baseCoin/secp256k1ExtendedKeyPair.ts: 109 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/baseCoin/secp256k1ExtendedKeyPair.ts: 109 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/index.ts: 8 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/index.ts: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/curves/baseCurve.ts: 8 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/curves/baseCurve.ts: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/curves/ed25519.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/curves/ed25519.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/curves/index.ts: 6 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/curves/index.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/curves/secp256k1.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/curves/secp256k1.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/index.ts: 10 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/index.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/shamir.ts: 5 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/shamir.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts: 1603 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts: 1603 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/index.ts: 6 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/index.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/rangeproof.ts: 22 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/rangeproof.ts: 22 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/types.ts: 310 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/types.ts: 310 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/tss/eddsa/eddsa.ts: 368 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/tss/eddsa/eddsa.ts: 368 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/tss/eddsa/index.ts: 6 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/tss/eddsa/index.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/tss/eddsa/types.ts: 83 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/tss/eddsa/types.ts: 83 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/tss/index.ts: 8 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/tss/index.ts: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/mpc/util.ts: 52 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/mpc/util.ts: 52 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/staking/index.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/staking/index.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/staking/utils.ts: 103 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/staking/utils.ts: 103 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/account-lib/util/crypto.ts: 262 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/account-lib/util/crypto.ts: 262 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/api/bip32path.ts: 42 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/api/bip32path.ts: 42 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/api/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/api/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/api/types.ts: 63 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/api/types.ts: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/address-book/address-book.ts: 198 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/address-book/address-book.ts: 198 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/address-book/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/address-book/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/address-book/types.ts: 222 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/address-book/types.ts: 222 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/baseCoin/baseCoin.ts: 729 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/baseCoin/baseCoin.ts: 729 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/baseCoin/iBaseCoin.ts: 844 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/baseCoin/iBaseCoin.ts: 844 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/baseCoin/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/baseCoin/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/bip32util.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/bip32util.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/bitcoin.ts: 36 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/bitcoin.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/bitgoBase.ts: 64 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/bitgoBase.ts: 64 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/coinFactory.ts: 111 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/coinFactory.ts: 111 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/config.ts: 60 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/config.ts: 60 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/defi/defiVault.ts: 474 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/defi/defiVault.ts: 474 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/defi/iDefiVault.ts: 114 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/defi/iDefiVault.ts: 114 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/defi/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/defi/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/ecdh.ts: 83 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/ecdh.ts: 83 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/enterprise/enterprise.ts: 261 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/enterprise/enterprise.ts: 261 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/enterprise/enterprises.ts: 96 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/enterprise/enterprises.ts: 96 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/enterprise/iEnterprise.ts: 45 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/enterprise/iEnterprise.ts: 45 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/enterprise/iEnterprises.ts: 13 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/enterprise/iEnterprises.ts: 13 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/enterprise/index.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/enterprise/index.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/environments.ts: 721 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/environments.ts: 721 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/errors.ts: 475 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/errors.ts: 475 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/evm/evmUtils.ts: 66 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/evm/evmUtils.ts: 66 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/index.ts: 35 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/index.ts: 35 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/inscriptionBuilder/iInscriptionBuilder.ts: 88 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/inscriptionBuilder/iInscriptionBuilder.ts: 88 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/inscriptionBuilder/index.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/inscriptionBuilder/index.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/internal/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/internal/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/internal/internal.ts: 36 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/internal/internal.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/internal/keycard.ts: 415 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/internal/keycard.ts: 415 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/keychain/decryptKeychain.ts: 39 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/keychain/decryptKeychain.ts: 39 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/keychain/iKeychains.ts: 350 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/keychain/iKeychains.ts: 350 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/keychain/index.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/keychain/index.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/keychain/keychains.ts: 848 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/keychain/keychains.ts: 848 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/keychain/ovcJsonCodec.ts: 88 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/keychain/ovcJsonCodec.ts: 88 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/legacyBitcoin.ts: 93 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/legacyBitcoin.ts: 93 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/lightning/lightningWalletUtil.ts: 29 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/lightning/lightningWalletUtil.ts: 29 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/market/iMarkets.ts: 18 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/market/iMarkets.ts: 18 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/market/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/market/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/market/markets.ts: 59 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/market/markets.ts: 59 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/pendingApproval/iPendingApproval.ts: 82 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/pendingApproval/iPendingApproval.ts: 82 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/pendingApproval/iPendingApprovals.ts: 19 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/pendingApproval/iPendingApprovals.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/pendingApproval/index.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/pendingApproval/index.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/pendingApproval/pendingApproval.ts: 530 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/pendingApproval/pendingApproval.ts: 530 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/pendingApproval/pendingApprovals.ts: 71 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/pendingApproval/pendingApprovals.ts: 71 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/proofs/WalletProofs.ts: 40 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/proofs/WalletProofs.ts: 40 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/proofs/index.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/proofs/index.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/proofs/types.ts: 61 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/proofs/types.ts: 61 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/recovery/index.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/recovery/index.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/recovery/initiate.ts: 171 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/recovery/initiate.ts: 171 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/safe/derivableEd25519Pub.ts: 152 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/safe/derivableEd25519Pub.ts: 152 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/safe/iSafe.ts: 145 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/safe/iSafe.ts: 145 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/safe/iSafes.ts: 96 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/safe/iSafes.ts: 96 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/safe/index.ts: 7 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/safe/index.ts: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/safe/recovery.ts: 296 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/safe/recovery.ts: 296 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/safe/rootCoin.ts: 48 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/safe/rootCoin.ts: 48 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/safe/safe.ts: 463 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/safe/safe.ts: 463 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/safe/safes.ts: 293 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/safe/safes.ts: 293 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/staking/goStakingInterfaces.ts: 157 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/staking/goStakingInterfaces.ts: 157 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/staking/goStakingWallet.ts: 178 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/staking/goStakingWallet.ts: 178 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/staking/iGoStakingWallet.ts: 23 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/staking/iGoStakingWallet.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/staking/iStakingWallet.ts: 363 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/staking/iStakingWallet.ts: 363 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/staking/index.ts: 5 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/staking/index.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/staking/stakingWallet.ts: 530 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/staking/stakingWallet.ts: 530 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/iTradingAccount.ts: 24 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/iTradingAccount.ts: 24 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/index.ts: 3 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/index.ts: 3 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/decrypt-aes-gcm.ts: 31 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/decrypt-aes-gcm.ts: 31 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/decrypt-rsa.ts: 21 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/decrypt-rsa.ts: 21 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/decrypt.ts: 22 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/decrypt.ts: 22 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/encrypt-aes-gcm.ts: 24 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/encrypt-aes-gcm.ts: 24 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts: 74 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts: 74 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/encrypt-rsa.ts: 21 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/encrypt-rsa.ts: 21 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2329,32 +2329,32 @@
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/encrypt.ts: 56 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/encrypt.ts: 56 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/index.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/index.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/network.ts: 179 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/network.ts: 179 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/types.ts: 344 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/types.ts: 344 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/network/utils.ts: 50 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/network/utils.ts: 50 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/trading/tradingAccount.ts: 112 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/trading/tradingAccount.ts: 112 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2434,477 +2434,477 @@
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/bitgoPubKeys.ts: 97 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/bitgoPubKeys.ts: 97 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/common.ts: 342 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/common.ts: 342 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/ecdsa/ecdsa.ts: 1007 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/ecdsa/ecdsa.ts: 1007 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/ecdsa/ecdsaMPCv2.ts: 225 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/ecdsa/ecdsaMPCv2.ts: 225 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/ecdsa/index.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/ecdsa/index.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/ecdsa/types.ts: 78 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/ecdsa/types.ts: 78 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/eddsa/eddsa.ts: 470 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/eddsa/eddsa.ts: 470 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/eddsa/eddsaMPCv2.ts: 140 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/eddsa/eddsaMPCv2.ts: 140 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/eddsa/index.ts: 19 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/eddsa/index.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/eddsa/types.ts: 46 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/eddsa/types.ts: 46 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/index.ts: 26 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/index.ts: 26 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/redpallas/redpallasMPCv2.ts: 321 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/redpallas/redpallasMPCv2.ts: 321 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/tss/types.ts: 30 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/tss/types.ts: 30 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/types.ts: 5 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/types.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/abstractUtxoCoinUtil.ts: 82 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/abstractUtxoCoinUtil.ts: 82 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/codecProps.ts: 19 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/codecProps.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/codecs.ts: 36 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/codecs.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/decode.ts: 54 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/decode.ts: 54 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/index.ts: 17 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/index.ts: 17 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/messageTypes.ts: 50 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/messageTypes.ts: 50 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/mpcUtils.ts: 437 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/mpcUtils.ts: 437 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/notEmpty.ts: 3 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/notEmpty.ts: 3 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/opengpgUtils.ts: 451 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/opengpgUtils.ts: 451 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/postWithCodec.ts: 40 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/postWithCodec.ts: 40 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/promise-utils.ts: 8 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/promise-utils.ts: 8 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/siws.ts: 173 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/siws.ts: 173 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/transactionUtils.ts: 29 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/transactionUtils.ts: 29 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/triple.ts: 5 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/triple.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/addressVerification.ts: 127 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/addressVerification.ts: 127 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/baseTSSUtils.ts: 784 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/baseTSSUtils.ts: 784 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/baseTypes.ts: 990 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/baseTypes.ts: 990 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/SMC/utils.ts: 212 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/SMC/utils.ts: 212 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/base.ts: 56 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/base.ts: 56 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsa.ts: 1341 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsa.ts: 1341 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2.ts: 1796 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2.ts: 1796 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2KeyGenSender.ts: 61 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2KeyGenSender.ts: 61 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaVrfMPCv2.ts: 788 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaVrfMPCv2.ts: 788 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/index.ts: 7 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/index.ts: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/types.ts: 40 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/types.ts: 40 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/typesMPCv2.ts: 47 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/ecdsa/typesMPCv2.ts: 47 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/SMC/utils.ts: 166 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/SMC/utils.ts: 166 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/base.ts: 29 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/base.ts: 29 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsa.ts: 914 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsa.ts: 914 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts: 1636 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts: 1636 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2KeyGenSender.ts: 51 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2KeyGenSender.ts: 51 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaVrfMPCv2.ts: 447 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaVrfMPCv2.ts: 447 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/index.ts: 21 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/index.ts: 21 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/types.ts: 40 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/types.ts: 40 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/typesEddsaMPCv2.ts: 27 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/eddsa/typesEddsaMPCv2.ts: 27 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/index.ts: 23 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/index.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/keyShareEnvelope.ts: 125 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/keyShareEnvelope.ts: 125 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/keyVerification.ts: 166 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/keyVerification.ts: 166 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/preHashedSignable.ts: 36 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/preHashedSignable.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/recipientUtils.ts: 206 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/recipientUtils.ts: 206 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/redpallas/SMC/utils.ts: 181 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/redpallas/SMC/utils.ts: 181 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/redpallas/index.ts: 3 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/redpallas/index.ts: 3 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/redpallas/redpallasMPCv2.ts: 79 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/redpallas/redpallasMPCv2.ts: 79 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/redpallas/redpallasMPCv2KeyGenSender.ts: 41 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/redpallas/redpallasMPCv2KeyGenSender.ts: 41 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/serializedTxHexVerify.ts: 12 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/serializedTxHexVerify.ts: 12 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/tss/signableConsistency.ts: 18 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/tss/signableConsistency.ts: 18 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/txRequest.ts: 43 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/txRequest.ts: 43 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/util.ts: 199 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/util.ts: 199 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/utils/wallet.ts: 12 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/utils/wallet.ts: 12 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/v1Wallets.ts: 166 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/v1Wallets.ts: 166 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/wallet/BuildParams.ts: 184 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/wallet/BuildParams.ts: 184 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/wallet/iWallet.ts: 1413 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/wallet/iWallet.ts: 1413 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/wallet/iWallets.ts: 506 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/wallet/iWallets.ts: 506 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/wallet/index.ts: 5 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/wallet/index.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/wallet/safeKeychain.ts: 227 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/wallet/safeKeychain.ts: 227 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/wallet/wallet.ts: 5874 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/wallet/wallet.ts: 5874 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/wallet/wallets.ts: 2190 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/wallet/wallets.ts: 2190 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/walletUtil/iMessageProvider.ts: 12 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/walletUtil/iMessageProvider.ts: 12 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/walletUtil/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/walletUtil/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/walletUtil/midnightMessageProvider.ts: 78 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/walletUtil/midnightMessageProvider.ts: 78 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/walletUtil/signAccountBasedMidnightClaimMessages.ts: 99 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/walletUtil/signAccountBasedMidnightClaimMessages.ts: 99 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/walletUtil/utxoMessageProof.ts: 54 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/walletUtil/utxoMessageProof.ts: 54 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/webauthn/base64url.ts: 24 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/webauthn/base64url.ts: 24 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/webauthn/deriveEnterpriseSalt.ts: 23 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/webauthn/deriveEnterpriseSalt.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/webauthn/derivePassword.ts: 12 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/webauthn/derivePassword.ts: 12 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/webauthn/index.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/webauthn/index.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/webauthn/types.ts: 20 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/webauthn/types.ts: 20 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/webhook/iWebhooks.ts: 29 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/webhook/iWebhooks.ts: 29 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/webhook/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/webhook/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgo/webhook/webhooks.ts: 93 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgo/webhook/webhooks.ts: 93 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/bitgojsError.ts: 6 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/bitgojsError.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/coins/fiat.ts: 128 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/coins/fiat.ts: 128 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/coins/index.ts: 5 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/coins/index.ts: 5 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/coins/ofc.ts: 146 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/coins/ofc.ts: 146 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/coins/ofcToken.ts: 170 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/coins/ofcToken.ts: 170 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/coins/susd.ts: 82 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/coins/susd.ts: 82 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/coins/tsusd.ts: 19 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/coins/tsusd.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/common.ts: 79 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/common.ts: 79 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/index.ts: 51 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/index.ts: 51 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/lightning.ts: 29 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/lightning.ts: 29 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-core/src/units.ts: 51 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-core/src/units.ts: 51 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2914,277 +2914,277 @@
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/curves/constant.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/curves/constant.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/curves/ed25519.ts: 108 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/curves/ed25519.ts: 108 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/curves/ed25519Bip32HdTree.ts: 89 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/curves/ed25519Bip32HdTree.ts: 89 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/curves/index.ts: 7 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/curves/index.ts: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/curves/secp256k1.ts: 70 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/curves/secp256k1.ts: 70 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/curves/secp256k1Bip32HdTree.ts: 60 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/curves/secp256k1Bip32HdTree.ts: 60 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/curves/types.ts: 60 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/curves/types.ts: 60 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/curves/util.ts: 39 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/curves/util.ts: 39 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/hashCommitment.ts: 45 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/hashCommitment.ts: 45 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/index.ts: 9 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/index.ts: 9 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/openssl/index.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/openssl/index.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/openssl/openssl.ts: 34 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/openssl/openssl.ts: 34 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/safePrime.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/safePrime.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/schnorrProof.ts: 79 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/schnorrProof.ts: 79 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/shamir/index.ts: 2 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/shamir/index.ts: 2 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/shamir/shamir.ts: 140 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/shamir/shamir.ts: 140 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/shamir/types.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/shamir/types.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/dkls-vrf/dkg.ts: 290 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/dkls-vrf/dkg.ts: 290 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/dkls-vrf/index.ts: 3 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/dkls-vrf/index.ts: 3 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/dkls-vrf/types.ts: 28 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/dkls-vrf/types.ts: 28 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/dkls-vrf/util.ts: 240 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/dkls-vrf/util.ts: 240 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/commsLayer.ts: 256 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/commsLayer.ts: 256 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/derive.ts: 368 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/derive.ts: 368 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/dkg.ts: 346 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/dkg.ts: 346 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/dsg.ts: 265 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/dsg.ts: 265 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/index.ts: 6 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/index.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/types.ts: 266 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/types.ts: 266 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/util.ts: 267 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa-dkls/util.ts: 267 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/index.ts: 6 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/index.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/paillierproof.ts: 86 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/paillierproof.ts: 86 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/primes.ts: 1842 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/primes.ts: 1842 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/rangeproof.ts: 467 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/rangeproof.ts: 467 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/types.ts: 247 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/types.ts: 247 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/zkVProof.ts: 90 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/ecdsa/zkVProof.ts: 90 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps-vrf/dkg.ts: 233 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps-vrf/dkg.ts: 233 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps-vrf/index.ts: 3 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps-vrf/index.ts: 3 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps-vrf/types.ts: 85 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps-vrf/types.ts: 85 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps-vrf/util.ts: 107 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps-vrf/util.ts: 107 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/commsLayer.ts: 66 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/commsLayer.ts: 66 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/derive.ts: 183 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/derive.ts: 183 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/dkg.ts: 306 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/dkg.ts: 306 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/dsg.ts: 338 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/dsg.ts: 338 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/index.ts: 7 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/index.ts: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/types.ts: 107 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/types.ts: 107 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts: 125 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts: 125 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/index.ts: 6 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/index.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/commsLayer.ts: 70 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/commsLayer.ts: 70 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/dkg.ts: 275 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/dkg.ts: 275 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/dsg.ts: 368 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/dsg.ts: 368 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/index.ts: 7 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/index.ts: 7 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/rerand.ts: 324 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/rerand.ts: 324 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/types.ts: 153 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/types.ts: 153 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts: 178 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts: 178 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/types.ts: 14 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/types.ts: 14 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "modules/sdk-lib-mpc/src/util.ts: 159 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "modules/sdk-lib-mpc/src/util.ts: 159 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -3195,6 +3195,16 @@
     {
       "area": "entropy",
       "detail": "random-number generation: 268 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "status": "checked"
+    },
+    {
+      "area": "mpc",
+      "detail": "Paillier in 18 file(s), 11 in a multi-party context; modulus proofs present",
+      "status": "checked"
+    },
+    {
+      "area": "crediting",
+      "detail": "payment crediting: 7 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 1 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked",
       "status": "checked"
     },
     {
@@ -3221,9 +3231,9 @@
       "count": 268,
       "rows": 268,
       "examples": [
-        "modules/sdk-core/src/account-lib/baseCoin/baseKeyPair.ts: 30 lines scanned with 16 rule patterns and 266 registry patterns",
-        "modules/sdk-core/src/account-lib/baseCoin/baseTransaction.ts: 101 lines scanned with 16 rule patterns and 266 registry patterns",
-        "modules/sdk-core/src/account-lib/baseCoin/baseTransactionBuilder.ts: 222 lines scanned with 16 rule patterns and 266 registry patterns"
+        "modules/sdk-core/src/account-lib/baseCoin/baseKeyPair.ts: 30 lines scanned with 16 rule patterns and 340 registry patterns",
+        "modules/sdk-core/src/account-lib/baseCoin/baseTransaction.ts: 101 lines scanned with 16 rule patterns and 340 registry patterns",
+        "modules/sdk-core/src/account-lib/baseCoin/baseTransactionBuilder.ts: 222 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -3254,6 +3264,24 @@
       "rows": 1,
       "examples": [
         "random-number generation: 268 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    },
+    {
+      "area": "mpc",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Paillier in 18 file(s), 11 in a multi-party context; modulus proofs present"
+      ]
+    },
+    {
+      "area": "crediting",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "payment crediting: 7 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 1 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked"
       ]
     },
     {
@@ -3367,6 +3395,7 @@
     "registered": [],
     "examined_inputs": [
       "32 pinned packages queried at OSV.dev; 0 affected",
+      "Paillier in 18 file(s), 11 in a multi-party context; modulus proofs present",
       "modules/sdk-core/package.json",
       "modules/sdk-core/src/account-lib/baseCoin/baseKeyPair.ts",
       "modules/sdk-core/src/account-lib/baseCoin/baseTransaction.ts",
@@ -3638,6 +3667,7 @@
       "modules/sdk-lib-mpc/src/types.ts",
       "modules/sdk-lib-mpc/src/util.ts",
       "package.json",
+      "payment crediting",
       "random-number generation"
     ]
   },
@@ -3645,17 +3675,17 @@
   "triage": {
     "analyst": "QSI review, 2026-10-28",
     "counts": {
-      "confirmed": 9,
+      "confirmed": 10,
       "not_applicable": 0,
       "false_positive": 0
     },
-    "text": "Проверка аналитика: подтверждено — 9, не применимо — 0, отклонено как ложные срабатывания — 0."
+    "text": "Проверка аналитика: подтверждено — 10, не применимо — 0, отклонено как ложные срабатывания — 0."
   },
   "summary": {
     "by_severity": {
       "critical": 0,
       "high": 0,
-      "medium": 9,
+      "medium": 10,
       "low": 0,
       "info": 1
     },
@@ -3664,19 +3694,19 @@
       "known_vulnerable_component": 0,
       "confirmed_misconfiguration": 0,
       "potential_crypto_risk": 0,
-      "pq_long_term_risk": 9,
+      "pq_long_term_risk": 10,
       "improvement": 0,
       "insufficient_data": 1
     },
-    "total": 10,
+    "total": 11,
     "posture_index": 100,
-    "pq_vulnerable_share": 73.1,
-    "inventory_total": 93,
+    "pq_vulnerable_share": 73.2,
+    "inventory_total": 97,
     "inventory_by_quantum_status": {
-      "grover_margin": 9,
+      "grover_margin": 10,
       "grover_reduced": 9,
       "not_applicable": 7,
-      "vulnerable_shor": 68
+      "vulnerable_shor": 71
     },
     "inventory_by_origin": {
       "dependency": {
@@ -3684,15 +3714,15 @@
         "vulnerable_shor": 0
       },
       "own": {
-        "total": 88,
-        "vulnerable_shor": 68
+        "total": 92,
+        "vulnerable_shor": 71
       }
     }
   },
   "findings": [
     {
-      "id": "a1b20ecd-49d2-408c-9503-36aeb6f0e3bc",
-      "public_id": "QSI-2026-17886",
+      "id": "622bb304-9b9c-41c0-8f5c-97881cb4f650",
+      "public_id": "QSI-2026-41752",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
       "description": "2 упоминаний RSA в 1 файл(ах), например modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts:33. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
@@ -3716,8 +3746,8 @@
       },
       "affected_asset": "source-code:RSA:key_wrapping",
       "data_source": "modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.684736+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.597001+00:00",
       "risk_score": 43.4,
       "risk_breakdown": {
         "mosca": {
@@ -3813,8 +3843,8 @@
           "content": "   32 |     {\n   33 |       name: 'RSA-OAEP',\n   34 |       hash: 'SHA-256',",
           "content_sha256": "af9a7b3e6c70a3aedb3d7e3540657d072b9c668f9beea155d30c96888247d10a",
           "source_sha256": "77177724e5cbd0642d89f37da00c7ffa240bbdc893ace55b90de0269db6ab56e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.698320+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.607237+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts#L33"
         },
         {
@@ -3824,8 +3854,8 @@
           "content": "   56 |     {\n   57 |       name: 'RSA-OAEP',\n   58 |     },",
           "content_sha256": "bdce29586696e5a9765ad932c44cd0061fafd031a66d7044ad3b02c2684e5e70",
           "source_sha256": "77177724e5cbd0642d89f37da00c7ffa240bbdc893ace55b90de0269db6ab56e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.698328+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.607246+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts#L57"
         }
       ],
@@ -3863,8 +3893,8 @@
       ]
     },
     {
-      "id": "a7fbe1b1-c9a4-4955-a383-28fe4a09a992",
-      "public_id": "QSI-2026-17880",
+      "id": "1e92334e-477a-430a-aeb3-14d988346e2e",
+      "public_id": "QSI-2026-41746",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Ed25519: подпись транзакций и сообщений (2 файл(ов))",
       "description": "2 упоминаний Ed25519 в 2 файл(ах), например modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts:16. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -3888,8 +3918,8 @@
       },
       "affected_asset": "source-code:Ed25519:transaction_signing",
       "data_source": "modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.590559+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.526626+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3985,8 +4015,8 @@
           "content": "   15 | \n   16 | export abstract class Ed25519KeyPair implements BaseKeyPair {\n   17 |   protected keyPair: DefaultKeys;",
           "content_sha256": "e8482eb972e2150ffaee797f8bcbb601d3cee29c49194d08b2e0ee5c68a4cf57",
           "source_sha256": "7ea2c42fb769971f98e82d81eba11e44699712db8da3f789624d8e00682d8e3e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.613706+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.539090+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts#L16"
         },
         {
@@ -3996,8 +4026,8 @@
           "content": "    5 | export { BaseKeyPair } from './baseKeyPair';\n    6 | export { Ed25519KeyPair } from './ed25519KeyPair';\n    7 | export { TransactionType, StakingOperationTypes, AddressFormat, DotAddressFormat, DotAssetTypes } from './enum';",
           "content_sha256": "af80a0b2e1e69e6516ad5f68f3db29a1e4fb950130eb0841ff6b597820cab605",
           "source_sha256": "ba3540f3b0cc2c17e53275356f6f3799bd54e19cbd476af8e043934495418b5e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.613716+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.539102+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/baseCoin/index.ts#L6"
         }
       ],
@@ -4035,8 +4065,8 @@
       ]
     },
     {
-      "id": "2ebb84f1-e661-4d67-8e91-c94e359f0d8e",
-      "public_id": "QSI-2026-17881",
+      "id": "d2752eba-9766-4c04-81c3-b8848400a5d3",
+      "public_id": "QSI-2026-41747",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))",
       "description": "14 упоминаний ECDSA в 10 файл(ах), например modules/sdk-core/src/account-lib/baseCoin/secp256k1ExtendedKeyPair.ts:1. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -4060,8 +4090,8 @@
       },
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "modules/sdk-core/src/account-lib/baseCoin/secp256k1ExtendedKeyPair.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.605290+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.534994+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -4157,8 +4187,8 @@
           "content": "    1 | import { bip32, BIP32Interface, ECPair, ECPairInterface } from '@bitgo/secp256k1';\n    2 | import * as Crypto from '../util/crypto';",
           "content_sha256": "6ddb812639dd12560936fdf7514b9ed108dea92bfcaa3192747fb7e26499890f",
           "source_sha256": "411521d568ce8dee7adcfb0f2dfc5ae9355e875bf414e0e3b3930642b427e907",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633126+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554877+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/baseCoin/secp256k1ExtendedKeyPair.ts#L1"
         },
         {
@@ -4168,8 +4198,8 @@
           "content": "    1 | import { networks } from '@bitgo/utxo-lib';\n    2 | import { bip32, ECPair } from '@bitgo/secp256k1';\n    3 | import * as hex from '@stablelib/hex';",
           "content_sha256": "1b12201a01dddcd4c00bab3fe26bfa1f3844b33926ff56e3aa627f1c370201a6",
           "source_sha256": "d619311bd82ddd745a68372d39045458c17cdcb8c2e20fee968589eac34b8fb5",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633135+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554886+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/util/crypto.ts#L2"
         },
         {
@@ -4179,8 +4209,8 @@
           "content": "   15 | import * as assert from 'assert';\n   16 | import * as secp256k1 from 'secp256k1';\n   17 | import { ECPairInterface, BIP32Interface, bip32, ECPair } from '@bitgo/utxo-lib';",
           "content_sha256": "a1915605806bdb5915f32a17b9818b0f6f68d349788fbefb793eea286412e16e",
           "source_sha256": "817c83e398ed1f0ca1c7d3aa2e33652a26af92206ff36a88262921d6d5a3f847",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633139+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554891+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/ecdh.ts#L16"
         },
         {
@@ -4190,8 +4220,8 @@
           "content": "   59 |   //                  see discussion here https://github.com/bitcoin-core/secp256k1/issues/352\n   60 |   const buffer = Buffer.from(secp256k1.publicKeyTweakMul(publicKey, privateKey))\n   61 |     // remove leading parity bit",
           "content_sha256": "7e080a30d6ce1730ece549b089d1f3a0639267ffd9ee85264566e1cfb25d2cad",
           "source_sha256": "817c83e398ed1f0ca1c7d3aa2e33652a26af92206ff36a88262921d6d5a3f847",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633142+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554895+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/ecdh.ts#L60"
         },
         {
@@ -4201,8 +4231,8 @@
           "content": "   59 | > & {\n   60 |   keyCurve: 'secp256k1' | 'ed25519';\n   61 | };",
           "content_sha256": "796a023c4b3818bdff833f76ff14cf3951ca115eb7e08a833ba44f9244729b13",
           "source_sha256": "84e20697851f775c288e660881f6ec37ab4264c2007f8689ebf578ff9aaba277",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633145+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554900+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/addressVerification.ts#L60"
         },
         {
@@ -4212,8 +4242,8 @@
           "content": "   89 | \n   90 |   const MPC = params.keyCurve === 'secp256k1' ? new Ecdsa() : await EDDSAMethods.getInitializedMpcInstance();\n   91 |   const derivedPublicKey = MPC.deriveUnhardened(commonKeychain, derivationPath);",
           "content_sha256": "eaa6e881ef2e6ee89be000415903efa0191f3475f6cb8ade6d822dc932c79cf7",
           "source_sha256": "84e20697851f775c288e660881f6ec37ab4264c2007f8689ebf578ff9aaba277",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633148+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554904+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/addressVerification.ts#L90"
         },
         {
@@ -4223,8 +4253,8 @@
           "content": "   93 |   // secp256k1 expects 33 bytes; ed25519 expects 32 bytes\n   94 |   const publicKeySize = params.keyCurve === 'secp256k1' ? 33 : 32;\n   95 |   const publicKeyOnly = Buffer.from(derivedPublicKey, 'hex').subarray(0, publicKeySize).toString('hex');",
           "content_sha256": "5fe68310e693027a1bdd79437677dcdba6e5656778789584e5d57b9d2d29cb80",
           "source_sha256": "84e20697851f775c288e660881f6ec37ab4264c2007f8689ebf578ff9aaba277",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633152+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554909+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/addressVerification.ts#L94"
         },
         {
@@ -4234,8 +4264,8 @@
           "content": "  195 | \n  196 |     const pubKey = ethUtil.ecrecover(Buffer.from(msgHash, 'hex'), v, r, s);\n  197 |     return ethUtil.bufferToHex(ethUtil.pubToAddress(pubKey));",
           "content_sha256": "088bf5b0ec4051f2c76c55aa427efde7da6af74d629ecaf28cb27b13ccc4cd86",
           "source_sha256": "ad33cca15d17c2905548311ffd094aa2a310d15b1914454241f5a184334f1a9b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633155+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554913+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/util.ts#L196"
         },
         {
@@ -4245,8 +4275,8 @@
           "content": " 1402 |   buildSignMessageRequest(params: WalletSignMessageOptions): Promise<TxRequest>;\n 1403 |   signTypedData(params: WalletSignTypedDataOptions): Promise<SignedMessage>;\n 1404 |   signAndSendMessageTxRequest(params: SignAndSendMessageTxRequestOptions): Promise<SignedMessage>;",
           "content_sha256": "fea5f8cfea54429321c5f69fa72fc980f5260ba90048159889879b32d416bc9b",
           "source_sha256": "d66cfa8b23933fbfdc036a49a5ec6cd88491480ceb8c9778ea5864775328bcf3",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633159+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554918+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/wallet/iWallet.ts#L1403"
         },
         {
@@ -4256,8 +4286,8 @@
           "content": " 2516 |    */\n 2517 |   async signTypedData(params: WalletSignTypedDataOptions): Promise<SignedMessage> {\n 2518 |     if (!this.baseCoin.supportsSigningTypedData()) {",
           "content_sha256": "286358dd24445d05404c70a4485224af82c3240ab24190f4879e9081fa41c22a",
           "source_sha256": "2cee1dfbd5165bde1c0df80f855b60d914dea73a5211a4e968eeace71cb4f94b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.633162+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.554922+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/wallet/wallet.ts#L2517"
         }
       ],
@@ -4295,8 +4325,8 @@
       ]
     },
     {
-      "id": "27827d4a-18ff-4f93-9466-26d8d8522142",
-      "public_id": "QSI-2026-17882",
+      "id": "5859f0de-bc1b-4e2f-a92a-8d221cba49e6",
+      "public_id": "QSI-2026-41748",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (10 файл(ов))",
       "description": "23 упоминаний ECDSA в 10 файл(ах), например modules/sdk-core/src/account-lib/mpc/curves/index.ts:3. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -4320,8 +4350,8 @@
       },
       "affected_asset": "source-code:ECDSA:threshold_mpc",
       "data_source": "modules/sdk-core/src/account-lib/mpc/curves/index.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.629735+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.551812+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -4417,8 +4447,8 @@
           "content": "    2 | import { Ed25519Curve } from './ed25519';\n    3 | import { Secp256k1Curve } from './secp256k1';\n    4 | ",
           "content_sha256": "38491911e06bbd81f86534e478f3f967811ac49f6ff724add23df7cfab1802d2",
           "source_sha256": "18ad0d545ab08eb42d73fb1613270c80e33e075ae3a656cfe9f713a79b71ca8f",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650798+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566300+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/curves/index.ts#L3"
         },
         {
@@ -4428,8 +4458,8 @@
           "content": "    2 | import * as bigintCryptoUtils from 'bigint-crypto-utils';\n    3 | import { secp256k1 as secp } from '@noble/curves/secp256k1';\n    4 | import { createHash, Hash, randomBytes } from 'crypto';",
           "content_sha256": "33ce4a250553379449e6d8cd89cb89a0823ab8bf05b9505a637866b8d01b174e",
           "source_sha256": "0ff8c8b3a5edf4a2283cb4ddecc7b9add5c4a0798f3f5a93fc5ef421662f2447",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650805+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566309+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts#L3"
         },
         {
@@ -4439,8 +4469,8 @@
           "content": "    1 | import { secp256k1 } from '@noble/curves/secp256k1';\n    2 | ",
           "content_sha256": "7ccffd442cfe660a7ceb11e8b2f709191a5fb41bf0b4612318dc718a212ae3d8",
           "source_sha256": "c45c0d5c88b98b193ba362f7f406b3e41bb58989fd61e6f4b45604fb35074c6d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650809+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566315+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/ecdsa/base.ts#L1"
         },
         {
@@ -4450,8 +4480,8 @@
           "content": "   23 |   async getBackupGpgPubKey(): Promise<BackupGpgKey> {\n   24 |     return generateGPGKeyPair('secp256k1');\n   25 |   }",
           "content_sha256": "71559810e4c22fbb9359e84ec23b3fc6047de6e6374ba97286efa0d723bd905c",
           "source_sha256": "c45c0d5c88b98b193ba362f7f406b3e41bb58989fd61e6f4b45604fb35074c6d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650813+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566320+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/ecdsa/base.ts#L24"
         },
         {
@@ -4461,8 +4491,8 @@
           "content": "   35 |     try {\n   36 |       const point = secp256k1.ProjectivePoint.fromHex(pub);\n   37 |       return point.toHex(false).slice(2);",
           "content_sha256": "420459093dd8b38c05054e2099e19afa8634737cb9a6f4c0f821269ebca8469d",
           "source_sha256": "c45c0d5c88b98b193ba362f7f406b3e41bb58989fd61e6f4b45604fb35074c6d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650816+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566325+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/ecdsa/base.ts#L36"
         },
         {
@@ -4472,8 +4502,8 @@
           "content": "  124 |     const userKeyShare = await MPC.keyShare(1, m, n);\n  125 |     const userGpgKey = await generateGPGKeyPair('secp256k1');\n  126 |     const backupKeyShare = await this.createBackupKeyShares();",
           "content_sha256": "4864758d7ef8f2d39fc521d27d15d069f5af1c320a2eba9ae7d938d9ea8a78bd",
           "source_sha256": "9f97a990c329ce39426a3dbcea0fb9f5df2ef57fc77ed37e5fe44c211cb83686",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650819+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566330+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsa.ts#L125"
         },
         {
@@ -4483,8 +4513,8 @@
           "content": "  511 |     })) as string;\n  512 |     const userGpgKey = await generateGPGKeyPair('secp256k1');\n  513 |     const privateShareProof = await createShareProof(userGpgKey.privateKey, signingKey.nShares[bitgoIndex].u, 'ecdsa');",
           "content_sha256": "3f6c3fc157a60476ac0c2ce7bfbbdfda2ad2859c08d464cc3171bad8b52323aa",
           "source_sha256": "9f97a990c329ce39426a3dbcea0fb9f5df2ef57fc77ed37e5fe44c211cb83686",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650823+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566335+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsa.ts#L512"
         },
         {
@@ -4494,8 +4524,8 @@
           "content": "   82 |     const { userSession, backupSession } = this.getUserAndBackupSession(2, 3, params.retrofit);\n   83 |     const userGpgKey = await generateGPGKeyPair('secp256k1');\n   84 |     const backupGpgKey = await generateGPGKeyPair('secp256k1');",
           "content_sha256": "fc8b2023bf795af665da49334f471fe3e5f4077942eaa8b8d673bd1795c66e1a",
           "source_sha256": "d9e80c98d4c22d6316f95f86e343c2273293a26fc5c8e553f90aa255c581d910",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650826+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566339+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2.ts#L83"
         },
         {
@@ -4505,8 +4535,8 @@
           "content": "   83 |     const userGpgKey = await generateGPGKeyPair('secp256k1');\n   84 |     const backupGpgKey = await generateGPGKeyPair('secp256k1');\n   85 | ",
           "content_sha256": "8a0d0af5f75f20e0c85edd068fd65251c02029154afcb7000c4ef50e95caf5a7",
           "source_sha256": "d9e80c98d4c22d6316f95f86e343c2273293a26fc5c8e553f90aa255c581d910",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650829+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566344+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2.ts#L84"
         },
         {
@@ -4516,8 +4546,8 @@
           "content": "  956 |     let serializedTxHex: string | undefined;\n  957 |     const userGpgKey = await generateGPGKeyPair('secp256k1');\n  958 |     const bitgoGpgPubKey = await this.pickBitgoPubGpgKeyForSigning(true, params.reqId, txRequest.enterpriseId);",
           "content_sha256": "cd9aa3730eb195a061809e54ca482bb224d15a657e485b640ec0f829283861ef",
           "source_sha256": "d9e80c98d4c22d6316f95f86e343c2273293a26fc5c8e553f90aa255c581d910",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.650832+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.566349+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2.ts#L957"
         }
       ],
@@ -4555,8 +4585,8 @@
       ]
     },
     {
-      "id": "2ada87fd-18de-4a57-810d-1675aa236c68",
-      "public_id": "QSI-2026-17883",
+      "id": "c5d0d4de-64e6-4ca6-991a-681f8fe6a79b",
+      "public_id": "QSI-2026-41749",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Paillier: пороговая подпись и протоколы MPC (14 файл(ов))",
       "description": "42 упоминаний Paillier в 14 файл(ах), например modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts:1. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -4580,8 +4610,8 @@
       },
       "affected_asset": "source-code:Paillier:threshold_mpc",
       "data_source": "modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.647408+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.563431+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -4677,8 +4707,8 @@
           "content": "    1 | import * as paillierBigint from 'paillier-bigint';\n    2 | import * as bigintCryptoUtils from 'bigint-crypto-utils';",
           "content_sha256": "f36315a0a75eeaa4119d9c7d953185879c7ce6f8cdf7a90f2e66b5e9d51b112d",
           "source_sha256": "0ff8c8b3a5edf4a2283cb4ddecc7b9add5c4a0798f3f5a93fc5ef421662f2447",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663677+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578573+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts#L1"
         },
         {
@@ -4688,8 +4718,8 @@
           "content": "   98 |     // Generate additively homomorphic encryption key.\n   99 |     let paillierKeyPair: paillierBigint.KeyPair;\n  100 |     if (!sync) {",
           "content_sha256": "21295d6efabe896a93732ccba672aa3b47cea5b44a118074ed20fc5273af148c",
           "source_sha256": "0ff8c8b3a5edf4a2283cb4ddecc7b9add5c4a0798f3f5a93fc5ef421662f2447",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663684+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578584+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts#L99"
         },
         {
@@ -4699,8 +4729,8 @@
           "content": "  100 |     if (!sync) {\n  101 |       paillierKeyPair = await paillierBigint.generateRandomKeys(minModulusBitLength, true);\n  102 |     } else {",
           "content_sha256": "b830135795327cff07d5406c6dfb2830fe83071d265f2f63d116f7fba867ff98",
           "source_sha256": "0ff8c8b3a5edf4a2283cb4ddecc7b9add5c4a0798f3f5a93fc5ef421662f2447",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663687+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578589+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts#L101"
         },
         {
@@ -4710,8 +4740,8 @@
           "content": "   44 |   c?: number; // number of shares\n   45 |   l: string; // lambda value for paillier secret key\n   46 |   m: string; // mu value for paillier secret key",
           "content_sha256": "45f7cf14781619238472d456e85ef6011bcd9d01442e6bc260646fec3f79fee2",
           "source_sha256": "abbd0202db16b8bf05a4ae2c48c3a7ae276502ff69017126738fffb843ddfd7b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663691+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578594+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/tss/ecdsa/types.ts#L45"
         },
         {
@@ -4721,8 +4751,8 @@
           "content": "   45 |   l: string; // lambda value for paillier secret key\n   46 |   m: string; // mu value for paillier secret key\n   47 |   u: string; // shamir share of secret",
           "content_sha256": "0b79553c282b3756c51e93004b13b29d064b5bfbe21cef1b8776e36e8db0be25",
           "source_sha256": "abbd0202db16b8bf05a4ae2c48c3a7ae276502ff69017126738fffb843ddfd7b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663694+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578599+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/tss/ecdsa/types.ts#L46"
         },
         {
@@ -4732,8 +4762,8 @@
           "content": "   48 |   uu: string; // unsplit shamir share of secret\n   49 |   n: string; // n => (p . q) where p and q are the two random prime numbers chosen for paillier encryption\n   50 |   y: string;",
           "content_sha256": "d4eb6bbadd8e0ad86375caec102086c5117c5495ad7143ad2471f0fc607fe6eb",
           "source_sha256": "abbd0202db16b8bf05a4ae2c48c3a7ae276502ff69017126738fffb843ddfd7b",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663697+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578604+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/tss/ecdsa/types.ts#L49"
         },
         {
@@ -4743,8 +4773,8 @@
           "content": "  236 |   privateShareProof?: string;\n  237 |   paillierPublicKey?: string;\n  238 |   n?: string;",
           "content_sha256": "20ebcb726e72f496aaa3f34ba30c5820c5e540d211dc71aa42d476a65cb652d6",
           "source_sha256": "4139bff667e57bd1d17d25bac93a02eca94fda1937956d0b583335a9717e4bdb",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663700+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578608+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/keychain/iKeychains.ts#L237"
         },
         {
@@ -4754,8 +4784,8 @@
           "content": "  706 |     assert(bitgoToUserShare.vssProof);\n  707 |     assert(bitgoToUserShare.paillierPublicKey);\n  708 |     const bitgoToBackupShare = key.keyShares.find(",
           "content_sha256": "4fd4e1b55f1725db5a1b5972027c87d987d42279cd4d093b05542cd0768ad41c",
           "source_sha256": "f71f4d7e57a5a2487de3c789c293c16938585ea38fbb21f5618ddd94816f4ce4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663703+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578613+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/keychain/keychains.ts#L707"
         },
         {
@@ -4765,8 +4795,8 @@
           "content": "  712 |     assert(bitgoToBackupShare.vssProof);\n  713 |     assert(bitgoToBackupShare.paillierPublicKey);\n  714 | ",
           "content_sha256": "0a12f2aa4c92d767798132cfef166a90bcf5c43663d2a823a3b1e48674d78513",
           "source_sha256": "f71f4d7e57a5a2487de3c789c293c16938585ea38fbb21f5618ddd94816f4ce4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663706+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578618+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/keychain/keychains.ts#L713"
         },
         {
@@ -4776,8 +4806,8 @@
           "content": "  729 |                 privateShare: bitgoToUserShare.privateShare,\n  730 |                 paillierPublicKey: bitgoToUserShare.paillierPublicKey,\n  731 |                 vssProof: bitgoToUserShare.vssProof,",
           "content_sha256": "feb54b0e71dcaf531493771d7e84516d2a8f4340c264cef95b194f58b276ac30",
           "source_sha256": "f71f4d7e57a5a2487de3c789c293c16938585ea38fbb21f5618ddd94816f4ce4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.663709+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.578623+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/keychain/keychains.ts#L730"
         }
       ],
@@ -4815,8 +4845,8 @@
       ]
     },
     {
-      "id": "f7440a2d-4c06-4f56-8978-9965a0b07681",
-      "public_id": "QSI-2026-17884",
+      "id": "51a8a840-0bc5-453a-a157-15197282c540",
+      "public_id": "QSI-2026-41750",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Threshold ECDSA: пороговая подпись и протоколы MPC (16 файл(ов))",
       "description": "215 упоминаний Threshold ECDSA в 16 файл(ах), например modules/sdk-core/src/account-lib/mpc/util.ts:9. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -4840,8 +4870,8 @@
       },
       "affected_asset": "source-code:Threshold ECDSA:threshold_mpc",
       "data_source": "modules/sdk-core/src/account-lib/mpc/util.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.660931+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.575231+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -4937,8 +4967,8 @@
           "content": "    8 |   getPaillierPublicKey,\n    9 |   DklsUtils,\n   10 |   DklsTypes,",
           "content_sha256": "9ecc65ea442d3f9cc949c4c27780792b63d9b227160bd3a50390e1d3f2007fd8",
           "source_sha256": "d19b84bce55532d269ce2919e4321ac2ad9883f08f7cc2057d8b1e4b994f2c3f",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676813+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589469+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/util.ts#L9"
         },
         {
@@ -4948,8 +4978,8 @@
           "content": "    9 |   DklsUtils,\n   10 |   DklsTypes,\n   11 | } from '@bitgo/sdk-lib-mpc';",
           "content_sha256": "75a62dec55df8a8405500582c098c0c26a013d7eac00fc1fe7523a47fc603d25",
           "source_sha256": "d19b84bce55532d269ce2919e4321ac2ad9883f08f7cc2057d8b1e4b994f2c3f",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676821+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589478+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/util.ts#L10"
         },
         {
@@ -4959,8 +4989,8 @@
           "content": "   18 | export function combineRound4DklsDsgMessages(\n   19 |   round4DsgMessages: DklsTypes.SerializedBroadcastMessage[]\n   20 | ): DklsTypes.SerializedDklsSignature {",
           "content_sha256": "4b60f0e06656eabd89eddb6dc9be363b0c94a07c2fd35e6ead7667aa130923eb",
           "source_sha256": "d19b84bce55532d269ce2919e4321ac2ad9883f08f7cc2057d8b1e4b994f2c3f",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676825+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589484+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/account-lib/mpc/util.ts#L19"
         },
         {
@@ -4970,8 +5000,8 @@
           "content": "    8 | import { InitiateRecoveryOptions } from '../recovery';\n    9 | import { EcdsaMPCv2Utils, EcdsaUtils } from '../utils/tss/ecdsa';\n   10 | import EddsaUtils, { EddsaMPCv2Utils, PrebuildTransactionWithIntentOptions, TxRequest } from '../utils/tss/eddsa';",
           "content_sha256": "8317b0ca4f13e823102fb6ae49badcc4828be8a0347ba4f5b8862e47fc254b55",
           "source_sha256": "e61ed7c35599547af0546d7c8ef961a62a6da724fcc4a194b96836e5e6d86d7f",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676828+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589489+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/baseCoin/iBaseCoin.ts#L9"
         },
         {
@@ -4981,8 +5011,8 @@
           "content": "  376 |   walletData: WalletData;\n  377 |   tssUtils: EcdsaUtils | EcdsaMPCv2Utils | EddsaUtils | EddsaMPCv2Utils | RedpallasMPCv2Utils | undefined;\n  378 |   [index: string]: unknown;",
           "content_sha256": "eb4bca49663f7f640cd282919f1a445e0755a1536fd149c07186c5fbfa6ff7a1",
           "source_sha256": "e61ed7c35599547af0546d7c8ef961a62a6da724fcc4a194b96836e5e6d86d7f",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676832+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589494+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/baseCoin/iBaseCoin.ts#L377"
         },
         {
@@ -4992,8 +5022,8 @@
           "content": "  584 |           ? ECDSAUtils.EcdsaVrfMPCv2Utils\n  585 |           : ECDSAUtils.EcdsaMPCv2Utils\n  586 |         : ECDSAUtils.EcdsaUtils;",
           "content_sha256": "3ee0fa76d6389e290e46a2b971e37dd1cb2fa97f384e764f70f048a61d46fabd",
           "source_sha256": "f71f4d7e57a5a2487de3c789c293c16938585ea38fbb21f5618ddd94816f4ce4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676835+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589499+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/keychain/keychains.ts#L585"
         },
         {
@@ -5003,8 +5033,8 @@
           "content": "   24 | import EddsaUtils, { EddsaMPCv2Utils } from '../utils/tss/eddsa';\n   25 | import { EcdsaMPCv2Utils, EcdsaUtils } from '../utils/tss/ecdsa';\n   26 | import { KeyShare as EcdsaKeyShare } from '../utils/tss/ecdsa/types';",
           "content_sha256": "9595750d1a4a75c8f42ba1ccc11c036ae9f871ab1845010cd0c5b9ce2ead2153",
           "source_sha256": "3aa72e8fb06c0537296bcdafdd871834450acc7df15e8c9647fa71365dc37df4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676838+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589504+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/pendingApproval/pendingApproval.ts#L25"
         },
         {
@@ -5014,8 +5044,8 @@
           "content": "   57 |         if (this.wallet?.multisigTypeVersion() === 'MPCv2') {\n   58 |           this.tssUtils = new EcdsaMPCv2Utils(this.bitgo, this.baseCoin, wallet);\n   59 |         } else {",
           "content_sha256": "850c61ef35b95c66f0dd241a81abec40e7b37501b38d23e7d09c89432f80360f",
           "source_sha256": "3aa72e8fb06c0537296bcdafdd871834450acc7df15e8c9647fa71365dc37df4",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676842+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589509+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/pendingApproval/pendingApproval.ts#L58"
         },
         {
@@ -5025,8 +5055,8 @@
           "content": "    2 | import openpgp from 'openpgp';\n    3 | import { DklsComms, DklsTypes } from '@bitgo/sdk-lib-mpc';\n    4 | import {",
           "content_sha256": "93c900d8725293b4393bfde2e6d44596c6a7126f79a1602c028feebd462eb228",
           "source_sha256": "41179ffae02587f5add47e01203f15820fe7271dd578b57d60911fedc685ce48",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676845+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589513+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/tss/ecdsa/ecdsaMPCv2.ts#L3"
         },
         {
@@ -5036,8 +5066,8 @@
           "content": "   30 | export async function getSignatureShareRoundOne(\n   31 |   round1Message: DklsTypes.DeserializedBroadcastMessage,\n   32 |   userGpgKey: openpgp.SerializedKeyPair<string>,",
           "content_sha256": "23c08f39f71f63f536b9982f90413e648fa2dd434f1a732d7291b93da02a190f",
           "source_sha256": "41179ffae02587f5add47e01203f15820fe7271dd578b57d60911fedc685ce48",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.676848+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.589518+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/tss/ecdsa/ecdsaMPCv2.ts#L31"
         }
       ],
@@ -5075,8 +5105,202 @@
       ]
     },
     {
-      "id": "a1ba9694-7497-4c3e-b882-3452df24ca06",
-      "public_id": "QSI-2026-17888",
+      "id": "83949ea2-5b00-4056-806f-d681a6b1ecfc",
+      "public_id": "QSI-2026-41754",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый Ed25519: пороговая подпись и протоколы MPC (3 файл(ов))",
+      "description": "4 упоминаний Ed25519 в 3 файл(ах), например modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts:16. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts:16 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": false,
+      "status": "open",
+      "triage": {
+        "note": "account-lib/baseCoin/ed25519KeyPair.ts and baseCoin/index.ts — transaction signing on the Ed25519 chains. Small row count, same migration class as the secp256k1 signing rows.",
+        "analyst": "QSI review, 2026-10-28",
+        "decision": "confirmed",
+        "severity_before": "medium"
+      },
+      "affected_asset": "source-code:Ed25519:threshold_mpc",
+      "data_source": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.612296+00:00",
+      "risk_score": 41.8,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 41.8,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 52.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.8
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts",
+          "location": "line 16",
+          "content": "   15 | import { EddsaMPCv2KeyGenCallbacks } from '../../../wallet/iWallets';\n   16 | import { ed25519 } from '@noble/curves/ed25519';\n   17 | import { EddsaMPSDkg, EddsaMPSDsg, MPSComms, MPSTypes, MPSUtil } from '@bitgo/sdk-lib-mpc';",
+          "content_sha256": "49fd02f8be31975d12cadb904fe54d8fff40d0b41030d7dd065d2d92a9f1002b",
+          "source_sha256": "dd74221115ad6491edb942d58d7a2a5bdcef09b75d1b242ccf879ce3ee77de5a",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.621904+00:00",
+          "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts#L16"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts",
+          "location": "line 1538",
+          "content": " 1537 | \n 1538 |   const verified = ed25519.verify(new Uint8Array(signature), new Uint8Array(message), new Uint8Array(publicKeyBytes));\n 1539 |   if (!verified) {",
+          "content_sha256": "3c897a4146e78ac76346e6cb584b7db26316e5773df3c5ec75a87d524a65e121",
+          "source_sha256": "dd74221115ad6491edb942d58d7a2a5bdcef09b75d1b242ccf879ce3ee77de5a",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.621914+00:00",
+          "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts#L1538"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts",
+          "location": "line 3",
+          "content": "    2 | import assert from 'assert';\n    3 | import { x25519 } from '@noble/curves/ed25519';\n    4 | import { DKG } from './dkg';",
+          "content_sha256": "3ea9cc6dfb31dbd50b0077646438f05084cd46e56039edb8d217cf41ef6fdec3",
+          "source_sha256": "b1f4fb0519c4b37924a268e3b3424329ec0f8d3e6839edcc540719923f12cc96",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.621920+00:00",
+          "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts#L3"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts",
+          "location": "line 3",
+          "content": "    2 | import assert from 'assert';\n    3 | import { x25519 } from '@noble/curves/ed25519';\n    4 | import { RedPallasDKG } from './dkg';",
+          "content_sha256": "a8787f3fa5393c76bf6722126e120557397e05469cb4f7027926e383f780dccd",
+          "source_sha256": "6ad2437c5cc6203360e670b414bb0c206f3481bdda95c35b4c20bc846a228e9c",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.621924+00:00",
+          "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts#L3"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "c4f8cee9-dbf6-47ab-bf8a-d3aabc7c938d",
+      "public_id": "QSI-2026-41755",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: пороговая подпись и протоколы MPC (2 файл(ов))",
       "description": "4 упоминаний X25519 в 2 файл(ах), например modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts:3. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -5100,8 +5324,8 @@
       },
       "affected_asset": "source-code:X25519:threshold_mpc",
       "data_source": "modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.704420+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.619646+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -5197,8 +5421,8 @@
           "content": "    2 | import assert from 'assert';\n    3 | import { x25519 } from '@noble/curves/ed25519';\n    4 | import { DKG } from './dkg';",
           "content_sha256": "3ea9cc6dfb31dbd50b0077646438f05084cd46e56039edb8d217cf41ef6fdec3",
           "source_sha256": "b1f4fb0519c4b37924a268e3b3424329ec0f8d3e6839edcc540719923f12cc96",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.715334+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.628929+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts#L3"
         },
         {
@@ -5208,8 +5432,8 @@
           "content": "   19 |   const privKey = seed ? seed.subarray(0, 32) : crypto.randomBytes(32);\n   20 |   const pubKey = Buffer.from(x25519.getPublicKey(privKey));\n   21 |   return { privKey: Buffer.from(privKey), pubKey };",
           "content_sha256": "97dfa62e104f0cf320a19007e1fb9ed7b948bb5636e765511fdd4983524bf5ea",
           "source_sha256": "b1f4fb0519c4b37924a268e3b3424329ec0f8d3e6839edcc540719923f12cc96",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.715342+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.628939+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts#L20"
         },
         {
@@ -5219,8 +5443,8 @@
           "content": "    2 | import assert from 'assert';\n    3 | import { x25519 } from '@noble/curves/ed25519';\n    4 | import { RedPallasDKG } from './dkg';",
           "content_sha256": "a8787f3fa5393c76bf6722126e120557397e05469cb4f7027926e383f780dccd",
           "source_sha256": "6ad2437c5cc6203360e670b414bb0c206f3481bdda95c35b4c20bc846a228e9c",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.715345+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.628944+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts#L3"
         },
         {
@@ -5230,8 +5454,8 @@
           "content": "   10 |   const privKey = seed ? seed.subarray(0, 32) : crypto.randomBytes(32);\n   11 |   const pubKey = Buffer.from(x25519.getPublicKey(privKey));\n   12 |   return { privKey: Buffer.from(privKey), pubKey };",
           "content_sha256": "186c6b01e10accbdc3539c7dfcf7765f1c7dca0d349bb3216bb181521f7eb83d",
           "source_sha256": "6ad2437c5cc6203360e670b414bb0c206f3481bdda95c35b4c20bc846a228e9c",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.715348+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.628948+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts#L11"
         }
       ],
@@ -5269,8 +5493,8 @@
       ]
     },
     {
-      "id": "3781b757-30ec-4332-a745-005b1b863803",
-      "public_id": "QSI-2026-17885",
+      "id": "9eb7b654-e85d-4bd8-8558-41714506f8c8",
+      "public_id": "QSI-2026-41751",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))",
       "description": "4 упоминаний ECDSA в 2 файл(ах), например modules/sdk-core/src/bitgo/bip32util.ts:1. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -5294,8 +5518,8 @@
       },
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "modules/sdk-core/src/bitgo/bip32util.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.672768+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.586672+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -5391,8 +5615,8 @@
           "content": "    1 | import { bip32utils } from '@bitgo/secp256k1';\n    2 | ",
           "content_sha256": "24d2a5062b7afe21ee900b0935378d339afe6e4c184d07bc46ba9c8c6eb4343f",
           "source_sha256": "96addf7021fa3ae1ac80f6f9d8983d9026ee8287e339500064e13c6a0dcd45b7",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.687989+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.599203+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/bip32util.ts#L1"
         },
         {
@@ -5402,8 +5626,8 @@
           "content": "   16 | import * as _ from 'lodash';\n   17 | import { ecc as secp256k1 } from '@bitgo/secp256k1';\n   18 | import { BitGoBase } from '../bitgoBase';",
           "content_sha256": "d15aa1888a51c6a930577236bcd602bf7b7fcef313a80831424c0bd1ba183fa0",
           "source_sha256": "e7caf153a36965e6dbe00b2b3479cd7a145b9d33ec7df2bb61de8d1d4d75edc2",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.687996+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.599213+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/opengpgUtils.ts#L17"
         },
         {
@@ -5413,8 +5637,8 @@
           "content": "  115 |     const decodedUValueProof = Buffer.from(proofSubkeys.keyPacket.publicParams['Q']).toString('hex');\n  116 |     const rawUValueProof = secp256k1.pointFromScalar(Buffer.from(uValue, 'hex'), false);\n  117 |     return rawUValueProof !== null && decodedUValueProof === Buffer.from(rawUValueProof).toString('hex');",
           "content_sha256": "6d2a1b4250c65aea50ed876f3685b5f89ca132e51a5d84822d5a72adaefb4203",
           "source_sha256": "e7caf153a36965e6dbe00b2b3479cd7a145b9d33ec7df2bb61de8d1d4d75edc2",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.688000+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.599219+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/opengpgUtils.ts#L116"
         },
         {
@@ -5424,8 +5648,8 @@
           "content": "  253 |     oid.write = () => new Uint8Array(Buffer.from('052b8104000a', 'hex'));\n  254 |     Q = secp256k1.pointFromScalar(new Uint8Array(Buffer.from(uValue, 'hex')), false);\n  255 |   }",
           "content_sha256": "b065ed5bbec58a128bd36fb1574f9df5ec42c1b87887566389ba1548d97c5a5d",
           "source_sha256": "e7caf153a36965e6dbe00b2b3479cd7a145b9d33ec7df2bb61de8d1d4d75edc2",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.688003+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.599224+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/opengpgUtils.ts#L254"
         }
       ],
@@ -5463,8 +5687,8 @@
       ]
     },
     {
-      "id": "0caf8660-0189-454a-96c3-b928824ff2e6",
-      "public_id": "QSI-2026-17887",
+      "id": "29035553-772d-49e9-b656-dabfe364d2a4",
+      "public_id": "QSI-2026-41753",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RedDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
       "description": "2 упоминаний RedDSA в 2 файл(ах), например modules/sdk-core/src/bitgo/utils/tss/baseTSSUtils.ts:192. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -5483,8 +5707,8 @@
       "triage": null,
       "affected_asset": "source-code:RedDSA:threshold_mpc",
       "data_source": "modules/sdk-core/src/bitgo/utils/tss/baseTSSUtils.ts",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.695319+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.605052+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -5580,8 +5804,8 @@
           "content": "  191 |       if (!this.bitgoRedpallasMpcv2PublicGpgKey) {\n  192 |         throw new Error(\"Failed to get Bitgo's RedPallas MPCv2 gpg key\");\n  193 |       }",
           "content_sha256": "8a0cce9e39ef211f2145a16a77b56f4b06f6d2ec95d3a00235a64895ab5fff27",
           "source_sha256": "c468bb1d3aadc97c5530a4860d88a4bd436ee8e6feed938e260d6d095261cf17",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.707033+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.614416+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/baseTSSUtils.ts#L192"
         },
         {
@@ -5591,8 +5815,8 @@
           "content": "   37 |       .post(bitgo.url('/mpc/generatekey', 2))\n   38 |       .send({ enterprise, safeId, type: KeyGenTypeEnum.MPCv2, curveType: KeyCurveEnum.RedPallas, round, payload })\n   39 |       .result();",
           "content_sha256": "effe122996112a7e09eda11f83f8fe0f6c3f8841bb838fdfc315a013417335ff",
           "source_sha256": "b283f6323c6833b1af527f24c15fb05b1fa426d2c8c9e190085cda5733568e77",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.707040+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.614425+00:00",
           "url": "https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/redpallas/redpallasMPCv2KeyGenSender.ts#L38"
         }
       ],
@@ -5630,8 +5854,8 @@
       ]
     },
     {
-      "id": "35c7f5ac-691f-49eb-8598-0cceca954c96",
-      "public_id": "QSI-2026-17889",
+      "id": "9f250181-7269-4b42-9937-6e0c6617cd78",
+      "public_id": "QSI-2026-41756",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, secp256k1, tweetnacl), но ни одной из списка поддерживающих PQC.",
@@ -5655,8 +5879,8 @@
       },
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-06T13:06:52.712516+00:00",
+      "analyzer": "dependencies 1.16.2",
+      "detected_at": "2026-11-23T12:14:51.627221+00:00",
       "risk_score": 15.0,
       "risk_breakdown": {
         "score": 15.0,
@@ -5718,8 +5942,8 @@
           "content": "Crypto libraries: @noble/curves, secp256k1, tweetnacl",
           "content_sha256": "5944c1b32f86f8360d871035e5113a02613db7978e2f95438e677253c5ee7085",
           "source_sha256": null,
-          "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-06T13:06:52.786843+00:00",
+          "collector": "dependencies 1.16.2",
+          "collected_at": "2026-11-23T12:14:51.680720+00:00",
           "url": null
         }
       ],
@@ -5747,15 +5971,16 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-17886",
-      "QSI-2026-17880",
-      "QSI-2026-17881",
-      "QSI-2026-17882",
-      "QSI-2026-17883",
-      "QSI-2026-17884",
-      "QSI-2026-17888",
-      "QSI-2026-17885",
-      "QSI-2026-17887"
+      "QSI-2026-41752",
+      "QSI-2026-41746",
+      "QSI-2026-41747",
+      "QSI-2026-41748",
+      "QSI-2026-41749",
+      "QSI-2026-41750",
+      "QSI-2026-41754",
+      "QSI-2026-41755",
+      "QSI-2026-41751",
+      "QSI-2026-41753"
     ],
     "roles": [
       {
@@ -5771,7 +5996,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-17886"
+          "QSI-2026-41752"
         ],
         "files": 1
       },
@@ -5795,6 +6020,10 @@
             "files": 10
           },
           {
+            "algorithm": "Ed25519",
+            "files": 3
+          },
+          {
             "algorithm": "RedDSA",
             "files": 2
           },
@@ -5804,13 +6033,14 @@
           }
         ],
         "findings": [
-          "QSI-2026-17882",
-          "QSI-2026-17883",
-          "QSI-2026-17884",
-          "QSI-2026-17887",
-          "QSI-2026-17888"
+          "QSI-2026-41748",
+          "QSI-2026-41749",
+          "QSI-2026-41750",
+          "QSI-2026-41753",
+          "QSI-2026-41754",
+          "QSI-2026-41755"
         ],
-        "files": 44
+        "files": 47
       },
       {
         "role": "transaction_signing",
@@ -5829,8 +6059,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-17880",
-          "QSI-2026-17881"
+          "QSI-2026-41746",
+          "QSI-2026-41747"
         ],
         "files": 12
       },
@@ -5847,7 +6077,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-17885"
+          "QSI-2026-41751"
         ],
         "files": 2
       }
@@ -5858,7 +6088,7 @@
       "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
       "facts": [
         "Только классика — обёртка ключей и шифрование хранимых данных: RSA (1 файл(ов))",
-        "Только классика — пороговая подпись и протоколы MPC: ECDSA, Paillier, RedDSA, Threshold ECDSA, X25519 (38 файл(ов))"
+        "Только классика — пороговая подпись и протоколы MPC: ECDSA, Ed25519, Paillier, RedDSA, Threshold ECDSA, X25519 (39 файл(ов))"
       ]
     },
     "quantum_algorithms": [
@@ -5906,7 +6136,7 @@
           },
           {
             "algorithm": "Ed25519",
-            "rows": 7
+            "rows": 10
           },
           {
             "algorithm": "RedDSA",
@@ -5947,6 +6177,10 @@
           {
             "algorithm": "HMAC",
             "rows": 4
+          },
+          {
+            "algorithm": "PBKDF2",
+            "rows": 1
           },
           {
             "algorithm": "SHA-2",
@@ -6058,7 +6292,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17886",
+        "finding": "QSI-2026-41752",
         "finding_title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
         "severity": "medium"
       },
@@ -6076,7 +6310,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17880",
+        "finding": "QSI-2026-41746",
         "finding_title": "Квантово-уязвимый Ed25519: подпись транзакций и сообщений (2 файл(ов))",
         "severity": "medium"
       },
@@ -6094,7 +6328,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17881",
+        "finding": "QSI-2026-41747",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))",
         "severity": "medium"
       },
@@ -6112,7 +6346,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17882",
+        "finding": "QSI-2026-41748",
         "finding_title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (10 файл(ов))",
         "severity": "medium"
       },
@@ -6130,7 +6364,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17883",
+        "finding": "QSI-2026-41749",
         "finding_title": "Квантово-уязвимый Paillier: пороговая подпись и протоколы MPC (14 файл(ов))",
         "severity": "medium"
       },
@@ -6148,8 +6382,26 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17884",
+        "finding": "QSI-2026-41750",
         "finding_title": "Квантово-уязвимый Threshold ECDSA: пороговая подпись и протоколы MPC (16 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-41754",
+        "finding_title": "Квантово-уязвимый Ed25519: пороговая подпись и протоколы MPC (3 файл(ов))",
         "severity": "medium"
       },
       {
@@ -6166,7 +6418,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17888",
+        "finding": "QSI-2026-41755",
         "finding_title": "Квантово-уязвимый X25519: пороговая подпись и протоколы MPC (2 файл(ов))",
         "severity": "medium"
       },
@@ -6184,7 +6436,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17885",
+        "finding": "QSI-2026-41751",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -6202,7 +6454,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17887",
+        "finding": "QSI-2026-41753",
         "finding_title": "Квантово-уязвимый RedDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
         "severity": "medium"
       },
@@ -6220,7 +6472,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17886",
+        "finding": "QSI-2026-41752",
         "finding_title": "Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
         "severity": "medium"
       },
@@ -6238,7 +6490,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17880",
+        "finding": "QSI-2026-41746",
         "finding_title": "Квантово-уязвимый Ed25519: подпись транзакций и сообщений (2 файл(ов))",
         "severity": "medium"
       },
@@ -6256,7 +6508,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17881",
+        "finding": "QSI-2026-41747",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))",
         "severity": "medium"
       },
@@ -6274,7 +6526,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17882",
+        "finding": "QSI-2026-41748",
         "finding_title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (10 файл(ов))",
         "severity": "medium"
       },
@@ -6292,7 +6544,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Стандартизованной постквантовой замены нет. Планируйте пороговые схемы над постквантовыми подписями по мере их зрелости (пороговый конкурс NIST, IR 8214C) или протоколы без Paillier (на основе забывчивой передачи) или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17883",
+        "finding": "QSI-2026-41749",
         "finding_title": "Квантово-уязвимый Paillier: пороговая подпись и протоколы MPC (14 файл(ов))",
         "severity": "medium"
       },
@@ -6310,8 +6562,26 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Схему подписи задаёт блокчейн или проверяющая сторона. Следите за постквантовыми предложениями на уровне сетей и пороговыми постквантовыми подписями (NIST IR 8214C); закладывайте обновление долей ключа и криптогибкость в архитектуру хранения или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17884",
+        "finding": "QSI-2026-41750",
         "finding_title": "Квантово-уязвимый Threshold ECDSA: пороговая подпись и протоколы MPC (16 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-41754",
+        "finding_title": "Квантово-уязвимый Ed25519: пороговая подпись и протоколы MPC (3 файл(ов))",
         "severity": "medium"
       },
       {
@@ -6328,7 +6598,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17888",
+        "finding": "QSI-2026-41755",
         "finding_title": "Квантово-уязвимый X25519: пороговая подпись и протоколы MPC (2 файл(ов))",
         "severity": "medium"
       },
@@ -6346,7 +6616,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17885",
+        "finding": "QSI-2026-41751",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -6364,7 +6634,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17887",
+        "finding": "QSI-2026-41753",
         "finding_title": "Квантово-уязвимый RedDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
         "severity": "medium"
       }
@@ -6388,20 +6658,32 @@
       "version": "1.1.0"
     },
     {
-      "name": "dependencies",
+      "name": "crediting",
       "version": "1.3.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.4"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -6412,8 +6694,20 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",
@@ -6681,6 +6975,19 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "PBKDF2",
+      "family": "kdf",
+      "parameter": "200000 iterations",
+      "usage": "key derivation",
+      "library": "",
+      "location": "modules/sdk-core/src/bitgo/trading/network/utils.ts:41",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "high",
       "occurrences": 1,
       "origin": "own"
     },
@@ -7325,12 +7632,51 @@
       "algorithm": "Ed25519",
       "family": "signature",
       "parameter": "Ed25519",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts:16",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
       "usage": "implemented in a file of this name",
       "library": "",
       "location": "modules/sdk-lib-mpc/src/curves/ed25519.ts",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts:3",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts:3",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
       "occurrences": 1,
       "origin": "own"
     },
@@ -7845,6 +8191,18 @@
       ]
     },
     {
+      "algorithm": "PBKDF2",
+      "parameter": "200000 iterations",
+      "library": "",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "modules/sdk-core/src/bitgo/trading/network/utils.ts:41"
+      ]
+    },
+    {
       "algorithm": "SHA-2",
       "parameter": "SHA-512",
       "library": "",
@@ -7969,8 +8327,8 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 4,
-      "rows": 4,
+      "count": 7,
+      "rows": 7,
       "examples": [
         "modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts:16",
         "modules/sdk-core/src/account-lib/baseCoin/index.ts:6",

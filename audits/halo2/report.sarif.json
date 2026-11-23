@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -34,6 +34,31 @@
                 "text": "41 упоминаний Halo 2 (IPA) в 34 файл(ах), например halo2_gadgets/src/ecc.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-ADVISORY-UNRATED",
+              "name": "DepAdvisoryUnrated",
+              "shortDescription": {
+                "text": "rustix 1.1.4 затронут RUSTSEC-2026-0486 (без оценки серьёзности)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает RUSTSEC-2026-0486 для пакета crates.io rustix версии 1.1.4: xattr functions mark unwritten bytes as initialized when given a zero-length buffer. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (rustix::fs::fgetxattr, rustix::fs::flistxattr, rustix::fs::getxattr, rustix::fs::lgetxattr, rustix::fs::listxattr, rustix::fs::llistxattr); rustix приходит через другие зависимости, которые могут их вызывать. Разберите бюллетень; если он применим, обновите до исправленной версии (1.1.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные в…"
+              },
+              "help": {
+                "text": "OSV.dev сообщает RUSTSEC-2026-0486 для пакета crates.io rustix версии 1.1.4: xattr functions mark unwritten bytes as initialized when given a zero-length buffer. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (rustix::fs::fgetxattr, rustix::fs::flistxattr, rustix::fs::getxattr, rustix::fs::lgetxattr, rustix::fs::listxattr, rustix::fs::llistxattr); rustix приходит через другие зависимости, которые могут их вызывать. Разберите бюллетень; если он применим, обновите до исправленной версии (1.1.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0486"
             },
             {
               "id": "DEP-ADVISORY-DEV",
@@ -125,7 +150,7 @@
             "qsiFindingKey/v1": "16060ad406fc8c2f23d4ba7828093154"
           },
           "properties": {
-            "qsiId": "QSI-2026-18047",
+            "qsiId": "QSI-2026-41961",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -143,7 +168,7 @@
             "qsiFindingKey/v1": "c1f1dad8ce42830902b853f9b1f9e5de"
           },
           "properties": {
-            "qsiId": "QSI-2026-18048",
+            "qsiId": "QSI-2026-41962",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -151,8 +176,35 @@
           }
         },
         {
-          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleId": "DEP-ADVISORY-UNRATED",
           "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "rustix 1.1.4 затронут RUSTSEC-2026-0486 (без оценки серьёзности) (dependency: crates.io/rustix@1.1.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a3bce719731ef49c5ca9f79fe8cada42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41964",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки (dependencies: crates.io:non-runtime)"
@@ -161,7 +213,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-18051",
+            "qsiId": "QSI-2026-41966",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -179,7 +231,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
@@ -188,7 +240,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-18049",
+            "qsiId": "QSI-2026-41963",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -197,7 +249,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained) (dependency: crates.io/ttf-parser@0.20.0)"
@@ -206,7 +258,7 @@
             "qsiFindingKey/v1": "6cf4e0de09edb42b6561b25cd12f51fa"
           },
           "properties": {
-            "qsiId": "QSI-2026-18050",
+            "qsiId": "QSI-2026-41965",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -224,13 +276,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/halo2 @ 3442dd33754a/75b7308e-5b3a-4b31-90c0-40aa21c3afae"
+        "id": "qsi/halo2 @ 3442dd33754a/d1c3b2e1-32e3-41d0-99fa-e0d65eade9b8"
       },
       "properties": {
-        "qsiContentSha256": "3bb0813c2cff59b3362fa0f06a433514f5a3ce8f6feecd0702956a5fd9800cb0",
+        "qsiContentSha256": "9847abcca4b4e39069ca8299a971e293608743107c5413b0861a784e44403927",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:17:13.365329+00:00",
+        "qsiGeneratedAt": "2026-11-23T12:27:21.315937+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

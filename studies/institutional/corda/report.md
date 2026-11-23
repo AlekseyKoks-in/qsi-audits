@@ -4,13 +4,13 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-06 15:38 UTC |
+| Report date | 2026-11-23 13:44 UTC |
 | Report version | 1 |
-| Audit run | ab2a7138-099f-4102-a6ca-533220ad3fb9 (Document audit) |
-| Analyzer engine | qsi-engine 1.3.0 |
+| Audit run | c1422785-a96a-487f-9bb0-ce0b2d4f0fa0 (Document audit) |
+| Analyzer engine | qsi-engine 1.16.2 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `09dd82bf776b5adb6af7367e5cccfe5b259eb10fde085b2eef6d9bb38f43d5c6` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| Content SHA-256 | `fd8dc48777a644a94728c1767e9ca2a0929e1aefdb2820ea6910253638bfa2ae` |
+| Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
@@ -45,7 +45,7 @@ Repository: <https://github.com/corda/corda> @ `80033580ecfd66a22ab5e9cf5a1319d1
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 1116 | build.gradle: 776 lines scanned with 16 rule patterns and 267 registry patterns; buildCacheSettings.gradle: 16 lines scanned with 16 rule patterns and 267 registry patterns; buildSrc/build.gradle: 56 lines scanned with 16 rule patterns and 267 registry patterns |
+| source_code | checked | 1116 | build.gradle: 776 lines scanned with 16 rule patterns and 340 registry patterns; buildCacheSettings.gradle: 16 lines scanned with 16 rule patterns and 340 registry patterns; buildSrc/build.gradle: 56 lines scanned with 16 rule patterns and 340 registry patterns |
 | certificates_and_keys | checked | 1 | config/dev/corda_dev_ca.cer: certificates/keys parsed |
 | tls_configuration | checked | 1 | node-api/src/main/kotlin/net/corda/nodeapi/internal/protonwrapper/netty/SSLHelper.kt: apache TLS directives parsed |
 | secrets | checked | 1 | node/src/main/kotlin/net/corda/node/utilities/registration/NetworkRegistrationHelper.kt: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
@@ -64,21 +64,21 @@ Static review of the source tree corda at 80033580ecfd66a22ab5e9cf5a1319d1111ade
 ## 6. Overall security posture
 
 - Indicative posture index: **74** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 68.0%
+- Quantum-vulnerable share of inventory: 66.7%
 
 ## 7. Detailed findings
 
-### QSI-2026-19547 — Certificate has expired (Corda Node Root CA)
+### QSI-2026-43972 — Certificate has expired (Corda Node Root CA)
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: High
 - Affected asset: `certificate:Corda Node Root CA`
 - Data source: config/dev/corda_dev_ca.cer
 - Detection method: X.509 parsing (pyca/cryptography), comparison of notAfter with the analysis time (UTC).
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 61.4 / 100
 - CVSS v3.1: not applicable
 
-The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (112 days ago).
+The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (129 days ago).
 
 **Potential impact.** Clients that validate certificates will refuse connections; users may be trained to ignore warnings.
 
@@ -112,13 +112,13 @@ SHA-256 fingerprint: 46266a82eebee45e1497a0a53ea80b4d6d382c505bd9ada0c134340f88e
 
 **Retest procedure.** Re-parse the deployed certificate and confirm notAfter is in the future.
 
-### QSI-2026-19549 — Possible hard-coded secret in core/src/main/kotlin/net/corda/core/CordaOID.kt
+### QSI-2026-43974 — Possible hard-coded secret in core/src/main/kotlin/net/corda/core/CordaOID.kt
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `file:core/src/main/kotlin/net/corda/core/CordaOID.kt`
 - Data source: core/src/main/kotlin/net/corda/core/CordaOID.kt
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 47.1 / 100
 - CVSS v3.1: not applicable
 
@@ -146,13 +146,13 @@ _file_excerpt · [core/src/main/kotlin/net/corda/core/CordaOID.kt](https://githu
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-19556 — Possible hard-coded secret in node/src/main/kotlin/net/corda/node/utilities/registration/HTTPNetworkRegistrationService.kt
+### QSI-2026-43981 — Possible hard-coded secret in node/src/main/kotlin/net/corda/node/utilities/registration/HTTPNetworkRegistrationService.kt
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `file:node/src/main/kotlin/net/corda/node/utilities/registration/HTTPNetworkRegistrationService.kt`
 - Data source: node/src/main/kotlin/net/corda/node/utilities/registration/HTTPNetworkRegistrationService.kt
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 47.1 / 100
 - CVSS v3.1: not applicable
 
@@ -180,13 +180,13 @@ _file_excerpt · [node/src/main/kotlin/net/corda/node/utilities/registration/HTT
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-19553 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+### QSI-2026-43978 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: core/src/main/kotlin/net/corda/core/crypto/internal/Secp256k1SupportProvider.kt
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -232,13 +232,13 @@ _file_excerpt · [core/src/main/kotlin/net/corda/core/crypto/internal/Secp256k1S
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19550 — Quantum-vulnerable RSA: role not determined (2 file(s))
+### QSI-2026-43975 — Quantum-vulnerable RSA: role not determined (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:general`
 - Data source: core/src/main/kotlin/net/corda/core/crypto/Crypto.kt
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -284,13 +284,13 @@ _file_excerpt · [node-api/src/main/kotlin/net/corda/nodeapi/internal/cryptoserv
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19551 — Quantum-vulnerable ECDSA: role not determined (4 file(s))
+### QSI-2026-43976 — Quantum-vulnerable ECDSA: role not determined (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: core/src/main/kotlin/net/corda/core/crypto/Crypto.kt
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -376,13 +376,13 @@ _file_excerpt · [node-api/src/main/kotlin/net/corda/nodeapi/internal/cryptoserv
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19552 — Quantum-vulnerable Ed25519: role not determined (1 file(s))
+### QSI-2026-43977 — Quantum-vulnerable Ed25519: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: core/src/main/kotlin/net/corda/core/crypto/Crypto.kt
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -428,13 +428,13 @@ _file_excerpt · [core/src/main/kotlin/net/corda/core/crypto/Crypto.kt](https://
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19554 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
+### QSI-2026-43979 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:authentication`
 - Data source: node-api/src/main/kotlin/net/corda/nodeapi/internal/crypto/X509Utilities.kt
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -464,13 +464,13 @@ _file_excerpt · [node-api/src/main/kotlin/net/corda/nodeapi/internal/crypto/X50
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19555 — Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))
+### QSI-2026-43980 — Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:authentication`
 - Data source: node-api/src/main/kotlin/net/corda/nodeapi/internal/crypto/X509Utilities.kt
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -500,13 +500,13 @@ _file_excerpt · [node-api/src/main/kotlin/net/corda/nodeapi/internal/crypto/X50
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19548 — Quantum-vulnerable ECDSA key in certificate (Corda Node Root CA)
+### QSI-2026-43973 — Quantum-vulnerable ECDSA key in certificate (Corda Node Root CA)
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `certificate:Corda Node Root CA`
 - Data source: config/dev/corda_dev_ca.cer
 - Detection method: X.509 public key algorithm identification.
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:38 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:44 UTC
 - Priority score: 36.5 / 100
 - CVSS v3.1: not applicable
 
@@ -577,9 +577,9 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (1) | QSI-2026-19553 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1), Ed25519 (1) | QSI-2026-19554, QSI-2026-19555 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | ECDSA (4), RSA (2), Ed25519 (1) | QSI-2026-19550, QSI-2026-19551, QSI-2026-19552 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **transaction and message signing** | ECDSA (1) | QSI-2026-43978 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1), Ed25519 (1) | QSI-2026-43979, QSI-2026-43980 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
+| **role not determined** | ECDSA (4), RSA (2), Ed25519 (1) | QSI-2026-43975, QSI-2026-43976, QSI-2026-43977 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -589,7 +589,7 @@ No readiness questionnaire was completed for this project.
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
 | Shor's algorithm — factoring | breaks | Q1 | RSA (2) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDSA (12), Ed25519 (2), X25519 (1) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDSA (11), Ed25519 (2), X25519 (1) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
 | Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-128 (2), HMAC (1), SHA-2 (4) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | SHA-2 (4) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 | Simon's algorithm — superposition attacks on symmetric constructions | only with superposition queries | Q2 | GCM mode (1) | No action for ordinary deployments of AES-GCM or CBC-MAC — the attack model does not apply. Record it as a model assumption; see the offline variant for Even–Mansour-type designs. |
@@ -608,9 +608,9 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-19547 | Renew the certificate for Corda Node Root CA and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
-| P1 | QSI-2026-19549 | Rotate and remove secrets found in core/src/main/kotlin/net/corda/core/CordaOID.kt. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-19556 | Rotate and remove secrets found in node/src/main/kotlin/net/corda/node/utilities/registration/HTTPNetworkRegistrationService.kt. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
+| P1 | QSI-2026-43972 | Renew the certificate for Corda Node Root CA and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
+| P1 | QSI-2026-43974 | Rotate and remove secrets found in core/src/main/kotlin/net/corda/core/CordaOID.kt. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
+| P1 | QSI-2026-43981 | Rotate and remove secrets found in node/src/main/kotlin/net/corda/node/utilities/registration/HTTPNetworkRegistrationService.kt. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
@@ -619,20 +619,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-19553 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19550 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19551 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19552 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19554 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19555 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19548 | Add ECDSA usages at certificate:Corda Node Root CA to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-19553 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19550 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19551 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19552 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19554 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19555 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19548 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P3 | QSI-2026-43978 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43975 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43976 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43977 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43979 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43980 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43973 | Add ECDSA usages at certificate:Corda Node Root CA to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-43978 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43975 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43976 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43977 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43979 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43980 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43973 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -640,13 +640,19 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -682,7 +688,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 ## Appendices: Cryptographic inventory
 
-By origin: keys and certificates 2 (1 Shor-breakable) · own code 23 (16 Shor-breakable).
+By origin: keys and certificates 2 (1 Shor-breakable) · own code 22 (15 Shor-breakable).
 
 | Algorithm | Parameter | Library | Location | Quantum status | Classical status |
 |---|---|---|---|---|---|
@@ -704,7 +710,6 @@ By origin: keys and certificates 2 (1 Shor-breakable) · own code 23 (16 Shor-br
 | ECDSA | P-256 |  | node-api/src/main/kotlin/net/corda/nodeapi/internal/crypto/X509Utilities.kt:75 | vulnerable (Shor) | acceptable |
 | ECDSA | P-256 |  | node-api/src/main/kotlin/net/corda/nodeapi/internal/cryptoservice/CryptoService.kt:127 | vulnerable (Shor) | acceptable |
 | ECDSA | P-256 |  | node-api/src/main/kotlin/net/corda/nodeapi/internal/cryptoservice/DefaultCryptoService.kt:222 | vulnerable (Shor) | acceptable |
-| ECDSA |  |  | node-api/src/main/kotlin/net/corda/nodeapi/internal/cryptoservice/DefaultCryptoService.kt:223 | vulnerable (Shor) | acceptable |
 | ECDSA | secp256k1 |  | node-api/src/main/kotlin/net/corda/nodeapi/internal/cryptoservice/DefaultCryptoService.kt:223 | vulnerable (Shor) | acceptable |
 | Ed25519 | Ed25519 |  | core/src/main/kotlin/net/corda/core/crypto/Crypto.kt:4 | vulnerable (Shor) | acceptable |
 | Ed25519 | Ed25519 |  | node-api/src/main/kotlin/net/corda/nodeapi/internal/crypto/X509Utilities.kt:74 | vulnerable (Shor) | acceptable |

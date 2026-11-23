@@ -4,29 +4,29 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 13:50 UTC |
+| Дата отчёта | 2026-11-23 13:05 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 5e6407f2-4f54-4e84-b4f7-dc8b548aeb62 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | 3880cf7e-40e3-4388-8098-bce263bb7e7c (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Разработчик ПО безопасности |
-| SHA-256 содержимого | `ac412823ecaa175f8be5a76d35eb3ccfb46ff2a08a22c9a4b48c91ad8b0f3e93` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `ba85c74a0601d5b799b0ba2db96298f994029858ba23e575944427ad9cba0a26` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **1**
+- Средняя: **2**
 - Низкая: **2**
-- Информационная: **1**
+- Информационная: **2**
 
 - Подтверждённая техническая уязвимость: 0
 - Известная уязвимая версия компонента: 2
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 1
-- Рекомендация по улучшению: 0
+- Долгосрочный постквантовый риск: 2
+- Рекомендация по улучшению: 1
 - Недостаточность данных: 1
 
 Неравенство Моски (x + y > z): x = 10, y = 3, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
@@ -46,12 +46,12 @@
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
 | dependencies | проверено | 3 | Cargo.lock: 120 dependencies parsed (120 pinned); Cargo.toml: 28 dependencies parsed (0 pinned); marvin-toolkit/Cargo.toml: 3 dependencies parsed (0 pinned) |
-| source_code | проверено | 32 | src/algorithms.rs: 22 lines scanned with 16 rule patterns and 266 registry patterns; src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 266 registry patterns; 50 lines in #[cfg(test)] modules ignored; src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 32 | src/algorithms.rs: 22 lines scanned with 16 rule patterns and 340 registry patterns; src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 340 registry patterns; 50 lines in #[cfg(test)] modules ignored; src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 340 registry patterns |
 | keys | ошибка (не проверено) | 3 | src/key.rs line 1134: public key could not be parsed (ValueError); src/lib.rs line 161: public key could not be parsed (ValueError); src/lib.rs line 205: public key could not be parsed (ValueError) |
 | certificates_and_keys | проверено | 5 | src/key.rs: certificates/keys parsed; src/lib.rs: certificates/keys parsed; src/oaep.rs: certificates/keys parsed |
 | keys | проверено | 4 | src/oaep.rs: private key block at line 339 is test data (test code); src/pkcs1v15.rs: private key block at line 304 is test data (test code); src/pss.rs: private key block at line 327 is test data (test code) |
 | entropy | проверено | 1 | random-number generation: 32 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| osv_advisories | проверено | 1 | 120 pinned packages queried at OSV.dev; 2 affected |
+| osv_advisories | проверено | 1 | 120 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -63,7 +63,7 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree rustcrypto-rsa at f96c4b5d629a0aeb6f680294debfd38ec8a81f68. 35 files analysed; of 75 files, 23 are test, fuzzing, benchmark or example code and were left out, 17 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 17 path(s) of the repository: .gitattributes, .github, .gitignore, .gitmodules, .typos.toml, CHANGELOG.md and 11 more; 751 files outside them were not read. Files no analyzer reads include: .gitattributes, .github/dependabot.yml, .github/workflows/ci.yml, .github/workflows/publish.yml, .github/workflows/workspace.yml. No requests were sent to the owner's systems.
+Static review of the source tree rustcrypto-rsa at f96c4b5d629a0aeb6f680294debfd38ec8a81f68. 35 files analysed; of 75 files, 23 are test, fuzzing, benchmark or example code and were left out, 17 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 17 path(s) of the repository: .gitattributes, .github, .gitignore, .gitmodules, .typos.toml, CHANGELOG.md and 11 more; 755 files outside them were not read. Files no analyzer reads include: .gitattributes, .github/dependabot.yml, .github/workflows/ci.yml, .github/workflows/publish.yml, .github/workflows/workspace.yml. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -72,17 +72,61 @@ Static review of the source tree rustcrypto-rsa at f96c4b5d629a0aeb6f680294debfd
 
 ## 7. Подробное описание находок
 
-### QSI-2026-18754 — Квантово-уязвимый RSA: роль не определена (5 файл(ов))
+### QSI-2026-43263 — Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (1 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:RSA:key_wrapping`
+- Источник данных: src/key.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:05 UTC
+- Балл приоритета: 38.0 / 100
+- CVSS v3.1: неприменимо
+
+2 упоминаний RSA в 1 файл(ах), например src/key.rs:338. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/key.rs:338 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/key.rs](https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L338) · line 338 · SHA-256 b400f8009b313e186171f142d7584b0f639b5a05524e78b44461a94f2104c7ca_
+
+```
+  337 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;
+  338 |         RsaPrivateKey::from_components(
+  339 |             components.n.get(),
+```
+
+_file_excerpt · [src/key.rs](https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L364) · line 364 · SHA-256 6202abba500461e188a8f64092e4524b2f6dfb3202a0694dc57bad41e0fe4ecc_
+
+```
+  363 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;
+  364 |         RsaPrivateKey::from_components(
+  365 |             components.n.get(),
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-43262 — Квантово-уязвимый RSA: роль не определена (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RSA:general`
 - Источник данных: src/encoding.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:50 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:05 UTC
 - Балл приоритета: 35.3 / 100
 - CVSS v3.1: неприменимо
 
-8 упоминаний RSA в 5 файл(ах), например src/encoding.rs:68. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+6 упоминаний RSA в 4 файл(ах), например src/encoding.rs:68. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -108,22 +152,6 @@ _file_excerpt · [src/encoding.rs](https://github.com/RustCrypto/RSA/blob/f96c4b
    87 | 
    88 |         RsaPublicKey::new(n, e).map_err(|_| KeyMalformed)
    89 |     }
-```
-
-_file_excerpt · [src/key.rs](https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L338) · line 338 · SHA-256 b400f8009b313e186171f142d7584b0f639b5a05524e78b44461a94f2104c7ca_
-
-```
-  337 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;
-  338 |         RsaPrivateKey::from_components(
-  339 |             components.n.get(),
-```
-
-_file_excerpt · [src/key.rs](https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L364) · line 364 · SHA-256 6202abba500461e188a8f64092e4524b2f6dfb3202a0694dc57bad41e0fe4ecc_
-
-```
-  363 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;
-  364 |         RsaPrivateKey::from_components(
-  365 |             components.n.get(),
 ```
 
 _file_excerpt · [src/pkcs1v15/signing_key.rs](https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pkcs1v15/signing_key.rs#L60) · line 60 · SHA-256 b0263c77cb240628bb2f31d489438c088a47a65609d04db1b81f99208ac3d2b4_
@@ -164,13 +192,13 @@ _file_excerpt · [src/pss/signing_key.rs](https://github.com/RustCrypto/RSA/blob
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-18756 — crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
+### QSI-2026-43265 — crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/crypto-bigint@0.7.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:50 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:05 UTC
 - Балл приоритета: 20.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -198,13 +226,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18757 — ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)
+### QSI-2026-43266 — ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/ctutils@0.4.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:50 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:05 UTC
 - Балл приоритета: 20.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -232,13 +260,47 @@ _tool_output · [OSV.dev RUSTSEC-2026-0385](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-18755 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-43267 — 1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies:crates.io:non-runtime`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:05 UTC
+- Балл приоритета: 15.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает 1 бюллетеней (0 с оценкой high или critical) для 1 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, rustix@1.1.4 [dev]: RUSTSEC-2026-0486. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+
+**Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
+
+**Шаги воспроизведения.**
+
+```
+Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в Cargo.lock.
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev (crates.io)](https://osv.dev/) · Cargo.lock · SHA-256 16786ffebb596deece7a51f1d09011b740e9f440a4f607293a83a05f3e57ced6_
+
+```
+rustix@1.1.4 [dev]: RUSTSEC-2026-0486
+```
+
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.
+
+**Рекомендация.** Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43264 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 13:50 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:05 UTC
 - Балл приоритета: 13.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -290,6 +352,7 @@ _Допущения планирования: x для обмена ключам
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
+- Только классика — обёртка ключей и шифрование хранимых данных: RSA (1 файл(ов))
 
 **Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -299,7 +362,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **роль не определена** | RSA (5) | QSI-2026-18754 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **обёртка ключей и шифрование хранимых данных** | RSA (1) | QSI-2026-43263 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
+| **роль не определена** | RSA (4) | QSI-2026-43262 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -333,14 +397,17 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-18756 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
-| P3 | QSI-2026-18757 | Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан. |
+| P3 | QSI-2026-43265 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-43266 | Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-18754 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-18754 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P3 | QSI-2026-43263 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43262 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-43263 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43262 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43267 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -348,13 +415,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -377,8 +450,9 @@ _Действие: взламывает — алгоритм нужно заме
 16. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 17. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
 18. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-19. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-20. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+19. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+20. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+21. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 

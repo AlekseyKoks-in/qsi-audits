@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -39,7 +39,7 @@
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
-                "text": "1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки"
+                "text": "2 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -53,10 +53,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает 1 бюллетеней (0 с оценкой high или critical) для 1 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, bincode@1.3.3 [dev]: RUSTSEC-2025-0141. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+                "text": "OSV.dev сообщает 2 бюллетеней (0 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, bincode@1.3.3 [dev]: RUSTSEC-2025-0141; rustix@1.1.5 [dev]: RUSTSEC-2026-0486. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "help": {
-                "text": "OSV.dev сообщает 1 бюллетеней (0 с оценкой high или critical) для 1 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, bincode@1.3.3 [dev]: RUSTSEC-2025-0141. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+                "text": "OSV.dev сообщает 2 бюллетеней (0 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, bincode@1.3.3 [dev]: RUSTSEC-2025-0141; rustix@1.1.5 [dev]: RUSTSEC-2026-0486. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
             },
@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "dddc06ae3551b9ff5cf5afa8bf517a7f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18640",
+            "qsiId": "QSI-2026-42850",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "8523edb9ce7f414dc285e274554d2cfa"
           },
           "properties": {
-            "qsiId": "QSI-2026-18639",
+            "qsiId": "QSI-2026-42849",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -130,13 +130,13 @@
           "ruleIndex": 1,
           "level": "note",
           "message": {
-            "text": "1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки (dependencies: crates.io:non-runtime)"
+            "text": "2 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки (dependencies: crates.io:non-runtime)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-18642",
+            "qsiId": "QSI-2026-42852",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -163,7 +163,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-18641",
+            "qsiId": "QSI-2026-42851",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -172,13 +172,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/reddsa @ 04e973bcf8d4/c4c9d7c5-09f9-4c2c-b579-6fb622de2731"
+        "id": "qsi/reddsa @ 04e973bcf8d4/d3c90eb6-b8d7-4c49-87ec-8f42c5ec8acb"
       },
       "properties": {
-        "qsiContentSha256": "08fe88f232c6ada4a674ff9f066eba67672d9342e3074b8ca4f1ff1deafda8f1",
+        "qsiContentSha256": "98c8fb8277adcc8a448cfbd7bf75a901e619d7d894a9a2a3ef60354e926e2928",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:47:37.417324+00:00",
+        "qsiGeneratedAt": "2026-11-23T12:58:46.963478+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

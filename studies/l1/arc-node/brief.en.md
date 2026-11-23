@@ -1,27 +1,27 @@
 # Post-quantum cryptography review: arc-node @ 6e764023ee65
 
-*One-page brief* · Reviewed: 2026-11-19 17:43 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Circle (Arc) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 13:53 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Circle (Arc) — public repository (passive review)
 
 Source: https://github.com/circlefin/arc-node/tree/6e764023ee6515fe70573e123ed2db912a7207b4
 
 **Post-quantum maturity:** Level 2 of 4 — post-quantum in use outside the critical paths. **Next step:** Extend post-quantum protection to the critical roles that stay classical, starting with what can be recorded today (wrapped keys, channel key exchange).
 
-**Findings:** Critical 0 · High 21 · Medium 23 · Low 63 · Info 58
+**Findings:** Critical 0 · High 16 · Medium 21 · Low 53 · Info 73
 
 **Quantum timeline (Mosca: x + y − z):** Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **High** · rmcp 1.4.0 is affected by GHSA-33f5-2c5q-wgwj (CVE-2026-63127) (QSI-2026-32671)\
+1. **High** · rmcp 1.4.0 is affected by GHSA-33f5-2c5q-wgwj (CVE-2026-63127) (QSI-2026-44198)\
    What to do: Upgrade to a fixed version (2.0.0).
-2. **High** · rmcp 1.4.0 is affected by GHSA-9pj6-vhgr-3mwh (CVE-2026-63128) (QSI-2026-32673)\
+2. **High** · rmcp 1.4.0 is affected by GHSA-9pj6-vhgr-3mwh (CVE-2026-63128) (QSI-2026-44200)\
    What to do: Upgrade to a fixed version (2.0.0).
-3. **High** · Possible hard-coded secret in… (QSI-2026-32570) · *preliminary*\
-   What to do: Move secrets to a secrets manager/environment; rotate the exposed values.
-4. **High** · hickory-proto 0.25.2 is affected by GHSA-3v94-mw7p-v465 (CVE-2026-123607, RUSTSEC-2026-0118) (QSI-2026-32624)\
+3. **High** · hickory-proto 0.25.2 is affected by GHSA-3v94-mw7p-v465 (CVE-2026-123607, RUSTSEC-2026-0118) (QSI-2026-44151)\
+   What to do: Upgrade to a fixed version (0.26.0-beta.1).
+4. **High** · hickory-proto 0.25.2 is affected by RUSTSEC-2026-0505 (CVE-2026-123580) (QSI-2026-44158)\
    What to do: Upgrade to a fixed version (0.26.0-beta.1).
 
-103 more in the full report.
+86 more in the full report.
 
 ## What the quantum-vulnerable cryptography protects
 
@@ -32,13 +32,13 @@ Source: https://github.com/circlefin/arc-node/tree/6e764023ee6515fe70573e123ed2d
 
 ## Known vulnerable components
 
-Advisories for the versions in use: 85; unlikely to apply to this build: 24 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 61.
+Advisories for the versions in use: 86; unlikely to apply to this build: 24 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 62.
 
 ---
 
 Static review of source code and manifests; files analysed: 1067. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `735a5c6cb5a010be77fc92cae73fd53f8416351d80a4eb79d88b74997805df81`
+Full report, content SHA-256: `55c5d2c629ebd812b42edaeb9c5dc94ab02eb3c9a5a0140280c6199e200058fd`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

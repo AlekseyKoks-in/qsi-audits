@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
           },
           "properties": {
-            "qsiId": "QSI-2026-17972",
+            "qsiId": "QSI-2026-41838",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,7 +68,7 @@
             "qsiFindingKey/v1": "caadb0817a8af347815ab91cd52576b5"
           },
           "properties": {
-            "qsiId": "QSI-2026-17967",
+            "qsiId": "QSI-2026-41832",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -86,7 +86,7 @@
             "qsiFindingKey/v1": "56ce4b42a955143d4d6555212784bad6"
           },
           "properties": {
-            "qsiId": "QSI-2026-17970",
+            "qsiId": "QSI-2026-41836",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,7 +104,7 @@
             "qsiFindingKey/v1": "bec890f753512e16cda5732a4d1d9cd0"
           },
           "properties": {
-            "qsiId": "QSI-2026-17971",
+            "qsiId": "QSI-2026-41837",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -122,7 +122,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-17973",
+            "qsiId": "QSI-2026-41839",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -140,7 +140,7 @@
             "qsiFindingKey/v1": "5cbcb5815d8848ab9b8496655468e460"
           },
           "properties": {
-            "qsiId": "QSI-2026-17974",
+            "qsiId": "QSI-2026-41840",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -158,7 +158,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-17976",
+            "qsiId": "QSI-2026-41842",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -176,7 +176,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-17968",
+            "qsiId": "QSI-2026-41833",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -194,7 +194,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-17975",
+            "qsiId": "QSI-2026-41841",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -212,7 +212,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-17977",
+            "qsiId": "QSI-2026-41843",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -230,7 +230,25 @@
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-17969",
+            "qsiId": "QSI-2026-41834",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable EC-ElGamal: role not determined (3 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fa34198662ed4654d505a0eac8a789b5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-41835",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -239,13 +257,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/coinbase-cb-mpc-en @ 0b716706f998/02ce0659-1889-4ed5-a086-f177ea4dd951"
+        "id": "qsi/coinbase-cb-mpc-en @ 0b716706f998/7d802763-cb56-41a1-b032-b4bb87a3ae9d"
       },
       "properties": {
-        "qsiContentSha256": "2a966078eafc0c75aa33ede65be2e88b49931bcd3069f62145418b9799d8281d",
+        "qsiContentSha256": "636fc1c46fb41ccbdfc3ba1a4c04ff2cb347e75fdeb02ff0aa5c652efd318970",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:12:01.889394+00:00",
+        "qsiGeneratedAt": "2026-11-23T12:19:31.834734+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

@@ -4,27 +4,27 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 14:00 UTC |
+| Дата отчёта | 2026-11-23 13:17 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | b0c5455f-2072-4ebe-88f1-bb11f4452926 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | 4c3fcb47-4df1-4716-99ab-55bcd7b84973 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `d681784f06f14b7231318a924675b797801738447d263befd10cff8bc9d32105` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `614a055aae95b5b38a161527c826b5ea15aae26880b8a2535505eed2186338ed` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **4**
-- Низкая: **1**
+- Средняя: **3**
+- Низкая: **10**
 - Информационная: **1**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 1
+- Известная уязвимая версия компонента: 10
 - Подтверждённая ошибка конфигурации: 0
-- Потенциальный криптографический риск: 1
+- Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 3
 - Рекомендация по улучшению: 1
 - Недостаточность данных: 0
@@ -39,17 +39,17 @@
 
 Репозиторий: <https://github.com/tachyon-zcash/tachyon> @ `6cdaebccf147c5a013d212f9d7302924a9570626` — ссылки в доказательствах открывают строки на этом коммите.
 
-58 файлов, всего 3130856 байт, редактирований: 0; список SHA-256 по файлам — в приложении C.
+57 файлов, всего 463845 байт, редактирований: 0; список SHA-256 по файлам — в приложении C.
 
 ## 3. Методология
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
 | dependencies | проверено | 3 | Cargo.lock: 98 dependencies parsed (98 pinned); Cargo.toml: 0 dependencies parsed (0 pinned); crates/tachyon/Cargo.toml: 16 dependencies parsed (0 pinned) |
-| source_code | проверено | 53 | book/mermaid-init.js: 39 lines scanned with 16 rule patterns and 266 registry patterns; book/mermaid.min.js: 2609 lines scanned with 16 rule patterns and 266 registry patterns; crates/tachyon/src/action.rs: 324 lines scanned with 16 rule patterns and 266 registry patterns |
-| entropy | проверено | 1 | random-number generation: 53 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| source_code | проверено | 52 | book/mermaid-init.js: 39 lines scanned with 16 rule patterns and 340 registry patterns; crates/tachyon/src/action.rs: 324 lines scanned with 16 rule patterns and 340 registry patterns; crates/tachyon/src/bundle/mod.rs: 1237 lines scanned with 16 rule patterns and 340 registry patterns |
+| entropy | проверено | 1 | random-number generation: 52 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | не проверено | 1 | 7 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: ragu, ragu_arithmetic, ragu_circuits, ragu_core, ragu_macros, ragu_pasta, ragu_primitives |
-| osv_advisories | проверено | 1 | 91 pinned packages queried at OSV.dev; 2 affected |
+| osv_advisories | проверено | 1 | 91 pinned packages queried at OSV.dev; 3 affected |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -59,22 +59,22 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree tachyon at 6cdaebccf147c5a013d212f9d7302924a9570626. 58 files analysed; of 138 files, 9 are test, fuzzing, benchmark or example code and were left out, 71 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/actions/rust-nightly-setup/action.yml, .github/actions/rust-setup/action.yml, .github/workflows/book.yml, .github/workflows/rust.yml, .github/workflows/zizmor.yml. 115 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree tachyon at 6cdaebccf147c5a013d212f9d7302924a9570626. 57 files analysed; of 138 files, 9 are test, fuzzing, benchmark or example code and were left out, 71 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/actions/rust-nightly-setup/action.yml, .github/actions/rust-setup/action.yml, .github/workflows/book.yml, .github/workflows/rust.yml, .github/workflows/zizmor.yml. 33 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **96** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Ориентировочный индекс состояния: **91** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
 - Доля квантово-уязвимых элементов инвентаризации: 40.0%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-19034 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (1 файл(ов))
+### QSI-2026-43677 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Pedersen commitment:threshold_mpc`
 - Источник данных: crates/tachyon/src/value.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:00 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:17 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -120,13 +120,13 @@ _file_excerpt · [crates/tachyon/src/value.rs](https://github.com/tachyon-zcash/
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19032 — Квантово-уязвимый RedDSA: роль не определена (6 файл(ов))
+### QSI-2026-43675 — Квантово-уязвимый RedDSA: роль не определена (6 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RedDSA:general`
 - Источник данных: crates/tachyon/src/action.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:00 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:17 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -228,13 +228,13 @@ _file_excerpt · [crates/tachyon/src/serialization/mod.rs](https://github.com/ta
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19033 — Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
+### QSI-2026-43676 — Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RedDSA:authentication`
 - Источник данных: crates/tachyon/src/keys/private.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:00 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:17 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -280,81 +280,13 @@ _file_excerpt · [crates/tachyon/src/keys/private.rs](https://github.com/tachyon
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19031 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в book/mermaid.min.js
-
-- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `file:book/mermaid.min.js`
-- Источник данных: book/mermaid.min.js
-- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:00 UTC
-- Балл приоритета: 25.2 / 100
-- CVSS v3.1: неприменимо
-
-«Math.random()» в строка 352 в строке, упоминающей key/token/secret/password/nonce.
-
-**Возможные последствия.** Предсказуемые значения могут позволить угадать токен или ключ.
-
-**Шаги воспроизведения.**
-
-```
-Откройте строка 352 в предоставленном файле book/mermaid.min.js и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [book/mermaid.min.js](https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L352) · line 352 · SHA-256 0a166ec7b7340affea55f1d46f9a6b8a35148aa284cf5021408ce34377c27062_
-
-```
-  350 |   ${e}
-  351 | `},"getStyles"),$G=o((t,e)=>{e!==void 0&&(S3[t]=e)},"addStylesForDiagram"),zG=o3e});var qy={};hr(qy,{clear:()=>Ar,getAccDescription:()=>Mr,getAccTitle:()=>Rr,getDiagramTitle:()=>Ir,setAccDescription:()=>Nr,setAccTitle:()=>Lr,setDiagramTitle:()=>$r});var rA,nA,iA,aA,Ar,Lr,Rr,Nr,Mr,$r,Ir,mi=N(()=>{"us
-  352 | `)},"setAccDescription"),Mr=o(()=>iA,"getAccDescription"),$r=o(t=>{nA=aA(t)},"setDiagramTitle"),Ir=o(()=>nA,"getDiagramTitle")});var GG,l3e,me,Yy,A3,Xy,oA,c3e,C3,ad,jy,sA,zt=N(()=>{"use strict";Xf();vt();ji();gr();Ei();tA();mi();GG=Y,l3e=wy,me=cr,Yy=X4,A3=lh,Xy=o(t=>Tr(t,me()),"sanitizeText"),oA=Ao,
-  353 | `,"ig");t=t.trim().replace(r,"").replace(/'/gm,'"'),Y.debug(`Detecting diagram directive${e!==null?" type:"+e:""} based on the text:${t}`);let n,i=[];for(;(n=qf.exec(t))!==null;)if(n.index===qf.lastIndex&&qf.lastIndex++,n&&!e||e&&n[1]?.match(e)||e&&n[2]?.match(e)){let a=n[1]?n[1]:n[2],s=n[3]?n[3].tr
-  354 |     stroke: ${t.personBorder};
-```
-
-_file_excerpt · [book/mermaid.min.js](https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L1951) · line 1951 · SHA-256 2f2f528b3a65b223875635a470b7c0eb9fa999193c3dbf26c34952a3b8de34db_
-
-```
- 1949 | In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`)}function XHe(){throw new TypeError(`Invalid attempt to destructure non-iterable instance.
- 1950 | In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`)}function mo(t,e){var r=typeof Symbol<"u"&&t[Symbol.iterator]||t["@@iterator"];if(!r){if(Array.isArray(t)||(r=ZP(t))||e&&t&&typeof t.length=="number"){r&&(t=r);var n=0,i=o(function(){},"F");return{s:i,n:o(function(){
- 1951 | In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`)}var a=!0,s=!1,l;return{s:o(function(){r=r.call(t)},"s"),n:o(function(){var u=r.next();return a=u.done,u},"n"),e:o(function(u){s=!0,l=u},"e"),f:o(function(){try{!a&&r.return!=null&&r.return()}finally{if(s)throw l}},"
- 1952 | `),d=t.pstyle("text-max-width").pfValue,p=t.pstyle("text-overflow-wrap").value,m=p==="anywhere",g=[],y=/[\s\u200b]+|$/g,v=0;v<f.length;v++){var x=f[v],b=this.calculateLabelDimensions(t,x),w=b.width;if(m){var C=x.split("").join(h);x=C}if(w>d){var T=x.matchAll(y),E="",A=0,S=mo(T),_;try{for(S.s();!(_=S
- 1953 | `)),s("labelWrapKey",u)}else if(l==="ellipsis"){var M=t.pstyle("text-max-width").p
-```
-
-_file_excerpt · [book/mermaid.min.js](https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L2410) · line 2410 · SHA-256 bacb8676b0f1607b62d68cfc323bf7e32a125394031d8e722e91c305ef2186fa_
-
-```
- 2408 | `+this.showPosition(),{text:"",token:[REDACTED] this},"reject"),less:o(function(C){this.unput(this.match.slice(C))},"less"),pastInput:o(function(){var C=this.matched.substr(0,this.matched.length-this.match.length);return(C.length>20?"...":"")+C.substr(-20).replace(/\n/g,"")},"p
- 2409 | `+T+"^"},"showPosition"),test_match:o(function(C,T){var E,A,S;if(this.options.backtrack_lexer&&(S={yylineno:this.yylineno,yylloc:{first_line:this.yylloc.first_line,last_line:this.last_line,first_column:this.yylloc.first_column,last_column:this.yylloc.last_column},yytext:this.yytext,match:this.match,
- 2410 | `+this.showPosition(),{text:"",token:[REDACTED]"next"),lex:o(function(){var T=this.next();return T||this.lex()},"lex"),begin:o(function(T){this.conditionStack.push(T)},"begin"),popState:o(function(){var T=this.conditionStack.length-1;return T>0?this.conditionStack.pop():this.conditi
- 2411 |     font-family: ${t.fontFamily};
- 2412 |     color: ${t.nodeTextColor||t.textColor};
-```
-
-_file_excerpt · [book/mermaid.min.js](https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L2556) · line 2556 · SHA-256 0c31f030fdf110d12ba6b7477c3d005215bae838a804f575e97593ccb10bfa8d_
-
-```
- 2554 |     -webkit-box-orient: vertical;
- 2555 |   }
- 2556 | `,"getStyles"),Ive=Ert});var dF=Mi((T4,fF)=>{"use strict";o(function(e,r){typeof T4=="object"&&typeof fF=="object"?fF.exports=r():typeof define=="function"&&define.amd?define([],r):typeof T4=="object"?T4.layoutBase=r():e.layoutBase=r()},"webpackUniversalModuleDefinition")(T4,function(){return functi
- 2557 |                 translate(${w}, ${C-L.height/2})
- 2558 |                 translate(${R*M.width/2}, ${O*M.height/2})
-```
-
-**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
-
-**Рекомендация.** Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand).
-
-**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
-
-### QSI-2026-19036 — crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)
+### QSI-2026-43679 — crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/crossbeam-epoch@0.9.18`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:00 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -382,13 +314,319 @@ _tool_output · [OSV.dev RUSTSEC-2026-0204](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-19035 — atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)
+### QSI-2026-43680 — heapless 0.7.17 затронут RUSTSEC-2026-0574 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0574 для пакета crates.io heapless версии 0.7.17: `FindMutView::pop` after mutating the value would lead to a use after free. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (heapless::sorted_linked_list::FindMutView::pop); heapless приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0574
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0574](https://osv.dev/vulnerability/RUSTSEC-2026-0574) · manifest · SHA-256 8036d7decb205a3a78a01ce5b0c508dd8b0522d0e0ac6e4be98d7cc2a3a88814_
+
+```
+{"id": "RUSTSEC-2026-0574", "aliases": [], "modified": "2026-11-19T09:00:03.915405109Z", "summary": "`FindMutView::pop` after mutating the value would lead to a use after free", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43681 — heapless 0.7.17 затронут RUSTSEC-2026-0575 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0575 для пакета crates.io heapless версии 0.7.17: `Spsc::peek` used `Relaxed` ordering where it should have use `Acquire`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (heapless::spsc::Spsc::peek); heapless приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0575
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0575](https://osv.dev/vulnerability/RUSTSEC-2026-0575) · manifest · SHA-256 9f03365d2d31b79a56c6ea51189c7bce15fb54454c2d6742f955918015ec6112_
+
+```
+{"id": "RUSTSEC-2026-0575", "aliases": [], "modified": "2026-11-19T09:00:04.331392862Z", "summary": "`Spsc::peek` used `Relaxed` ordering where it should have use `Acquire`", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43682 — heapless 0.7.17 затронут RUSTSEC-2026-0576 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0576 для пакета crates.io heapless версии 0.7.17: `IndexMap::truncate` could lead to an inconsistent state. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (heapless::index_map::IndexMap::truncate); heapless приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0576
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0576](https://osv.dev/vulnerability/RUSTSEC-2026-0576) · manifest · SHA-256 cac89759a1ba626d6fdebb9eb010c068a97a8d8680f22993b22c42ee2997fa94_
+
+```
+{"id": "RUSTSEC-2026-0576", "aliases": [], "modified": "2026-11-19T09:00:03.918246184Z", "summary": "`IndexMap::truncate` could lead to an inconsistent state", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43683 — heapless 0.7.17 затронут RUSTSEC-2026-0577 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0577 для пакета crates.io heapless версии 0.7.17: Panicking `Drop` implementation could lead to UB. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (heapless::deque::Deque::clear, heapless::history_buf::HistoryBuf::clear, heapless::history_buf::HistoryBuf::write, heapless::index_map::IndexMap::clear, heapless::index_map::IndexMap::retain, heapless::index_map::IndexMap::truncate …); heapless приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0577
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0577](https://osv.dev/vulnerability/RUSTSEC-2026-0577) · manifest · SHA-256 5b57e830ce2d429efd9cb1e499aa9b3c6aaf89deaa7402e9c7e0faac2758e903_
+
+```
+{"id": "RUSTSEC-2026-0577", "aliases": [], "modified": "2026-11-19T09:00:04.328496490Z", "summary": "Panicking `Drop` implementation could lead to UB", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43684 — heapless 0.7.17 затронут RUSTSEC-2026-0578 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0578 для пакета crates.io heapless версии 0.7.17: `SortedLinkedList::zeroize` lead to an inconsistent state. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (heapless::sorted_linked_list::SortedLinkedList::zeroize); heapless приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0578
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0578](https://osv.dev/vulnerability/RUSTSEC-2026-0578) · manifest · SHA-256 e8d0c30a9cc7cab83146a688628a34d55adcbfab254506dc2b0192d326846460_
+
+```
+{"id": "RUSTSEC-2026-0578", "aliases": [], "modified": "2026-11-19T09:00:04.321872625Z", "summary": "`SortedLinkedList::zeroize` lead to an inconsistent state", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43685 — heapless 0.7.17 затронут RUSTSEC-2026-0579 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0579 для пакета crates.io heapless версии 0.7.17: The `Deque` implementation from `TryFrom` was wrong when the `Deque` ended up full. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (heapless::Deque::try_from); heapless приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0579
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0579](https://osv.dev/vulnerability/RUSTSEC-2026-0579) · manifest · SHA-256 bea200d5cec036d98e0f13e7fc6b2e9ce592314cb1918a6a21d2d1c2eea51dd8_
+
+```
+{"id": "RUSTSEC-2026-0579", "aliases": [], "modified": "2026-11-19T09:00:03.915731439Z", "summary": "The `Deque` implementation from `TryFrom` was wrong when the `Deque` ended up full", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43686 — heapless 0.7.17 затронут RUSTSEC-2026-0580 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0580 для пакета crates.io heapless версии 0.7.17: The treiber stack implementation in heapless had a race condition. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код называет heapless::pool: затронутый код может быть достижим.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0580
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0580](https://osv.dev/vulnerability/RUSTSEC-2026-0580) · manifest · SHA-256 d7fc272ae71e632e608f39a00a878d7c148b3534146d7d3f3c1ab40d7a839470_
+
+```
+{"id": "RUSTSEC-2026-0580", "aliases": [], "modified": "2026-11-19T09:00:04.526645559Z", "summary": "The treiber stack implementation in heapless had a race condition", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43687 — heapless 0.7.17 затронут RUSTSEC-2026-0581 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0581 для пакета crates.io heapless версии 0.7.17: `Deque::make_contiguous` could lead to broken invariants. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (heapless::deque::Deque::make_contiguous); heapless приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0581
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0581](https://osv.dev/vulnerability/RUSTSEC-2026-0581) · manifest · SHA-256 e134d1cf51573225805d3457b5cc7efecd5c9cb917a4b4da1ece41317c0894f4_
+
+```
+{"id": "RUSTSEC-2026-0581", "aliases": [], "modified": "2026-11-19T09:00:03.911566789Z", "summary": "`Deque::make_contiguous` could lead to broken invariants", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43688 — heapless 0.7.17 затронут RUSTSEC-2026-0582 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/heapless@0.7.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0582 для пакета crates.io heapless версии 0.7.17: On maps of `u16::MAX` elements, `IndexMap::insert` could lead to a broken invariant. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (heapless::index_map::IndexMap::insert); heapless приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0582
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0582](https://osv.dev/vulnerability/RUSTSEC-2026-0582) · manifest · SHA-256 a4a714de3b1b4b8b4b7f6f8c97a3c93cae061db7faeca3ee0605e5a9c03d4830_
+
+```
+{"id": "RUSTSEC-2026-0582", "aliases": [], "modified": "2026-11-19T09:00:04.317864790Z", "summary": "On maps of `u16::MAX` elements, `IndexMap::insert` could lead to a broken invariant", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.4).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43678 — atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/atomic-polyfill@1.0.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:00 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:17 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -450,9 +688,9 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **пороговая подпись и протоколы MPC** | Pedersen commitment (1) | QSI-2026-19034 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
-| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | RedDSA (1) | QSI-2026-19033 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
-| **роль не определена** | RedDSA (6) | QSI-2026-19032 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
+| **пороговая подпись и протоколы MPC** | Pedersen commitment (1) | QSI-2026-43677 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
+| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | RedDSA (1) | QSI-2026-43676 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
+| **роль не определена** | RedDSA (6) | QSI-2026-43675 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -484,19 +722,27 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-19031 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
-| P3 | QSI-2026-19036 | Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан. |
+| P3 | QSI-2026-43679 | Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан. |
+| P3 | QSI-2026-43680 | Разберите RUSTSEC-2026-0574; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0574 или результат разбора записан. |
+| P3 | QSI-2026-43681 | Разберите RUSTSEC-2026-0575; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0575 или результат разбора записан. |
+| P3 | QSI-2026-43682 | Разберите RUSTSEC-2026-0576; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0576 или результат разбора записан. |
+| P3 | QSI-2026-43683 | Разберите RUSTSEC-2026-0577; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0577 или результат разбора записан. |
+| P3 | QSI-2026-43684 | Разберите RUSTSEC-2026-0578; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0578 или результат разбора записан. |
+| P3 | QSI-2026-43685 | Разберите RUSTSEC-2026-0579; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0579 или результат разбора записан. |
+| P3 | QSI-2026-43686 | Разберите RUSTSEC-2026-0580; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0580 или результат разбора записан. |
+| P3 | QSI-2026-43687 | Разберите RUSTSEC-2026-0581; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0581 или результат разбора записан. |
+| P3 | QSI-2026-43688 | Разберите RUSTSEC-2026-0582; при необходимости обновите heapless до исправленной версии (0.9.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0582 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-19034 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19032 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19033 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-19034 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-19032 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-19033 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-19035 | Замените atomic-polyfill поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atomic-polyfill заменён или решение зафиксировано. |
+| P3 | QSI-2026-43677 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43675 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43676 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-43677 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-43675 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-43676 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-43678 | Замените atomic-polyfill поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atomic-polyfill заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
@@ -504,13 +750,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -518,28 +770,35 @@ _Действие: взламывает — алгоритм нужно заме
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
 3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-4. CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) — MITRE. <https://cwe.mitre.org/data/definitions/338.html> (weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable)
-5. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-6. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-7. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-8. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-9. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-10. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-11. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-12. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-13. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-14. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-15. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-16. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-17. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-18. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
-19. NIST SP 800-90A Rev. 1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators — NIST. <https://csrc.nist.gov/pubs/sp/800/90/a/r1/final> (final (June 2015; supersedes SP 800-90A of 2012): which constructions count as a cryptographically secure generator, and why a general-purpose PRNG does not)
-20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-21. OSV advisory RUSTSEC-2023-0089 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0089> (modified 2025-04-29T08:31:10Z)
-22. OSV advisory RUSTSEC-2026-0204 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0204> (modified 2026-07-06T22:30:04.159269138Z)
-23. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-24. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-25. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+4. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+5. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+6. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+7. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+8. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+9. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+10. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+11. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+12. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+13. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+19. OSV advisory RUSTSEC-2023-0089 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0089> (modified 2025-04-29T08:31:10Z)
+20. OSV advisory RUSTSEC-2026-0204 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0204> (modified 2026-07-06T22:30:04.159269138Z)
+21. OSV advisory RUSTSEC-2026-0574 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0574> (modified 2026-11-19T09:00:03.915405109Z)
+22. OSV advisory RUSTSEC-2026-0575 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0575> (modified 2026-11-19T09:00:04.331392862Z)
+23. OSV advisory RUSTSEC-2026-0576 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0576> (modified 2026-11-19T09:00:03.918246184Z)
+24. OSV advisory RUSTSEC-2026-0577 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0577> (modified 2026-11-19T09:00:04.328496490Z)
+25. OSV advisory RUSTSEC-2026-0578 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0578> (modified 2026-11-19T09:00:04.321872625Z)
+26. OSV advisory RUSTSEC-2026-0579 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0579> (modified 2026-11-19T09:00:03.915731439Z)
+27. OSV advisory RUSTSEC-2026-0580 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0580> (modified 2026-11-19T09:00:04.526645559Z)
+28. OSV advisory RUSTSEC-2026-0581 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0581> (modified 2026-11-19T09:00:03.911566789Z)
+29. OSV advisory RUSTSEC-2026-0582 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0582> (modified 2026-11-19T09:00:04.317864790Z)
+30. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+31. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+32. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -581,7 +840,6 @@ _Действие: взламывает — алгоритм нужно заме
 | Cargo.lock | 23377 | `b67aefb4e4da4534279c4f4936d58a13893ac693574966a10722db4b85e1b291` | 0 |
 | Cargo.toml | 7786 | `1fca0bda74e9127531bbe858d3e3fa24659c430054f5269c093a1c9f3ae48bcf` | 0 |
 | book/mermaid-init.js | 1262 | `ccf746f10c0a71bd34799867d2f9860dddb5fc6efc6c50d1ea55a1eb1a7bd406` | 0 |
-| book/mermaid.min.js | 2667011 | `eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703` | 0 |
 | crates/tachyon/Cargo.toml | 3113 | `bf28d8b3bd41d2d14e91d7321cb30a44b0a74357233aae213d89b0d565c941e1` | 0 |
 | crates/tachyon/src/action.rs | 9008 | `e44def1c1daed39201890625a754c686e2787b110cdf178f912efc6ca31b54c9` | 0 |
 | crates/tachyon/src/bundle/mod.rs | 45384 | `89739155e7e88dfdb57d2c662377599e2bd86e302c44614e3e9d6ecf3a429f82` | 0 |

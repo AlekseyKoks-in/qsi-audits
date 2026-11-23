@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: xrpl-ledger-app-xrp @ 7b5185ff09b4
 
-*One-page brief* · Reviewed: 2026-11-21 10:24 UTC · Risk profile: Web3 project · Client: Ledger — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 14:07 UTC · Risk profile: Web3 project · Client: Ledger — public repository (passive review)
 
 Source: https://github.com/LedgerHQ/app-xrp/tree/7b5185ff09b4b3d15df242b156a6aaadfc99f555
 
@@ -12,13 +12,13 @@ Source: https://github.com/LedgerHQ/app-xrp/tree/7b5185ff09b4b3d15df242b156a6aaa
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (3 file(s)) (QSI-2026-34938) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (3 file(s)) (QSI-2026-44387) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (2 file(s)) (QSI-2026-34939) · *preliminary*\
+2. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (2 file(s)) (QSI-2026-44388) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable ECDSA: role not determined (1 file(s)) (QSI-2026-34936) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDSA: role not determined (1 file(s)) (QSI-2026-44385) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
-4. **Medium** · Quantum-vulnerable Ed25519: role not determined (1 file(s)) (QSI-2026-34937) · *preliminary*\
+4. **Medium** · Quantum-vulnerable Ed25519: role not determined (1 file(s)) (QSI-2026-44386) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
 
 ## What the quantum-vulnerable cryptography protects
@@ -32,7 +32,7 @@ Source: https://github.com/LedgerHQ/app-xrp/tree/7b5185ff09b4b3d15df242b156a6aaa
 
 Static review of source code and manifests; files analysed: 61. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `c4b300b70b7772ddbbdb5d52c84cbf755be18fa733c273cc754905516b5c049a`
+Full report, content SHA-256: `843693c20a4f9b66db57ed2fbc6508f90a090691c0d380702bc579fd99852f8f`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

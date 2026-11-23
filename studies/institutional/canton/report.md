@@ -4,13 +4,13 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-06 15:24 UTC |
+| Report date | 2026-11-23 13:42 UTC |
 | Report version | 1 |
-| Audit run | 72442494-7235-47fa-a4c5-315573a7a4ac (Document audit) |
-| Analyzer engine | qsi-engine 1.3.0 |
+| Audit run | e49e1aa7-e9b8-4f60-954d-4a831684b8c6 (Document audit) |
+| Analyzer engine | qsi-engine 1.16.2 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `efbd8a018afeed64113c4427d45e8d0033b998dc55ff0d735a440be80e9c9cb1` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| Content SHA-256 | `8aeca169ea3f993d780daa97f55cb234220cd42a6aebae9d6929605879f666e3` |
+| Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
@@ -45,7 +45,7 @@ Repository: <https://github.com/digital-asset/canton> @ `4eab7a047040bb61798b66a
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 3154 | base/adjustable-clock/src/main/scala/com/daml/clock/AdjustableClock.scala: 37 lines scanned with 16 rule patterns and 267 registry patterns; base/contextualized-logging/src/main/scala/com/daml/logging/ContextualizedLogger.scala: 50 lines scanned with 16 rule patterns and 267 registry patterns; base/contextualized-logging/src/main/scala/com/daml/logging/JsonStringSerializer.scala: 42 lines scanned with 16 rule patterns and 267 registry patterns |
+| source_code | checked | 3154 | base/adjustable-clock/src/main/scala/com/daml/clock/AdjustableClock.scala: 37 lines scanned with 16 rule patterns and 340 registry patterns; base/contextualized-logging/src/main/scala/com/daml/logging/ContextualizedLogger.scala: 50 lines scanned with 16 rule patterns and 340 registry patterns; base/contextualized-logging/src/main/scala/com/daml/logging/JsonStringSerializer.scala: 42 lines scanned with 16 rule patterns and 340 registry patterns |
 | tls_code | checked | 1 | base/daml-tls/src/main/scala/com/daml/tls/TlsConfig.scala: TLS key-exchange settings read |
 | certificates_and_keys | checked | 4 | performance/src/main/console/tls/participant.crt: certificates/keys parsed; performance/src/main/console/tls/participant.pem: certificates/keys parsed; performance/src/main/console/tls/synchronizer.crt: certificates/keys parsed |
 | dependencies | checked | 1 | scripts/pyproject.toml: 0 dependencies parsed (0 pinned) |
@@ -60,22 +60,22 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree canton at 4eab7a047040bb61798b66abde794c8cb27f7746. 3314 files analysed; of 8786 files, 4254 are test, fuzzing, benchmark or example code and were left out, 1218 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .ci/Dockerfile.canton-build, .ci/Dockerfile.query-stats-postgres, .ci/README.md, .ci/nix-exec, .ci/setup-docker-build-container.sh. 36 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree canton at 4eab7a047040bb61798b66abde794c8cb27f7746. 3314 files analysed; of 8786 files, 4254 are test, fuzzing, benchmark or example code and were left out, 1218 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .ci/Dockerfile.canton-build, .ci/Dockerfile.query-stats-postgres, .ci/README.md, .ci/nix-exec, .ci/setup-docker-build-container.sh. 39 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
 - Indicative posture index: **52** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 47.4%
+- Quantum-vulnerable share of inventory: 48.1%
 
 ## 7. Detailed findings
 
-### QSI-2026-19406 — Private key material present in performance/src/main/console/tls/participant.pem
+### QSI-2026-43967 — Private key material present in performance/src/main/console/tls/participant.pem
 
 - Severity: **High** · Classification: Confirmed technical vulnerability · Confidence: High
 - Affected asset: `file:performance/src/main/console/tls/participant.pem`
 - Data source: performance/src/main/console/tls/participant.pem
 - Detection method: PEM header detection.
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 76.8 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -103,13 +103,13 @@ Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …
 
 **Retest procedure.** Search the repository and its history for private key headers; confirm the old key is revoked.
 
-### QSI-2026-19410 — Private key material present in performance/src/main/console/tls/synchronizer.pem
+### QSI-2026-43971 — Private key material present in performance/src/main/console/tls/synchronizer.pem
 
 - Severity: **High** · Classification: Confirmed technical vulnerability · Confidence: High
 - Affected asset: `file:performance/src/main/console/tls/synchronizer.pem`
 - Data source: performance/src/main/console/tls/synchronizer.pem
 - Detection method: PEM header detection.
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 76.8 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -137,17 +137,17 @@ Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …
 
 **Retest procedure.** Search the repository and its history for private key headers; confirm the old key is revoked.
 
-### QSI-2026-19403 — Certificate has expired (localhost)
+### QSI-2026-43964 — Certificate has expired (localhost)
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: High
 - Affected asset: `certificate:localhost`
 - Data source: performance/src/main/console/tls/participant.crt
 - Detection method: X.509 parsing (pyca/cryptography), comparison of notAfter with the analysis time (UTC).
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 61.4 / 100
 - CVSS v3.1: not applicable
 
-The X.509 certificate with subject localhost expired on 2024-01-11 (1029 days ago).
+The X.509 certificate with subject localhost expired on 2024-01-11 (1046 days ago).
 
 **Potential impact.** Clients that validate certificates will refuse connections; users may be trained to ignore warnings.
 
@@ -181,17 +181,17 @@ SHA-256 fingerprint: 6abfe817bea30b9d9e5f597b52a12bdebe56d3ec526cad6b1bbec06ef34
 
 **Retest procedure.** Re-parse the deployed certificate and confirm notAfter is in the future.
 
-### QSI-2026-19407 — Certificate has expired (localhost)
+### QSI-2026-43968 — Certificate has expired (localhost)
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: High
 - Affected asset: `certificate:localhost`
 - Data source: performance/src/main/console/tls/synchronizer.crt
 - Detection method: X.509 parsing (pyca/cryptography), comparison of notAfter with the analysis time (UTC).
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 61.4 / 100
 - CVSS v3.1: not applicable
 
-The X.509 certificate with subject localhost expired on 2024-01-11 (1029 days ago).
+The X.509 certificate with subject localhost expired on 2024-01-11 (1046 days ago).
 
 **Potential impact.** Clients that validate certificates will refuse connections; users may be trained to ignore warnings.
 
@@ -225,13 +225,13 @@ SHA-256 fingerprint: 3716da8a4d6794d5ddd37f9aad323658208ea4bea95ec7733f829a29532
 
 **Retest procedure.** Re-parse the deployed certificate and confirm notAfter is in the future.
 
-### QSI-2026-19399 — Quantum-vulnerable ECDH: key wrapping and data encryption at rest (10 file(s))
+### QSI-2026-43960 — Quantum-vulnerable ECDH: key wrapping and data encryption at rest (10 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDH:key_wrapping`
 - Data source: community/app-base/src/main/scala/com/digitalasset/canton/admin/api/client/data/crypto/Encryption.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 36.9 / 100
 - CVSS v3.1: not applicable
 
@@ -333,13 +333,13 @@ _file_excerpt · [community/base/src/main/scala/com/digitalasset/canton/crypto/k
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19395 — Quantum-vulnerable RSA: transaction and message signing (1 file(s))
+### QSI-2026-43956 — Quantum-vulnerable RSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:transaction_signing`
 - Data source: base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -355,10 +355,10 @@ Open base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:59 and inspect th
 
 **Evidence.**
 
-_file_excerpt · [base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L59) · line 59 · SHA-256 a95c4fd7b998e483779385cbbc71ee996979b1d67545d67527d1136397e03ab6_
+_file_excerpt · [base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L59) · line 59 · SHA-256 67b7b7bcc699126fd440175965de5fb4f05dec79fe3d6fd494d3d9f5f29ad483_
 
 ```
-   58 |   final case class RSA256(privateKey: [REDACTED] kid: Option[String] = None) extends JwtSigner {
+   58 |   final case class RSA256(privateKey: RSAPrivateKey, kid: Option[String] = None) extends JwtSigner {
    59 |     def alg = "RS256"
    60 |     def sign(jwt: DecodedJwt[String]): Either[Error, Jwt] =
 ```
@@ -369,13 +369,13 @@ _file_excerpt · [base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala](htt
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19396 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+### QSI-2026-43957 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -421,13 +421,13 @@ _file_excerpt · [base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala](htt
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19397 — Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))
+### QSI-2026-43958 — Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -443,10 +443,10 @@ Open base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:116 and inspect t
 
 **Evidence.**
 
-_file_excerpt · [base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L116) · line 116 · SHA-256 f95da987ae9d0149593b12737718c6248ba139bcbf47c16b7d0a9b4e2d66a4fa_
+_file_excerpt · [base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala#L116) · line 116 · SHA-256 f00cda6154e016e1078669ef90545392d400b4b87689db74e21c6c2220e36a85_
 
 ```
-  115 |   final case class EdDSA(privateKey: [REDACTED] kid: Option[String] = None) extends JwtSigner {
+  115 |   final case class EdDSA(privateKey: EdECPrivateKey, kid: Option[String] = None) extends JwtSigner {
   116 |     def alg = "EdDSA"
   117 |     def sign(jwt: DecodedJwt[String]): Either[Error, Jwt] =
 ```
@@ -457,17 +457,17 @@ _file_excerpt · [base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala](htt
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19394 — Quantum-vulnerable ECDSA: role not determined (9 file(s))
+### QSI-2026-43955 — Quantum-vulnerable ECDSA: role not determined (8 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: base/crypto/src/main/scala/com/daml/crypto/MessageSignaturePrototype.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
-14 reference(s) to ECDSA across 9 file(s), e.g. base/crypto/src/main/scala/com/daml/crypto/MessageSignaturePrototype.scala:54. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+13 reference(s) to ECDSA across 8 file(s), e.g. base/crypto/src/main/scala/com/daml/crypto/MessageSignaturePrototype.scala:54. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -565,13 +565,13 @@ _file_excerpt · [community/base/src/main/scala/com/digitalasset/canton/crypto/p
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19398 — Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))
+### QSI-2026-43959 — Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:authentication`
 - Data source: base/daml-jwt/src/main/scala/com/daml/jwt/KeyUtils.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -625,13 +625,13 @@ _file_excerpt · [community/ledger/ledger-api-tools/src/main/scala/com/digitalas
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19400 — Quantum-vulnerable RSA: role not determined (2 file(s))
+### QSI-2026-43961 — Quantum-vulnerable RSA: role not determined (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:general`
 - Data source: community/base/src/main/scala/com/digitalasset/canton/crypto/provider/jce/JcePrivateCrypto.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -677,13 +677,65 @@ _file_excerpt · [scripts/ci/select_rota.py](https://github.com/digital-asset/ca
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19401 — Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))
+### QSI-2026-43962 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))
+
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:ECDSA:authentication`
+- Data source: community/daml-lf/interpreter/src/main/scala/com/digitalasset/daml/lf/speedy/SBuiltinFun.scala
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
+- Priority score: 34.2 / 100
+- CVSS v3.1: not applicable
+
+3 reference(s) to ECDSA across 2 file(s), e.g. community/daml-lf/interpreter/src/main/scala/com/digitalasset/daml/lf/speedy/SBuiltinFun.scala:820. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open community/daml-lf/interpreter/src/main/scala/com/digitalasset/daml/lf/speedy/SBuiltinFun.scala:820 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [community/daml-lf/interpreter/src/main/scala/com/digitalasset/daml/lf/speedy/SBuiltinFun.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/daml-lf/interpreter/src/main/scala/com/digitalasset/daml/lf/speedy/SBuiltinFun.scala#L820) · line 820 · SHA-256 964a4cd560bcac200b48f91d4d65b819553e02d9e31bdd068bb9f225758d5f6a_
+
+```
+  819 |       checkDerHeader(bytes)
+  820 |       KeyFactory.getInstance("EC").generatePublic(new X509EncodedKeySpec(bytes))
+  821 |     }
+```
+
+_file_excerpt · [community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala#L228) · line 228 · SHA-256 b387db4013948b4bb78c6b29d21f09a5b16f6c9796d24fa9dbc9d44503314b28_
+
+```
+  227 |     private object ES256 extends Verifier {
+  228 |       def alg = "ES256"
+  229 | 
+```
+
+_file_excerpt · [community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala#L241) · line 241 · SHA-256 d700bd4aad607c06c10c3df752dbfcc1cdb06061a658580de6343b4a364919e3_
+
+```
+  240 |     private object ES384 extends Verifier {
+  241 |       def alg = "ES384"
+  242 | 
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-43963 — Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:authentication`
 - Data source: community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -713,57 +765,13 @@ _file_excerpt · [community/ledger/ledger-api-core/src/main/scala/com/digitalass
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19402 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:authentication`
-- Data source: community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 15:24 UTC
-- Priority score: 34.2 / 100
-- CVSS v3.1: not applicable
-
-2 reference(s) to ECDSA across 1 file(s), e.g. community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala:228. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala:228 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala#L228) · line 228 · SHA-256 b387db4013948b4bb78c6b29d21f09a5b16f6c9796d24fa9dbc9d44503314b28_
-
-```
-  227 |     private object ES256 extends Verifier {
-  228 |       def alg = "ES256"
-  229 | 
-```
-
-_file_excerpt · [community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala](https://github.com/digital-asset/canton/blob/4eab7a047040bb61798b66abde794c8cb27f7746/community/ledger/ledger-api-core/src/main/scala/com/digitalasset/canton/ledger/api/auth/PartyJWTAuthService.scala#L241) · line 241 · SHA-256 d700bd4aad607c06c10c3df752dbfcc1cdb06061a658580de6343b4a364919e3_
-
-```
-  240 |     private object ES384 extends Verifier {
-  241 |       def alg = "ES384"
-  242 | 
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-19404 — Quantum-vulnerable RSA key in certificate (localhost)
+### QSI-2026-43965 — Quantum-vulnerable RSA key in certificate (localhost)
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `certificate:localhost`
 - Data source: performance/src/main/console/tls/participant.crt
 - Detection method: X.509 public key algorithm identification.
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 36.5 / 100
 - CVSS v3.1: not applicable
 
@@ -801,13 +809,13 @@ SHA-256 fingerprint: 6abfe817bea30b9d9e5f597b52a12bdebe56d3ec526cad6b1bbec06ef34
 
 **Retest procedure.** Re-audit once PQC or hybrid certificates are deployed.
 
-### QSI-2026-19408 — Quantum-vulnerable RSA key in certificate (localhost)
+### QSI-2026-43969 — Quantum-vulnerable RSA key in certificate (localhost)
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `certificate:localhost`
 - Data source: performance/src/main/console/tls/synchronizer.crt
 - Detection method: X.509 public key algorithm identification.
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 36.5 / 100
 - CVSS v3.1: not applicable
 
@@ -845,13 +853,13 @@ SHA-256 fingerprint: 3716da8a4d6794d5ddd37f9aad323658208ea4bea95ec7733f829a29532
 
 **Retest procedure.** Re-audit once PQC or hybrid certificates are deployed.
 
-### QSI-2026-19405 — Leaf certificate validity of 730 days (localhost)
+### QSI-2026-43966 — Leaf certificate validity of 730 days (localhost)
 
 - Severity: **Low** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `certificate:localhost`
 - Data source: performance/src/main/console/tls/participant.crt
 - Detection method: X.509 validity period computation.
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 30.9 / 100
 - CVSS v3.1: not applicable
 
@@ -889,13 +897,13 @@ SHA-256 fingerprint: 6abfe817bea30b9d9e5f597b52a12bdebe56d3ec526cad6b1bbec06ef34
 
 **Retest procedure.** Check notBefore/notAfter of the next issuance.
 
-### QSI-2026-19409 — Leaf certificate validity of 730 days (localhost)
+### QSI-2026-43970 — Leaf certificate validity of 730 days (localhost)
 
 - Severity: **Low** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `certificate:localhost`
 - Data source: performance/src/main/console/tls/synchronizer.crt
 - Detection method: X.509 validity period computation.
-- Analyzer: certificates 1.3.0 · 2026-11-06 15:24 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 13:42 UTC
 - Priority score: 30.9 / 100
 - CVSS v3.1: not applicable
 
@@ -969,10 +977,10 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **key wrapping and data encryption at rest** | ECDH (10) | QSI-2026-19399 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **transaction and message signing** | ECDSA (1), Ed25519 (1), RSA (1) | QSI-2026-19395, QSI-2026-19396, QSI-2026-19397 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | RSA (2), ECDSA (1), Ed25519 (1) | QSI-2026-19398, QSI-2026-19401, QSI-2026-19402 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | ECDSA (9), RSA (2) | QSI-2026-19394, QSI-2026-19400 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | ECDH (10) | QSI-2026-43960 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **transaction and message signing** | ECDSA (1), Ed25519 (1), RSA (1) | QSI-2026-43956, QSI-2026-43957, QSI-2026-43958 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (2), RSA (2), Ed25519 (1) | QSI-2026-43959, QSI-2026-43962, QSI-2026-43963 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
+| **role not determined** | ECDSA (8), RSA (2) | QSI-2026-43955, QSI-2026-43961 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -983,7 +991,7 @@ No readiness questionnaire was completed for this project.
 |---|---|---|---|---|
 | Shor's algorithm — factoring | breaks | Q1 | RSA (8) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
 | Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (10), ECDSA (17), Ed25519 (2) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-128 (8), BLAKE2 (1), BLAKE3 (1), HMAC (20), IDEA (1), Keccak-256 (1), SHA-2 (7) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
+| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-128 (8), BLAKE2 (1), BLAKE3 (1), HMAC (20), Keccak-256 (1), SHA-2 (7) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | BLAKE2 (1), BLAKE3 (1), Keccak-256 (1), SHA-2 (7) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 | Quantum lattice sieving | included in standard parameters | Q1 | ML-DSA (2) | No change for ML-KEM or ML-DSA at the standard parameter sets. A 2024 claim of a polynomial-time quantum LWE algorithm was withdrawn after a bug was found (see claims). |
 
@@ -1002,44 +1010,44 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-19406 | Revoke/rotate the key found in performance/src/main/console/tls/participant.pem immediately and restrict access to the file. | short-term risk reduction | Old key revoked, new key deployed. |
-| P1 | QSI-2026-19410 | Revoke/rotate the key found in performance/src/main/console/tls/synchronizer.pem immediately and restrict access to the file. | short-term risk reduction | Old key revoked, new key deployed. |
-| P1 | QSI-2026-19403 | Renew the certificate for localhost and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
-| P1 | QSI-2026-19407 | Renew the certificate for localhost and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
+| P1 | QSI-2026-43967 | Revoke/rotate the key found in performance/src/main/console/tls/participant.pem immediately and restrict access to the file. | short-term risk reduction | Old key revoked, new key deployed. |
+| P1 | QSI-2026-43971 | Revoke/rotate the key found in performance/src/main/console/tls/synchronizer.pem immediately and restrict access to the file. | short-term risk reduction | Old key revoked, new key deployed. |
+| P1 | QSI-2026-43964 | Renew the certificate for localhost and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
+| P1 | QSI-2026-43968 | Renew the certificate for localhost and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-19406 | Move key storage to a secrets manager or HSM; add secret scanning to CI and pre-commit; purge history. | root-cause fix | Secret scanning enforced in CI; no keys in history. |
-| P1 | QSI-2026-19410 | Move key storage to a secrets manager or HSM; add secret scanning to CI and pre-commit; purge history. | root-cause fix | Secret scanning enforced in CI; no keys in history. |
+| P1 | QSI-2026-43967 | Move key storage to a secrets manager or HSM; add secret scanning to CI and pre-commit; purge history. | root-cause fix | Secret scanning enforced in CI; no keys in history. |
+| P1 | QSI-2026-43971 | Move key storage to a secrets manager or HSM; add secret scanning to CI and pre-commit; purge history. | root-cause fix | Secret scanning enforced in CI; no keys in history. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-19399 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19395 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19396 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19397 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19394 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19398 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19400 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19401 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19402 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19404 | Add RSA usages at certificate:localhost to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19408 | Add RSA usages at certificate:localhost to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19405 | Use shorter validity with automated renewal. | root-cause fix | Check notBefore/notAfter of the next issuance. |
-| P3 | QSI-2026-19409 | Use shorter validity with automated renewal. | root-cause fix | Check notBefore/notAfter of the next issuance. |
-| P4 | QSI-2026-19399 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-19395 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19396 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19397 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19394 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19398 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19400 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19401 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19402 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19404 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-19408 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P3 | QSI-2026-43960 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43956 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43957 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43958 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43955 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43959 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43961 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43962 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43963 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43965 | Add RSA usages at certificate:localhost to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43969 | Add RSA usages at certificate:localhost to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-43966 | Use shorter validity with automated renewal. | root-cause fix | Check notBefore/notAfter of the next issuance. |
+| P3 | QSI-2026-43970 | Use shorter validity with automated renewal. | root-cause fix | Check notBefore/notAfter of the next issuance. |
+| P4 | QSI-2026-43960 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-43956 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43957 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43958 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43955 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43959 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43961 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43962 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43963 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-43965 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-43969 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -1047,13 +1055,19 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -1089,11 +1103,10 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 ## Appendices: Cryptographic inventory
 
-By origin: keys and certificates 4 (2 Shor-breakable) · own code 74 (35 Shor-breakable).
+By origin: keys and certificates 4 (2 Shor-breakable) · own code 73 (35 Shor-breakable).
 
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
-| IDEA |  |  | weak classically | legacy | 1 | 1 | scripts/ci/todo_refs.py:55 |
 | HMAC | HMAC-SHA-256 |  | reduced margin (Grover), approved | acceptable | 4 | 4 | base/crypto/src/jmh/scala/com/daml/crypto/MacPrototypeBenchmark.scala:28; base/crypto/src/main/scala/com/daml/crypto/MacPrototype.scala:44; community/base/src/main/scala/com/digitalasset/canton/crypto/Hmac.scala:29 |
 | HMAC | HS256 |  | reduced margin (Grover), approved | acceptable | 2 | 2 | base/daml-jwt/src/main/scala/com/daml/jwt/JwtSigner.scala:38; community/ledger-api-bench-tool/src/main/scala/com/digitalasset/canton/ledger/api/benchtool/AuthorizationHelper.scala:40 |
 | HMAC |  |  | reduced margin (Grover), approved | acceptable | 14 | 14 | community/base/src/main/scala/com/digitalasset/canton/crypto/CryptoApi.scala:175; community/base/src/main/scala/com/digitalasset/canton/crypto/Hmac.scala:18; community/base/src/main/scala/com/digitalasset/canton/crypto/Salt.scala:45 |

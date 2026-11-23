@@ -1,8 +1,8 @@
 {
-  "content_sha256": "3264ceace7408f585995c63f76424727be6b2beabd09b3d6d7250a61d7c60b39",
+  "content_sha256": "6bd6e8eafe68d867d344cdc3c3716c90701ef332b61341a70ba037b027c32a61",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-06T12:54:51.701659+00:00",
+  "generated_at": "2026-11-23T12:00:33.294670+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "c13cfba6-61e2-4cf1-980c-863d541ae182",
     "name": "bdk-wallet @ 09c677305139",
     "client_name": "Bitcoin Dev Kit (bdk_wallet)",
-    "description": "Static review of the source tree bdk-wallet at 09c677305139e5478d57115a65e626320e809b0d. 27 files analysed; of 84 files, 22 are test, fuzzing, benchmark or example code and were left out, 35 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/enhancement_request.md, .github/ISSUE_TEMPLATE/minor_release.md, .github/ISSUE_TEMPLATE/patch_release.md. 44 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree bdk-wallet at 09c677305139e5478d57115a65e626320e809b0d. 27 files analysed; of 84 files, 22 are test, fuzzing, benchmark or example code and were left out, 35 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/enhancement_request.md, .github/ISSUE_TEMPLATE/minor_release.md, .github/ISSUE_TEMPLATE/patch_release.md. 67 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "abbbcbf6-c36c-4857-bacd-150b96c80177",
+    "id": "9517b8bf-09dc-46de-ada8-03335380c6ce",
     "mode": "document",
     "title": "Document audit: bdk-wallet",
     "status": "completed",
-    "engine_version": "1.3.0",
-    "started_at": "2026-11-06T12:54:48.017190+00:00",
-    "finished_at": "2026-11-06T12:54:51.517500+00:00",
+    "engine_version": "1.16.2",
+    "started_at": "2026-11-23T12:00:29.023744+00:00",
+    "finished_at": "2026-11-23T12:00:33.212383+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -214,122 +214,122 @@
     },
     {
       "area": "source_code",
-      "detail": "src/descriptor/checksum.rs: 89 lines scanned with 16 rule patterns and 266 registry patterns; 52 lines in #[cfg(test)] modules ignored",
+      "detail": "src/descriptor/checksum.rs: 89 lines scanned with 16 rule patterns and 340 registry patterns; 52 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/descriptor/dsl.rs: 1276 lines scanned with 16 rule patterns and 266 registry patterns; 460 lines in #[cfg(test)] modules ignored",
+      "detail": "src/descriptor/dsl.rs: 1276 lines scanned with 16 rule patterns and 340 registry patterns; 460 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/descriptor/error.rs: 139 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/descriptor/error.rs: 139 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/descriptor/mod.rs: 1049 lines scanned with 16 rule patterns and 266 registry patterns; 424 lines in #[cfg(test)] modules ignored",
+      "detail": "src/descriptor/mod.rs: 1049 lines scanned with 16 rule patterns and 340 registry patterns; 424 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/descriptor/policy.rs: 1956 lines scanned with 16 rule patterns and 266 registry patterns; 779 lines in #[cfg(test)] modules ignored",
+      "detail": "src/descriptor/policy.rs: 1956 lines scanned with 16 rule patterns and 340 registry patterns; 779 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/descriptor/template.rs: 1080 lines scanned with 16 rule patterns and 266 registry patterns; 445 lines in #[cfg(test)] modules ignored",
+      "detail": "src/descriptor/template.rs: 1080 lines scanned with 16 rule patterns and 340 registry patterns; 445 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/keys/bip39.rs: 236 lines scanned with 16 rule patterns and 266 registry patterns; 84 lines in #[cfg(test)] modules ignored",
+      "detail": "src/keys/bip39.rs: 236 lines scanned with 16 rule patterns and 340 registry patterns; 84 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/keys/mod.rs: 1159 lines scanned with 16 rule patterns and 266 registry patterns; 112 lines in #[cfg(test)] modules ignored",
+      "detail": "src/keys/mod.rs: 1159 lines scanned with 16 rule patterns and 340 registry patterns; 112 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/lib.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/lib.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/psbt/mod.rs: 170 lines scanned with 16 rule patterns and 266 registry patterns; 81 lines in #[cfg(test)] modules ignored",
+      "detail": "src/psbt/mod.rs: 170 lines scanned with 16 rule patterns and 340 registry patterns; 81 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/psbt/params.rs: 902 lines scanned with 16 rule patterns and 266 registry patterns; 231 lines in #[cfg(test)] modules ignored",
+      "detail": "src/psbt/params.rs: 902 lines scanned with 16 rule patterns and 340 registry patterns; 231 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/types.rs: 295 lines scanned with 16 rule patterns and 266 registry patterns; 73 lines in #[cfg(test)] modules ignored",
+      "detail": "src/types.rs: 295 lines scanned with 16 rule patterns and 340 registry patterns; 73 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/changeset.rs: 528 lines scanned with 16 rule patterns and 266 registry patterns; 101 lines in #[cfg(test)] modules ignored",
+      "detail": "src/wallet/changeset.rs: 528 lines scanned with 16 rule patterns and 340 registry patterns; 101 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/coin_selection.rs: 1833 lines scanned with 16 rule patterns and 266 registry patterns; 1107 lines in #[cfg(test)] modules ignored",
+      "detail": "src/wallet/coin_selection.rs: 1833 lines scanned with 16 rule patterns and 340 registry patterns; 1107 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/error.rs: 488 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/wallet/error.rs: 488 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/event.rs: 186 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/wallet/event.rs: 186 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/export.rs: 1122 lines scanned with 16 rule patterns and 266 registry patterns; 424 lines in #[cfg(test)] modules ignored",
+      "detail": "src/wallet/export.rs: 1122 lines scanned with 16 rule patterns and 340 registry patterns; 424 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/locked_outpoints.rs: 26 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/wallet/locked_outpoints.rs: 26 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/migration.rs: 227 lines scanned with 16 rule patterns and 266 registry patterns; 123 lines in #[cfg(test)] modules ignored",
+      "detail": "src/wallet/migration.rs: 227 lines scanned with 16 rule patterns and 340 registry patterns; 123 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/mod.rs: 4207 lines scanned with 16 rule patterns and 266 registry patterns; 247 lines in #[cfg(test)] modules ignored",
+      "detail": "src/wallet/mod.rs: 4207 lines scanned with 16 rule patterns and 340 registry patterns; 247 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/params.rs: 373 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/wallet/params.rs: 373 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/persisted.rs: 432 lines scanned with 16 rule patterns and 266 registry patterns",
+      "detail": "src/wallet/persisted.rs: 432 lines scanned with 16 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/signer.rs: 1208 lines scanned with 16 rule patterns and 266 registry patterns; 228 lines in #[cfg(test)] modules ignored",
+      "detail": "src/wallet/signer.rs: 1208 lines scanned with 16 rule patterns and 340 registry patterns; 228 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/tx_builder.rs: 1573 lines scanned with 16 rule patterns and 266 registry patterns; 560 lines in #[cfg(test)] modules ignored",
+      "detail": "src/wallet/tx_builder.rs: 1573 lines scanned with 16 rule patterns and 340 registry patterns; 560 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -339,7 +339,7 @@
     },
     {
       "area": "source_code",
-      "detail": "src/wallet/utils.rs: 281 lines scanned with 16 rule patterns and 266 registry patterns; 115 lines in #[cfg(test)] modules ignored",
+      "detail": "src/wallet/utils.rs: 281 lines scanned with 16 rule patterns and 340 registry patterns; 115 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -369,9 +369,9 @@
       "count": 25,
       "rows": 25,
       "examples": [
-        "src/descriptor/checksum.rs: 89 lines scanned with 16 rule patterns and 266 registry patterns; 52 lines in #[cfg(test)] modules ignored",
-        "src/descriptor/dsl.rs: 1276 lines scanned with 16 rule patterns and 266 registry patterns; 460 lines in #[cfg(test)] modules ignored",
-        "src/descriptor/error.rs: 139 lines scanned with 16 rule patterns and 266 registry patterns"
+        "src/descriptor/checksum.rs: 89 lines scanned with 16 rule patterns and 340 registry patterns; 52 lines in #[cfg(test)] modules ignored",
+        "src/descriptor/dsl.rs: 1276 lines scanned with 16 rule patterns and 340 registry patterns; 460 lines in #[cfg(test)] modules ignored",
+        "src/descriptor/error.rs: 139 lines scanned with 16 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -460,7 +460,7 @@
     "by_severity": {
       "critical": 0,
       "high": 0,
-      "medium": 3,
+      "medium": 2,
       "low": 0,
       "info": 0
     },
@@ -469,11 +469,11 @@
       "known_vulnerable_component": 0,
       "confirmed_misconfiguration": 0,
       "potential_crypto_risk": 0,
-      "pq_long_term_risk": 3,
+      "pq_long_term_risk": 2,
       "improvement": 0,
       "insufficient_data": 0
     },
-    "total": 3,
+    "total": 2,
     "posture_index": 100,
     "pq_vulnerable_share": 78.6,
     "inventory_total": 14,
@@ -490,17 +490,17 @@
   },
   "findings": [
     {
-      "id": "ca539ac0-24f0-49f2-97cd-8f39e6726fc6",
-      "public_id": "QSI-2026-17720",
+      "id": "43e89c00-657f-4f58-b31c-bf272ff0b5a8",
+      "public_id": "QSI-2026-41572",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (5 файл(ов))",
-      "description": "15 упоминаний ECDSA в 5 файл(ах), например src/descriptor/mod.rs:27. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
+      "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (6 файл(ов))",
+      "description": "23 упоминаний ECDSA в 6 файл(ах), например src/descriptor/dsl.rs:69. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
       "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
       "recommendation": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.",
       "retest": "Повторите инвентаризацию после рефакторинга.",
       "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
       "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
-      "repro": "Откройте src/descriptor/mod.rs:27 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "repro": "Откройте src/descriptor/dsl.rs:69 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
       "category": "post_quantum",
       "classification": "pq_long_term_risk",
       "severity": "medium",
@@ -509,9 +509,9 @@
       "status": "open",
       "triage": null,
       "affected_asset": "source-code:ECDSA:transaction_signing",
-      "data_source": "src/descriptor/mod.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T12:54:51.486595+00:00",
+      "data_source": "src/descriptor/dsl.rs",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:00:33.188379+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -602,13 +602,46 @@
       "evidence": [
         {
           "kind": "file_excerpt",
+          "source": "src/descriptor/dsl.rs",
+          "location": "line 69",
+          "content": "   68 |         use $crate::keys::{DescriptorKey, IntoDescriptorKey};\n   69 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();\n   70 | ",
+          "content_sha256": "691d199558b76f9bd93ca983b6b47b730778df0c9dee289cc46be1a64fd2a6ea",
+          "source_sha256": "a0a83c09fdc9044da2b66235ff0d730dd1096d93097c38a254d97e6dd6a5cf86",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200645+00:00",
+          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L69"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/descriptor/dsl.rs",
+          "location": "line 93",
+          "content": "   92 | \n   93 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();\n   94 | ",
+          "content_sha256": "3b81db41c446a7e02654911ae241096e77559545c3627d19e93112954bfd1e34",
+          "source_sha256": "a0a83c09fdc9044da2b66235ff0d730dd1096d93097c38a254d97e6dd6a5cf86",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200655+00:00",
+          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L93"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/descriptor/dsl.rs",
+          "location": "line 266",
+          "content": "  265 |     ( $build_desc:expr, sortedmulti_vec ( $thresh:expr, $keys:expr ) ) => ({\n  266 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();\n  267 |         $crate::keys::make_sortedmulti($thresh, $keys, $build_desc, &secp)",
+          "content_sha256": "7bd931f6b2a9bdd206071454316382983178897781b2b4931255242417f60a55",
+          "source_sha256": "a0a83c09fdc9044da2b66235ff0d730dd1096d93097c38a254d97e6dd6a5cf86",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200660+00:00",
+          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L266"
+        },
+        {
+          "kind": "file_excerpt",
           "source": "src/descriptor/mod.rs",
           "location": "line 27",
           "content": "   26 |     key::XOnlyPublicKey,\n   27 |     psbt, secp256k1, taproot,\n   28 | };",
           "content_sha256": "ef180cf867bd24db405b6f62715cc6bacefb4ea00699f88a2d8002dd7fed7109",
           "source_sha256": "dc67e35d6a1707826ed032715296ec7538c70d1f700733925a763a18be2a3eee",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509425+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200665+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/mod.rs#L27"
         },
         {
@@ -618,8 +651,8 @@
           "content": "   64 | /// [`psbt::Output`]: bitcoin::psbt::Output\n   65 | pub type HdKeyPaths = BTreeMap<secp256k1::PublicKey, KeySource>;\n   66 | ",
           "content_sha256": "d5a40e720e97a4a0cdc2072db1cbba967e65aec2cce2f274a6af858766042692",
           "source_sha256": "dc67e35d6a1707826ed032715296ec7538c70d1f700733925a763a18be2a3eee",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509436+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200670+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/mod.rs#L65"
         },
         {
@@ -629,8 +662,8 @@
           "content": "   28 |     key::XOnlyPublicKey,\n   29 |     secp256k1::{self, Secp256k1, Signing},\n   30 | };",
           "content_sha256": "f01d9a434353349a6b6c822607be17e5ef9d9909b1cb7843df81bf5f81553427",
           "source_sha256": "4e121a877588ee09f62490018ef0ee8e553a5896d3a7f51c5d1c7d34f6b2ede0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509439+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200675+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/keys/mod.rs#L29"
         },
         {
@@ -640,19 +673,19 @@
           "content": "  751 | impl<Ctx: ScriptContext> GeneratableKey<Ctx> for PrivateKey {\n  752 |     type Entropy = [u8; secp256k1::constants::SECRET_KEY_SIZE];\n  753 | ",
           "content_sha256": "37ac35ee8c3d1e6dda9532f4c653b5a46af25094cf31a2e08c0b5d1aeac18b9c",
           "source_sha256": "4e121a877588ee09f62490018ef0ee8e553a5896d3a7f51c5d1c7d34f6b2ede0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509442+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200679+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/keys/mod.rs#L752"
         },
         {
           "kind": "file_excerpt",
           "source": "src/keys/mod.rs",
           "location": "line 761",
-          "content": "  760 |     ) -> Result<GeneratedKey<Self, Ctx>, Self::Error> {\n  761 |         let inner = secp256k1::SecretKey::from_slice(&entropy)?;\n  762 |         let private_key = [REDACTED] {",
-          "content_sha256": "36e760a8c0331fa1be0c095357d061ab5b330c723eac360f5a06541233f7a312",
+          "content": "  760 |     ) -> Result<GeneratedKey<Self, Ctx>, Self::Error> {\n  761 |         let inner = secp256k1::SecretKey::from_slice(&entropy)?;\n  762 |         let private_key = PrivateKey {",
+          "content_sha256": "f66d13222ce514da3139caa2dd685d47abe4891fcf7c42ab098b8d40a0903e93",
           "source_sha256": "4e121a877588ee09f62490018ef0ee8e553a5896d3a7f51c5d1c7d34f6b2ede0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509446+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200684+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/keys/mod.rs#L761"
         },
         {
@@ -662,8 +695,8 @@
           "content": "   41 |     psbt,\n   42 |     secp256k1::Secp256k1,\n   43 |     sighash::{EcdsaSighashType, TapSighashType},",
           "content_sha256": "0d90e97bca9e904888a1c282f9a14a5eea863865793320ed516c80a35fc8669a",
           "source_sha256": "fa8b4eb9ca2a717c6dd8d3304ca9b9d8110f8f63fef7a66767702b76bcb2c023",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509449+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200689+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/mod.rs#L42"
         },
         {
@@ -673,42 +706,9 @@
           "content": "   82 | #[cfg(all(bdk_wallet_unstable, feature = \"bdk-tx\", feature = \"std\"))]\n   83 | use bitcoin::secp256k1::rand;\n   84 | #[cfg(all(bdk_wallet_unstable, feature = \"bdk-tx\"))]",
           "content_sha256": "ac382ef2741110c1892fac952ee277ed95ceec7b6c0331ac74aad2e7086677f5",
           "source_sha256": "fa8b4eb9ca2a717c6dd8d3304ca9b9d8110f8f63fef7a66767702b76bcb2c023",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509454+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.200693+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/mod.rs#L83"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/wallet/signer.rs",
-          "location": "line 101",
-          "content": "  100 | use bitcoin::psbt::PsbtSighashType;\n  101 | use bitcoin::secp256k1::Message;\n  102 | use bitcoin::sighash::{EcdsaSighashType, TapSighash, TapSighashType};",
-          "content_sha256": "221a595769960622a09f27edb82a9a01b8981cf57b87606433b94c74f198377b",
-          "source_sha256": "3d26f404f3398db439261a2b91ee6a1ab1d03c7ef145d457a25e8e704b9d5b8e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509458+00:00",
-          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L101"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/wallet/signer.rs",
-          "location": "line 105",
-          "content": "  104 | use bitcoin::{ecdsa, psbt, sighash, taproot};\n  105 | use bitcoin::{key::TapTweak, key::XOnlyPublicKey, secp256k1};\n  106 | ",
-          "content_sha256": "584441038c7a33d375b26bc0046e2448660f2f3bc13b1b35f5245653b696d134",
-          "source_sha256": "3d26f404f3398db439261a2b91ee6a1ab1d03c7ef145d457a25e8e704b9d5b8e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509461+00:00",
-          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L105"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/wallet/signer.rs",
-          "location": "line 380",
-          "content": "  379 | \n  380 |         let computed_pk = secp256k1::PublicKey::from_secret_key(secp, &derived_key.private_key);\n  381 |         let valid_key = match public_key {",
-          "content_sha256": "d8da3ab4a2d87e008c530e57382d5bbcb6c497a4c973c35371890b9057d2a300",
-          "source_sha256": "3d26f404f3398db439261a2b91ee6a1ab1d03c7ef145d457a25e8e704b9d5b8e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.509464+00:00",
-          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L380"
         }
       ],
       "remediation": [
@@ -745,8 +745,8 @@
       ]
     },
     {
-      "id": "c5801266-d3e2-49b0-9f64-9431fabec6a1",
-      "public_id": "QSI-2026-17721",
+      "id": "f16b8bcc-a8fd-4b25-bc98-be19cfbda1f9",
+      "public_id": "QSI-2026-41573",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (4 файл(ов))",
       "description": "13 упоминаний Schnorr (BIP-340) в 4 файл(ах), например src/descriptor/mod.rs:26. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -765,8 +765,8 @@
       "triage": null,
       "affected_asset": "source-code:Schnorr (BIP-340):transaction_signing",
       "data_source": "src/descriptor/mod.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T12:54:51.506308+00:00",
+      "analyzer": "source_code 1.16.2",
+      "detected_at": "2026-11-23T12:00:33.197015+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -862,8 +862,8 @@
           "content": "   25 |     bip32::{ChildNumber, DerivationPath, Fingerprint, KeySource, Xpub},\n   26 |     key::XOnlyPublicKey,\n   27 |     psbt, secp256k1, taproot,",
           "content_sha256": "cfe7cd678105f72b882bb59eb2a8c186195346e44af5ee63b5e0542e49087ff0",
           "source_sha256": "dc67e35d6a1707826ed032715296ec7538c70d1f700733925a763a18be2a3eee",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531265+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226473+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/mod.rs#L26"
         },
         {
@@ -873,8 +873,8 @@
           "content": "   71 | /// [`psbt::Output`]: bitcoin::psbt::Output\n   72 | pub type TapKeyOrigins = BTreeMap<XOnlyPublicKey, (Vec<taproot::TapLeafHash>, KeySource)>;\n   73 | ",
           "content_sha256": "3c664f5e5adc2a988ca1dce87956b664964bd9b8004ff9ddc442b9b2ac5c9134",
           "source_sha256": "dc67e35d6a1707826ed032715296ec7538c70d1f700733925a763a18be2a3eee",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531274+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226482+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/mod.rs#L72"
         },
         {
@@ -884,8 +884,8 @@
           "content": "  472 |                     SinglePubKey::FullKey(pk) if &PublicKey::new(derived) == pk => true,\n  473 |                     SinglePubKey::XOnly(pk) if &XOnlyPublicKey::from(derived) == pk => true,\n  474 |                     _ => false,",
           "content_sha256": "bdcd1cf031220c0172d18271ef5796b967e46b9e8c70284fb7dc4a50f3c349af",
           "source_sha256": "dc67e35d6a1707826ed032715296ec7538c70d1f700733925a763a18be2a3eee",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531278+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226487+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/mod.rs#L473"
         },
         {
@@ -895,8 +895,8 @@
           "content": "   47 |     hashes::{hash160, ripemd160, sha256},\n   48 |     key::XOnlyPublicKey,\n   49 |     psbt::{self, Psbt},",
           "content_sha256": "4ec607ec9ba6d425889c753d157b2de026fcb5b0604674c7d6aa272adb4cc94c",
           "source_sha256": "febe1ea6f81ce382cd60e92b218fccbebfd38b149c5fea84d6a3e903d2d90d04",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531281+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226491+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/policy.rs#L48"
         },
         {
@@ -906,8 +906,8 @@
           "content": "   79 |     /// A x-only public key\n   80 |     XOnlyPubkey(XOnlyPublicKey),\n   81 |     /// An extended key fingerprint",
           "content_sha256": "d5b404da975a4043297e64c5173f0572135e284799dcaefd0673cb5164efcee0",
           "source_sha256": "febe1ea6f81ce382cd60e92b218fccbebfd38b149c5fea84d6a3e903d2d90d04",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531284+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226496+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/policy.rs#L80"
         },
         {
@@ -917,8 +917,8 @@
           "content": "   27 |     NetworkKind, PrivateKey, PublicKey, bip32,\n   28 |     key::XOnlyPublicKey,\n   29 |     secp256k1::{self, Secp256k1, Signing},",
           "content_sha256": "0bb07775d5a89ff057257a49532a2a573eb35bde48d0943fe04164ec15eb1a10",
           "source_sha256": "4e121a877588ee09f62490018ef0ee8e553a5896d3a7f51c5d1c7d34f6b2ede0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531288+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226501+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/keys/mod.rs#L28"
         },
         {
@@ -928,8 +928,8 @@
           "content": "  951 | \n  952 | impl<Ctx: ScriptContext> IntoDescriptorKey<Ctx> for XOnlyPublicKey {\n  953 |     fn into_descriptor_key(self) -> Result<DescriptorKey<Ctx>, KeyError> {",
           "content_sha256": "bcd03e208aa5f1d419666c73763cc015dfb78a7bdf3cf89c008b5fb47cef79bc",
           "source_sha256": "4e121a877588ee09f62490018ef0ee8e553a5896d3a7f51c5d1c7d34f6b2ede0",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531291+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226505+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/keys/mod.rs#L952"
         },
         {
@@ -939,8 +939,8 @@
           "content": "  104 | use bitcoin::{ecdsa, psbt, sighash, taproot};\n  105 | use bitcoin::{key::TapTweak, key::XOnlyPublicKey, secp256k1};\n  106 | ",
           "content_sha256": "584441038c7a33d375b26bc0046e2448660f2f3bc13b1b35f5245653b696d134",
           "source_sha256": "3d26f404f3398db439261a2b91ee6a1ab1d03c7ef145d457a25e8e704b9d5b8e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531294+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226510+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L105"
         },
         {
@@ -950,8 +950,8 @@
           "content": "  382 |             SinglePubKey::FullKey(pk) if pk.inner == computed_pk => true,\n  383 |             SinglePubKey::XOnly(x_only) if XOnlyPublicKey::from(computed_pk) == x_only => true,\n  384 |             _ => false,",
           "content_sha256": "a2c4b6e14fa2701a03898e922bdc9224d1906fee8e5c545683c31d8b623a0fe4",
           "source_sha256": "3d26f404f3398db439261a2b91ee6a1ab1d03c7ef145d457a25e8e704b9d5b8e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531297+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226514+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L383"
         },
         {
@@ -961,8 +961,8 @@
           "content": "  530 |             SignerContext::Tap { is_internal_key } => {\n  531 |                 let x_only_pubkey = XOnlyPublicKey::from(pubkey.inner);\n  532 | ",
           "content_sha256": "24346e14a59b1b368bba5937bc2e99dc42f4f2e8d4de0c161bdc592224ed1f93",
           "source_sha256": "3d26f404f3398db439261a2b91ee6a1ab1d03c7ef145d457a25e8e704b9d5b8e",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.531300+00:00",
+          "collector": "source_code 1.16.2",
+          "collected_at": "2026-11-23T12:00:33.226519+00:00",
           "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L531"
         }
       ],
@@ -998,184 +998,6 @@
           "status": "todo"
         }
       ]
-    },
-    {
-      "id": "1cc5b791-88a2-4963-9951-d0343131e4aa",
-      "public_id": "QSI-2026-17719",
-      "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
-      "description": "8 упоминаний ECDSA в 1 файл(ах), например src/descriptor/dsl.rs:69. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
-      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
-      "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.",
-      "retest": "Повторите инвентаризацию после рефакторинга.",
-      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
-      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
-      "repro": "Откройте src/descriptor/dsl.rs:69 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
-      "category": "post_quantum",
-      "classification": "pq_long_term_risk",
-      "severity": "medium",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "source-code:ECDSA:general",
-      "data_source": "src/descriptor/dsl.rs",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-06T12:54:51.477102+00:00",
-      "risk_score": 34.2,
-      "risk_breakdown": {
-        "mosca": {
-          "x": 10.0,
-          "y": 5.0,
-          "z": 8.0,
-          "kind": "signature",
-          "note": "z is an assumed planning scenario, not a forecast",
-          "urgency": 1.0,
-          "verdict": "migration_late_under_scenario",
-          "scenario": "early",
-          "x_source": "project signature lifetime",
-          "margin_years": 7.0
-        },
-        "score": 34.2,
-        "factors": {
-          "ease": 0.3,
-          "asset": 0.6,
-          "impact": 0.54,
-          "urgency": 1.0,
-          "exposure": 0.6,
-          "severity": 0.5,
-          "exploitability": 0.1
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 50.3,
-        "references": [
-          {
-            "key": "CVSS31",
-            "url": "https://www.first.org/cvss/v3.1/specification-document",
-            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
-            "status": "final",
-            "publisher": "FIRST"
-          },
-          {
-            "key": "MOSCA2018",
-            "url": "https://doi.org/10.1109/MSP.2018.3761723",
-            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
-            "status": "peer-reviewed article; source of the x + y > z migration inequality",
-            "publisher": "IEEE"
-          }
-        ],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 10.8,
-          "urgency": 10.0,
-          "exposure": 9.0,
-          "severity": 12.5,
-          "exploitability": 2.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "SHOR1997",
-          "url": "https://doi.org/10.1137/S0097539795293172",
-          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
-          "status": "peer-reviewed article",
-          "publisher": "SIAM"
-        },
-        {
-          "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
-          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
-          "publisher": "NIST"
-        },
-        {
-          "key": "MOSCA2018",
-          "url": "https://doi.org/10.1109/MSP.2018.3761723",
-          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
-          "status": "peer-reviewed article; source of the x + y > z migration inequality",
-          "publisher": "IEEE"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "src/descriptor/dsl.rs",
-          "location": "line 69",
-          "content": "   68 |         use $crate::keys::{DescriptorKey, IntoDescriptorKey};\n   69 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();\n   70 | ",
-          "content_sha256": "691d199558b76f9bd93ca983b6b47b730778df0c9dee289cc46be1a64fd2a6ea",
-          "source_sha256": "a0a83c09fdc9044da2b66235ff0d730dd1096d93097c38a254d97e6dd6a5cf86",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.491141+00:00",
-          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L69"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/descriptor/dsl.rs",
-          "location": "line 93",
-          "content": "   92 | \n   93 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();\n   94 | ",
-          "content_sha256": "3b81db41c446a7e02654911ae241096e77559545c3627d19e93112954bfd1e34",
-          "source_sha256": "a0a83c09fdc9044da2b66235ff0d730dd1096d93097c38a254d97e6dd6a5cf86",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.491148+00:00",
-          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L93"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/descriptor/dsl.rs",
-          "location": "line 266",
-          "content": "  265 |     ( $build_desc:expr, sortedmulti_vec ( $thresh:expr, $keys:expr ) ) => ({\n  266 |         let secp = $crate::bitcoin::secp256k1::Secp256k1::new();\n  267 |         $crate::keys::make_sortedmulti($thresh, $keys, $build_desc, &secp)",
-          "content_sha256": "7bd931f6b2a9bdd206071454316382983178897781b2b4931255242417f60a55",
-          "source_sha256": "a0a83c09fdc9044da2b66235ff0d730dd1096d93097c38a254d97e6dd6a5cf86",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-06T12:54:51.491151+00:00",
-          "url": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/dsl.rs#L266"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "mitigation",
-          "action": "Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
-          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
-          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
-          "priority": "P3",
-          "horizon_days": 90,
-          "complexity": "medium",
-          "dependencies": "Доступ к владельцам систем.",
-          "side_effects": "Нет (документация и проектирование).",
-          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
-          "post_tests": "Инвентаризация согласована владельцем системы.",
-          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
-          "status": "todo"
-        },
-        {
-          "kind": "root_cause",
-          "action": "Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
-          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
-          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
-          "priority": "P4",
-          "horizon_days": 90,
-          "complexity": "high",
-          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
-          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
-          "pre_tests": "Тесты совместимости на стенде.",
-          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
-          "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
-          "status": "todo"
-        }
-      ]
     }
   ],
   "pq": {
@@ -1199,9 +1021,8 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-17720",
-      "QSI-2026-17721",
-      "QSI-2026-17719"
+      "QSI-2026-41572",
+      "QSI-2026-41573"
     ],
     "roles": [
       {
@@ -1213,7 +1034,7 @@
         "algorithms": [
           {
             "algorithm": "ECDSA",
-            "files": 5
+            "files": 6
           },
           {
             "algorithm": "Schnorr (BIP-340)",
@@ -1221,27 +1042,10 @@
           }
         ],
         "findings": [
-          "QSI-2026-17720",
-          "QSI-2026-17721"
+          "QSI-2026-41572",
+          "QSI-2026-41573"
         ],
-        "files": 9
-      },
-      {
-        "role": "general",
-        "label": "роль не определена",
-        "action": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости",
-        "criticality": 3,
-        "severity": "medium",
-        "algorithms": [
-          {
-            "algorithm": "ECDSA",
-            "files": 1
-          }
-        ],
-        "findings": [
-          "QSI-2026-17719"
-        ],
-        "files": 1
+        "files": 10
       }
     ],
     "maturity": {
@@ -1376,8 +1180,8 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17720",
-        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (5 файл(ов))",
+        "finding": "QSI-2026-41572",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (6 файл(ов))",
         "severity": "medium"
       },
       {
@@ -1394,26 +1198,8 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-17721",
+        "finding": "QSI-2026-41573",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (4 файл(ов))",
-        "severity": "medium"
-      },
-      {
-        "kind": "mitigation",
-        "action": "Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
-        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
-        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
-        "priority": "P3",
-        "horizon_days": 90,
-        "complexity": "medium",
-        "dependencies": "Доступ к владельцам систем.",
-        "side_effects": "Нет (документация и проектирование).",
-        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
-        "post_tests": "Инвентаризация согласована владельцем системы.",
-        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
-        "status": "todo",
-        "finding": "QSI-2026-17719",
-        "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
       {
@@ -1430,8 +1216,8 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17720",
-        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (5 файл(ов))",
+        "finding": "QSI-2026-41572",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (6 файл(ов))",
         "severity": "medium"
       },
       {
@@ -1448,26 +1234,8 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-17721",
+        "finding": "QSI-2026-41573",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (4 файл(ов))",
-        "severity": "medium"
-      },
-      {
-        "kind": "root_cause",
-        "action": "Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
-        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
-        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
-        "priority": "P4",
-        "horizon_days": 90,
-        "complexity": "high",
-        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
-        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
-        "pre_tests": "Тесты совместимости на стенде.",
-        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
-        "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
-        "status": "todo",
-        "finding": "QSI-2026-17719",
-        "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       }
     ]
@@ -1490,20 +1258,32 @@
       "version": "1.1.0"
     },
     {
-      "name": "dependencies",
+      "name": "crediting",
       "version": "1.3.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.4.4"
+    },
+    {
+      "name": "hndl",
+      "version": "1.0.0"
     },
     {
       "name": "inventory_document",
       "version": "1.1.0"
     },
     {
+      "name": "mpc",
+      "version": "1.0.0"
+    },
+    {
       "name": "solidity",
-      "version": "1.3.0"
+      "version": "1.8.1"
     },
     {
       "name": "source_code",
-      "version": "1.4.0"
+      "version": "1.10.2"
     },
     {
       "name": "tls_code",
@@ -1514,8 +1294,20 @@
       "version": "1.0.0"
     },
     {
+      "name": "ton_contracts",
+      "version": "1.0.0"
+    },
+    {
+      "name": "validator_keys",
+      "version": "1.2.0"
+    },
+    {
+      "name": "wallet_login",
+      "version": "1.0.0"
+    },
+    {
       "name": "qsi-engine",
-      "version": "1.3.0"
+      "version": "1.16.2"
     },
     {
       "name": "OSV.dev API",

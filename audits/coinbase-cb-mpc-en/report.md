@@ -4,20 +4,20 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-06 13:12 UTC |
+| Report date | 2026-11-23 12:19 UTC |
 | Report version | 1 |
-| Audit run | 02ce0659-1889-4ed5-a086-f177ea4dd951 (Document audit) |
-| Analyzer engine | qsi-engine 1.3.0 |
+| Audit run | 7d802763-cb56-41a1-b032-b4bb87a3ae9d (Document audit) |
+| Analyzer engine | qsi-engine 1.16.2 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `2a966078eafc0c75aa33ede65be2e88b49931bcd3069f62145418b9799d8281d` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| Content SHA-256 | `636fc1c46fb41ccbdfc3ba1a4c04ff2cb347e75fdeb02ff0aa5c652efd318970` |
+| Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
 - High: **0**
-- Medium: **11**
+- Medium: **12**
 - Low: **0**
 - Info: **0**
 
@@ -25,7 +25,7 @@
 - Known vulnerable component: 0
 - Confirmed configuration error: 0
 - Potential cryptographic risk: 0
-- Long-term post-quantum risk: 11
+- Long-term post-quantum risk: 12
 - Improvement recommendation: 0
 - Insufficient data: 0
 
@@ -47,8 +47,9 @@ Repository: <https://github.com/coinbase/cb-mpc> @ `0b716706f998633912ee2be9b9bf
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 174 | include-internal/cbmpc/internal/core/convert.h: 307 lines scanned with 16 rule patterns and 266 registry patterns; include-internal/cbmpc/internal/core/extended_uint.h: 54 lines scanned with 16 rule patterns and 266 registry patterns; include-internal/cbmpc/internal/core/log.h: 124 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | checked | 174 | include-internal/cbmpc/internal/core/convert.h: 307 lines scanned with 16 rule patterns and 340 registry patterns; include-internal/cbmpc/internal/core/extended_uint.h: 54 lines scanned with 16 rule patterns and 340 registry patterns; include-internal/cbmpc/internal/core/log.h: 124 lines scanned with 16 rule patterns and 340 registry patterns |
 | entropy | checked | 1 | random-number generation: 174 code files read with 24 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| mpc | checked | 1 | Paillier in 23 file(s), 7 in a multi-party context; modulus proofs present |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -67,14 +68,14 @@ Static review of the source tree coinbase-cb-mpc-en at 0b716706f998633912ee2be9b
 
 ## 7. Detailed findings
 
-### QSI-2026-17972 — Quantum-vulnerable ECDH: key wrapping and data encryption at rest (5 file(s))
+### QSI-2026-41838 — Quantum-vulnerable ECDH: key wrapping and data encryption at rest (5 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The highest-urgency class in this repository, and it is not signing. The anchors are the publicly verifiable encryption paths — include-internal/cbmpc/internal/protocol/pve_base.h:213 calls prv_key.ecdh(...) and checks a 32-byte output, and src/cbmpc/api/{pve_base_pke,pve_batch_ac, pve_batch_single_recipient}.cpp plus pve_internal.h:154 all guard on "missing HSM ECIES ECDH callback". PVE is how key shares are encrypted to a recipient for backup and escrow, so the ciphertexts are stored. Harvest-now-decrypt-later applies in full: a copy taken today of an encrypted share set becomes plaintext once a CRQC exists, and no later migration undoes that. Unlike a signature scheme, this can be fixed today by wrapping the share under a hybrid KEM, which makes it the first thing to do rather than the hardest — and nearer than it looks, because this repository already implements ML-KEM-768 without the PVE path using it. See the DEP-NO-PQC-LIBRARY decision below.
 - Affected asset: `source-code:ECDH:key_wrapping`
 - Data source: include-internal/cbmpc/internal/protocol/pve_base.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 43.4 / 100
 - CVSS v3.1: not applicable
 
@@ -136,14 +137,14 @@ _file_excerpt · [src/cbmpc/api/pve_internal.h](https://github.com/coinbase/cb-m
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17967 — Quantum-vulnerable Paillier: threshold signing and MPC protocols (15 file(s))
+### QSI-2026-41832 — Quantum-vulnerable Paillier: threshold signing and MPC protocols (15 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Correct, with a parameter worth quoting: include-internal/cbmpc/internal/crypto/base_paillier.h declares class paillier_t with static constexpr int bit_size = 2048, so the modulus is 2048 bits and Shor's algorithm faces exactly the problem it faces for RSA-2048. The evidence is real implementation rather than a name match — base_paillier.h, zk/zk_paillier.h's valid_paillier_t, and the key structures in protocol/ecdsa_2p.h and hd_keyset_ecdsa_2p.h, which each hold a crypto::paillier_t and its c_key. This is the row that a post-quantum *signature* standard does not help with: Paillier is the homomorphic encryption the two-party ECDSA protocol is built on, so replacing it is a protocol redesign, and NIST's 2024 standards (ML-DSA, SLH-DSA) are single-signer schemes that do not offer a drop-in replacement.
 - Affected asset: `source-code:Paillier:threshold_mpc`
 - Data source: include-internal/cbmpc/internal/crypto/base_bn.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -245,14 +246,14 @@ _file_excerpt · [include-internal/cbmpc/internal/zk/zk_paillier.h](https://gith
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17970 — Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (13 file(s))
+### QSI-2026-41836 — Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (13 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The claim is right — cb-mpc is a threshold ECDSA library and these 13 files are its protocol surface (api/ecdsa_2p.h, api/ecdsa_mp.h, internal/protocol/ecdsa_2p.h, ecdsa_mp.h, hd_keyset_ecdsa_2p.h) — but the cited evidence is weaker than the claim and a reader should know which is which. Most anchors are namespace declarations and their closing braces (namespace coinbase::api::ecdsa_2p, coinbase::mpc::ecdsampc), so the row follows from the library's purpose rather than from the quoted line. The substantive evidence for this class is in the Paillier and Pedersen rows above, which cite implementations. Confirmed on that basis, and the detector would serve better by anchoring on the protocol functions.
 - Affected asset: `source-code:Threshold ECDSA:threshold_mpc`
 - Data source: include-internal/cbmpc/internal/protocol/ecdsa_2p.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -350,14 +351,14 @@ _file_excerpt · [include/cbmpc/api/ecdsa_mp.h](https://github.com/coinbase/cb-m
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17971 — Quantum-vulnerable Ed25519: threshold signing and MPC protocols (9 file(s))
+### QSI-2026-41837 — Quantum-vulnerable Ed25519: threshold signing and MPC protocols (9 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Threshold EdDSA, which the library implements alongside threshold ECDSA: api/eddsa_2p.h, internal/protocol/eddsa.h (which includes schnorr_mp.h), hd_keyset_eddsa_2p.h and src/cbmpc/api/eddsa2pc.cpp, where blob_to_key validates the key blob role. Same conclusion as threshold ECDSA and the same caveat about namespace anchors; the protocol is a Schnorr-style multiparty scheme over Ed25519, so Shor breaks both the signature and the discrete-log proofs around it.
 - Affected asset: `source-code:Ed25519:threshold_mpc`
 - Data source: include-internal/cbmpc/internal/protocol/eddsa.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -457,14 +458,14 @@ _file_excerpt · [src/cbmpc/api/hd_keyset_eddsa_2p.cpp](https://github.com/coinb
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17973 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))
+### QSI-2026-41839 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Correct and anchored on real parameter generation, not a mention: src/cbmpc/zk/zk_pedersen.cpp constructs pedersen_commitment_params_t with primes generated via BN_generate_prime_ex (the comment names the OpenSSL function), zk_pedersen.h:13 exposes get() and check_safe_prime_subgroup, and both src/cbmpc/protocol/ecdsa_2p.cpp:28 and src/cbmpc/zk/zk_paillier.cpp:537 pull those parameters. Stated precisely, because the distinction decides how bad this is: breaking the discrete log costs a Pedersen commitment its *binding* property, not its hiding — the commitment is perfectly hiding, so no committed value is recoverable from it even with a CRQC. The exposure is forgeability inside the proofs, i.e. future protocol soundness, not retroactive disclosure.
 - Affected asset: `source-code:Pedersen commitment:threshold_mpc`
 - Data source: include-internal/cbmpc/internal/zk/zk_pedersen.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -550,14 +551,14 @@ _file_excerpt · [src/cbmpc/zk/zk_pedersen.cpp](https://github.com/coinbase/cb-m
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17974 — Quantum-vulnerable ECDSA: threshold signing and MPC protocols (3 file(s))
+### QSI-2026-41840 — Quantum-vulnerable ECDSA: threshold signing and MPC protocols (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Plain (non-threshold) ECDSA on secp256k1 inside the Schnorr two-party API: src/cbmpc/api/schnorr2pc.cpp:31 and :48 validate and write blob.curve against curve_id::secp256k1 and serialise key.Q compressed. Key-blob handling for the signing keys, so the same migration item as the threshold rows; counted separately because it is the serialisation format, which is where a migration needs a version bump.
 - Affected asset: `source-code:ECDSA:threshold_mpc`
 - Data source: src/cbmpc/api/schnorr2pc.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -643,14 +644,14 @@ _file_excerpt · [src/cbmpc/protocol/schnorr_2p.cpp](https://github.com/coinbase
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17976 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+### QSI-2026-41842 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Plain (non-threshold) ECDSA on secp256k1 inside the Schnorr two-party API: src/cbmpc/api/schnorr2pc.cpp:31 and :48 validate and write blob.curve against curve_id::secp256k1 and serialise key.Q compressed. Key-blob handling for the signing keys, so the same migration item as the threshold rows; counted separately because it is the serialisation format, which is where a migration needs a version bump.
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: src/cbmpc/crypto/base_ecc_secp256k1.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -696,14 +697,14 @@ _file_excerpt · [src/cbmpc/crypto/base_ecc_secp256k1.cpp](https://github.com/co
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17968 — Quantum-vulnerable ECDSA: role not determined (6 file(s))
+### QSI-2026-41833 — Quantum-vulnerable ECDSA: role not determined (6 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Plain (non-threshold) ECDSA on secp256k1 inside the Schnorr two-party API: src/cbmpc/api/schnorr2pc.cpp:31 and :48 validate and write blob.curve against curve_id::secp256k1 and serialise key.Q compressed. Key-blob handling for the signing keys, so the same migration item as the threshold rows; counted separately because it is the serialisation format, which is where a migration needs a version bump.
 - Affected asset: `source-code:ECDSA:general`
 - Data source: include-internal/cbmpc/internal/crypto/base_ecc.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -805,14 +806,14 @@ _file_excerpt · [src/cbmpc/crypto/base_ecc.cpp](https://github.com/coinbase/cb-
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17975 — Quantum-vulnerable Ed25519: role not determined (3 file(s))
+### QSI-2026-41841 — Quantum-vulnerable Ed25519: role not determined (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Threshold EdDSA, which the library implements alongside threshold ECDSA: api/eddsa_2p.h, internal/protocol/eddsa.h (which includes schnorr_mp.h), hd_keyset_eddsa_2p.h and src/cbmpc/api/eddsa2pc.cpp, where blob_to_key validates the key blob role. Same conclusion as threshold ECDSA and the same caveat about namespace anchors; the protocol is a Schnorr-style multiparty scheme over Ed25519, so Shor breaks both the signature and the discrete-log proofs around it.
 - Affected asset: `source-code:Ed25519:general`
 - Data source: src/cbmpc/crypto/base_ecc.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -882,14 +883,14 @@ _file_excerpt · [src/cbmpc/protocol/schnorr_mp.cpp](https://github.com/coinbase
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17977 — Quantum-vulnerable RSA: role not determined (1 file(s))
+### QSI-2026-41843 — Quantum-vulnerable RSA: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Role resolved. src/cbmpc/crypto/base_rsa.cpp implements rsa_pub_key_t with encrypt_raw (deliberately RSA_NO_PADDING, because it is a primitive for a higher-level scheme rather than a general-purpose encryption API), verify_pkcs1, and EVP_RSA_gen(bits) for generation. It is included by internal/crypto/base_pki.h and internal/crypto/base_paillier.h and exercised by tests/unit/api/test_pve.cpp, so this is the PKI layer underneath publicly verifiable encryption and the modulus arithmetic that Paillier is built on. Same quantum exposure as the Paillier row, for the same reason: Shor factors the composite modulus. Because PVE ciphertexts are stored, this inherits the harvest-now-decrypt-later urgency of the ECDH row rather than the lower urgency of a signing path.
 - Affected asset: `source-code:RSA:general`
 - Data source: src/cbmpc/crypto/base_rsa.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -927,13 +928,13 @@ _file_excerpt · [src/cbmpc/crypto/base_rsa.cpp](https://github.com/coinbase/cb-
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17969 — Quantum-vulnerable Schnorr (BIP-340): role not determined (2 file(s))
+### QSI-2026-41834 — Quantum-vulnerable Schnorr (BIP-340): role not determined (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Schnorr (BIP-340):general`
 - Data source: include-internal/cbmpc/internal/crypto/base_ecc.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:12 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -987,6 +988,98 @@ _file_excerpt · [src/cbmpc/crypto/base_ecc.cpp](https://github.com/coinbase/cb-
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
+### QSI-2026-41835 — Quantum-vulnerable EC-ElGamal: role not determined (3 file(s))
+
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:EC-ElGamal:general`
+- Data source: include-internal/cbmpc/internal/crypto/elgamal.h
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:19 UTC
+- Priority score: 34.2 / 100
+- CVSS v3.1: not applicable
+
+49 reference(s) to EC-ElGamal across 3 file(s), e.g. include-internal/cbmpc/internal/crypto/elgamal.h:7. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open include-internal/cbmpc/internal/crypto/elgamal.h:7 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [include-internal/cbmpc/internal/crypto/elgamal.h](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/elgamal.h#L7) · line 7 · SHA-256 46cdea10848480f029692e55723896e84af22104ab15a2324a95567451e8c077_
+
+```
+    6 | 
+    7 | class ec_elgamal_commitment_t {
+    8 |  public:
+```
+
+_file_excerpt · [include-internal/cbmpc/internal/crypto/elgamal.h](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/elgamal.h#L11) · line 11 · SHA-256 ef1d9a1a46639d3ae365598cc3361b889b64d988763a578070d2578cc1c414af_
+
+```
+   10 | 
+   11 |   ec_elgamal_commitment_t() {}
+   12 |   ec_elgamal_commitment_t(const ecc_point_t& _U, const ecc_point_t& _R) : L(_U), R(_R) {}
+```
+
+_file_excerpt · [include-internal/cbmpc/internal/crypto/elgamal.h](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/elgamal.h#L12) · line 12 · SHA-256 ce66079707a78c46e3a4ed941601652d252068f48d93c747b3fb15cce39a5db3_
+
+```
+   11 |   ec_elgamal_commitment_t() {}
+   12 |   ec_elgamal_commitment_t(const ecc_point_t& _U, const ecc_point_t& _R) : L(_U), R(_R) {}
+   13 | 
+```
+
+_file_excerpt · [src/cbmpc/crypto/elgamal.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/elgamal.cpp#L22) · line 22 · SHA-256 75376d46d89783846759bc63f9fe21da4a752e43818301311683c8dd38752c68_
+
+```
+   21 | 
+   22 | const mod_t& ec_elgamal_commitment_t::order(ecurve_t curve) { return curve.order(); }
+   23 | 
+```
+
+_file_excerpt · [src/cbmpc/crypto/elgamal.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/elgamal.cpp#L24) · line 24 · SHA-256 a3b448d922d34264e842828091bf573e4d3c5de938c6a97313c23092e5acbec9_
+
+```
+   23 | 
+   24 | std::tuple<ecc_point_t, bn_t> ec_elgamal_commitment_t::local_keygen(ecurve_t curve) {
+   25 |   cb_assert_elgamal_ct_curve(curve);
+```
+
+_file_excerpt · [src/cbmpc/crypto/elgamal.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/elgamal.cpp#L31) · line 31 · SHA-256 9e27773a635df7f65be85b9ff192509d36d71c55cde8ad0465fc13f792a3f6eb_
+
+```
+   30 | 
+   31 | ec_elgamal_commitment_t ec_elgamal_commitment_t::make_commitment(const ecc_point_t& P, const bn_t& m,
+   32 |                                                                  const bn_t& r)  // m - scalar, P - public key
+```
+
+_file_excerpt · [src/cbmpc/zk/zk_elgamal_com.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/zk/zk_elgamal_com.cpp#L143) · line 143 · SHA-256 4a8447dd8424dd6bb14a91dae3be1cd0c3d1beaa2552221b234825e5bff8001c_
+
+```
+  142 |   bn_t r3 = bn_t::rand(q);
+  143 |   auto R = crypto::ec_elgamal_commitment_t::commit(Q, r1).rand(r2);
+  144 |   auto A_tag = (r1 * A).rerand(Q, r3);
+```
+
+_file_excerpt · [src/cbmpc/zk/zk_elgamal_com.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/zk/zk_elgamal_com.cpp#L172) · line 172 · SHA-256 500dffccd3e9040fb7c230c2f7f83aae0e554e33df1b38b0659b6970ce3f4159_
+
+```
+  171 | 
+  172 |   auto R = crypto::ec_elgamal_commitment_t::commit(Q, z1).rand(z2) - e * B;
+  173 |   auto A_tag = (z1 * A).rerand(Q, z3) - e * C;
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Classify each usage, record data lifetimes, and plan migration to NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction; introduce an abstraction layer for crypto-agility.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
 
 ## 8. Post-quantum assessment
 
@@ -1024,10 +1117,10 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **key wrapping and data encryption at rest** | ECDH (5) | QSI-2026-17972 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **threshold signing and MPC protocols** | Paillier (15), Threshold ECDSA (13), Ed25519 (9), Pedersen commitment (4), ECDSA (3) | QSI-2026-17967, QSI-2026-17970, QSI-2026-17971, QSI-2026-17973, QSI-2026-17974 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
-| **transaction and message signing** | ECDSA (1) | QSI-2026-17976 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | ECDSA (6), Ed25519 (3), Schnorr (BIP-340) (2), RSA (1) | QSI-2026-17968, QSI-2026-17969, QSI-2026-17975, QSI-2026-17977 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | ECDH (5) | QSI-2026-41838 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **threshold signing and MPC protocols** | Paillier (15), Threshold ECDSA (13), Ed25519 (9), Pedersen commitment (4), ECDSA (3) | QSI-2026-41832, QSI-2026-41836, QSI-2026-41837, QSI-2026-41839, QSI-2026-41840 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
+| **transaction and message signing** | ECDSA (1) | QSI-2026-41842 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | ECDSA (6), EC-ElGamal (3), Ed25519 (3), Schnorr (BIP-340) (2), RSA (1) | QSI-2026-41833, QSI-2026-41834, QSI-2026-41835, QSI-2026-41841, QSI-2026-41843 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -1037,8 +1130,8 @@ No readiness questionnaire was completed for this project.
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
 | Shor's algorithm — factoring | breaks | Q1 | Paillier (15), RSA (3) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
-| Shor's algorithm — discrete logarithms in finite fields | breaks | Q1 | BN254 (alt_bn128) (2), ElGamal (4) | Breaks finite-field Diffie–Hellman and DSA at every size. Move key establishment to ML-KEM (hybrid with X25519 or ECDH during the transition) and signatures to ML-DSA or SLH-DSA. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BN254 (alt_bn128) (2), ECDH (5), ECDSA (25), Ed25519 (20), Pedersen commitment (4), Schnorr (BIP-340) (2), Threshold ECDSA (13) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Shor's algorithm — discrete logarithms in finite fields | breaks | Q1 | BN254 (alt_bn128) (2), ElGamal (1) | Breaks finite-field Diffie–Hellman and DSA at every size. Move key establishment to ML-KEM (hybrid with X25519 or ECDH during the transition) and signatures to ML-DSA or SLH-DSA. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BN254 (alt_bn128) (2), EC-ElGamal (3), ECDH (5), ECDSA (25), Ed25519 (20), Pedersen commitment (4), Schnorr (BIP-340) (2), Threshold ECDSA (13) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
 | Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-128 (1), AES-192 (1), AES-256 (1), BLAKE2 (1), HKDF (3), HMAC (1), RIPEMD-160 (1), SHA-1 (1), SHA-2 (2), SHA-3 (1) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | BLAKE2 (1), RIPEMD-160 (1), SHA-1 (1), SHA-2 (2), SHA-3 (1) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 | Quantum lattice sieving | included in standard parameters | Q1 | ML-KEM (2) | No change for ML-KEM or ML-DSA at the standard parameter sets. A 2024 claim of a polynomial-time quantum LWE algorithm was withdrawn after a bug was found (see claims). |
@@ -1065,28 +1158,30 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-17972 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17967 | Add Paillier usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17970 | Add Threshold ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17971 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17973 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17974 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17976 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17968 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17975 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17977 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17969 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-17972 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-17967 | Plan migration of Paillier to No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) or a hybrid scheme in use. |
-| P4 | QSI-2026-17970 | Plan migration of Threshold ECDSA to The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design or a hybrid scheme in use. |
-| P4 | QSI-2026-17971 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17973 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-17974 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17976 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17968 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17975 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17977 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17969 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P3 | QSI-2026-41838 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41832 | Add Paillier usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41836 | Add Threshold ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41837 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41839 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41840 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41842 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41833 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41841 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41843 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41834 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41835 | Add EC-ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-41838 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41832 | Plan migration of Paillier to No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) or a hybrid scheme in use. |
+| P4 | QSI-2026-41836 | Plan migration of Threshold ECDSA to The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design or a hybrid scheme in use. |
+| P4 | QSI-2026-41837 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41839 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-41840 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41842 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41833 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41841 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41843 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41834 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-41835 | Plan migration of EC-ElGamal to NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -1094,13 +1189,19 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -1151,13 +1252,14 @@ By origin: own code 108 (93 Shor-breakable).
 | SHA-3 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | src/cbmpc/crypto/base_hash.cpp:63 |
 | ML-KEM | ML-KEM-768 |  | post-quantum | acceptable | 2 | 2 | include-internal/cbmpc/internal/crypto/mlkem768.h; src/cbmpc/crypto/mlkem768.cpp:8 |
 | BN254 (alt_bn128) |  |  | vulnerable (Shor) | acceptable | 2 | 2 | include-internal/cbmpc/internal/crypto/base_bn256.h; src/cbmpc/crypto/base_bn256.cpp |
+| EC-ElGamal |  |  | vulnerable (Shor) | acceptable | 3 | 3 | include-internal/cbmpc/internal/crypto/elgamal.h:7; src/cbmpc/crypto/elgamal.cpp:22; src/cbmpc/zk/zk_elgamal_com.cpp:143 |
 | ECDH |  |  | vulnerable (Shor) | acceptable | 5 | 5 | include-internal/cbmpc/internal/protocol/pve_base.h:213; src/cbmpc/api/pve_base_pke.cpp:325; src/cbmpc/api/pve_batch_ac.cpp:308 |
 | ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 10 | 10 | include-internal/cbmpc/internal/crypto/base_ecc.h:17; include/cbmpc/api/curve.h:10; src/cbmpc/api/curve_util.h:13 |
 | ECDSA |  |  | vulnerable (Shor) | acceptable | 14 | 14 | include-internal/cbmpc/internal/protocol/ecdsa_2p.h; include-internal/cbmpc/internal/protocol/ecdsa_mp.h; include-internal/cbmpc/internal/protocol/hd_keyset_ecdsa_2p.h |
 | ECDSA | P-256 |  | vulnerable (Shor) | acceptable | 1 | 1 | include/cbmpc/api/curve.h:9 |
 | Ed25519 |  |  | vulnerable (Shor) | acceptable | 7 | 7 | include-internal/cbmpc/internal/crypto/base_eddsa.h; include/cbmpc/api/eddsa_mp.h; include/cbmpc/api/hd_keyset_eddsa_2p.h |
 | Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 13 | 13 | include-internal/cbmpc/internal/protocol/eddsa.h:6; include-internal/cbmpc/internal/protocol/hd_keyset_eddsa_2p.h:26; include/cbmpc/api/eddsa_2p.h:8 |
-| ElGamal |  |  | vulnerable (Shor) | deprecated | 4 | 4 | include-internal/cbmpc/internal/crypto/elgamal.h; include-internal/cbmpc/internal/zk/zk_elgamal_com.h; src/cbmpc/crypto/elgamal.cpp |
+| ElGamal |  |  | vulnerable (Shor) | deprecated | 1 | 1 | include-internal/cbmpc/internal/zk/zk_elgamal_com.h |
 | Paillier |  |  | vulnerable (Shor) | acceptable | 15 | 15 | include-internal/cbmpc/internal/crypto/base_bn.h:46; include-internal/cbmpc/internal/crypto/base_paillier.h:8; include-internal/cbmpc/internal/protocol/ecdsa_2p.h:18 |
 | Pedersen commitment |  |  | vulnerable (Shor) | acceptable | 4 | 4 | include-internal/cbmpc/internal/zk/zk_pedersen.h:8; src/cbmpc/protocol/ecdsa_2p.cpp:28; src/cbmpc/zk/zk_paillier.cpp:537 |
 | RSA |  |  | vulnerable (Shor) | acceptable | 3 | 3 | include-internal/cbmpc/internal/crypto/base_rsa.h; src/cbmpc/crypto/base_rsa.cpp:96; src/cbmpc/crypto/base_rsa_oaep.cpp |

@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: lightwalletd @ 4abfe9cd7b9b
 
-*One-page brief* · Reviewed: 2026-11-06 13:26 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 12:39 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
 
 Source: https://github.com/zcash/lightwalletd/tree/4abfe9cd7b9b13f6093df59911639d1d9195dc09
 
@@ -12,11 +12,11 @@ Source: https://github.com/zcash/lightwalletd/tree/4abfe9cd7b9b13f6093df59911639
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable RSA key in certificate (lightwalletd.testnet.local) (QSI-2026-18277)\
+1. **Medium** · Quantum-vulnerable RSA key in certificate (lightwalletd.testnet.local) (QSI-2026-42230)\
    What to do: Track in the PQC inventory; prefer short certificate lifetimes; follow CA/Browser Forum and NIST PQC transition guidance for ML-DSA…
-2. **Medium** · Quantum-vulnerable RSA: role not determined (1 file(s)) (QSI-2026-18275) · *preliminary*\
+2. **Medium** · Quantum-vulnerable RSA: role not determined (1 file(s)) (QSI-2026-42228) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
-3. **Low** · golang.org/x/crypto v0.55.0 is affected by GO-2026-5932 (no severity rating) (QSI-2026-18278) · *preliminary*\
+3. **Low** · golang.org/x/crypto v0.55.0 is affected by GO-2026-5932 (no severity rating) (QSI-2026-42231) · *preliminary*\
    What to do: Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies.
 
 ## What the quantum-vulnerable cryptography protects
@@ -35,8 +35,8 @@ Analyst review: 0 confirmed, 1 not applicable, 0 dismissed as false positives. (
 
 Static review of source code and manifests; files analysed: 34. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `9504d578ac265b51de4004dce82ba857ca6f01624df2bbbf459dc504ecb818c6`
+Full report, content SHA-256: `abf16677352a939d2f90ad1645ffa1c55f71b533e3809f4f8d5d2f78929d576b`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: bdk @ f2528da88b10
 
-*One-page brief* · Reviewed: 2026-11-06 12:54 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Bitcoin Dev Kit — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 12:00 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Bitcoin Dev Kit — public repository (passive review)
 
 Source: https://github.com/bitcoindevkit/bdk/tree/f2528da88b1041bdddf547d677511aea19ad3573
 
@@ -12,7 +12,7 @@ Source: https://github.com/bitcoindevkit/bdk/tree/f2528da88b1041bdddf547d677511a
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) (QSI-2026-17718) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) (QSI-2026-41574) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
 
 ## What the quantum-vulnerable cryptography protects
@@ -25,8 +25,8 @@ Source: https://github.com/bitcoindevkit/bdk/tree/f2528da88b1041bdddf547d677511a
 
 Static review of source code and manifests; files analysed: 44. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `95752fd04b542a6ac39fb243df69a7edd813f6c4f3e4845154c658f482fc2657`
+Full report, content SHA-256: `ab91a0e5611b2bbae97e5f3303335fac69fc21d1bcadad4760c8cbfa6ea4d3c7`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

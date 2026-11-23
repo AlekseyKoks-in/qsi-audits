@@ -1,27 +1,27 @@
 # Post-quantum cryptography review: rage @ b5b68c4f4f7e
 
-*One-page brief* · Reviewed: 2026-11-06 13:47 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: str4d (rage / age encryption) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 12:58 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: str4d (rage / age encryption) — public repository (passive review)
 
 Source: https://github.com/str4d/rage/tree/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f
 
 **Post-quantum maturity:** Level 1 of 4 — post-quantum code present, not wired. **Next step:** Wire the existing post-quantum primitive into a critical path (key wrapping or the channel) behind a hybrid construction, and test interoperability.
 
-**Findings:** Critical 2 · High 4 · Medium 5 · Low 17 · Info 3
+**Findings:** Critical 2 · High 4 · Medium 5 · Low 18 · Info 5
 
 **Quantum timeline (Mosca: x + y − z):** Key establishment 10 + 5 − 8 = 7 → too late; Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **Critical** · zip 8.6.0 is affected by GHSA-m665-v7pm-7grj (CVE-2026-115905) (QSI-2026-18619)\
+1. **Critical** · zip 8.6.0 is affected by GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548) (QSI-2026-42829)\
    What to do: Upgrade to a fixed version (9.0.5).
-2. **Critical** · zip 8.6.0 is affected by RUSTSEC-2026-0369 (QSI-2026-18623)\
+2. **Critical** · zip 8.6.0 is affected by RUSTSEC-2026-0369 (QSI-2026-42833)\
    What to do: Upgrade to a fixed version (9.0.0).
-3. **High** · zip 8.6.0 is affected by GHSA-9hj8-73fh-9963 (CVE-2026-115907) (QSI-2026-18617)\
+3. **High** · zip 8.6.0 is affected by GHSA-9hj8-73fh-9963 (CVE-2026-115907, RUSTSEC-2026-0547) (QSI-2026-42827)\
    What to do: Upgrade to a fixed version (9.0.0).
-4. **High** · zip 8.6.0 is affected by GHSA-hjqx-j4rw-g7xv (CVE-2026-115908) (QSI-2026-18618)\
+4. **High** · zip 8.6.0 is affected by GHSA-hjqx-j4rw-g7xv (CVE-2026-115908, RUSTSEC-2026-0546) (QSI-2026-42828)\
    What to do: Upgrade to a fixed version (9.0.0).
 
-24 more in the full report.
+25 more in the full report.
 
 ## What the quantum-vulnerable cryptography protects
 
@@ -33,14 +33,14 @@ Source: https://github.com/str4d/rage/tree/b5b68c4f4f7ea5c368bc060f6fe0237549c3a
 
 ## Known vulnerable components
 
-Advisories for the versions in use: 25; unlikely to apply to this build: 13 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 12.
+Advisories for the versions in use: 26; unlikely to apply to this build: 14 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 12.
 
 ---
 
 Static review of source code and manifests; files analysed: 54. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `dbd2c6df52207712f1309e15dc6cc70cdf4862fa5fc16ef83f11ff9fb2c78d1b`
+Full report, content SHA-256: `16db84ba1beba5d3450133fd6e0ab59e5b89b39b4a6eb27d5d93bd50a12ca0ca`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

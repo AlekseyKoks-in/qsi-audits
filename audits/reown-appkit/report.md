@@ -4,25 +4,25 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-17 19:08 UTC |
+| Дата отчёта | 2026-11-23 13:02 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 80810177-de39-4147-9711-6508a8708e22 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.6.0 |
+| Запуск аудита | 0e15fd68-4be2-4aed-acdf-aa06bb0bd813 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `493926b01a752681ecd7a9cff79e94fc99ee938ceebc516b97ddef071e8be1f3` |
+| SHA-256 содержимого | `714c38e1c9fb8f7a1bf6109db39ac33e7f24dab7dd2171641b331c64e8b17c40` |
 | Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **20**
-- Высокая: **138**
+- Высокая: **135**
 - Средняя: **199**
-- Низкая: **41**
+- Низкая: **42**
 - Информационная: **2**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 395
+- Известная уязвимая версия компонента: 393
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 1
 - Долгосрочный постквантовый риск: 2
@@ -45,25 +45,25 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 1215 | .size-limit.js: 59 lines scanned with 16 rule patterns and 280 registry patterns; apps/browser-extension/src/App.tsx: 25 lines scanned with 16 rule patterns and 280 registry patterns; apps/browser-extension/src/background.ts: 26 lines scanned with 16 rule patterns and 280 registry patterns |
+| source_code | проверено | 1215 | .size-limit.js: 59 lines scanned with 16 rule patterns and 340 registry patterns; apps/browser-extension/src/App.tsx: 25 lines scanned with 16 rule patterns and 340 registry patterns; apps/browser-extension/src/background.ts: 26 lines scanned with 16 rule patterns and 340 registry patterns |
 | dependencies | проверено | 34 | apps/browser-extension/package.json: 62 dependencies parsed (59 pinned); apps/gallery/package.json: 13 dependencies parsed (10 pinned); apps/laboratory/package.json: 69 dependencies parsed (49 pinned) |
 | secrets | проверено | 2 | packages/common/src/utils/SafeLocalStorage.ts: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); packages/scaffold-ui/src/views/w3m-swap-select-token-view/index.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | entropy | проверено | 1 | random-number generation: 1215 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| crediting | проверено | 1 | payment crediting: 9 file(s) read incoming transfers on TON, the XRP Ledger, Tron or an EVM chain; 1 lead(s). Confirmation depth, reorganisations and duplicate crediting are not checked |
-| osv_advisories | проверено | 1 | 3535 pinned packages queried at OSV.dev; 108 affected (12 of them only in development or build dependencies) |
-| osv_advisories | Недостаточность данных | 8 | npm/axios@1.12.2: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/next@15.5.9: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/next@15.3.8: 33 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
+| crediting | проверено | 1 | payment crediting: 9 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 3 credit from a Tron or EVM node; 1 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| osv_advisories | проверено | 1 | 3535 pinned packages queried at OSV.dev; 106 affected (12 of them only in development or build dependencies) |
+| osv_advisories | Недостаточность данных | 8 | npm/axios@1.12.2: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/next@15.5.9: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/next@15.3.8: 36 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
 ## 4. Проверенные и непроверенные активы
 
 - osv_advisories — Недостаточность данных: npm/axios@1.12.2: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
-- osv_advisories — Недостаточность данных: npm/next@15.5.9: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
-- osv_advisories — Недостаточность данных: npm/next@15.3.8: 33 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
+- osv_advisories — Недостаточность данных: npm/next@15.5.9: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
+- osv_advisories — Недостаточность данных: npm/next@15.3.8: 36 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 - osv_advisories — Недостаточность данных: npm/axios@1.8.4: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 - osv_advisories — Недостаточность данных: npm/dompurify@3.2.4: 22 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 - osv_advisories — Недостаточность данных: npm/hono@4.9.8: 47 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
-- osv_advisories — Недостаточность данных: npm/next@14.2.35: 25 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
+- osv_advisories — Недостаточность данных: npm/next@14.2.35: 26 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 - osv_advisories — Недостаточность данных: npm/node-forge@1.4.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 
 ## 5. Краткое описание архитектуры
@@ -73,17 +73,17 @@ Static review of the source tree reown-appkit at 8f9f39f1dfe0a21bb619dd9a33b6d75
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **0** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 23.9%
+- Доля квантово-уязвимых элементов инвентаризации: 28.2%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-28204 — bitcoinjs-lib 6.1.7 затронут GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846)
+### QSI-2026-42857 — bitcoinjs-lib 6.1.7 затронут GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/bitcoinjs-lib@6.1.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -111,13 +111,13 @@ _tool_output · [OSV.dev GHSA-8vv3-6qpc-gpw6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28209 — storybook 9.0.15 затронут GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125)
+### QSI-2026-42862 — storybook 9.0.15 затронут GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/storybook@9.0.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -145,13 +145,13 @@ _tool_output · [OSV.dev GHSA-f2ph-cmg5-wxc8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28232 — bitcoinjs-lib 7.0.0-rc.0 затронут GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846)
+### QSI-2026-42885 — bitcoinjs-lib 7.0.0-rc.0 затронут GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/bitcoinjs-lib@7.0.0-rc.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -179,13 +179,13 @@ _tool_output · [OSV.dev GHSA-8vv3-6qpc-gpw6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28233 — next 15.5.9 затронут GHSA-2464-fhr4-w9xw
+### QSI-2026-42886 — next 15.5.9 затронут GHSA-2464-fhr4-w9xw
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -213,13 +213,13 @@ _tool_output · [OSV.dev GHSA-2464-fhr4-w9xw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28236 — next 15.5.9 затронут GHSA-2xp9-vwfh-vxw4
+### QSI-2026-42889 — next 15.5.9 затронут GHSA-2xp9-vwfh-vxw4
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -247,13 +247,13 @@ _tool_output · [OSV.dev GHSA-2xp9-vwfh-vxw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28254 — next-auth 5.0.0-beta.29 затронут GHSA-7rqj-j65f-68wh (CVE-2026-73420)
+### QSI-2026-42907 — next-auth 5.0.0-beta.29 затронут GHSA-7rqj-j65f-68wh (CVE-2026-73420)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next-auth@5.0.0-beta.29`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -281,13 +281,13 @@ _tool_output · [OSV.dev GHSA-7rqj-j65f-68wh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28255 — next-auth 5.0.0-beta.29 затронут GHSA-8fpg-xm3f-6cx3 (CVE-2026-73421)
+### QSI-2026-42908 — next-auth 5.0.0-beta.29 затронут GHSA-8fpg-xm3f-6cx3 (CVE-2026-73421)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next-auth@5.0.0-beta.29`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -315,13 +315,13 @@ _tool_output · [OSV.dev GHSA-8fpg-xm3f-6cx3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28260 — next 15.3.8 затронут GHSA-2464-fhr4-w9xw
+### QSI-2026-42913 — next 15.3.8 затронут GHSA-2464-fhr4-w9xw
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -349,13 +349,13 @@ _tool_output · [OSV.dev GHSA-2464-fhr4-w9xw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28263 — next 15.3.8 затронут GHSA-2xp9-vwfh-vxw4
+### QSI-2026-42916 — next 15.3.8 затронут GHSA-2xp9-vwfh-vxw4
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -383,13 +383,13 @@ _tool_output · [OSV.dev GHSA-2xp9-vwfh-vxw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28447 — next 14.2.35 затронут GHSA-2464-fhr4-w9xw
+### QSI-2026-43100 — next 14.2.35 затронут GHSA-2464-fhr4-w9xw
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -417,13 +417,13 @@ _tool_output · [OSV.dev GHSA-2464-fhr4-w9xw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28448 — next 14.2.35 затронут GHSA-2xp9-vwfh-vxw4
+### QSI-2026-43101 — next 14.2.35 затронут GHSA-2xp9-vwfh-vxw4
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -451,13 +451,13 @@ _tool_output · [OSV.dev GHSA-2xp9-vwfh-vxw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28466 — next 14.2.35 затронут GHSA-p293-qw3h-jr36 (CVE-2026-75604)
+### QSI-2026-43119 — next 14.2.35 затронут GHSA-p293-qw3h-jr36 (CVE-2026-75604)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: 9.0 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H`)
 
@@ -485,13 +485,13 @@ _tool_output · [OSV.dev GHSA-p293-qw3h-jr36](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28291 — @auth/core 0.40.0 затронут GHSA-7rqj-j65f-68wh (CVE-2026-73420)
+### QSI-2026-42944 — @auth/core 0.40.0 затронут GHSA-7rqj-j65f-68wh (CVE-2026-73420)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@auth/core@0.40.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -519,13 +519,13 @@ _tool_output · [OSV.dev GHSA-7rqj-j65f-68wh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28298 — @nuxt/devtools 2.7.0 затронут GHSA-279x-mwfv-vcqv (CVE-2026-71319)
+### QSI-2026-42951 — @nuxt/devtools 2.7.0 затронут GHSA-279x-mwfv-vcqv (CVE-2026-71319)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@nuxt/devtools@2.7.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: 9.6 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H`)
 
@@ -553,13 +553,13 @@ _tool_output · [OSV.dev GHSA-279x-mwfv-vcqv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28309 — @simple-git/argv-parser 1.1.1 затронут GHSA-v5rq-49vh-5v5c (CVE-2026-102829)
+### QSI-2026-42962 — @simple-git/argv-parser 1.1.1 затронут GHSA-v5rq-49vh-5v5c (CVE-2026-102829)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@simple-git/argv-parser@1.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -587,13 +587,13 @@ _tool_output · [OSV.dev GHSA-v5rq-49vh-5v5c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28390 — fast-xml-parser 4.2.5 затронут GHSA-m7jm-9gc2-mpf2 (CVE-2026-25896)
+### QSI-2026-43043 — fast-xml-parser 4.2.5 затронут GHSA-m7jm-9gc2-mpf2 (CVE-2026-25896)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.2.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: 9.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:N`)
 
@@ -621,13 +621,13 @@ _tool_output · [OSV.dev GHSA-m7jm-9gc2-mpf2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28397 — fast-xml-parser 4.4.1 затронут GHSA-m7jm-9gc2-mpf2 (CVE-2026-25896)
+### QSI-2026-43050 — fast-xml-parser 4.4.1 затронут GHSA-m7jm-9gc2-mpf2 (CVE-2026-25896)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.4.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: 9.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:N`)
 
@@ -655,13 +655,13 @@ _tool_output · [OSV.dev GHSA-m7jm-9gc2-mpf2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28537 — simple-git 3.36.0 затронут GHSA-x6jw-m9v5-85vh (CVE-2026-102828)
+### QSI-2026-43188 — simple-git 3.36.0 затронут GHSA-x6jw-m9v5-85vh (CVE-2026-102828)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/simple-git@3.36.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -689,13 +689,13 @@ _tool_output · [OSV.dev GHSA-x6jw-m9v5-85vh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28554 — tinypool 1.1.1 затронут GHSA-5gmw-xhrv-c9v3 (CVE-2026-104848)
+### QSI-2026-43205 — tinypool 1.1.1 затронут GHSA-5gmw-xhrv-c9v3 (CVE-2026-104848)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tinypool@1.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -723,13 +723,13 @@ _tool_output · [OSV.dev GHSA-5gmw-xhrv-c9v3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28555 — tinypool 1.1.1 затронут GHSA-85c8-ppgw-ccpr (CVE-2026-104849)
+### QSI-2026-43206 — tinypool 1.1.1 затронут GHSA-85c8-ppgw-ccpr (CVE-2026-104849)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tinypool@1.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -757,13 +757,13 @@ _tool_output · [OSV.dev GHSA-85c8-ppgw-ccpr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28205 — uuid 10.0.0 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
+### QSI-2026-42858 — uuid 10.0.0 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/uuid@10.0.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -791,13 +791,13 @@ _tool_output · [OSV.dev GHSA-w5hq-g745-h8pq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28208 — storybook 9.0.15 затронут GHSA-8452-54wp-rmv6 (CVE-2025-68429)
+### QSI-2026-42861 — storybook 9.0.15 затронут GHSA-8452-54wp-rmv6 (CVE-2025-68429)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/storybook@9.0.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L`)
 
@@ -825,13 +825,13 @@ _tool_output · [OSV.dev GHSA-8452-54wp-rmv6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28210 — storybook 9.0.15 затронут GHSA-mjf5-7g4m-gx5w (CVE-2026-27148)
+### QSI-2026-42863 — storybook 9.0.15 затронут GHSA-mjf5-7g4m-gx5w (CVE-2026-27148)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/storybook@9.0.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -859,13 +859,13 @@ _tool_output · [OSV.dev GHSA-mjf5-7g4m-gx5w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28211 — storybook 9.0.15 затронут GHSA-px85-f4q5-jh77 (CVE-2026-114126)
+### QSI-2026-42864 — storybook 9.0.15 затронут GHSA-px85-f4q5-jh77 (CVE-2026-114126)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/storybook@9.0.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -893,13 +893,13 @@ _tool_output · [OSV.dev GHSA-px85-f4q5-jh77](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28212 — axios 1.12.2 затронут GHSA-35jp-ww65-95wh (CVE-2026-44494)
+### QSI-2026-42865 — axios 1.12.2 затронут GHSA-35jp-ww65-95wh (CVE-2026-44494)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N`)
 
@@ -927,13 +927,13 @@ _tool_output · [OSV.dev GHSA-35jp-ww65-95wh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28213 — axios 1.12.2 затронут GHSA-3g43-6gmg-66jw (CVE-2026-44495)
+### QSI-2026-42866 — axios 1.12.2 затронут GHSA-3g43-6gmg-66jw (CVE-2026-44495)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.0 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:L`)
 
@@ -961,13 +961,13 @@ _tool_output · [OSV.dev GHSA-3g43-6gmg-66jw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28217 — axios 1.12.2 затронут GHSA-43fc-jf86-j433 (CVE-2026-25639)
+### QSI-2026-42870 — axios 1.12.2 затронут GHSA-43fc-jf86-j433 (CVE-2026-25639)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -995,13 +995,13 @@ _tool_output · [OSV.dev GHSA-43fc-jf86-j433](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28221 — axios 1.12.2 затронут GHSA-62hf-57xw-28j9 (CVE-2026-42039)
+### QSI-2026-42874 — axios 1.12.2 затронут GHSA-62hf-57xw-28j9 (CVE-2026-42039)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1029,13 +1029,13 @@ _tool_output · [OSV.dev GHSA-62hf-57xw-28j9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28222 — axios 1.12.2 затронут GHSA-6chq-wfr3-2hj9 (CVE-2026-42035)
+### QSI-2026-42875 — axios 1.12.2 затронут GHSA-6chq-wfr3-2hj9 (CVE-2026-42035)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -1063,13 +1063,13 @@ _tool_output · [OSV.dev GHSA-6chq-wfr3-2hj9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28223 — axios 1.12.2 затронут GHSA-777c-7fjr-54vf (CVE-2026-44488)
+### QSI-2026-42876 — axios 1.12.2 затронут GHSA-777c-7fjr-54vf (CVE-2026-44488)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1097,13 +1097,13 @@ _tool_output · [OSV.dev GHSA-777c-7fjr-54vf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28228 — axios 1.12.2 затронут GHSA-hfxv-24rg-xrqf (CVE-2026-44496)
+### QSI-2026-42881 — axios 1.12.2 затронут GHSA-hfxv-24rg-xrqf (CVE-2026-44496)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1131,13 +1131,13 @@ _tool_output · [OSV.dev GHSA-hfxv-24rg-xrqf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28229 — axios 1.12.2 затронут GHSA-j5f8-grm9-p9fc (CVE-2026-44486)
+### QSI-2026-42882 — axios 1.12.2 затронут GHSA-j5f8-grm9-p9fc (CVE-2026-44486)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1165,13 +1165,13 @@ _tool_output · [OSV.dev GHSA-j5f8-grm9-p9fc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28234 — next 15.5.9 затронут GHSA-267c-6grr-h53f (CVE-2026-44575)
+### QSI-2026-42887 — next 15.5.9 затронут GHSA-267c-6grr-h53f (CVE-2026-44575)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1199,13 +1199,13 @@ _tool_output · [OSV.dev GHSA-267c-6grr-h53f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28235 — next 15.5.9 затронут GHSA-26hh-7cqf-hhc6 (CVE-2026-45109)
+### QSI-2026-42888 — next 15.5.9 затронут GHSA-26hh-7cqf-hhc6 (CVE-2026-45109)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1233,13 +1233,13 @@ _tool_output · [OSV.dev GHSA-26hh-7cqf-hhc6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28237 — next 15.5.9 затронут GHSA-36qx-fr4f-26g5 (CVE-2026-44573)
+### QSI-2026-42890 — next 15.5.9 затронут GHSA-36qx-fr4f-26g5 (CVE-2026-44573)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1267,13 +1267,13 @@ _tool_output · [OSV.dev GHSA-36qx-fr4f-26g5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28241 — next 15.5.9 затронут GHSA-492v-c6pp-mqqv (CVE-2026-44574)
+### QSI-2026-42894 — next 15.5.9 затронут GHSA-492v-c6pp-mqqv (CVE-2026-44574)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -1301,13 +1301,13 @@ _tool_output · [OSV.dev GHSA-492v-c6pp-mqqv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28245 — next 15.5.9 затронут GHSA-89xv-2m56-2m9x (CVE-2026-64649)
+### QSI-2026-42899 — next 15.5.9 затронут GHSA-89xv-2m56-2m9x (CVE-2026-64649)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1335,13 +1335,13 @@ _tool_output · [OSV.dev GHSA-89xv-2m56-2m9x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28246 — next 15.5.9 затронут GHSA-8h8q-6873-q5fj
+### QSI-2026-42900 — next 15.5.9 затронут GHSA-8h8q-6873-q5fj
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1369,13 +1369,13 @@ _tool_output · [OSV.dev GHSA-8h8q-6873-q5fj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28249 — next 15.5.9 затронут GHSA-c4j6-fc7j-m34r (CVE-2026-44578)
+### QSI-2026-42903 — next 15.5.9 затронут GHSA-c4j6-fc7j-m34r (CVE-2026-44578)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.6 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N`)
 
@@ -1403,13 +1403,13 @@ _tool_output · [OSV.dev GHSA-c4j6-fc7j-m34r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28257 — next-auth 5.0.0-beta.29 затронут GHSA-xmf8-cvqr-rfgj (CVE-2026-73418)
+### QSI-2026-42910 — next-auth 5.0.0-beta.29 затронут GHSA-xmf8-cvqr-rfgj (CVE-2026-73418)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next-auth@5.0.0-beta.29`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1437,13 +1437,13 @@ _tool_output · [OSV.dev GHSA-xmf8-cvqr-rfgj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28258 — @opennextjs/cloudflare 1.5.3 затронут GHSA-2vc4-c4r6-p6v6 (CVE-2026-100409)
+### QSI-2026-42911 — @opennextjs/cloudflare 1.5.3 затронут GHSA-2vc4-c4r6-p6v6 (CVE-2026-100409)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/@opennextjs/cloudflare@1.5.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1471,13 +1471,13 @@ _tool_output · [OSV.dev GHSA-2vc4-c4r6-p6v6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28259 — @opennextjs/cloudflare 1.5.3 затронут GHSA-c7mq-gh6q-6q7c (CVE-2025-6087, CVE-2026-3125)
+### QSI-2026-42912 — @opennextjs/cloudflare 1.5.3 затронут GHSA-c7mq-gh6q-6q7c (CVE-2025-6087, CVE-2026-3125)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/@opennextjs/cloudflare@1.5.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1505,13 +1505,13 @@ _tool_output · [OSV.dev GHSA-c7mq-gh6q-6q7c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28261 — next 15.3.8 затронут GHSA-267c-6grr-h53f (CVE-2026-44575)
+### QSI-2026-42914 — next 15.3.8 затронут GHSA-267c-6grr-h53f (CVE-2026-44575)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1539,13 +1539,13 @@ _tool_output · [OSV.dev GHSA-267c-6grr-h53f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28262 — next 15.3.8 затронут GHSA-26hh-7cqf-hhc6 (CVE-2026-45109)
+### QSI-2026-42915 — next 15.3.8 затронут GHSA-26hh-7cqf-hhc6 (CVE-2026-45109)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1573,13 +1573,13 @@ _tool_output · [OSV.dev GHSA-26hh-7cqf-hhc6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28264 — next 15.3.8 затронут GHSA-36qx-fr4f-26g5 (CVE-2026-44573)
+### QSI-2026-42917 — next 15.3.8 затронут GHSA-36qx-fr4f-26g5 (CVE-2026-44573)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1607,13 +1607,13 @@ _tool_output · [OSV.dev GHSA-36qx-fr4f-26g5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28272 — next 15.3.8 затронут GHSA-89xv-2m56-2m9x (CVE-2026-64649)
+### QSI-2026-42926 — next 15.3.8 затронут GHSA-89xv-2m56-2m9x (CVE-2026-64649)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1641,13 +1641,13 @@ _tool_output · [OSV.dev GHSA-89xv-2m56-2m9x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28273 — next 15.3.8 затронут GHSA-8h8q-6873-q5fj
+### QSI-2026-42927 — next 15.3.8 затронут GHSA-8h8q-6873-q5fj
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1675,13 +1675,13 @@ _tool_output · [OSV.dev GHSA-8h8q-6873-q5fj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28276 — next 15.3.8 затронут GHSA-c4j6-fc7j-m34r (CVE-2026-44578)
+### QSI-2026-42930 — next 15.3.8 затронут GHSA-c4j6-fc7j-m34r (CVE-2026-44578)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.6 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N`)
 
@@ -1709,13 +1709,13 @@ _tool_output · [OSV.dev GHSA-c4j6-fc7j-m34r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28281 — vite 5.4.20 затронут GHSA-587h-7wmj-h5pm (CVE-2026-112942)
+### QSI-2026-42934 — vite 5.4.20 затронут GHSA-587h-7wmj-h5pm (CVE-2026-112942)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1743,13 +1743,13 @@ _tool_output · [OSV.dev GHSA-587h-7wmj-h5pm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28289 — figlet 1.9.1 затронут GHSA-62ch-8vmq-8xm7 (CVE-2026-96780)
+### QSI-2026-42942 — figlet 1.9.1 затронут GHSA-62ch-8vmq-8xm7 (CVE-2026-96780)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/figlet@1.9.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1777,13 +1777,13 @@ _tool_output · [OSV.dev GHSA-62ch-8vmq-8xm7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28290 — zod 3.22.4 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-42943 — zod 3.22.4 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/zod@3.22.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1811,13 +1811,13 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28317 — axios 1.18.0 затронут GHSA-3pq3-5fj3-cg6v (CVE-2026-101898)
+### QSI-2026-42970 — axios 1.18.0 затронут GHSA-3pq3-5fj3-cg6v (CVE-2026-101898)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1845,13 +1845,13 @@ _tool_output · [OSV.dev GHSA-3pq3-5fj3-cg6v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28320 — axios 1.18.0 затронут GHSA-542g-h47m-68v8 (CVE-2026-101901)
+### QSI-2026-42973 — axios 1.18.0 затронут GHSA-542g-h47m-68v8 (CVE-2026-101901)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1879,13 +1879,13 @@ _tool_output · [OSV.dev GHSA-542g-h47m-68v8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28322 — axios 1.18.0 затронут GHSA-c29m-xwm3-cm6r (CVE-2026-101903)
+### QSI-2026-42975 — axios 1.18.0 затронут GHSA-c29m-xwm3-cm6r (CVE-2026-101903)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1913,13 +1913,13 @@ _tool_output · [OSV.dev GHSA-c29m-xwm3-cm6r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28324 — axios 1.18.0 затронут GHSA-m8m8-qj5v-23w3 (CVE-2026-101905)
+### QSI-2026-42977 — axios 1.18.0 затронут GHSA-m8m8-qj5v-23w3 (CVE-2026-101905)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1947,13 +1947,13 @@ _tool_output · [OSV.dev GHSA-m8m8-qj5v-23w3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28325 — axios 1.18.0 затронут GHSA-mghh-pgcx-3jjj (CVE-2026-101906)
+### QSI-2026-42978 — axios 1.18.0 затронут GHSA-mghh-pgcx-3jjj (CVE-2026-101906)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1981,13 +1981,13 @@ _tool_output · [OSV.dev GHSA-mghh-pgcx-3jjj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28326 — axios 1.18.0 затронут GHSA-r4gj-5m52-g5wh (CVE-2026-101907)
+### QSI-2026-42979 — axios 1.18.0 затронут GHSA-r4gj-5m52-g5wh (CVE-2026-101907)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2015,13 +2015,13 @@ _tool_output · [OSV.dev GHSA-r4gj-5m52-g5wh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28328 — axios 1.18.0 затронут GHSA-x97p-jq2g-jp4f (CVE-2026-101909)
+### QSI-2026-42981 — axios 1.18.0 затронут GHSA-x97p-jq2g-jp4f (CVE-2026-101909)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2049,13 +2049,13 @@ _tool_output · [OSV.dev GHSA-x97p-jq2g-jp4f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28329 — axios 1.8.4 затронут GHSA-35jp-ww65-95wh (CVE-2026-44494)
+### QSI-2026-42982 — axios 1.8.4 затронут GHSA-35jp-ww65-95wh (CVE-2026-44494)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N`)
 
@@ -2083,13 +2083,13 @@ _tool_output · [OSV.dev GHSA-35jp-ww65-95wh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28330 — axios 1.8.4 затронут GHSA-3g43-6gmg-66jw (CVE-2026-44495)
+### QSI-2026-42983 — axios 1.8.4 затронут GHSA-3g43-6gmg-66jw (CVE-2026-44495)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.0 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:L`)
 
@@ -2117,13 +2117,13 @@ _tool_output · [OSV.dev GHSA-3g43-6gmg-66jw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28334 — axios 1.8.4 затронут GHSA-43fc-jf86-j433 (CVE-2026-25639)
+### QSI-2026-42987 — axios 1.8.4 затронут GHSA-43fc-jf86-j433 (CVE-2026-25639)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2151,13 +2151,13 @@ _tool_output · [OSV.dev GHSA-43fc-jf86-j433](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28336 — axios 1.8.4 затронут GHSA-4hjh-wcwx-xvwj (CVE-2025-58754)
+### QSI-2026-42989 — axios 1.8.4 затронут GHSA-4hjh-wcwx-xvwj (CVE-2025-58754)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2185,13 +2185,13 @@ _tool_output · [OSV.dev GHSA-4hjh-wcwx-xvwj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28338 — axios 1.8.4 затронут GHSA-62hf-57xw-28j9 (CVE-2026-42039)
+### QSI-2026-42991 — axios 1.8.4 затронут GHSA-62hf-57xw-28j9 (CVE-2026-42039)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2219,13 +2219,13 @@ _tool_output · [OSV.dev GHSA-62hf-57xw-28j9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28339 — axios 1.8.4 затронут GHSA-6chq-wfr3-2hj9 (CVE-2026-42035)
+### QSI-2026-42992 — axios 1.8.4 затронут GHSA-6chq-wfr3-2hj9 (CVE-2026-42035)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -2253,13 +2253,13 @@ _tool_output · [OSV.dev GHSA-6chq-wfr3-2hj9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28340 — axios 1.8.4 затронут GHSA-777c-7fjr-54vf (CVE-2026-44488)
+### QSI-2026-42993 — axios 1.8.4 затронут GHSA-777c-7fjr-54vf (CVE-2026-44488)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2287,13 +2287,13 @@ _tool_output · [OSV.dev GHSA-777c-7fjr-54vf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28345 — axios 1.8.4 затронут GHSA-hfxv-24rg-xrqf (CVE-2026-44496)
+### QSI-2026-42998 — axios 1.8.4 затронут GHSA-hfxv-24rg-xrqf (CVE-2026-44496)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2321,13 +2321,13 @@ _tool_output · [OSV.dev GHSA-hfxv-24rg-xrqf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28346 — axios 1.8.4 затронут GHSA-j5f8-grm9-p9fc (CVE-2026-44486)
+### QSI-2026-42999 — axios 1.8.4 затронут GHSA-j5f8-grm9-p9fc (CVE-2026-44486)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2355,13 +2355,13 @@ _tool_output · [OSV.dev GHSA-j5f8-grm9-p9fc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28417 — hono 4.9.8 затронут GHSA-3vhc-576x-3qv4 (CVE-2026-22818)
+### QSI-2026-43070 — hono 4.9.8 затронут GHSA-3vhc-576x-3qv4 (CVE-2026-22818)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.2 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N`)
 
@@ -2389,13 +2389,13 @@ _tool_output · [OSV.dev GHSA-3vhc-576x-3qv4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28426 — hono 4.9.8 затронут GHSA-88fw-hqm2-52qc (CVE-2026-54290)
+### QSI-2026-43079 — hono 4.9.8 затронут GHSA-88fw-hqm2-52qc (CVE-2026-54290)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N`)
 
@@ -2423,13 +2423,13 @@ _tool_output · [OSV.dev GHSA-88fw-hqm2-52qc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28449 — next 14.2.35 затронут GHSA-36qx-fr4f-26g5 (CVE-2026-44573)
+### QSI-2026-43102 — next 14.2.35 затронут GHSA-36qx-fr4f-26g5 (CVE-2026-44573)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2457,13 +2457,13 @@ _tool_output · [OSV.dev GHSA-36qx-fr4f-26g5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28455 — next 14.2.35 затронут GHSA-89xv-2m56-2m9x (CVE-2026-64649)
+### QSI-2026-43108 — next 14.2.35 затронут GHSA-89xv-2m56-2m9x (CVE-2026-64649)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2491,13 +2491,13 @@ _tool_output · [OSV.dev GHSA-89xv-2m56-2m9x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28456 — next 14.2.35 затронут GHSA-8h8q-6873-q5fj
+### QSI-2026-43109 — next 14.2.35 затронут GHSA-8h8q-6873-q5fj
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2525,13 +2525,13 @@ _tool_output · [OSV.dev GHSA-8h8q-6873-q5fj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28459 — next 14.2.35 затронут GHSA-c4j6-fc7j-m34r (CVE-2026-44578)
+### QSI-2026-43112 — next 14.2.35 затронут GHSA-c4j6-fc7j-m34r (CVE-2026-44578)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.6 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N`)
 
@@ -2559,13 +2559,13 @@ _tool_output · [OSV.dev GHSA-c4j6-fc7j-m34r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28463 — next 14.2.35 затронут GHSA-h25m-26qc-wcjf
+### QSI-2026-43116 — next 14.2.35 затронут GHSA-h25m-26qc-wcjf
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2593,13 +2593,13 @@ _tool_output · [OSV.dev GHSA-h25m-26qc-wcjf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28465 — next 14.2.35 затронут GHSA-m99w-x7hq-7vfj (CVE-2026-64641)
+### QSI-2026-43118 — next 14.2.35 затронут GHSA-m99w-x7hq-7vfj (CVE-2026-64641)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2627,13 +2627,13 @@ _tool_output · [OSV.dev GHSA-m99w-x7hq-7vfj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28512 — postcss 8.4.31 затронут GHSA-6g55-p6wh-862q (CVE-2026-45623)
+### QSI-2026-43163 — postcss 8.4.31 затронут GHSA-6g55-p6wh-862q (CVE-2026-45623)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@8.4.31`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2661,13 +2661,13 @@ _tool_output · [OSV.dev GHSA-6g55-p6wh-862q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28515 — postcss 8.4.31 затронут GHSA-r28c-9q8g-f849 (CVE-2026-73646)
+### QSI-2026-43166 — postcss 8.4.31 затронут GHSA-r28c-9q8g-f849 (CVE-2026-73646)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@8.4.31`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2695,13 +2695,13 @@ _tool_output · [OSV.dev GHSA-r28c-9q8g-f849](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28582 — uuid 8.3.2 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
+### QSI-2026-43233 — uuid 8.3.2 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/uuid@8.3.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -2729,13 +2729,13 @@ _tool_output · [OSV.dev GHSA-w5hq-g745-h8pq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28583 — uuid 9.0.1 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
+### QSI-2026-43234 — uuid 9.0.1 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/uuid@9.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -2763,13 +2763,13 @@ _tool_output · [OSV.dev GHSA-w5hq-g745-h8pq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28590 — vite 7.3.6 затронут GHSA-587h-7wmj-h5pm (CVE-2026-112942)
+### QSI-2026-43241 — vite 7.3.6 затронут GHSA-587h-7wmj-h5pm (CVE-2026-112942)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@7.3.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2797,13 +2797,13 @@ _tool_output · [OSV.dev GHSA-587h-7wmj-h5pm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28595 — zod 3.22.3 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-43246 — zod 3.22.3 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/zod@3.22.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2831,13 +2831,13 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28596 — zod 3.25.76 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-43247 — zod 3.25.76 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/zod@3.25.76`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2865,13 +2865,13 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28597 — zod 4.0.17 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-43248 — zod 4.0.17 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/zod@4.0.17`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2899,13 +2899,13 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28598 — zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-43249 — zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/zod@4.6.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2933,13 +2933,13 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28202 — Токен определяется по символу (USDC) в packages/scaffold-ui/src/views/w3m-fund-wallet-view/index.ts
+### QSI-2026-42855 — Токен определяется по символу (USDC) в packages/scaffold-ui/src/views/w3m-fund-wallet-view/index.ts
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `packages/scaffold-ui/src/views/w3m-fund-wallet-view/index.ts:75`
 - Источник данных: packages/scaffold-ui/src/views/w3m-fund-wallet-view/index.ts
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: crediting 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: crediting 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 47.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2967,13 +2967,13 @@ _file_excerpt · [packages/scaffold-ui/src/views/w3m-fund-wallet-view/index.ts](
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-28293 — @auth/core 0.40.0 затронут GHSA-xmf8-cvqr-rfgj (CVE-2026-73418)
+### QSI-2026-42946 — @auth/core 0.40.0 затронут GHSA-xmf8-cvqr-rfgj (CVE-2026-73418)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@auth/core@0.40.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3001,13 +3001,13 @@ _tool_output · [OSV.dev GHSA-xmf8-cvqr-rfgj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28295 — @fastify/busboy 2.1.1 затронут GHSA-x8mw-p69m-v3mx (CVE-2026-19481)
+### QSI-2026-42948 — @fastify/busboy 2.1.1 затронут GHSA-x8mw-p69m-v3mx (CVE-2026-19481)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@fastify/busboy@2.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3035,13 +3035,13 @@ _tool_output · [OSV.dev GHSA-x8mw-p69m-v3mx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28315 — @vue/server-renderer 3.4.3 затронут GHSA-g2v6-rqmx-r4w6
+### QSI-2026-42968 — @vue/server-renderer 3.4.3 затронут GHSA-g2v6-rqmx-r4w6
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@vue/server-renderer@3.4.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.2 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N`)
 
@@ -3069,13 +3069,13 @@ _tool_output · [OSV.dev GHSA-g2v6-rqmx-r4w6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28316 — @vue/server-renderer 3.5.13 затронут GHSA-g2v6-rqmx-r4w6
+### QSI-2026-42969 — @vue/server-renderer 3.5.13 затронут GHSA-g2v6-rqmx-r4w6
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@vue/server-renderer@3.5.13`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.2 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N`)
 
@@ -3103,13 +3103,13 @@ _tool_output · [OSV.dev GHSA-g2v6-rqmx-r4w6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28350 — basic-ftp 5.3.1 затронут GHSA-c475-qrg2-pj4r (CVE-2026-102990)
+### QSI-2026-43003 — basic-ftp 5.3.1 затронут GHSA-c475-qrg2-pj4r (CVE-2026-102990)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/basic-ftp@5.3.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -3137,13 +3137,13 @@ _tool_output · [OSV.dev GHSA-c475-qrg2-pj4r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28352 — bigint-buffer 1.1.5 затронут GHSA-3gc7-fjrx-p6mg (CVE-2025-3194)
+### QSI-2026-43005 — bigint-buffer 1.1.5 затронут GHSA-3gc7-fjrx-p6mg (CVE-2025-3194)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/bigint-buffer@1.1.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3171,13 +3171,13 @@ _tool_output · [OSV.dev GHSA-3gc7-fjrx-p6mg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28353 — body-parser 1.20.8 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)
+### QSI-2026-43006 — body-parser 1.20.8 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/body-parser@1.20.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3205,13 +3205,13 @@ _tool_output · [OSV.dev GHSA-27r3-jxmh-p828](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28354 — body-parser 2.3.0 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)
+### QSI-2026-43007 — body-parser 2.3.0 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/body-parser@2.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3239,13 +3239,13 @@ _tool_output · [OSV.dev GHSA-27r3-jxmh-p828](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28355 — decode-uri-component 0.2.2 затронут GHSA-qr28-fpjm-wq7f (CVE-2026-118664)
+### QSI-2026-43008 — decode-uri-component 0.2.2 затронут GHSA-qr28-fpjm-wq7f (CVE-2026-118664)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/decode-uri-component@0.2.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -3273,47 +3273,13 @@ _tool_output · [OSV.dev GHSA-qr28-fpjm-wq7f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28371 — dompurify 3.2.4 затронут GHSA-mrv2-3pqr-j5jr (CVE-2026-116803)
-
-- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
-- Затронутый актив: `dependency:npm/dompurify@3.2.4`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
-- Балл приоритета: 37.6 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает GHSA-mrv2-3pqr-j5jr (CVE-2026-116803) для пакета npm dompurify версии 3.2.4: DOMPurify IN_PLACE: hook that removes a parent or sibling leaves the detached subtree's event handlers armed (incomplete fix for GHSA-p98j-92pf-mc4p). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-mrv2-3pqr-j5jr
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-mrv2-3pqr-j5jr](https://osv.dev/vulnerability/GHSA-mrv2-3pqr-j5jr) · manifest · SHA-256 f83de13157deb84e9a0032bf60c84e2f5f6477ef7e26d9f99ed987c79008337e_
-
-```
-{"id": "GHSA-mrv2-3pqr-j5jr", "aliases": ["CVE-2026-116803"], "modified": "2026-10-27T10:56:05.613459690Z", "summary": "DOMPurify IN_PLACE: hook that removes a parent or sibling leaves the detached subtree's event handlers armed (incomplete fix for GHSA-p98j-92pf-mc4p)", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:P/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (3.4.17).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-28378 — extract-zip 2.0.1 затронут GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693)
+### QSI-2026-43031 — extract-zip 2.0.1 затронут GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/extract-zip@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H`)
 
@@ -3341,13 +3307,13 @@ _tool_output · [OSV.dev GHSA-7pqw-9j4j-h8q3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28379 — extract-zip 2.0.1 затронут GHSA-jmr9-qjv8-65gv (CVE-2026-56876)
+### QSI-2026-43032 — extract-zip 2.0.1 затронут GHSA-jmr9-qjv8-65gv (CVE-2026-56876)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/extract-zip@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -3375,13 +3341,13 @@ _tool_output · [OSV.dev GHSA-jmr9-qjv8-65gv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28385 — fast-xml-parser 4.2.5 затронут GHSA-8gc5-j5rx-235r (CVE-2026-33036)
+### QSI-2026-43038 — fast-xml-parser 4.2.5 затронут GHSA-8gc5-j5rx-235r (CVE-2026-33036)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.2.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3409,13 +3375,13 @@ _tool_output · [OSV.dev GHSA-8gc5-j5rx-235r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28388 — fast-xml-parser 4.2.5 затронут GHSA-jmr7-xgp7-cmfj (CVE-2026-26278)
+### QSI-2026-43041 — fast-xml-parser 4.2.5 затронут GHSA-jmr7-xgp7-cmfj (CVE-2026-26278)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.2.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3443,13 +3409,13 @@ _tool_output · [OSV.dev GHSA-jmr7-xgp7-cmfj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28392 — fast-xml-parser 4.4.1 затронут GHSA-8gc5-j5rx-235r (CVE-2026-33036)
+### QSI-2026-43045 — fast-xml-parser 4.4.1 затронут GHSA-8gc5-j5rx-235r (CVE-2026-33036)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.4.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3477,13 +3443,13 @@ _tool_output · [OSV.dev GHSA-8gc5-j5rx-235r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28395 — fast-xml-parser 4.4.1 затронут GHSA-jmr7-xgp7-cmfj (CVE-2026-26278)
+### QSI-2026-43048 — fast-xml-parser 4.4.1 затронут GHSA-jmr7-xgp7-cmfj (CVE-2026-26278)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.4.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3511,13 +3477,13 @@ _tool_output · [OSV.dev GHSA-jmr7-xgp7-cmfj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28398 — follow-redirects 1.16.0 затронут GHSA-8r9p-f939-6h3c (CVE-2026-111755)
+### QSI-2026-43051 — follow-redirects 1.16.0 затронут GHSA-8r9p-f939-6h3c (CVE-2026-111755)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/follow-redirects@1.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -3545,13 +3511,13 @@ _tool_output · [OSV.dev GHSA-8r9p-f939-6h3c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28400 — follow-redirects 1.16.0 затронут GHSA-q3jh-wrc6-jgq8 (CVE-2026-111756)
+### QSI-2026-43053 — follow-redirects 1.16.0 затронут GHSA-q3jh-wrc6-jgq8 (CVE-2026-111756)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/follow-redirects@1.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -3579,13 +3545,13 @@ _tool_output · [OSV.dev GHSA-q3jh-wrc6-jgq8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28402 — glob 10.3.10 затронут GHSA-5j98-mcp5-4vw2 (CVE-2025-64756)
+### QSI-2026-43055 — glob 10.3.10 затронут GHSA-5j98-mcp5-4vw2 (CVE-2025-64756)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/glob@10.3.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -3613,13 +3579,13 @@ _tool_output · [OSV.dev GHSA-5j98-mcp5-4vw2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28434 — launch-editor 2.14.1 затронут GHSA-587h-7wmj-h5pm (CVE-2026-112942)
+### QSI-2026-43087 — launch-editor 2.14.1 затронут GHSA-587h-7wmj-h5pm (CVE-2026-112942)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/launch-editor@2.14.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -3647,13 +3613,13 @@ _tool_output · [OSV.dev GHSA-587h-7wmj-h5pm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28439 — minimatch 9.0.3 затронут GHSA-23c5-xmqv-rm74 (CVE-2026-27904)
+### QSI-2026-43092 — minimatch 9.0.3 затронут GHSA-23c5-xmqv-rm74 (CVE-2026-27904)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3681,13 +3647,13 @@ _tool_output · [OSV.dev GHSA-23c5-xmqv-rm74](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28440 — minimatch 9.0.3 затронут GHSA-3ppc-4f35-3m26 (CVE-2026-26996)
+### QSI-2026-43093 — minimatch 9.0.3 затронут GHSA-3ppc-4f35-3m26 (CVE-2026-26996)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -3715,13 +3681,13 @@ _tool_output · [OSV.dev GHSA-3ppc-4f35-3m26](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28441 — minimatch 9.0.3 затронут GHSA-7r86-cg39-jmmj (CVE-2026-27903)
+### QSI-2026-43094 — minimatch 9.0.3 затронут GHSA-7r86-cg39-jmmj (CVE-2026-27903)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3749,13 +3715,13 @@ _tool_output · [OSV.dev GHSA-7r86-cg39-jmmj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28446 — nanoid 5.1.5 затронут GHSA-xwg4-73v4-xw9w (CVE-2026-73086)
+### QSI-2026-43099 — nanoid 5.1.5 затронут GHSA-xwg4-73v4-xw9w (CVE-2026-73086)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nanoid@5.1.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -3783,13 +3749,13 @@ _tool_output · [OSV.dev GHSA-xwg4-73v4-xw9w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28472 — node-forge 1.4.0 затронут GHSA-5x38-2vff-x55p (CVE-2026-119190)
+### QSI-2026-43125 — node-forge 1.4.0 затронут GHSA-5x38-2vff-x55p (CVE-2026-119190)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -3817,13 +3783,13 @@ _tool_output · [OSV.dev GHSA-5x38-2vff-x55p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28475 — node-forge 1.4.0 затронут GHSA-6qrw-m8cv-hcxf (CVE-2026-119192)
+### QSI-2026-43128 — node-forge 1.4.0 затронут GHSA-6qrw-m8cv-hcxf (CVE-2026-119192)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -3851,13 +3817,13 @@ _tool_output · [OSV.dev GHSA-6qrw-m8cv-hcxf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28477 — node-forge 1.4.0 затронут GHSA-7wch-p9px-956x (CVE-2026-118779)
+### QSI-2026-43130 — node-forge 1.4.0 затронут GHSA-7wch-p9px-956x (CVE-2026-118779)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3885,17 +3851,17 @@ _tool_output · [OSV.dev GHSA-7wch-p9px-956x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28478 — node-forge 1.4.0 затронут GHSA-86w9-cpqp-85rv (CVE-2026-33894, CVE-2026-85393)
+### QSI-2026-43131 — node-forge 1.4.0 затронут GHSA-86w9-cpqp-85rv (CVE-2026-85393)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
-OSV.dev сообщает GHSA-86w9-cpqp-85rv (CVE-2026-33894, CVE-2026-85393) для пакета npm node-forge версии 1.4.0: node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-86w9-cpqp-85rv (CVE-2026-85393) для пакета npm node-forge версии 1.4.0: node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3907,10 +3873,10 @@ curl -s https://api.osv.dev/v1/vulns/GHSA-86w9-cpqp-85rv
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev GHSA-86w9-cpqp-85rv](https://osv.dev/vulnerability/GHSA-86w9-cpqp-85rv) · manifest · SHA-256 1823e07426cc1fc8ddaa1aeedec9ba03b259f2f71dc7a04ca5d008dd77755e7b_
+_tool_output · [OSV.dev GHSA-86w9-cpqp-85rv](https://osv.dev/vulnerability/GHSA-86w9-cpqp-85rv) · manifest · SHA-256 b77ff08de456a3ce5a688d9a4a83f0cf4ae98a9ef19b16aade160ef8ec187123_
 
 ```
-{"id": "GHSA-86w9-cpqp-85rv", "aliases": ["CVE-2026-33894", "CVE-2026-85393", "GHSA-ppp5-5v6c-4jwp"], "modified": "2026-10-01T21:40:55.016251436Z", "summary": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+{"id": "GHSA-86w9-cpqp-85rv", "aliases": ["CVE-2026-85393"], "modified": "2026-11-21T20:11:10.745797815Z", "summary": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -3919,13 +3885,13 @@ _tool_output · [OSV.dev GHSA-86w9-cpqp-85rv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28479 — node-forge 1.4.0 затронут GHSA-8hrf-8g6f-7xwp (CVE-2026-119188)
+### QSI-2026-43132 — node-forge 1.4.0 затронут GHSA-8hrf-8g6f-7xwp (CVE-2026-119188)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3953,13 +3919,13 @@ _tool_output · [OSV.dev GHSA-8hrf-8g6f-7xwp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28483 — node-forge 1.4.0 затронут GHSA-hqq3-7jhf-c5jx (CVE-2026-119187)
+### QSI-2026-43136 — node-forge 1.4.0 затронут GHSA-hqq3-7jhf-c5jx (CVE-2026-119187)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3987,13 +3953,13 @@ _tool_output · [OSV.dev GHSA-hqq3-7jhf-c5jx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28485 — node-forge 1.4.0 затронут GHSA-jc66-7q78-782g (CVE-2026-118782)
+### QSI-2026-43138 — node-forge 1.4.0 затронут GHSA-jc66-7q78-782g (CVE-2026-118782)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -4021,13 +3987,13 @@ _tool_output · [OSV.dev GHSA-jc66-7q78-782g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28486 — node-forge 1.4.0 затронут GHSA-rhr8-3pm8-cq29 (CVE-2026-119191)
+### QSI-2026-43139 — node-forge 1.4.0 затронут GHSA-rhr8-3pm8-cq29 (CVE-2026-119191)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4055,13 +4021,13 @@ _tool_output · [OSV.dev GHSA-rhr8-3pm8-cq29](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28491 — nuxt 4.1.2 затронут GHSA-9473-5f9j-94wq (CVE-2026-71320)
+### QSI-2026-43144 — nuxt 4.1.2 затронут GHSA-9473-5f9j-94wq (CVE-2026-71320)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -4089,13 +4055,13 @@ _tool_output · [OSV.dev GHSA-9473-5f9j-94wq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28493 — nuxt 4.1.2 затронут GHSA-9pgf-384g-p7mv (CVE-2026-71321)
+### QSI-2026-43146 — nuxt 4.1.2 затронут GHSA-9pgf-384g-p7mv (CVE-2026-71321)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4123,13 +4089,13 @@ _tool_output · [OSV.dev GHSA-9pgf-384g-p7mv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28500 — nuxt 4.1.2 затронут GHSA-hxcr-hm88-mpq6 (CVE-2026-71314)
+### QSI-2026-43153 — nuxt 4.1.2 затронут GHSA-hxcr-hm88-mpq6 (CVE-2026-71314)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4157,13 +4123,13 @@ _tool_output · [OSV.dev GHSA-hxcr-hm88-mpq6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28503 — nuxt 4.1.2 затронут GHSA-mm7m-92g8-7m47 (CVE-2026-53721)
+### QSI-2026-43156 — nuxt 4.1.2 затронут GHSA-mm7m-92g8-7m47 (CVE-2026-53721)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4191,81 +4157,13 @@ _tool_output · [OSV.dev GHSA-mm7m-92g8-7m47](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28508 — picomatch 2.3.2 затронут GHSA-fc5q-39xc-vjpf (CVE-2026-112366)
-
-- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
-- Затронутый актив: `dependency:npm/picomatch@2.3.2`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
-- Балл приоритета: 37.6 / 100
-- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
-
-OSV.dev сообщает GHSA-fc5q-39xc-vjpf (CVE-2026-112366) для пакета npm picomatch версии 2.3.2: picomatch vulnerable to ReDoS through single-branch repeated extglobs. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-fc5q-39xc-vjpf
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-fc5q-39xc-vjpf](https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf) · manifest · SHA-256 2196ec9fbb5d1f8e31b319b86d5f3a6d905ea3746b16470c327fd9b0c9168484_
-
-```
-{"id": "GHSA-fc5q-39xc-vjpf", "aliases": ["CVE-2026-112366"], "modified": "2026-11-17T16:00:03.999173557Z", "summary": "picomatch vulnerable to ReDoS through single-branch repeated extglobs", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-28509 — picomatch 4.0.7 затронут GHSA-fc5q-39xc-vjpf (CVE-2026-112366)
-
-- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
-- Затронутый актив: `dependency:npm/picomatch@4.0.7`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
-- Балл приоритета: 37.6 / 100
-- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
-
-OSV.dev сообщает GHSA-fc5q-39xc-vjpf (CVE-2026-112366) для пакета npm picomatch версии 4.0.7: picomatch vulnerable to ReDoS through single-branch repeated extglobs. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-fc5q-39xc-vjpf
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-fc5q-39xc-vjpf](https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf) · manifest · SHA-256 2196ec9fbb5d1f8e31b319b86d5f3a6d905ea3746b16470c327fd9b0c9168484_
-
-```
-{"id": "GHSA-fc5q-39xc-vjpf", "aliases": ["CVE-2026-112366"], "modified": "2026-11-17T16:00:03.999173557Z", "summary": "picomatch vulnerable to ReDoS through single-branch repeated extglobs", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-28510 — playwright 1.48.2 затронут GHSA-7mvr-c777-76hp (CVE-2025-59288)
+### QSI-2026-43161 — playwright 1.48.2 затронут GHSA-7mvr-c777-76hp (CVE-2025-59288)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/playwright@1.48.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4293,13 +4191,13 @@ _tool_output · [OSV.dev GHSA-7mvr-c777-76hp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28522 — rollup 3.29.5 затронут GHSA-mw96-cpmx-2vgc (CVE-2026-27606)
+### QSI-2026-43173 — rollup 3.29.5 затронут GHSA-mw96-cpmx-2vgc (CVE-2026-27606)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/rollup@3.29.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4327,13 +4225,13 @@ _tool_output · [OSV.dev GHSA-mw96-cpmx-2vgc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28523 — serialize-javascript 6.0.2 затронут GHSA-5c6j-r48x-rmvq
+### QSI-2026-43174 — serialize-javascript 6.0.2 затронут GHSA-5c6j-r48x-rmvq
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/serialize-javascript@6.0.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -4361,13 +4259,13 @@ _tool_output · [OSV.dev GHSA-5c6j-r48x-rmvq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28528 — sharp 0.33.5 затронут GHSA-f88m-g3jw-g9cj (CVE-2026-114113)
+### QSI-2026-43179 — sharp 0.33.5 затронут GHSA-f88m-g3jw-g9cj (CVE-2026-114113)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/sharp@0.33.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4395,13 +4293,13 @@ _tool_output · [OSV.dev GHSA-f88m-g3jw-g9cj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28529 — sharp 0.33.5 затронут GHSA-rgj7-g3m4-5g8c (CVE-2026-114112)
+### QSI-2026-43180 — sharp 0.33.5 затронут GHSA-rgj7-g3m4-5g8c (CVE-2026-114112)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/sharp@0.33.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4429,13 +4327,13 @@ _tool_output · [OSV.dev GHSA-rgj7-g3m4-5g8c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28530 — sharp 0.33.5 затронут GHSA-wq5f-xc86-pv6w (CVE-2026-114111)
+### QSI-2026-43181 — sharp 0.33.5 затронут GHSA-wq5f-xc86-pv6w (CVE-2026-114111)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/sharp@0.33.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4463,13 +4361,13 @@ _tool_output · [OSV.dev GHSA-wq5f-xc86-pv6w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28531 — sharp 0.34.5 затронут GHSA-f88m-g3jw-g9cj (CVE-2026-114113)
+### QSI-2026-43182 — sharp 0.34.5 затронут GHSA-f88m-g3jw-g9cj (CVE-2026-114113)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/sharp@0.34.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4497,13 +4395,13 @@ _tool_output · [OSV.dev GHSA-f88m-g3jw-g9cj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28532 — sharp 0.34.5 затронут GHSA-rgj7-g3m4-5g8c (CVE-2026-114112)
+### QSI-2026-43183 — sharp 0.34.5 затронут GHSA-rgj7-g3m4-5g8c (CVE-2026-114112)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/sharp@0.34.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4531,13 +4429,13 @@ _tool_output · [OSV.dev GHSA-rgj7-g3m4-5g8c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28533 — sharp 0.34.5 затронут GHSA-wq5f-xc86-pv6w (CVE-2026-114111)
+### QSI-2026-43184 — sharp 0.34.5 затронут GHSA-wq5f-xc86-pv6w (CVE-2026-114111)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/sharp@0.34.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4565,13 +4463,13 @@ _tool_output · [OSV.dev GHSA-wq5f-xc86-pv6w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28534 — shell-quote 1.10.0 затронут GHSA-pqg4-j6r4-53mv (CVE-2026-102422)
+### QSI-2026-43185 — shell-quote 1.10.0 затронут GHSA-pqg4-j6r4-53mv (CVE-2026-102422)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/shell-quote@1.10.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -4599,13 +4497,13 @@ _tool_output · [OSV.dev GHSA-pqg4-j6r4-53mv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28535 — simple-git 3.36.0 затронут GHSA-858h-whjf-mvg5 (CVE-2026-102827)
+### QSI-2026-43186 — simple-git 3.36.0 затронут GHSA-858h-whjf-mvg5 (CVE-2026-102827)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/simple-git@3.36.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -4633,13 +4531,13 @@ _tool_output · [OSV.dev GHSA-858h-whjf-mvg5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28536 — simple-git 3.36.0 затронут GHSA-g4wm-2vf7-vfgr (CVE-2026-102826)
+### QSI-2026-43187 — simple-git 3.36.0 затронут GHSA-g4wm-2vf7-vfgr (CVE-2026-102826)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/simple-git@3.36.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -4667,13 +4565,13 @@ _tool_output · [OSV.dev GHSA-g4wm-2vf7-vfgr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28538 — source-map-js 1.2.1 затронут GHSA-68fv-2mgg-jv7q (CVE-2026-93749)
+### QSI-2026-43189 — source-map-js 1.2.1 затронут GHSA-68fv-2mgg-jv7q (CVE-2026-93749)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/source-map-js@1.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4701,13 +4599,13 @@ _tool_output · [OSV.dev GHSA-68fv-2mgg-jv7q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28542 — tar 6.2.1 затронут GHSA-23hp-3jrh-7fpw (CVE-2026-59873)
+### QSI-2026-43193 — tar 6.2.1 затронут GHSA-23hp-3jrh-7fpw (CVE-2026-59873)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4735,13 +4633,13 @@ _tool_output · [OSV.dev GHSA-23hp-3jrh-7fpw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28543 — tar 6.2.1 затронут GHSA-34x7-hfp2-rc4v (CVE-2026-24842)
+### QSI-2026-43194 — tar 6.2.1 затронут GHSA-34x7-hfp2-rc4v (CVE-2026-24842)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.2 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N`)
 
@@ -4769,13 +4667,13 @@ _tool_output · [OSV.dev GHSA-34x7-hfp2-rc4v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28544 — tar 6.2.1 затронут GHSA-83g3-92jg-28cx (CVE-2026-26960)
+### QSI-2026-43195 — tar 6.2.1 затронут GHSA-83g3-92jg-28cx (CVE-2026-26960)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.1 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -4803,13 +4701,13 @@ _tool_output · [OSV.dev GHSA-83g3-92jg-28cx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28545 — tar 6.2.1 затронут GHSA-8qq5-rm4j-mr97 (CVE-2026-23745)
+### QSI-2026-43196 — tar 6.2.1 затронут GHSA-8qq5-rm4j-mr97 (CVE-2026-23745)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4837,13 +4735,13 @@ _tool_output · [OSV.dev GHSA-8qq5-rm4j-mr97](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28546 — tar 6.2.1 затронут GHSA-8x88-c5mf-7j5w (CVE-2026-59874)
+### QSI-2026-43197 — tar 6.2.1 затронут GHSA-8x88-c5mf-7j5w (CVE-2026-59874)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4871,13 +4769,13 @@ _tool_output · [OSV.dev GHSA-8x88-c5mf-7j5w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28547 — tar 6.2.1 затронут GHSA-9ppj-qmqm-q256 (CVE-2026-31802)
+### QSI-2026-43198 — tar 6.2.1 затронут GHSA-9ppj-qmqm-q256 (CVE-2026-31802)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4905,13 +4803,13 @@ _tool_output · [OSV.dev GHSA-9ppj-qmqm-q256](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28549 — tar 6.2.1 затронут GHSA-qffp-2rhf-9h96 (CVE-2026-29786)
+### QSI-2026-43200 — tar 6.2.1 затронут GHSA-qffp-2rhf-9h96 (CVE-2026-29786)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -4939,13 +4837,13 @@ _tool_output · [OSV.dev GHSA-qffp-2rhf-9h96](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28550 — tar 6.2.1 затронут GHSA-r292-9mhp-454m (CVE-2026-73566)
+### QSI-2026-43201 — tar 6.2.1 затронут GHSA-r292-9mhp-454m (CVE-2026-73566)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -4973,13 +4871,13 @@ _tool_output · [OSV.dev GHSA-r292-9mhp-454m](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28551 — tar 6.2.1 затронут GHSA-r6q2-hw4h-h46w (CVE-2026-23950)
+### QSI-2026-43202 — tar 6.2.1 затронут GHSA-r6q2-hw4h-h46w (CVE-2026-23950)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L`)
 
@@ -5007,13 +4905,13 @@ _tool_output · [OSV.dev GHSA-r6q2-hw4h-h46w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28557 — tmp 0.0.33 затронут GHSA-ph9p-34f9-6g65 (CVE-2026-44705)
+### QSI-2026-43208 — tmp 0.0.33 затронут GHSA-ph9p-34f9-6g65 (CVE-2026-44705)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tmp@0.0.33`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -5041,13 +4939,13 @@ _tool_output · [OSV.dev GHSA-ph9p-34f9-6g65](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28558 — undici 5.29.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)
+### QSI-2026-43209 — undici 5.29.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -5075,13 +4973,13 @@ _tool_output · [OSV.dev GHSA-2m5v-pch6-74hx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28568 — undici 5.29.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)
+### QSI-2026-43219 — undici 5.29.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5109,13 +5007,13 @@ _tool_output · [OSV.dev GHSA-qrxm-fqhp-jwvm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28571 — undici 5.29.0 затронут GHSA-v9p9-hfj2-hcw8 (CVE-2026-2229)
+### QSI-2026-43222 — undici 5.29.0 затронут GHSA-v9p9-hfj2-hcw8 (CVE-2026-2229)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5143,13 +5041,13 @@ _tool_output · [OSV.dev GHSA-v9p9-hfj2-hcw8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28572 — undici 5.29.0 затронут GHSA-vrm6-8vpv-qv8q (CVE-2026-1526)
+### QSI-2026-43223 — undici 5.29.0 затронут GHSA-vrm6-8vpv-qv8q (CVE-2026-1526)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5177,13 +5075,13 @@ _tool_output · [OSV.dev GHSA-vrm6-8vpv-qv8q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28573 — undici 5.29.0 затронут GHSA-vxpw-j846-p89q (CVE-2026-12151)
+### QSI-2026-43224 — undici 5.29.0 затронут GHSA-vxpw-j846-p89q (CVE-2026-12151)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5211,13 +5109,13 @@ _tool_output · [OSV.dev GHSA-vxpw-j846-p89q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28574 — undici 7.29.1 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)
+### QSI-2026-43225 — undici 7.29.1 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.29.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -5245,13 +5143,13 @@ _tool_output · [OSV.dev GHSA-2m5v-pch6-74hx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28576 — undici 7.29.1 затронут GHSA-4w7w-5xrc-9h26 (CVE-2026-109829)
+### QSI-2026-43227 — undici 7.29.1 затронут GHSA-4w7w-5xrc-9h26 (CVE-2026-109829)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.29.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -5279,13 +5177,13 @@ _tool_output · [OSV.dev GHSA-4w7w-5xrc-9h26](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28580 — undici 7.29.1 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)
+### QSI-2026-43231 — undici 7.29.1 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.29.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5313,13 +5211,13 @@ _tool_output · [OSV.dev GHSA-qrxm-fqhp-jwvm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28581 — undici 7.29.1 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869)
+### QSI-2026-43232 — undici 7.29.1 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.29.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5347,13 +5245,13 @@ _tool_output · [OSV.dev GHSA-xjj6-f33q-929c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28585 — valibot 0.37.0 затронут GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020)
+### QSI-2026-43236 — valibot 0.37.0 затронут GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/valibot@0.37.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5381,13 +5279,13 @@ _tool_output · [OSV.dev GHSA-vqpr-j7v3-hqw9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28587 — valibot 0.38.0 затронут GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020)
+### QSI-2026-43238 — valibot 0.38.0 затронут GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/valibot@0.38.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5415,13 +5313,13 @@ _tool_output · [OSV.dev GHSA-vqpr-j7v3-hqw9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28589 — valibot 0.42.1 затронут GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020)
+### QSI-2026-43240 — valibot 0.42.1 затронут GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/valibot@0.42.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -5449,13 +5347,13 @@ _tool_output · [OSV.dev GHSA-vqpr-j7v3-hqw9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28214 — axios 1.12.2 затронут GHSA-3p68-rc4w-qgx5 (CVE-2025-62718)
+### QSI-2026-42867 — axios 1.12.2 затронут GHSA-3p68-rc4w-qgx5 (CVE-2025-62718)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -5483,13 +5381,13 @@ _tool_output · [OSV.dev GHSA-3p68-rc4w-qgx5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28215 — axios 1.12.2 затронут GHSA-3w6x-2g7m-8v23 (CVE-2026-42044)
+### QSI-2026-42868 — axios 1.12.2 затронут GHSA-3w6x-2g7m-8v23 (CVE-2026-42044)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:H/A:N`)
 
@@ -5517,13 +5415,13 @@ _tool_output · [OSV.dev GHSA-3w6x-2g7m-8v23](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28216 — axios 1.12.2 затронут GHSA-42h9-826w-cgv3 (CVE-2026-67313)
+### QSI-2026-42869 — axios 1.12.2 затронут GHSA-42h9-826w-cgv3 (CVE-2026-67313)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5551,13 +5449,13 @@ _tool_output · [OSV.dev GHSA-42h9-826w-cgv3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28218 — axios 1.12.2 затронут GHSA-445q-vr5w-6q77 (CVE-2026-42037)
+### QSI-2026-42871 — axios 1.12.2 затронут GHSA-445q-vr5w-6q77 (CVE-2026-42037)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -5585,13 +5483,13 @@ _tool_output · [OSV.dev GHSA-445q-vr5w-6q77](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28219 — axios 1.12.2 затронут GHSA-4hqw-qxg8-jxx2 (CVE-2026-101900)
+### QSI-2026-42872 — axios 1.12.2 затронут GHSA-4hqw-qxg8-jxx2 (CVE-2026-101900)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5619,13 +5517,13 @@ _tool_output · [OSV.dev GHSA-4hqw-qxg8-jxx2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28220 — axios 1.12.2 затронут GHSA-5c9x-8gcm-mpgx (CVE-2026-42034)
+### QSI-2026-42873 — axios 1.12.2 затронут GHSA-5c9x-8gcm-mpgx (CVE-2026-42034)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -5653,13 +5551,13 @@ _tool_output · [OSV.dev GHSA-5c9x-8gcm-mpgx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28224 — axios 1.12.2 затронут GHSA-7q8q-rj6j-mhjq (CVE-2026-67319)
+### QSI-2026-42877 — axios 1.12.2 затронут GHSA-7q8q-rj6j-mhjq (CVE-2026-67319)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5687,13 +5585,13 @@ _tool_output · [OSV.dev GHSA-7q8q-rj6j-mhjq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28225 — axios 1.12.2 затронут GHSA-898c-q2cr-xwhg (CVE-2026-44490)
+### QSI-2026-42878 — axios 1.12.2 затронут GHSA-898c-q2cr-xwhg (CVE-2026-44490)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L`)
 
@@ -5721,13 +5619,13 @@ _tool_output · [OSV.dev GHSA-898c-q2cr-xwhg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28226 — axios 1.12.2 затронут GHSA-9fr6-4gfg-395g (CVE-2026-101902)
+### QSI-2026-42879 — axios 1.12.2 затронут GHSA-9fr6-4gfg-395g (CVE-2026-101902)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5755,13 +5653,13 @@ _tool_output · [OSV.dev GHSA-9fr6-4gfg-395g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28227 — axios 1.12.2 затронут GHSA-fvcv-3m26-pcqx (CVE-2026-40175)
+### QSI-2026-42880 — axios 1.12.2 затронут GHSA-fvcv-3m26-pcqx (CVE-2026-40175)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -5789,13 +5687,13 @@ _tool_output · [OSV.dev GHSA-fvcv-3m26-pcqx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28230 — axios 1.12.2 затронут GHSA-j8rh-479h-cp32 (CVE-2026-101904)
+### QSI-2026-42883 — axios 1.12.2 затронут GHSA-j8rh-479h-cp32 (CVE-2026-101904)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5823,13 +5721,13 @@ _tool_output · [OSV.dev GHSA-j8rh-479h-cp32](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28231 — axios 1.12.2 затронут GHSA-jqh4-m9w3-8hp9 (CVE-2026-67317)
+### QSI-2026-42884 — axios 1.12.2 затронут GHSA-jqh4-m9w3-8hp9 (CVE-2026-67317)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.12.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5857,13 +5755,13 @@ _tool_output · [OSV.dev GHSA-jqh4-m9w3-8hp9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28239 — next 15.5.9 затронут GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980)
+### QSI-2026-42892 — next 15.5.9 затронут GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5891,13 +5789,13 @@ _tool_output · [OSV.dev GHSA-3x4c-7xq6-9pq8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28240 — next 15.5.9 затронут GHSA-4633-3j49-mh5q (CVE-2026-64647)
+### QSI-2026-42893 — next 15.5.9 затронут GHSA-4633-3j49-mh5q (CVE-2026-64647)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5925,13 +5823,13 @@ _tool_output · [OSV.dev GHSA-4633-3j49-mh5q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28242 — next 15.5.9 затронут GHSA-4c39-4ccg-62r3 (CVE-2026-64646)
+### QSI-2026-42895 — next 15.5.9 затронут GHSA-4c39-4ccg-62r3 (CVE-2026-64646)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -5959,13 +5857,13 @@ _tool_output · [OSV.dev GHSA-4c39-4ccg-62r3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28243 — next 15.5.9 затронут GHSA-4jqv-mc3x-m676 (CVE-2026-94543)
+### QSI-2026-42896 — next 15.5.9 затронут GHSA-4jqv-mc3x-m676 (CVE-2026-94543)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -5993,13 +5891,13 @@ _tool_output · [OSV.dev GHSA-4jqv-mc3x-m676](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28244 — next 15.5.9 затронут GHSA-68g3-v927-f742 (CVE-2026-64648)
+### QSI-2026-42897 — next 15.5.9 затронут GHSA-68g3-v927-f742 (CVE-2026-64648)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6027,13 +5925,47 @@ _tool_output · [OSV.dev GHSA-68g3-v927-f742](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28247 — next 15.5.9 затронут GHSA-955p-x3mx-jcvp (CVE-2026-64643)
+### QSI-2026-42898 — next 15.5.9 затронут GHSA-7qx7-33qx-rqx2 (CVE-2026-119347)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
+- Балл приоритета: 44.2 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-7qx7-33qx-rqx2 (CVE-2026-119347) для пакета npm next версии 15.5.9: Next.js: SVG rejection bypass in the image optimization. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-7qx7-33qx-rqx2
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-7qx7-33qx-rqx2](https://osv.dev/vulnerability/GHSA-7qx7-33qx-rqx2) · manifest · SHA-256 39e0013103535bad148b96412be017d3ddb270b27d8484f8fc5e9fa0dd54a721_
+
+```
+{"id": "GHSA-7qx7-33qx-rqx2", "aliases": ["CVE-2026-119347"], "modified": "2026-11-19T22:45:06.164972711Z", "summary": "Next.js: SVG rejection bypass in the image optimization", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (15.5.29, 16.4.5).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-42901 — next 15.5.9 затронут GHSA-955p-x3mx-jcvp (CVE-2026-64643)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:npm/next@15.5.9`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6061,13 +5993,13 @@ _tool_output · [OSV.dev GHSA-955p-x3mx-jcvp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28248 — next 15.5.9 затронут GHSA-9g9p-9gw9-jx7f (CVE-2025-59471)
+### QSI-2026-42902 — next 15.5.9 затронут GHSA-9g9p-9gw9-jx7f (CVE-2025-59471)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -6095,13 +6027,47 @@ _tool_output · [OSV.dev GHSA-9g9p-9gw9-jx7f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28250 — next 15.5.9 затронут GHSA-ffhc-5mcf-pf4q (CVE-2026-44581)
+### QSI-2026-42904 — next 15.5.9 затронут GHSA-f3mh-rxg3-f5g2 (CVE-2026-119346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
+- Балл приоритета: 44.2 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-f3mh-rxg3-f5g2 (CVE-2026-119346) для пакета npm next версии 15.5.9: Next.js: HttpOnly cookie exposure through internal response header on Next.js Edge runtime routes. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-f3mh-rxg3-f5g2
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-f3mh-rxg3-f5g2](https://osv.dev/vulnerability/GHSA-f3mh-rxg3-f5g2) · manifest · SHA-256 e29e20ed88cd017f1cf638d6e3b78afdf0f193bdc51d33dd72de0d336da63881_
+
+```
+{"id": "GHSA-f3mh-rxg3-f5g2", "aliases": ["CVE-2026-119346"], "modified": "2026-11-19T22:45:06.180078081Z", "summary": "Next.js: HttpOnly cookie exposure through internal response header on Next.js Edge runtime routes", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:P/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (15.5.29, 16.4.5).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-42905 — next 15.5.9 затронут GHSA-ffhc-5mcf-pf4q (CVE-2026-44581)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:npm/next@15.5.9`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -6129,81 +6095,13 @@ _tool_output · [OSV.dev GHSA-ffhc-5mcf-pf4q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28251 — next 15.5.9 затронут GHSA-ggv3-7p47-pfv8 (CVE-2026-29057)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:npm/next@15.5.9`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает GHSA-ggv3-7p47-pfv8 (CVE-2026-29057) для пакета npm next версии 15.5.9: Next.js: HTTP request smuggling in rewrites. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-ggv3-7p47-pfv8
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-ggv3-7p47-pfv8](https://osv.dev/vulnerability/GHSA-ggv3-7p47-pfv8) · manifest · SHA-256 52f0a1d6b4eba8994cc24d41c5d471ff9244c62011d5a3ec86e71508059fb688_
-
-```
-{"id": "GHSA-ggv3-7p47-pfv8", "aliases": ["CVE-2026-29057"], "modified": "2026-09-10T03:50:39.201962373Z", "summary": "Next.js: HTTP request smuggling in rewrites", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (15.5.13, 16.1.7).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-28252 — next 15.5.9 затронут GHSA-gx5p-jg67-6x7h (CVE-2026-44580)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:npm/next@15.5.9`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
-
-OSV.dev сообщает GHSA-gx5p-jg67-6x7h (CVE-2026-44580) для пакета npm next версии 15.5.9: Next.js has cross-site scripting in beforeInteractive scripts with untrusted input. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-gx5p-jg67-6x7h
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-gx5p-jg67-6x7h](https://osv.dev/vulnerability/GHSA-gx5p-jg67-6x7h) · manifest · SHA-256 35de60948d74593c5fcebcae6555fa161d7fd261475f9930b9daaf4e9b53909f_
-
-```
-{"id": "GHSA-gx5p-jg67-6x7h", "aliases": ["CVE-2026-44580"], "modified": "2026-09-10T03:51:05.785143220Z", "summary": "Next.js has cross-site scripting in beforeInteractive scripts with untrusted input", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (15.5.16, 16.2.5).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-28253 — next-auth 5.0.0-beta.29 затронут GHSA-5jpx-9hw9-2fx4
+### QSI-2026-42906 — next-auth 5.0.0-beta.29 затронут GHSA-5jpx-9hw9-2fx4
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next-auth@5.0.0-beta.29`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6231,13 +6129,13 @@ _tool_output · [OSV.dev GHSA-5jpx-9hw9-2fx4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28256 — next-auth 5.0.0-beta.29 затронут GHSA-x445-f3h2-j279 (CVE-2026-73419)
+### QSI-2026-42909 — next-auth 5.0.0-beta.29 затронут GHSA-x445-f3h2-j279 (CVE-2026-73419)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next-auth@5.0.0-beta.29`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -6265,13 +6163,13 @@ _tool_output · [OSV.dev GHSA-x445-f3h2-j279](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28266 — next 15.3.8 затронут GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980)
+### QSI-2026-42919 — next 15.3.8 затронут GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6299,13 +6197,13 @@ _tool_output · [OSV.dev GHSA-3x4c-7xq6-9pq8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28267 — next 15.3.8 затронут GHSA-4342-x723-ch2f (CVE-2025-57822)
+### QSI-2026-42920 — next 15.3.8 затронут GHSA-4342-x723-ch2f (CVE-2025-57822)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N`)
 
@@ -6333,13 +6231,13 @@ _tool_output · [OSV.dev GHSA-4342-x723-ch2f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28268 — next 15.3.8 затронут GHSA-4633-3j49-mh5q (CVE-2026-64647)
+### QSI-2026-42921 — next 15.3.8 затронут GHSA-4633-3j49-mh5q (CVE-2026-64647)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6367,13 +6265,13 @@ _tool_output · [OSV.dev GHSA-4633-3j49-mh5q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28269 — next 15.3.8 затронут GHSA-4c39-4ccg-62r3 (CVE-2026-64646)
+### QSI-2026-42922 — next 15.3.8 затронут GHSA-4c39-4ccg-62r3 (CVE-2026-64646)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6401,13 +6299,13 @@ _tool_output · [OSV.dev GHSA-4c39-4ccg-62r3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28270 — next 15.3.8 затронут GHSA-4jqv-mc3x-m676 (CVE-2026-94543)
+### QSI-2026-42923 — next 15.3.8 затронут GHSA-4jqv-mc3x-m676 (CVE-2026-94543)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -6435,13 +6333,13 @@ _tool_output · [OSV.dev GHSA-4jqv-mc3x-m676](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28271 — next 15.3.8 затронут GHSA-68g3-v927-f742 (CVE-2026-64648)
+### QSI-2026-42924 — next 15.3.8 затронут GHSA-68g3-v927-f742 (CVE-2026-64648)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6469,13 +6367,47 @@ _tool_output · [OSV.dev GHSA-68g3-v927-f742](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28274 — next 15.3.8 затронут GHSA-955p-x3mx-jcvp (CVE-2026-64643)
+### QSI-2026-42925 — next 15.3.8 затронут GHSA-7qx7-33qx-rqx2 (CVE-2026-119347)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
+- Балл приоритета: 44.2 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-7qx7-33qx-rqx2 (CVE-2026-119347) для пакета npm next версии 15.3.8: Next.js: SVG rejection bypass in the image optimization. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-7qx7-33qx-rqx2
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-7qx7-33qx-rqx2](https://osv.dev/vulnerability/GHSA-7qx7-33qx-rqx2) · manifest · SHA-256 39e0013103535bad148b96412be017d3ddb270b27d8484f8fc5e9fa0dd54a721_
+
+```
+{"id": "GHSA-7qx7-33qx-rqx2", "aliases": ["CVE-2026-119347"], "modified": "2026-11-19T22:45:06.164972711Z", "summary": "Next.js: SVG rejection bypass in the image optimization", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (15.5.29, 16.4.5).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-42928 — next 15.3.8 затронут GHSA-955p-x3mx-jcvp (CVE-2026-64643)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:npm/next@15.3.8`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6503,13 +6435,13 @@ _tool_output · [OSV.dev GHSA-955p-x3mx-jcvp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28275 — next 15.3.8 затронут GHSA-9g9p-9gw9-jx7f (CVE-2025-59471)
+### QSI-2026-42929 — next 15.3.8 затронут GHSA-9g9p-9gw9-jx7f (CVE-2025-59471)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -6537,13 +6469,47 @@ _tool_output · [OSV.dev GHSA-9g9p-9gw9-jx7f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28277 — next 15.3.8 затронут GHSA-ffhc-5mcf-pf4q (CVE-2026-44581)
+### QSI-2026-42931 — next 15.3.8 затронут GHSA-f3mh-rxg3-f5g2 (CVE-2026-119346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
+- Балл приоритета: 44.2 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-f3mh-rxg3-f5g2 (CVE-2026-119346) для пакета npm next версии 15.3.8: Next.js: HttpOnly cookie exposure through internal response header on Next.js Edge runtime routes. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-f3mh-rxg3-f5g2
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-f3mh-rxg3-f5g2](https://osv.dev/vulnerability/GHSA-f3mh-rxg3-f5g2) · manifest · SHA-256 e29e20ed88cd017f1cf638d6e3b78afdf0f193bdc51d33dd72de0d336da63881_
+
+```
+{"id": "GHSA-f3mh-rxg3-f5g2", "aliases": ["CVE-2026-119346"], "modified": "2026-11-19T22:45:06.180078081Z", "summary": "Next.js: HttpOnly cookie exposure through internal response header on Next.js Edge runtime routes", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:P/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (15.5.29, 16.4.5).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-42932 — next 15.3.8 затронут GHSA-ffhc-5mcf-pf4q (CVE-2026-44581)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:npm/next@15.3.8`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -6571,81 +6537,13 @@ _tool_output · [OSV.dev GHSA-ffhc-5mcf-pf4q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28278 — next 15.3.8 затронут GHSA-g5qg-72qw-gw5v (CVE-2025-57752)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:npm/next@15.3.8`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
-
-OSV.dev сообщает GHSA-g5qg-72qw-gw5v (CVE-2025-57752) для пакета npm next версии 15.3.8: Next.js Affected by Cache Key Confusion for Image Optimization API Routes. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-g5qg-72qw-gw5v
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-g5qg-72qw-gw5v](https://osv.dev/vulnerability/GHSA-g5qg-72qw-gw5v) · manifest · SHA-256 a090f76ac4bfea6a867bd84fe784cffe05ea11374766ce4a1ec6bc1561eaf25e_
-
-```
-{"id": "GHSA-g5qg-72qw-gw5v", "aliases": ["CVE-2025-57752"], "modified": "2026-09-10T03:50:26.953168554Z", "summary": "Next.js Affected by Cache Key Confusion for Image Optimization API Routes", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (14.2.31, 15.4.5).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-28279 — next 15.3.8 затронут GHSA-ggv3-7p47-pfv8 (CVE-2026-29057)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:npm/next@15.3.8`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
-- Балл приоритета: 44.2 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает GHSA-ggv3-7p47-pfv8 (CVE-2026-29057) для пакета npm next версии 15.3.8: Next.js: HTTP request smuggling in rewrites. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-ggv3-7p47-pfv8
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-ggv3-7p47-pfv8](https://osv.dev/vulnerability/GHSA-ggv3-7p47-pfv8) · manifest · SHA-256 52f0a1d6b4eba8994cc24d41c5d471ff9244c62011d5a3ec86e71508059fb688_
-
-```
-{"id": "GHSA-ggv3-7p47-pfv8", "aliases": ["CVE-2026-29057"], "modified": "2026-09-10T03:50:39.201962373Z", "summary": "Next.js: HTTP request smuggling in rewrites", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (15.5.13, 16.1.7).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-28280 — vite 5.4.20 затронут GHSA-4w7w-66w2-5vf9 (CVE-2026-39365)
+### QSI-2026-42933 — vite 5.4.20 затронут GHSA-4w7w-66w2-5vf9 (CVE-2026-39365)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6673,13 +6571,13 @@ _tool_output · [OSV.dev GHSA-4w7w-66w2-5vf9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28282 — vite 5.4.20 затронут GHSA-698v-4r3x-3vcv (CVE-2026-112943)
+### QSI-2026-42935 — vite 5.4.20 затронут GHSA-698v-4r3x-3vcv (CVE-2026-112943)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6707,13 +6605,13 @@ _tool_output · [OSV.dev GHSA-698v-4r3x-3vcv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28283 — vite 5.4.20 затронут GHSA-93m4-6634-74q7 (CVE-2025-62522)
+### QSI-2026-42936 — vite 5.4.20 затронут GHSA-93m4-6634-74q7 (CVE-2025-62522)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6741,13 +6639,13 @@ _tool_output · [OSV.dev GHSA-93m4-6634-74q7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28285 — vite 5.4.20 затронут GHSA-fx2h-pf6j-xcff (CVE-2026-53571)
+### QSI-2026-42938 — vite 5.4.20 затронут GHSA-fx2h-pf6j-xcff (CVE-2026-53571)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6775,13 +6673,13 @@ _tool_output · [OSV.dev GHSA-fx2h-pf6j-xcff](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28286 — vite 5.4.20 затронут GHSA-r825-w8mm-5pxw (CVE-2026-112944)
+### QSI-2026-42939 — vite 5.4.20 затронут GHSA-r825-w8mm-5pxw (CVE-2026-112944)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6809,13 +6707,13 @@ _tool_output · [OSV.dev GHSA-r825-w8mm-5pxw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28287 — vite 5.4.20 затронут GHSA-rq7h-c2jc-7f22 (CVE-2026-112946)
+### QSI-2026-42940 — vite 5.4.20 затронут GHSA-rq7h-c2jc-7f22 (CVE-2026-112946)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6843,13 +6741,13 @@ _tool_output · [OSV.dev GHSA-rq7h-c2jc-7f22](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28288 — vite 5.4.20 затронут GHSA-v6wh-96g9-6wx3 (CVE-2026-53632)
+### QSI-2026-42941 — vite 5.4.20 затронут GHSA-v6wh-96g9-6wx3 (CVE-2026-53632)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6877,13 +6775,13 @@ _tool_output · [OSV.dev GHSA-v6wh-96g9-6wx3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28318 — axios 1.18.0 затронут GHSA-44g4-m2mj-wpvx (CVE-2026-101899)
+### QSI-2026-42971 — axios 1.18.0 затронут GHSA-44g4-m2mj-wpvx (CVE-2026-101899)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6911,13 +6809,13 @@ _tool_output · [OSV.dev GHSA-44g4-m2mj-wpvx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28319 — axios 1.18.0 затронут GHSA-4hqw-qxg8-jxx2 (CVE-2026-101900)
+### QSI-2026-42972 — axios 1.18.0 затронут GHSA-4hqw-qxg8-jxx2 (CVE-2026-101900)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6945,13 +6843,13 @@ _tool_output · [OSV.dev GHSA-4hqw-qxg8-jxx2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28321 — axios 1.18.0 затронут GHSA-9fr6-4gfg-395g (CVE-2026-101902)
+### QSI-2026-42974 — axios 1.18.0 затронут GHSA-9fr6-4gfg-395g (CVE-2026-101902)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -6979,13 +6877,13 @@ _tool_output · [OSV.dev GHSA-9fr6-4gfg-395g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28323 — axios 1.18.0 затронут GHSA-j8rh-479h-cp32 (CVE-2026-101904)
+### QSI-2026-42976 — axios 1.18.0 затронут GHSA-j8rh-479h-cp32 (CVE-2026-101904)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -7013,13 +6911,13 @@ _tool_output · [OSV.dev GHSA-j8rh-479h-cp32](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28327 — axios 1.18.0 затронут GHSA-vh66-26gq-q6x8 (CVE-2026-101908)
+### QSI-2026-42980 — axios 1.18.0 затронут GHSA-vh66-26gq-q6x8 (CVE-2026-101908)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -7047,13 +6945,13 @@ _tool_output · [OSV.dev GHSA-vh66-26gq-q6x8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28331 — axios 1.8.4 затронут GHSA-3p68-rc4w-qgx5 (CVE-2025-62718)
+### QSI-2026-42984 — axios 1.8.4 затронут GHSA-3p68-rc4w-qgx5 (CVE-2025-62718)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -7081,13 +6979,13 @@ _tool_output · [OSV.dev GHSA-3p68-rc4w-qgx5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28332 — axios 1.8.4 затронут GHSA-3w6x-2g7m-8v23 (CVE-2026-42044)
+### QSI-2026-42985 — axios 1.8.4 затронут GHSA-3w6x-2g7m-8v23 (CVE-2026-42044)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:H/A:N`)
 
@@ -7115,13 +7013,13 @@ _tool_output · [OSV.dev GHSA-3w6x-2g7m-8v23](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28333 — axios 1.8.4 затронут GHSA-42h9-826w-cgv3 (CVE-2026-67313)
+### QSI-2026-42986 — axios 1.8.4 затронут GHSA-42h9-826w-cgv3 (CVE-2026-67313)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -7149,13 +7047,13 @@ _tool_output · [OSV.dev GHSA-42h9-826w-cgv3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28335 — axios 1.8.4 затронут GHSA-445q-vr5w-6q77 (CVE-2026-42037)
+### QSI-2026-42988 — axios 1.8.4 затронут GHSA-445q-vr5w-6q77 (CVE-2026-42037)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -7183,13 +7081,13 @@ _tool_output · [OSV.dev GHSA-445q-vr5w-6q77](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28337 — axios 1.8.4 затронут GHSA-5c9x-8gcm-mpgx (CVE-2026-42034)
+### QSI-2026-42990 — axios 1.8.4 затронут GHSA-5c9x-8gcm-mpgx (CVE-2026-42034)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -7217,13 +7115,13 @@ _tool_output · [OSV.dev GHSA-5c9x-8gcm-mpgx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28341 — axios 1.8.4 затронут GHSA-7q8q-rj6j-mhjq (CVE-2026-67319)
+### QSI-2026-42994 — axios 1.8.4 затронут GHSA-7q8q-rj6j-mhjq (CVE-2026-67319)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -7251,13 +7149,13 @@ _tool_output · [OSV.dev GHSA-7q8q-rj6j-mhjq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28342 — axios 1.8.4 затронут GHSA-898c-q2cr-xwhg (CVE-2026-44490)
+### QSI-2026-42995 — axios 1.8.4 затронут GHSA-898c-q2cr-xwhg (CVE-2026-44490)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L`)
 
@@ -7285,13 +7183,13 @@ _tool_output · [OSV.dev GHSA-898c-q2cr-xwhg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28343 — axios 1.8.4 затронут GHSA-9fr6-4gfg-395g (CVE-2026-101902)
+### QSI-2026-42996 — axios 1.8.4 затронут GHSA-9fr6-4gfg-395g (CVE-2026-101902)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -7319,13 +7217,13 @@ _tool_output · [OSV.dev GHSA-9fr6-4gfg-395g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28344 — axios 1.8.4 затронут GHSA-fvcv-3m26-pcqx (CVE-2026-40175)
+### QSI-2026-42997 — axios 1.8.4 затронут GHSA-fvcv-3m26-pcqx (CVE-2026-40175)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -7353,13 +7251,13 @@ _tool_output · [OSV.dev GHSA-fvcv-3m26-pcqx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28347 — axios 1.8.4 затронут GHSA-j8rh-479h-cp32 (CVE-2026-101904)
+### QSI-2026-43000 — axios 1.8.4 затронут GHSA-j8rh-479h-cp32 (CVE-2026-101904)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -7387,13 +7285,13 @@ _tool_output · [OSV.dev GHSA-j8rh-479h-cp32](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28348 — axios 1.8.4 затронут GHSA-jqh4-m9w3-8hp9 (CVE-2026-67317)
+### QSI-2026-43001 — axios 1.8.4 затронут GHSA-jqh4-m9w3-8hp9 (CVE-2026-67317)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/axios@1.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -7421,13 +7319,13 @@ _tool_output · [OSV.dev GHSA-jqh4-m9w3-8hp9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28408 — hono 4.13.8 затронут GHSA-46wx-v44x-9hh2 (CVE-2026-126355)
+### QSI-2026-43061 — hono 4.13.8 затронут GHSA-46wx-v44x-9hh2 (CVE-2026-126355)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.13.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N`)
 
@@ -7455,13 +7353,13 @@ _tool_output · [OSV.dev GHSA-46wx-v44x-9hh2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28409 — hono 4.13.8 затронут GHSA-4h7h-rv7c-7m2v (CVE-2026-126356)
+### QSI-2026-43062 — hono 4.13.8 затронут GHSA-4h7h-rv7c-7m2v (CVE-2026-126356)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.13.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -7489,13 +7387,13 @@ _tool_output · [OSV.dev GHSA-4h7h-rv7c-7m2v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28410 — hono 4.13.8 затронут GHSA-4m76-xfj5-7975 (CVE-2026-126357)
+### QSI-2026-43063 — hono 4.13.8 затронут GHSA-4m76-xfj5-7975 (CVE-2026-126357)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.13.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -7523,13 +7421,13 @@ _tool_output · [OSV.dev GHSA-4m76-xfj5-7975](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28411 — hono 4.13.8 затронут GHSA-5r4p-p66f-jhc7 (CVE-2026-109955, CVE-2026-111757)
+### QSI-2026-43064 — hono 4.13.8 затронут GHSA-5r4p-p66f-jhc7 (CVE-2026-109955, CVE-2026-111757)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.13.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -7557,13 +7455,13 @@ _tool_output · [OSV.dev GHSA-5r4p-p66f-jhc7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28412 — hono 4.13.8 затронут GHSA-h7mg-cq63-vhpq (CVE-2026-126358)
+### QSI-2026-43065 — hono 4.13.8 затронут GHSA-h7mg-cq63-vhpq (CVE-2026-126358)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.13.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -7591,13 +7489,13 @@ _tool_output · [OSV.dev GHSA-h7mg-cq63-vhpq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28413 — hono 4.9.8 затронут GHSA-26pp-8wgv-hjvm (CVE-2026-56762)
+### QSI-2026-43066 — hono 4.9.8 затронут GHSA-26pp-8wgv-hjvm (CVE-2026-56762)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -7625,13 +7523,13 @@ _tool_output · [OSV.dev GHSA-26pp-8wgv-hjvm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28414 — hono 4.9.8 затронут GHSA-2gcr-mfcq-wcc3 (CVE-2026-47676)
+### QSI-2026-43067 — hono 4.9.8 затронут GHSA-2gcr-mfcq-wcc3 (CVE-2026-47676)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -7659,13 +7557,13 @@ _tool_output · [OSV.dev GHSA-2gcr-mfcq-wcc3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28416 — hono 4.9.8 затронут GHSA-3hrh-pfw6-9m5x (CVE-2026-47675)
+### QSI-2026-43069 — hono 4.9.8 затронут GHSA-3hrh-pfw6-9m5x (CVE-2026-47675)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N`)
 
@@ -7693,13 +7591,13 @@ _tool_output · [OSV.dev GHSA-3hrh-pfw6-9m5x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28418 — hono 4.9.8 затронут GHSA-458j-xx4x-4375 (CVE-2026-56761)
+### QSI-2026-43071 — hono 4.9.8 затронут GHSA-458j-xx4x-4375 (CVE-2026-56761)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N`)
 
@@ -7727,13 +7625,13 @@ _tool_output · [OSV.dev GHSA-458j-xx4x-4375](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28419 — hono 4.9.8 затронут GHSA-46wx-v44x-9hh2 (CVE-2026-126355)
+### QSI-2026-43072 — hono 4.9.8 затронут GHSA-46wx-v44x-9hh2 (CVE-2026-126355)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N`)
 
@@ -7761,13 +7659,13 @@ _tool_output · [OSV.dev GHSA-46wx-v44x-9hh2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28420 — hono 4.9.8 затронут GHSA-4h7h-rv7c-7m2v (CVE-2026-126356)
+### QSI-2026-43073 — hono 4.9.8 затронут GHSA-4h7h-rv7c-7m2v (CVE-2026-126356)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -7795,13 +7693,13 @@ _tool_output · [OSV.dev GHSA-4h7h-rv7c-7m2v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28421 — hono 4.9.8 затронут GHSA-4m76-xfj5-7975 (CVE-2026-126357)
+### QSI-2026-43074 — hono 4.9.8 затронут GHSA-4m76-xfj5-7975 (CVE-2026-126357)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -7829,13 +7727,13 @@ _tool_output · [OSV.dev GHSA-4m76-xfj5-7975](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28422 — hono 4.9.8 затронут GHSA-5pq2-9x2x-5p6w (CVE-2026-29086)
+### QSI-2026-43075 — hono 4.9.8 затронут GHSA-5pq2-9x2x-5p6w (CVE-2026-29086)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -7863,13 +7761,13 @@ _tool_output · [OSV.dev GHSA-5pq2-9x2x-5p6w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28423 — hono 4.9.8 затронут GHSA-69xw-7hcm-h432 (CVE-2026-44455)
+### QSI-2026-43076 — hono 4.9.8 затронут GHSA-69xw-7hcm-h432 (CVE-2026-44455)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -7897,13 +7795,13 @@ _tool_output · [OSV.dev GHSA-69xw-7hcm-h432](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28424 — hono 4.9.8 затронут GHSA-6wqw-2p9w-4vw4 (CVE-2026-24472)
+### QSI-2026-43077 — hono 4.9.8 затронут GHSA-6wqw-2p9w-4vw4 (CVE-2026-24472)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -7931,13 +7829,13 @@ _tool_output · [OSV.dev GHSA-6wqw-2p9w-4vw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28427 — hono 4.9.8 затронут GHSA-8j4g-w8fx-2239 (CVE-2026-69207)
+### QSI-2026-43080 — hono 4.9.8 затронут GHSA-8j4g-w8fx-2239 (CVE-2026-69207)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -7965,13 +7863,13 @@ _tool_output · [OSV.dev GHSA-8j4g-w8fx-2239](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28428 — hono 4.9.8 затронут GHSA-9r54-q6cx-xmh5 (CVE-2026-24771)
+### QSI-2026-43081 — hono 4.9.8 затронут GHSA-9r54-q6cx-xmh5 (CVE-2026-24771)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -7999,13 +7897,13 @@ _tool_output · [OSV.dev GHSA-9r54-q6cx-xmh5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28429 — hono 4.9.8 затронут GHSA-9vqf-7f2p-gf9v (CVE-2026-44456)
+### QSI-2026-43082 — hono 4.9.8 затронут GHSA-9vqf-7f2p-gf9v (CVE-2026-44456)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -8033,13 +7931,13 @@ _tool_output · [OSV.dev GHSA-9vqf-7f2p-gf9v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28430 — hono 4.9.8 затронут GHSA-crvj-82cr-hjcx (CVE-2026-84363)
+### QSI-2026-43083 — hono 4.9.8 затронут GHSA-crvj-82cr-hjcx (CVE-2026-84363)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -8067,13 +7965,13 @@ _tool_output · [OSV.dev GHSA-crvj-82cr-hjcx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28431 — hono 4.9.8 затронут GHSA-f23p-vx2j-j53r (CVE-2026-71850)
+### QSI-2026-43084 — hono 4.9.8 затронут GHSA-f23p-vx2j-j53r (CVE-2026-71850)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -8101,13 +7999,13 @@ _tool_output · [OSV.dev GHSA-f23p-vx2j-j53r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28432 — hono 4.9.8 затронут GHSA-f577-qrjj-4474 (CVE-2026-47673)
+### QSI-2026-43085 — hono 4.9.8 затронут GHSA-f577-qrjj-4474 (CVE-2026-47673)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -8135,13 +8033,13 @@ _tool_output · [OSV.dev GHSA-f577-qrjj-4474](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28451 — next 14.2.35 затронут GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980)
+### QSI-2026-43104 — next 14.2.35 затронут GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8169,13 +8067,13 @@ _tool_output · [OSV.dev GHSA-3x4c-7xq6-9pq8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28452 — next 14.2.35 затронут GHSA-4633-3j49-mh5q (CVE-2026-64647)
+### QSI-2026-43105 — next 14.2.35 затронут GHSA-4633-3j49-mh5q (CVE-2026-64647)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8203,13 +8101,13 @@ _tool_output · [OSV.dev GHSA-4633-3j49-mh5q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28453 — next 14.2.35 затронут GHSA-4c39-4ccg-62r3 (CVE-2026-64646)
+### QSI-2026-43106 — next 14.2.35 затронут GHSA-4c39-4ccg-62r3 (CVE-2026-64646)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8237,13 +8135,13 @@ _tool_output · [OSV.dev GHSA-4c39-4ccg-62r3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28454 — next 14.2.35 затронут GHSA-68g3-v927-f742 (CVE-2026-64648)
+### QSI-2026-43107 — next 14.2.35 затронут GHSA-68g3-v927-f742 (CVE-2026-64648)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8271,13 +8169,13 @@ _tool_output · [OSV.dev GHSA-68g3-v927-f742](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28457 — next 14.2.35 затронут GHSA-955p-x3mx-jcvp (CVE-2026-64643)
+### QSI-2026-43110 — next 14.2.35 затронут GHSA-955p-x3mx-jcvp (CVE-2026-64643)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8305,13 +8203,13 @@ _tool_output · [OSV.dev GHSA-955p-x3mx-jcvp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28458 — next 14.2.35 затронут GHSA-9g9p-9gw9-jx7f (CVE-2025-59471)
+### QSI-2026-43111 — next 14.2.35 затронут GHSA-9g9p-9gw9-jx7f (CVE-2025-59471)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -8339,13 +8237,13 @@ _tool_output · [OSV.dev GHSA-9g9p-9gw9-jx7f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28460 — next 14.2.35 затронут GHSA-ffhc-5mcf-pf4q (CVE-2026-44581)
+### QSI-2026-43113 — next 14.2.35 затронут GHSA-ffhc-5mcf-pf4q (CVE-2026-44581)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -8373,13 +8271,13 @@ _tool_output · [OSV.dev GHSA-ffhc-5mcf-pf4q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28461 — next 14.2.35 затронут GHSA-ggv3-7p47-pfv8 (CVE-2026-29057)
+### QSI-2026-43114 — next 14.2.35 затронут GHSA-ggv3-7p47-pfv8 (CVE-2026-29057)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8407,13 +8305,13 @@ _tool_output · [OSV.dev GHSA-ggv3-7p47-pfv8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28462 — next 14.2.35 затронут GHSA-gx5p-jg67-6x7h (CVE-2026-44580)
+### QSI-2026-43115 — next 14.2.35 затронут GHSA-gx5p-jg67-6x7h (CVE-2026-44580)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -8441,13 +8339,13 @@ _tool_output · [OSV.dev GHSA-gx5p-jg67-6x7h](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28464 — next 14.2.35 затронут GHSA-h64f-5h5j-jqjh (CVE-2026-44577)
+### QSI-2026-43117 — next 14.2.35 затронут GHSA-h64f-5h5j-jqjh (CVE-2026-44577)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -8475,13 +8373,13 @@ _tool_output · [OSV.dev GHSA-h64f-5h5j-jqjh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28513 — postcss 8.4.31 затронут GHSA-fxqj-rqcc-2cmp (CVE-2026-69153)
+### QSI-2026-43164 — postcss 8.4.31 затронут GHSA-fxqj-rqcc-2cmp (CVE-2026-69153)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@8.4.31`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8509,13 +8407,13 @@ _tool_output · [OSV.dev GHSA-fxqj-rqcc-2cmp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28514 — postcss 8.4.31 затронут GHSA-qx2v-qp2m-jg93 (CVE-2026-41305)
+### QSI-2026-43165 — postcss 8.4.31 затронут GHSA-qx2v-qp2m-jg93 (CVE-2026-41305)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@8.4.31`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -8543,13 +8441,13 @@ _tool_output · [OSV.dev GHSA-qx2v-qp2m-jg93](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28591 — vite 7.3.6 затронут GHSA-698v-4r3x-3vcv (CVE-2026-112943)
+### QSI-2026-43242 — vite 7.3.6 затронут GHSA-698v-4r3x-3vcv (CVE-2026-112943)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@7.3.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8577,13 +8475,13 @@ _tool_output · [OSV.dev GHSA-698v-4r3x-3vcv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28593 — vite 7.3.6 затронут GHSA-r825-w8mm-5pxw (CVE-2026-112944)
+### QSI-2026-43244 — vite 7.3.6 затронут GHSA-r825-w8mm-5pxw (CVE-2026-112944)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@7.3.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8611,13 +8509,13 @@ _tool_output · [OSV.dev GHSA-r825-w8mm-5pxw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28594 — vite 7.3.6 затронут GHSA-rq7h-c2jc-7f22 (CVE-2026-112946)
+### QSI-2026-43245 — vite 7.3.6 затронут GHSA-rq7h-c2jc-7f22 (CVE-2026-112946)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@7.3.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -8645,17 +8543,17 @@ _tool_output · [OSV.dev GHSA-rq7h-c2jc-7f22](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28200 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (5 файл(ов))
+### QSI-2026-42853 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (8 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: apps/browser-extension/src/core/BitcoinProvider.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
-6 упоминаний ECDSA в 5 файл(ах), например apps/browser-extension/src/core/BitcoinProvider.ts:1. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+10 упоминаний ECDSA в 8 файл(ах), например apps/browser-extension/src/core/BitcoinProvider.ts:1. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -8674,6 +8572,22 @@ _file_excerpt · [apps/browser-extension/src/core/BitcoinProvider.ts](https://gi
     2 | import type { IdentifierArray, WalletAccount } from '@wallet-standard/base'
 ```
 
+_file_excerpt · [apps/browser-extension/src/core/TronProvider.ts](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/apps/browser-extension/src/core/TronProvider.ts#L36) · line 36 · SHA-256 dbec62f726d026eb82b20b666a7cbb11f35391079cdae94705148a77e1bebb46_
+
+```
+   35 | // Derive TRON address from EVM private key (same secp256k1 curve)
+   36 | const evmAccount = privateKeyToAccount(AccountUtil.privateKeyEvm)
+   37 | const tronAddress = ethAddressToTron(evmAccount.address)
+```
+
+_file_excerpt · [apps/browser-extension/src/core/transport.ts](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/apps/browser-extension/src/core/transport.ts#L22) · line 22 · SHA-256 169415b4e33c5aacb0ff7577dc00294cfbb3a1d43771b9a9cb66beacc4a8288e_
+
+```
+   21 |     }: EIP1193Parameters<any>): Promise<ReturnType<EIP1193Provider['request']>> => {
+   22 |       const account = privateKeyToAccount(AccountUtil.privateKeyEvm)
+   23 |       const { address, signMessage, signTypedData } = account
+```
+
 _file_excerpt · [apps/browser-extension/src/core/transport.ts](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/apps/browser-extension/src/core/transport.ts#L23) · line 23 · SHA-256 92c895fac8b058f6d089bd95bf1e679f1e51cdd0be88b1b0d6a87a984b6e1a09_
 
 ```
@@ -8688,6 +8602,22 @@ _file_excerpt · [apps/browser-extension/src/core/transport.ts](https://github.c
    92 | 
    93 |           return signTypedData(JSON.parse(typedData))
    94 |         }
+```
+
+_file_excerpt · [apps/browser-extension/src/pages/Home/index.tsx](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/apps/browser-extension/src/pages/Home/index.tsx#L24) · line 24 · SHA-256 a9aabb68744d5b07fd2aeb447bf8ab749f710a033f543acd41bfa5b426a18f6b_
+
+```
+   23 | // EVM
+   24 | const { address } = privateKeyToAccount(AccountUtil.privateKeyEvm)
+   25 | 
+```
+
+_file_excerpt · [apps/laboratory/src/components/Wagmi/WagmiCreatePasskeySignerTest.tsx](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/apps/laboratory/src/components/Wagmi/WagmiCreatePasskeySignerTest.tsx#L40) · line 40 · SHA-256 47864ec0944a5e8e7181fb7ccaca718bb25016d6fcdfd30c2677969b36d9092e_
+
+```
+   39 |     if (storedLocalSignerPrivateKey) {
+   40 |       privateKeyToAccount(storedLocalSignerPrivateKey as Address)
+   41 |     }
 ```
 
 _file_excerpt · [apps/laboratory/src/components/Wagmi/WagmiRequestPermissionsAsyncTest.tsx](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/apps/laboratory/src/components/Wagmi/WagmiRequestPermissionsAsyncTest.tsx#L75) · line 75 · SHA-256 e31b4519f2097f02dedb7b234c12edf950d556511f10c26c4070d7a617c4126a_
@@ -8719,17 +8649,17 @@ _file_excerpt · [packages/experimental/src/smart-session/helper/index.ts](https
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-28201 — Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))
+### QSI-2026-42854 — Квантово-уязвимый ECDSA: роль не определена (8 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: apps/gallery/utils/PresetUtils.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
-13 упоминаний ECDSA в 7 файл(ах), например apps/gallery/utils/PresetUtils.ts:367. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+14 упоминаний ECDSA в 8 файл(ах), например apps/gallery/utils/PresetUtils.ts:367. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -8763,6 +8693,14 @@ _file_excerpt · [apps/laboratory/src/components/Wagmi/WagmiRequestPermissionsSy
    93 |               {
    94 |                 type: 'secp256r1',
    95 |                 publicKey: passkeyPublicKey
+```
+
+_file_excerpt · [apps/laboratory/src/context/LocalEcdsaKeyContext.tsx](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/apps/laboratory/src/context/LocalEcdsaKeyContext.tsx#L47) · line 47 · SHA-256 3a577e7bb87c00a2a81c15cf2cbed6e147727fff73a89e2624d677ae7d7d00ae_
+
+```
+   46 |       }
+   47 |       const accountSigner = privateKeyToAccount(storedPrivateKey as Address)
+   48 |       setSigner(accountSigner)
 ```
 
 _file_excerpt · [apps/laboratory/src/utils/EncodingUtils.ts](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/apps/laboratory/src/utils/EncodingUtils.ts#L10) · line 10 · SHA-256 5fdbeecacbf3de93cc8fa3a8fba5b374d7f0717ee48b263ab3c93445727596a3_
@@ -8813,27 +8751,19 @@ _file_excerpt · [packages/experimental/src/smart-session/schema/index.ts](https
    66 |     errorMap: () => ({ message: ERROR_MESSAGES.UNSUPPORTED_KEY_TYPE })
 ```
 
-_file_excerpt · [packages/experimental/src/smart-session/utils/TypeUtils.ts](https://github.com/reown-com/appkit/blob/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b/packages/experimental/src/smart-session/utils/TypeUtils.ts#L2) · line 2 · SHA-256 8f0242af08949f057ffcb3ba1acbf588790ffa731ef51c5865c5e7d9328a87c4_
-
-```
-    1 | // The types of keys that are supported for the following `key` and `keys` signer types.
-    2 | export type KeyType = 'secp256r1' | 'secp256k1'
-    3 | 
-```
-
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-28292 — @auth/core 0.40.0 затронут GHSA-x445-f3h2-j279 (CVE-2026-73419)
+### QSI-2026-42945 — @auth/core 0.40.0 затронут GHSA-x445-f3h2-j279 (CVE-2026-73419)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@auth/core@0.40.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -8861,13 +8791,13 @@ _tool_output · [OSV.dev GHSA-x445-f3h2-j279](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28294 — @fastify/busboy 2.1.1 затронут GHSA-gxm5-99cw-xjw9 (CVE-2026-74866)
+### QSI-2026-42947 — @fastify/busboy 2.1.1 затронут GHSA-gxm5-99cw-xjw9 (CVE-2026-74866)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@fastify/busboy@2.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N`)
 
@@ -8895,13 +8825,13 @@ _tool_output · [OSV.dev GHSA-gxm5-99cw-xjw9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28296 — @hono/node-server 1.19.17 затронут GHSA-jpvv-r467-5p4w (CVE-2026-126210)
+### QSI-2026-42949 — @hono/node-server 1.19.17 затронут GHSA-jpvv-r467-5p4w (CVE-2026-126210)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@hono/node-server@1.19.17`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -8929,13 +8859,13 @@ _tool_output · [OSV.dev GHSA-jpvv-r467-5p4w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28297 — @hono/node-server 1.19.17 затронут GHSA-rmxm-3fg6-px4f (CVE-2026-118663)
+### QSI-2026-42950 — @hono/node-server 1.19.17 затронут GHSA-rmxm-3fg6-px4f (CVE-2026-118663)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@hono/node-server@1.19.17`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -8963,13 +8893,13 @@ _tool_output · [OSV.dev GHSA-rmxm-3fg6-px4f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28299 — @nuxt/schema 4.1.2 затронут GHSA-mjrq-cffv-q4qc (CVE-2026-128070)
+### QSI-2026-42952 — @nuxt/schema 4.1.2 затронут GHSA-mjrq-cffv-q4qc (CVE-2026-128070)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@nuxt/schema@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -8997,13 +8927,13 @@ _tool_output · [OSV.dev GHSA-mjrq-cffv-q4qc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28300 — @nuxt/vite-builder 4.1.2 затронут GHSA-648h-gw55-m2g7 (CVE-2026-119199)
+### QSI-2026-42953 — @nuxt/vite-builder 4.1.2 затронут GHSA-648h-gw55-m2g7 (CVE-2026-119199)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@nuxt/vite-builder@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -9031,13 +8961,13 @@ _tool_output · [OSV.dev GHSA-648h-gw55-m2g7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28301 — @opentelemetry/core 1.30.1 затронут GHSA-8988-4f7v-96qf (CVE-2026-54285)
+### QSI-2026-42954 — @opentelemetry/core 1.30.1 затронут GHSA-8988-4f7v-96qf (CVE-2026-54285)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@opentelemetry/core@1.30.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -9065,13 +8995,13 @@ _tool_output · [OSV.dev GHSA-8988-4f7v-96qf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28302 — @opentelemetry/instrumentation-knex 0.44.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
+### QSI-2026-42955 — @opentelemetry/instrumentation-knex 0.44.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@opentelemetry/instrumentation-knex@0.44.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
@@ -9099,13 +9029,13 @@ _tool_output · [OSV.dev GHSA-qqmp-wf37-98f9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28303 — @opentelemetry/instrumentation-mongoose 0.46.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
+### QSI-2026-42956 — @opentelemetry/instrumentation-mongoose 0.46.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@opentelemetry/instrumentation-mongoose@0.46.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
@@ -9133,13 +9063,13 @@ _tool_output · [OSV.dev GHSA-qqmp-wf37-98f9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28304 — @opentelemetry/instrumentation-mysql2 0.45.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
+### QSI-2026-42957 — @opentelemetry/instrumentation-mysql2 0.45.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@opentelemetry/instrumentation-mysql2@0.45.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
@@ -9167,13 +9097,13 @@ _tool_output · [OSV.dev GHSA-qqmp-wf37-98f9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28305 — @opentelemetry/instrumentation-mysql 0.45.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
+### QSI-2026-42958 — @opentelemetry/instrumentation-mysql 0.45.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@opentelemetry/instrumentation-mysql@0.45.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
@@ -9201,13 +9131,13 @@ _tool_output · [OSV.dev GHSA-qqmp-wf37-98f9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28306 — @opentelemetry/instrumentation-pg 0.50.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
+### QSI-2026-42959 — @opentelemetry/instrumentation-pg 0.50.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@opentelemetry/instrumentation-pg@0.50.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
@@ -9235,13 +9165,13 @@ _tool_output · [OSV.dev GHSA-qqmp-wf37-98f9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28307 — @opentelemetry/instrumentation-tedious 0.18.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
+### QSI-2026-42960 — @opentelemetry/instrumentation-tedious 0.18.0 затронут GHSA-qqmp-wf37-98f9 (CVE-2026-104872)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@opentelemetry/instrumentation-tedious@0.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
@@ -9269,13 +9199,13 @@ _tool_output · [OSV.dev GHSA-qqmp-wf37-98f9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28308 — @parcel/reporter-dev-server 2.13.3 затронут GHSA-qm9p-f9j5-w83w (CVE-2025-56648)
+### QSI-2026-42961 — @parcel/reporter-dev-server 2.13.3 затронут GHSA-qm9p-f9j5-w83w (CVE-2025-56648)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@parcel/reporter-dev-server@2.13.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -9303,13 +9233,13 @@ _tool_output · [OSV.dev GHSA-qm9p-f9j5-w83w](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28311 — @vitest/mocker 2.1.9 затронут GHSA-82fw-gwwq-j7x9 (CVE-2026-84373)
+### QSI-2026-42964 — @vitest/mocker 2.1.9 затронут GHSA-82fw-gwwq-j7x9 (CVE-2026-84373)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@vitest/mocker@2.1.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -9337,13 +9267,13 @@ _tool_output · [OSV.dev GHSA-82fw-gwwq-j7x9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28312 — @vitest/mocker 2.1.9 затронут GHSA-qxg6-89mg-rqv8 (CVE-2026-112949)
+### QSI-2026-42965 — @vitest/mocker 2.1.9 затронут GHSA-qxg6-89mg-rqv8 (CVE-2026-112949)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@vitest/mocker@2.1.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -9371,13 +9301,13 @@ _tool_output · [OSV.dev GHSA-qxg6-89mg-rqv8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28313 — @vitest/mocker 3.1.3 затронут GHSA-82fw-gwwq-j7x9 (CVE-2026-84373)
+### QSI-2026-42966 — @vitest/mocker 3.1.3 затронут GHSA-82fw-gwwq-j7x9 (CVE-2026-84373)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@vitest/mocker@3.1.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -9405,13 +9335,13 @@ _tool_output · [OSV.dev GHSA-82fw-gwwq-j7x9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28314 — @vitest/mocker 3.1.3 затронут GHSA-qxg6-89mg-rqv8 (CVE-2026-112949)
+### QSI-2026-42967 — @vitest/mocker 3.1.3 затронут GHSA-qxg6-89mg-rqv8 (CVE-2026-112949)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@vitest/mocker@3.1.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -9439,13 +9369,13 @@ _tool_output · [OSV.dev GHSA-qxg6-89mg-rqv8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28349 — basic-ftp 5.3.1 затронут GHSA-5pm8-86m8-9m6r (CVE-2026-126345)
+### QSI-2026-43002 — basic-ftp 5.3.1 затронут GHSA-5pm8-86m8-9m6r (CVE-2026-126345)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/basic-ftp@5.3.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -9473,13 +9403,13 @@ _tool_output · [OSV.dev GHSA-5pm8-86m8-9m6r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28351 — basic-ftp 5.3.1 затронут GHSA-r4jh-29pc-gfqr (CVE-2026-126346)
+### QSI-2026-43004 — basic-ftp 5.3.1 затронут GHSA-r4jh-29pc-gfqr (CVE-2026-126346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/basic-ftp@5.3.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -9507,13 +9437,13 @@ _tool_output · [OSV.dev GHSA-r4jh-29pc-gfqr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28356 — decode-uri-component 0.2.2 затронут GHSA-vcc3-ghjq-m6fr (CVE-2026-45822)
+### QSI-2026-43009 — decode-uri-component 0.2.2 затронут GHSA-vcc3-ghjq-m6fr (CVE-2026-45822)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/decode-uri-component@0.2.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9541,13 +9471,13 @@ _tool_output · [OSV.dev GHSA-vcc3-ghjq-m6fr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28357 — dompurify 3.2.4 затронут GHSA-39q2-94rc-95cp (CVE-2026-65903)
+### QSI-2026-43010 — dompurify 3.2.4 затронут GHSA-39q2-94rc-95cp (CVE-2026-65903)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9575,13 +9505,13 @@ _tool_output · [OSV.dev GHSA-39q2-94rc-95cp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28358 — dompurify 3.2.4 затронут GHSA-55q2-fjhq-7xh7 (CVE-2026-75838)
+### QSI-2026-43011 — dompurify 3.2.4 затронут GHSA-55q2-fjhq-7xh7 (CVE-2026-75838)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9609,13 +9539,13 @@ _tool_output · [OSV.dev GHSA-55q2-fjhq-7xh7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28360 — dompurify 3.2.4 затронут GHSA-76mc-f452-cxcm (CVE-2026-65902)
+### QSI-2026-43013 — dompurify 3.2.4 затронут GHSA-76mc-f452-cxcm (CVE-2026-65902)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -9643,13 +9573,13 @@ _tool_output · [OSV.dev GHSA-76mc-f452-cxcm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28363 — dompurify 3.2.4 затронут GHSA-cj63-jhhr-wcxv (CVE-2026-65913)
+### QSI-2026-43016 — dompurify 3.2.4 затронут GHSA-cj63-jhhr-wcxv (CVE-2026-65913)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9677,13 +9607,13 @@ _tool_output · [OSV.dev GHSA-cj63-jhhr-wcxv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28364 — dompurify 3.2.4 затронут GHSA-cjmm-f4jc-qw8r (CVE-2026-65912)
+### QSI-2026-43017 — dompurify 3.2.4 затронут GHSA-cjmm-f4jc-qw8r (CVE-2026-65912)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9711,13 +9641,13 @@ _tool_output · [OSV.dev GHSA-cjmm-f4jc-qw8r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28365 — dompurify 3.2.4 затронут GHSA-cmwh-pvxp-8882 (CVE-2026-65898)
+### QSI-2026-43018 — dompurify 3.2.4 затронут GHSA-cmwh-pvxp-8882 (CVE-2026-65898)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9745,13 +9675,13 @@ _tool_output · [OSV.dev GHSA-cmwh-pvxp-8882](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28366 — dompurify 3.2.4 затронут GHSA-crv5-9vww-q3g8 (CVE-2026-41239)
+### QSI-2026-43019 — dompurify 3.2.4 затронут GHSA-crv5-9vww-q3g8 (CVE-2026-41239)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -9779,13 +9709,13 @@ _tool_output · [OSV.dev GHSA-crv5-9vww-q3g8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28368 — dompurify 3.2.4 затронут GHSA-h7mw-gpvr-xq4m (CVE-2026-41240)
+### QSI-2026-43021 — dompurify 3.2.4 затронут GHSA-h7mw-gpvr-xq4m (CVE-2026-41240)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9813,13 +9743,13 @@ _tool_output · [OSV.dev GHSA-h7mw-gpvr-xq4m](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28369 — dompurify 3.2.4 затронут GHSA-h8r8-wccr-v5f2 (CVE-2026-65914)
+### QSI-2026-43022 — dompurify 3.2.4 затронут GHSA-h8r8-wccr-v5f2 (CVE-2026-65914)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9847,13 +9777,13 @@ _tool_output · [OSV.dev GHSA-h8r8-wccr-v5f2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28370 — dompurify 3.2.4 затронут GHSA-hpcv-96wg-7vj8 (CVE-2026-49458)
+### QSI-2026-43023 — dompurify 3.2.4 затронут GHSA-hpcv-96wg-7vj8 (CVE-2026-49458)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -9881,13 +9811,13 @@ _tool_output · [OSV.dev GHSA-hpcv-96wg-7vj8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28372 — dompurify 3.2.4 затронут GHSA-r47g-fvhr-h676 (CVE-2026-49459)
+### QSI-2026-43025 — dompurify 3.2.4 затронут GHSA-r47g-fvhr-h676 (CVE-2026-49459)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -9915,13 +9845,13 @@ _tool_output · [OSV.dev GHSA-r47g-fvhr-h676](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28373 — dompurify 3.2.4 затронут GHSA-rp9w-3fw7-7cwq (CVE-2026-49978)
+### QSI-2026-43026 — dompurify 3.2.4 затронут GHSA-rp9w-3fw7-7cwq (CVE-2026-49978)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -9949,13 +9879,13 @@ _tool_output · [OSV.dev GHSA-rp9w-3fw7-7cwq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28374 — dompurify 3.2.4 затронут GHSA-v2wj-7wpq-c8vv (CVE-2026-0540)
+### QSI-2026-43027 — dompurify 3.2.4 затронут GHSA-v2wj-7wpq-c8vv (CVE-2026-0540)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -9983,13 +9913,13 @@ _tool_output · [OSV.dev GHSA-v2wj-7wpq-c8vv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28375 — dompurify 3.2.4 затронут GHSA-v8jm-5vwx-cfxm (CVE-2025-15599)
+### QSI-2026-43028 — dompurify 3.2.4 затронут GHSA-v8jm-5vwx-cfxm (CVE-2025-15599)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -10017,13 +9947,13 @@ _tool_output · [OSV.dev GHSA-v8jm-5vwx-cfxm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28376 — dompurify 3.2.4 затронут GHSA-v9jr-rg53-9pgp (CVE-2026-41238)
+### QSI-2026-43029 — dompurify 3.2.4 затронут GHSA-v9jr-rg53-9pgp (CVE-2026-41238)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:L/A:N`)
 
@@ -10051,13 +9981,13 @@ _tool_output · [OSV.dev GHSA-v9jr-rg53-9pgp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28377 — elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505)
+### QSI-2026-43030 — elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/elliptic@6.6.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.6 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L`)
 
@@ -10085,13 +10015,13 @@ _tool_output · [OSV.dev GHSA-848j-6mx2-7j84](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28381 — fast-uri 3.1.8 затронут GHSA-w74x-v6f9-j3xg (CVE-2026-110306)
+### QSI-2026-43034 — fast-uri 3.1.8 затронут GHSA-w74x-v6f9-j3xg (CVE-2026-110306)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-uri@3.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -10119,13 +10049,13 @@ _tool_output · [OSV.dev GHSA-w74x-v6f9-j3xg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28382 — fast-uri 3.1.8 затронут GHSA-wjr9-j795-jxcr (CVE-2026-110180)
+### QSI-2026-43035 — fast-uri 3.1.8 затронут GHSA-wjr9-j795-jxcr (CVE-2026-110180)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-uri@3.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -10153,13 +10083,13 @@ _tool_output · [OSV.dev GHSA-wjr9-j795-jxcr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28387 — fast-xml-parser 4.2.5 затронут GHSA-gh4j-gqv2-49f6 (CVE-2026-41650)
+### QSI-2026-43040 — fast-xml-parser 4.2.5 затронут GHSA-gh4j-gqv2-49f6 (CVE-2026-41650)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.2.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -10175,25 +10105,25 @@ curl -s https://api.osv.dev/v1/vulns/GHSA-gh4j-gqv2-49f6
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev GHSA-gh4j-gqv2-49f6](https://osv.dev/vulnerability/GHSA-gh4j-gqv2-49f6) · manifest · SHA-256 35765aa9463e1e525f568d40994fb341fd27d9537be3c10862e910415a2f1ebb_
+_tool_output · [OSV.dev GHSA-gh4j-gqv2-49f6](https://osv.dev/vulnerability/GHSA-gh4j-gqv2-49f6) · manifest · SHA-256 d42a115fbc31af3590dab30c35b312ea482a5441c9d44e1a6a56574c8ef2dc7f_
 
 ```
-{"id": "GHSA-gh4j-gqv2-49f6", "aliases": ["CVE-2026-41650"], "modified": "2026-09-10T03:51:01.693430465Z", "summary": "fast-xml-parser XMLBuilder: XML Comment and CDATA Injection via Unescaped Delimiters", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
+{"id": "GHSA-gh4j-gqv2-49f6", "aliases": ["CVE-2026-41650"], "modified": "2026-11-18T00:45:13.731912370Z", "summary": "fast-xml-parser XMLBuilder: XML Comment and CDATA Injection via Unescaped Delimiters", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Обновите до исправленной версии (5.7.0).
+**Рекомендация.** Обновите до исправленной версии (4.5.7, 5.7.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28389 — fast-xml-parser 4.2.5 затронут GHSA-jp2q-39xq-3w4g (CVE-2026-33349)
+### QSI-2026-43042 — fast-xml-parser 4.2.5 затронут GHSA-jp2q-39xq-3w4g (CVE-2026-33349)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.2.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -10221,13 +10151,13 @@ _tool_output · [OSV.dev GHSA-jp2q-39xq-3w4g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28394 — fast-xml-parser 4.4.1 затронут GHSA-gh4j-gqv2-49f6 (CVE-2026-41650)
+### QSI-2026-43047 — fast-xml-parser 4.4.1 затронут GHSA-gh4j-gqv2-49f6 (CVE-2026-41650)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.4.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -10243,25 +10173,25 @@ curl -s https://api.osv.dev/v1/vulns/GHSA-gh4j-gqv2-49f6
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev GHSA-gh4j-gqv2-49f6](https://osv.dev/vulnerability/GHSA-gh4j-gqv2-49f6) · manifest · SHA-256 35765aa9463e1e525f568d40994fb341fd27d9537be3c10862e910415a2f1ebb_
+_tool_output · [OSV.dev GHSA-gh4j-gqv2-49f6](https://osv.dev/vulnerability/GHSA-gh4j-gqv2-49f6) · manifest · SHA-256 d42a115fbc31af3590dab30c35b312ea482a5441c9d44e1a6a56574c8ef2dc7f_
 
 ```
-{"id": "GHSA-gh4j-gqv2-49f6", "aliases": ["CVE-2026-41650"], "modified": "2026-09-10T03:51:01.693430465Z", "summary": "fast-xml-parser XMLBuilder: XML Comment and CDATA Injection via Unescaped Delimiters", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
+{"id": "GHSA-gh4j-gqv2-49f6", "aliases": ["CVE-2026-41650"], "modified": "2026-11-18T00:45:13.731912370Z", "summary": "fast-xml-parser XMLBuilder: XML Comment and CDATA Injection via Unescaped Delimiters", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Обновите до исправленной версии (5.7.0).
+**Рекомендация.** Обновите до исправленной версии (4.5.7, 5.7.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28396 — fast-xml-parser 4.4.1 затронут GHSA-jp2q-39xq-3w4g (CVE-2026-33349)
+### QSI-2026-43049 — fast-xml-parser 4.4.1 затронут GHSA-jp2q-39xq-3w4g (CVE-2026-33349)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.4.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -10289,13 +10219,13 @@ _tool_output · [OSV.dev GHSA-jp2q-39xq-3w4g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28399 — follow-redirects 1.16.0 затронут GHSA-mrwp-f3q8-3g9p (CVE-2026-116689)
+### QSI-2026-43052 — follow-redirects 1.16.0 затронут GHSA-mrwp-f3q8-3g9p (CVE-2026-116689)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/follow-redirects@1.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -10323,13 +10253,13 @@ _tool_output · [OSV.dev GHSA-mrwp-f3q8-3g9p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28401 — glob 10.3.10 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+### QSI-2026-43054 — glob 10.3.10 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/glob@10.3.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10357,13 +10287,13 @@ _tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28403 — glob 10.5.0 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+### QSI-2026-43056 — glob 10.5.0 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/glob@10.5.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10391,13 +10321,13 @@ _tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28404 — glob 11.1.0 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+### QSI-2026-43057 — glob 11.1.0 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/glob@11.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10425,13 +10355,13 @@ _tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28405 — glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+### QSI-2026-43058 — glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/glob@13.0.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10459,13 +10389,13 @@ _tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28406 — glob 9.3.5 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+### QSI-2026-43059 — glob 9.3.5 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/glob@9.3.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10493,13 +10423,13 @@ _tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28433 — ip-address 10.7.2 затронут GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997)
+### QSI-2026-43086 — ip-address 10.7.2 затронут GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip-address@10.7.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10527,13 +10457,13 @@ _tool_output · [OSV.dev GHSA-rxp7-6hxx-x8q5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28435 — launch-editor 2.14.1 затронут GHSA-698v-4r3x-3vcv (CVE-2026-112943)
+### QSI-2026-43088 — launch-editor 2.14.1 затронут GHSA-698v-4r3x-3vcv (CVE-2026-112943)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/launch-editor@2.14.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10561,13 +10491,13 @@ _tool_output · [OSV.dev GHSA-698v-4r3x-3vcv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28436 — launch-editor 2.14.1 затронут GHSA-r825-w8mm-5pxw (CVE-2026-112944)
+### QSI-2026-43089 — launch-editor 2.14.1 затронут GHSA-r825-w8mm-5pxw (CVE-2026-112944)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/launch-editor@2.14.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10595,13 +10525,13 @@ _tool_output · [OSV.dev GHSA-r825-w8mm-5pxw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28437 — minimatch 10.2.6 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
+### QSI-2026-43090 — minimatch 10.2.6 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@10.2.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10629,13 +10559,13 @@ _tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28438 — minimatch 8.0.7 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
+### QSI-2026-43091 — minimatch 8.0.7 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@8.0.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10663,13 +10593,13 @@ _tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28442 — minimatch 9.0.3 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
+### QSI-2026-43095 — minimatch 9.0.3 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10697,13 +10627,13 @@ _tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28443 — minimatch 9.0.9 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
+### QSI-2026-43096 — minimatch 9.0.9 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -10731,13 +10661,13 @@ _tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28444 — nanoid 5.1.5 затронут GHSA-28wg-ghj8-5hjv (CVE-2026-67214)
+### QSI-2026-43097 — nanoid 5.1.5 затронут GHSA-28wg-ghj8-5hjv (CVE-2026-67214)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nanoid@5.1.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -10765,13 +10695,13 @@ _tool_output · [OSV.dev GHSA-28wg-ghj8-5hjv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28445 — nanoid 5.1.5 затронут GHSA-2v37-7h3g-55p8 (CVE-2026-67213)
+### QSI-2026-43098 — nanoid 5.1.5 затронут GHSA-2v37-7h3g-55p8 (CVE-2026-67213)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nanoid@5.1.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -10799,13 +10729,13 @@ _tool_output · [OSV.dev GHSA-2v37-7h3g-55p8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28470 — node-forge 1.4.0 затронут GHSA-525v-9gp9-w22h (CVE-2026-118778)
+### QSI-2026-43123 — node-forge 1.4.0 затронут GHSA-525v-9gp9-w22h (CVE-2026-118778)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -10833,13 +10763,13 @@ _tool_output · [OSV.dev GHSA-525v-9gp9-w22h](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28471 — node-forge 1.4.0 затронут GHSA-5cwg-6vw7-rj6p (CVE-2026-119186)
+### QSI-2026-43124 — node-forge 1.4.0 затронут GHSA-5cwg-6vw7-rj6p (CVE-2026-119186)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -10867,13 +10797,13 @@ _tool_output · [OSV.dev GHSA-5cwg-6vw7-rj6p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28474 — node-forge 1.4.0 затронут GHSA-6cv4-p8m7-4r25 (CVE-2026-125333)
+### QSI-2026-43127 — node-forge 1.4.0 затронут GHSA-6cv4-p8m7-4r25 (CVE-2026-125333)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -10901,13 +10831,13 @@ _tool_output · [OSV.dev GHSA-6cv4-p8m7-4r25](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28476 — node-forge 1.4.0 затронут GHSA-6wvx-3r32-xmcg (CVE-2026-118777)
+### QSI-2026-43129 — node-forge 1.4.0 затронут GHSA-6wvx-3r32-xmcg (CVE-2026-118777)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L`)
 
@@ -10935,13 +10865,13 @@ _tool_output · [OSV.dev GHSA-6wvx-3r32-xmcg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28481 — node-forge 1.4.0 затронут GHSA-h46v-rmh6-fq4f (CVE-2026-119189)
+### QSI-2026-43134 — node-forge 1.4.0 затронут GHSA-h46v-rmh6-fq4f (CVE-2026-119189)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -10969,13 +10899,13 @@ _tool_output · [OSV.dev GHSA-h46v-rmh6-fq4f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28484 — node-forge 1.4.0 затронут GHSA-j8rw-jp99-435v (CVE-2026-125334)
+### QSI-2026-43137 — node-forge 1.4.0 затронут GHSA-j8rw-jp99-435v (CVE-2026-125334)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -11003,13 +10933,13 @@ _tool_output · [OSV.dev GHSA-j8rw-jp99-435v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28487 — nuxt 4.1.2 затронут GHSA-48hr-524c-v5w3 (CVE-2026-71318)
+### QSI-2026-43140 — nuxt 4.1.2 затронут GHSA-48hr-524c-v5w3 (CVE-2026-71318)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -11037,13 +10967,13 @@ _tool_output · [OSV.dev GHSA-48hr-524c-v5w3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28488 — nuxt 4.1.2 затронут GHSA-534h-c3cw-v3h9 (CVE-2026-56301)
+### QSI-2026-43141 — nuxt 4.1.2 затронут GHSA-534h-c3cw-v3h9 (CVE-2026-56301)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.5 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -11071,13 +11001,13 @@ _tool_output · [OSV.dev GHSA-534h-c3cw-v3h9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28489 — nuxt 4.1.2 затронут GHSA-6gq8-jgmh-3ffp (CVE-2026-114131)
+### QSI-2026-43142 — nuxt 4.1.2 затронут GHSA-6gq8-jgmh-3ffp (CVE-2026-114131)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -11105,13 +11035,13 @@ _tool_output · [OSV.dev GHSA-6gq8-jgmh-3ffp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28490 — nuxt 4.1.2 затронут GHSA-934w-87qh-qr26 (CVE-2026-53722)
+### QSI-2026-43143 — nuxt 4.1.2 затронут GHSA-934w-87qh-qr26 (CVE-2026-53722)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -11139,13 +11069,13 @@ _tool_output · [OSV.dev GHSA-934w-87qh-qr26](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28492 — nuxt 4.1.2 затронут GHSA-96x6-fvhx-49hg (CVE-2026-128075)
+### QSI-2026-43145 — nuxt 4.1.2 затронут GHSA-96x6-fvhx-49hg (CVE-2026-128075)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -11173,13 +11103,13 @@ _tool_output · [OSV.dev GHSA-96x6-fvhx-49hg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28494 — nuxt 4.1.2 затронут GHSA-c9cv-mq2m-ppp3 (CVE-2026-56326, CVE-2026-56697, CVE-2026-56698)
+### QSI-2026-43147 — nuxt 4.1.2 затронут GHSA-c9cv-mq2m-ppp3 (CVE-2026-56326, CVE-2026-56697, CVE-2026-56698)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -11207,13 +11137,13 @@ _tool_output · [OSV.dev GHSA-c9cv-mq2m-ppp3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28495 — nuxt 4.1.2 затронут GHSA-f3x9-2chm-73c8 (CVE-2026-128071)
+### QSI-2026-43148 — nuxt 4.1.2 затронут GHSA-f3x9-2chm-73c8 (CVE-2026-128071)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -11241,13 +11171,13 @@ _tool_output · [OSV.dev GHSA-f3x9-2chm-73c8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28496 — nuxt 4.1.2 затронут GHSA-fx6j-w5w5-h468 (CVE-2026-45669)
+### QSI-2026-43149 — nuxt 4.1.2 затронут GHSA-fx6j-w5w5-h468 (CVE-2026-45669)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -11275,13 +11205,13 @@ _tool_output · [OSV.dev GHSA-fx6j-w5w5-h468](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28497 — nuxt 4.1.2 затронут GHSA-g8wj-3cr3-6w7v (CVE-2026-46342)
+### QSI-2026-43150 — nuxt 4.1.2 затронут GHSA-g8wj-3cr3-6w7v (CVE-2026-46342)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -11309,13 +11239,13 @@ _tool_output · [OSV.dev GHSA-g8wj-3cr3-6w7v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28499 — nuxt 4.1.2 затронут GHSA-hg3f-28rg-4jxj (CVE-2026-47200)
+### QSI-2026-43152 — nuxt 4.1.2 затронут GHSA-hg3f-28rg-4jxj (CVE-2026-47200)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -11343,13 +11273,13 @@ _tool_output · [OSV.dev GHSA-hg3f-28rg-4jxj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28505 — nuxt 4.1.2 затронут GHSA-vjh5-4x84-xrqp (CVE-2026-114132)
+### QSI-2026-43158 — nuxt 4.1.2 затронут GHSA-vjh5-4x84-xrqp (CVE-2026-114132)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -11377,13 +11307,13 @@ _tool_output · [OSV.dev GHSA-vjh5-4x84-xrqp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28506 — nuxt 4.1.2 затронут GHSA-xfq5-w38q-pc2x (CVE-2026-114133)
+### QSI-2026-43159 — nuxt 4.1.2 затронут GHSA-xfq5-w38q-pc2x (CVE-2026-114133)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -11411,13 +11341,13 @@ _tool_output · [OSV.dev GHSA-xfq5-w38q-pc2x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28511 — postcss-selector-parser 6.1.4 затронут GHSA-rj75-hqrm-r3gf (CVE-2026-104844)
+### QSI-2026-43162 — postcss-selector-parser 6.1.4 затронут GHSA-rj75-hqrm-r3gf (CVE-2026-104844)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/postcss-selector-parser@6.1.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -11445,13 +11375,13 @@ _tool_output · [OSV.dev GHSA-rj75-hqrm-r3gf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28516 — qs 6.13.0 затронут GHSA-4mjr-xmp4-gh2g (CVE-2026-82417)
+### QSI-2026-43167 — qs 6.13.0 затронут GHSA-4mjr-xmp4-gh2g (CVE-2026-82417)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/qs@6.13.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -11479,13 +11409,13 @@ _tool_output · [OSV.dev GHSA-4mjr-xmp4-gh2g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28517 — qs 6.13.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)
+### QSI-2026-43168 — qs 6.13.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/qs@6.13.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -11513,13 +11443,13 @@ _tool_output · [OSV.dev GHSA-6pq8-jhm2-2vcw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28519 — qs 6.13.0 затронут GHSA-q8mj-m7cp-5q26 (CVE-2026-8723)
+### QSI-2026-43170 — qs 6.13.0 затронут GHSA-q8mj-m7cp-5q26 (CVE-2026-8723)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/qs@6.13.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -11547,13 +11477,13 @@ _tool_output · [OSV.dev GHSA-q8mj-m7cp-5q26](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28521 — qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)
+### QSI-2026-43172 — qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/qs@6.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -11581,13 +11511,13 @@ _tool_output · [OSV.dev GHSA-6pq8-jhm2-2vcw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28525 — serialize-javascript 6.0.2 затронут GHSA-qj8w-gfj5-8c6v (CVE-2026-34043)
+### QSI-2026-43176 — serialize-javascript 6.0.2 затронут GHSA-qj8w-gfj5-8c6v (CVE-2026-34043)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/serialize-javascript@6.0.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -11615,13 +11545,13 @@ _tool_output · [OSV.dev GHSA-qj8w-gfj5-8c6v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28539 — stream-json 1.9.1 затронут GHSA-528h-pc64-c93x (CVE-2026-71429)
+### QSI-2026-43190 — stream-json 1.9.1 затронут GHSA-528h-pc64-c93x (CVE-2026-71429)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/stream-json@1.9.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -11649,13 +11579,13 @@ _tool_output · [OSV.dev GHSA-528h-pc64-c93x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28540 — stream-json 1.9.1 затронут GHSA-hqr4-qq8f-hg3x (CVE-2026-104182)
+### QSI-2026-43191 — stream-json 1.9.1 затронут GHSA-hqr4-qq8f-hg3x (CVE-2026-104182)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/stream-json@1.9.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -11683,13 +11613,13 @@ _tool_output · [OSV.dev GHSA-hqr4-qq8f-hg3x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28541 — stream-json 1.9.1 затронут GHSA-mjw6-4jj6-33hc (CVE-2026-104183)
+### QSI-2026-43192 — stream-json 1.9.1 затронут GHSA-mjw6-4jj6-33hc (CVE-2026-104183)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/stream-json@1.9.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.1 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L`)
 
@@ -11717,13 +11647,13 @@ _tool_output · [OSV.dev GHSA-mjw6-4jj6-33hc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28548 — tar 6.2.1 затронут GHSA-gvwx-54wh-qm9j (CVE-2026-59875)
+### QSI-2026-43199 — tar 6.2.1 затронут GHSA-gvwx-54wh-qm9j (CVE-2026-59875)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -11751,13 +11681,13 @@ _tool_output · [OSV.dev GHSA-gvwx-54wh-qm9j](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28552 — tar 6.2.1 затронут GHSA-vmf3-w455-68vh (CVE-2026-53655)
+### QSI-2026-43203 — tar 6.2.1 затронут GHSA-vmf3-w455-68vh (CVE-2026-53655)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -11785,13 +11715,13 @@ _tool_output · [OSV.dev GHSA-vmf3-w455-68vh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28553 — tar 6.2.1 затронут GHSA-w8wr-v893-vjvp (CVE-2026-59871)
+### QSI-2026-43204 — tar 6.2.1 затронут GHSA-w8wr-v893-vjvp (CVE-2026-59871)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tar@6.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -11819,13 +11749,13 @@ _tool_output · [OSV.dev GHSA-w8wr-v893-vjvp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28559 — undici 5.29.0 затронут GHSA-2mjp-6q6p-2qxm (CVE-2026-1525)
+### QSI-2026-43210 — undici 5.29.0 затронут GHSA-2mjp-6q6p-2qxm (CVE-2026-1525)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L`)
 
@@ -11853,13 +11783,13 @@ _tool_output · [OSV.dev GHSA-2mjp-6q6p-2qxm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28561 — undici 5.29.0 затронут GHSA-4992-7rv2-5pvq (CVE-2026-1527)
+### QSI-2026-43212 — undici 5.29.0 затронут GHSA-4992-7rv2-5pvq (CVE-2026-1527)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.6 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -11887,13 +11817,13 @@ _tool_output · [OSV.dev GHSA-4992-7rv2-5pvq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28562 — undici 5.29.0 затронут GHSA-8xcm-r25x-g524 (CVE-2026-16728)
+### QSI-2026-43213 — undici 5.29.0 затронут GHSA-8xcm-r25x-g524 (CVE-2026-16728)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -11921,13 +11851,13 @@ _tool_output · [OSV.dev GHSA-8xcm-r25x-g524](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28563 — undici 5.29.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)
+### QSI-2026-43214 — undici 5.29.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -11955,13 +11885,13 @@ _tool_output · [OSV.dev GHSA-9fm3-97px-rjf6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28565 — undici 5.29.0 затронут GHSA-g9mf-h72j-4rw9 (CVE-2026-22036)
+### QSI-2026-43216 — undici 5.29.0 затронут GHSA-g9mf-h72j-4rw9 (CVE-2026-22036)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -11989,13 +11919,13 @@ _tool_output · [OSV.dev GHSA-g9mf-h72j-4rw9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28566 — undici 5.29.0 затронут GHSA-m8rv-5g2x-5cg5 (CVE-2026-15157)
+### QSI-2026-43217 — undici 5.29.0 затронут GHSA-m8rv-5g2x-5cg5 (CVE-2026-15157)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.2 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -12023,13 +11953,13 @@ _tool_output · [OSV.dev GHSA-m8rv-5g2x-5cg5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28567 — undici 5.29.0 затронут GHSA-p88m-4jfj-68fv (CVE-2026-9679)
+### QSI-2026-43218 — undici 5.29.0 затронут GHSA-p88m-4jfj-68fv (CVE-2026-9679)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -12057,13 +11987,13 @@ _tool_output · [OSV.dev GHSA-p88m-4jfj-68fv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28570 — undici 5.29.0 затронут GHSA-v3r7-h72x-cjcm (CVE-2026-16729)
+### QSI-2026-43221 — undici 5.29.0 затронут GHSA-v3r7-h72x-cjcm (CVE-2026-16729)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
@@ -12091,13 +12021,13 @@ _tool_output · [OSV.dev GHSA-v3r7-h72x-cjcm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28575 — undici 7.29.1 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924)
+### QSI-2026-43226 — undici 7.29.1 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.29.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -12125,13 +12055,13 @@ _tool_output · [OSV.dev GHSA-4qv8-2p9j-2685](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28577 — undici 7.29.1 затронут GHSA-55wc-3pg8-jfw6 (CVE-2026-87029)
+### QSI-2026-43228 — undici 7.29.1 затронут GHSA-55wc-3pg8-jfw6 (CVE-2026-87029)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.29.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -12159,13 +12089,13 @@ _tool_output · [OSV.dev GHSA-55wc-3pg8-jfw6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28578 — undici 7.29.1 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)
+### QSI-2026-43229 — undici 7.29.1 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.29.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -12193,13 +12123,13 @@ _tool_output · [OSV.dev GHSA-9fm3-97px-rjf6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28579 — undici 7.29.1 затронут GHSA-f72v-6w45-q472 (CVE-2026-109841)
+### QSI-2026-43230 — undici 7.29.1 затронут GHSA-f72v-6w45-q472 (CVE-2026-109841)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.29.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -12227,13 +12157,13 @@ _tool_output · [OSV.dev GHSA-f72v-6w45-q472](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28584 — valibot 0.37.0 затронут GHSA-5qjj-4xww-7phc (CVE-2026-59952)
+### QSI-2026-43235 — valibot 0.37.0 затронут GHSA-5qjj-4xww-7phc (CVE-2026-59952)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/valibot@0.37.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -12261,13 +12191,13 @@ _tool_output · [OSV.dev GHSA-5qjj-4xww-7phc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28586 — valibot 0.38.0 затронут GHSA-5qjj-4xww-7phc (CVE-2026-59952)
+### QSI-2026-43237 — valibot 0.38.0 затронут GHSA-5qjj-4xww-7phc (CVE-2026-59952)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/valibot@0.38.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -12295,13 +12225,13 @@ _tool_output · [OSV.dev GHSA-5qjj-4xww-7phc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28588 — valibot 0.42.1 затронут GHSA-5qjj-4xww-7phc (CVE-2026-59952)
+### QSI-2026-43239 — valibot 0.42.1 затронут GHSA-5qjj-4xww-7phc (CVE-2026-59952)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/valibot@0.42.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -12329,13 +12259,13 @@ _tool_output · [OSV.dev GHSA-5qjj-4xww-7phc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28206 — webpack 5.94.0 затронут GHSA-38r7-794h-5758 (CVE-2025-68157)
+### QSI-2026-42859 — webpack 5.94.0 затронут GHSA-38r7-794h-5758 (CVE-2025-68157)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/webpack@5.94.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -12363,13 +12293,13 @@ _tool_output · [OSV.dev GHSA-38r7-794h-5758](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28207 — webpack 5.94.0 затронут GHSA-8fgc-7cc6-rx7x (CVE-2025-68458)
+### QSI-2026-42860 — webpack 5.94.0 затронут GHSA-8fgc-7cc6-rx7x (CVE-2025-68458)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/webpack@5.94.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -12397,13 +12327,13 @@ _tool_output · [OSV.dev GHSA-8fgc-7cc6-rx7x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28238 — next 15.5.9 затронут GHSA-3g8h-86w9-wvmq (CVE-2026-44572)
+### QSI-2026-42891 — next 15.5.9 затронут GHSA-3g8h-86w9-wvmq (CVE-2026-44572)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.5.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -12431,13 +12361,13 @@ _tool_output · [OSV.dev GHSA-3g8h-86w9-wvmq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28265 — next 15.3.8 затронут GHSA-3g8h-86w9-wvmq (CVE-2026-44572)
+### QSI-2026-42918 — next 15.3.8 затронут GHSA-3g8h-86w9-wvmq (CVE-2026-44572)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@15.3.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -12465,13 +12395,13 @@ _tool_output · [OSV.dev GHSA-3g8h-86w9-wvmq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28284 — vite 5.4.20 затронут GHSA-9jrq-w75r-8gcw (CVE-2026-112945)
+### QSI-2026-42937 — vite 5.4.20 затронут GHSA-9jrq-w75r-8gcw (CVE-2026-112945)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@5.4.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -12499,13 +12429,13 @@ _tool_output · [OSV.dev GHSA-9jrq-w75r-8gcw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28407 — hono 4.13.8 затронут GHSA-3gg2-335m-rxc6 (CVE-2026-126359)
+### QSI-2026-43060 — hono 4.13.8 затронут GHSA-3gg2-335m-rxc6 (CVE-2026-126359)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.13.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N`)
 
@@ -12533,13 +12463,13 @@ _tool_output · [OSV.dev GHSA-3gg2-335m-rxc6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28415 — hono 4.9.8 затронут GHSA-3gg2-335m-rxc6 (CVE-2026-126359)
+### QSI-2026-43068 — hono 4.9.8 затронут GHSA-3gg2-335m-rxc6 (CVE-2026-126359)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N`)
 
@@ -12567,13 +12497,13 @@ _tool_output · [OSV.dev GHSA-3gg2-335m-rxc6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28425 — hono 4.9.8 затронут GHSA-79qm-7rj5-m7r9 (CVE-2026-71849)
+### QSI-2026-43078 — hono 4.9.8 затронут GHSA-79qm-7rj5-m7r9 (CVE-2026-71849)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/hono@4.9.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -12601,13 +12531,13 @@ _tool_output · [OSV.dev GHSA-79qm-7rj5-m7r9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28450 — next 14.2.35 затронут GHSA-3g8h-86w9-wvmq (CVE-2026-44572)
+### QSI-2026-43103 — next 14.2.35 затронут GHSA-3g8h-86w9-wvmq (CVE-2026-44572)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/next@14.2.35`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -12635,13 +12565,13 @@ _tool_output · [OSV.dev GHSA-3g8h-86w9-wvmq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28592 — vite 7.3.6 затронут GHSA-9jrq-w75r-8gcw (CVE-2026-112945)
+### QSI-2026-43243 — vite 7.3.6 затронут GHSA-9jrq-w75r-8gcw (CVE-2026-112945)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/vite@7.3.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -12669,13 +12599,13 @@ _tool_output · [OSV.dev GHSA-9jrq-w75r-8gcw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28310 — @smithy/config-resolver 2.2.0 затронут GHSA-6475-r3vj-m8vf
+### QSI-2026-42963 — @smithy/config-resolver 2.2.0 затронут GHSA-6475-r3vj-m8vf
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@smithy/config-resolver@2.2.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -12703,13 +12633,13 @@ _tool_output · [OSV.dev GHSA-6475-r3vj-m8vf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28359 — dompurify 3.2.4 затронут GHSA-6688-9rhm-gjv2 (CVE-2026-109345)
+### QSI-2026-43012 — dompurify 3.2.4 затронут GHSA-6688-9rhm-gjv2 (CVE-2026-109345)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -12737,13 +12667,13 @@ _tool_output · [OSV.dev GHSA-6688-9rhm-gjv2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28361 — dompurify 3.2.4 затронут GHSA-c2j3-45gr-mqc4 (CVE-2026-66010)
+### QSI-2026-43014 — dompurify 3.2.4 затронут GHSA-c2j3-45gr-mqc4 (CVE-2026-66010)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -12771,13 +12701,13 @@ _tool_output · [OSV.dev GHSA-c2j3-45gr-mqc4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28362 — dompurify 3.2.4 затронут GHSA-c6gr-qvv4-5v3f (CVE-2026-116802)
+### QSI-2026-43015 — dompurify 3.2.4 затронут GHSA-c6gr-qvv4-5v3f (CVE-2026-116802)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -12805,13 +12735,13 @@ _tool_output · [OSV.dev GHSA-c6gr-qvv4-5v3f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28367 — dompurify 3.2.4 затронут GHSA-gvmj-g25r-r7wr (CVE-2026-65900)
+### QSI-2026-43020 — dompurify 3.2.4 затронут GHSA-gvmj-g25r-r7wr (CVE-2026-65900)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/dompurify@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -12839,13 +12769,47 @@ _tool_output · [OSV.dev GHSA-gvmj-g25r-r7wr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28380 — fast-uri 3.1.8 затронут GHSA-333x-w4r6-6crp (CVE-2026-110725)
+### QSI-2026-43024 — dompurify 3.2.4 затронут GHSA-mrv2-3pqr-j5jr (CVE-2026-116803)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:npm/dompurify@3.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
+- Балл приоритета: 29.4 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-mrv2-3pqr-j5jr (CVE-2026-116803) для пакета npm dompurify версии 3.2.4: DOMPurify IN_PLACE: hook that removes a parent or sibling leaves the detached subtree's event handlers armed (incomplete fix for GHSA-p98j-92pf-mc4p). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-mrv2-3pqr-j5jr
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-mrv2-3pqr-j5jr](https://osv.dev/vulnerability/GHSA-mrv2-3pqr-j5jr) · manifest · SHA-256 930d94c24463f1f06eae26b9bb0c4d56538f38cdfc738e5594fef3bdfcb13211_
+
+```
+{"id": "GHSA-mrv2-3pqr-j5jr", "aliases": ["CVE-2026-116803"], "modified": "2026-11-19T00:15:04.695368164Z", "summary": "DOMPurify IN_PLACE: hook that removes a parent or sibling leaves the detached subtree's event handlers armed (incomplete fix for GHSA-p98j-92pf-mc4p)", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:N/VI:N/VA:N/SC:L/SI:L/SA:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (3.4.17).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-43033 — fast-uri 3.1.8 затронут GHSA-333x-w4r6-6crp (CVE-2026-110725)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-uri@3.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -12873,13 +12837,13 @@ _tool_output · [OSV.dev GHSA-333x-w4r6-6crp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28383 — fast-uri 3.1.8 затронут GHSA-xhq7-xmqj-769h (CVE-2026-110095)
+### QSI-2026-43036 — fast-uri 3.1.8 затронут GHSA-xhq7-xmqj-769h (CVE-2026-110095)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-uri@3.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -12907,13 +12871,13 @@ _tool_output · [OSV.dev GHSA-xhq7-xmqj-769h](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28384 — fast-xml-parser 4.2.5 затронут GHSA-474x-hrwr-fgx4 (CVE-2026-126066)
+### QSI-2026-43037 — fast-xml-parser 4.2.5 затронут GHSA-474x-hrwr-fgx4 (CVE-2026-126066)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.2.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -12941,13 +12905,13 @@ _tool_output · [OSV.dev GHSA-474x-hrwr-fgx4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28386 — fast-xml-parser 4.2.5 затронут GHSA-fj3w-jwp8-x2g3 (CVE-2026-27942)
+### QSI-2026-43039 — fast-xml-parser 4.2.5 затронут GHSA-fj3w-jwp8-x2g3 (CVE-2026-27942)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.2.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -12975,13 +12939,13 @@ _tool_output · [OSV.dev GHSA-fj3w-jwp8-x2g3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28391 — fast-xml-parser 4.4.1 затронут GHSA-474x-hrwr-fgx4 (CVE-2026-126066)
+### QSI-2026-43044 — fast-xml-parser 4.4.1 затронут GHSA-474x-hrwr-fgx4 (CVE-2026-126066)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.4.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -13009,13 +12973,13 @@ _tool_output · [OSV.dev GHSA-474x-hrwr-fgx4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28393 — fast-xml-parser 4.4.1 затронут GHSA-fj3w-jwp8-x2g3 (CVE-2026-27942)
+### QSI-2026-43046 — fast-xml-parser 4.4.1 затронут GHSA-fj3w-jwp8-x2g3 (CVE-2026-27942)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@4.4.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -13043,13 +13007,13 @@ _tool_output · [OSV.dev GHSA-fj3w-jwp8-x2g3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28467 — node-forge 1.4.0 затронут GHSA-2vgq-wchc-25w7 (CVE-2026-118776)
+### QSI-2026-43120 — node-forge 1.4.0 затронут GHSA-2vgq-wchc-25w7 (CVE-2026-118776)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -13077,13 +13041,13 @@ _tool_output · [OSV.dev GHSA-2vgq-wchc-25w7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28468 — node-forge 1.4.0 затронут GHSA-4487-j8r4-4g2f (CVE-2026-118780)
+### QSI-2026-43121 — node-forge 1.4.0 затронут GHSA-4487-j8r4-4g2f (CVE-2026-118780)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -13111,13 +13075,13 @@ _tool_output · [OSV.dev GHSA-4487-j8r4-4g2f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28469 — node-forge 1.4.0 затронут GHSA-4642-5mcj-2rqw (CVE-2026-118775)
+### QSI-2026-43122 — node-forge 1.4.0 затронут GHSA-4642-5mcj-2rqw (CVE-2026-118775)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -13145,13 +13109,13 @@ _tool_output · [OSV.dev GHSA-4642-5mcj-2rqw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28473 — node-forge 1.4.0 затронут GHSA-6889-vf6x-f3g5 (CVE-2026-125335)
+### QSI-2026-43126 — node-forge 1.4.0 затронут GHSA-6889-vf6x-f3g5 (CVE-2026-125335)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -13179,13 +13143,13 @@ _tool_output · [OSV.dev GHSA-6889-vf6x-f3g5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28480 — node-forge 1.4.0 затронут GHSA-9wg5-mj3p-v49q (CVE-2026-118774)
+### QSI-2026-43133 — node-forge 1.4.0 затронут GHSA-9wg5-mj3p-v49q (CVE-2026-118774)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -13213,13 +13177,13 @@ _tool_output · [OSV.dev GHSA-9wg5-mj3p-v49q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28482 — node-forge 1.4.0 затронут GHSA-h6cr-wjv9-3cpp (CVE-2026-118781)
+### QSI-2026-43135 — node-forge 1.4.0 затронут GHSA-h6cr-wjv9-3cpp (CVE-2026-118781)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-forge@1.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 2.9 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -13247,13 +13211,13 @@ _tool_output · [OSV.dev GHSA-h6cr-wjv9-3cpp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28498 — nuxt 4.1.2 затронут GHSA-hf59-9xwc-2g4p (CVE-2026-128076)
+### QSI-2026-43151 — nuxt 4.1.2 затронут GHSA-hf59-9xwc-2g4p (CVE-2026-128076)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N`)
 
@@ -13281,13 +13245,13 @@ _tool_output · [OSV.dev GHSA-hf59-9xwc-2g4p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28501 — nuxt 4.1.2 затронут GHSA-jjm6-p2m9-9w4x (CVE-2026-114130)
+### QSI-2026-43154 — nuxt 4.1.2 затронут GHSA-jjm6-p2m9-9w4x (CVE-2026-114130)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -13315,13 +13279,13 @@ _tool_output · [OSV.dev GHSA-jjm6-p2m9-9w4x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28502 — nuxt 4.1.2 затронут GHSA-m3q2-p4fw-w38m (CVE-2026-56317)
+### QSI-2026-43155 — nuxt 4.1.2 затронут GHSA-m3q2-p4fw-w38m (CVE-2026-56317)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -13349,13 +13313,13 @@ _tool_output · [OSV.dev GHSA-m3q2-p4fw-w38m](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28504 — nuxt 4.1.2 затронут GHSA-rq7w-g337-39qq
+### QSI-2026-43157 — nuxt 4.1.2 затронут GHSA-rq7w-g337-39qq
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/nuxt@4.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -13383,13 +13347,13 @@ _tool_output · [OSV.dev GHSA-rq7w-g337-39qq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28507 — pbkdf2 3.1.6 затронут GHSA-477h-4r7f-fvrx (CVE-2026-102414)
+### QSI-2026-43160 — pbkdf2 3.1.6 затронут GHSA-477h-4r7f-fvrx (CVE-2026-102414)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/pbkdf2@3.1.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -13417,13 +13381,13 @@ _tool_output · [OSV.dev GHSA-477h-4r7f-fvrx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28518 — qs 6.13.0 затронут GHSA-6rw7-vpxm-498p (CVE-2025-15284)
+### QSI-2026-43169 — qs 6.13.0 затронут GHSA-6rw7-vpxm-498p (CVE-2025-15284)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/qs@6.13.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -13451,13 +13415,13 @@ _tool_output · [OSV.dev GHSA-6rw7-vpxm-498p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28520 — qs 6.13.0 затронут GHSA-w7fw-mjwx-w883 (CVE-2026-2391)
+### QSI-2026-43171 — qs 6.13.0 затронут GHSA-w7fw-mjwx-w883 (CVE-2026-2391)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/qs@6.13.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -13485,13 +13449,13 @@ _tool_output · [OSV.dev GHSA-w7fw-mjwx-w883](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28524 — serialize-javascript 6.0.2 затронут GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897)
+### QSI-2026-43175 — serialize-javascript 6.0.2 затронут GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/serialize-javascript@6.0.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -13519,13 +13483,13 @@ _tool_output · [OSV.dev GHSA-m5mm-p8h7-m29v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28526 — serialize-javascript 7.1.1 затронут GHSA-gfhx-hw2g-v5hg (CVE-2026-97711)
+### QSI-2026-43177 — serialize-javascript 7.1.1 затронут GHSA-gfhx-hw2g-v5hg (CVE-2026-97711)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/serialize-javascript@7.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -13553,13 +13517,13 @@ _tool_output · [OSV.dev GHSA-gfhx-hw2g-v5hg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28527 — serialize-javascript 7.1.1 затронут GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897)
+### QSI-2026-43178 — serialize-javascript 7.1.1 затронут GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/serialize-javascript@7.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -13587,13 +13551,13 @@ _tool_output · [OSV.dev GHSA-m5mm-p8h7-m29v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28556 — tmp 0.0.33 затронут GHSA-52f5-9888-hmc6 (CVE-2025-54798)
+### QSI-2026-43207 — tmp 0.0.33 затронут GHSA-52f5-9888-hmc6 (CVE-2025-54798)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/tmp@0.0.33`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 2.5 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -13621,13 +13585,13 @@ _tool_output · [OSV.dev GHSA-52f5-9888-hmc6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28560 — undici 5.29.0 затронут GHSA-35p6-xmwp-9g52 (CVE-2026-6733)
+### QSI-2026-43211 — undici 5.29.0 затронут GHSA-35p6-xmwp-9g52 (CVE-2026-6733)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -13655,13 +13619,13 @@ _tool_output · [OSV.dev GHSA-35p6-xmwp-9g52](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28564 — undici 5.29.0 затронут GHSA-g8m3-5g58-fq7m (CVE-2026-11525)
+### QSI-2026-43215 — undici 5.29.0 затронут GHSA-g8m3-5g58-fq7m (CVE-2026-11525)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -13689,13 +13653,13 @@ _tool_output · [OSV.dev GHSA-g8m3-5g58-fq7m](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28569 — undici 5.29.0 затронут GHSA-r53p-7pc4-xj5r (CVE-2026-18540)
+### QSI-2026-43220 — undici 5.29.0 затронут GHSA-r53p-7pc4-xj5r (CVE-2026-18540)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@5.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -13723,13 +13687,13 @@ _tool_output · [OSV.dev GHSA-r53p-7pc4-xj5r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28599 — 50 бюллетеней в 12 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-43250 — 50 бюллетеней в 12 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -13768,13 +13732,13 @@ wrangler@4.25.1 [dev]: GHSA-36p8-mvp6-cv38
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-28203 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-42856 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.6.0 · 2026-11-17 19:08 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:02 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -13835,8 +13799,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (5) | QSI-2026-28200 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (7) | QSI-2026-28201 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (8) | QSI-2026-42853 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDSA (8) | QSI-2026-42854 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -13845,7 +13809,7 @@ _Роль определяется по путям файлов, именам ф
 
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (16) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (20) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (1), Poseidon (1), SHA-2 (1) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (1), Poseidon (1), SHA-2 (1) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -13857,12 +13821,12 @@ _Действие: взламывает — алгоритм нужно заме
 - Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 - z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
 - osv_advisories: npm/axios@1.12.2: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
-- osv_advisories: npm/next@15.5.9: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
-- osv_advisories: npm/next@15.3.8: 33 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
+- osv_advisories: npm/next@15.5.9: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
+- osv_advisories: npm/next@15.3.8: 36 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 - osv_advisories: npm/axios@1.8.4: 32 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 - osv_advisories: npm/dompurify@3.2.4: 22 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 - osv_advisories: npm/hono@4.9.8: 47 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
-- osv_advisories: npm/next@14.2.35: 25 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
+- osv_advisories: npm/next@14.2.35: 26 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 - osv_advisories: npm/node-forge@1.4.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest
 
 ## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
@@ -13871,402 +13835,400 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-28202 | В setDefaultPaymentAsset (packages/scaffold-ui/src/views/w3m-fund-wallet-view/index.ts) сравнивайте адрес контракта токена с заданным в конфигурации, а не символ. | устранение первопричины | Тестовый депозит описанного вида отклоняется, и это закреплено регрессионным тестом. |
-| P2 | QSI-2026-28204 | Обновите bitcoinjs-lib до исправленной версии (5.2.1, 6.1.8, 7.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846). |
-| P2 | QSI-2026-28209 | Обновите storybook до исправленной версии (10.6.2, 11.0.0-alpha.6, 8.6.19, 9.1.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125). |
-| P2 | QSI-2026-28232 | Обновите bitcoinjs-lib до исправленной версии (5.2.1, 6.1.8, 7.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846). |
-| P2 | QSI-2026-28233 | Обновите next до исправленной версии (15.5.28, 16.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2464-fhr4-w9xw. |
-| P2 | QSI-2026-28236 | Обновите next до исправленной версии (15.5.24, 16.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2xp9-vwfh-vxw4. |
-| P2 | QSI-2026-28254 | Обновите next-auth до исправленной версии (4.24.15, 5.0.0-beta.32). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7rqj-j65f-68wh (CVE-2026-73420). |
-| P2 | QSI-2026-28255 | Обновите next-auth до исправленной версии (5.0.0-beta.32). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8fpg-xm3f-6cx3 (CVE-2026-73421). |
-| P2 | QSI-2026-28260 | Обновите next до исправленной версии (15.5.28, 16.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2464-fhr4-w9xw. |
-| P2 | QSI-2026-28263 | Обновите next до исправленной версии (15.5.24, 16.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2xp9-vwfh-vxw4. |
-| P2 | QSI-2026-28447 | Обновите next до исправленной версии (15.5.28, 16.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2464-fhr4-w9xw. |
-| P2 | QSI-2026-28448 | Обновите next до исправленной версии (15.5.24, 16.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2xp9-vwfh-vxw4. |
-| P2 | QSI-2026-28466 | Обновите next до исправленной версии (15.5.24, 16.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-p293-qw3h-jr36 (CVE-2026-75604). |
-| P2 | QSI-2026-28291 | Обновите @auth/core до исправленной версии (0.41.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7rqj-j65f-68wh (CVE-2026-73420). |
-| P2 | QSI-2026-28298 | Обновите @nuxt/devtools до исправленной версии (3.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-279x-mwfv-vcqv (CVE-2026-71319). |
-| P2 | QSI-2026-28309 | Обновите @simple-git/argv-parser до исправленной версии (2.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v5rq-49vh-5v5c (CVE-2026-102829). |
-| P2 | QSI-2026-28390 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m7jm-9gc2-mpf2 (CVE-2026-25896). |
-| P2 | QSI-2026-28397 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m7jm-9gc2-mpf2 (CVE-2026-25896). |
-| P2 | QSI-2026-28537 | Обновите simple-git до исправленной версии (4.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x6jw-m9v5-85vh (CVE-2026-102828). |
-| P2 | QSI-2026-28554 | Обновите tinypool до исправленной версии (2.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5gmw-xhrv-c9v3 (CVE-2026-104848). |
-| P2 | QSI-2026-28555 | Обновите tinypool до исправленной версии (2.1.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-85c8-ppgw-ccpr (CVE-2026-104849). |
-| P2 | QSI-2026-28205 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
-| P2 | QSI-2026-28208 | Обновите storybook до исправленной версии (10.1.10, 7.6.21, 8.6.15, 9.1.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8452-54wp-rmv6 (CVE-2025-68429). |
-| P2 | QSI-2026-28210 | Обновите storybook до исправленной версии (10.2.10, 8.6.17, 9.1.19). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mjf5-7g4m-gx5w (CVE-2026-27148). |
-| P2 | QSI-2026-28211 | Обновите storybook до исправленной версии (10.6.2, 11.0.0-alpha.6, 8.6.19, 9.1.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-px85-f4q5-jh77 (CVE-2026-114126). |
-| P2 | QSI-2026-28212 | Обновите axios до исправленной версии (1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-35jp-ww65-95wh (CVE-2026-44494). |
-| P2 | QSI-2026-28213 | Обновите axios до исправленной версии (0.31.1, 1.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g43-6gmg-66jw (CVE-2026-44495). |
-| P2 | QSI-2026-28217 | Обновите axios до исправленной версии (0.30.3, 1.13.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-43fc-jf86-j433 (CVE-2026-25639). |
-| P2 | QSI-2026-28221 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-62hf-57xw-28j9 (CVE-2026-42039). |
-| P2 | QSI-2026-28222 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6chq-wfr3-2hj9 (CVE-2026-42035). |
-| P2 | QSI-2026-28223 | Обновите axios до исправленной версии (1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-777c-7fjr-54vf (CVE-2026-44488). |
-| P2 | QSI-2026-28228 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hfxv-24rg-xrqf (CVE-2026-44496). |
-| P2 | QSI-2026-28229 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j5f8-grm9-p9fc (CVE-2026-44486). |
-| P2 | QSI-2026-28234 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-267c-6grr-h53f (CVE-2026-44575). |
-| P2 | QSI-2026-28235 | Обновите next до исправленной версии (15.5.18, 16.2.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-26hh-7cqf-hhc6 (CVE-2026-45109). |
-| P2 | QSI-2026-28237 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-36qx-fr4f-26g5 (CVE-2026-44573). |
-| P2 | QSI-2026-28241 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-492v-c6pp-mqqv (CVE-2026-44574). |
-| P2 | QSI-2026-28245 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-89xv-2m56-2m9x (CVE-2026-64649). |
-| P2 | QSI-2026-28246 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8h8q-6873-q5fj. |
-| P2 | QSI-2026-28249 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c4j6-fc7j-m34r (CVE-2026-44578). |
-| P2 | QSI-2026-28257 | Обновите next-auth до исправленной версии (4.24.15, 5.0.0-beta.32). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xmf8-cvqr-rfgj (CVE-2026-73418). |
-| P2 | QSI-2026-28258 | Обновите @opennextjs/cloudflare до исправленной версии (1.20.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2vc4-c4r6-p6v6 (CVE-2026-100409). |
-| P2 | QSI-2026-28259 | Обновите @opennextjs/cloudflare до исправленной версии (1.17.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c7mq-gh6q-6q7c (CVE-2025-6087, CVE-2026-3125). |
-| P2 | QSI-2026-28261 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-267c-6grr-h53f (CVE-2026-44575). |
-| P2 | QSI-2026-28262 | Обновите next до исправленной версии (15.5.18, 16.2.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-26hh-7cqf-hhc6 (CVE-2026-45109). |
-| P2 | QSI-2026-28264 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-36qx-fr4f-26g5 (CVE-2026-44573). |
-| P2 | QSI-2026-28272 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-89xv-2m56-2m9x (CVE-2026-64649). |
-| P2 | QSI-2026-28273 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8h8q-6873-q5fj. |
-| P2 | QSI-2026-28276 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c4j6-fc7j-m34r (CVE-2026-44578). |
-| P2 | QSI-2026-28281 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-587h-7wmj-h5pm (CVE-2026-112942). |
-| P2 | QSI-2026-28289 | Обновите figlet до исправленной версии (1.11.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-62ch-8vmq-8xm7 (CVE-2026-96780). |
-| P2 | QSI-2026-28290 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-28317 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3pq3-5fj3-cg6v (CVE-2026-101898). |
-| P2 | QSI-2026-28320 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-542g-h47m-68v8 (CVE-2026-101901). |
-| P2 | QSI-2026-28322 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c29m-xwm3-cm6r (CVE-2026-101903). |
-| P2 | QSI-2026-28324 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m8m8-qj5v-23w3 (CVE-2026-101905). |
-| P2 | QSI-2026-28325 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mghh-pgcx-3jjj (CVE-2026-101906). |
-| P2 | QSI-2026-28326 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r4gj-5m52-g5wh (CVE-2026-101907). |
-| P2 | QSI-2026-28328 | Обновите axios до исправленной версии (0.34.0, 1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x97p-jq2g-jp4f (CVE-2026-101909). |
-| P2 | QSI-2026-28329 | Обновите axios до исправленной версии (1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-35jp-ww65-95wh (CVE-2026-44494). |
-| P2 | QSI-2026-28330 | Обновите axios до исправленной версии (0.31.1, 1.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g43-6gmg-66jw (CVE-2026-44495). |
-| P2 | QSI-2026-28334 | Обновите axios до исправленной версии (0.30.3, 1.13.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-43fc-jf86-j433 (CVE-2026-25639). |
-| P2 | QSI-2026-28336 | Обновите axios до исправленной версии (0.30.2, 1.12.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4hjh-wcwx-xvwj (CVE-2025-58754). |
-| P2 | QSI-2026-28338 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-62hf-57xw-28j9 (CVE-2026-42039). |
-| P2 | QSI-2026-28339 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6chq-wfr3-2hj9 (CVE-2026-42035). |
-| P2 | QSI-2026-28340 | Обновите axios до исправленной версии (1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-777c-7fjr-54vf (CVE-2026-44488). |
-| P2 | QSI-2026-28345 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hfxv-24rg-xrqf (CVE-2026-44496). |
-| P2 | QSI-2026-28346 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j5f8-grm9-p9fc (CVE-2026-44486). |
-| P2 | QSI-2026-28417 | Обновите hono до исправленной версии (4.11.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3vhc-576x-3qv4 (CVE-2026-22818). |
-| P2 | QSI-2026-28426 | Обновите hono до исправленной версии (4.12.25). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-88fw-hqm2-52qc (CVE-2026-54290). |
-| P2 | QSI-2026-28449 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-36qx-fr4f-26g5 (CVE-2026-44573). |
-| P2 | QSI-2026-28455 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-89xv-2m56-2m9x (CVE-2026-64649). |
-| P2 | QSI-2026-28456 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8h8q-6873-q5fj. |
-| P2 | QSI-2026-28459 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c4j6-fc7j-m34r (CVE-2026-44578). |
-| P2 | QSI-2026-28463 | Обновите next до исправленной версии (15.0.8, 15.1.12, 15.2.9, 15.3.9, 15.4.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h25m-26qc-wcjf. |
-| P2 | QSI-2026-28465 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m99w-x7hq-7vfj (CVE-2026-64641). |
-| P2 | QSI-2026-28512 | Обновите postcss до исправленной версии (8.5.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6g55-p6wh-862q (CVE-2026-45623). |
-| P2 | QSI-2026-28515 | Обновите postcss до исправленной версии (8.5.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r28c-9q8g-f849 (CVE-2026-73646). |
-| P2 | QSI-2026-28582 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
-| P2 | QSI-2026-28583 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
-| P2 | QSI-2026-28590 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-587h-7wmj-h5pm (CVE-2026-112942). |
-| P2 | QSI-2026-28595 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-28596 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-28597 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-28598 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-28293 | Обновите @auth/core до исправленной версии (0.41.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xmf8-cvqr-rfgj (CVE-2026-73418). |
-| P2 | QSI-2026-28295 | Обновите @fastify/busboy до исправленной версии (3.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x8mw-p69m-v3mx (CVE-2026-19481). |
-| P2 | QSI-2026-28315 | Обновите @vue/server-renderer до исправленной версии (3.5.42, 3.6.0-rc.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g2v6-rqmx-r4w6. |
-| P2 | QSI-2026-28316 | Обновите @vue/server-renderer до исправленной версии (3.5.42, 3.6.0-rc.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g2v6-rqmx-r4w6. |
-| P2 | QSI-2026-28350 | Обновите basic-ftp до исправленной версии (6.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c475-qrg2-pj4r (CVE-2026-102990). |
-| P2 | QSI-2026-28352 | Обновите bigint-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gc7-fjrx-p6mg (CVE-2025-3194). |
-| P2 | QSI-2026-28353 | Обновите body-parser до исправленной версии (1.20.9, 2.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181). |
-| P2 | QSI-2026-28354 | Обновите body-parser до исправленной версии (1.20.9, 2.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181). |
-| P2 | QSI-2026-28355 | Обновите decode-uri-component до исправленной версии (0.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qr28-fpjm-wq7f (CVE-2026-118664). |
-| P2 | QSI-2026-28371 | Обновите dompurify до исправленной версии (3.4.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrv2-3pqr-j5jr (CVE-2026-116803). |
-| P2 | QSI-2026-28378 | Обновите extract-zip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693). |
-| P2 | QSI-2026-28379 | Обновите extract-zip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jmr9-qjv8-65gv (CVE-2026-56876). |
-| P2 | QSI-2026-28385 | Обновите fast-xml-parser до исправленной версии (4.5.5, 5.5.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8gc5-j5rx-235r (CVE-2026-33036). |
-| P2 | QSI-2026-28388 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jmr7-xgp7-cmfj (CVE-2026-26278). |
-| P2 | QSI-2026-28392 | Обновите fast-xml-parser до исправленной версии (4.5.5, 5.5.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8gc5-j5rx-235r (CVE-2026-33036). |
-| P2 | QSI-2026-28395 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jmr7-xgp7-cmfj (CVE-2026-26278). |
-| P2 | QSI-2026-28398 | Обновите follow-redirects до исправленной версии (1.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8r9p-f939-6h3c (CVE-2026-111755). |
-| P2 | QSI-2026-28400 | Обновите follow-redirects до исправленной версии (1.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q3jh-wrc6-jgq8 (CVE-2026-111756). |
-| P2 | QSI-2026-28402 | Обновите glob до исправленной версии (10.5.0, 11.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5j98-mcp5-4vw2 (CVE-2025-64756). |
-| P2 | QSI-2026-28434 | Обновите launch-editor до исправленной версии (2.14.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-587h-7wmj-h5pm (CVE-2026-112942). |
-| P2 | QSI-2026-28439 | Обновите minimatch до исправленной версии (10.2.3, 3.1.4, 4.2.5, 5.1.8, 6.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-23c5-xmqv-rm74 (CVE-2026-27904). |
-| P2 | QSI-2026-28440 | Обновите minimatch до исправленной версии (10.2.1, 3.1.3, 4.2.4, 5.1.7, 6.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3ppc-4f35-3m26 (CVE-2026-26996). |
-| P2 | QSI-2026-28441 | Обновите minimatch до исправленной версии (10.2.3, 3.1.3, 4.2.5, 5.1.8, 6.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7r86-cg39-jmmj (CVE-2026-27903). |
-| P2 | QSI-2026-28446 | Обновите nanoid до исправленной версии (3.3.12, 5.1.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwg4-73v4-xw9w (CVE-2026-73086). |
-| P2 | QSI-2026-28472 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5x38-2vff-x55p (CVE-2026-119190). |
-| P2 | QSI-2026-28475 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6qrw-m8cv-hcxf (CVE-2026-119192). |
-| P2 | QSI-2026-28477 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7wch-p9px-956x (CVE-2026-118779). |
-| P2 | QSI-2026-28478 | Обновите node-forge до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-86w9-cpqp-85rv (CVE-2026-33894, CVE-2026-85393). |
-| P2 | QSI-2026-28479 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8hrf-8g6f-7xwp (CVE-2026-119188). |
-| P2 | QSI-2026-28483 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hqq3-7jhf-c5jx (CVE-2026-119187). |
-| P2 | QSI-2026-28485 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jc66-7q78-782g (CVE-2026-118782). |
-| P2 | QSI-2026-28486 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhr8-3pm8-cq29 (CVE-2026-119191). |
-| P2 | QSI-2026-28491 | Обновите nuxt до исправленной версии (3.21.10, 4.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9473-5f9j-94wq (CVE-2026-71320). |
-| P2 | QSI-2026-28493 | Обновите nuxt до исправленной версии (3.21.10, 4.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9pgf-384g-p7mv (CVE-2026-71321). |
-| P2 | QSI-2026-28500 | Обновите nuxt до исправленной версии (3.21.10, 4.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hxcr-hm88-mpq6 (CVE-2026-71314). |
-| P2 | QSI-2026-28503 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mm7m-92g8-7m47 (CVE-2026-53721). |
-| P2 | QSI-2026-28508 | Обновите picomatch до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fc5q-39xc-vjpf (CVE-2026-112366). |
-| P2 | QSI-2026-28509 | Обновите picomatch до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fc5q-39xc-vjpf (CVE-2026-112366). |
-| P2 | QSI-2026-28510 | Обновите playwright до исправленной версии (1.55.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7mvr-c777-76hp (CVE-2025-59288). |
-| P2 | QSI-2026-28522 | Обновите rollup до исправленной версии (2.80.0, 3.30.0, 4.59.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mw96-cpmx-2vgc (CVE-2026-27606). |
-| P2 | QSI-2026-28523 | Обновите serialize-javascript до исправленной версии (7.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5c6j-r48x-rmvq. |
-| P2 | QSI-2026-28528 | Обновите sharp до исправленной версии (0.35.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f88m-g3jw-g9cj (CVE-2026-114113). |
-| P2 | QSI-2026-28529 | Обновите sharp до исправленной версии (0.35.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rgj7-g3m4-5g8c (CVE-2026-114112). |
-| P2 | QSI-2026-28530 | Обновите sharp до исправленной версии (0.35.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wq5f-xc86-pv6w (CVE-2026-114111). |
-| P2 | QSI-2026-28531 | Обновите sharp до исправленной версии (0.35.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f88m-g3jw-g9cj (CVE-2026-114113). |
-| P2 | QSI-2026-28532 | Обновите sharp до исправленной версии (0.35.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rgj7-g3m4-5g8c (CVE-2026-114112). |
-| P2 | QSI-2026-28533 | Обновите sharp до исправленной версии (0.35.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wq5f-xc86-pv6w (CVE-2026-114111). |
-| P2 | QSI-2026-28534 | Обновите shell-quote до исправленной версии (1.11.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pqg4-j6r4-53mv (CVE-2026-102422). |
-| P2 | QSI-2026-28535 | Обновите simple-git до исправленной версии (4.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-858h-whjf-mvg5 (CVE-2026-102827). |
-| P2 | QSI-2026-28536 | Обновите simple-git до исправленной версии (4.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g4wm-2vf7-vfgr (CVE-2026-102826). |
-| P2 | QSI-2026-28538 | Обновите source-map-js до исправленной версии (1.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-68fv-2mgg-jv7q (CVE-2026-93749). |
-| P2 | QSI-2026-28542 | Обновите tar до исправленной версии (7.5.19). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-23hp-3jrh-7fpw (CVE-2026-59873). |
-| P2 | QSI-2026-28543 | Обновите tar до исправленной версии (7.5.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-34x7-hfp2-rc4v (CVE-2026-24842). |
-| P2 | QSI-2026-28544 | Обновите tar до исправленной версии (7.5.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-83g3-92jg-28cx (CVE-2026-26960). |
-| P2 | QSI-2026-28545 | Обновите tar до исправленной версии (7.5.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8qq5-rm4j-mr97 (CVE-2026-23745). |
-| P2 | QSI-2026-28546 | Обновите tar до исправленной версии (7.5.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8x88-c5mf-7j5w (CVE-2026-59874). |
-| P2 | QSI-2026-28547 | Обновите tar до исправленной версии (7.5.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9ppj-qmqm-q256 (CVE-2026-31802). |
-| P2 | QSI-2026-28549 | Обновите tar до исправленной версии (7.5.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qffp-2rhf-9h96 (CVE-2026-29786). |
-| P2 | QSI-2026-28550 | Обновите tar до исправленной версии (7.5.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r292-9mhp-454m (CVE-2026-73566). |
-| P2 | QSI-2026-28551 | Обновите tar до исправленной версии (7.5.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6q2-hw4h-h46w (CVE-2026-23950). |
-| P2 | QSI-2026-28557 | Обновите tmp до исправленной версии (0.2.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ph9p-34f9-6g65 (CVE-2026-44705). |
-| P2 | QSI-2026-28558 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383). |
-| P2 | QSI-2026-28568 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018). |
-| P2 | QSI-2026-28571 | Обновите undici до исправленной версии (6.24.0, 7.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v9p9-hfj2-hcw8 (CVE-2026-2229). |
-| P2 | QSI-2026-28572 | Обновите undici до исправленной версии (6.24.0, 7.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vrm6-8vpv-qv8q (CVE-2026-1526). |
-| P2 | QSI-2026-28573 | Обновите undici до исправленной версии (6.27.0, 7.28.0, 8.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vxpw-j846-p89q (CVE-2026-12151). |
-| P2 | QSI-2026-28574 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383). |
-| P2 | QSI-2026-28576 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4w7w-5xrc-9h26 (CVE-2026-109829). |
-| P2 | QSI-2026-28580 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018). |
-| P2 | QSI-2026-28581 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869). |
-| P2 | QSI-2026-28585 | Обновите valibot до исправленной версии (1.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020). |
-| P2 | QSI-2026-28587 | Обновите valibot до исправленной версии (1.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020). |
-| P2 | QSI-2026-28589 | Обновите valibot до исправленной версии (1.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020). |
-| P2 | QSI-2026-28214 | Обновите axios до исправленной версии (0.31.0, 1.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3p68-rc4w-qgx5 (CVE-2025-62718). |
-| P2 | QSI-2026-28215 | Обновите axios до исправленной версии (1.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3w6x-2g7m-8v23 (CVE-2026-42044). |
-| P2 | QSI-2026-28216 | Обновите axios до исправленной версии (0.33.0, 1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-42h9-826w-cgv3 (CVE-2026-67313). |
-| P2 | QSI-2026-28218 | Обновите axios до исправленной версии (1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-445q-vr5w-6q77 (CVE-2026-42037). |
-| P2 | QSI-2026-28219 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4hqw-qxg8-jxx2 (CVE-2026-101900). |
-| P2 | QSI-2026-28220 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5c9x-8gcm-mpgx (CVE-2026-42034). |
-| P2 | QSI-2026-28224 | Обновите axios до исправленной версии (0.33.0, 1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7q8q-rj6j-mhjq (CVE-2026-67319). |
-| P2 | QSI-2026-28225 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-898c-q2cr-xwhg (CVE-2026-44490). |
-| P2 | QSI-2026-28226 | Обновите axios до исправленной версии (0.34.0, 1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fr6-4gfg-395g (CVE-2026-101902). |
-| P2 | QSI-2026-28227 | Обновите axios до исправленной версии (0.31.0, 1.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fvcv-3m26-pcqx (CVE-2026-40175). |
-| P2 | QSI-2026-28230 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8rh-479h-cp32 (CVE-2026-101904). |
-| P2 | QSI-2026-28231 | Обновите axios до исправленной версии (1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jqh4-m9w3-8hp9 (CVE-2026-67317). |
-| P2 | QSI-2026-28239 | Обновите next до исправленной версии (15.5.14, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980). |
-| P2 | QSI-2026-28240 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4633-3j49-mh5q (CVE-2026-64647). |
-| P2 | QSI-2026-28242 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4c39-4ccg-62r3 (CVE-2026-64646). |
-| P2 | QSI-2026-28243 | Обновите next до исправленной версии (15.5.27, 16.3.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4jqv-mc3x-m676 (CVE-2026-94543). |
-| P2 | QSI-2026-28244 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-68g3-v927-f742 (CVE-2026-64648). |
-| P2 | QSI-2026-28247 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-955p-x3mx-jcvp (CVE-2026-64643). |
-| P2 | QSI-2026-28248 | Обновите next до исправленной версии (15.5.10, 16.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9g9p-9gw9-jx7f (CVE-2025-59471). |
-| P2 | QSI-2026-28250 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ffhc-5mcf-pf4q (CVE-2026-44581). |
-| P2 | QSI-2026-28251 | Обновите next до исправленной версии (15.5.13, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ggv3-7p47-pfv8 (CVE-2026-29057). |
-| P2 | QSI-2026-28252 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gx5p-jg67-6x7h (CVE-2026-44580). |
-| P2 | QSI-2026-28253 | Обновите next-auth до исправленной версии (4.24.12, 5.0.0-beta.30). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5jpx-9hw9-2fx4. |
-| P2 | QSI-2026-28256 | Обновите next-auth до исправленной версии (4.24.15, 5.0.0-beta.32). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x445-f3h2-j279 (CVE-2026-73419). |
-| P2 | QSI-2026-28266 | Обновите next до исправленной версии (15.5.14, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980). |
-| P2 | QSI-2026-28267 | Обновите next до исправленной версии (14.2.32, 15.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4342-x723-ch2f (CVE-2025-57822). |
-| P2 | QSI-2026-28268 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4633-3j49-mh5q (CVE-2026-64647). |
-| P2 | QSI-2026-28269 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4c39-4ccg-62r3 (CVE-2026-64646). |
-| P2 | QSI-2026-28270 | Обновите next до исправленной версии (15.5.27, 16.3.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4jqv-mc3x-m676 (CVE-2026-94543). |
-| P2 | QSI-2026-28271 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-68g3-v927-f742 (CVE-2026-64648). |
-| P2 | QSI-2026-28274 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-955p-x3mx-jcvp (CVE-2026-64643). |
-| P2 | QSI-2026-28275 | Обновите next до исправленной версии (15.5.10, 16.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9g9p-9gw9-jx7f (CVE-2025-59471). |
-| P2 | QSI-2026-28277 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ffhc-5mcf-pf4q (CVE-2026-44581). |
-| P2 | QSI-2026-28278 | Обновите next до исправленной версии (14.2.31, 15.4.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g5qg-72qw-gw5v (CVE-2025-57752). |
-| P2 | QSI-2026-28279 | Обновите next до исправленной версии (15.5.13, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ggv3-7p47-pfv8 (CVE-2026-29057). |
-| P2 | QSI-2026-28280 | Обновите vite до исправленной версии (6.4.2, 7.3.2, 8.0.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4w7w-66w2-5vf9 (CVE-2026-39365). |
-| P2 | QSI-2026-28282 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-698v-4r3x-3vcv (CVE-2026-112943). |
-| P2 | QSI-2026-28283 | Обновите vite до исправленной версии (5.4.21, 6.4.1, 7.0.8, 7.1.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-93m4-6634-74q7 (CVE-2025-62522). |
-| P2 | QSI-2026-28285 | Обновите vite до исправленной версии (6.4.3, 7.3.5, 8.0.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fx2h-pf6j-xcff (CVE-2026-53571). |
-| P2 | QSI-2026-28286 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r825-w8mm-5pxw (CVE-2026-112944). |
-| P2 | QSI-2026-28287 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rq7h-c2jc-7f22 (CVE-2026-112946). |
-| P2 | QSI-2026-28288 | Обновите vite до исправленной версии (6.4.3, 7.3.5, 8.0.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v6wh-96g9-6wx3 (CVE-2026-53632). |
-| P2 | QSI-2026-28318 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-44g4-m2mj-wpvx (CVE-2026-101899). |
-| P2 | QSI-2026-28319 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4hqw-qxg8-jxx2 (CVE-2026-101900). |
-| P2 | QSI-2026-28321 | Обновите axios до исправленной версии (0.34.0, 1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fr6-4gfg-395g (CVE-2026-101902). |
-| P2 | QSI-2026-28323 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8rh-479h-cp32 (CVE-2026-101904). |
-| P2 | QSI-2026-28327 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vh66-26gq-q6x8 (CVE-2026-101908). |
-| P2 | QSI-2026-28331 | Обновите axios до исправленной версии (0.31.0, 1.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3p68-rc4w-qgx5 (CVE-2025-62718). |
-| P2 | QSI-2026-28332 | Обновите axios до исправленной версии (1.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3w6x-2g7m-8v23 (CVE-2026-42044). |
-| P2 | QSI-2026-28333 | Обновите axios до исправленной версии (0.33.0, 1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-42h9-826w-cgv3 (CVE-2026-67313). |
-| P2 | QSI-2026-28335 | Обновите axios до исправленной версии (1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-445q-vr5w-6q77 (CVE-2026-42037). |
-| P2 | QSI-2026-28337 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5c9x-8gcm-mpgx (CVE-2026-42034). |
-| P2 | QSI-2026-28341 | Обновите axios до исправленной версии (0.33.0, 1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7q8q-rj6j-mhjq (CVE-2026-67319). |
-| P2 | QSI-2026-28342 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-898c-q2cr-xwhg (CVE-2026-44490). |
-| P2 | QSI-2026-28343 | Обновите axios до исправленной версии (0.34.0, 1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fr6-4gfg-395g (CVE-2026-101902). |
-| P2 | QSI-2026-28344 | Обновите axios до исправленной версии (0.31.0, 1.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fvcv-3m26-pcqx (CVE-2026-40175). |
-| P2 | QSI-2026-28347 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8rh-479h-cp32 (CVE-2026-101904). |
-| P2 | QSI-2026-28348 | Обновите axios до исправленной версии (1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jqh4-m9w3-8hp9 (CVE-2026-67317). |
-| P2 | QSI-2026-28408 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-46wx-v44x-9hh2 (CVE-2026-126355). |
-| P2 | QSI-2026-28409 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4h7h-rv7c-7m2v (CVE-2026-126356). |
-| P2 | QSI-2026-28410 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4m76-xfj5-7975 (CVE-2026-126357). |
-| P2 | QSI-2026-28411 | Обновите hono до исправленной версии (4.13.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5r4p-p66f-jhc7 (CVE-2026-109955, CVE-2026-111757). |
-| P2 | QSI-2026-28412 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h7mg-cq63-vhpq (CVE-2026-126358). |
-| P2 | QSI-2026-28413 | Обновите hono до исправленной версии (4.12.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-26pp-8wgv-hjvm (CVE-2026-56762). |
-| P2 | QSI-2026-28414 | Обновите hono до исправленной версии (4.12.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2gcr-mfcq-wcc3 (CVE-2026-47676). |
-| P2 | QSI-2026-28416 | Обновите hono до исправленной версии (4.12.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3hrh-pfw6-9m5x (CVE-2026-47675). |
-| P2 | QSI-2026-28418 | Обновите hono до исправленной версии (4.12.14). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-458j-xx4x-4375 (CVE-2026-56761). |
-| P2 | QSI-2026-28419 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-46wx-v44x-9hh2 (CVE-2026-126355). |
-| P2 | QSI-2026-28420 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4h7h-rv7c-7m2v (CVE-2026-126356). |
-| P2 | QSI-2026-28421 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4m76-xfj5-7975 (CVE-2026-126357). |
-| P2 | QSI-2026-28422 | Обновите hono до исправленной версии (4.12.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5pq2-9x2x-5p6w (CVE-2026-29086). |
-| P2 | QSI-2026-28423 | Обновите hono до исправленной версии (4.12.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-69xw-7hcm-h432 (CVE-2026-44455). |
-| P2 | QSI-2026-28424 | Обновите hono до исправленной версии (4.11.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6wqw-2p9w-4vw4 (CVE-2026-24472). |
-| P2 | QSI-2026-28427 | Обновите hono до исправленной версии (4.12.34). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8j4g-w8fx-2239 (CVE-2026-69207). |
-| P2 | QSI-2026-28428 | Обновите hono до исправленной версии (4.11.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9r54-q6cx-xmh5 (CVE-2026-24771). |
-| P2 | QSI-2026-28429 | Обновите hono до исправленной версии (4.12.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9vqf-7f2p-gf9v (CVE-2026-44456). |
-| P2 | QSI-2026-28430 | Обновите hono до исправленной версии (4.13.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-crvj-82cr-hjcx (CVE-2026-84363). |
-| P2 | QSI-2026-28431 | Обновите hono до исправленной версии (4.12.34). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f23p-vx2j-j53r (CVE-2026-71850). |
-| P2 | QSI-2026-28432 | Обновите hono до исправленной версии (4.12.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f577-qrjj-4474 (CVE-2026-47673). |
-| P2 | QSI-2026-28451 | Обновите next до исправленной версии (15.5.14, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980). |
-| P2 | QSI-2026-28452 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4633-3j49-mh5q (CVE-2026-64647). |
-| P2 | QSI-2026-28453 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4c39-4ccg-62r3 (CVE-2026-64646). |
-| P2 | QSI-2026-28454 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-68g3-v927-f742 (CVE-2026-64648). |
-| P2 | QSI-2026-28457 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-955p-x3mx-jcvp (CVE-2026-64643). |
-| P2 | QSI-2026-28458 | Обновите next до исправленной версии (15.5.10, 16.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9g9p-9gw9-jx7f (CVE-2025-59471). |
-| P2 | QSI-2026-28460 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ffhc-5mcf-pf4q (CVE-2026-44581). |
-| P2 | QSI-2026-28461 | Обновите next до исправленной версии (15.5.13, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ggv3-7p47-pfv8 (CVE-2026-29057). |
-| P2 | QSI-2026-28462 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gx5p-jg67-6x7h (CVE-2026-44580). |
-| P2 | QSI-2026-28464 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h64f-5h5j-jqjh (CVE-2026-44577). |
-| P2 | QSI-2026-28513 | Обновите postcss до исправленной версии (8.5.23). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fxqj-rqcc-2cmp (CVE-2026-69153). |
-| P2 | QSI-2026-28514 | Обновите postcss до исправленной версии (8.5.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qx2v-qp2m-jg93 (CVE-2026-41305). |
-| P2 | QSI-2026-28591 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-698v-4r3x-3vcv (CVE-2026-112943). |
-| P2 | QSI-2026-28593 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r825-w8mm-5pxw (CVE-2026-112944). |
-| P2 | QSI-2026-28594 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rq7h-c2jc-7f22 (CVE-2026-112946). |
-| P2 | QSI-2026-28292 | Обновите @auth/core до исправленной версии (0.41.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x445-f3h2-j279 (CVE-2026-73419). |
-| P2 | QSI-2026-28294 | Обновите @fastify/busboy до исправленной версии (3.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gxm5-99cw-xjw9 (CVE-2026-74866). |
-| P2 | QSI-2026-28296 | Обновите @hono/node-server до исправленной версии (1.19.18, 2.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jpvv-r467-5p4w (CVE-2026-126210). |
-| P2 | QSI-2026-28297 | Обновите @hono/node-server до исправленной версии (2.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663). |
-| P2 | QSI-2026-28299 | Обновите @nuxt/schema до исправленной версии (4.6.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mjrq-cffv-q4qc (CVE-2026-128070). |
-| P2 | QSI-2026-28300 | Обновите @nuxt/vite-builder до исправленной версии (4.6.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-648h-gw55-m2g7 (CVE-2026-119199). |
-| P2 | QSI-2026-28301 | Обновите @opentelemetry/core до исправленной версии (2.8.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8988-4f7v-96qf (CVE-2026-54285). |
-| P2 | QSI-2026-28302 | Обновите @opentelemetry/instrumentation-knex до исправленной версии (0.65.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
-| P2 | QSI-2026-28303 | Обновите @opentelemetry/instrumentation-mongoose до исправленной версии (0.67.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
-| P2 | QSI-2026-28304 | Обновите @opentelemetry/instrumentation-mysql2 до исправленной версии (0.67.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
-| P2 | QSI-2026-28305 | Обновите @opentelemetry/instrumentation-mysql до исправленной версии (0.67.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
-| P2 | QSI-2026-28306 | Обновите @opentelemetry/instrumentation-pg до исправленной версии (0.73.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
-| P2 | QSI-2026-28307 | Обновите @opentelemetry/instrumentation-tedious до исправленной версии (0.40.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
-| P2 | QSI-2026-28308 | Обновите @parcel/reporter-dev-server до исправленной версии (2.16.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qm9p-f9j5-w83w (CVE-2025-56648). |
-| P2 | QSI-2026-28311 | Обновите @vitest/mocker до исправленной версии (4.1.11, 5.0.0-rc.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82fw-gwwq-j7x9 (CVE-2026-84373). |
-| P2 | QSI-2026-28312 | Обновите @vitest/mocker до исправленной версии (4.1.12, 5.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qxg6-89mg-rqv8 (CVE-2026-112949). |
-| P2 | QSI-2026-28313 | Обновите @vitest/mocker до исправленной версии (4.1.11, 5.0.0-rc.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82fw-gwwq-j7x9 (CVE-2026-84373). |
-| P2 | QSI-2026-28314 | Обновите @vitest/mocker до исправленной версии (4.1.12, 5.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qxg6-89mg-rqv8 (CVE-2026-112949). |
-| P2 | QSI-2026-28349 | Обновите basic-ftp до исправленной версии (6.2.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5pm8-86m8-9m6r (CVE-2026-126345). |
-| P2 | QSI-2026-28351 | Обновите basic-ftp до исправленной версии (6.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r4jh-29pc-gfqr (CVE-2026-126346). |
-| P2 | QSI-2026-28356 | Обновите decode-uri-component до исправленной версии (0.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vcc3-ghjq-m6fr (CVE-2026-45822). |
-| P2 | QSI-2026-28357 | Обновите dompurify до исправленной версии (3.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-39q2-94rc-95cp (CVE-2026-65903). |
-| P2 | QSI-2026-28358 | Обновите dompurify до исправленной версии (3.4.13). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-55q2-fjhq-7xh7 (CVE-2026-75838). |
-| P2 | QSI-2026-28360 | Обновите dompurify до исправленной версии (3.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-76mc-f452-cxcm (CVE-2026-65902). |
-| P2 | QSI-2026-28363 | Обновите dompurify до исправленной версии (3.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cj63-jhhr-wcxv (CVE-2026-65913). |
-| P2 | QSI-2026-28364 | Обновите dompurify до исправленной версии (3.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cjmm-f4jc-qw8r (CVE-2026-65912). |
-| P2 | QSI-2026-28365 | Обновите dompurify до исправленной версии (3.4.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cmwh-pvxp-8882 (CVE-2026-65898). |
-| P2 | QSI-2026-28366 | Обновите dompurify до исправленной версии (3.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-crv5-9vww-q3g8 (CVE-2026-41239). |
-| P2 | QSI-2026-28368 | Обновите dompurify до исправленной версии (3.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h7mw-gpvr-xq4m (CVE-2026-41240). |
-| P2 | QSI-2026-28369 | Обновите dompurify до исправленной версии (3.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h8r8-wccr-v5f2 (CVE-2026-65914). |
-| P2 | QSI-2026-28370 | Обновите dompurify до исправленной версии (3.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hpcv-96wg-7vj8 (CVE-2026-49458). |
-| P2 | QSI-2026-28372 | Обновите dompurify до исправленной версии (3.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r47g-fvhr-h676 (CVE-2026-49459). |
-| P2 | QSI-2026-28373 | Обновите dompurify до исправленной версии (3.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rp9w-3fw7-7cwq (CVE-2026-49978). |
-| P2 | QSI-2026-28374 | Обновите dompurify до исправленной версии (2.5.9, 3.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v2wj-7wpq-c8vv (CVE-2026-0540). |
-| P2 | QSI-2026-28375 | Обновите dompurify до исправленной версии (3.2.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v8jm-5vwx-cfxm (CVE-2025-15599). |
-| P2 | QSI-2026-28376 | Обновите dompurify до исправленной версии (3.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v9jr-rg53-9pgp (CVE-2026-41238). |
-| P2 | QSI-2026-28377 | Обновите elliptic до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505). |
-| P2 | QSI-2026-28381 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w74x-v6f9-j3xg (CVE-2026-110306). |
-| P2 | QSI-2026-28382 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wjr9-j795-jxcr (CVE-2026-110180). |
-| P2 | QSI-2026-28387 | Обновите fast-xml-parser до исправленной версии (5.7.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gh4j-gqv2-49f6 (CVE-2026-41650). |
-| P2 | QSI-2026-28389 | Обновите fast-xml-parser до исправленной версии (4.5.5, 5.5.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jp2q-39xq-3w4g (CVE-2026-33349). |
-| P2 | QSI-2026-28394 | Обновите fast-xml-parser до исправленной версии (5.7.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gh4j-gqv2-49f6 (CVE-2026-41650). |
-| P2 | QSI-2026-28396 | Обновите fast-xml-parser до исправленной версии (4.5.5, 5.5.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jp2q-39xq-3w4g (CVE-2026-33349). |
-| P2 | QSI-2026-28399 | Обновите follow-redirects до исправленной версии (1.16.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrwp-f3q8-3g9p (CVE-2026-116689). |
-| P2 | QSI-2026-28401 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
-| P2 | QSI-2026-28403 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
-| P2 | QSI-2026-28404 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
-| P2 | QSI-2026-28405 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
-| P2 | QSI-2026-28406 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
-| P2 | QSI-2026-28433 | Обновите ip-address до исправленной версии (10.7.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997). |
-| P2 | QSI-2026-28435 | Обновите launch-editor до исправленной версии (2.14.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-698v-4r3x-3vcv (CVE-2026-112943). |
-| P2 | QSI-2026-28436 | Обновите launch-editor до исправленной версии (2.14.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r825-w8mm-5pxw (CVE-2026-112944). |
-| P2 | QSI-2026-28437 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
-| P2 | QSI-2026-28438 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
-| P2 | QSI-2026-28442 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
-| P2 | QSI-2026-28443 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
-| P2 | QSI-2026-28444 | Обновите nanoid до исправленной версии (3.3.16, 5.1.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-28wg-ghj8-5hjv (CVE-2026-67214). |
-| P2 | QSI-2026-28445 | Обновите nanoid до исправленной версии (3.3.18, 5.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2v37-7h3g-55p8 (CVE-2026-67213). |
-| P2 | QSI-2026-28470 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-525v-9gp9-w22h (CVE-2026-118778). |
-| P2 | QSI-2026-28471 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5cwg-6vw7-rj6p (CVE-2026-119186). |
-| P2 | QSI-2026-28474 | Обновите node-forge до исправленной версии (1.4.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6cv4-p8m7-4r25 (CVE-2026-125333). |
-| P2 | QSI-2026-28476 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6wvx-3r32-xmcg (CVE-2026-118777). |
-| P2 | QSI-2026-28481 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h46v-rmh6-fq4f (CVE-2026-119189). |
-| P2 | QSI-2026-28484 | Обновите node-forge до исправленной версии (1.4.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8rw-jp99-435v (CVE-2026-125334). |
-| P2 | QSI-2026-28487 | Обновите nuxt до исправленной версии (3.21.10, 4.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-48hr-524c-v5w3 (CVE-2026-71318). |
-| P2 | QSI-2026-28488 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-534h-c3cw-v3h9 (CVE-2026-56301). |
-| P2 | QSI-2026-28489 | Обновите nuxt до исправленной версии (3.21.4, 4.4.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6gq8-jgmh-3ffp (CVE-2026-114131). |
-| P2 | QSI-2026-28490 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-934w-87qh-qr26 (CVE-2026-53722). |
-| P2 | QSI-2026-28492 | Обновите nuxt до исправленной версии (4.6.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-96x6-fvhx-49hg (CVE-2026-128075). |
-| P2 | QSI-2026-28494 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c9cv-mq2m-ppp3 (CVE-2026-56326, CVE-2026-56697, CVE-2026-56698). |
-| P2 | QSI-2026-28495 | Обновите nuxt до исправленной версии (4.6.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f3x9-2chm-73c8 (CVE-2026-128071). |
-| P2 | QSI-2026-28496 | Обновите nuxt до исправленной версии (3.21.6, 4.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fx6j-w5w5-h468 (CVE-2026-45669). |
-| P2 | QSI-2026-28497 | Обновите nuxt до исправленной версии (3.21.6, 4.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g8wj-3cr3-6w7v (CVE-2026-46342). |
-| P2 | QSI-2026-28499 | Обновите nuxt до исправленной версии (3.21.6, 4.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hg3f-28rg-4jxj (CVE-2026-47200). |
-| P2 | QSI-2026-28505 | Обновите nuxt до исправленной версии (4.6.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vjh5-4x84-xrqp (CVE-2026-114132). |
-| P2 | QSI-2026-28506 | Обновите nuxt до исправленной версии (4.6.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xfq5-w38q-pc2x (CVE-2026-114133). |
-| P2 | QSI-2026-28511 | Обновите postcss-selector-parser до исправленной версии (6.1.5, 7.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rj75-hqrm-r3gf (CVE-2026-104844). |
-| P2 | QSI-2026-28516 | Обновите qs до исправленной версии (6.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4mjr-xmp4-gh2g (CVE-2026-82417). |
-| P2 | QSI-2026-28517 | Обновите qs до исправленной версии (6.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816). |
-| P2 | QSI-2026-28519 | Обновите qs до исправленной версии (6.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q8mj-m7cp-5q26 (CVE-2026-8723). |
-| P2 | QSI-2026-28521 | Обновите qs до исправленной версии (6.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816). |
-| P2 | QSI-2026-28525 | Обновите serialize-javascript до исправленной версии (7.0.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qj8w-gfj5-8c6v (CVE-2026-34043). |
-| P2 | QSI-2026-28539 | Обновите stream-json до исправленной версии (3.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-528h-pc64-c93x (CVE-2026-71429). |
-| P2 | QSI-2026-28540 | Обновите stream-json до исправленной версии (3.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hqr4-qq8f-hg3x (CVE-2026-104182). |
-| P2 | QSI-2026-28541 | Обновите stream-json до исправленной версии (3.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mjw6-4jj6-33hc (CVE-2026-104183). |
-| P2 | QSI-2026-28548 | Обновите tar до исправленной версии (7.5.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gvwx-54wh-qm9j (CVE-2026-59875). |
-| P2 | QSI-2026-28552 | Обновите tar до исправленной версии (7.5.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vmf3-w455-68vh (CVE-2026-53655). |
-| P2 | QSI-2026-28553 | Обновите tar до исправленной версии (7.5.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w8wr-v893-vjvp (CVE-2026-59871). |
-| P2 | QSI-2026-28559 | Обновите undici до исправленной версии (6.24.0, 7.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjp-6q6p-2qxm (CVE-2026-1525). |
-| P2 | QSI-2026-28561 | Обновите undici до исправленной версии (6.24.0, 7.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4992-7rv2-5pvq (CVE-2026-1527). |
-| P2 | QSI-2026-28562 | Обновите undici до исправленной версии (6.28.0, 7.29.0, 8.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8xcm-r25x-g524 (CVE-2026-16728). |
-| P2 | QSI-2026-28563 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932). |
-| P2 | QSI-2026-28565 | Обновите undici до исправленной версии (6.23.0, 7.18.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g9mf-h72j-4rw9 (CVE-2026-22036). |
-| P2 | QSI-2026-28566 | Обновите undici до исправленной версии (6.28.0, 7.29.0, 8.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m8rv-5g2x-5cg5 (CVE-2026-15157). |
-| P2 | QSI-2026-28567 | Обновите undici до исправленной версии (6.27.0, 7.28.0, 8.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-p88m-4jfj-68fv (CVE-2026-9679). |
-| P2 | QSI-2026-28570 | Обновите undici до исправленной версии (6.28.0, 7.29.0, 8.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v3r7-h72x-cjcm (CVE-2026-16729). |
-| P2 | QSI-2026-28575 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924). |
-| P2 | QSI-2026-28577 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-55wc-3pg8-jfw6 (CVE-2026-87029). |
-| P2 | QSI-2026-28578 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932). |
-| P2 | QSI-2026-28579 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f72v-6w45-q472 (CVE-2026-109841). |
-| P2 | QSI-2026-28584 | Обновите valibot до исправленной версии (1.4.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5qjj-4xww-7phc (CVE-2026-59952). |
-| P2 | QSI-2026-28586 | Обновите valibot до исправленной версии (1.4.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5qjj-4xww-7phc (CVE-2026-59952). |
-| P2 | QSI-2026-28588 | Обновите valibot до исправленной версии (1.4.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5qjj-4xww-7phc (CVE-2026-59952). |
-| P2 | QSI-2026-28206 | Обновите webpack до исправленной версии (5.104.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-38r7-794h-5758 (CVE-2025-68157). |
-| P2 | QSI-2026-28207 | Обновите webpack до исправленной версии (5.104.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8fgc-7cc6-rx7x (CVE-2025-68458). |
-| P2 | QSI-2026-28238 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g8h-86w9-wvmq (CVE-2026-44572). |
-| P2 | QSI-2026-28265 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g8h-86w9-wvmq (CVE-2026-44572). |
-| P2 | QSI-2026-28284 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9jrq-w75r-8gcw (CVE-2026-112945). |
-| P2 | QSI-2026-28407 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gg2-335m-rxc6 (CVE-2026-126359). |
-| P2 | QSI-2026-28415 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gg2-335m-rxc6 (CVE-2026-126359). |
-| P2 | QSI-2026-28425 | Обновите hono до исправленной версии (4.12.34). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-79qm-7rj5-m7r9 (CVE-2026-71849). |
-| P2 | QSI-2026-28450 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g8h-86w9-wvmq (CVE-2026-44572). |
-| P2 | QSI-2026-28592 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9jrq-w75r-8gcw (CVE-2026-112945). |
-| P2 | QSI-2026-28310 | Обновите @smithy/config-resolver до исправленной версии (4.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6475-r3vj-m8vf. |
-| P2 | QSI-2026-28359 | Обновите dompurify до исправленной версии (3.4.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6688-9rhm-gjv2 (CVE-2026-109345). |
-| P2 | QSI-2026-28361 | Обновите dompurify до исправленной версии (3.4.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c2j3-45gr-mqc4 (CVE-2026-66010). |
-| P2 | QSI-2026-28362 | Обновите dompurify до исправленной версии (3.4.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c6gr-qvv4-5v3f (CVE-2026-116802). |
-| P2 | QSI-2026-28367 | Обновите dompurify до исправленной версии (3.4.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gvmj-g25r-r7wr (CVE-2026-65900). |
-| P2 | QSI-2026-28380 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-333x-w4r6-6crp (CVE-2026-110725). |
-| P2 | QSI-2026-28383 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xhq7-xmqj-769h (CVE-2026-110095). |
-| P2 | QSI-2026-28384 | Обновите fast-xml-parser до исправленной версии (5.12.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-474x-hrwr-fgx4 (CVE-2026-126066). |
-| P2 | QSI-2026-28386 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fj3w-jwp8-x2g3 (CVE-2026-27942). |
-| P2 | QSI-2026-28391 | Обновите fast-xml-parser до исправленной версии (5.12.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-474x-hrwr-fgx4 (CVE-2026-126066). |
-| P2 | QSI-2026-28393 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fj3w-jwp8-x2g3 (CVE-2026-27942). |
-| P2 | QSI-2026-28467 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2vgq-wchc-25w7 (CVE-2026-118776). |
-| P2 | QSI-2026-28468 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4487-j8r4-4g2f (CVE-2026-118780). |
-| P2 | QSI-2026-28469 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4642-5mcj-2rqw (CVE-2026-118775). |
-| P2 | QSI-2026-28473 | Обновите node-forge до исправленной версии (1.4.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6889-vf6x-f3g5 (CVE-2026-125335). |
-| P2 | QSI-2026-28480 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9wg5-mj3p-v49q (CVE-2026-118774). |
-| P2 | QSI-2026-28482 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h6cr-wjv9-3cpp (CVE-2026-118781). |
-| P2 | QSI-2026-28498 | Обновите nuxt до исправленной версии (4.6.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hf59-9xwc-2g4p (CVE-2026-128076). |
-| P2 | QSI-2026-28501 | Обновите nuxt до исправленной версии (4.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jjm6-p2m9-9w4x (CVE-2026-114130). |
-| P2 | QSI-2026-28502 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m3q2-p4fw-w38m (CVE-2026-56317). |
-| P2 | QSI-2026-28504 | Обновите nuxt до исправленной версии (4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rq7w-g337-39qq. |
-| P2 | QSI-2026-28507 | Обновите pbkdf2 до исправленной версии (3.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-477h-4r7f-fvrx (CVE-2026-102414). |
-| P2 | QSI-2026-28518 | Обновите qs до исправленной версии (6.14.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6rw7-vpxm-498p (CVE-2025-15284). |
-| P2 | QSI-2026-28520 | Обновите qs до исправленной версии (6.14.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w7fw-mjwx-w883 (CVE-2026-2391). |
-| P2 | QSI-2026-28524 | Обновите serialize-javascript до исправленной версии (7.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897). |
-| P2 | QSI-2026-28526 | Обновите serialize-javascript до исправленной версии (7.1.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gfhx-hw2g-v5hg (CVE-2026-97711). |
-| P2 | QSI-2026-28527 | Обновите serialize-javascript до исправленной версии (7.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897). |
-| P2 | QSI-2026-28556 | Обновите tmp до исправленной версии (0.2.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-52f5-9888-hmc6 (CVE-2025-54798). |
-| P2 | QSI-2026-28560 | Обновите undici до исправленной версии (6.27.0, 7.28.0, 8.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-35p6-xmwp-9g52 (CVE-2026-6733). |
-| P2 | QSI-2026-28564 | Обновите undici до исправленной версии (6.27.0, 7.28.0, 8.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g8m3-5g58-fq7m (CVE-2026-11525). |
-| P2 | QSI-2026-28569 | Обновите undici до исправленной версии (6.28.1, 7.29.1, 8.10.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r53p-7pc4-xj5r (CVE-2026-18540). |
+| P1 | QSI-2026-42855 | В setDefaultPaymentAsset (packages/scaffold-ui/src/views/w3m-fund-wallet-view/index.ts) сравнивайте адрес контракта токена с заданным в конфигурации, а не символ. | устранение первопричины | Тестовый депозит описанного вида отклоняется, и это закреплено регрессионным тестом. |
+| P2 | QSI-2026-42857 | Обновите bitcoinjs-lib до исправленной версии (5.2.1, 6.1.8, 7.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846). |
+| P2 | QSI-2026-42862 | Обновите storybook до исправленной версии (10.6.2, 11.0.0-alpha.6, 8.6.19, 9.1.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125). |
+| P2 | QSI-2026-42885 | Обновите bitcoinjs-lib до исправленной версии (5.2.1, 6.1.8, 7.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846). |
+| P2 | QSI-2026-42886 | Обновите next до исправленной версии (15.5.28, 16.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2464-fhr4-w9xw. |
+| P2 | QSI-2026-42889 | Обновите next до исправленной версии (15.5.24, 16.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2xp9-vwfh-vxw4. |
+| P2 | QSI-2026-42907 | Обновите next-auth до исправленной версии (4.24.15, 5.0.0-beta.32). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7rqj-j65f-68wh (CVE-2026-73420). |
+| P2 | QSI-2026-42908 | Обновите next-auth до исправленной версии (5.0.0-beta.32). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8fpg-xm3f-6cx3 (CVE-2026-73421). |
+| P2 | QSI-2026-42913 | Обновите next до исправленной версии (15.5.28, 16.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2464-fhr4-w9xw. |
+| P2 | QSI-2026-42916 | Обновите next до исправленной версии (15.5.24, 16.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2xp9-vwfh-vxw4. |
+| P2 | QSI-2026-43100 | Обновите next до исправленной версии (15.5.28, 16.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2464-fhr4-w9xw. |
+| P2 | QSI-2026-43101 | Обновите next до исправленной версии (15.5.24, 16.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2xp9-vwfh-vxw4. |
+| P2 | QSI-2026-43119 | Обновите next до исправленной версии (15.5.24, 16.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-p293-qw3h-jr36 (CVE-2026-75604). |
+| P2 | QSI-2026-42944 | Обновите @auth/core до исправленной версии (0.41.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7rqj-j65f-68wh (CVE-2026-73420). |
+| P2 | QSI-2026-42951 | Обновите @nuxt/devtools до исправленной версии (3.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-279x-mwfv-vcqv (CVE-2026-71319). |
+| P2 | QSI-2026-42962 | Обновите @simple-git/argv-parser до исправленной версии (2.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v5rq-49vh-5v5c (CVE-2026-102829). |
+| P2 | QSI-2026-43043 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m7jm-9gc2-mpf2 (CVE-2026-25896). |
+| P2 | QSI-2026-43050 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m7jm-9gc2-mpf2 (CVE-2026-25896). |
+| P2 | QSI-2026-43188 | Обновите simple-git до исправленной версии (4.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x6jw-m9v5-85vh (CVE-2026-102828). |
+| P2 | QSI-2026-43205 | Обновите tinypool до исправленной версии (2.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5gmw-xhrv-c9v3 (CVE-2026-104848). |
+| P2 | QSI-2026-43206 | Обновите tinypool до исправленной версии (2.1.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-85c8-ppgw-ccpr (CVE-2026-104849). |
+| P2 | QSI-2026-42858 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
+| P2 | QSI-2026-42861 | Обновите storybook до исправленной версии (10.1.10, 7.6.21, 8.6.15, 9.1.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8452-54wp-rmv6 (CVE-2025-68429). |
+| P2 | QSI-2026-42863 | Обновите storybook до исправленной версии (10.2.10, 8.6.17, 9.1.19). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mjf5-7g4m-gx5w (CVE-2026-27148). |
+| P2 | QSI-2026-42864 | Обновите storybook до исправленной версии (10.6.2, 11.0.0-alpha.6, 8.6.19, 9.1.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-px85-f4q5-jh77 (CVE-2026-114126). |
+| P2 | QSI-2026-42865 | Обновите axios до исправленной версии (1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-35jp-ww65-95wh (CVE-2026-44494). |
+| P2 | QSI-2026-42866 | Обновите axios до исправленной версии (0.31.1, 1.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g43-6gmg-66jw (CVE-2026-44495). |
+| P2 | QSI-2026-42870 | Обновите axios до исправленной версии (0.30.3, 1.13.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-43fc-jf86-j433 (CVE-2026-25639). |
+| P2 | QSI-2026-42874 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-62hf-57xw-28j9 (CVE-2026-42039). |
+| P2 | QSI-2026-42875 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6chq-wfr3-2hj9 (CVE-2026-42035). |
+| P2 | QSI-2026-42876 | Обновите axios до исправленной версии (1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-777c-7fjr-54vf (CVE-2026-44488). |
+| P2 | QSI-2026-42881 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hfxv-24rg-xrqf (CVE-2026-44496). |
+| P2 | QSI-2026-42882 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j5f8-grm9-p9fc (CVE-2026-44486). |
+| P2 | QSI-2026-42887 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-267c-6grr-h53f (CVE-2026-44575). |
+| P2 | QSI-2026-42888 | Обновите next до исправленной версии (15.5.18, 16.2.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-26hh-7cqf-hhc6 (CVE-2026-45109). |
+| P2 | QSI-2026-42890 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-36qx-fr4f-26g5 (CVE-2026-44573). |
+| P2 | QSI-2026-42894 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-492v-c6pp-mqqv (CVE-2026-44574). |
+| P2 | QSI-2026-42899 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-89xv-2m56-2m9x (CVE-2026-64649). |
+| P2 | QSI-2026-42900 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8h8q-6873-q5fj. |
+| P2 | QSI-2026-42903 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c4j6-fc7j-m34r (CVE-2026-44578). |
+| P2 | QSI-2026-42910 | Обновите next-auth до исправленной версии (4.24.15, 5.0.0-beta.32). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xmf8-cvqr-rfgj (CVE-2026-73418). |
+| P2 | QSI-2026-42911 | Обновите @opennextjs/cloudflare до исправленной версии (1.20.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2vc4-c4r6-p6v6 (CVE-2026-100409). |
+| P2 | QSI-2026-42912 | Обновите @opennextjs/cloudflare до исправленной версии (1.17.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c7mq-gh6q-6q7c (CVE-2025-6087, CVE-2026-3125). |
+| P2 | QSI-2026-42914 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-267c-6grr-h53f (CVE-2026-44575). |
+| P2 | QSI-2026-42915 | Обновите next до исправленной версии (15.5.18, 16.2.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-26hh-7cqf-hhc6 (CVE-2026-45109). |
+| P2 | QSI-2026-42917 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-36qx-fr4f-26g5 (CVE-2026-44573). |
+| P2 | QSI-2026-42926 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-89xv-2m56-2m9x (CVE-2026-64649). |
+| P2 | QSI-2026-42927 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8h8q-6873-q5fj. |
+| P2 | QSI-2026-42930 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c4j6-fc7j-m34r (CVE-2026-44578). |
+| P2 | QSI-2026-42934 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-587h-7wmj-h5pm (CVE-2026-112942). |
+| P2 | QSI-2026-42942 | Обновите figlet до исправленной версии (1.11.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-62ch-8vmq-8xm7 (CVE-2026-96780). |
+| P2 | QSI-2026-42943 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-42970 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3pq3-5fj3-cg6v (CVE-2026-101898). |
+| P2 | QSI-2026-42973 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-542g-h47m-68v8 (CVE-2026-101901). |
+| P2 | QSI-2026-42975 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c29m-xwm3-cm6r (CVE-2026-101903). |
+| P2 | QSI-2026-42977 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m8m8-qj5v-23w3 (CVE-2026-101905). |
+| P2 | QSI-2026-42978 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mghh-pgcx-3jjj (CVE-2026-101906). |
+| P2 | QSI-2026-42979 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r4gj-5m52-g5wh (CVE-2026-101907). |
+| P2 | QSI-2026-42981 | Обновите axios до исправленной версии (0.34.0, 1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x97p-jq2g-jp4f (CVE-2026-101909). |
+| P2 | QSI-2026-42982 | Обновите axios до исправленной версии (1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-35jp-ww65-95wh (CVE-2026-44494). |
+| P2 | QSI-2026-42983 | Обновите axios до исправленной версии (0.31.1, 1.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g43-6gmg-66jw (CVE-2026-44495). |
+| P2 | QSI-2026-42987 | Обновите axios до исправленной версии (0.30.3, 1.13.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-43fc-jf86-j433 (CVE-2026-25639). |
+| P2 | QSI-2026-42989 | Обновите axios до исправленной версии (0.30.2, 1.12.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4hjh-wcwx-xvwj (CVE-2025-58754). |
+| P2 | QSI-2026-42991 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-62hf-57xw-28j9 (CVE-2026-42039). |
+| P2 | QSI-2026-42992 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6chq-wfr3-2hj9 (CVE-2026-42035). |
+| P2 | QSI-2026-42993 | Обновите axios до исправленной версии (1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-777c-7fjr-54vf (CVE-2026-44488). |
+| P2 | QSI-2026-42998 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hfxv-24rg-xrqf (CVE-2026-44496). |
+| P2 | QSI-2026-42999 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j5f8-grm9-p9fc (CVE-2026-44486). |
+| P2 | QSI-2026-43070 | Обновите hono до исправленной версии (4.11.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3vhc-576x-3qv4 (CVE-2026-22818). |
+| P2 | QSI-2026-43079 | Обновите hono до исправленной версии (4.12.25). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-88fw-hqm2-52qc (CVE-2026-54290). |
+| P2 | QSI-2026-43102 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-36qx-fr4f-26g5 (CVE-2026-44573). |
+| P2 | QSI-2026-43108 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-89xv-2m56-2m9x (CVE-2026-64649). |
+| P2 | QSI-2026-43109 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8h8q-6873-q5fj. |
+| P2 | QSI-2026-43112 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c4j6-fc7j-m34r (CVE-2026-44578). |
+| P2 | QSI-2026-43116 | Обновите next до исправленной версии (15.0.8, 15.1.12, 15.2.9, 15.3.9, 15.4.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h25m-26qc-wcjf. |
+| P2 | QSI-2026-43118 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m99w-x7hq-7vfj (CVE-2026-64641). |
+| P2 | QSI-2026-43163 | Обновите postcss до исправленной версии (8.5.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6g55-p6wh-862q (CVE-2026-45623). |
+| P2 | QSI-2026-43166 | Обновите postcss до исправленной версии (8.5.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r28c-9q8g-f849 (CVE-2026-73646). |
+| P2 | QSI-2026-43233 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
+| P2 | QSI-2026-43234 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
+| P2 | QSI-2026-43241 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-587h-7wmj-h5pm (CVE-2026-112942). |
+| P2 | QSI-2026-43246 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-43247 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-43248 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-43249 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-42946 | Обновите @auth/core до исправленной версии (0.41.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xmf8-cvqr-rfgj (CVE-2026-73418). |
+| P2 | QSI-2026-42948 | Обновите @fastify/busboy до исправленной версии (3.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x8mw-p69m-v3mx (CVE-2026-19481). |
+| P2 | QSI-2026-42968 | Обновите @vue/server-renderer до исправленной версии (3.5.42, 3.6.0-rc.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g2v6-rqmx-r4w6. |
+| P2 | QSI-2026-42969 | Обновите @vue/server-renderer до исправленной версии (3.5.42, 3.6.0-rc.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g2v6-rqmx-r4w6. |
+| P2 | QSI-2026-43003 | Обновите basic-ftp до исправленной версии (6.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c475-qrg2-pj4r (CVE-2026-102990). |
+| P2 | QSI-2026-43005 | Обновите bigint-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gc7-fjrx-p6mg (CVE-2025-3194). |
+| P2 | QSI-2026-43006 | Обновите body-parser до исправленной версии (1.20.9, 2.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181). |
+| P2 | QSI-2026-43007 | Обновите body-parser до исправленной версии (1.20.9, 2.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181). |
+| P2 | QSI-2026-43008 | Обновите decode-uri-component до исправленной версии (0.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qr28-fpjm-wq7f (CVE-2026-118664). |
+| P2 | QSI-2026-43031 | Обновите extract-zip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693). |
+| P2 | QSI-2026-43032 | Обновите extract-zip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jmr9-qjv8-65gv (CVE-2026-56876). |
+| P2 | QSI-2026-43038 | Обновите fast-xml-parser до исправленной версии (4.5.5, 5.5.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8gc5-j5rx-235r (CVE-2026-33036). |
+| P2 | QSI-2026-43041 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jmr7-xgp7-cmfj (CVE-2026-26278). |
+| P2 | QSI-2026-43045 | Обновите fast-xml-parser до исправленной версии (4.5.5, 5.5.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8gc5-j5rx-235r (CVE-2026-33036). |
+| P2 | QSI-2026-43048 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jmr7-xgp7-cmfj (CVE-2026-26278). |
+| P2 | QSI-2026-43051 | Обновите follow-redirects до исправленной версии (1.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8r9p-f939-6h3c (CVE-2026-111755). |
+| P2 | QSI-2026-43053 | Обновите follow-redirects до исправленной версии (1.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q3jh-wrc6-jgq8 (CVE-2026-111756). |
+| P2 | QSI-2026-43055 | Обновите glob до исправленной версии (10.5.0, 11.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5j98-mcp5-4vw2 (CVE-2025-64756). |
+| P2 | QSI-2026-43087 | Обновите launch-editor до исправленной версии (2.14.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-587h-7wmj-h5pm (CVE-2026-112942). |
+| P2 | QSI-2026-43092 | Обновите minimatch до исправленной версии (10.2.3, 3.1.4, 4.2.5, 5.1.8, 6.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-23c5-xmqv-rm74 (CVE-2026-27904). |
+| P2 | QSI-2026-43093 | Обновите minimatch до исправленной версии (10.2.1, 3.1.3, 4.2.4, 5.1.7, 6.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3ppc-4f35-3m26 (CVE-2026-26996). |
+| P2 | QSI-2026-43094 | Обновите minimatch до исправленной версии (10.2.3, 3.1.3, 4.2.5, 5.1.8, 6.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7r86-cg39-jmmj (CVE-2026-27903). |
+| P2 | QSI-2026-43099 | Обновите nanoid до исправленной версии (3.3.12, 5.1.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwg4-73v4-xw9w (CVE-2026-73086). |
+| P2 | QSI-2026-43125 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5x38-2vff-x55p (CVE-2026-119190). |
+| P2 | QSI-2026-43128 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6qrw-m8cv-hcxf (CVE-2026-119192). |
+| P2 | QSI-2026-43130 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7wch-p9px-956x (CVE-2026-118779). |
+| P2 | QSI-2026-43131 | Обновите node-forge до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-86w9-cpqp-85rv (CVE-2026-85393). |
+| P2 | QSI-2026-43132 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8hrf-8g6f-7xwp (CVE-2026-119188). |
+| P2 | QSI-2026-43136 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hqq3-7jhf-c5jx (CVE-2026-119187). |
+| P2 | QSI-2026-43138 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jc66-7q78-782g (CVE-2026-118782). |
+| P2 | QSI-2026-43139 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhr8-3pm8-cq29 (CVE-2026-119191). |
+| P2 | QSI-2026-43144 | Обновите nuxt до исправленной версии (3.21.10, 4.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9473-5f9j-94wq (CVE-2026-71320). |
+| P2 | QSI-2026-43146 | Обновите nuxt до исправленной версии (3.21.10, 4.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9pgf-384g-p7mv (CVE-2026-71321). |
+| P2 | QSI-2026-43153 | Обновите nuxt до исправленной версии (3.21.10, 4.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hxcr-hm88-mpq6 (CVE-2026-71314). |
+| P2 | QSI-2026-43156 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mm7m-92g8-7m47 (CVE-2026-53721). |
+| P2 | QSI-2026-43161 | Обновите playwright до исправленной версии (1.55.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7mvr-c777-76hp (CVE-2025-59288). |
+| P2 | QSI-2026-43173 | Обновите rollup до исправленной версии (2.80.0, 3.30.0, 4.59.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mw96-cpmx-2vgc (CVE-2026-27606). |
+| P2 | QSI-2026-43174 | Обновите serialize-javascript до исправленной версии (7.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5c6j-r48x-rmvq. |
+| P2 | QSI-2026-43179 | Обновите sharp до исправленной версии (0.35.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f88m-g3jw-g9cj (CVE-2026-114113). |
+| P2 | QSI-2026-43180 | Обновите sharp до исправленной версии (0.35.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rgj7-g3m4-5g8c (CVE-2026-114112). |
+| P2 | QSI-2026-43181 | Обновите sharp до исправленной версии (0.35.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wq5f-xc86-pv6w (CVE-2026-114111). |
+| P2 | QSI-2026-43182 | Обновите sharp до исправленной версии (0.35.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f88m-g3jw-g9cj (CVE-2026-114113). |
+| P2 | QSI-2026-43183 | Обновите sharp до исправленной версии (0.35.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rgj7-g3m4-5g8c (CVE-2026-114112). |
+| P2 | QSI-2026-43184 | Обновите sharp до исправленной версии (0.35.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wq5f-xc86-pv6w (CVE-2026-114111). |
+| P2 | QSI-2026-43185 | Обновите shell-quote до исправленной версии (1.11.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pqg4-j6r4-53mv (CVE-2026-102422). |
+| P2 | QSI-2026-43186 | Обновите simple-git до исправленной версии (4.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-858h-whjf-mvg5 (CVE-2026-102827). |
+| P2 | QSI-2026-43187 | Обновите simple-git до исправленной версии (4.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g4wm-2vf7-vfgr (CVE-2026-102826). |
+| P2 | QSI-2026-43189 | Обновите source-map-js до исправленной версии (1.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-68fv-2mgg-jv7q (CVE-2026-93749). |
+| P2 | QSI-2026-43193 | Обновите tar до исправленной версии (7.5.19). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-23hp-3jrh-7fpw (CVE-2026-59873). |
+| P2 | QSI-2026-43194 | Обновите tar до исправленной версии (7.5.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-34x7-hfp2-rc4v (CVE-2026-24842). |
+| P2 | QSI-2026-43195 | Обновите tar до исправленной версии (7.5.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-83g3-92jg-28cx (CVE-2026-26960). |
+| P2 | QSI-2026-43196 | Обновите tar до исправленной версии (7.5.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8qq5-rm4j-mr97 (CVE-2026-23745). |
+| P2 | QSI-2026-43197 | Обновите tar до исправленной версии (7.5.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8x88-c5mf-7j5w (CVE-2026-59874). |
+| P2 | QSI-2026-43198 | Обновите tar до исправленной версии (7.5.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9ppj-qmqm-q256 (CVE-2026-31802). |
+| P2 | QSI-2026-43200 | Обновите tar до исправленной версии (7.5.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qffp-2rhf-9h96 (CVE-2026-29786). |
+| P2 | QSI-2026-43201 | Обновите tar до исправленной версии (7.5.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r292-9mhp-454m (CVE-2026-73566). |
+| P2 | QSI-2026-43202 | Обновите tar до исправленной версии (7.5.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6q2-hw4h-h46w (CVE-2026-23950). |
+| P2 | QSI-2026-43208 | Обновите tmp до исправленной версии (0.2.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ph9p-34f9-6g65 (CVE-2026-44705). |
+| P2 | QSI-2026-43209 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383). |
+| P2 | QSI-2026-43219 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018). |
+| P2 | QSI-2026-43222 | Обновите undici до исправленной версии (6.24.0, 7.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v9p9-hfj2-hcw8 (CVE-2026-2229). |
+| P2 | QSI-2026-43223 | Обновите undici до исправленной версии (6.24.0, 7.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vrm6-8vpv-qv8q (CVE-2026-1526). |
+| P2 | QSI-2026-43224 | Обновите undici до исправленной версии (6.27.0, 7.28.0, 8.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vxpw-j846-p89q (CVE-2026-12151). |
+| P2 | QSI-2026-43225 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383). |
+| P2 | QSI-2026-43227 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4w7w-5xrc-9h26 (CVE-2026-109829). |
+| P2 | QSI-2026-43231 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018). |
+| P2 | QSI-2026-43232 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869). |
+| P2 | QSI-2026-43236 | Обновите valibot до исправленной версии (1.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020). |
+| P2 | QSI-2026-43238 | Обновите valibot до исправленной версии (1.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020). |
+| P2 | QSI-2026-43240 | Обновите valibot до исправленной версии (1.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vqpr-j7v3-hqw9 (CVE-2025-66020). |
+| P2 | QSI-2026-42867 | Обновите axios до исправленной версии (0.31.0, 1.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3p68-rc4w-qgx5 (CVE-2025-62718). |
+| P2 | QSI-2026-42868 | Обновите axios до исправленной версии (1.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3w6x-2g7m-8v23 (CVE-2026-42044). |
+| P2 | QSI-2026-42869 | Обновите axios до исправленной версии (0.33.0, 1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-42h9-826w-cgv3 (CVE-2026-67313). |
+| P2 | QSI-2026-42871 | Обновите axios до исправленной версии (1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-445q-vr5w-6q77 (CVE-2026-42037). |
+| P2 | QSI-2026-42872 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4hqw-qxg8-jxx2 (CVE-2026-101900). |
+| P2 | QSI-2026-42873 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5c9x-8gcm-mpgx (CVE-2026-42034). |
+| P2 | QSI-2026-42877 | Обновите axios до исправленной версии (0.33.0, 1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7q8q-rj6j-mhjq (CVE-2026-67319). |
+| P2 | QSI-2026-42878 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-898c-q2cr-xwhg (CVE-2026-44490). |
+| P2 | QSI-2026-42879 | Обновите axios до исправленной версии (0.34.0, 1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fr6-4gfg-395g (CVE-2026-101902). |
+| P2 | QSI-2026-42880 | Обновите axios до исправленной версии (0.31.0, 1.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fvcv-3m26-pcqx (CVE-2026-40175). |
+| P2 | QSI-2026-42883 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8rh-479h-cp32 (CVE-2026-101904). |
+| P2 | QSI-2026-42884 | Обновите axios до исправленной версии (1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jqh4-m9w3-8hp9 (CVE-2026-67317). |
+| P2 | QSI-2026-42892 | Обновите next до исправленной версии (15.5.14, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980). |
+| P2 | QSI-2026-42893 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4633-3j49-mh5q (CVE-2026-64647). |
+| P2 | QSI-2026-42895 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4c39-4ccg-62r3 (CVE-2026-64646). |
+| P2 | QSI-2026-42896 | Обновите next до исправленной версии (15.5.27, 16.3.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4jqv-mc3x-m676 (CVE-2026-94543). |
+| P2 | QSI-2026-42897 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-68g3-v927-f742 (CVE-2026-64648). |
+| P2 | QSI-2026-42898 | Обновите next до исправленной версии (15.5.29, 16.4.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7qx7-33qx-rqx2 (CVE-2026-119347). |
+| P2 | QSI-2026-42901 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-955p-x3mx-jcvp (CVE-2026-64643). |
+| P2 | QSI-2026-42902 | Обновите next до исправленной версии (15.5.10, 16.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9g9p-9gw9-jx7f (CVE-2025-59471). |
+| P2 | QSI-2026-42904 | Обновите next до исправленной версии (15.5.29, 16.4.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f3mh-rxg3-f5g2 (CVE-2026-119346). |
+| P2 | QSI-2026-42905 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ffhc-5mcf-pf4q (CVE-2026-44581). |
+| P2 | QSI-2026-42906 | Обновите next-auth до исправленной версии (4.24.12, 5.0.0-beta.30). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5jpx-9hw9-2fx4. |
+| P2 | QSI-2026-42909 | Обновите next-auth до исправленной версии (4.24.15, 5.0.0-beta.32). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x445-f3h2-j279 (CVE-2026-73419). |
+| P2 | QSI-2026-42919 | Обновите next до исправленной версии (15.5.14, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980). |
+| P2 | QSI-2026-42920 | Обновите next до исправленной версии (14.2.32, 15.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4342-x723-ch2f (CVE-2025-57822). |
+| P2 | QSI-2026-42921 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4633-3j49-mh5q (CVE-2026-64647). |
+| P2 | QSI-2026-42922 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4c39-4ccg-62r3 (CVE-2026-64646). |
+| P2 | QSI-2026-42923 | Обновите next до исправленной версии (15.5.27, 16.3.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4jqv-mc3x-m676 (CVE-2026-94543). |
+| P2 | QSI-2026-42924 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-68g3-v927-f742 (CVE-2026-64648). |
+| P2 | QSI-2026-42925 | Обновите next до исправленной версии (15.5.29, 16.4.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7qx7-33qx-rqx2 (CVE-2026-119347). |
+| P2 | QSI-2026-42928 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-955p-x3mx-jcvp (CVE-2026-64643). |
+| P2 | QSI-2026-42929 | Обновите next до исправленной версии (15.5.10, 16.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9g9p-9gw9-jx7f (CVE-2025-59471). |
+| P2 | QSI-2026-42931 | Обновите next до исправленной версии (15.5.29, 16.4.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f3mh-rxg3-f5g2 (CVE-2026-119346). |
+| P2 | QSI-2026-42932 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ffhc-5mcf-pf4q (CVE-2026-44581). |
+| P2 | QSI-2026-42933 | Обновите vite до исправленной версии (6.4.2, 7.3.2, 8.0.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4w7w-66w2-5vf9 (CVE-2026-39365). |
+| P2 | QSI-2026-42935 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-698v-4r3x-3vcv (CVE-2026-112943). |
+| P2 | QSI-2026-42936 | Обновите vite до исправленной версии (5.4.21, 6.4.1, 7.0.8, 7.1.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-93m4-6634-74q7 (CVE-2025-62522). |
+| P2 | QSI-2026-42938 | Обновите vite до исправленной версии (6.4.3, 7.3.5, 8.0.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fx2h-pf6j-xcff (CVE-2026-53571). |
+| P2 | QSI-2026-42939 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r825-w8mm-5pxw (CVE-2026-112944). |
+| P2 | QSI-2026-42940 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rq7h-c2jc-7f22 (CVE-2026-112946). |
+| P2 | QSI-2026-42941 | Обновите vite до исправленной версии (6.4.3, 7.3.5, 8.0.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v6wh-96g9-6wx3 (CVE-2026-53632). |
+| P2 | QSI-2026-42971 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-44g4-m2mj-wpvx (CVE-2026-101899). |
+| P2 | QSI-2026-42972 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4hqw-qxg8-jxx2 (CVE-2026-101900). |
+| P2 | QSI-2026-42974 | Обновите axios до исправленной версии (0.34.0, 1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fr6-4gfg-395g (CVE-2026-101902). |
+| P2 | QSI-2026-42976 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8rh-479h-cp32 (CVE-2026-101904). |
+| P2 | QSI-2026-42980 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vh66-26gq-q6x8 (CVE-2026-101908). |
+| P2 | QSI-2026-42984 | Обновите axios до исправленной версии (0.31.0, 1.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3p68-rc4w-qgx5 (CVE-2025-62718). |
+| P2 | QSI-2026-42985 | Обновите axios до исправленной версии (1.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3w6x-2g7m-8v23 (CVE-2026-42044). |
+| P2 | QSI-2026-42986 | Обновите axios до исправленной версии (0.33.0, 1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-42h9-826w-cgv3 (CVE-2026-67313). |
+| P2 | QSI-2026-42988 | Обновите axios до исправленной версии (1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-445q-vr5w-6q77 (CVE-2026-42037). |
+| P2 | QSI-2026-42990 | Обновите axios до исправленной версии (0.31.1, 1.15.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5c9x-8gcm-mpgx (CVE-2026-42034). |
+| P2 | QSI-2026-42994 | Обновите axios до исправленной версии (0.33.0, 1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7q8q-rj6j-mhjq (CVE-2026-67319). |
+| P2 | QSI-2026-42995 | Обновите axios до исправленной версии (0.32.0, 1.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-898c-q2cr-xwhg (CVE-2026-44490). |
+| P2 | QSI-2026-42996 | Обновите axios до исправленной версии (0.34.0, 1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fr6-4gfg-395g (CVE-2026-101902). |
+| P2 | QSI-2026-42997 | Обновите axios до исправленной версии (0.31.0, 1.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fvcv-3m26-pcqx (CVE-2026-40175). |
+| P2 | QSI-2026-43000 | Обновите axios до исправленной версии (1.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8rh-479h-cp32 (CVE-2026-101904). |
+| P2 | QSI-2026-43001 | Обновите axios до исправленной версии (1.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jqh4-m9w3-8hp9 (CVE-2026-67317). |
+| P2 | QSI-2026-43061 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-46wx-v44x-9hh2 (CVE-2026-126355). |
+| P2 | QSI-2026-43062 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4h7h-rv7c-7m2v (CVE-2026-126356). |
+| P2 | QSI-2026-43063 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4m76-xfj5-7975 (CVE-2026-126357). |
+| P2 | QSI-2026-43064 | Обновите hono до исправленной версии (4.13.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5r4p-p66f-jhc7 (CVE-2026-109955, CVE-2026-111757). |
+| P2 | QSI-2026-43065 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h7mg-cq63-vhpq (CVE-2026-126358). |
+| P2 | QSI-2026-43066 | Обновите hono до исправленной версии (4.12.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-26pp-8wgv-hjvm (CVE-2026-56762). |
+| P2 | QSI-2026-43067 | Обновите hono до исправленной версии (4.12.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2gcr-mfcq-wcc3 (CVE-2026-47676). |
+| P2 | QSI-2026-43069 | Обновите hono до исправленной версии (4.12.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3hrh-pfw6-9m5x (CVE-2026-47675). |
+| P2 | QSI-2026-43071 | Обновите hono до исправленной версии (4.12.14). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-458j-xx4x-4375 (CVE-2026-56761). |
+| P2 | QSI-2026-43072 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-46wx-v44x-9hh2 (CVE-2026-126355). |
+| P2 | QSI-2026-43073 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4h7h-rv7c-7m2v (CVE-2026-126356). |
+| P2 | QSI-2026-43074 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4m76-xfj5-7975 (CVE-2026-126357). |
+| P2 | QSI-2026-43075 | Обновите hono до исправленной версии (4.12.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5pq2-9x2x-5p6w (CVE-2026-29086). |
+| P2 | QSI-2026-43076 | Обновите hono до исправленной версии (4.12.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-69xw-7hcm-h432 (CVE-2026-44455). |
+| P2 | QSI-2026-43077 | Обновите hono до исправленной версии (4.11.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6wqw-2p9w-4vw4 (CVE-2026-24472). |
+| P2 | QSI-2026-43080 | Обновите hono до исправленной версии (4.12.34). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8j4g-w8fx-2239 (CVE-2026-69207). |
+| P2 | QSI-2026-43081 | Обновите hono до исправленной версии (4.11.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9r54-q6cx-xmh5 (CVE-2026-24771). |
+| P2 | QSI-2026-43082 | Обновите hono до исправленной версии (4.12.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9vqf-7f2p-gf9v (CVE-2026-44456). |
+| P2 | QSI-2026-43083 | Обновите hono до исправленной версии (4.13.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-crvj-82cr-hjcx (CVE-2026-84363). |
+| P2 | QSI-2026-43084 | Обновите hono до исправленной версии (4.12.34). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f23p-vx2j-j53r (CVE-2026-71850). |
+| P2 | QSI-2026-43085 | Обновите hono до исправленной версии (4.12.21). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f577-qrjj-4474 (CVE-2026-47673). |
+| P2 | QSI-2026-43104 | Обновите next до исправленной версии (15.5.14, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3x4c-7xq6-9pq8 (CVE-2026-27980). |
+| P2 | QSI-2026-43105 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4633-3j49-mh5q (CVE-2026-64647). |
+| P2 | QSI-2026-43106 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4c39-4ccg-62r3 (CVE-2026-64646). |
+| P2 | QSI-2026-43107 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-68g3-v927-f742 (CVE-2026-64648). |
+| P2 | QSI-2026-43110 | Обновите next до исправленной версии (15.5.21, 16.2.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-955p-x3mx-jcvp (CVE-2026-64643). |
+| P2 | QSI-2026-43111 | Обновите next до исправленной версии (15.5.10, 16.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9g9p-9gw9-jx7f (CVE-2025-59471). |
+| P2 | QSI-2026-43113 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ffhc-5mcf-pf4q (CVE-2026-44581). |
+| P2 | QSI-2026-43114 | Обновите next до исправленной версии (15.5.13, 16.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ggv3-7p47-pfv8 (CVE-2026-29057). |
+| P2 | QSI-2026-43115 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gx5p-jg67-6x7h (CVE-2026-44580). |
+| P2 | QSI-2026-43117 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h64f-5h5j-jqjh (CVE-2026-44577). |
+| P2 | QSI-2026-43164 | Обновите postcss до исправленной версии (8.5.23). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fxqj-rqcc-2cmp (CVE-2026-69153). |
+| P2 | QSI-2026-43165 | Обновите postcss до исправленной версии (8.5.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qx2v-qp2m-jg93 (CVE-2026-41305). |
+| P2 | QSI-2026-43242 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-698v-4r3x-3vcv (CVE-2026-112943). |
+| P2 | QSI-2026-43244 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r825-w8mm-5pxw (CVE-2026-112944). |
+| P2 | QSI-2026-43245 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rq7h-c2jc-7f22 (CVE-2026-112946). |
+| P2 | QSI-2026-42945 | Обновите @auth/core до исправленной версии (0.41.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x445-f3h2-j279 (CVE-2026-73419). |
+| P2 | QSI-2026-42947 | Обновите @fastify/busboy до исправленной версии (3.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gxm5-99cw-xjw9 (CVE-2026-74866). |
+| P2 | QSI-2026-42949 | Обновите @hono/node-server до исправленной версии (1.19.18, 2.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jpvv-r467-5p4w (CVE-2026-126210). |
+| P2 | QSI-2026-42950 | Обновите @hono/node-server до исправленной версии (2.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663). |
+| P2 | QSI-2026-42952 | Обновите @nuxt/schema до исправленной версии (4.6.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mjrq-cffv-q4qc (CVE-2026-128070). |
+| P2 | QSI-2026-42953 | Обновите @nuxt/vite-builder до исправленной версии (4.6.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-648h-gw55-m2g7 (CVE-2026-119199). |
+| P2 | QSI-2026-42954 | Обновите @opentelemetry/core до исправленной версии (2.8.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8988-4f7v-96qf (CVE-2026-54285). |
+| P2 | QSI-2026-42955 | Обновите @opentelemetry/instrumentation-knex до исправленной версии (0.65.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
+| P2 | QSI-2026-42956 | Обновите @opentelemetry/instrumentation-mongoose до исправленной версии (0.67.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
+| P2 | QSI-2026-42957 | Обновите @opentelemetry/instrumentation-mysql2 до исправленной версии (0.67.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
+| P2 | QSI-2026-42958 | Обновите @opentelemetry/instrumentation-mysql до исправленной версии (0.67.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
+| P2 | QSI-2026-42959 | Обновите @opentelemetry/instrumentation-pg до исправленной версии (0.73.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
+| P2 | QSI-2026-42960 | Обновите @opentelemetry/instrumentation-tedious до исправленной версии (0.40.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qqmp-wf37-98f9 (CVE-2026-104872). |
+| P2 | QSI-2026-42961 | Обновите @parcel/reporter-dev-server до исправленной версии (2.16.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qm9p-f9j5-w83w (CVE-2025-56648). |
+| P2 | QSI-2026-42964 | Обновите @vitest/mocker до исправленной версии (4.1.11, 5.0.0-rc.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82fw-gwwq-j7x9 (CVE-2026-84373). |
+| P2 | QSI-2026-42965 | Обновите @vitest/mocker до исправленной версии (4.1.12, 5.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qxg6-89mg-rqv8 (CVE-2026-112949). |
+| P2 | QSI-2026-42966 | Обновите @vitest/mocker до исправленной версии (4.1.11, 5.0.0-rc.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82fw-gwwq-j7x9 (CVE-2026-84373). |
+| P2 | QSI-2026-42967 | Обновите @vitest/mocker до исправленной версии (4.1.12, 5.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qxg6-89mg-rqv8 (CVE-2026-112949). |
+| P2 | QSI-2026-43002 | Обновите basic-ftp до исправленной версии (6.2.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5pm8-86m8-9m6r (CVE-2026-126345). |
+| P2 | QSI-2026-43004 | Обновите basic-ftp до исправленной версии (6.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r4jh-29pc-gfqr (CVE-2026-126346). |
+| P2 | QSI-2026-43009 | Обновите decode-uri-component до исправленной версии (0.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vcc3-ghjq-m6fr (CVE-2026-45822). |
+| P2 | QSI-2026-43010 | Обновите dompurify до исправленной версии (3.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-39q2-94rc-95cp (CVE-2026-65903). |
+| P2 | QSI-2026-43011 | Обновите dompurify до исправленной версии (3.4.13). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-55q2-fjhq-7xh7 (CVE-2026-75838). |
+| P2 | QSI-2026-43013 | Обновите dompurify до исправленной версии (3.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-76mc-f452-cxcm (CVE-2026-65902). |
+| P2 | QSI-2026-43016 | Обновите dompurify до исправленной версии (3.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cj63-jhhr-wcxv (CVE-2026-65913). |
+| P2 | QSI-2026-43017 | Обновите dompurify до исправленной версии (3.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cjmm-f4jc-qw8r (CVE-2026-65912). |
+| P2 | QSI-2026-43018 | Обновите dompurify до исправленной версии (3.4.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cmwh-pvxp-8882 (CVE-2026-65898). |
+| P2 | QSI-2026-43019 | Обновите dompurify до исправленной версии (3.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-crv5-9vww-q3g8 (CVE-2026-41239). |
+| P2 | QSI-2026-43021 | Обновите dompurify до исправленной версии (3.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h7mw-gpvr-xq4m (CVE-2026-41240). |
+| P2 | QSI-2026-43022 | Обновите dompurify до исправленной версии (3.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h8r8-wccr-v5f2 (CVE-2026-65914). |
+| P2 | QSI-2026-43023 | Обновите dompurify до исправленной версии (3.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hpcv-96wg-7vj8 (CVE-2026-49458). |
+| P2 | QSI-2026-43025 | Обновите dompurify до исправленной версии (3.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r47g-fvhr-h676 (CVE-2026-49459). |
+| P2 | QSI-2026-43026 | Обновите dompurify до исправленной версии (3.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rp9w-3fw7-7cwq (CVE-2026-49978). |
+| P2 | QSI-2026-43027 | Обновите dompurify до исправленной версии (2.5.9, 3.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v2wj-7wpq-c8vv (CVE-2026-0540). |
+| P2 | QSI-2026-43028 | Обновите dompurify до исправленной версии (3.2.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v8jm-5vwx-cfxm (CVE-2025-15599). |
+| P2 | QSI-2026-43029 | Обновите dompurify до исправленной версии (3.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v9jr-rg53-9pgp (CVE-2026-41238). |
+| P2 | QSI-2026-43030 | Обновите elliptic до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505). |
+| P2 | QSI-2026-43034 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w74x-v6f9-j3xg (CVE-2026-110306). |
+| P2 | QSI-2026-43035 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wjr9-j795-jxcr (CVE-2026-110180). |
+| P2 | QSI-2026-43040 | Обновите fast-xml-parser до исправленной версии (4.5.7, 5.7.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gh4j-gqv2-49f6 (CVE-2026-41650). |
+| P2 | QSI-2026-43042 | Обновите fast-xml-parser до исправленной версии (4.5.5, 5.5.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jp2q-39xq-3w4g (CVE-2026-33349). |
+| P2 | QSI-2026-43047 | Обновите fast-xml-parser до исправленной версии (4.5.7, 5.7.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gh4j-gqv2-49f6 (CVE-2026-41650). |
+| P2 | QSI-2026-43049 | Обновите fast-xml-parser до исправленной версии (4.5.5, 5.5.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jp2q-39xq-3w4g (CVE-2026-33349). |
+| P2 | QSI-2026-43052 | Обновите follow-redirects до исправленной версии (1.16.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrwp-f3q8-3g9p (CVE-2026-116689). |
+| P2 | QSI-2026-43054 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-43056 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-43057 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-43058 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-43059 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-43086 | Обновите ip-address до исправленной версии (10.7.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997). |
+| P2 | QSI-2026-43088 | Обновите launch-editor до исправленной версии (2.14.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-698v-4r3x-3vcv (CVE-2026-112943). |
+| P2 | QSI-2026-43089 | Обновите launch-editor до исправленной версии (2.14.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r825-w8mm-5pxw (CVE-2026-112944). |
+| P2 | QSI-2026-43090 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-43091 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-43095 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-43096 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-43097 | Обновите nanoid до исправленной версии (3.3.16, 5.1.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-28wg-ghj8-5hjv (CVE-2026-67214). |
+| P2 | QSI-2026-43098 | Обновите nanoid до исправленной версии (3.3.18, 5.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2v37-7h3g-55p8 (CVE-2026-67213). |
+| P2 | QSI-2026-43123 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-525v-9gp9-w22h (CVE-2026-118778). |
+| P2 | QSI-2026-43124 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5cwg-6vw7-rj6p (CVE-2026-119186). |
+| P2 | QSI-2026-43127 | Обновите node-forge до исправленной версии (1.4.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6cv4-p8m7-4r25 (CVE-2026-125333). |
+| P2 | QSI-2026-43129 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6wvx-3r32-xmcg (CVE-2026-118777). |
+| P2 | QSI-2026-43134 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h46v-rmh6-fq4f (CVE-2026-119189). |
+| P2 | QSI-2026-43137 | Обновите node-forge до исправленной версии (1.4.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8rw-jp99-435v (CVE-2026-125334). |
+| P2 | QSI-2026-43140 | Обновите nuxt до исправленной версии (3.21.10, 4.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-48hr-524c-v5w3 (CVE-2026-71318). |
+| P2 | QSI-2026-43141 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-534h-c3cw-v3h9 (CVE-2026-56301). |
+| P2 | QSI-2026-43142 | Обновите nuxt до исправленной версии (3.21.4, 4.4.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6gq8-jgmh-3ffp (CVE-2026-114131). |
+| P2 | QSI-2026-43143 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-934w-87qh-qr26 (CVE-2026-53722). |
+| P2 | QSI-2026-43145 | Обновите nuxt до исправленной версии (4.6.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-96x6-fvhx-49hg (CVE-2026-128075). |
+| P2 | QSI-2026-43147 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c9cv-mq2m-ppp3 (CVE-2026-56326, CVE-2026-56697, CVE-2026-56698). |
+| P2 | QSI-2026-43148 | Обновите nuxt до исправленной версии (4.6.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f3x9-2chm-73c8 (CVE-2026-128071). |
+| P2 | QSI-2026-43149 | Обновите nuxt до исправленной версии (3.21.6, 4.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fx6j-w5w5-h468 (CVE-2026-45669). |
+| P2 | QSI-2026-43150 | Обновите nuxt до исправленной версии (3.21.6, 4.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g8wj-3cr3-6w7v (CVE-2026-46342). |
+| P2 | QSI-2026-43152 | Обновите nuxt до исправленной версии (3.21.6, 4.4.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hg3f-28rg-4jxj (CVE-2026-47200). |
+| P2 | QSI-2026-43158 | Обновите nuxt до исправленной версии (4.6.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vjh5-4x84-xrqp (CVE-2026-114132). |
+| P2 | QSI-2026-43159 | Обновите nuxt до исправленной версии (4.6.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xfq5-w38q-pc2x (CVE-2026-114133). |
+| P2 | QSI-2026-43162 | Обновите postcss-selector-parser до исправленной версии (6.1.5, 7.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rj75-hqrm-r3gf (CVE-2026-104844). |
+| P2 | QSI-2026-43167 | Обновите qs до исправленной версии (6.16.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4mjr-xmp4-gh2g (CVE-2026-82417). |
+| P2 | QSI-2026-43168 | Обновите qs до исправленной версии (6.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816). |
+| P2 | QSI-2026-43170 | Обновите qs до исправленной версии (6.15.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q8mj-m7cp-5q26 (CVE-2026-8723). |
+| P2 | QSI-2026-43172 | Обновите qs до исправленной версии (6.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816). |
+| P2 | QSI-2026-43176 | Обновите serialize-javascript до исправленной версии (7.0.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qj8w-gfj5-8c6v (CVE-2026-34043). |
+| P2 | QSI-2026-43190 | Обновите stream-json до исправленной версии (3.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-528h-pc64-c93x (CVE-2026-71429). |
+| P2 | QSI-2026-43191 | Обновите stream-json до исправленной версии (3.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hqr4-qq8f-hg3x (CVE-2026-104182). |
+| P2 | QSI-2026-43192 | Обновите stream-json до исправленной версии (3.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mjw6-4jj6-33hc (CVE-2026-104183). |
+| P2 | QSI-2026-43199 | Обновите tar до исправленной версии (7.5.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gvwx-54wh-qm9j (CVE-2026-59875). |
+| P2 | QSI-2026-43203 | Обновите tar до исправленной версии (7.5.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vmf3-w455-68vh (CVE-2026-53655). |
+| P2 | QSI-2026-43204 | Обновите tar до исправленной версии (7.5.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w8wr-v893-vjvp (CVE-2026-59871). |
+| P2 | QSI-2026-43210 | Обновите undici до исправленной версии (6.24.0, 7.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjp-6q6p-2qxm (CVE-2026-1525). |
+| P2 | QSI-2026-43212 | Обновите undici до исправленной версии (6.24.0, 7.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4992-7rv2-5pvq (CVE-2026-1527). |
+| P2 | QSI-2026-43213 | Обновите undici до исправленной версии (6.28.0, 7.29.0, 8.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8xcm-r25x-g524 (CVE-2026-16728). |
+| P2 | QSI-2026-43214 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932). |
+| P2 | QSI-2026-43216 | Обновите undici до исправленной версии (6.23.0, 7.18.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g9mf-h72j-4rw9 (CVE-2026-22036). |
+| P2 | QSI-2026-43217 | Обновите undici до исправленной версии (6.28.0, 7.29.0, 8.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m8rv-5g2x-5cg5 (CVE-2026-15157). |
+| P2 | QSI-2026-43218 | Обновите undici до исправленной версии (6.27.0, 7.28.0, 8.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-p88m-4jfj-68fv (CVE-2026-9679). |
+| P2 | QSI-2026-43221 | Обновите undici до исправленной версии (6.28.0, 7.29.0, 8.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v3r7-h72x-cjcm (CVE-2026-16729). |
+| P2 | QSI-2026-43226 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924). |
+| P2 | QSI-2026-43228 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-55wc-3pg8-jfw6 (CVE-2026-87029). |
+| P2 | QSI-2026-43229 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932). |
+| P2 | QSI-2026-43230 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f72v-6w45-q472 (CVE-2026-109841). |
+| P2 | QSI-2026-43235 | Обновите valibot до исправленной версии (1.4.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5qjj-4xww-7phc (CVE-2026-59952). |
+| P2 | QSI-2026-43237 | Обновите valibot до исправленной версии (1.4.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5qjj-4xww-7phc (CVE-2026-59952). |
+| P2 | QSI-2026-43239 | Обновите valibot до исправленной версии (1.4.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5qjj-4xww-7phc (CVE-2026-59952). |
+| P2 | QSI-2026-42859 | Обновите webpack до исправленной версии (5.104.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-38r7-794h-5758 (CVE-2025-68157). |
+| P2 | QSI-2026-42860 | Обновите webpack до исправленной версии (5.104.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8fgc-7cc6-rx7x (CVE-2025-68458). |
+| P2 | QSI-2026-42891 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g8h-86w9-wvmq (CVE-2026-44572). |
+| P2 | QSI-2026-42918 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g8h-86w9-wvmq (CVE-2026-44572). |
+| P2 | QSI-2026-42937 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9jrq-w75r-8gcw (CVE-2026-112945). |
+| P2 | QSI-2026-43060 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gg2-335m-rxc6 (CVE-2026-126359). |
+| P2 | QSI-2026-43068 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gg2-335m-rxc6 (CVE-2026-126359). |
+| P2 | QSI-2026-43078 | Обновите hono до исправленной версии (4.12.34). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-79qm-7rj5-m7r9 (CVE-2026-71849). |
+| P2 | QSI-2026-43103 | Обновите next до исправленной версии (15.5.16, 16.2.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g8h-86w9-wvmq (CVE-2026-44572). |
+| P2 | QSI-2026-43243 | Обновите vite до исправленной версии (6.4.4, 7.3.7, 8.1.6, 8.2.4, 8.3.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9jrq-w75r-8gcw (CVE-2026-112945). |
+| P2 | QSI-2026-42963 | Обновите @smithy/config-resolver до исправленной версии (4.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6475-r3vj-m8vf. |
+| P2 | QSI-2026-43012 | Обновите dompurify до исправленной версии (3.4.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6688-9rhm-gjv2 (CVE-2026-109345). |
+| P2 | QSI-2026-43014 | Обновите dompurify до исправленной версии (3.4.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c2j3-45gr-mqc4 (CVE-2026-66010). |
+| P2 | QSI-2026-43015 | Обновите dompurify до исправленной версии (3.4.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c6gr-qvv4-5v3f (CVE-2026-116802). |
+| P2 | QSI-2026-43020 | Обновите dompurify до исправленной версии (3.4.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gvmj-g25r-r7wr (CVE-2026-65900). |
+| P2 | QSI-2026-43024 | Обновите dompurify до исправленной версии (3.4.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrv2-3pqr-j5jr (CVE-2026-116803). |
+| P2 | QSI-2026-43033 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-333x-w4r6-6crp (CVE-2026-110725). |
+| P2 | QSI-2026-43036 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xhq7-xmqj-769h (CVE-2026-110095). |
+| P2 | QSI-2026-43037 | Обновите fast-xml-parser до исправленной версии (5.12.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-474x-hrwr-fgx4 (CVE-2026-126066). |
+| P2 | QSI-2026-43039 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fj3w-jwp8-x2g3 (CVE-2026-27942). |
+| P2 | QSI-2026-43044 | Обновите fast-xml-parser до исправленной версии (5.12.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-474x-hrwr-fgx4 (CVE-2026-126066). |
+| P2 | QSI-2026-43046 | Обновите fast-xml-parser до исправленной версии (4.5.4, 5.3.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fj3w-jwp8-x2g3 (CVE-2026-27942). |
+| P2 | QSI-2026-43120 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2vgq-wchc-25w7 (CVE-2026-118776). |
+| P2 | QSI-2026-43121 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4487-j8r4-4g2f (CVE-2026-118780). |
+| P2 | QSI-2026-43122 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4642-5mcj-2rqw (CVE-2026-118775). |
+| P2 | QSI-2026-43126 | Обновите node-forge до исправленной версии (1.4.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6889-vf6x-f3g5 (CVE-2026-125335). |
+| P2 | QSI-2026-43133 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9wg5-mj3p-v49q (CVE-2026-118774). |
+| P2 | QSI-2026-43135 | Обновите node-forge до исправленной версии (1.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h6cr-wjv9-3cpp (CVE-2026-118781). |
+| P2 | QSI-2026-43151 | Обновите nuxt до исправленной версии (4.6.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hf59-9xwc-2g4p (CVE-2026-128076). |
+| P2 | QSI-2026-43154 | Обновите nuxt до исправленной версии (4.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jjm6-p2m9-9w4x (CVE-2026-114130). |
+| P2 | QSI-2026-43155 | Обновите nuxt до исправленной версии (3.21.7, 4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m3q2-p4fw-w38m (CVE-2026-56317). |
+| P2 | QSI-2026-43157 | Обновите nuxt до исправленной версии (4.4.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rq7w-g337-39qq. |
+| P2 | QSI-2026-43160 | Обновите pbkdf2 до исправленной версии (3.1.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-477h-4r7f-fvrx (CVE-2026-102414). |
+| P2 | QSI-2026-43169 | Обновите qs до исправленной версии (6.14.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6rw7-vpxm-498p (CVE-2025-15284). |
+| P2 | QSI-2026-43171 | Обновите qs до исправленной версии (6.14.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w7fw-mjwx-w883 (CVE-2026-2391). |
+| P2 | QSI-2026-43175 | Обновите serialize-javascript до исправленной версии (7.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897). |
+| P2 | QSI-2026-43177 | Обновите serialize-javascript до исправленной версии (7.1.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gfhx-hw2g-v5hg (CVE-2026-97711). |
+| P2 | QSI-2026-43178 | Обновите serialize-javascript до исправленной версии (7.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897). |
+| P2 | QSI-2026-43207 | Обновите tmp до исправленной версии (0.2.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-52f5-9888-hmc6 (CVE-2025-54798). |
+| P2 | QSI-2026-43211 | Обновите undici до исправленной версии (6.27.0, 7.28.0, 8.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-35p6-xmwp-9g52 (CVE-2026-6733). |
+| P2 | QSI-2026-43215 | Обновите undici до исправленной версии (6.27.0, 7.28.0, 8.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g8m3-5g58-fq7m (CVE-2026-11525). |
+| P2 | QSI-2026-43220 | Обновите undici до исправленной версии (6.28.1, 7.29.1, 8.10.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r53p-7pc4-xj5r (CVE-2026-18540). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
@@ -14275,11 +14237,11 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-28200 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-28201 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-28200 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-28201 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-28599 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-42853 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-42854 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-42853 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-42854 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43250 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -14287,18 +14249,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.0.0
-- dependencies 1.4.2
+- crediting 1.3.0
+- dependencies 1.4.4
 - hndl 1.0.0
 - inventory_document 1.1.0
 - mpc 1.0.0
-- solidity 1.5.0
-- source_code 1.5.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
+- validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.6.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -14426,80 +14389,80 @@ _Действие: взламывает — алгоритм нужно заме
 121. OSV advisory GHSA-7mvr-c777-76hp — OSV.dev. <https://osv.dev/vulnerability/GHSA-7mvr-c777-76hp> (modified 2026-09-10T03:50:29.418266842Z)
 122. OSV advisory GHSA-7pqw-9j4j-h8q3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-7pqw-9j4j-h8q3> (modified 2026-09-08T21:10:57.608811Z)
 123. OSV advisory GHSA-7q8q-rj6j-mhjq — OSV.dev. <https://osv.dev/vulnerability/GHSA-7q8q-rj6j-mhjq> (modified 2026-09-10T03:51:10.872027953Z)
-124. OSV advisory GHSA-7r86-cg39-jmmj — OSV.dev. <https://osv.dev/vulnerability/GHSA-7r86-cg39-jmmj> (modified 2026-09-10T03:50:34.376990726Z)
-125. OSV advisory GHSA-7rqj-j65f-68wh — OSV.dev. <https://osv.dev/vulnerability/GHSA-7rqj-j65f-68wh> (modified 2026-09-10T03:50:51.566945120Z)
-126. OSV advisory GHSA-7wch-p9px-956x — OSV.dev. <https://osv.dev/vulnerability/GHSA-7wch-p9px-956x> (modified 2026-10-30T23:15:07.474415720Z)
-127. OSV advisory GHSA-82fw-gwwq-j7x9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-82fw-gwwq-j7x9> (modified 2026-09-08T21:00:07.248611070Z)
-128. OSV advisory GHSA-83g3-92jg-28cx — OSV.dev. <https://osv.dev/vulnerability/GHSA-83g3-92jg-28cx> (modified 2026-09-10T03:50:34.418493270Z)
-129. OSV advisory GHSA-8452-54wp-rmv6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8452-54wp-rmv6> (modified 2026-09-10T03:50:31.796824882Z)
-130. OSV advisory GHSA-848j-6mx2-7j84 — OSV.dev. <https://osv.dev/vulnerability/GHSA-848j-6mx2-7j84> (modified 2026-09-10T03:50:32.794069999Z)
-131. OSV advisory GHSA-858h-whjf-mvg5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-858h-whjf-mvg5> (modified 2026-10-06T00:00:10.392204845Z)
-132. OSV advisory GHSA-85c8-ppgw-ccpr — OSV.dev. <https://osv.dev/vulnerability/GHSA-85c8-ppgw-ccpr> (modified 2026-10-05T23:00:05.324545780Z)
-133. OSV advisory GHSA-86w9-cpqp-85rv — OSV.dev. <https://osv.dev/vulnerability/GHSA-86w9-cpqp-85rv> (modified 2026-10-01T21:40:55.016251436Z)
-134. OSV advisory GHSA-88fw-hqm2-52qc — OSV.dev. <https://osv.dev/vulnerability/GHSA-88fw-hqm2-52qc> (modified 2026-09-10T03:50:48.939674527Z)
-135. OSV advisory GHSA-8988-4f7v-96qf — OSV.dev. <https://osv.dev/vulnerability/GHSA-8988-4f7v-96qf> (modified 2026-09-10T03:50:48.883260062Z)
-136. OSV advisory GHSA-898c-q2cr-xwhg — OSV.dev. <https://osv.dev/vulnerability/GHSA-898c-q2cr-xwhg> (modified 2026-09-10T03:51:04.811379218Z)
-137. OSV advisory GHSA-89xv-2m56-2m9x — OSV.dev. <https://osv.dev/vulnerability/GHSA-89xv-2m56-2m9x> (modified 2026-09-10T03:50:51.547474623Z)
-138. OSV advisory GHSA-8fgc-7cc6-rx7x — OSV.dev. <https://osv.dev/vulnerability/GHSA-8fgc-7cc6-rx7x> (modified 2026-09-10T03:50:34.472343977Z)
-139. OSV advisory GHSA-8fpg-xm3f-6cx3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8fpg-xm3f-6cx3> (modified 2026-08-12T20:56:01.891204Z)
-140. OSV advisory GHSA-8gc5-j5rx-235r — OSV.dev. <https://osv.dev/vulnerability/GHSA-8gc5-j5rx-235r> (modified 2026-09-10T03:50:38.199635360Z)
-141. OSV advisory GHSA-8h8q-6873-q5fj — OSV.dev. <https://osv.dev/vulnerability/GHSA-8h8q-6873-q5fj> (modified 2026-09-10T03:51:04.979274056Z)
-142. OSV advisory GHSA-8hrf-8g6f-7xwp — OSV.dev. <https://osv.dev/vulnerability/GHSA-8hrf-8g6f-7xwp> (modified 2026-10-30T23:15:08.387649859Z)
-143. OSV advisory GHSA-8j4g-w8fx-2239 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8j4g-w8fx-2239> (modified 2026-09-10T03:51:13.583285977Z)
-144. OSV advisory GHSA-8qq5-rm4j-mr97 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8qq5-rm4j-mr97> (modified 2026-09-10T03:50:59.009017334Z)
-145. OSV advisory GHSA-8r9p-f939-6h3c — OSV.dev. <https://osv.dev/vulnerability/GHSA-8r9p-f939-6h3c> (modified 2026-10-20T18:00:04.701467015Z)
-146. OSV advisory GHSA-8vv3-6qpc-gpw6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8vv3-6qpc-gpw6> (modified 2026-11-10T16:15:05.948337489Z)
-147. OSV advisory GHSA-8x88-c5mf-7j5w — OSV.dev. <https://osv.dev/vulnerability/GHSA-8x88-c5mf-7j5w> (modified 2026-09-10T03:51:11.200904859Z)
-148. OSV advisory GHSA-8xcm-r25x-g524 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8xcm-r25x-g524> (modified 2026-09-10T03:51:13.567076059Z)
-149. OSV advisory GHSA-934w-87qh-qr26 — OSV.dev. <https://osv.dev/vulnerability/GHSA-934w-87qh-qr26> (modified 2026-08-14T19:00:07.654547013Z)
-150. OSV advisory GHSA-93m4-6634-74q7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-93m4-6634-74q7> (modified 2026-09-10T03:50:29.574857832Z)
-151. OSV advisory GHSA-9473-5f9j-94wq — OSV.dev. <https://osv.dev/vulnerability/GHSA-9473-5f9j-94wq> (modified 2026-08-05T21:55:59.573845Z)
-152. OSV advisory GHSA-955p-x3mx-jcvp — OSV.dev. <https://osv.dev/vulnerability/GHSA-955p-x3mx-jcvp> (modified 2026-09-10T03:51:11.198992864Z)
-153. OSV advisory GHSA-96x6-fvhx-49hg — OSV.dev. <https://osv.dev/vulnerability/GHSA-96x6-fvhx-49hg> (modified 2026-11-16T15:15:03.553381168Z)
-154. OSV advisory GHSA-9fm3-97px-rjf6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9fm3-97px-rjf6> (modified 2026-10-27T19:15:22.400702743Z)
-155. OSV advisory GHSA-9fr6-4gfg-395g — OSV.dev. <https://osv.dev/vulnerability/GHSA-9fr6-4gfg-395g> (modified 2026-09-30T15:30:03.718390401Z)
-156. OSV advisory GHSA-9g9p-9gw9-jx7f — OSV.dev. <https://osv.dev/vulnerability/GHSA-9g9p-9gw9-jx7f> (modified 2026-09-10T03:50:59.013924260Z)
-157. OSV advisory GHSA-9jrq-w75r-8gcw — OSV.dev. <https://osv.dev/vulnerability/GHSA-9jrq-w75r-8gcw> (modified 2026-10-21T17:00:26.569382874Z)
-158. OSV advisory GHSA-9pgf-384g-p7mv — OSV.dev. <https://osv.dev/vulnerability/GHSA-9pgf-384g-p7mv> (modified 2026-08-05T21:55:59.649282Z)
-159. OSV advisory GHSA-9ppj-qmqm-q256 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9ppj-qmqm-q256> (modified 2026-09-10T03:50:38.398085665Z)
-160. OSV advisory GHSA-9r54-q6cx-xmh5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9r54-q6cx-xmh5> (modified 2026-09-10T03:50:32.846997493Z)
-161. OSV advisory GHSA-9vqf-7f2p-gf9v — OSV.dev. <https://osv.dev/vulnerability/GHSA-9vqf-7f2p-gf9v> (modified 2026-09-10T03:50:46.398393701Z)
-162. OSV advisory GHSA-9wg5-mj3p-v49q — OSV.dev. <https://osv.dev/vulnerability/GHSA-9wg5-mj3p-v49q> (modified 2026-11-10T16:15:04.153166136Z)
-163. OSV advisory GHSA-c29m-xwm3-cm6r — OSV.dev. <https://osv.dev/vulnerability/GHSA-c29m-xwm3-cm6r> (modified 2026-09-30T15:15:04.064301486Z)
-164. OSV advisory GHSA-c2j3-45gr-mqc4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c2j3-45gr-mqc4> (modified 2026-10-02T23:00:15.983015754Z)
-165. OSV advisory GHSA-c475-qrg2-pj4r — OSV.dev. <https://osv.dev/vulnerability/GHSA-c475-qrg2-pj4r> (modified 2026-10-01T15:00:04.517943812Z)
-166. OSV advisory GHSA-c4j6-fc7j-m34r — OSV.dev. <https://osv.dev/vulnerability/GHSA-c4j6-fc7j-m34r> (modified 2026-09-10T03:50:46.499274814Z)
-167. OSV advisory GHSA-c6gr-qvv4-5v3f — OSV.dev. <https://osv.dev/vulnerability/GHSA-c6gr-qvv4-5v3f> (modified 2026-10-27T10:56:08.682782458Z)
-168. OSV advisory GHSA-c7mq-gh6q-6q7c — OSV.dev. <https://osv.dev/vulnerability/GHSA-c7mq-gh6q-6q7c> (modified 2026-03-16T03:05:38.239106Z)
-169. OSV advisory GHSA-c9cv-mq2m-ppp3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c9cv-mq2m-ppp3> (modified 2026-10-03T05:30:03.679714841Z)
-170. OSV advisory GHSA-cj63-jhhr-wcxv — OSV.dev. <https://osv.dev/vulnerability/GHSA-cj63-jhhr-wcxv> (modified 2026-09-10T03:50:43.832723479Z)
-171. OSV advisory GHSA-cjmm-f4jc-qw8r — OSV.dev. <https://osv.dev/vulnerability/GHSA-cjmm-f4jc-qw8r> (modified 2026-09-10T03:50:43.891527437Z)
-172. OSV advisory GHSA-cmwh-pvxp-8882 — OSV.dev. <https://osv.dev/vulnerability/GHSA-cmwh-pvxp-8882> (modified 2026-09-10T03:51:08.631772464Z)
-173. OSV advisory GHSA-crv5-9vww-q3g8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-crv5-9vww-q3g8> (modified 2026-09-10T03:50:43.947374186Z)
-174. OSV advisory GHSA-crvj-82cr-hjcx — OSV.dev. <https://osv.dev/vulnerability/GHSA-crvj-82cr-hjcx> (modified 2026-09-08T21:30:04.756349206Z)
-175. OSV advisory GHSA-f23p-vx2j-j53r — OSV.dev. <https://osv.dev/vulnerability/GHSA-f23p-vx2j-j53r> (modified 2026-09-10T03:51:13.947851047Z)
-176. OSV advisory GHSA-f2ph-cmg5-wxc8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f2ph-cmg5-wxc8> (modified 2026-10-21T17:35:19.889160714Z)
-177. OSV advisory GHSA-f3x9-2chm-73c8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f3x9-2chm-73c8> (modified 2026-11-16T15:15:04.039396542Z)
-178. OSV advisory GHSA-f577-qrjj-4474 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f577-qrjj-4474> (modified 2026-09-10T03:50:49.224229164Z)
-179. OSV advisory GHSA-f72v-6w45-q472 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f72v-6w45-q472> (modified 2026-10-23T22:30:04.094314933Z)
-180. OSV advisory GHSA-f88m-g3jw-g9cj — OSV.dev. <https://osv.dev/vulnerability/GHSA-f88m-g3jw-g9cj> (modified 2026-10-21T10:57:27.250198301Z)
-181. OSV advisory GHSA-fc5q-39xc-vjpf — OSV.dev. <https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf> (modified 2026-11-17T16:00:03.999173557Z)
-182. OSV advisory GHSA-ffhc-5mcf-pf4q — OSV.dev. <https://osv.dev/vulnerability/GHSA-ffhc-5mcf-pf4q> (modified 2026-09-10T03:51:05.447940563Z)
-183. OSV advisory GHSA-fj3w-jwp8-x2g3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-fj3w-jwp8-x2g3> (modified 2026-09-10T03:50:34.765253793Z)
-184. OSV advisory GHSA-fvcv-3m26-pcqx — OSV.dev. <https://osv.dev/vulnerability/GHSA-fvcv-3m26-pcqx> (modified 2026-09-10T03:50:44.273401032Z)
-185. OSV advisory GHSA-fx2h-pf6j-xcff — OSV.dev. <https://osv.dev/vulnerability/GHSA-fx2h-pf6j-xcff> (modified 2026-10-27T15:15:07.885624041Z)
-186. OSV advisory GHSA-fx6j-w5w5-h468 — OSV.dev. <https://osv.dev/vulnerability/GHSA-fx6j-w5w5-h468> (modified 2026-07-08T17:45:14.967233785Z)
-187. OSV advisory GHSA-fxqj-rqcc-2cmp — OSV.dev. <https://osv.dev/vulnerability/GHSA-fxqj-rqcc-2cmp> (modified 2026-09-10T03:50:53.572374167Z)
-188. OSV advisory GHSA-g2v6-rqmx-r4w6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g2v6-rqmx-r4w6> (modified 2026-10-05T23:00:05.334985920Z)
-189. OSV advisory GHSA-g3hv-75wg-m249 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249> (modified 2026-11-04T17:01:25.850114200Z)
-190. OSV advisory GHSA-g4wm-2vf7-vfgr — OSV.dev. <https://osv.dev/vulnerability/GHSA-g4wm-2vf7-vfgr> (modified 2026-10-06T00:00:09.435616850Z)
-191. OSV advisory GHSA-g5qg-72qw-gw5v — OSV.dev. <https://osv.dev/vulnerability/GHSA-g5qg-72qw-gw5v> (modified 2026-09-10T03:50:26.953168554Z)
+124. OSV advisory GHSA-7qx7-33qx-rqx2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-7qx7-33qx-rqx2> (modified 2026-11-19T22:45:06.164972711Z)
+125. OSV advisory GHSA-7r86-cg39-jmmj — OSV.dev. <https://osv.dev/vulnerability/GHSA-7r86-cg39-jmmj> (modified 2026-09-10T03:50:34.376990726Z)
+126. OSV advisory GHSA-7rqj-j65f-68wh — OSV.dev. <https://osv.dev/vulnerability/GHSA-7rqj-j65f-68wh> (modified 2026-09-10T03:50:51.566945120Z)
+127. OSV advisory GHSA-7wch-p9px-956x — OSV.dev. <https://osv.dev/vulnerability/GHSA-7wch-p9px-956x> (modified 2026-10-30T23:15:07.474415720Z)
+128. OSV advisory GHSA-82fw-gwwq-j7x9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-82fw-gwwq-j7x9> (modified 2026-09-08T21:00:07.248611070Z)
+129. OSV advisory GHSA-83g3-92jg-28cx — OSV.dev. <https://osv.dev/vulnerability/GHSA-83g3-92jg-28cx> (modified 2026-09-10T03:50:34.418493270Z)
+130. OSV advisory GHSA-8452-54wp-rmv6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8452-54wp-rmv6> (modified 2026-09-10T03:50:31.796824882Z)
+131. OSV advisory GHSA-848j-6mx2-7j84 — OSV.dev. <https://osv.dev/vulnerability/GHSA-848j-6mx2-7j84> (modified 2026-09-10T03:50:32.794069999Z)
+132. OSV advisory GHSA-858h-whjf-mvg5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-858h-whjf-mvg5> (modified 2026-10-06T00:00:10.392204845Z)
+133. OSV advisory GHSA-85c8-ppgw-ccpr — OSV.dev. <https://osv.dev/vulnerability/GHSA-85c8-ppgw-ccpr> (modified 2026-10-05T23:00:05.324545780Z)
+134. OSV advisory GHSA-86w9-cpqp-85rv — OSV.dev. <https://osv.dev/vulnerability/GHSA-86w9-cpqp-85rv> (modified 2026-11-21T20:11:10.745797815Z)
+135. OSV advisory GHSA-88fw-hqm2-52qc — OSV.dev. <https://osv.dev/vulnerability/GHSA-88fw-hqm2-52qc> (modified 2026-09-10T03:50:48.939674527Z)
+136. OSV advisory GHSA-8988-4f7v-96qf — OSV.dev. <https://osv.dev/vulnerability/GHSA-8988-4f7v-96qf> (modified 2026-09-10T03:50:48.883260062Z)
+137. OSV advisory GHSA-898c-q2cr-xwhg — OSV.dev. <https://osv.dev/vulnerability/GHSA-898c-q2cr-xwhg> (modified 2026-09-10T03:51:04.811379218Z)
+138. OSV advisory GHSA-89xv-2m56-2m9x — OSV.dev. <https://osv.dev/vulnerability/GHSA-89xv-2m56-2m9x> (modified 2026-09-10T03:50:51.547474623Z)
+139. OSV advisory GHSA-8fgc-7cc6-rx7x — OSV.dev. <https://osv.dev/vulnerability/GHSA-8fgc-7cc6-rx7x> (modified 2026-09-10T03:50:34.472343977Z)
+140. OSV advisory GHSA-8fpg-xm3f-6cx3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8fpg-xm3f-6cx3> (modified 2026-08-12T20:56:01.891204Z)
+141. OSV advisory GHSA-8gc5-j5rx-235r — OSV.dev. <https://osv.dev/vulnerability/GHSA-8gc5-j5rx-235r> (modified 2026-09-10T03:50:38.199635360Z)
+142. OSV advisory GHSA-8h8q-6873-q5fj — OSV.dev. <https://osv.dev/vulnerability/GHSA-8h8q-6873-q5fj> (modified 2026-09-10T03:51:04.979274056Z)
+143. OSV advisory GHSA-8hrf-8g6f-7xwp — OSV.dev. <https://osv.dev/vulnerability/GHSA-8hrf-8g6f-7xwp> (modified 2026-10-30T23:15:08.387649859Z)
+144. OSV advisory GHSA-8j4g-w8fx-2239 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8j4g-w8fx-2239> (modified 2026-09-10T03:51:13.583285977Z)
+145. OSV advisory GHSA-8qq5-rm4j-mr97 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8qq5-rm4j-mr97> (modified 2026-09-10T03:50:59.009017334Z)
+146. OSV advisory GHSA-8r9p-f939-6h3c — OSV.dev. <https://osv.dev/vulnerability/GHSA-8r9p-f939-6h3c> (modified 2026-10-20T18:00:04.701467015Z)
+147. OSV advisory GHSA-8vv3-6qpc-gpw6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8vv3-6qpc-gpw6> (modified 2026-11-10T16:15:05.948337489Z)
+148. OSV advisory GHSA-8x88-c5mf-7j5w — OSV.dev. <https://osv.dev/vulnerability/GHSA-8x88-c5mf-7j5w> (modified 2026-09-10T03:51:11.200904859Z)
+149. OSV advisory GHSA-8xcm-r25x-g524 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8xcm-r25x-g524> (modified 2026-09-10T03:51:13.567076059Z)
+150. OSV advisory GHSA-934w-87qh-qr26 — OSV.dev. <https://osv.dev/vulnerability/GHSA-934w-87qh-qr26> (modified 2026-08-14T19:00:07.654547013Z)
+151. OSV advisory GHSA-93m4-6634-74q7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-93m4-6634-74q7> (modified 2026-09-10T03:50:29.574857832Z)
+152. OSV advisory GHSA-9473-5f9j-94wq — OSV.dev. <https://osv.dev/vulnerability/GHSA-9473-5f9j-94wq> (modified 2026-08-05T21:55:59.573845Z)
+153. OSV advisory GHSA-955p-x3mx-jcvp — OSV.dev. <https://osv.dev/vulnerability/GHSA-955p-x3mx-jcvp> (modified 2026-09-10T03:51:11.198992864Z)
+154. OSV advisory GHSA-96x6-fvhx-49hg — OSV.dev. <https://osv.dev/vulnerability/GHSA-96x6-fvhx-49hg> (modified 2026-11-16T15:15:03.553381168Z)
+155. OSV advisory GHSA-9fm3-97px-rjf6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9fm3-97px-rjf6> (modified 2026-10-27T19:15:22.400702743Z)
+156. OSV advisory GHSA-9fr6-4gfg-395g — OSV.dev. <https://osv.dev/vulnerability/GHSA-9fr6-4gfg-395g> (modified 2026-09-30T15:30:03.718390401Z)
+157. OSV advisory GHSA-9g9p-9gw9-jx7f — OSV.dev. <https://osv.dev/vulnerability/GHSA-9g9p-9gw9-jx7f> (modified 2026-09-10T03:50:59.013924260Z)
+158. OSV advisory GHSA-9jrq-w75r-8gcw — OSV.dev. <https://osv.dev/vulnerability/GHSA-9jrq-w75r-8gcw> (modified 2026-10-21T17:00:26.569382874Z)
+159. OSV advisory GHSA-9pgf-384g-p7mv — OSV.dev. <https://osv.dev/vulnerability/GHSA-9pgf-384g-p7mv> (modified 2026-08-05T21:55:59.649282Z)
+160. OSV advisory GHSA-9ppj-qmqm-q256 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9ppj-qmqm-q256> (modified 2026-09-10T03:50:38.398085665Z)
+161. OSV advisory GHSA-9r54-q6cx-xmh5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9r54-q6cx-xmh5> (modified 2026-09-10T03:50:32.846997493Z)
+162. OSV advisory GHSA-9vqf-7f2p-gf9v — OSV.dev. <https://osv.dev/vulnerability/GHSA-9vqf-7f2p-gf9v> (modified 2026-09-10T03:50:46.398393701Z)
+163. OSV advisory GHSA-9wg5-mj3p-v49q — OSV.dev. <https://osv.dev/vulnerability/GHSA-9wg5-mj3p-v49q> (modified 2026-11-10T16:15:04.153166136Z)
+164. OSV advisory GHSA-c29m-xwm3-cm6r — OSV.dev. <https://osv.dev/vulnerability/GHSA-c29m-xwm3-cm6r> (modified 2026-09-30T15:15:04.064301486Z)
+165. OSV advisory GHSA-c2j3-45gr-mqc4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c2j3-45gr-mqc4> (modified 2026-10-02T23:00:15.983015754Z)
+166. OSV advisory GHSA-c475-qrg2-pj4r — OSV.dev. <https://osv.dev/vulnerability/GHSA-c475-qrg2-pj4r> (modified 2026-10-01T15:00:04.517943812Z)
+167. OSV advisory GHSA-c4j6-fc7j-m34r — OSV.dev. <https://osv.dev/vulnerability/GHSA-c4j6-fc7j-m34r> (modified 2026-09-10T03:50:46.499274814Z)
+168. OSV advisory GHSA-c6gr-qvv4-5v3f — OSV.dev. <https://osv.dev/vulnerability/GHSA-c6gr-qvv4-5v3f> (modified 2026-10-27T10:56:08.682782458Z)
+169. OSV advisory GHSA-c7mq-gh6q-6q7c — OSV.dev. <https://osv.dev/vulnerability/GHSA-c7mq-gh6q-6q7c> (modified 2026-03-16T03:05:38.239106Z)
+170. OSV advisory GHSA-c9cv-mq2m-ppp3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c9cv-mq2m-ppp3> (modified 2026-10-03T05:30:03.679714841Z)
+171. OSV advisory GHSA-cj63-jhhr-wcxv — OSV.dev. <https://osv.dev/vulnerability/GHSA-cj63-jhhr-wcxv> (modified 2026-09-10T03:50:43.832723479Z)
+172. OSV advisory GHSA-cjmm-f4jc-qw8r — OSV.dev. <https://osv.dev/vulnerability/GHSA-cjmm-f4jc-qw8r> (modified 2026-09-10T03:50:43.891527437Z)
+173. OSV advisory GHSA-cmwh-pvxp-8882 — OSV.dev. <https://osv.dev/vulnerability/GHSA-cmwh-pvxp-8882> (modified 2026-09-10T03:51:08.631772464Z)
+174. OSV advisory GHSA-crv5-9vww-q3g8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-crv5-9vww-q3g8> (modified 2026-09-10T03:50:43.947374186Z)
+175. OSV advisory GHSA-crvj-82cr-hjcx — OSV.dev. <https://osv.dev/vulnerability/GHSA-crvj-82cr-hjcx> (modified 2026-09-08T21:30:04.756349206Z)
+176. OSV advisory GHSA-f23p-vx2j-j53r — OSV.dev. <https://osv.dev/vulnerability/GHSA-f23p-vx2j-j53r> (modified 2026-09-10T03:51:13.947851047Z)
+177. OSV advisory GHSA-f2ph-cmg5-wxc8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f2ph-cmg5-wxc8> (modified 2026-10-21T17:35:19.889160714Z)
+178. OSV advisory GHSA-f3mh-rxg3-f5g2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f3mh-rxg3-f5g2> (modified 2026-11-19T22:45:06.180078081Z)
+179. OSV advisory GHSA-f3x9-2chm-73c8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f3x9-2chm-73c8> (modified 2026-11-16T15:15:04.039396542Z)
+180. OSV advisory GHSA-f577-qrjj-4474 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f577-qrjj-4474> (modified 2026-09-10T03:50:49.224229164Z)
+181. OSV advisory GHSA-f72v-6w45-q472 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f72v-6w45-q472> (modified 2026-10-23T22:30:04.094314933Z)
+182. OSV advisory GHSA-f88m-g3jw-g9cj — OSV.dev. <https://osv.dev/vulnerability/GHSA-f88m-g3jw-g9cj> (modified 2026-10-21T10:57:27.250198301Z)
+183. OSV advisory GHSA-ffhc-5mcf-pf4q — OSV.dev. <https://osv.dev/vulnerability/GHSA-ffhc-5mcf-pf4q> (modified 2026-09-10T03:51:05.447940563Z)
+184. OSV advisory GHSA-fj3w-jwp8-x2g3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-fj3w-jwp8-x2g3> (modified 2026-09-10T03:50:34.765253793Z)
+185. OSV advisory GHSA-fvcv-3m26-pcqx — OSV.dev. <https://osv.dev/vulnerability/GHSA-fvcv-3m26-pcqx> (modified 2026-09-10T03:50:44.273401032Z)
+186. OSV advisory GHSA-fx2h-pf6j-xcff — OSV.dev. <https://osv.dev/vulnerability/GHSA-fx2h-pf6j-xcff> (modified 2026-10-27T15:15:07.885624041Z)
+187. OSV advisory GHSA-fx6j-w5w5-h468 — OSV.dev. <https://osv.dev/vulnerability/GHSA-fx6j-w5w5-h468> (modified 2026-07-08T17:45:14.967233785Z)
+188. OSV advisory GHSA-fxqj-rqcc-2cmp — OSV.dev. <https://osv.dev/vulnerability/GHSA-fxqj-rqcc-2cmp> (modified 2026-09-10T03:50:53.572374167Z)
+189. OSV advisory GHSA-g2v6-rqmx-r4w6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g2v6-rqmx-r4w6> (modified 2026-10-05T23:00:05.334985920Z)
+190. OSV advisory GHSA-g3hv-75wg-m249 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249> (modified 2026-11-04T17:01:25.850114200Z)
+191. OSV advisory GHSA-g4wm-2vf7-vfgr — OSV.dev. <https://osv.dev/vulnerability/GHSA-g4wm-2vf7-vfgr> (modified 2026-10-06T00:00:09.435616850Z)
 192. OSV advisory GHSA-g8m3-5g58-fq7m — OSV.dev. <https://osv.dev/vulnerability/GHSA-g8m3-5g58-fq7m> (modified 2026-09-10T03:51:08.663204806Z)
 193. OSV advisory GHSA-g8wj-3cr3-6w7v — OSV.dev. <https://osv.dev/vulnerability/GHSA-g8wj-3cr3-6w7v> (modified 2026-07-08T17:45:16.499878459Z)
 194. OSV advisory GHSA-g9mf-h72j-4rw9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g9mf-h72j-4rw9> (modified 2026-09-10T03:50:33.216915457Z)
 195. OSV advisory GHSA-gfhx-hw2g-v5hg — OSV.dev. <https://osv.dev/vulnerability/GHSA-gfhx-hw2g-v5hg> (modified 2026-09-30T16:00:18.940888700Z)
 196. OSV advisory GHSA-ggv3-7p47-pfv8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-ggv3-7p47-pfv8> (modified 2026-09-10T03:50:39.201962373Z)
-197. OSV advisory GHSA-gh4j-gqv2-49f6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-gh4j-gqv2-49f6> (modified 2026-09-10T03:51:01.693430465Z)
+197. OSV advisory GHSA-gh4j-gqv2-49f6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-gh4j-gqv2-49f6> (modified 2026-11-18T00:45:13.731912370Z)
 198. OSV advisory GHSA-gvmj-g25r-r7wr — OSV.dev. <https://osv.dev/vulnerability/GHSA-gvmj-g25r-r7wr> (modified 2026-09-10T03:50:49.714722650Z)
 199. OSV advisory GHSA-gvwx-54wh-qm9j — OSV.dev. <https://osv.dev/vulnerability/GHSA-gvwx-54wh-qm9j> (modified 2026-09-10T03:50:52.205344551Z)
 200. OSV advisory GHSA-gx5p-jg67-6x7h — OSV.dev. <https://osv.dev/vulnerability/GHSA-gx5p-jg67-6x7h> (modified 2026-09-10T03:51:05.785143220Z)
@@ -14540,7 +14503,7 @@ _Действие: взламывает — алгоритм нужно заме
 235. OSV advisory GHSA-mjw6-4jj6-33hc — OSV.dev. <https://osv.dev/vulnerability/GHSA-mjw6-4jj6-33hc> (modified 2026-10-05T23:00:04.253333698Z)
 236. OSV advisory GHSA-mm7m-92g8-7m47 — OSV.dev. <https://osv.dev/vulnerability/GHSA-mm7m-92g8-7m47> (modified 2026-06-16T14:11:27.850739Z)
 237. OSV advisory GHSA-mrhx-c7xc-m3w5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5> (modified 2026-10-23T18:30:09.376405885Z)
-238. OSV advisory GHSA-mrv2-3pqr-j5jr — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrv2-3pqr-j5jr> (modified 2026-10-27T10:56:05.613459690Z)
+238. OSV advisory GHSA-mrv2-3pqr-j5jr — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrv2-3pqr-j5jr> (modified 2026-11-19T00:15:04.695368164Z)
 239. OSV advisory GHSA-mrwp-f3q8-3g9p — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrwp-f3q8-3g9p> (modified 2026-10-30T23:15:06.315251750Z)
 240. OSV advisory GHSA-mw96-cpmx-2vgc — OSV.dev. <https://osv.dev/vulnerability/GHSA-mw96-cpmx-2vgc> (modified 2026-09-10T03:50:35.380273715Z)
 241. OSV advisory GHSA-p293-qw3h-jr36 — OSV.dev. <https://osv.dev/vulnerability/GHSA-p293-qw3h-jr36> (modified 2026-09-08T21:00:06.133833950Z)
@@ -14611,7 +14574,7 @@ _Действие: взламывает — алгоритм нужно заме
 
 ## Приложения: Криптографическая инвентаризация
 
-По происхождению: манифесты зависимостей 48 (0 уязвимы для алгоритма Шора) · собственный код 19 (16 уязвимы для алгоритма Шора).
+По происхождению: манифесты зависимостей 48 (0 уязвимы для алгоритма Шора) · собственный код 23 (20 уязвимы для алгоритма Шора).
 
 | Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
@@ -14631,8 +14594,8 @@ _Действие: взламывает — алгоритм нужно заме
 | Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
 | Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
 | Crypto library | 1.3.3 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
-| Crypto library | 1.4.0 | node-forge (node-forge) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
 | Crypto library | 1.4.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
+| Crypto library | 1.4.0 | node-forge (node-forge) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
 | Crypto library | 1.4.2 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
 | Crypto library | 1.5.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
 | Crypto library | 1.7.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
@@ -14655,7 +14618,7 @@ _Действие: взламывает — алгоритм нужно заме
 | Crypto library | 6.6.1 | elliptic (elliptic (Node)) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
 | Crypto library | 9.0.3 | jsonwebtoken (jsonwebtoken (Node)) | н/п | допустимо | 1 | 1 | pnpm-lock.yaml |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 8 | 8 | apps/browser-extension/src/core/BitcoinProvider.ts:1; apps/laboratory/src/components/Wagmi/WagmiRequestPermissionsAsyncTest.tsx:75; apps/laboratory/src/utils/BitcoinUtil.ts:1 |
-| ECDSA |  |  | уязвим (Шор) | допустимо | 3 | 3 | apps/browser-extension/src/core/transport.ts:23; apps/gallery/utils/PresetUtils.ts:367; apps/laboratory/src/components/Ethers/EthersSignTypedDataTest.tsx:58 |
+| ECDSA |  |  | уязвим (Шор) | допустимо | 7 | 7 | apps/browser-extension/src/core/TronProvider.ts:36; apps/browser-extension/src/core/transport.ts:22; apps/browser-extension/src/pages/Home/index.tsx:24 |
 | ECDSA | P-256 |  | уязвим (Шор) | допустимо | 5 | 5 | apps/laboratory/src/components/Wagmi/WagmiRequestPermissionsSyncTest.tsx:94; apps/laboratory/src/utils/EncodingUtils.ts:11; packages/experimental/src/smart-session/helper/index.ts:143 |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._

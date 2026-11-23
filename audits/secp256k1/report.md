@@ -4,22 +4,22 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 14:35 UTC |
+| Дата отчёта | 2026-11-23 13:12 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 3ecb8bb3-d3ba-4187-a476-95b8774fdeab (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | bda4a0e1-2b1e-4609-a9b9-bcda31c90584 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `b2eba808578c3ddd17cd99b1e5738564388cf08523b9d91b4ebbc533a3017666` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `1e5d6c5002bf169f0bfdc70ccdc773de3b6c6232e5f085b2dac1f0a67cff8254` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **4**
+- Средняя: **3**
 - Низкая: **0**
-- Информационная: **0**
+- Информационная: **1**
 
 - Подтверждённая техническая уязвимость: 0
 - Известная уязвимая версия компонента: 0
@@ -47,8 +47,9 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 85 | contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 266 registry patterns; contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 266 registry patterns; contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 85 | contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 340 registry patterns; contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 340 registry patterns; contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 340 registry patterns |
 | entropy | проверено | 1 | random-number generation: 85 code files read with 147 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| mpc | проверено | 1 | Paillier in 1 file(s), 0 in a multi-party context; modulus proofs absent |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -58,7 +59,7 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree secp256k1 at 1b4181f93f7a53639223ced4c347d0d0d2c2ff9c. 85 files analysed; of 189 files, 51 are test, fuzzing, benchmark or example code and were left out, 53 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/actions/install-homebrew-valgrind/action.yml, .github/actions/print-logs/action.yml, .github/actions/run-in-docker-action/action.yml, .github/workflows/ci.yml. 43 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree secp256k1 at 1b4181f93f7a53639223ced4c347d0d0d2c2ff9c. 85 files analysed; of 189 files, 51 are test, fuzzing, benchmark or example code and were left out, 53 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/actions/install-homebrew-valgrind/action.yml, .github/actions/print-logs/action.yml, .github/actions/run-in-docker-action/action.yml, .github/workflows/ci.yml. 59 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -67,14 +68,14 @@ Static review of the source tree secp256k1 at 1b4181f93f7a53639223ced4c347d0d0d2
 
 ## 7. Подробное описание находок
 
-### QSI-2026-19257 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))
+### QSI-2026-43598 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** The row that matters more than any other in the portfolio. This is the implementation every audited self-custody wallet reaches in the end: Jade vendors libwally, which vendors this; Krux pins embit, which nests a zkp fork of this; SeedSigner pins embit from PyPI, which binds to this through ctypes; rust-bitcoin reaches it through rust-secp256k1's secp256k1-sys. The anchors are the public surface rather than internals — include/secp256k1.h:75, src/secp256k1.c:20 and :373, src/ecdsa.h and src/ecdsa_impl.h, and the recovery module at src/modules/recovery/main_impl.h:74. Exposure is forward-only for a key never used, and retroactive in the practical sense for any key whose public form is already on chain, which is most of them. A post-quantum signature standard does replace this, by consensus change rather than by a library release — so the library is not where the fix happens, which is exactly why knowing its shape matters.
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: include/secp256k1.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:35 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:12 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -176,14 +177,14 @@ _file_excerpt · [include/secp256k1_recovery.h](https://github.com/bitcoin-core/
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19259 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))
+### QSI-2026-43600 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Correct. include/secp256k1_schnorrsig.h:82, src/modules/schnorrsig/main_impl.h:98 and the MuSig session at src/modules/musig/session_impl.h:583. Taproot and MuSig sit on the same hardness assumption as ECDSA: BIP-340 fixed malleability and enabled aggregation, not quantum resistance. MuSig is worth naming separately because key aggregation publishes an aggregate public key early in the protocol, so a multi-party wallet exposes a key before it is spent from.
 - Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
 - Источник данных: include/secp256k1_schnorrsig.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:35 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:12 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -261,15 +262,84 @@ _file_excerpt · [src/modules/schnorrsig/main_impl.h](https://github.com/bitcoin
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19256 — Квантово-уязвимый ECDSA: роль не определена (13 файл(ов))
+### QSI-2026-43599 — Квантово-уязвимый ECDH: роль не определена (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
-> **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Severity dropped to informational, and this is the honest part of the result. Sixteen of the ECDSA rows and one Schnorr row could not be assigned a role because they are not uses: contrib/lax_der_parsing.{c,h} is a DER leniency helper for historical signatures, src/bench*.c and src/modules/schnorrsig/bench_impl.h are benchmarks, src/precompute_ecmult*.c generate static tables at build time, and several hits are the one-line "#include" banner at the top of include/secp256k1_*.h, which names ECDSA because every header in the family does. They are correct inventory — the primitive genuinely appears at those lines — and they are not exposure. Keeping them visible at info rather than deleting them is deliberate: a reader who checks the file list should find the same rows the tool found, and a report that silently drops the uninteresting ones cannot be reproduced.
+> **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** The only row in this repository with a *retroactive* character, which is why it should not be read as one more signing row. include/secp256k1_ecdh.h is the key-agreement module, used by BIP-47 payment codes, silent payments and ECIES-style encryption built on top of this library. Where a shared secret derived through it protects stored or recorded data, harvest-now-decrypt-later applies: the ciphertext kept today becomes readable once a CRQC exists, and no later migration undoes that. Unlike the signature rows, that half can be fixed without a consensus change, by wrapping the agreed secret under a hybrid KEM. One row, and the first one anybody building on this library should act on.
+- Затронутый актив: `source-code:ECDH:general`
+- Источник данных: include/secp256k1_ecdh.h
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:12 UTC
+- Балл приоритета: 40.2 / 100
+- CVSS v3.1: неприменимо
+
+5 упоминаний ECDH в 4 файл(ах), например include/secp256k1_ecdh.h:50. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте include/secp256k1_ecdh.h:50 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [include/secp256k1_ecdh.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_ecdh.h#L50) · line 50 · SHA-256 641884d8d53d3f43ec90d963426eda40966aae93ee201bbf706e33e7537f4b7b_
+
+```
+   49 |  */
+   50 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ecdh(
+   51 |   const secp256k1_context *ctx,
+```
+
+_file_excerpt · [include/secp256k1_ellswift.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_ellswift.h#L185) · line 185 · SHA-256 8d490ffc4815c2dafa571febfad7fdc9daec24e68abb60bbbe6b5ba4b16682fd_
+
+```
+  184 |  */
+  185 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ellswift_xdh(
+  186 |   const secp256k1_context *ctx,
+```
+
+_file_excerpt · [src/modules/ecdh/main_impl.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ecdh/main_impl.h#L10) · line 10 · SHA-256 65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134_
+
+```
+    9 | 
+   10 | #include "../../../include/secp256k1_ecdh.h"
+   11 | #include "../../ecmult_const_impl.h"
+```
+
+_file_excerpt · [src/modules/ecdh/main_impl.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ecdh/main_impl.h#L34) · line 34 · SHA-256 ac3946003039187b7456e5d15a38ba2eaf4d0fd3561977c68503dc905bc42125_
+
+```
+   33 | 
+   34 | int secp256k1_ecdh(const secp256k1_context* ctx, unsigned char *output, const secp256k1_pubkey *point, const unsigned char *scalar, secp256k1_ecdh_hash_function hashfp, void *data) {
+   35 |     int ret = 0;
+```
+
+_file_excerpt · [src/modules/ellswift/main_impl.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ellswift/main_impl.h#L536) · line 536 · SHA-256 1cf2bfcf58034a3e05e2b2902c067a78b504ed69a6d8b58a7c8c176eaa745cdc_
+
+```
+  535 | 
+  536 | int secp256k1_ellswift_xdh(const secp256k1_context *ctx, unsigned char *output, const unsigned char *ell_a64, const unsigned char *ell_b64, const unsigned char *seckey32, int party, secp256k1_ellswift_xdh_hash_function hashfp, void *data) {
+  537 |     int ret = 0;
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-43597 — Квантово-уязвимый ECDSA: роль не определена (13 файл(ов))
+
+- Серьёзность: **Информационная** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
+> **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Severity dropped to informational, and this is the honest part of the result. Sixteen of the ECDSA rows and one Schnorr row could not be assigned a role because they are not uses: contrib/lax_der_parsing.{c,h} is a DER leniency helper for historical signatures, src/bench*.c and src/modules/schnorrsig/bench_impl.h are benchmarks, src/precompute_ecmult*.c generate static tables at build time, and several hits are the one-line "#include" banner at the top of include/secp256k1_*.h, which names ECDSA because every header in the family does. They are correct inventory — the primitive genuinely appears at those lines — and they are not exposure. Keeping them visible at info rather than deleting them is deliberate: a reader who checks the file list should find the same rows the tool found, and a report that silently drops the uninteresting ones cannot be reproduced. _автоматическая серьёзность: Средняя._
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: contrib/lax_der_parsing.c
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:35 UTC
-- Балл приоритета: 40.2 / 100
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:12 UTC
+- Балл приоритета: 31.2 / 100
 - CVSS v3.1: неприменимо
 
 19 упоминаний ECDSA в 13 файл(ах), например contrib/lax_der_parsing.c:11. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
@@ -370,75 +440,6 @@ _file_excerpt · [src/modules/ellswift/main_impl.h](https://github.com/bitcoin-c
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19258 — Квантово-уязвимый ECDH: роль не определена (4 файл(ов))
-
-- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
-> **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** The only row in this repository with a *retroactive* character, which is why it should not be read as one more signing row. include/secp256k1_ecdh.h is the key-agreement module, used by BIP-47 payment codes, silent payments and ECIES-style encryption built on top of this library. Where a shared secret derived through it protects stored or recorded data, harvest-now-decrypt-later applies: the ciphertext kept today becomes readable once a CRQC exists, and no later migration undoes that. Unlike the signature rows, that half can be fixed without a consensus change, by wrapping the agreed secret under a hybrid KEM. One row, and the first one anybody building on this library should act on.
-- Затронутый актив: `source-code:ECDH:general`
-- Источник данных: include/secp256k1_ecdh.h
-- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:35 UTC
-- Балл приоритета: 40.2 / 100
-- CVSS v3.1: неприменимо
-
-5 упоминаний ECDH в 4 файл(ах), например include/secp256k1_ecdh.h:50. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
-
-**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
-
-**Шаги воспроизведения.**
-
-```
-Откройте include/secp256k1_ecdh.h:50 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [include/secp256k1_ecdh.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_ecdh.h#L50) · line 50 · SHA-256 641884d8d53d3f43ec90d963426eda40966aae93ee201bbf706e33e7537f4b7b_
-
-```
-   49 |  */
-   50 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ecdh(
-   51 |   const secp256k1_context *ctx,
-```
-
-_file_excerpt · [include/secp256k1_ellswift.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_ellswift.h#L185) · line 185 · SHA-256 8d490ffc4815c2dafa571febfad7fdc9daec24e68abb60bbbe6b5ba4b16682fd_
-
-```
-  184 |  */
-  185 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ellswift_xdh(
-  186 |   const secp256k1_context *ctx,
-```
-
-_file_excerpt · [src/modules/ecdh/main_impl.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ecdh/main_impl.h#L10) · line 10 · SHA-256 65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134_
-
-```
-    9 | 
-   10 | #include "../../../include/secp256k1_ecdh.h"
-   11 | #include "../../ecmult_const_impl.h"
-```
-
-_file_excerpt · [src/modules/ecdh/main_impl.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ecdh/main_impl.h#L34) · line 34 · SHA-256 ac3946003039187b7456e5d15a38ba2eaf4d0fd3561977c68503dc905bc42125_
-
-```
-   33 | 
-   34 | int secp256k1_ecdh(const secp256k1_context* ctx, unsigned char *output, const secp256k1_pubkey *point, const unsigned char *scalar, secp256k1_ecdh_hash_function hashfp, void *data) {
-   35 |     int ret = 0;
-```
-
-_file_excerpt · [src/modules/ellswift/main_impl.h](https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ellswift/main_impl.h#L536) · line 536 · SHA-256 1cf2bfcf58034a3e05e2b2902c067a78b504ed69a6d8b58a7c8c176eaa745cdc_
-
-```
-  535 | 
-  536 | int secp256k1_ellswift_xdh(const secp256k1_context *ctx, unsigned char *output, const unsigned char *ell_a64, const unsigned char *ell_b64, const unsigned char *seckey32, int party, secp256k1_ellswift_xdh_hash_function hashfp, void *data) {
-  537 |     int ret = 0;
-```
-
-**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
-
-**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
-
-**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
-
 
 ## 8. Постквантовая оценка
 
@@ -472,8 +473,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (10), Schnorr (BIP-340) (3) | QSI-2026-19257, QSI-2026-19259 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (13), ECDH (4) | QSI-2026-19256, QSI-2026-19258 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (10), Schnorr (BIP-340) (3) | QSI-2026-43598, QSI-2026-43600 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDSA (13), ECDH (4) | QSI-2026-43597, QSI-2026-43599 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -508,14 +509,14 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-19257 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19259 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19256 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19258 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-19257 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19259 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-19256 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19258 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P3 | QSI-2026-43598 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43600 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43599 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43597 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-43598 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43600 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-43599 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-43597 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
 
 ## 11. Использованные инструменты
 
@@ -523,13 +524,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы

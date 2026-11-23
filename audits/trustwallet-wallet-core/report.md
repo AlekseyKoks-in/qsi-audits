@@ -4,34 +4,34 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 14:09 UTC |
+| Дата отчёта | 2026-11-23 13:27 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 8dbdad7b-f46f-4ef3-862c-def01600e251 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | 08b3cf64-9719-452e-917e-75124f411ab8 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `2b0df45a41718a581b21ec11a27880093808631567d7c06798e7cbd85821adbd` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `42e9229f9fc66d6c7019ef96efc92292c6de24f43993888f4eb78a01dabe8037` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **10**
-- Низкая: **1**
-- Информационная: **13**
+- Средняя: **11**
+- Низкая: **0**
+- Информационная: **14**
 
 - Подтверждённая техническая уязвимость: 1
 - Известная уязвимая версия компонента: 5
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 10
-- Рекомендация по улучшению: 7
+- Рекомендация по улучшению: 8
 - Недостаточность данных: 1
 
 Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-Проверка аналитика: подтверждено — 13, не применимо — 11, отклонено как ложные срабатывания — 0.
+Проверка аналитика: подтверждено — 13, не применимо — 12, отклонено как ложные срабатывания — 0.
 
 **Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -47,13 +47,14 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 1556 | include/TrustWalletCore/TWAES.h: 57 lines scanned with 16 rule patterns and 266 registry patterns; include/TrustWalletCore/TWAESPaddingMode.h: 18 lines scanned with 16 rule patterns and 266 registry patterns; include/TrustWalletCore/TWAccount.h: 77 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 1556 | include/TrustWalletCore/TWAES.h: 57 lines scanned with 16 rule patterns and 340 registry patterns; include/TrustWalletCore/TWAESPaddingMode.h: 18 lines scanned with 16 rule patterns and 340 registry patterns; include/TrustWalletCore/TWAccount.h: 77 lines scanned with 16 rule patterns and 340 registry patterns |
 | dependencies | проверено | 47 | rust/Cargo.lock: 246 dependencies parsed (246 pinned); rust/Cargo.toml: 0 dependencies parsed (0 pinned); rust/chains/tw_aptos/Cargo.toml: 4 dependencies parsed (0 pinned) |
 | secrets | проверено | 19 | rust/chains/tw_pactus/src/transaction/mod.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); rust/chains/tw_pactus/src/types/address.rs: value(s) at line(s) 334 (test_address_from_private_key) are declared inside a fixture and treated as test data, although the file itself is not test code; rust/chains/tw_pactus/src/types/address.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | chain_map | проверено | 59 | rust/tw_cosmos_sdk/Protobuf/authz_tx.proto: Cosmos SDK chains; rust/tw_cosmos_sdk/Protobuf/bank_tx.proto: Cosmos SDK chains; rust/tw_cosmos_sdk/Protobuf/coin.proto: Cosmos SDK chains |
 | entropy | проверено | 1 | random-number generation: 1555 code files read with 342 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| crediting | проверено | 1 | payment crediting: 8 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
 | osv_advisories | не проверено | 1 | 1 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: move-core-types |
-| osv_advisories | проверено | 1 | 245 pinned packages queried at OSV.dev; 13 affected (2 of them only in development or build dependencies) |
+| osv_advisories | проверено | 1 | 245 pinned packages queried at OSV.dev; 15 affected (3 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -63,23 +64,23 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree trustwallet-wallet-core at adf80f8bac989e18a4ef1922e2b9eaeb4bf804a9. 1695 files analysed; of 2104 files, 373 are test, fuzzing, benchmark or example code and were left out, 35 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 4 path(s) of the repository: include, rust, src, trezor-crypto; 1874 files outside them were not read. Files no analyzer reads include: rust/.gitignore, rust/chains/tw_ripple/definitions/definitions.json, rust/chains/tw_ton/resources/wallet/wallet_v4r2.code, rust/chains/tw_ton/resources/wallet/wallet_v5r1.code, rust/coverage.stats. No requests were sent to the owner's systems.
+Static review of the source tree trustwallet-wallet-core at adf80f8bac989e18a4ef1922e2b9eaeb4bf804a9. 1695 files analysed; of 2104 files, 373 are test, fuzzing, benchmark or example code and were left out, 35 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 4 path(s) of the repository: include, rust, src, trezor-crypto; 1872 files outside them were not read. Files no analyzer reads include: rust/.gitignore, rust/chains/tw_ripple/definitions/definitions.json, rust/chains/tw_ton/resources/wallet/wallet_v4r2.code, rust/chains/tw_ton/resources/wallet/wallet_v5r1.code, rust/coverage.stats. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **98** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 74.2%
+- Ориентировочный индекс состояния: **95** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 73.6%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-19073 — Подпись транзакций для сетей (43) основана на подписях на эллиптических кривых
+### QSI-2026-43749 — Подпись транзакций для сетей (43) основана на подписях на эллиптических кривых
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** True by construction and the headline row for this repository: the protobuf definitions cover 43 chains, every one of which authorizes transactions with ECDSA, Ed25519 or Schnorr. A wallet library cannot migrate any of them unilaterally — consensus decides — so the deliverable is a per-chain readiness map, and its ordering is the actual product. Nothing here is a defect in wallet-core.
 - Затронутый актив: `chain-map`
 - Источник данных: rust/tw_cosmos_sdk/Protobuf/authz_tx.proto
 - Метод обнаружения: Определения сообщений (.proto) сопоставлены с таблицей схем подписи сетей QSI.
-- Анализатор: chain_map 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: chain_map 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 56.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -221,14 +222,14 @@ package TW.Cardano.Proto;
 
 **Повторная проверка.** Повторить, когда сеть активирует постквантовую схему подписи или кошелёк добавит её поддержку.
 
-### QSI-2026-19063 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (84 файл(ов))
+### QSI-2026-43739 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (84 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: include/TrustWalletCore/TWCurve.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -330,14 +331,14 @@ _file_excerpt · [rust/chains/tw_bitcoin/src/babylon/spending_info.rs](https://g
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19064 — Квантово-уязвимый Ed25519: подпись транзакций и сообщений (38 файл(ов))
+### QSI-2026-43740 — Квантово-уязвимый Ed25519: подпись транзакций и сообщений (38 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Затронутый актив: `source-code:Ed25519:transaction_signing`
 - Источник данных: rust/chains/tw_aptos/src/address.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -439,14 +440,14 @@ _file_excerpt · [rust/chains/tw_polymesh/src/entry.rs](https://github.com/trust
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19066 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (16 файл(ов))
+### QSI-2026-43742 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (16 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
 - Источник данных: rust/chains/tw_bitcoin/src/babylon/conditions.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -548,18 +549,18 @@ _file_excerpt · [rust/chains/tw_bitcoin/src/babylon/tx_builder/output.rs](https
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19065 — Квантово-уязвимый ECDSA: роль не определена (20 файл(ов))
+### QSI-2026-43741 — Квантово-уязвимый ECDSA: роль не определена (22 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Role resolved: the anchors are the keypair implementation itself — rust/tw_keypair/src/ecdsa/{mod.rs,nist256p1/private.rs,nist256p1/public.rs} and schnorr/public.rs — plus per-chain signature types (tw_binance/src/signature.rs, tw_internet_computer/src/protocol/principal.rs). This is the secp256k1 and NIST P-256 ECDSA that every chain crate signs through, so it is the same exposure as the transaction-signing rows reached one layer lower. Count it once: it is where the migration work lands, not an extra surface.
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: rust/chains/tw_binance/src/signature.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
-56 упоминаний ECDSA в 20 файл(ах), например rust/chains/tw_binance/src/signature.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+58 упоминаний ECDSA в 22 файл(ах), например rust/chains/tw_binance/src/signature.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -656,14 +657,14 @@ _file_excerpt · [rust/tw_keypair/src/ecdsa/signature.rs](https://github.com/tru
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19067 — Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
+### QSI-2026-43743 — Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Затронутый актив: `source-code:ECDSA:authentication`
 - Источник данных: rust/chains/tw_internet_computer/src/protocol/identity.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -693,14 +694,14 @@ _file_excerpt · [rust/chains/tw_internet_computer/src/protocol/identity.rs](htt
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19068 — Квантово-уязвимый Ed25519: роль не определена (24 файл(ов))
+### QSI-2026-43744 — Квантово-уязвимый Ed25519: роль не определена (24 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Role resolved: rust/tw_keypair/src/tw/{private,public}.rs are the type-erased keypair wrappers, and the remaining anchors are per-chain compilers and request builders (tw_pactus, tw_ton). Transaction signing, reached through the generic keypair layer rather than named at the call site — which is exactly why the role came back undetermined.
 - Затронутый актив: `source-code:Ed25519:general`
 - Источник данных: rust/chains/tw_pactus/src/compiler.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -780,19 +781,19 @@ _file_excerpt · [rust/tw_keypair/src/ed25519/keypair.rs](https://github.com/tru
     6 | use crate::traits::{KeyPairTrait, SigningKeyTrait, VerifyingKeyTrait};
 ```
 
-_file_excerpt · [rust/tw_keypair/src/ed25519/mod.rs](https://github.com/trustwallet/wallet-core/blob/adf80f8bac989e18a4ef1922e2b9eaeb4bf804a9/rust/tw_keypair/src/ed25519/mod.rs#L22) · line 22 · SHA-256 a8bab0c5e0b8baf61fc279edd78ec5b6041f2abcd7e6fb849f1cd1766d2cbb2a_
+_file_excerpt · [rust/tw_keypair/src/ed25519/mod.rs](https://github.com/trustwallet/wallet-core/blob/adf80f8bac989e18a4ef1922e2b9eaeb4bf804a9/rust/tw_keypair/src/ed25519/mod.rs#L22) · line 22 · SHA-256 158ffe099e40947dfd5aa2d86eaa7ce896035b8c410e2ed91b6cc541ba20f066_
 
 ```
    21 | 
    22 |     pub type KeyPair = crate::ed25519::keypair::KeyPair<Sha512>;
-   23 |     pub type PrivateKey = [REDACTED]
+   23 |     pub type PrivateKey = crate::ed25519::private::PrivateKey<Sha512>;
 ```
 
-_file_excerpt · [rust/tw_keypair/src/ed25519/mod.rs](https://github.com/trustwallet/wallet-core/blob/adf80f8bac989e18a4ef1922e2b9eaeb4bf804a9/rust/tw_keypair/src/ed25519/mod.rs#L23) · line 23 · SHA-256 36ec3e2beeb00b7617ba8d3cb81628800fc4f550da7ed93f6c3edeada6944c36_
+_file_excerpt · [rust/tw_keypair/src/ed25519/mod.rs](https://github.com/trustwallet/wallet-core/blob/adf80f8bac989e18a4ef1922e2b9eaeb4bf804a9/rust/tw_keypair/src/ed25519/mod.rs#L23) · line 23 · SHA-256 36478e069ad56d398f38f2789715d511730ee4b33a76f997e3728d2b9161df38_
 
 ```
    22 |     pub type KeyPair = crate::ed25519::keypair::KeyPair<Sha512>;
-   23 |     pub type PrivateKey = [REDACTED]
+   23 |     pub type PrivateKey = crate::ed25519::private::PrivateKey<Sha512>;
    24 |     pub type PublicKey = crate::ed25519::public::PublicKey<Sha512>;
 ```
 
@@ -802,14 +803,14 @@ _file_excerpt · [rust/tw_keypair/src/ed25519/mod.rs](https://github.com/trustwa
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19070 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (3 файл(ов))
+### QSI-2026-43746 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Затронутый актив: `source-code:Schnorr (BIP-340):general`
 - Источник данных: rust/tw_keypair/src/schnorr/mod.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -887,14 +888,14 @@ _file_excerpt · [rust/tw_keypair/src/schnorr/signature.rs](https://github.com/t
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19071 — Квантово-уязвимый ECDH: роль не определена (1 файл(ов))
+### QSI-2026-43747 — Квантово-уязвимый ECDH: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Role resolved: trezor-crypto/crypto/bip32.c:710 is the vendored copy of trezor-crypto's hdnode_get_shared_key, the same ECDH-over-a-BIP-32-node function reviewed in trezor-firmware.yml. Session keys for identity and encryption features, so harvest-now-decrypt-later applies; one row, not a signing exposure.
 - Затронутый актив: `source-code:ECDH:general`
 - Источник данных: trezor-crypto/crypto/bip32.c
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -924,14 +925,14 @@ _file_excerpt · [trezor-crypto/crypto/bip32.c](https://github.com/trustwallet/w
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19072 — Квантово-уязвимый X25519: роль не определена (3 файл(ов))
+### QSI-2026-43748 — Квантово-уязвимый X25519: роль не определена (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Role resolved: all three anchors are the vendored trezor-crypto C library (trezor-crypto/crypto/bip32.c:504, crypto/ed25519-donna/ed25519.c, include/TrezorCrypto/ed25519.h) — the curve25519 public-key derivation layer underneath the Ed25519 signing rows, not an independent use. In the inventory because the derivation changes in any post-quantum scheme; not additional exposure on top of the signing rows.
 - Затронутый актив: `source-code:X25519:general`
 - Источник данных: trezor-crypto/crypto/bip32.c
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1001,15 +1002,15 @@ _file_excerpt · [trezor-crypto/include/TrezorCrypto/ed25519.h](https://github.c
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-19077 — crypto-bigint 0.5.1 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
+### QSI-2026-43754 — crypto-bigint 0.5.1 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
-- Серьёзность: **Низкая** · Классификация: Подтверждённая техническая уязвимость · Уверенность: Низкая
-> **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** crypto-bigint 0.5.1 (multiple timing variability issues in operations intended to be constant-time) is a hard, non-optional dependency of the signing path, so unlike in the BitBox02 firmware there is no feature flag to hide behind. rust/tw_keypair/Cargo.toml declares k256 0.13.0 with features ["ecdh", "ecdsa", "pkcs8", "schnorr", "std"] and p256 0.13.0 with ["ecdsa", "std"], both of which depend on elliptic-curve, which depends on crypto-bigint; starknet-crypto and starknet-ff reach it directly as well. Traced in rust/Cargo.lock: the workspace roots tw_tests and wallet_core_bin both reach it, by way of tw_keypair and therefore of every chain crate that signs. This is a library that signs on behalf of wallets on a host operating system, so timing variability in operations documented as constant-time is in scope rather than academic. No exploit is demonstrated and the attacker needs local measurement; medium, not high. Fixed in crypto-bigint 0.7.6, which is a breaking upgrade through elliptic-curve and will need k256/p256 to move first.
+- Серьёзность: **Средняя** · Классификация: Подтверждённая техническая уязвимость · Уверенность: Низкая
+> **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** crypto-bigint 0.5.1 (multiple timing variability issues in operations intended to be constant-time) is a hard, non-optional dependency of the signing path, so unlike in the BitBox02 firmware there is no feature flag to hide behind. rust/tw_keypair/Cargo.toml declares k256 0.13.0 with features ["ecdh", "ecdsa", "pkcs8", "schnorr", "std"] and p256 0.13.0 with ["ecdsa", "std"], both of which depend on elliptic-curve, which depends on crypto-bigint; starknet-crypto and starknet-ff reach it directly as well. Traced in rust/Cargo.lock: the workspace roots tw_tests and wallet_core_bin both reach it, by way of tw_keypair and therefore of every chain crate that signs. This is a library that signs on behalf of wallets on a host operating system, so timing variability in operations documented as constant-time is in scope rather than academic. No exploit is demonstrated and the attacker needs local measurement; medium, not high. Fixed in crypto-bigint 0.7.6, which is a breaking upgrade through elliptic-curve and will need k256/p256 to move first. _автоматическая серьёзность: Низкая._
 - Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
-- Балл приоритета: 23.9 / 100
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
+- Балл приоритета: 27.7 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.1: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1036,14 +1037,14 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-19083 — serde_with 3.16.0 затронут GHSA-7gcf-g7xr-8hxj
+### QSI-2026-43760 — serde_with 3.16.0 затронут GHSA-7gcf-g7xr-8hxj
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** wallet-core uses serde_with only in tw_zcash (PCZT transparent bundle) as serde_as(as = "BTreeMap<[_; 33], _>"); KeyValueMap, the type whose serialization panics, is not referenced anywhere in the tree. _автоматическая серьёзность: Средняя._
 - Затронутый актив: `dependency:crates.io/serde_with@3.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 35.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1071,14 +1072,14 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-19079 — keccak 0.1.3 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-43756 — keccak 0.1.3 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** keccak 0.1.3's unsoundness is in the opt-in ARMv8 assembly backend behind the asm Cargo feature, which is off by default and which no manifest in the audited tree enables; the advisory's own CVSS vector (AV:L/AC:H/AT:P, exploit maturity unproven) reflects that. keccak arrives through sha3 and tw_hash, both using the portable implementation. Upgrading to 0.1.6 is routine maintenance. _автоматическая серьёзность: Низкая._
 - Затронутый актив: `dependency:crates.io/keccak@0.1.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 26.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -1106,14 +1107,14 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-19082 — rand 0.8.5 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+### QSI-2026-43759 — rand 0.8.5 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** rand 0.8.5 is unsound only when a custom global logger calls rand::rng() reentrantly. wallet-core installs no global logger; rand reaches the tree through secp256k1, ark-std, fixed-hash and move-core-types, none of which log from inside the generator. The affected functions rand::rng and rand::thread_rng are not named in the audited code. _автоматическая серьёзность: Низкая._
 - Затронутый актив: `dependency:crates.io/rand@0.8.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 26.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -1141,14 +1142,14 @@ _tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-19084 — time 0.3.44 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+### QSI-2026-43761 — time 0.3.44 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** time 0.3.44 is pulled in only by serde_with (Cargo.lock), which wallet-core uses only for the BTreeMap adapter above; the affected RFC 2822 parsing functions are not reached. _автоматическая серьёзность: Средняя._
 - Затронутый актив: `dependency:crates.io/time@0.3.44`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 26.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -1176,14 +1177,14 @@ _tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-19075 — anyhow 1.0.75 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
+### QSI-2026-43751 — anyhow 1.0.75 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** anyhow 1.0.75 (unsoundness in Error::downcast_mut) arrives through move-core-types, so only the Aptos and Sui crates depend on it, and no audited file calls downcast_mut. Upgrading to 1.0.103 is routine maintenance rather than a fix for an exposure here. _автоматическая серьёзность: Низкая._
 - Затронутый актив: `dependency:crates.io/anyhow@1.0.75`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 20.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -1211,14 +1212,14 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-19076 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-43752 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Затронутый актив: `dependency:crates.io/bincode@1.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1246,18 +1247,18 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-19086 — 3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
+### QSI-2026-43763 — 4 бюллетеней в 3 пакет(ах) crates.io, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** Three advisories in two build-only crates (ansi_term 0.12.1 RUSTSEC-2021-0139; atty 0.2.14 GHSA-g98v-hv3f-hcfr and RUSTSEC-2024-0375), neither of which ships in a built artefact. They are worth updating during routine maintenance, and worth watching only insofar as they run in CI with credentials.
 - Затронутый актив: `dependencies:crates.io:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 18.3 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает 3 бюллетеней (0 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (rust/Cargo.lock): например, ansi_term@0.12.1 [build]: RUSTSEC-2021-0139; atty@0.2.14 [build]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+OSV.dev сообщает 4 бюллетеней (0 с оценкой high или critical) для 3 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (rust/Cargo.lock): например, ansi_term@0.12.1 [build]: RUSTSEC-2021-0139; atty@0.2.14 [build]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375; humantime@1.3.0 [build]: RUSTSEC-2026-0542. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
 **Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
@@ -1269,11 +1270,12 @@ OSV.dev сообщает 3 бюллетеней (0 с оценкой high или
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev (crates.io)](https://osv.dev/) · rust/Cargo.lock · SHA-256 d512f877bef1ab54a9ad6c9b72d65a548bdb13d69a354016a31df65cc1a19445_
+_tool_output · [OSV.dev (crates.io)](https://osv.dev/) · rust/Cargo.lock · SHA-256 7e7b17c9d6c014b226c48a4d386ec632b9a3d87f02a5de68818f87de547af25c_
 
 ```
 ansi_term@0.12.1 [build]: RUSTSEC-2021-0139
 atty@0.2.14 [build]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375
+humantime@1.3.0 [build]: RUSTSEC-2026-0542
 ```
 
 **Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.
@@ -1282,14 +1284,14 @@ atty@0.2.14 [build]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-19069 — SHA-1 предоставляется функциями API (5 файл(ов))
+### QSI-2026-43745 — SHA-1 предоставляется функциями API (5 файл(ов))
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Accurate as stated, and the reason it cannot simply be removed is worth recording. rust/tw_hash/src/sha1.rs defines sha1() and rust/tw_hash/src/ffi.rs:128 exports it over the C FFI; it is published through the library's public surface as TWHash (include/TrustWalletCore/TWHash.h, src/interface/TWHash.cpp, src/Hash.h, src/Hash.cpp). No in-tree security decision depends on it, which is exactly what the rule says. But src/Bitcoin/OpCodes.h references SHA-1 because Bitcoin Script defines OP_SHA1, so a wallet library that evaluates or builds scripts has to be able to compute it: this is a consensus-level requirement, not a choice the library can revisit. Correct disposition is therefore to keep it, document it as script-compatibility only, and ensure no new caller uses it for integrity — not to delete it.
 - Затронутый актив: `source-code:SHA-1:api`
 - Источник данных: rust/tw_hash/src/ffi.rs
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка; совпадение в определении, объявлении или внутри функции с именем алгоритма считается предоставлением.
-- Анализатор: source_code 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 16.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1383,18 +1385,18 @@ _file_excerpt · [src/interface/TWHash.cpp](https://github.com/trustwallet/walle
 
 **Повторная проверка.** Повторно просканируйте код после проверки.
 
-### QSI-2026-19074 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-43750 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Accurate: across 47 dependency manifests the declared cryptography is curve25519-dalek, ecdsa, k256, p256 and secp256k1, with nothing PQC-capable. For a library that signs for 43 chains this is not a dependency that can usefully be added yet — each chain's signature scheme is set by its own consensus, so until a chain defines a post-quantum scheme there is nothing for the wallet to implement against. The actionable part is the opposite direction: the library should be ready to carry two schemes per chain during a transition, which is an architectural question about tw_keypair rather than a missing crate.
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 15.0 / 100
 - CVSS v3.1: неприменимо
 
-В 47 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, k256, p256, secp256k1), но ни одной из списка поддерживающих PQC.
+В 47 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, k256, p256, secp256k1, starknet-crypto, starknet-curve), но ни одной из списка поддерживающих PQC.
 
 **Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
@@ -1406,10 +1408,10 @@ _file_excerpt · [src/interface/TWHash.cpp](https://github.com/trustwallet/walle
 
 **Подтверждающие доказательства.**
 
-_dependency · rust/Cargo.lock, rust/Cargo.toml, rust/chains/tw_aptos/Cargo.toml, rust/chains/tw_binance/Cargo.toml, rust/chains/tw_bitcoin/Cargo.toml, rust/chains/tw_bitcoincash/Cargo.toml, rust/chains/tw_cosmos/Cargo.toml, rust/chains/tw_decred/Cargo.toml, rust/chains/tw_ethereum/Cargo.toml, rust/chains/tw_greenfield/Cargo.toml, rust/chains/tw_groestlcoin/Cargo.toml, rust/chains/tw_internet_computer/Cargo.toml, rust/chains/tw_komodo/Cargo.toml, rust/chains/tw_native_evmos/Cargo.toml, rust/chains/tw_native_in · SHA-256 a5f70b6ce7042da5b0b824636b38dcb7070949ac7f84d558eb8842d79c68c310_
+_dependency · rust/Cargo.lock, rust/Cargo.toml, rust/chains/tw_aptos/Cargo.toml, rust/chains/tw_binance/Cargo.toml, rust/chains/tw_bitcoin/Cargo.toml, rust/chains/tw_bitcoincash/Cargo.toml, rust/chains/tw_cosmos/Cargo.toml, rust/chains/tw_decred/Cargo.toml, rust/chains/tw_ethereum/Cargo.toml, rust/chains/tw_greenfield/Cargo.toml, rust/chains/tw_groestlcoin/Cargo.toml, rust/chains/tw_internet_computer/Cargo.toml, rust/chains/tw_komodo/Cargo.toml, rust/chains/tw_native_evmos/Cargo.toml, rust/chains/tw_native_in · SHA-256 2cf7354fd8d161e392c365a5dbfada906054a21f2edbbe9d49d752c550f0ea8b_
 
 ```
-Crypto libraries: curve25519-dalek, ecdsa, k256, p256, secp256k1
+Crypto libraries: curve25519-dalek, ecdsa, k256, p256, secp256k1, starknet-crypto, starknet-curve
 ```
 
 **Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
@@ -1418,14 +1420,49 @@ Crypto libraries: curve25519-dalek, ecdsa, k256, p256, secp256k1
 
 **Повторная проверка.** Повторите сканирование после обновлений.
 
-### QSI-2026-19078 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
+### QSI-2026-43753 — chrono 0.4.42: информационный бюллетень RUSTSEC-2026-0543 (unmaintained)
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+> **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
+- Затронутый актив: `dependency:crates.io/chrono@0.4.42`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev отмечает RUSTSEC-2026-0543 для пакета crates.io chrono версии 0.4.42 как информационный (unmaintained): chrono is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
+
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0543
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0543](https://osv.dev/vulnerability/RUSTSEC-2026-0543) · manifest · SHA-256 37d2d647609cf3ea819b650afa04f4f974a83c89d3c0613ec3b45f6d0e14c207_
+
+```
+{"id": "RUSTSEC-2026-0543", "aliases": [], "modified": "2026-11-17T10:15:02.344223779Z", "summary": "chrono is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
+
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
+
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
+
+### QSI-2026-43755 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Затронутый актив: `dependency:crates.io/derivative@2.2.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1453,14 +1490,14 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-19080 — paste 1.0.11: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-43757 — paste 1.0.11: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Затронутый актив: `dependency:crates.io/paste@1.0.11`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1488,14 +1525,14 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-19081 — proc-macro-error 1.0.4: информационный бюллетень RUSTSEC-2024-0370 (unmaintained)
+### QSI-2026-43758 — proc-macro-error 1.0.4: информационный бюллетень RUSTSEC-2024-0370 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Затронутый актив: `dependency:crates.io/proc-macro-error@1.0.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1523,14 +1560,14 @@ _tool_output · [OSV.dev RUSTSEC-2024-0370](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-19085 — unsafe-libyaml 0.2.11: информационный бюллетень RUSTSEC-2024-0449 (unmaintained)
+### QSI-2026-43762 — unsafe-libyaml 0.2.11: информационный бюллетень RUSTSEC-2024-0449 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Затронутый актив: `dependency:crates.io/unsafe-libyaml@0.2.11`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.3.0 · 2026-11-06 14:09 UTC
+- Анализатор: dependencies 1.16.2 · 2026-11-23 13:27 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1591,9 +1628,9 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (143), Ed25519 (97), Schnorr (BIP-340) (75), BLS12-381 (59), sr25519 (59) | QSI-2026-19063, QSI-2026-19064, QSI-2026-19066, QSI-2026-19073 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | ECDSA (1) | QSI-2026-19067 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
-| **роль не определена** | Ed25519 (24), ECDSA (20), Schnorr (BIP-340) (3), X25519 (3), ECDH (1) | QSI-2026-19065, QSI-2026-19068, QSI-2026-19070, QSI-2026-19071, QSI-2026-19072 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (143), Ed25519 (97), Schnorr (BIP-340) (75), BLS12-381 (59), sr25519 (59) | QSI-2026-43739, QSI-2026-43740, QSI-2026-43742, QSI-2026-43749 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | ECDSA (1) | QSI-2026-43743 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
+| **роль не определена** | Ed25519 (24), ECDSA (22), Schnorr (BIP-340) (3), X25519 (3), ECDH (1) | QSI-2026-43741, QSI-2026-43744, QSI-2026-43746, QSI-2026-43747, QSI-2026-43748 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -1603,7 +1640,7 @@ _Роль определяется по путям файлов, именам ф
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
 | Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | BLS12-381 (1) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BLS12-381 (1), ECDH (1), ECDSA (157), Ed25519 (103), Schnorr (BIP-340) (21), X25519 (9), sr25519 (2) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BLS12-381 (1), ECDH (1), ECDSA (156), Ed25519 (103), Schnorr (BIP-340) (21), X25519 (9), sr25519 (2) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | AES-128 (1), AES-192 (1), AES-256 (1), BLAKE2 (9), ChaCha20-Poly1305 (2), HMAC (8), Keccak-256 (38), PBKDF2 (2), Poly1305 (3), RC4 (2), RIPEMD-160 (3), SHA-1 (2), SHA-2 (9), SHA-3 (7), scrypt (2) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | BLAKE2 (9), Keccak-256 (38), RIPEMD-160 (3), SHA-1 (2), SHA-2 (9), SHA-3 (7) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -1622,47 +1659,48 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-19083 | Обновите serde_with до исправленной версии (3.21.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-19079 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
-| P2 | QSI-2026-19082 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
-| P2 | QSI-2026-19084 | Обновите time до исправленной версии (0.3.47). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
+| P2 | QSI-2026-43760 | Обновите serde_with до исправленной версии (3.21.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-43756 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P2 | QSI-2026-43759 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-43761 | Обновите time до исправленной версии (0.3.47). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-19077 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
-| P3 | QSI-2026-19075 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
+| P3 | QSI-2026-43754 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-43751 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-19073 | Внесите использования BLS12-381, ECDSA, Ed25519, Schnorr (BIP-340), sr25519 в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19063 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19064 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19066 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19065 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19067 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19068 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19070 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19071 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-19072 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-19073 | Запланируйте миграцию BLS12-381, ECDSA, Ed25519, Schnorr (BIP-340), sr25519 на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
-| P4 | QSI-2026-19063 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19064 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19066 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-19065 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19067 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19068 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-19070 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-19071 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-19072 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-19076 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
-| P4 | QSI-2026-19086 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
-| P4 | QSI-2026-19069 | Задокументируйте, зачем предоставляется SHA-1, и проверьте вызывающий код. | устранение первопричины | Вызывающий код проверен; SHA-1 оставлен только там, где его требует протокол. |
-| P4 | QSI-2026-19078 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
-| P4 | QSI-2026-19080 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
-| P4 | QSI-2026-19081 | Замените proc-macro-error поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error заменён или решение зафиксировано. |
-| P4 | QSI-2026-19085 | Замените unsafe-libyaml поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | unsafe-libyaml заменён или решение зафиксировано. |
+| P3 | QSI-2026-43749 | Внесите использования BLS12-381, ECDSA, Ed25519, Schnorr (BIP-340), sr25519 в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43739 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43740 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43742 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43741 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43743 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43744 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43746 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43747 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-43748 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-43749 | Запланируйте миграцию BLS12-381, ECDSA, Ed25519, Schnorr (BIP-340), sr25519 на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-43739 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43740 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43742 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-43741 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43743 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43744 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-43746 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-43747 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-43748 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-43752 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-43763 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P4 | QSI-2026-43745 | Задокументируйте, зачем предоставляется SHA-1, и проверьте вызывающий код. | устранение первопричины | Вызывающий код проверен; SHA-1 оставлен только там, где его требует протокол. |
+| P4 | QSI-2026-43753 | Замените chrono поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | chrono заменён или решение зафиксировано. |
+| P4 | QSI-2026-43755 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
+| P4 | QSI-2026-43757 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
+| P4 | QSI-2026-43758 | Замените proc-macro-error поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error заменён или решение зафиксировано. |
+| P4 | QSI-2026-43762 | Замените unsafe-libyaml поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | unsafe-libyaml заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
@@ -1670,13 +1708,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -1713,14 +1757,15 @@ _Действие: взламывает — алгоритм нужно заме
 30. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
 31. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
 32. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-33. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-34. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-35. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-36. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+33. OSV advisory RUSTSEC-2026-0543 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0543> (modified 2026-11-17T10:15:02.344223779Z)
+34. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+35. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+36. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+37. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
-По происхождению: манифесты зависимостей 12 (0 уязвимы для алгоритма Шора) · собственный код 348 (264 уязвимы для алгоритма Шора) · сторонний код в дереве 36 (30 уязвимы для алгоритма Шора).
+По происхождению: манифесты зависимостей 15 (0 уязвимы для алгоритма Шора) · собственный код 295 (242 уязвимы для алгоритма Шора) · сторонний код в дереве 88 (51 уязвимы для алгоритма Шора).
 
 | Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
@@ -1749,15 +1794,19 @@ _Действие: взламывает — алгоритм нужно заме
 | Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | rust/Cargo.lock |
 | Crypto library | 0.16.6 | ecdsa (python-ecdsa) | н/п | допустимо | 2 | 2 | rust/Cargo.lock; rust/tw_keypair/Cargo.toml |
 | Crypto library | 0.27.0 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 4 | 4 | rust/Cargo.lock; rust/chains/tw_bitcoin/Cargo.toml; rust/frameworks/tw_utxo/Cargo.toml |
+| Crypto library | 0.3.0 | starknet-curve (starknet-rs) | н/п | допустимо | 1 | 1 | rust/Cargo.lock |
+| Crypto library | 0.5.1 | starknet-crypto (starknet-rs) | н/п | допустимо | 1 | 1 | rust/Cargo.lock |
 | Crypto library | 4.1.3 | curve25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | rust/Cargo.lock |
 | Crypto library | 0.13.0 | k256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | rust/tw_keypair/Cargo.toml |
 | Crypto library | 0.13.0 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | rust/tw_keypair/Cargo.toml |
+| Crypto library | 0.5.0 | starknet-crypto (starknet-rs) | н/п | допустимо | 1 | 1 | rust/tw_keypair/Cargo.toml |
 | Crypto library | 4.1 | curve25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | rust/tw_keypair/Cargo.toml |
 | BLS12-381 | BLS signatures |  | уязвим (Шор) | допустимо | 1 | 1 | src/proto/Filecoin.proto:3 |
 | ECDH |  |  | уязвим (Шор) | допустимо | 1 | 1 | trezor-crypto/crypto/bip32.c:710 |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 135 | 135 | include/TrustWalletCore/TWCurve.h:14; rust/chains/tw_binance/src/compiler.rs:17; rust/chains/tw_binance/src/context.rs:7 |
-| ECDSA |  |  | уязвим (Шор) | допустимо | 14 | 14 | rust/tw_evm/src/modules/webauthn.rs:77; rust/tw_keypair/src/ecdsa/canonical.rs:21; rust/tw_keypair/src/ecdsa/nist256p1/private.rs:9 |
+| ECDSA |  |  | уязвим (Шор) | допустимо | 11 | 11 | rust/tw_evm/src/modules/webauthn.rs:77; rust/tw_keypair/src/ecdsa/canonical.rs:21; rust/tw_keypair/src/ecdsa/signature.rs:16 |
 | ECDSA | P-256 |  | уязвим (Шор) | допустимо | 4 | 4 | rust/tw_keypair/src/ecdsa/nist256p1/private.rs:9; rust/tw_keypair/src/ecdsa/nist256p1/public.rs:8; src/proto/NEO.proto:3 |
+| ECDSA | STARK curve |  | уязвим (Шор) | допустимо | 2 | 2 | rust/tw_keypair/src/starkex/private.rs:10; rust/tw_keypair/src/starkex/public.rs:9 |
 | ECDSA | secp256k1, P-256 |  | уязвим (Шор) | допустимо | 3 | 3 | src/proto/EOS.proto:3; src/proto/Sui.proto:7; src/proto/Tezos.proto:3 |
 | ECDSA | secp256k1, transparent addresses |  | уязвим (Шор) | допустимо | 1 | 1 | src/proto/Zcash.proto:3 |
 | Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 82 | 82 | rust/chains/tw_aptos/src/address.rs:40; rust/chains/tw_aptos/src/signer.rs:25; rust/chains/tw_aptos/src/transaction.rs:14 |

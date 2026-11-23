@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -64,7 +64,7 @@
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (12 файл(ов))"
+                "text": "Квантово-уязвимый Sinsemilla: обёртка ключей и шифрование хранимых данных (1 файл(ов))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -78,10 +78,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "82 упоминаний Pedersen commitment в 12 файл(ах), например zebra-chain/src/orchard.rs:22. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра. Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "1 упоминаний Sinsemilla в 1 файл(ах), например zebra-chain/src/orchard/note.rs:12. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "help": {
-                "text": "82 упоминаний Pedersen commitment в 12 файл(ах), например zebra-chain/src/orchard.rs:22. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра. Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "1 упоминаний Sinsemilla в 1 файл(ах), например zebra-chain/src/orchard/note.rs:12. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -200,7 +200,7 @@
             "qsiFindingKey/v1": "2ed65c778f0c0a1523657d6d874be13d"
           },
           "properties": {
-            "qsiId": "QSI-2026-19195",
+            "qsiId": "QSI-2026-43877",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -227,7 +227,7 @@
             "qsiFindingKey/v1": "43f00660c70e2f072efb71f9b0041e21"
           },
           "properties": {
-            "qsiId": "QSI-2026-19196",
+            "qsiId": "QSI-2026-43878",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -254,7 +254,7 @@
             "qsiFindingKey/v1": "e15fd2d57bfed286c9fa892f7e41eae4"
           },
           "properties": {
-            "qsiId": "QSI-2026-19174",
+            "qsiId": "QSI-2026-43853",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -272,7 +272,7 @@
             "qsiFindingKey/v1": "ffbbd8dc8e63311151df5aa3dad0af14"
           },
           "properties": {
-            "qsiId": "QSI-2026-19191",
+            "qsiId": "QSI-2026-43873",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -293,13 +293,31 @@
           "ruleIndex": 2,
           "level": "warning",
           "message": {
+            "text": "Квантово-уязвимый Sinsemilla: обёртка ключей и шифрование хранимых данных (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5cc53234cf85f6855895f74075803044"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43858",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
             "text": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (12 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-19177",
+            "qsiId": "QSI-2026-43855",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -317,7 +335,7 @@
             "qsiFindingKey/v1": "1c69974057f12789efd21a4df19bb6d6"
           },
           "properties": {
-            "qsiId": "QSI-2026-19181",
+            "qsiId": "QSI-2026-43860",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -335,7 +353,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-19182",
+            "qsiId": "QSI-2026-43861",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -353,7 +371,7 @@
             "qsiFindingKey/v1": "3333045da80f49858374182c3850b1c1"
           },
           "properties": {
-            "qsiId": "QSI-2026-19183",
+            "qsiId": "QSI-2026-43862",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -371,7 +389,7 @@
             "qsiFindingKey/v1": "16060ad406fc8c2f23d4ba7828093154"
           },
           "properties": {
-            "qsiId": "QSI-2026-19176",
+            "qsiId": "QSI-2026-43854",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -383,13 +401,13 @@
           "ruleIndex": 2,
           "level": "warning",
           "message": {
-            "text": "Квантово-уязвимый Sinsemilla: роль не определена (6 файл(ов))"
+            "text": "Квантово-уязвимый Sinsemilla: роль не определена (5 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "c1f1dad8ce42830902b853f9b1f9e5de"
           },
           "properties": {
-            "qsiId": "QSI-2026-19178",
+            "qsiId": "QSI-2026-43856",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -407,7 +425,7 @@
             "qsiFindingKey/v1": "8523edb9ce7f414dc285e274554d2cfa"
           },
           "properties": {
-            "qsiId": "QSI-2026-19179",
+            "qsiId": "QSI-2026-43857",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -425,7 +443,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-19180",
+            "qsiId": "QSI-2026-43859",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -443,7 +461,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-19184",
+            "qsiId": "QSI-2026-43863",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -461,7 +479,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-19185",
+            "qsiId": "QSI-2026-43864",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -479,7 +497,7 @@
             "qsiFindingKey/v1": "a32dc4d401fc32a953504c0a38f8d3f4"
           },
           "properties": {
-            "qsiId": "QSI-2026-19186",
+            "qsiId": "QSI-2026-43865",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -497,7 +515,34 @@
             "qsiFindingKey/v1": "131155ea58c3e2fbe4aa192d418e1a3b"
           },
           "properties": {
-            "qsiId": "QSI-2026-19189",
+            "qsiId": "QSI-2026-43870",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "libz-sys 1.1.28 затронут RUSTSEC-2026-0544 (CVE-2026-85091) (без оценки серьёзности) (dependency: crates.io/libz-sys@1.1.28)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1721f46934e7a35d20ae373faa48b061"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43871",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -524,7 +569,7 @@
             "qsiFindingKey/v1": "d3ca7fccd21f67bd5f8f9561c7543a2c"
           },
           "properties": {
-            "qsiId": "QSI-2026-19193",
+            "qsiId": "QSI-2026-43875",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -551,7 +596,7 @@
             "qsiFindingKey/v1": "654eafedce8c5c17c2ce41da18ded4ea"
           },
           "properties": {
-            "qsiId": "QSI-2026-19194",
+            "qsiId": "QSI-2026-43876",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -578,7 +623,142 @@
             "qsiFindingKey/v1": "39f30a2a3ec7f5404ef71baf0e11c67a"
           },
           "properties": {
-            "qsiId": "QSI-2026-19197",
+            "qsiId": "QSI-2026-43879",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "quinn-proto 0.11.16 затронут RUSTSEC-2026-0523 (без оценки серьёзности) (dependency: crates.io/quinn-proto@0.11.16)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4a88c738ea3cc0326cde845240bc56a3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43880",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "quinn-proto 0.11.16 затронут RUSTSEC-2026-0524 (без оценки серьёзности) (dependency: crates.io/quinn-proto@0.11.16)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "bd4071eb4e54632e5580a12640c6470f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43881",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "quinn-udp 0.5.14 затронут RUSTSEC-2026-0538 (без оценки серьёзности) (dependency: crates.io/quinn-udp@0.5.14)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "db6b275072f2fd1b7bec0bbdaad82232"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43882",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "rustix 1.1.4 затронут RUSTSEC-2026-0486 (без оценки серьёзности) (dependency: crates.io/rustix@1.1.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a3bce719731ef49c5ca9f79fe8cada42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43883",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "url 2.5.4 затронут RUSTSEC-2026-0592 (без оценки серьёзности) (dependency: crates.io/url@2.5.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e0b513f89662ae90e9b5a3a3b124563f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43885",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -605,7 +785,7 @@
             "qsiFindingKey/v1": "3286653610c53d670e72eca21c86ab95"
           },
           "properties": {
-            "qsiId": "QSI-2026-19199",
+            "qsiId": "QSI-2026-43886",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -632,7 +812,61 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-19188",
+            "qsiId": "QSI-2026-43867",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "chrono 0.4.44: информационный бюллетень RUSTSEC-2026-0543 (unmaintained) (dependency: crates.io/chrono@0.4.44)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7439bae337a673be840331b9becf8856"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43868",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "humantime 2.3.0: информационный бюллетень RUSTSEC-2026-0542 (unmaintained) (dependency: crates.io/humantime@2.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c651e612202a9aa743853aa6459b7ac9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43869",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -659,7 +893,7 @@
             "qsiFindingKey/v1": "0f94b12e7ce6cd766918bf059898ddff"
           },
           "properties": {
-            "qsiId": "QSI-2026-19198",
+            "qsiId": "QSI-2026-43884",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -686,7 +920,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-19200",
+            "qsiId": "QSI-2026-43887",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -713,7 +947,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-19187",
+            "qsiId": "QSI-2026-43866",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -731,7 +965,7 @@
             "qsiFindingKey/v1": "16273bfa1ae794b33193c628ce29d01d"
           },
           "properties": {
-            "qsiId": "QSI-2026-19190",
+            "qsiId": "QSI-2026-43872",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -758,7 +992,7 @@
             "qsiFindingKey/v1": "8412cde0bf828d754dd3b306bfe8c506"
           },
           "properties": {
-            "qsiId": "QSI-2026-19192",
+            "qsiId": "QSI-2026-43874",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -776,13 +1010,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/zebra @ 147a6a8bf7d3/471ee2bf-d648-4e7a-9414-63c80ef4d0f2"
+        "id": "qsi/zebra @ 147a6a8bf7d3/27ec9b99-b1dc-4980-887d-873d242f9a58"
       },
       "properties": {
-        "qsiContentSha256": "0bdbaa54627164d41ff5c32df8fdd31227a579b5dd0cf0f37f68914a776721c7",
+        "qsiContentSha256": "d088edbaa8e8ba8d3edd5c5c4ce91861160386bbd322a7e8a7cc5a02b044dc5b",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T14:14:24.575373+00:00",
+        "qsiGeneratedAt": "2026-11-23T13:31:17.685663+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

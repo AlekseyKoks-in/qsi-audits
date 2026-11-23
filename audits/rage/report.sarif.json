@@ -8,13 +8,13 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
               "name": "DepKnownAdvisory",
               "shortDescription": {
-                "text": "zip 8.6.0 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905)"
+                "text": "zip 8.6.0 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548)"
               },
               "defaultConfiguration": {
                 "level": "error"
@@ -28,10 +28,10 @@
                 "security-severity": "9.5"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905) для пакета crates.io zip версии 8.6.0: zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (9.0.5). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548) для пакета crates.io zip версии 8.6.0: zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (9.0.5). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905) для пакета crates.io zip версии 8.6.0: zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (9.0.5). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548) для пакета crates.io zip версии 8.6.0: zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (9.0.5). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-m665-v7pm-7grj"
             },
@@ -39,7 +39,7 @@
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (3 файл(ов))"
+                "text": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (4 файл(ов))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -53,10 +53,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "9 упоминаний X25519 в 3 файл(ах), например age/src/native/x25519.rs:16. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "10 упоминаний X25519 в 4 файл(ах), например age/src/lib.rs:259. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "help": {
-                "text": "9 упоминаний X25519 в 3 файл(ах), например age/src/native/x25519.rs:16. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "10 упоминаний X25519 в 4 файл(ах), например age/src/lib.rs:259. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -86,6 +86,31 @@
               "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
             },
             {
+              "id": "DEP-ADVISORY-INFORMATIONAL",
+              "name": "DepAdvisoryInformational",
+              "shortDescription": {
+                "text": "chrono 0.4.45: информационный бюллетень RUSTSEC-2026-0543 (unmaintained)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev отмечает RUSTSEC-2026-0543 для пакета crates.io chrono версии 0.4.45 как информационный (unmaintained): chrono is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей. Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет. Данные получены от OSV.dev в зафиксированное время."
+              },
+              "help": {
+                "text": "OSV.dev отмечает RUSTSEC-2026-0543 для пакета crates.io chrono версии 0.4.45 как информационный (unmaintained): chrono is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей. Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет. Данные получены от OSV.dev в зафиксированное время."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0543"
+            },
+            {
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
@@ -109,31 +134,6 @@
                 "text": "OSV.dev сообщает 4 бюллетеней (2 с оценкой high или critical) для 3 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, pprof@0.13.0 [dev]: GHSA-gw5w-5j7f-jmjj; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195; tokio@1.52.3 [dev]: RUSTSEC-2026-0386. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
-            },
-            {
-              "id": "DEP-ADVISORY-INFORMATIONAL",
-              "name": "DepAdvisoryInformational",
-              "shortDescription": {
-                "text": "basic-toml 0.1.10: информационный бюллетень RUSTSEC-2026-0374 (unmaintained)"
-              },
-              "defaultConfiguration": {
-                "level": "note"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "dependencies",
-                  "improvement"
-                ],
-                "security-severity": "1.0"
-              },
-              "fullDescription": {
-                "text": "OSV.dev отмечает RUSTSEC-2026-0374 для пакета crates.io basic-toml версии 0.1.10 как информационный (unmaintained): `basic-toml` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей. Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет. Данные получены от OSV.dev в зафиксированное время."
-              },
-              "help": {
-                "text": "OSV.dev отмечает RUSTSEC-2026-0374 для пакета crates.io basic-toml версии 0.1.10 как информационный (unmaintained): `basic-toml` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей. Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет. Данные получены от OSV.dev в зафиксированное время."
-              },
-              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0374"
             }
           ]
         }
@@ -144,13 +144,13 @@
           "ruleIndex": 0,
           "level": "error",
           "message": {
-            "text": "zip 8.6.0 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905) (dependency: crates.io/zip@8.6.0)"
+            "text": "zip 8.6.0 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548) (dependency: crates.io/zip@8.6.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "1021b8b23b27c0efbf1dcc7d1c35d206"
           },
           "properties": {
-            "qsiId": "QSI-2026-18619",
+            "qsiId": "QSI-2026-42829",
             "severity": "critical",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -177,7 +177,7 @@
             "qsiFindingKey/v1": "c30e50057dcc2096134d99f031544183"
           },
           "properties": {
-            "qsiId": "QSI-2026-18623",
+            "qsiId": "QSI-2026-42833",
             "severity": "critical",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -198,13 +198,13 @@
           "ruleIndex": 0,
           "level": "error",
           "message": {
-            "text": "zip 8.6.0 затронут GHSA-9hj8-73fh-9963 (CVE-2026-115907) (dependency: crates.io/zip@8.6.0)"
+            "text": "zip 8.6.0 затронут GHSA-9hj8-73fh-9963 (CVE-2026-115907, RUSTSEC-2026-0547) (dependency: crates.io/zip@8.6.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "ef64a52378fdc637fca85f74cb22b441"
           },
           "properties": {
-            "qsiId": "QSI-2026-18617",
+            "qsiId": "QSI-2026-42827",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -225,13 +225,13 @@
           "ruleIndex": 0,
           "level": "error",
           "message": {
-            "text": "zip 8.6.0 затронут GHSA-hjqx-j4rw-g7xv (CVE-2026-115908) (dependency: crates.io/zip@8.6.0)"
+            "text": "zip 8.6.0 затронут GHSA-hjqx-j4rw-g7xv (CVE-2026-115908, RUSTSEC-2026-0546) (dependency: crates.io/zip@8.6.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "f5a28474a314f9f28980ea8b6b50c75f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18618",
+            "qsiId": "QSI-2026-42828",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -258,7 +258,7 @@
             "qsiFindingKey/v1": "ec8fbea77c30a1ff0eff8b92b2ccc622"
           },
           "properties": {
-            "qsiId": "QSI-2026-18620",
+            "qsiId": "QSI-2026-42830",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -285,7 +285,7 @@
             "qsiFindingKey/v1": "f7123b226a21f5ba82bc3e5d5d8c36b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-18621",
+            "qsiId": "QSI-2026-42831",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -312,7 +312,7 @@
             "qsiFindingKey/v1": "80dcdb235ea4758fe7584776aa3fa9e4"
           },
           "properties": {
-            "qsiId": "QSI-2026-18615",
+            "qsiId": "QSI-2026-42824",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -333,13 +333,13 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "zip 8.6.0 затронут GHSA-8hxf-qr8p-62x4 (CVE-2026-115906) (dependency: crates.io/zip@8.6.0)"
+            "text": "zip 8.6.0 затронут GHSA-8hxf-qr8p-62x4 (CVE-2026-115906, RUSTSEC-2026-0545) (dependency: crates.io/zip@8.6.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "a07dc297f788ba762a6a8198b5af4315"
           },
           "properties": {
-            "qsiId": "QSI-2026-18616",
+            "qsiId": "QSI-2026-42826",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -360,13 +360,13 @@
           "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (3 файл(ов))"
+            "text": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (4 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "eea411a740e8c8ff6e16a6953594accc"
           },
           "properties": {
-            "qsiId": "QSI-2026-18609",
+            "qsiId": "QSI-2026-42816",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -378,13 +378,13 @@
           "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Квантово-уязвимый X25519: роль не определена (6 файл(ов))"
+            "text": "Квантово-уязвимый X25519: роль не определена (5 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-18608",
+            "qsiId": "QSI-2026-42815",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -402,7 +402,7 @@
             "qsiFindingKey/v1": "b302032650de6c165e0e74b7d843d367"
           },
           "properties": {
-            "qsiId": "QSI-2026-18610",
+            "qsiId": "QSI-2026-42817",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -420,7 +420,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-18612",
+            "qsiId": "QSI-2026-42820",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -447,7 +447,34 @@
             "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
           },
           "properties": {
-            "qsiId": "QSI-2026-18613",
+            "qsiId": "QSI-2026-42821",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "rustix 1.1.4 затронут RUSTSEC-2026-0486 (без оценки серьёзности) (dependency: crates.io/rustix@1.1.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a3bce719731ef49c5ca9f79fe8cada42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-42825",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -474,7 +501,7 @@
             "qsiFindingKey/v1": "9fce5be859a94bc76baa1e3c800cd571"
           },
           "properties": {
-            "qsiId": "QSI-2026-18622",
+            "qsiId": "QSI-2026-42832",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -501,7 +528,7 @@
             "qsiFindingKey/v1": "67973567a2d3929f8a65f995e1e7aa91"
           },
           "properties": {
-            "qsiId": "QSI-2026-18624",
+            "qsiId": "QSI-2026-42834",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -528,7 +555,7 @@
             "qsiFindingKey/v1": "64c1fd5f38431b58ce6bc40e7e4e227e"
           },
           "properties": {
-            "qsiId": "QSI-2026-18625",
+            "qsiId": "QSI-2026-42835",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -555,7 +582,7 @@
             "qsiFindingKey/v1": "ddd2290dd11a4be2cd0d1df793f0d2ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-18626",
+            "qsiId": "QSI-2026-42836",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -582,7 +609,7 @@
             "qsiFindingKey/v1": "d382b3b77376d5f430467a2dda781ead"
           },
           "properties": {
-            "qsiId": "QSI-2026-18627",
+            "qsiId": "QSI-2026-42837",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -609,7 +636,7 @@
             "qsiFindingKey/v1": "4dc3d97a34bcaae0c74ae12fdc154561"
           },
           "properties": {
-            "qsiId": "QSI-2026-18628",
+            "qsiId": "QSI-2026-42838",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -636,7 +663,7 @@
             "qsiFindingKey/v1": "af7099f6a028cb26db55b7dda7ed86ea"
           },
           "properties": {
-            "qsiId": "QSI-2026-18629",
+            "qsiId": "QSI-2026-42839",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -663,7 +690,7 @@
             "qsiFindingKey/v1": "f9c8da51df1c7bb095d219042d1c82ee"
           },
           "properties": {
-            "qsiId": "QSI-2026-18630",
+            "qsiId": "QSI-2026-42840",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -690,7 +717,7 @@
             "qsiFindingKey/v1": "d6ac7e8d63f0f129f6fc20b7d503cca8"
           },
           "properties": {
-            "qsiId": "QSI-2026-18631",
+            "qsiId": "QSI-2026-42841",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -717,7 +744,7 @@
             "qsiFindingKey/v1": "6f7f35cf9b55ea6dc2311fe171f62a01"
           },
           "properties": {
-            "qsiId": "QSI-2026-18632",
+            "qsiId": "QSI-2026-42842",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -744,7 +771,7 @@
             "qsiFindingKey/v1": "29aeb0f151232cc86bd2fd6047e19579"
           },
           "properties": {
-            "qsiId": "QSI-2026-18633",
+            "qsiId": "QSI-2026-42843",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -771,7 +798,7 @@
             "qsiFindingKey/v1": "93aaa6f71615d11ec32093f39cfdd5ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-18634",
+            "qsiId": "QSI-2026-42844",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -798,7 +825,7 @@
             "qsiFindingKey/v1": "0769c594012687558b7f6995d6b1f215"
           },
           "properties": {
-            "qsiId": "QSI-2026-18635",
+            "qsiId": "QSI-2026-42845",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -825,7 +852,7 @@
             "qsiFindingKey/v1": "71976817d2bf587b4a2e06fc1dbdab81"
           },
           "properties": {
-            "qsiId": "QSI-2026-18636",
+            "qsiId": "QSI-2026-42846",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -852,7 +879,7 @@
             "qsiFindingKey/v1": "8d11754f30834ec723fd49617ffb55ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-18637",
+            "qsiId": "QSI-2026-42847",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -869,8 +896,35 @@
           ]
         },
         {
-          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
           "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "chrono 0.4.45: информационный бюллетень RUSTSEC-2026-0543 (unmaintained) (dependency: crates.io/chrono@0.4.45)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7439bae337a673be840331b9becf8856"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-42819",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "4 бюллетеней в 3 пакет(ах) crates.io, нужных только для разработки или сборки (dependencies: crates.io:non-runtime)"
@@ -879,7 +933,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-18638",
+            "qsiId": "QSI-2026-42848",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -897,7 +951,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "basic-toml 0.1.10: информационный бюллетень RUSTSEC-2026-0374 (unmaintained) (dependency: crates.io/basic-toml@0.1.10)"
@@ -906,7 +960,7 @@
             "qsiFindingKey/v1": "1d63cfcd48c7e84b490d9525503f6555"
           },
           "properties": {
-            "qsiId": "QSI-2026-18611",
+            "qsiId": "QSI-2026-42818",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -924,7 +978,34 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "humantime 2.4.0: информационный бюллетень RUSTSEC-2026-0542 (unmaintained) (dependency: crates.io/humantime@2.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c651e612202a9aa743853aa6459b7ac9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-42822",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained) (dependency: crates.io/proc-macro-error2@2.0.1)"
@@ -933,7 +1014,7 @@
             "qsiFindingKey/v1": "8412cde0bf828d754dd3b306bfe8c506"
           },
           "properties": {
-            "qsiId": "QSI-2026-18614",
+            "qsiId": "QSI-2026-42823",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -951,13 +1032,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/rage @ b5b68c4f4f7e/07a13a9e-9999-4585-9e33-47a24be169ee"
+        "id": "qsi/rage @ b5b68c4f4f7e/379c4b7b-490d-4558-95fa-b83fe9789aa9"
       },
       "properties": {
-        "qsiContentSha256": "dbd2c6df52207712f1309e15dc6cc70cdf4862fa5fc16ef83f11ff9fb2c78d1b",
+        "qsiContentSha256": "16db84ba1beba5d3450133fd6e0ab59e5b89b39b4a6eb27d5d93bd50a12ca0ca",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:47:11.831513+00:00",
+        "qsiGeneratedAt": "2026-11-23T12:58:16.965104+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

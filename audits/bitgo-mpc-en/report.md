@@ -4,20 +4,20 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-06 13:07 UTC |
+| Report date | 2026-11-23 12:13 UTC |
 | Report version | 1 |
-| Audit run | 980a7b12-7ec0-4f62-b276-d26b5b3682bb (Document audit) |
-| Analyzer engine | qsi-engine 1.3.0 |
+| Audit run | cdf1b35f-96b0-4192-bed3-81c3087e0c44 (Document audit) |
+| Analyzer engine | qsi-engine 1.16.2 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `f8f2e2574890ff040403aa8ba0940c2f5b27f6b29d8df2b377fe1aef38da40b8` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| Content SHA-256 | `8eaa8a893fdc4854cd2247a79df324a5b140cd5d5161a3790795405c871ba735` |
+| Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
 - High: **0**
-- Medium: **9**
+- Medium: **10**
 - Low: **0**
 - Info: **1**
 
@@ -25,13 +25,13 @@
 - Known vulnerable component: 0
 - Confirmed configuration error: 0
 - Potential cryptographic risk: 0
-- Long-term post-quantum risk: 9
+- Long-term post-quantum risk: 10
 - Improvement recommendation: 0
 - Insufficient data: 1
 
 Mosca's inequality (x + y > z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
 
-Analyst review: 9 confirmed, 0 not applicable, 0 dismissed as false positives.
+Analyst review: 10 confirmed, 0 not applicable, 0 dismissed as false positives.
 
 **Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
@@ -48,10 +48,12 @@ Repository: <https://github.com/BitGo/BitGoJS> @ `3c892fd6a388da22a046a8470f0e1f
 | Area | Status | Count | Examples |
 |---|---|---|---|
 | dependencies | checked | 3 | modules/sdk-core/package.json: 36 dependencies parsed (13 pinned); modules/sdk-lib-mpc/package.json: 30 dependencies parsed (22 pinned); package.json: 59 dependencies parsed (7 pinned) |
-| source_code | checked | 268 | modules/sdk-core/src/account-lib/baseCoin/baseKeyPair.ts: 30 lines scanned with 16 rule patterns and 266 registry patterns; modules/sdk-core/src/account-lib/baseCoin/baseTransaction.ts: 101 lines scanned with 16 rule patterns and 266 registry patterns; modules/sdk-core/src/account-lib/baseCoin/baseTransactionBuilder.ts: 222 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | checked | 268 | modules/sdk-core/src/account-lib/baseCoin/baseKeyPair.ts: 30 lines scanned with 16 rule patterns and 340 registry patterns; modules/sdk-core/src/account-lib/baseCoin/baseTransaction.ts: 101 lines scanned with 16 rule patterns and 340 registry patterns; modules/sdk-core/src/account-lib/baseCoin/baseTransactionBuilder.ts: 222 lines scanned with 16 rule patterns and 340 registry patterns |
 | keys | error (not checked) | 16 | modules/sdk-core/src/bitgo/trading/network/encrypt.ts line 19: public key could not be parsed (ValueError); modules/sdk-core/src/bitgo/trading/network/encrypt.ts line 45: public key could not be parsed (ValueError); modules/sdk-core/src/bitgo/tss/bitgoPubKeys.ts line 8: OpenPGP key block could not be parsed |
 | certificates_and_keys | checked | 2 | modules/sdk-core/src/bitgo/trading/network/encrypt.ts: certificates/keys parsed; modules/sdk-core/src/bitgo/tss/bitgoPubKeys.ts: certificates/keys parsed |
 | entropy | checked | 1 | random-number generation: 268 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| mpc | checked | 1 | Paillier in 18 file(s), 11 in a multi-party context; modulus proofs present |
+| crediting | checked | 1 | payment crediting: 7 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 1 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
 | osv_advisories | checked | 1 | 32 pinned packages queried at OSV.dev; 0 affected |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -82,18 +84,18 @@ Static review of the source tree bitgo-mpc-en at 3c892fd6a388da22a046a8470f0e1f3
 ## 6. Overall security posture
 
 - Indicative posture index: **100** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 73.1%
+- Quantum-vulnerable share of inventory: 73.2%
 
 ## 7. Detailed findings
 
-### QSI-2026-17896 — Quantum-vulnerable RSA: key wrapping and data encryption at rest (1 file(s))
+### QSI-2026-41741 — Quantum-vulnerable RSA: key wrapping and data encryption at rest (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Correct and specific enough to act on: modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts imports an SPKI PEM public key through WebCrypto with { name: 'RSA-OAEP', hash: 'SHA-256' } and usage ['encrypt'], deliberately reading window.crypto in the browser because crypto-browserify does not implement it. So this is RSA-OAEP key wrapping toward a server key in the trading network, and the ciphertext is transmitted and may be retained — harvest-now-decrypt-later, and the first candidate for a hybrid KEM because it is a client-to-server channel the vendor controls at both ends.
 - Affected asset: `source-code:RSA:key_wrapping`
 - Data source: modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 43.4 / 100
 - CVSS v3.1: not applicable
 
@@ -131,14 +133,14 @@ _file_excerpt · [modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17890 — Quantum-vulnerable Ed25519: transaction and message signing (2 file(s))
+### QSI-2026-41735 — Quantum-vulnerable Ed25519: transaction and message signing (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** account-lib/baseCoin/ed25519KeyPair.ts and baseCoin/index.ts — transaction signing on the Ed25519 chains. Small row count, same migration class as the secp256k1 signing rows.
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -176,14 +178,14 @@ _file_excerpt · [modules/sdk-core/src/account-lib/baseCoin/index.ts](https://gi
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17891 — Quantum-vulnerable ECDSA: transaction and message signing (10 file(s))
+### QSI-2026-41736 — Quantum-vulnerable ECDSA: transaction and message signing (10 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Two roles, both correct. Transaction and message signing: account-lib/baseCoin/secp256k1ExtendedKeyPair.ts, account-lib/util/crypto.ts, bitgo/ecdh.ts and bitgo/utils/tss/addressVerification.ts. Threshold signing and MPC: account-lib/mpc/curves/index.ts, account-lib/mpc/tss/ecdsa/ecdsa.ts and bitgo/utils/tss/ecdsa/{base,ecdsa}.ts. A CRQC derives the private key from a public key that is already on chain after the first spend, so for a custodian the exposure is proportional to how much of its address set has ever been spent from.
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: modules/sdk-core/src/account-lib/baseCoin/secp256k1ExtendedKeyPair.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -284,14 +286,14 @@ _file_excerpt · [modules/sdk-core/src/bitgo/wallet/wallet.ts](https://github.co
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17892 — Quantum-vulnerable ECDSA: threshold signing and MPC protocols (10 file(s))
+### QSI-2026-41737 — Quantum-vulnerable ECDSA: threshold signing and MPC protocols (10 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Two roles, both correct. Transaction and message signing: account-lib/baseCoin/secp256k1ExtendedKeyPair.ts, account-lib/util/crypto.ts, bitgo/ecdh.ts and bitgo/utils/tss/addressVerification.ts. Threshold signing and MPC: account-lib/mpc/curves/index.ts, account-lib/mpc/tss/ecdsa/ecdsa.ts and bitgo/utils/tss/ecdsa/{base,ecdsa}.ts. A CRQC derives the private key from a public key that is already on chain after the first spend, so for a custodian the exposure is proportional to how much of its address set has ever been spent from.
 - Affected asset: `source-code:ECDSA:threshold_mpc`
 - Data source: modules/sdk-core/src/account-lib/mpc/curves/index.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -392,14 +394,14 @@ _file_excerpt · [modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2.ts](http
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17893 — Quantum-vulnerable Paillier: threshold signing and MPC protocols (14 file(s))
+### QSI-2026-41738 — Quantum-vulnerable Paillier: threshold signing and MPC protocols (14 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** 42 references across 14 files, and the file list is the point: besides the protocol (account-lib/mpc/tss/ecdsa/{ecdsa,types}.ts) it reaches bitgo/keychain/{iKeychains,keychains}.ts, i.e. the keychain representation. Paillier material that is persisted is a harvest-now-decrypt-later item, not only a future-signing one. As with the other two custodian libraries, this is the row a post-quantum signature standard does not fix: Paillier underpins the threshold protocol, NIST's 2024 standards are single-signer, and the multi-party threshold effort has not produced one.
 - Affected asset: `source-code:Paillier:threshold_mpc`
 - Data source: modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -500,14 +502,14 @@ _file_excerpt · [modules/sdk-core/src/bitgo/keychain/keychains.ts](https://gith
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17894 — Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (16 file(s))
+### QSI-2026-41739 — Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (16 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The largest row here — 215 references across 16 files — spanning account-lib/mpc/util.ts, bitgo/baseCoin/iBaseCoin.ts, bitgo/keychain/keychains.ts, bitgo/pendingApproval/pendingApproval.ts and the tss modules. It is correct by the product's purpose, and the spread through pending approvals and base coin interfaces shows why a migration is not confined to a crypto module: the threshold scheme's identity is baked into the SDK's public types, so changing it is an API-compatibility exercise across every integrating customer.
 - Affected asset: `source-code:Threshold ECDSA:threshold_mpc`
 - Data source: modules/sdk-core/src/account-lib/mpc/util.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -609,14 +611,75 @@ _file_excerpt · [modules/sdk-core/src/bitgo/tss/ecdsa/ecdsaMPCv2.ts](https://gi
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17898 — Quantum-vulnerable X25519: threshold signing and MPC protocols (2 file(s))
+### QSI-2026-41743 — Quantum-vulnerable Ed25519: threshold signing and MPC protocols (3 file(s))
+
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** account-lib/baseCoin/ed25519KeyPair.ts and baseCoin/index.ts — transaction signing on the Ed25519 chains. Small row count, same migration class as the secp256k1 signing rows.
+- Affected asset: `source-code:Ed25519:threshold_mpc`
+- Data source: modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
+- Priority score: 41.8 / 100
+- CVSS v3.1: not applicable
+
+4 reference(s) to Ed25519 across 3 file(s), e.g. modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts:16. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts:16 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts](https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts#L16) · line 16 · SHA-256 49fd02f8be31975d12cadb904fe54d8fff40d0b41030d7dd065d2d92a9f1002b_
+
+```
+   15 | import { EddsaMPCv2KeyGenCallbacks } from '../../../wallet/iWallets';
+   16 | import { ed25519 } from '@noble/curves/ed25519';
+   17 | import { EddsaMPSDkg, EddsaMPSDsg, MPSComms, MPSTypes, MPSUtil } from '@bitgo/sdk-lib-mpc';
+```
+
+_file_excerpt · [modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts](https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsaMPCv2.ts#L1538) · line 1538 · SHA-256 3c897a4146e78ac76346e6cb584b7db26316e5773df3c5ec75a87d524a65e121_
+
+```
+ 1537 | 
+ 1538 |   const verified = ed25519.verify(new Uint8Array(signature), new Uint8Array(message), new Uint8Array(publicKeyBytes));
+ 1539 |   if (!verified) {
+```
+
+_file_excerpt · [modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts](https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts#L3) · line 3 · SHA-256 3ea9cc6dfb31dbd50b0077646438f05084cd46e56039edb8d217cf41ef6fdec3_
+
+```
+    2 | import assert from 'assert';
+    3 | import { x25519 } from '@noble/curves/ed25519';
+    4 | import { DKG } from './dkg';
+```
+
+_file_excerpt · [modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts](https://github.com/BitGo/BitGoJS/blob/3c892fd6a388da22a046a8470f0e1f35999e4ed4/modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts#L3) · line 3 · SHA-256 a8787f3fa5393c76bf6722126e120557397e05469cb4f7027926e383f780dccd_
+
+```
+    2 | import assert from 'assert';
+    3 | import { x25519 } from '@noble/curves/ed25519';
+    4 | import { RedPallasDKG } from './dkg';
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-41744 — Quantum-vulnerable X25519: threshold signing and MPC protocols (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts and redpallas-mps/util.ts — the multi-party signing helpers for EdDSA and for RedPallas, the Zcash Orchard signature scheme. Worth noting for its own sake: a custodian supporting Zcash shielded signing carries the same discrete-log exposure there as everywhere else, and Orchard's own post-quantum future is the subject of Shielded Labs' Epoch rather than of this SDK.
 - Affected asset: `source-code:X25519:threshold_mpc`
 - Data source: modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -670,14 +733,14 @@ _file_excerpt · [modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts](https://git
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17895 — Quantum-vulnerable ECDSA: role not determined (2 file(s))
+### QSI-2026-41740 — Quantum-vulnerable ECDSA: role not determined (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Role resolved, and it is a storage role rather than a signing one, which changes its priority. modules/sdk-core/src/bitgo/utils/opengpgUtils.ts wraps OpenPGP: it fetches BitGo's GPG public key (getBitgoGpgPubKey), encrypts and signs messages, and verifies share proofs over 'eddsa' | 'ecdsa' (verifyShareProof, verifySharedDataProof). That is how TSS key shares and their proofs are protected in transit and at rest, so harvest-now-decrypt-later applies: anything captured today is readable once a CRQC exists. The second anchor, bitgo/bip32util.ts, is BIP-32 key handling over @bitgo/secp256k1. Fixable today with a hybrid KEM around the share wrapping, independently of any signature migration.
 - Affected asset: `source-code:ECDSA:general`
 - Data source: modules/sdk-core/src/bitgo/bip32util.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -730,13 +793,13 @@ _file_excerpt · [modules/sdk-core/src/bitgo/utils/opengpgUtils.ts](https://gith
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17897 — Quantum-vulnerable RedDSA: threshold signing and MPC protocols (2 file(s))
+### QSI-2026-41742 — Quantum-vulnerable RedDSA: threshold signing and MPC protocols (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RedDSA:threshold_mpc`
 - Data source: modules/sdk-core/src/bitgo/utils/tss/baseTSSUtils.ts
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -774,14 +837,14 @@ _file_excerpt · [modules/sdk-core/src/bitgo/utils/tss/redpallas/redpallasMPCv2K
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17899 — No post-quantum capable cryptographic library detected
+### QSI-2026-41745 — No post-quantum capable cryptographic library detected
 
 - Severity: **Info** · Classification: Insufficient data · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Accurate: across the three audited manifests (sdk-core, sdk-lib-mpc and the root package.json) the declared cryptography is @noble/curves, secp256k1 and tweetnacl, with nothing PQC-capable. In the JavaScript ecosystem, unlike on the Cortex-M targets in this portfolio, ML-KEM implementations are available (@noble/post-quantum among them), so for the key-wrapping rows above — OpenPGP share protection and the RSA-OAEP trading channel — a hybrid is a dependency choice today rather than a research problem. That makes this gap cheaper to close here than anywhere else in the custody slice, and it should be sequenced first.
 - Affected asset: `dependencies`
 - Data source: dependency manifests
 - Detection method: Dependency name matching.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:07 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:13 UTC
 - Priority score: 15.0 / 100
 - CVSS v3.1: not applicable
 
@@ -834,7 +897,7 @@ _Planning assumptions: x for key establishment, x for signatures, y are the defa
 ### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
 
 - Classical only — key wrapping and data encryption at rest: RSA (1 file(s))
-- Classical only — threshold signing and MPC protocols: ECDSA, Paillier, RedDSA, Threshold ECDSA, X25519 (38 file(s))
+- Classical only — threshold signing and MPC protocols: ECDSA, Ed25519, Paillier, RedDSA, Threshold ECDSA, X25519 (39 file(s))
 
 **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
@@ -844,10 +907,10 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **key wrapping and data encryption at rest** | RSA (1) | QSI-2026-17896 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **threshold signing and MPC protocols** | Threshold ECDSA (16), Paillier (14), ECDSA (10), RedDSA (2), X25519 (2) | QSI-2026-17892, QSI-2026-17893, QSI-2026-17894, QSI-2026-17897, QSI-2026-17898 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
-| **transaction and message signing** | ECDSA (10), Ed25519 (2) | QSI-2026-17890, QSI-2026-17891 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | ECDSA (2) | QSI-2026-17895 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | RSA (1) | QSI-2026-41741 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **threshold signing and MPC protocols** | Threshold ECDSA (16), Paillier (14), ECDSA (10), Ed25519 (3), RedDSA (2), X25519 (2) | QSI-2026-41737, QSI-2026-41738, QSI-2026-41739, QSI-2026-41742, QSI-2026-41743, QSI-2026-41744 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
+| **transaction and message signing** | ECDSA (10), Ed25519 (2) | QSI-2026-41735, QSI-2026-41736 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | ECDSA (2) | QSI-2026-41740 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -857,8 +920,8 @@ No readiness questionnaire was completed for this project.
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
 | Shor's algorithm — factoring | breaks | Q1 | Paillier (14), RSA (3) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (1), ECDSA (23), Ed25519 (7), RedDSA (2), Threshold ECDSA (16), X25519 (2) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (2), HMAC (4), SHA-2 (12) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (1), ECDSA (23), Ed25519 (10), RedDSA (2), Threshold ECDSA (16), X25519 (2) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (2), HMAC (4), PBKDF2 (1), SHA-2 (12) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | SHA-2 (12) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 | Simon's algorithm — superposition attacks on symmetric constructions | only with superposition queries | Q2 | GCM mode (2) | No action for ordinary deployments of AES-GCM or CBC-MAC — the attack model does not apply. Record it as a model assumption; see the offline variant for Even–Mansour-type designs. |
 
@@ -900,24 +963,26 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-17896 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17890 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17891 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17892 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17893 | Add Paillier usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17894 | Add Threshold ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17898 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17895 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17897 | Add RedDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-17896 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17890 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17891 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17892 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17893 | Plan migration of Paillier to No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) or a hybrid scheme in use. |
-| P4 | QSI-2026-17894 | Plan migration of Threshold ECDSA to The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design or a hybrid scheme in use. |
-| P4 | QSI-2026-17898 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-17895 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17897 | Plan migration of RedDSA to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P3 | QSI-2026-41741 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41735 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41736 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41737 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41738 | Add Paillier usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41739 | Add Threshold ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41743 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41744 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41740 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41742 | Add RedDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-41741 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41735 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41736 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41737 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41738 | Plan migration of Paillier to No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) or a hybrid scheme in use. |
+| P4 | QSI-2026-41739 | Plan migration of Threshold ECDSA to The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design or a hybrid scheme in use. |
+| P4 | QSI-2026-41743 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41744 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41740 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41742 | Plan migration of RedDSA to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -925,13 +990,19 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -965,12 +1036,13 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 ## Appendices: Cryptographic inventory
 
-By origin: dependency manifests 5 (0 Shor-breakable) · own code 88 (68 Shor-breakable).
+By origin: dependency manifests 5 (0 Shor-breakable) · own code 92 (71 Shor-breakable).
 
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
 | AES-256 | AES-256 |  | reduced margin (Grover), approved | acceptable | 2 | 2 | modules/sdk-core/src/bitgo/trading/network/decrypt-aes-gcm.ts:25; modules/sdk-core/src/bitgo/trading/network/encrypt-aes-gcm.ts:18 |
 | HMAC |  |  | reduced margin (Grover), approved | acceptable | 4 | 4 | modules/sdk-core/src/bitgo/webauthn/deriveEnterpriseSalt.ts:22; modules/sdk-lib-mpc/src/curves/ed25519Bip32HdTree.ts:60; modules/sdk-lib-mpc/src/curves/secp256k1Bip32HdTree.ts:59 |
+| PBKDF2 | 200000 iterations |  | reduced margin (Grover), approved | acceptable | 1 | 1 | modules/sdk-core/src/bitgo/trading/network/utils.ts:41 |
 | SHA-2 | SHA-512 |  | reduced margin (Grover), approved | acceptable | 3 | 3 | modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts:95; modules/sdk-core/src/account-lib/mpc/tss/eddsa/eddsa.ts:86; modules/sdk-core/src/bitgo/safe/derivableEd25519Pub.ts:78 |
 | SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 9 | 9 | modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts:178; modules/sdk-core/src/bitgo/baseCoin/baseCoin.ts:533; modules/sdk-lib-mpc/src/hashCommitment.ts:29 |
 | Crypto library | 1.8.1 | @noble/curves (noble-curves) | n/a | acceptable | 2 | 2 | modules/sdk-core/package.json; modules/sdk-lib-mpc/package.json |
@@ -980,7 +1052,7 @@ By origin: dependency manifests 5 (0 Shor-breakable) · own code 88 (68 Shor-bre
 | ECDH |  |  | vulnerable (Shor) | acceptable | 1 | 1 | modules/sdk-core/src/bitgo/ecdh.ts |
 | ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 19 | 19 | modules/sdk-core/src/account-lib/baseCoin/secp256k1ExtendedKeyPair.ts:1; modules/sdk-core/src/account-lib/mpc/curves/index.ts:3; modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts:3 |
 | ECDSA |  |  | vulnerable (Shor) | acceptable | 4 | 4 | modules/sdk-core/src/bitgo/tss/ecdsa/ecdsa.ts; modules/sdk-core/src/bitgo/utils/util.ts:196; modules/sdk-core/src/bitgo/wallet/iWallet.ts:1403 |
-| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 4 | 4 | modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts:16; modules/sdk-core/src/account-lib/baseCoin/index.ts:6; modules/sdk-core/src/account-lib/mpc/curves/ed25519.ts |
+| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 7 | 7 | modules/sdk-core/src/account-lib/baseCoin/ed25519KeyPair.ts:16; modules/sdk-core/src/account-lib/baseCoin/index.ts:6; modules/sdk-core/src/account-lib/mpc/curves/ed25519.ts |
 | Ed25519 |  |  | vulnerable (Shor) | acceptable | 3 | 3 | modules/sdk-core/src/account-lib/mpc/tss/eddsa/eddsa.ts; modules/sdk-core/src/bitgo/tss/eddsa/eddsa.ts; modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsa.ts |
 | Paillier |  |  | vulnerable (Shor) | acceptable | 14 | 14 | modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts:1; modules/sdk-core/src/account-lib/mpc/tss/ecdsa/types.ts:45; modules/sdk-core/src/bitgo/keychain/iKeychains.ts:237 |
 | RSA |  |  | vulnerable (Shor) | acceptable | 3 | 3 | modules/sdk-core/src/bitgo/trading/network/decrypt-rsa.ts; modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts:33; modules/sdk-core/src/bitgo/trading/network/encrypt-rsa.ts |

@@ -4,20 +4,20 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-06 13:11 UTC |
+| Дата отчёта | 2026-11-23 12:20 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 10ce6b79-b965-4f6f-b595-93cdbcac3fb0 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.3.0 |
+| Запуск аудита | 1bcc9b1a-eb97-4b19-a80a-d670acbfccee (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.16.2 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `30857ab4a6ad6b67bcd5d68ff21a17577fef7b50e63cb6a8d0f2cf6f729c8462` |
-| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| SHA-256 содержимого | `50aba3c226373904e9dadd2a262825a5b7a54fccf7d9caba03cab53d4f50593c` |
+| Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **11**
+- Средняя: **12**
 - Низкая: **0**
 - Информационная: **0**
 
@@ -25,7 +25,7 @@
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 11
+- Долгосрочный постквантовый риск: 12
 - Рекомендация по улучшению: 0
 - Недостаточность данных: 0
 
@@ -47,8 +47,9 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 174 | include-internal/cbmpc/internal/core/convert.h: 307 lines scanned with 16 rule patterns and 266 registry patterns; include-internal/cbmpc/internal/core/extended_uint.h: 54 lines scanned with 16 rule patterns and 266 registry patterns; include-internal/cbmpc/internal/core/log.h: 124 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | проверено | 174 | include-internal/cbmpc/internal/core/convert.h: 307 lines scanned with 16 rule patterns and 340 registry patterns; include-internal/cbmpc/internal/core/extended_uint.h: 54 lines scanned with 16 rule patterns and 340 registry patterns; include-internal/cbmpc/internal/core/log.h: 124 lines scanned with 16 rule patterns and 340 registry patterns |
 | entropy | проверено | 1 | random-number generation: 174 code files read with 24 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| mpc | проверено | 1 | Paillier in 23 file(s), 7 in a multi-party context; modulus proofs present |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -67,14 +68,14 @@ Static review of the source tree coinbase-cb-mpc at 0b716706f998633912ee2be9b9bf
 
 ## 7. Подробное описание находок
 
-### QSI-2026-17961 — Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (5 файл(ов))
+### QSI-2026-41850 — Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (5 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The highest-urgency class in this repository, and it is not signing. The anchors are the publicly verifiable encryption paths — include-internal/cbmpc/internal/protocol/pve_base.h:213 calls prv_key.ecdh(...) and checks a 32-byte output, and src/cbmpc/api/{pve_base_pke,pve_batch_ac, pve_batch_single_recipient}.cpp plus pve_internal.h:154 all guard on "missing HSM ECIES ECDH callback". PVE is how key shares are encrypted to a recipient for backup and escrow, so the ciphertexts are stored. Harvest-now-decrypt-later applies in full: a copy taken today of an encrypted share set becomes plaintext once a CRQC exists, and no later migration undoes that. Unlike a signature scheme, this can be fixed today by wrapping the share under a hybrid KEM, which makes it the first thing to do rather than the hardest — and nearer than it looks, because this repository already implements ML-KEM-768 without the PVE path using it. See the DEP-NO-PQC-LIBRARY decision below.
 - Затронутый актив: `source-code:ECDH:key_wrapping`
 - Источник данных: include-internal/cbmpc/internal/protocol/pve_base.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 43.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -136,14 +137,14 @@ _file_excerpt · [src/cbmpc/api/pve_internal.h](https://github.com/coinbase/cb-m
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17956 — Квантово-уязвимый Paillier: пороговая подпись и протоколы MPC (15 файл(ов))
+### QSI-2026-41844 — Квантово-уязвимый Paillier: пороговая подпись и протоколы MPC (15 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Correct, with a parameter worth quoting: include-internal/cbmpc/internal/crypto/base_paillier.h declares class paillier_t with static constexpr int bit_size = 2048, so the modulus is 2048 bits and Shor's algorithm faces exactly the problem it faces for RSA-2048. The evidence is real implementation rather than a name match — base_paillier.h, zk/zk_paillier.h's valid_paillier_t, and the key structures in protocol/ecdsa_2p.h and hd_keyset_ecdsa_2p.h, which each hold a crypto::paillier_t and its c_key. This is the row that a post-quantum *signature* standard does not help with: Paillier is the homomorphic encryption the two-party ECDSA protocol is built on, so replacing it is a protocol redesign, and NIST's 2024 standards (ML-DSA, SLH-DSA) are single-signer schemes that do not offer a drop-in replacement.
 - Затронутый актив: `source-code:Paillier:threshold_mpc`
 - Источник данных: include-internal/cbmpc/internal/crypto/base_bn.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -245,14 +246,14 @@ _file_excerpt · [include-internal/cbmpc/internal/zk/zk_paillier.h](https://gith
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17959 — Квантово-уязвимый Threshold ECDSA: пороговая подпись и протоколы MPC (13 файл(ов))
+### QSI-2026-41848 — Квантово-уязвимый Threshold ECDSA: пороговая подпись и протоколы MPC (13 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The claim is right — cb-mpc is a threshold ECDSA library and these 13 files are its protocol surface (api/ecdsa_2p.h, api/ecdsa_mp.h, internal/protocol/ecdsa_2p.h, ecdsa_mp.h, hd_keyset_ecdsa_2p.h) — but the cited evidence is weaker than the claim and a reader should know which is which. Most anchors are namespace declarations and their closing braces (namespace coinbase::api::ecdsa_2p, coinbase::mpc::ecdsampc), so the row follows from the library's purpose rather than from the quoted line. The substantive evidence for this class is in the Paillier and Pedersen rows above, which cite implementations. Confirmed on that basis, and the detector would serve better by anchoring on the protocol functions.
 - Затронутый актив: `source-code:Threshold ECDSA:threshold_mpc`
 - Источник данных: include-internal/cbmpc/internal/protocol/ecdsa_2p.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -350,14 +351,14 @@ _file_excerpt · [include/cbmpc/api/ecdsa_mp.h](https://github.com/coinbase/cb-m
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17960 — Квантово-уязвимый Ed25519: пороговая подпись и протоколы MPC (9 файл(ов))
+### QSI-2026-41849 — Квантово-уязвимый Ed25519: пороговая подпись и протоколы MPC (9 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Threshold EdDSA, which the library implements alongside threshold ECDSA: api/eddsa_2p.h, internal/protocol/eddsa.h (which includes schnorr_mp.h), hd_keyset_eddsa_2p.h and src/cbmpc/api/eddsa2pc.cpp, where blob_to_key validates the key blob role. Same conclusion as threshold ECDSA and the same caveat about namespace anchors; the protocol is a Schnorr-style multiparty scheme over Ed25519, so Shor breaks both the signature and the discrete-log proofs around it.
 - Затронутый актив: `source-code:Ed25519:threshold_mpc`
 - Источник данных: include-internal/cbmpc/internal/protocol/eddsa.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -457,14 +458,14 @@ _file_excerpt · [src/cbmpc/api/hd_keyset_eddsa_2p.cpp](https://github.com/coinb
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17962 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))
+### QSI-2026-41851 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Correct and anchored on real parameter generation, not a mention: src/cbmpc/zk/zk_pedersen.cpp constructs pedersen_commitment_params_t with primes generated via BN_generate_prime_ex (the comment names the OpenSSL function), zk_pedersen.h:13 exposes get() and check_safe_prime_subgroup, and both src/cbmpc/protocol/ecdsa_2p.cpp:28 and src/cbmpc/zk/zk_paillier.cpp:537 pull those parameters. Stated precisely, because the distinction decides how bad this is: breaking the discrete log costs a Pedersen commitment its *binding* property, not its hiding — the commitment is perfectly hiding, so no committed value is recoverable from it even with a CRQC. The exposure is forgeability inside the proofs, i.e. future protocol soundness, not retroactive disclosure.
 - Затронутый актив: `source-code:Pedersen commitment:threshold_mpc`
 - Источник данных: include-internal/cbmpc/internal/zk/zk_pedersen.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -550,14 +551,14 @@ _file_excerpt · [src/cbmpc/zk/zk_pedersen.cpp](https://github.com/coinbase/cb-m
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17963 — Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (3 файл(ов))
+### QSI-2026-41852 — Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Plain (non-threshold) ECDSA on secp256k1 inside the Schnorr two-party API: src/cbmpc/api/schnorr2pc.cpp:31 and :48 validate and write blob.curve against curve_id::secp256k1 and serialise key.Q compressed. Key-blob handling for the signing keys, so the same migration item as the threshold rows; counted separately because it is the serialisation format, which is where a migration needs a version bump.
 - Затронутый актив: `source-code:ECDSA:threshold_mpc`
 - Источник данных: src/cbmpc/api/schnorr2pc.cpp
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -643,14 +644,14 @@ _file_excerpt · [src/cbmpc/protocol/schnorr_2p.cpp](https://github.com/coinbase
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17965 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))
+### QSI-2026-41854 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Plain (non-threshold) ECDSA on secp256k1 inside the Schnorr two-party API: src/cbmpc/api/schnorr2pc.cpp:31 and :48 validate and write blob.curve against curve_id::secp256k1 and serialise key.Q compressed. Key-blob handling for the signing keys, so the same migration item as the threshold rows; counted separately because it is the serialisation format, which is where a migration needs a version bump.
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: src/cbmpc/crypto/base_ecc_secp256k1.cpp
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -696,14 +697,14 @@ _file_excerpt · [src/cbmpc/crypto/base_ecc_secp256k1.cpp](https://github.com/co
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17957 — Квантово-уязвимый ECDSA: роль не определена (6 файл(ов))
+### QSI-2026-41845 — Квантово-уязвимый ECDSA: роль не определена (6 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Plain (non-threshold) ECDSA on secp256k1 inside the Schnorr two-party API: src/cbmpc/api/schnorr2pc.cpp:31 and :48 validate and write blob.curve against curve_id::secp256k1 and serialise key.Q compressed. Key-blob handling for the signing keys, so the same migration item as the threshold rows; counted separately because it is the serialisation format, which is where a migration needs a version bump.
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: include-internal/cbmpc/internal/crypto/base_ecc.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -805,14 +806,14 @@ _file_excerpt · [src/cbmpc/crypto/base_ecc.cpp](https://github.com/coinbase/cb-
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17964 — Квантово-уязвимый Ed25519: роль не определена (3 файл(ов))
+### QSI-2026-41853 — Квантово-уязвимый Ed25519: роль не определена (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Threshold EdDSA, which the library implements alongside threshold ECDSA: api/eddsa_2p.h, internal/protocol/eddsa.h (which includes schnorr_mp.h), hd_keyset_eddsa_2p.h and src/cbmpc/api/eddsa2pc.cpp, where blob_to_key validates the key blob role. Same conclusion as threshold ECDSA and the same caveat about namespace anchors; the protocol is a Schnorr-style multiparty scheme over Ed25519, so Shor breaks both the signature and the discrete-log proofs around it.
 - Затронутый актив: `source-code:Ed25519:general`
 - Источник данных: src/cbmpc/crypto/base_ecc.cpp
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -882,14 +883,14 @@ _file_excerpt · [src/cbmpc/protocol/schnorr_mp.cpp](https://github.com/coinbase
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17966 — Квантово-уязвимый RSA: роль не определена (1 файл(ов))
+### QSI-2026-41855 — Квантово-уязвимый RSA: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Role resolved. src/cbmpc/crypto/base_rsa.cpp implements rsa_pub_key_t with encrypt_raw (deliberately RSA_NO_PADDING, because it is a primitive for a higher-level scheme rather than a general-purpose encryption API), verify_pkcs1, and EVP_RSA_gen(bits) for generation. It is included by internal/crypto/base_pki.h and internal/crypto/base_paillier.h and exercised by tests/unit/api/test_pve.cpp, so this is the PKI layer underneath publicly verifiable encryption and the modulus arithmetic that Paillier is built on. Same quantum exposure as the Paillier row, for the same reason: Shor factors the composite modulus. Because PVE ciphertexts are stored, this inherits the harvest-now-decrypt-later urgency of the ECDH row rather than the lower urgency of a signing path.
 - Затронутый актив: `source-code:RSA:general`
 - Источник данных: src/cbmpc/crypto/base_rsa.cpp
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -927,13 +928,13 @@ _file_excerpt · [src/cbmpc/crypto/base_rsa.cpp](https://github.com/coinbase/cb-
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-17958 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))
+### QSI-2026-41846 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Schnorr (BIP-340):general`
 - Источник данных: include-internal/cbmpc/internal/crypto/base_ecc.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.3.0 · 2026-11-06 13:11 UTC
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -987,6 +988,98 @@ _file_excerpt · [src/cbmpc/crypto/base_ecc.cpp](https://github.com/coinbase/cb-
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
+### QSI-2026-41847 — Квантово-уязвимый EC-ElGamal: роль не определена (3 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:EC-ElGamal:general`
+- Источник данных: include-internal/cbmpc/internal/crypto/elgamal.h
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.16.2 · 2026-11-23 12:20 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+49 упоминаний EC-ElGamal в 3 файл(ах), например include-internal/cbmpc/internal/crypto/elgamal.h:7. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте include-internal/cbmpc/internal/crypto/elgamal.h:7 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [include-internal/cbmpc/internal/crypto/elgamal.h](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/elgamal.h#L7) · line 7 · SHA-256 46cdea10848480f029692e55723896e84af22104ab15a2324a95567451e8c077_
+
+```
+    6 | 
+    7 | class ec_elgamal_commitment_t {
+    8 |  public:
+```
+
+_file_excerpt · [include-internal/cbmpc/internal/crypto/elgamal.h](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/elgamal.h#L11) · line 11 · SHA-256 ef1d9a1a46639d3ae365598cc3361b889b64d988763a578070d2578cc1c414af_
+
+```
+   10 | 
+   11 |   ec_elgamal_commitment_t() {}
+   12 |   ec_elgamal_commitment_t(const ecc_point_t& _U, const ecc_point_t& _R) : L(_U), R(_R) {}
+```
+
+_file_excerpt · [include-internal/cbmpc/internal/crypto/elgamal.h](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/elgamal.h#L12) · line 12 · SHA-256 ce66079707a78c46e3a4ed941601652d252068f48d93c747b3fb15cce39a5db3_
+
+```
+   11 |   ec_elgamal_commitment_t() {}
+   12 |   ec_elgamal_commitment_t(const ecc_point_t& _U, const ecc_point_t& _R) : L(_U), R(_R) {}
+   13 | 
+```
+
+_file_excerpt · [src/cbmpc/crypto/elgamal.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/elgamal.cpp#L22) · line 22 · SHA-256 75376d46d89783846759bc63f9fe21da4a752e43818301311683c8dd38752c68_
+
+```
+   21 | 
+   22 | const mod_t& ec_elgamal_commitment_t::order(ecurve_t curve) { return curve.order(); }
+   23 | 
+```
+
+_file_excerpt · [src/cbmpc/crypto/elgamal.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/elgamal.cpp#L24) · line 24 · SHA-256 a3b448d922d34264e842828091bf573e4d3c5de938c6a97313c23092e5acbec9_
+
+```
+   23 | 
+   24 | std::tuple<ecc_point_t, bn_t> ec_elgamal_commitment_t::local_keygen(ecurve_t curve) {
+   25 |   cb_assert_elgamal_ct_curve(curve);
+```
+
+_file_excerpt · [src/cbmpc/crypto/elgamal.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/elgamal.cpp#L31) · line 31 · SHA-256 9e27773a635df7f65be85b9ff192509d36d71c55cde8ad0465fc13f792a3f6eb_
+
+```
+   30 | 
+   31 | ec_elgamal_commitment_t ec_elgamal_commitment_t::make_commitment(const ecc_point_t& P, const bn_t& m,
+   32 |                                                                  const bn_t& r)  // m - scalar, P - public key
+```
+
+_file_excerpt · [src/cbmpc/zk/zk_elgamal_com.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/zk/zk_elgamal_com.cpp#L143) · line 143 · SHA-256 4a8447dd8424dd6bb14a91dae3be1cd0c3d1beaa2552221b234825e5bff8001c_
+
+```
+  142 |   bn_t r3 = bn_t::rand(q);
+  143 |   auto R = crypto::ec_elgamal_commitment_t::commit(Q, r1).rand(r2);
+  144 |   auto A_tag = (r1 * A).rerand(Q, r3);
+```
+
+_file_excerpt · [src/cbmpc/zk/zk_elgamal_com.cpp](https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/zk/zk_elgamal_com.cpp#L172) · line 172 · SHA-256 500dffccd3e9040fb7c230c2f7f83aae0e554e33df1b38b0659b6970ce3f4159_
+
+```
+  171 | 
+  172 |   auto R = crypto::ec_elgamal_commitment_t::commit(Q, z1).rand(z2) - e * B;
+  173 |   auto A_tag = (z1 * A).rerand(Q, z3) - e * C;
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Постквантовые стандарты NIST охватывают инкапсуляцию ключей и подписи; аддитивно гомоморфного шифрования среди них нет. Суммы, зашифрованные так, следует считать со временем публичными, а хранение в реестре — сокращать; направление исследований — гомоморфные схемы на решётках; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
 
 ## 8. Постквантовая оценка
 
@@ -1024,10 +1117,10 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **обёртка ключей и шифрование хранимых данных** | ECDH (5) | QSI-2026-17961 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
-| **пороговая подпись и протоколы MPC** | Paillier (15), Threshold ECDSA (13), Ed25519 (9), Pedersen commitment (4), ECDSA (3) | QSI-2026-17956, QSI-2026-17959, QSI-2026-17960, QSI-2026-17962, QSI-2026-17963 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
-| **подпись транзакций и сообщений** | ECDSA (1) | QSI-2026-17965 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (6), Ed25519 (3), Schnorr (BIP-340) (2), RSA (1) | QSI-2026-17957, QSI-2026-17958, QSI-2026-17964, QSI-2026-17966 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **обёртка ключей и шифрование хранимых данных** | ECDH (5) | QSI-2026-41850 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
+| **пороговая подпись и протоколы MPC** | Paillier (15), Threshold ECDSA (13), Ed25519 (9), Pedersen commitment (4), ECDSA (3) | QSI-2026-41844, QSI-2026-41848, QSI-2026-41849, QSI-2026-41851, QSI-2026-41852 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
+| **подпись транзакций и сообщений** | ECDSA (1) | QSI-2026-41854 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDSA (6), EC-ElGamal (3), Ed25519 (3), Schnorr (BIP-340) (2), RSA (1) | QSI-2026-41845, QSI-2026-41846, QSI-2026-41847, QSI-2026-41853, QSI-2026-41855 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -1037,8 +1130,8 @@ _Роль определяется по путям файлов, именам ф
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
 | Алгоритм Шора — факторизация | взламывает | Q1 | Paillier (15), RSA (3) | Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей. |
-| Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | BN254 (alt_bn128) (2), ElGamal (4) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BN254 (alt_bn128) (2), ECDH (5), ECDSA (25), Ed25519 (20), Pedersen commitment (4), Schnorr (BIP-340) (2), Threshold ECDSA (13) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | BN254 (alt_bn128) (2), ElGamal (1) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BN254 (alt_bn128) (2), EC-ElGamal (3), ECDH (5), ECDSA (25), Ed25519 (20), Pedersen commitment (4), Schnorr (BIP-340) (2), Threshold ECDSA (13) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | AES-128 (1), AES-192 (1), AES-256 (1), BLAKE2 (1), HKDF (3), HMAC (1), RIPEMD-160 (1), SHA-1 (1), SHA-2 (2), SHA-3 (1) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | BLAKE2 (1), RIPEMD-160 (1), SHA-1 (1), SHA-2 (2), SHA-3 (1) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 | Квантовое решетчатое просеивание | учтено в стандартных параметрах | Q1 | ML-KEM (2) | Для ML-KEM и ML-DSA в стандартных наборах параметров ничего менять не нужно. Заявление 2024 года о полиномиальном квантовом алгоритме для LWE отозвано после обнаружения ошибки (см. заявления). |
@@ -1065,28 +1158,30 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-17961 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17956 | Внесите использования Paillier в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17959 | Внесите использования Threshold ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17960 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17962 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17963 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17965 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17957 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17964 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17966 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-17958 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-17961 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-17956 | Запланируйте миграцию Paillier на Стандартизованной постквантовой замены нет. Планируйте пороговые схемы над постквантовыми подписями по мере их зрелости (пороговый конкурс NIST, IR 8214C) или протоколы без Paillier (на основе забывчивой передачи) (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Стандартизованной постквантовой замены нет. Планируйте пороговые схемы над постквантовыми подписями по мере их зрелости (пороговый конкурс NIST, IR 8214C) или протоколы без Paillier (на основе забывчивой передачи) или гибридной схемы. |
-| P4 | QSI-2026-17959 | Запланируйте миграцию Threshold ECDSA на Схему подписи задаёт блокчейн или проверяющая сторона. Следите за постквантовыми предложениями на уровне сетей и пороговыми постквантовыми подписями (NIST IR 8214C); закладывайте обновление долей ключа и криптогибкость в архитектуру хранения (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Схему подписи задаёт блокчейн или проверяющая сторона. Следите за постквантовыми предложениями на уровне сетей и пороговыми постквантовыми подписями (NIST IR 8214C); закладывайте обновление долей ключа и криптогибкость в архитектуру хранения или гибридной схемы. |
-| P4 | QSI-2026-17960 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-17962 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-17963 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-17965 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-17957 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-17964 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-17966 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-17958 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P3 | QSI-2026-41850 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41844 | Внесите использования Paillier в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41848 | Внесите использования Threshold ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41849 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41851 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41852 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41854 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41845 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41853 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41855 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41846 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-41847 | Внесите использования EC-ElGamal в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-41850 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-41844 | Запланируйте миграцию Paillier на Стандартизованной постквантовой замены нет. Планируйте пороговые схемы над постквантовыми подписями по мере их зрелости (пороговый конкурс NIST, IR 8214C) или протоколы без Paillier (на основе забывчивой передачи) (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Стандартизованной постквантовой замены нет. Планируйте пороговые схемы над постквантовыми подписями по мере их зрелости (пороговый конкурс NIST, IR 8214C) или протоколы без Paillier (на основе забывчивой передачи) или гибридной схемы. |
+| P4 | QSI-2026-41848 | Запланируйте миграцию Threshold ECDSA на Схему подписи задаёт блокчейн или проверяющая сторона. Следите за постквантовыми предложениями на уровне сетей и пороговыми постквантовыми подписями (NIST IR 8214C); закладывайте обновление долей ключа и криптогибкость в архитектуру хранения (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Схему подписи задаёт блокчейн или проверяющая сторона. Следите за постквантовыми предложениями на уровне сетей и пороговыми постквантовыми подписями (NIST IR 8214C); закладывайте обновление долей ключа и криптогибкость в архитектуру хранения или гибридной схемы. |
+| P4 | QSI-2026-41849 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-41851 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-41852 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-41854 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-41845 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-41853 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-41855 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-41846 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-41847 | Запланируйте миграцию EC-ElGamal на Постквантовые стандарты NIST охватывают инкапсуляцию ключей и подписи; аддитивно гомоморфного шифрования среди них нет. Суммы, зашифрованные так, следует считать со временем публичными, а хранение в реестре — сокращать; направление исследований — гомоморфные схемы на решётках (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Постквантовые стандарты NIST охватывают инкапсуляцию ключей и подписи; аддитивно гомоморфного шифрования среди них нет. Суммы, зашифрованные так, следует считать со временем публичными, а хранение в реестре — сокращать; направление исследований — гомоморфные схемы на решётках или гибридной схемы. |
 
 ## 11. Использованные инструменты
 
@@ -1094,13 +1189,19 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -1151,13 +1252,14 @@ _Действие: взламывает — алгоритм нужно заме
 | SHA-3 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 1 | 1 | src/cbmpc/crypto/base_hash.cpp:63 |
 | ML-KEM | ML-KEM-768 |  | постквантовый | допустимо | 2 | 2 | include-internal/cbmpc/internal/crypto/mlkem768.h; src/cbmpc/crypto/mlkem768.cpp:8 |
 | BN254 (alt_bn128) |  |  | уязвим (Шор) | допустимо | 2 | 2 | include-internal/cbmpc/internal/crypto/base_bn256.h; src/cbmpc/crypto/base_bn256.cpp |
+| EC-ElGamal |  |  | уязвим (Шор) | допустимо | 3 | 3 | include-internal/cbmpc/internal/crypto/elgamal.h:7; src/cbmpc/crypto/elgamal.cpp:22; src/cbmpc/zk/zk_elgamal_com.cpp:143 |
 | ECDH |  |  | уязвим (Шор) | допустимо | 5 | 5 | include-internal/cbmpc/internal/protocol/pve_base.h:213; src/cbmpc/api/pve_base_pke.cpp:325; src/cbmpc/api/pve_batch_ac.cpp:308 |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 10 | 10 | include-internal/cbmpc/internal/crypto/base_ecc.h:17; include/cbmpc/api/curve.h:10; src/cbmpc/api/curve_util.h:13 |
 | ECDSA |  |  | уязвим (Шор) | допустимо | 14 | 14 | include-internal/cbmpc/internal/protocol/ecdsa_2p.h; include-internal/cbmpc/internal/protocol/ecdsa_mp.h; include-internal/cbmpc/internal/protocol/hd_keyset_ecdsa_2p.h |
 | ECDSA | P-256 |  | уязвим (Шор) | допустимо | 1 | 1 | include/cbmpc/api/curve.h:9 |
 | Ed25519 |  |  | уязвим (Шор) | допустимо | 7 | 7 | include-internal/cbmpc/internal/crypto/base_eddsa.h; include/cbmpc/api/eddsa_mp.h; include/cbmpc/api/hd_keyset_eddsa_2p.h |
 | Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 13 | 13 | include-internal/cbmpc/internal/protocol/eddsa.h:6; include-internal/cbmpc/internal/protocol/hd_keyset_eddsa_2p.h:26; include/cbmpc/api/eddsa_2p.h:8 |
-| ElGamal |  |  | уязвим (Шор) | устаревший | 4 | 4 | include-internal/cbmpc/internal/crypto/elgamal.h; include-internal/cbmpc/internal/zk/zk_elgamal_com.h; src/cbmpc/crypto/elgamal.cpp |
+| ElGamal |  |  | уязвим (Шор) | устаревший | 1 | 1 | include-internal/cbmpc/internal/zk/zk_elgamal_com.h |
 | Paillier |  |  | уязвим (Шор) | допустимо | 15 | 15 | include-internal/cbmpc/internal/crypto/base_bn.h:46; include-internal/cbmpc/internal/crypto/base_paillier.h:8; include-internal/cbmpc/internal/protocol/ecdsa_2p.h:18 |
 | Pedersen commitment |  |  | уязвим (Шор) | допустимо | 4 | 4 | include-internal/cbmpc/internal/zk/zk_pedersen.h:8; src/cbmpc/protocol/ecdsa_2p.cpp:28; src/cbmpc/zk/zk_paillier.cpp:537 |
 | RSA |  |  | уязвим (Шор) | допустимо | 3 | 3 | include-internal/cbmpc/internal/crypto/base_rsa.h; src/cbmpc/crypto/base_rsa.cpp:96; src/cbmpc/crypto/base_rsa_oaep.cpp |

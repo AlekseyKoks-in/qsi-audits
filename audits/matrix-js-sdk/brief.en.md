@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: matrix-js-sdk @ 61b08bd037a3
 
-*One-page brief* · Reviewed: 2026-11-06 13:27 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Matrix.org Foundation — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-23 12:39 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Matrix.org Foundation — public repository (passive review)
 
 Source: https://github.com/matrix-org/matrix-js-sdk/tree/61b08bd037a3b987f267e2e8ac47002c75d59d85
 
@@ -12,13 +12,13 @@ Source: https://github.com/matrix-org/matrix-js-sdk/tree/61b08bd037a3b987f267e2e
 
 ## What matters most
 
-1. **High** · markdown-it 14.3.2 is affected by GHSA-gfr2-rv44-r23c (CVE-2026-111758) (QSI-2026-18290)\
+1. **High** · markdown-it 14.3.2 is affected by GHSA-gfr2-rv44-r23c (CVE-2026-111758) (QSI-2026-42243)\
    What to do: Upgrade to a fixed version (14.3.3, 15.0.3).
-2. **High** · zod 4.6.5 is affected by GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) (QSI-2026-18293)\
+2. **High** · zod 4.6.5 is affected by GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) (QSI-2026-42246)\
    What to do: Upgrade to a fixed version (4.6.6).
-3. **Medium** · Quantum-vulnerable ECDH: channel key exchange (TLS, Noise, handshakes) (1 file(s)) (QSI-2026-18288) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDH: channel key exchange (TLS, Noise, handshakes) (1 file(s)) (QSI-2026-42241) · *preliminary*\
    What to do: Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols).
-4. **Medium** · glob 13.0.6 is affected by GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) (QSI-2026-18289)\
+4. **Medium** · glob 13.0.6 is affected by GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) (QSI-2026-42242)\
    What to do: Upgrade to a fixed version (14.0.2).
 
 2 more in the full report.
@@ -37,8 +37,8 @@ Advisories for the versions in use: 5; each needs checking against the code.
 
 Static review of source code and manifests; files analysed: 240. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `51f6e7f1e8ace2cc19cc16c6cd313449d34ce7a5c88a4b323fb98fdd500963d2`
+Full report, content SHA-256: `2c9f2fe152ff09994d521231bf043fe3767a345ecca684c9a23987aff37e45c4`
 
-Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
+Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
 Preliminary findings need confirmation in the code; the full report gives the evidence, the limits of each check and how to re-test.

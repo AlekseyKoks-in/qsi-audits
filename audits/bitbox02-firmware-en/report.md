@@ -4,34 +4,34 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-06 13:05 UTC |
+| Report date | 2026-11-23 12:06 UTC |
 | Report version | 1 |
-| Audit run | 686851a8-c120-482f-86ce-0890074cc565 (Document audit) |
-| Analyzer engine | qsi-engine 1.3.0 |
+| Audit run | 9369b086-8e14-4cd6-8afe-d6d1af67cfe0 (Document audit) |
+| Analyzer engine | qsi-engine 1.16.2 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `cf3c23870e4b4c35feb21d303d5082fae1730b014e64646954327f37e2becf0c` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| Content SHA-256 | `357ec07b6a756dc3b5dfed6e6ce414376d65c932e1e18b00e470ed46b9407ce7` |
+| Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **1**
-- High: **11**
-- Medium: **58**
-- Low: **3**
-- Info: **6**
+- High: **10**
+- Medium: **54**
+- Low: **2**
+- Info: **13**
 
 - Confirmed technical vulnerability: 1
 - Known vulnerable component: 32
 - Confirmed configuration error: 1
 - Potential cryptographic risk: 3
-- Long-term post-quantum risk: 40
+- Long-term post-quantum risk: 41
 - Improvement recommendation: 1
 - Insufficient data: 1
 
 Mosca's inequality (x + y > z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
 
-Analyst review: 15 confirmed, 5 not applicable, 0 dismissed as false positives.
+Analyst review: 16 confirmed, 5 not applicable, 0 dismissed as false positives.
 
 **Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
@@ -47,7 +47,7 @@ Repository: <https://github.com/BitBoxSwiss/bitbox02-firmware> @ `ae548ef4e40f54
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 2556 | external/CMSIS/Include/cmsis_armclang.h: 707 lines scanned with 16 rule patterns and 266 registry patterns; external/CMSIS/Include/cmsis_clang.h: 708 lines scanned with 16 rule patterns and 266 registry patterns; external/CMSIS/Include/cmsis_compiler.h: 292 lines scanned with 16 rule patterns and 266 registry patterns |
+| source_code | checked | 2556 | external/CMSIS/Include/cmsis_armclang.h: 707 lines scanned with 16 rule patterns and 340 registry patterns; external/CMSIS/Include/cmsis_clang.h: 708 lines scanned with 16 rule patterns and 340 registry patterns; external/CMSIS/Include/cmsis_compiler.h: 292 lines scanned with 16 rule patterns and 340 registry patterns |
 | chain_map | checked | 3 | messages/btc.proto: Bitcoin; messages/cardano.proto: Cardano; messages/eth.proto: Ethereum and EVM chains |
 | dependencies | checked | 48 | py/pyproject.toml: 0 dependencies parsed (0 pinned); py/requirements.txt: 8 dependencies parsed (0 pinned); src/rust/Cargo.lock: 135 dependencies parsed (135 pinned) |
 | certificates_and_keys | checked | 23 | releases/pubkeys/JuliusWiedemann.asc: certificates/keys parsed; releases/pubkeys/JunghoonLee.asc: certificates/keys parsed; releases/pubkeys/My1.asc: certificates/keys parsed |
@@ -58,6 +58,7 @@ Repository: <https://github.com/BitBoxSwiss/bitbox02-firmware> @ `ae548ef4e40f54
 | tls_key_exchange_groups | Insufficient data | 4 | external/lvgl/docs/doxygen_xml.py line 349: not in the algorithm registry, not assessed: {}; external/lvgl/docs/src/details/main-modules/indev/groups.rst line 4: not in the algorithm registry, not assessed: =====; external/lvgl/scripts/generate_lv_conf.py line 67: not in the algorithm registry, not assessed: re.search(r'([A-Z0-9_]+)\s+(.+)' |
 | tls_configuration | checked | 4 | external/lvgl/docs/doxygen_xml.py: openssl TLS directives parsed; external/lvgl/docs/src/details/main-modules/indev/groups.rst: openssl TLS directives parsed; external/lvgl/scripts/generate_lv_conf.py: openssl TLS directives parsed |
 | entropy | checked | 1 | random-number generation: 2556 code files read with 39724 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| crediting | checked | 1 | payment crediting: 2 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
 | osv_advisories | not checked | 1 | 3 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: bip32-ed25519, bip39, rtt-target |
 | osv_advisories | checked | 1 | 204 pinned packages queried at OSV.dev; 14 affected |
 
@@ -76,22 +77,22 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree bitbox02-firmware-en at ae548ef4e40f548a17542ba457f138db4fa0069d. 2645 files analysed; of 8952 files, 4270 are test, fuzzing, benchmark or example code and were left out, 1518 are not read by any analyzer, 1 exceed the per-file limit and 518 did not fit the total limit. Files no analyzer reads include: .ci/README.md, .ci/check-container-sources-modified, .ci/check-container-version-published, .ci/check-hashes, .ci/check-pep8. Because the total limit bound, this inventory covers 2645 of 8952 candidate files (29%) and is a sample of the tree rather than a reading of it; a different limit gives a different figure. Files it could not fit include: external/optiga-trust-m/external/mbedtls/include/mbedtls/compat-1.3.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/config.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/debug.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/des.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/dhm.h. 15717 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 1543 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: external/lvgl (1223), external/cryptoauthlib (240), external/optiga-trust-m (67), external/embedded-swd (12). No requests were sent to the owner's systems.
+Static review of the source tree bitbox02-firmware-en at ae548ef4e40f548a17542ba457f138db4fa0069d. 2645 files analysed; of 8952 files, 4274 are test, fuzzing, benchmark or example code and were left out, 1518 are not read by any analyzer, 1 exceed the per-file limit and 514 did not fit the total limit. Files no analyzer reads include: .ci/README.md, .ci/check-container-sources-modified, .ci/check-container-version-published, .ci/check-hashes, .ci/check-pep8. Because the total limit bound, this inventory covers 2645 of 8952 candidate files (29%) and is a sample of the tree rather than a reading of it; a different limit gives a different figure. Files it could not fit include: external/optiga-trust-m/external/mbedtls/include/mbedtls/compat-1.3.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/config.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/debug.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/des.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/dhm.h. 15720 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 1543 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: external/lvgl (1223), external/cryptoauthlib (240), external/optiga-trust-m/external/mbedtls (66), external/embedded-swd (12). No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
 - Indicative posture index: **0** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 55.9%
+- Quantum-vulnerable share of inventory: 56.8%
 
 ## 7. Detailed findings
 
-### QSI-2026-17854 — certifi 2022.12.7 is affected by GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320)
+### QSI-2026-41629 — certifi 2022.12.7 is affected by GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320)
 
 - Severity: **Critical** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/certifi@2022.12.7`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 54.2 / 100
 - CVSS v3.1: not applicable
 
@@ -119,13 +120,13 @@ _tool_output · [OSV.dev GHSA-6q48-6c7w-9gw2](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17830 — TLS certificate verification disabled in scripts/generate_version_headers.py
+### QSI-2026-41603 — TLS certificate verification disabled in scripts/generate_version_headers.py
 
 - Severity: **High** · Classification: Confirmed configuration error · Confidence: High
 - Affected asset: `file:scripts/generate_version_headers.py`
 - Data source: scripts/generate_version_headers.py
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 70.4 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -157,13 +158,13 @@ _file_excerpt · [scripts/generate_version_headers.py](https://github.com/BitBox
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-17855 — certifi 2022.12.7 is affected by GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135)
+### QSI-2026-41630 — certifi 2022.12.7 is affected by GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/certifi@2022.12.7`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -191,13 +192,13 @@ _tool_output · [OSV.dev GHSA-xqr8-7jwr-rhp7](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17859 — jinja2 3.1.2 is affected by GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472)
+### QSI-2026-41634 — jinja2 3.1.2 is affected by GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/jinja2@3.1.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 8.8 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -225,13 +226,13 @@ _tool_output · [OSV.dev GHSA-gmj6-6f8f-6699](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17862 — jinja2 3.1.2 is affected by GHSA-q2x7-8rv6-6q7h (CVE-2024-56326, PYSEC-2026-1475)
+### QSI-2026-41637 — jinja2 3.1.2 is affected by GHSA-q2x7-8rv6-6q7h (CVE-2024-56326, PYSEC-2026-1475)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/jinja2@3.1.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 7.8 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -259,13 +260,13 @@ _tool_output · [OSV.dev GHSA-q2x7-8rv6-6q7h](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17869 — urllib3 1.26.15 is affected by GHSA-2xpw-w6gg-jr37 (CVE-2025-66471, PYSEC-2026-1994)
+### QSI-2026-41644 — urllib3 1.26.15 is affected by GHSA-2xpw-w6gg-jr37 (CVE-2025-66471, PYSEC-2026-1994)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -293,13 +294,13 @@ _tool_output · [OSV.dev GHSA-2xpw-w6gg-jr37](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17871 — urllib3 1.26.15 is affected by GHSA-38jv-5279-wg99 (CVE-2026-21441, PYSEC-2026-1996)
+### QSI-2026-41646 — urllib3 1.26.15 is affected by GHSA-38jv-5279-wg99 (CVE-2026-21441, PYSEC-2026-1996)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -327,13 +328,13 @@ _tool_output · [OSV.dev GHSA-38jv-5279-wg99](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17872 — urllib3 1.26.15 is affected by GHSA-8988-9cw3-xx77 (CVE-2026-97687, PYSEC-2026-4175)
+### QSI-2026-41647 — urllib3 1.26.15 is affected by GHSA-8988-9cw3-xx77 (CVE-2026-97687, PYSEC-2026-4175)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -361,13 +362,13 @@ _tool_output · [OSV.dev GHSA-8988-9cw3-xx77](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17874 — urllib3 1.26.15 is affected by GHSA-gm62-xv2j-4w53 (CVE-2025-66418, PYSEC-2026-1998)
+### QSI-2026-41649 — urllib3 1.26.15 is affected by GHSA-gm62-xv2j-4w53 (CVE-2025-66418, PYSEC-2026-1998)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -395,13 +396,13 @@ _tool_output · [OSV.dev GHSA-gm62-xv2j-4w53](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17878 — urllib3 1.26.15 is affected by GHSA-vxq7-64xx-v4gw (CVE-2026-97689, PYSEC-2026-4177)
+### QSI-2026-41653 — urllib3 1.26.15 is affected by GHSA-vxq7-64xx-v4gw (CVE-2026-97689, PYSEC-2026-4177)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -429,13 +430,13 @@ _tool_output · [OSV.dev GHSA-vxq7-64xx-v4gw](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17801 — ECB block-cipher mode used in external/samd51a-ds/include/component/aes.h
+### QSI-2026-41575 — ECB block-cipher mode used in external/samd51a-ds/include/component/aes.h
 
 - Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `file:external/samd51a-ds/include/component/aes.h`
 - Data source: external/samd51a-ds/include/component/aes.h
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 38.8 / 100
 - CVSS v3.1: not applicable
 
@@ -467,52 +468,14 @@ _file_excerpt · [external/samd51a-ds/include/component/aes.h](https://github.co
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-17843 — ECB block-cipher mode used in external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h
-
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h`
-- Data source: external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 38.8 / 100
-- CVSS v3.1: not applicable
-
-1 usage(s) of ECB mode (first at line 184).
-
-**Potential impact.** ECB reveals patterns in encrypted data and provides no integrity.
-
-**Reproduction steps.**
-
-```
-Open line 184 in the supplied file external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h#L184) · line 184 · SHA-256 b4ca0728db5ccfb494e9c1d28a1f570024b573214a88c0c50c5651e07549de35_
-
-```
-  182 | typedef enum {
-  183 |     MBEDTLS_MODE_NONE = 0,               /**< None.                        */
-  184 |     MBEDTLS_MODE_ECB,                    /**< The ECB cipher mode.         */
-  185 |     MBEDTLS_MODE_CBC,                    /**< The CBC cipher mode.         */
-  186 |     MBEDTLS_MODE_CFB,                    /**< The CFB cipher mode.         */
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Use an AEAD mode (GCM) with unique nonces.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-17844 — Transaction signing for 3 chain(s) relies on elliptic-curve signatures
+### QSI-2026-41619 — Transaction signing for 3 chain(s) relies on elliptic-curve signatures
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** True by construction. messages/btc.proto, cardano.proto and eth.proto define the supported chains, whose signature schemes are set by consensus rather than by the wallet. The wallet cannot migrate them unilaterally, so this is a readiness map rather than a defect.
 - Affected asset: `chain-map`
 - Data source: messages/btc.proto
 - Detection method: Message definitions (.proto) matched to QSI's table of chain signature schemes.
-- Analyzer: chain_map 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: chain_map 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 56.8 / 100
 - CVSS v3.1: not applicable
 
@@ -552,13 +515,13 @@ package shiftcrypto.bitbox02;
 
 **Retest procedure.** Re-run when a chain activates a post-quantum signature scheme or the wallet adds one.
 
-### QSI-2026-17804 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/JuliusWiedemann.asc
+### QSI-2026-41577 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/JuliusWiedemann.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/JuliusWiedemann.asc#line 1`
 - Data source: releases/pubkeys/JuliusWiedemann.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -592,13 +555,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17805 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/JunghoonLee.asc
+### QSI-2026-41578 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/JunghoonLee.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/JunghoonLee.asc#line 1`
 - Data source: releases/pubkeys/JunghoonLee.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -632,13 +595,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17806 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/My1.asc
+### QSI-2026-41579 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/My1.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/My1.asc#line 1`
 - Data source: releases/pubkeys/My1.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -666,13 +629,13 @@ OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17807 — Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/My1.asc
+### QSI-2026-41580 — Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/My1.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/My1.asc#line 1`
 - Data source: releases/pubkeys/My1.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -706,13 +669,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17808 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/TheCharlatan.asc
+### QSI-2026-41581 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/TheCharlatan.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/TheCharlatan.asc#line 1`
 - Data source: releases/pubkeys/TheCharlatan.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -758,13 +721,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17809 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/beerosagos.asc
+### QSI-2026-41582 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/beerosagos.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/beerosagos.asc#line 1`
 - Data source: releases/pubkeys/beerosagos.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -798,13 +761,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17810 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/benma.asc
+### QSI-2026-41583 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/benma.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/benma.asc#line 1`
 - Data source: releases/pubkeys/benma.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -844,13 +807,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17811 — Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/brianddk.asc
+### QSI-2026-41584 — Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/brianddk.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/brianddk.asc#line 1`
 - Data source: releases/pubkeys/brianddk.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -890,13 +853,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17812 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/cstenglein.asc
+### QSI-2026-41585 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/cstenglein.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/cstenglein.asc#line 1`
 - Data source: releases/pubkeys/cstenglein.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -930,13 +893,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17813 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/frknakk.asc
+### QSI-2026-41586 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/frknakk.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/frknakk.asc#line 1`
 - Data source: releases/pubkeys/frknakk.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -970,13 +933,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17814 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/guggerf.asc
+### QSI-2026-41587 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/guggerf.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/guggerf.asc#line 1`
 - Data source: releases/pubkeys/guggerf.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1010,13 +973,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17815 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/jonathancross.asc
+### QSI-2026-41588 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/jonathancross.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/jonathancross.asc#line 1`
 - Data source: releases/pubkeys/jonathancross.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1044,13 +1007,13 @@ OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17816 — Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/jonathancross.asc
+### QSI-2026-41589 — Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/jonathancross.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/jonathancross.asc#line 1`
 - Data source: releases/pubkeys/jonathancross.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1090,13 +1053,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17817 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/nickez.asc
+### QSI-2026-41590 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/nickez.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/nickez.asc#line 1`
 - Data source: releases/pubkeys/nickez.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1160,13 +1123,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17818 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/offbyn.asc
+### QSI-2026-41591 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/offbyn.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/offbyn.asc#line 1`
 - Data source: releases/pubkeys/offbyn.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1212,13 +1175,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17819 — Quantum-vulnerable Ed25519 key (Ed25519) in releases/pubkeys/psteiger.asc
+### QSI-2026-41592 — Quantum-vulnerable Ed25519 key (Ed25519) in releases/pubkeys/psteiger.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/psteiger.asc#line 1`
 - Data source: releases/pubkeys/psteiger.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1246,13 +1209,13 @@ OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17820 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/stadicus.asc
+### QSI-2026-41593 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/stadicus.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/stadicus.asc#line 1`
 - Data source: releases/pubkeys/stadicus.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1298,13 +1261,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17821 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/strnbrg.asc
+### QSI-2026-41594 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/strnbrg.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/strnbrg.asc#line 1`
 - Data source: releases/pubkeys/strnbrg.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1338,13 +1301,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17822 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/sutterseba.asc
+### QSI-2026-41595 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/sutterseba.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/sutterseba.asc#line 1`
 - Data source: releases/pubkeys/sutterseba.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1378,13 +1341,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17823 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/tomasvrba.asc
+### QSI-2026-41596 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/tomasvrba.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/tomasvrba.asc#line 1`
 - Data source: releases/pubkeys/tomasvrba.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1448,13 +1411,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17824 — Quantum-vulnerable RSA key (3072-bit) in releases/pubkeys/userofreddit44.asc
+### QSI-2026-41597 — Quantum-vulnerable RSA key (3072-bit) in releases/pubkeys/userofreddit44.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/userofreddit44.asc#line 1`
 - Data source: releases/pubkeys/userofreddit44.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1488,13 +1451,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17825 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/x1ddos.asc
+### QSI-2026-41598 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/x1ddos.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/x1ddos.asc#line 1`
 - Data source: releases/pubkeys/x1ddos.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1528,13 +1491,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17826 — Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/x1ddos.asc
+### QSI-2026-41599 — Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/x1ddos.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/x1ddos.asc#line 1`
 - Data source: releases/pubkeys/x1ddos.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1568,13 +1531,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17827 — Quantum-vulnerable RSA key (3072-bit) in releases/pubkeys/x1ddos.asc
+### QSI-2026-41600 — Quantum-vulnerable RSA key (3072-bit) in releases/pubkeys/x1ddos.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/x1ddos.asc#line 1`
 - Data source: releases/pubkeys/x1ddos.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1602,13 +1565,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17828 — Quantum-vulnerable Ed25519 key (Ed25519) in releases/pubkeys/yaziza.asc
+### QSI-2026-41601 — Quantum-vulnerable Ed25519 key (Ed25519) in releases/pubkeys/yaziza.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/yaziza.asc#line 1`
 - Data source: releases/pubkeys/yaziza.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1642,13 +1605,13 @@ OpenPGP subkey: algorithm ID 22 (Ed25519) Ed25519
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17829 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/yaziza.asc
+### QSI-2026-41602 — Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/yaziza.asc
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:releases/pubkeys/yaziza.asc#line 1`
 - Data source: releases/pubkeys/yaziza.asc
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1676,47 +1639,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-17838 — Quantum-vulnerable ECDSA key (secp256r1) in external/cryptoauthlib/app/pkcs11/README.md
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
-- Affected asset: `file:external/cryptoauthlib/app/pkcs11/README.md#line 280`
-- Data source: external/cryptoauthlib/app/pkcs11/README.md
-- Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 50.3 / 100
-- CVSS v3.1: not applicable
-
-A ECDSA secp256r1 public key was found (line 280).
-
-**Potential impact.** Long-term risk once a CRQC exists; for key exchange, recorded traffic could be decrypted retroactively.
-
-**Reproduction steps.**
-
-```
-Open line 280 in the supplied file external/cryptoauthlib/app/pkcs11/README.md and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_key · external/cryptoauthlib/app/pkcs11/README.md · line 280 · SHA-256 87a3decbb47c307b59a5585db9eecff49e5997a1eb7350dbfae08a97c0f3fa07_
-
-```
-ECDSA public key, secp256r1
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability.
-
-**Recommendation.** Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
-
-**Retest procedure.** Re-audit after migration.
-
-### QSI-2026-17856 — idna 3.4 is affected by GHSA-65pc-fj4g-8rjx (CVE-2026-45409, PYSEC-2026-215)
+### QSI-2026-41631 — idna 3.4 is affected by GHSA-65pc-fj4g-8rjx (CVE-2026-45409, PYSEC-2026-215)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/idna@3.4`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -1744,13 +1673,13 @@ _tool_output · [OSV.dev GHSA-65pc-fj4g-8rjx](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17857 — idna 3.4 is affected by GHSA-jjg7-2v4v-x38h (CVE-2024-3651, PYSEC-2024-60)
+### QSI-2026-41632 — idna 3.4 is affected by GHSA-jjg7-2v4v-x38h (CVE-2024-3651, PYSEC-2024-60)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/idna@3.4`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1778,13 +1707,13 @@ _tool_output · [OSV.dev GHSA-jjg7-2v4v-x38h](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17858 — jinja2 3.1.2 is affected by GHSA-cpwx-vrp4-4pq7 (CVE-2025-27516, PYSEC-2026-1471)
+### QSI-2026-41633 — jinja2 3.1.2 is affected by GHSA-cpwx-vrp4-4pq7 (CVE-2025-27516, PYSEC-2026-1471)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/jinja2@3.1.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1800,10 +1729,10 @@ curl -s https://api.osv.dev/v1/vulns/GHSA-cpwx-vrp4-4pq7
 
 **Evidence.**
 
-_tool_output · [OSV.dev GHSA-cpwx-vrp4-4pq7](https://osv.dev/vulnerability/GHSA-cpwx-vrp4-4pq7) · line 28 · SHA-256 e28b14906d20d0da1a5a90a9cd8900c0e9f3f8e617101292dbb5c6bedb863524_
+_tool_output · [OSV.dev GHSA-cpwx-vrp4-4pq7](https://osv.dev/vulnerability/GHSA-cpwx-vrp4-4pq7) · line 28 · SHA-256 e8f38695d47d0bb8be08430393d49b9a2f44d7acd211ba3cd289b7e9b7fb4d10_
 
 ```
-{"id": "GHSA-cpwx-vrp4-4pq7", "aliases": ["CVE-2025-27516", "PYSEC-2026-1471"], "modified": "2026-09-10T03:49:48.526758681Z", "summary": "Jinja2 vulnerable to sandbox breakout through attr filter selecting format method", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:P/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+{"id": "GHSA-cpwx-vrp4-4pq7", "aliases": ["CVE-2025-27516", "PYSEC-2026-1471"], "modified": "2026-11-18T00:45:13.756181700Z", "summary": "Jinja2 vulnerable to sandbox breakout through attr filter selecting format method", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:P/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
 **Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
@@ -1812,13 +1741,13 @@ _tool_output · [OSV.dev GHSA-cpwx-vrp4-4pq7](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17860 — jinja2 3.1.2 is affected by GHSA-h5c8-rqwp-cp95 (CVE-2024-22195, PYSEC-2026-1473)
+### QSI-2026-41635 — jinja2 3.1.2 is affected by GHSA-h5c8-rqwp-cp95 (CVE-2024-22195, PYSEC-2026-1473)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/jinja2@3.1.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -1846,13 +1775,13 @@ _tool_output · [OSV.dev GHSA-h5c8-rqwp-cp95](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17861 — jinja2 3.1.2 is affected by GHSA-h75v-3vvj-5mfj (CVE-2024-34064, PYSEC-2026-1474)
+### QSI-2026-41636 — jinja2 3.1.2 is affected by GHSA-h75v-3vvj-5mfj (CVE-2024-34064, PYSEC-2026-1474)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/jinja2@3.1.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -1880,13 +1809,13 @@ _tool_output · [OSV.dev GHSA-h75v-3vvj-5mfj](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17864 — pygments 2.14.0 is affected by GHSA-mrwq-x4v8-fh7p (CVE-2022-40896, PYSEC-2023-117)
+### QSI-2026-41639 — pygments 2.14.0 is affected by GHSA-mrwq-x4v8-fh7p (CVE-2022-40896, PYSEC-2023-117)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/pygments@2.14.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.5 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H`)
 
@@ -1914,13 +1843,13 @@ _tool_output · [OSV.dev GHSA-mrwq-x4v8-fh7p](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17865 — requests 2.28.2 is affected by GHSA-9hjg-9r4m-mvj7 (CVE-2024-47081, PYSEC-2026-1872)
+### QSI-2026-41640 — requests 2.28.2 is affected by GHSA-9hjg-9r4m-mvj7 (CVE-2024-47081, PYSEC-2026-1872)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/requests@2.28.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -1948,13 +1877,13 @@ _tool_output · [OSV.dev GHSA-9hjg-9r4m-mvj7](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17866 — requests 2.28.2 is affected by GHSA-9wx4-h78v-vm56 (CVE-2024-35195, PYSEC-2026-1873)
+### QSI-2026-41641 — requests 2.28.2 is affected by GHSA-9wx4-h78v-vm56 (CVE-2024-35195, PYSEC-2026-1873)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/requests@2.28.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.6 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -1982,13 +1911,13 @@ _tool_output · [OSV.dev GHSA-9wx4-h78v-vm56](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17867 — requests 2.28.2 is affected by GHSA-gc5v-m9x4-r6x2 (CVE-2026-25645, PYSEC-2026-2275)
+### QSI-2026-41642 — requests 2.28.2 is affected by GHSA-gc5v-m9x4-r6x2 (CVE-2026-25645, PYSEC-2026-2275)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/requests@2.28.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.4 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N`)
 
@@ -2016,13 +1945,13 @@ _tool_output · [OSV.dev GHSA-gc5v-m9x4-r6x2](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17868 — requests 2.28.2 is affected by GHSA-j8r2-6x86-q33q (CVE-2023-32681, PYSEC-2023-74)
+### QSI-2026-41643 — requests 2.28.2 is affected by GHSA-j8r2-6x86-q33q (CVE-2023-32681, PYSEC-2023-74)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/requests@2.28.2`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:N`)
 
@@ -2050,13 +1979,13 @@ _tool_output · [OSV.dev GHSA-j8r2-6x86-q33q](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17870 — urllib3 1.26.15 is affected by GHSA-34jh-p97f-mpxf (CVE-2024-37891, PYSEC-2026-1995)
+### QSI-2026-41645 — urllib3 1.26.15 is affected by GHSA-34jh-p97f-mpxf (CVE-2024-37891, PYSEC-2026-1995)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.4 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2084,13 +2013,13 @@ _tool_output · [OSV.dev GHSA-34jh-p97f-mpxf](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17873 — urllib3 1.26.15 is affected by GHSA-g4mx-q9vg-27p4 (CVE-2023-45803, PYSEC-2023-212)
+### QSI-2026-41648 — urllib3 1.26.15 is affected by GHSA-g4mx-q9vg-27p4 (CVE-2023-45803, PYSEC-2023-212)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.2 (`CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2118,13 +2047,13 @@ _tool_output · [OSV.dev GHSA-g4mx-q9vg-27p4](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17875 — urllib3 1.26.15 is affected by GHSA-pq67-6m6q-mj2v (CVE-2025-50181, PYSEC-2026-1999)
+### QSI-2026-41650 — urllib3 1.26.15 is affected by GHSA-pq67-6m6q-mj2v (CVE-2025-50181, PYSEC-2026-1999)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2152,13 +2081,13 @@ _tool_output · [OSV.dev GHSA-pq67-6m6q-mj2v](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17876 — urllib3 1.26.15 is affected by GHSA-qccp-gfcp-xxvc (CVE-2026-44431, PYSEC-2026-141)
+### QSI-2026-41651 — urllib3 1.26.15 is affected by GHSA-qccp-gfcp-xxvc (CVE-2026-44431, PYSEC-2026-141)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -2186,13 +2115,13 @@ _tool_output · [OSV.dev GHSA-qccp-gfcp-xxvc](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17877 — urllib3 1.26.15 is affected by GHSA-v845-jxx5-vc9f (CVE-2023-43804, PYSEC-2023-192)
+### QSI-2026-41652 — urllib3 1.26.15 is affected by GHSA-v845-jxx5-vc9f (CVE-2023-43804, PYSEC-2023-192)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/urllib3@1.26.15`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -2220,13 +2149,13 @@ _tool_output · [OSV.dev GHSA-v845-jxx5-vc9f](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17879 — zipp 3.15.0 is affected by GHSA-jfmj-5v4g-7637 (CVE-2024-5569, PYSEC-2026-2074)
+### QSI-2026-41654 — zipp 3.15.0 is affected by GHSA-jfmj-5v4g-7637 (CVE-2024-5569, PYSEC-2026-2074)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:PyPI/zipp@3.15.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2254,14 +2183,14 @@ _tool_output · [OSV.dev GHSA-jfmj-5v4g-7637](https://osv.dev/vulnerability/GHSA
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17831 — Quantum-vulnerable ECDSA: firmware and boot verification (root of trust) (3 file(s))
+### QSI-2026-41604 — Quantum-vulnerable ECDSA: firmware and boot verification (root of trust) (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:ECDSA:root_of_trust`
 - Data source: src/bootloader/bootloader.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 43.4 / 100
 - CVSS v3.1: not applicable
 
@@ -2331,14 +2260,14 @@ _file_excerpt · [src/rust/bitbox02-rust-c/src/firmware_c_api.rs](https://github
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17833 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
+### QSI-2026-41607 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:X25519:key_wrapping`
 - Data source: src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 43.4 / 100
 - CVSS v3.1: not applicable
 
@@ -2370,10 +2299,10 @@ _file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://gith
    20 | 
 ```
 
-_file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs#L60) · line 60 · SHA-256 f8ee14a435cd94f2c3694c380ab36b8cca17c6d237875854295e567d7ab0e0ef_
+_file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs#L60) · line 60 · SHA-256 3ddf519e80b5e6989a627648f63253182dab0752d84b22ac3d51e7d5c75284a5_
 
 ```
-   59 |     let wrap_secret = [REDACTED]
+   59 |     let wrap_secret = X25519StaticSecret::from(*wrap_secret_key);
    60 |     let wrap_public_key = X25519PublicKey::from(&wrap_secret).to_bytes();
    61 | 
 ```
@@ -2384,81 +2313,36 @@ _file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://gith
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17840 — Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s))
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
-- Affected asset: `source-code:ECDH:key_wrapping`
-- Data source: external/cryptoauthlib/python/cryptoauthlib/atcab.py
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 43.4 / 100
-- CVSS v3.1: not applicable
-
-23 reference(s) to ECDH across 1 file(s), e.g. external/cryptoauthlib/python/cryptoauthlib/atcab.py:974. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later).
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open external/cryptoauthlib/python/cryptoauthlib/atcab.py:974 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [external/cryptoauthlib/python/cryptoauthlib/atcab.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/python/cryptoauthlib/atcab.py#L974) · line 974 · SHA-256 87004ff616be22235a821a5c8d5b9ead791c529f62209f2bc0cea638b486c206_
-
-```
-  973 |     """
-  974 |     Base function for generating premaster secret key using ECDH.
-  975 | 
-```
-
-_file_excerpt · [external/cryptoauthlib/python/cryptoauthlib/atcab.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/python/cryptoauthlib/atcab.py#L977) · line 977 · SHA-256 8e5f1c528fbe7b2ee242f9afec3b53fc230249d43b130247f4590ed07951b297_
-
-```
-  976 |     Args:
-  977 |         mode                Mode to be used for ECDH computation (int)
-  978 |         key_id              Slot of key for ECDH computation (int)
-```
-
-_file_excerpt · [external/cryptoauthlib/python/cryptoauthlib/atcab.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/python/cryptoauthlib/atcab.py#L978) · line 978 · SHA-256 204aab89e32c109386818d0b5149a61c7c3ce73f3684eb12b5709f32b09a5a47_
-
-```
-  977 |         mode                Mode to be used for ECDH computation (int)
-  978 |         key_id              Slot of key for ECDH computation (int)
-  979 |         public_key          Public key input to ECDH calculation. X and Y
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-17803 — Quantum-vulnerable ECDSA: transaction and message signing (14 file(s))
+### QSI-2026-41576 — Quantum-vulnerable ECDSA: transaction and message signing (16 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:ECDSA:transaction_signing`
-- Data source: py/bitbox02/bitbox02/bitbox02/secp256k1.py
+- Data source: py/bitbox02/bitbox02/bitbox02/bitbox02.py
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
-50 reference(s) to ECDSA across 14 file(s), e.g. py/bitbox02/bitbox02/bitbox02/secp256k1.py:3. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+56 reference(s) to ECDSA across 16 file(s), e.g. py/bitbox02/bitbox02/bitbox02/bitbox02.py:21. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
 **Reproduction steps.**
 
 ```
-Open py/bitbox02/bitbox02/bitbox02/secp256k1.py:3 and inspect the quoted lines; the evidence lists further files.
+Open py/bitbox02/bitbox02/bitbox02/bitbox02.py:21 and inspect the quoted lines; the evidence lists further files.
 ```
 
 **Evidence.**
+
+_file_excerpt · [py/bitbox02/bitbox02/bitbox02/bitbox02.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/py/bitbox02/bitbox02/bitbox02/bitbox02.py#L21) · line 21 · SHA-256 c1697b58eea8e082fa9f5090e083f0e57d75e65cdb346518fab79a473aad04e9_
+
+```
+   20 | 
+   21 | from .secp256k1 import (
+   22 |     antiklepto_host_commit,
+```
 
 _file_excerpt · [py/bitbox02/bitbox02/bitbox02/secp256k1.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/py/bitbox02/bitbox02/bitbox02/secp256k1.py#L3) · line 3 · SHA-256 f1b7aa46e3d0b50c48a6a1863e881efc3f3599b1f51734acef93ab966ea7b144_
 
@@ -2532,28 +2416,20 @@ _file_excerpt · [src/rust/bitbox02-rust-c/src/secp256k1.rs](https://github.com/
    43 |     else {
 ```
 
-_file_excerpt · [src/rust/bitbox02-rust-c/src/secp256k1.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox02-rust-c/src/secp256k1.rs#L56) · line 56 · SHA-256 bf55765f36e34101d8c06c2f514fa6a3aabb581d93221c944b40863ae1e4a428_
-
-```
-   55 |     unsafe {
-   56 |         ffi::secp256k1_ecdsa_verify(
-   57 |             ffi::secp256k1_context_no_precomp,
-```
-
 **Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
 
 **Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17832 — Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (5 file(s))
+### QSI-2026-41606 — Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (5 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:X25519:channel`
 - Data source: src/rust/bitbox-noise/src/lib.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -2593,11 +2469,11 @@ _file_excerpt · [src/rust/bitbox-noise/src/noise_xx.rs](https://github.com/BitB
     9 | use noise_rust_crypto::{ChaCha20Poly1305, Sha256, sensitive::Sensitive};
 ```
 
-_file_excerpt · [src/rust/bitbox-noise/src/x25519.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox-noise/src/x25519.rs#L49) · line 49 · SHA-256 43d70ab747c41c47e17b5ba00fdf0933116113165cc5310d5e74f3736664266f_
+_file_excerpt · [src/rust/bitbox-noise/src/x25519.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox-noise/src/x25519.rs#L49) · line 49 · SHA-256 ba4cceb05ccf56ae691a13d2f9cdeca663450a1e5b2555fd8f2e1c6bda7e82a5_
 
 ```
    48 |     fn pubkey(k: &Self::Key) -> Self::Pubkey {
-   49 |         let static_secret = [REDACTED]
+   49 |         let static_secret = x25519_dalek::StaticSecret::from(*k.deref());
    50 |         *x25519_dalek::PublicKey::from(&static_secret).as_bytes()
 ```
 
@@ -2655,18 +2531,18 @@ _file_excerpt · [external/optiga-trust-m/external/mbedtls/3rdparty/everest/libr
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17835 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (2 file(s))
+### QSI-2026-41609 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:Schnorr (BIP-340):transaction_signing`
 - Data source: src/rust/bitbox02-rust/src/hww/api/bitcoin/common.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
-3 reference(s) to Schnorr (BIP-340) across 2 file(s), e.g. src/rust/bitbox02-rust/src/hww/api/bitcoin/common.rs:289. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+4 reference(s) to Schnorr (BIP-340) across 3 file(s), e.g. src/rust/bitbox02-rust/src/hww/api/bitcoin/common.rs:289. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -2684,6 +2560,14 @@ _file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitcoin/common.rs](https://
   288 |                 let tweaked = bitcoin::key::TweakedPublicKey::dangerous_assume_tweaked(
   289 |                     bitcoin::XOnlyPublicKey::from_slice(payload).map_err(|_| Error::Generic)?,
   290 |                 );
+```
+
+_file_excerpt · [src/rust/bitbox02-rust/src/keystore.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox02-rust/src/keystore.rs#L897) · line 897 · SHA-256 4c865a127c8bb4a820585d2f29be3a734a01dc66058a4678b8e15a387c370cd4_
+
+```
+  896 |         .map_err(|_| ())?;
+  897 |     let sig = SECP256K1.sign_schnorr_with_aux_rand(
+  898 |         &bitcoin::secp256k1::Message::from_digest(*msg),
 ```
 
 _file_excerpt · [src/rust/streaming-silent-payments/src/lib.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/streaming-silent-payments/src/lib.rs#L12) · line 12 · SHA-256 08a764387fbe8ba1e77642c172a087172ccf897e6ed0de3209ef2dc8587547dc_
@@ -2708,14 +2592,14 @@ _file_excerpt · [src/rust/streaming-silent-payments/src/lib.rs](https://github.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17836 — Quantum-vulnerable Ed25519: transaction and message signing (4 file(s))
+### QSI-2026-41610 — Quantum-vulnerable Ed25519: transaction and message signing (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: src/rust/bitbox02-rust/src/hww/api/cardano/address.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -2785,36 +2669,28 @@ _file_excerpt · [src/rust/bitbox02-rust/src/keystore/ed25519.rs](https://github
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17802 — Quantum-vulnerable ECDSA: role not determined (10 file(s))
+### QSI-2026-41605 — Quantum-vulnerable ECDSA: role not determined (11 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Role resolved for all six files, and they are three different roles rather than one. src/pukcc/pukcc.c:181 is pukcc_ecdsa_verify, the ATSAM PUKCC hardware public-key controller performing ECDSA *verification* — the bootloader's signature check, so a root-of-trust item, and verification uses public keys only, which puts it outside any timing concern. src/rust/streaming-silent-payments/{lib,hash}.rs is BIP-352 silent payments, i.e. address derivation on secp256k1. src/rust/util/src/p256.rs is the U2F/FIDO P-256 signing described in the crypto-bigint decision above. Each has a different migration deadline, which is why leaving them merged as "role not determined" would be the wrong input to a plan.
 - Affected asset: `source-code:ECDSA:general`
-- Data source: py/bitbox02/bitbox02/bitbox02/bitbox02.py
+- Data source: src/pukcc/pukcc.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
-20 reference(s) to ECDSA across 10 file(s), e.g. py/bitbox02/bitbox02/bitbox02/bitbox02.py:21. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+28 reference(s) to ECDSA across 11 file(s), e.g. src/pukcc/pukcc.c:181. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
 **Reproduction steps.**
 
 ```
-Open py/bitbox02/bitbox02/bitbox02/bitbox02.py:21 and inspect the quoted lines; the evidence lists further files.
+Open src/pukcc/pukcc.c:181 and inspect the quoted lines; the evidence lists further files.
 ```
 
 **Evidence.**
-
-_file_excerpt · [py/bitbox02/bitbox02/bitbox02/bitbox02.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/py/bitbox02/bitbox02/bitbox02/bitbox02.py#L21) · line 21 · SHA-256 c1697b58eea8e082fa9f5090e083f0e57d75e65cdb346518fab79a473aad04e9_
-
-```
-   20 | 
-   21 | from .secp256k1 import (
-   22 |     antiklepto_host_commit,
-```
 
 _file_excerpt · [src/pukcc/pukcc.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/pukcc/pukcc.c#L181) · line 181 · SHA-256 53085ff2be44540f9ac0d6f54f71ca19c4e1ac12898aef6c3ecb093df8a5a67f_
 
@@ -2848,30 +2724,6 @@ _file_excerpt · [src/rust/streaming-silent-payments/src/hash.rs](https://github
     8 | 
 ```
 
-_file_excerpt · [src/rust/streaming-silent-payments/src/lib.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/streaming-silent-payments/src/lib.rs#L12) · line 12 · SHA-256 08a764387fbe8ba1e77642c172a087172ccf897e6ed0de3209ef2dc8587547dc_
-
-```
-   11 | use bitcoin::hashes::Hash;
-   12 | use bitcoin::secp256k1::{self, PublicKey, Scalar, Secp256k1, SecretKey, XOnlyPublicKey};
-   13 | 
-```
-
-_file_excerpt · [src/rust/streaming-silent-payments/src/lib.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/streaming-silent-payments/src/lib.rs#L43) · line 43 · SHA-256 08787745f17bf5694851af8a934a9791f92c751c329c4e20cd230db9145ae5ba_
-
-```
-   42 | pub struct SilentPayment<'a> {
-   43 |     secp: &'a Secp256k1<secp256k1::All>,
-   44 |     network: Network,
-```
-
-_file_excerpt · [src/rust/streaming-silent-payments/src/lib.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/streaming-silent-payments/src/lib.rs#L124) · line 124 · SHA-256 14bc8680433716b8fc52ba9a85b1577a9648567735eefacba61ba01fa093709e_
-
-```
-  123 | fn create_dleq_proof(
-  124 |     secp: &Secp256k1<secp256k1::All>,
-  125 |     a_sum: &SecretKey,
-```
-
 _file_excerpt · [src/rust/util/src/p256.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/util/src/p256.rs#L28) · line 28 · SHA-256 925484476bdd234888084554a30574f13c31fd235705950f76e225d606f36aee_
 
 ```
@@ -2888,20 +2740,52 @@ _file_excerpt · [external/cryptoauthlib/lib/mbedtls/atca_mbedtls_ecdsa.c](https
    52 |                        const mbedtls_mpi *d, const unsigned char *buf, size_t blen,
 ```
 
+_file_excerpt · [external/cryptoauthlib/lib/mbedtls/atca_mbedtls_ecdsa.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/mbedtls/atca_mbedtls_ecdsa.c#L90) · line 90 · SHA-256 5259621b5a5bc156567828dce335388831702ff8e2754b8d16c2ffd60ca94a94_
+
+```
+   89 |  */
+   90 | int mbedtls_ecdsa_verify(mbedtls_ecp_group *grp,
+   91 |                          const unsigned char *buf, size_t blen,
+```
+
+_file_excerpt · [external/cryptoauthlib/lib/mbedtls/atca_mbedtls_wrap.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/mbedtls/atca_mbedtls_wrap.c#L730) · line 730 · SHA-256 9ac3a8be346df4d49b59eefe44de87cea6959845a62b45b156c562c5e7a43b05_
+
+```
+  729 |             //ret = mbedtls_ecdsa_sign(&mbedtls_pk_ec(*ctx)->grp, &r, &s, &mbedtls_pk_ec(*ctx)->d, digest, dig_len, NULL, NULL);
+  730 |             ret = mbedtls_ecdsa_sign_det(&mbedtls_pk_ec(*ctx)->grp, &r, &s, &mbedtls_pk_ec(*ctx)->d, digest, dig_len, MBEDTLS_MD_SHA256);
+  731 | 
+```
+
+_file_excerpt · [external/cryptoauthlib/lib/mbedtls/atca_mbedtls_wrap.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/mbedtls/atca_mbedtls_wrap.c#L791) · line 791 · SHA-256 1ba622282a185a565f9c43529ba3ddc81feb0e9f3a2baa3fbb26f7a622c91dec_
+
+```
+  790 | 
+  791 |             ret = mbedtls_ecdsa_verify(&mbedtls_pk_ec(*ctx)->grp, digest, dig_len, &mbedtls_pk_ec(*ctx)->Q, &r, &s);
+  792 | 
+```
+
+_file_excerpt · [external/cryptoauthlib/lib/openssl/atca_openssl_interface.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/openssl/atca_openssl_interface.c#L581) · line 581 · SHA-256 75e35b9c6a32f3e3b474a4f7953f9503efe3a4481fbf8973708154784b7a31d8_
+
+```
+  580 |         {
+  581 |             int ret = EVP_PKEY_set_type((EVP_PKEY*)ctx->ptr, EVP_PKEY_EC);
+  582 | 
+```
+
 **Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
 
 **Recommendation.** Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17834 — Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))
+### QSI-2026-41608 — Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:Ed25519:authentication`
 - Data source: src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -2933,11 +2817,11 @@ _file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://gith
    57 | 
 ```
 
-_file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs#L410) · line 410 · SHA-256 272c2c902cbf96d8a213325ad72d5e60b2a3a926f8388d973edaf70eeb1c98c9_
+_file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs#L410) · line 410 · SHA-256 70b8029ec33014d24857d0b034744e4a30c7f722dcfc1c6ab89fbfab9c244d00_
 
 ```
   409 | fn sign_payload(keys: &IdentityKeys, payload: &[u8]) -> [u8; SIGNATURE_LEN] {
-  410 |     let expanded_secret_key = [REDACTED]
+  410 |     let expanded_secret_key = ed25519::expanded_secret_key_from_seed(&keys.auth_seed);
   411 |     ed25519::sign_with_expanded_secret_key(&expanded_secret_key, payload).signature
 ```
 
@@ -2947,55 +2831,408 @@ _file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://gith
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17837 — Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))
+### QSI-2026-41627 — bytes 1.5.0 is affected by GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
-- Affected asset: `source-code:Schnorr (BIP-340):general`
-- Data source: src/rust/bitbox02-rust/src/keystore.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 40.2 / 100
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/bytes@1.5.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 33.1 / 100
 - CVSS v3.1: not applicable
 
-1 reference(s) to Schnorr (BIP-340) across 1 file(s), e.g. src/rust/bitbox02-rust/src/keystore.rs:897. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+OSV.dev reports GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007) for crates.io package bytes at version 1.5.0: bytes has integer overflow in BytesMut::reserve. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-434x-w66g-qw3r
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-434x-w66g-qw3r](https://osv.dev/vulnerability/GHSA-434x-w66g-qw3r) · manifest · SHA-256 58c8425f679122ea78208908d7c42d7c0f6eb030e5fbaef6d65097f3e6709156_
+
+```
+{"id": "GHSA-434x-w66g-qw3r", "aliases": ["CVE-2026-25541", "RUSTSEC-2026-0007"], "modified": "2026-09-10T03:50:33.995841351Z", "summary": "bytes has integer overflow in BytesMut::reserve", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (1.11.1).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-41623 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
+
+- Severity: **Medium** · Classification: Confirmed technical vulnerability · Confidence: Low
+> **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** crypto-bigint 0.5.5 (multiple timing variability issues in operations intended to be constant-time) is reachable in shipped firmware, and the path is worth stating exactly because it is narrower than it looks. src/rust/util/Cargo.toml:17 takes p256 as an *optional* dependency with features ["arithmetic", "ecdsa"], and lib.rs guards it with #[cfg(feature = "p256")]. That feature is switched on in exactly one place: src/rust/bitbox02-rust-c/Cargo.toml, inside the app-u2f feature block ("util/p256"). So p256 -> elliptic-curve -> crypto-bigint is compiled in whenever the U2F/FIDO app is built — the Multi edition — and is absent from a Bitcoin-only build. What it does there is secret-dependent: util/src/p256.rs exports rust_p256_sign, which calls SigningKey::sign_prehash with a private key over the C FFI, i.e. U2F authentication signatures on NIST P-256. The keys at stake are therefore FIDO credentials, NOT bitcoin spending keys: those go through bitbox-secp256k1 (libsecp256k1 in C), which this advisory does not touch. Stated precisely: no exploit is demonstrated, and the attacker model is physical possession plus timing measurement, which is the threat a hardware wallet exists to resist — hence medium rather than low. Fix available in crypto-bigint 0.7.6; maintainers should match the advisory's named operations against p256's scalar arithmetic. _automated severity: Low._
+- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 27.7 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
+
+```
+{"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-41616 — Non-cryptographic RNG near security-sensitive identifiers in external/lvgl/docs/src/_static/jquery.js
+
+- Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `file:external/lvgl/docs/src/_static/jquery.js`
+- Data source: external/lvgl/docs/src/_static/jquery.js
+- Detection method: Regular-expression matching of language-specific API patterns.
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 25.2 / 100
+- CVSS v3.1: not applicable
+
+'Math.random()' at line 2 on a line mentioning key/token/secret/password/nonce.
+
+**Potential impact.** Predictable values may allow token or key guessing.
+
+**Reproduction steps.**
+
+```
+Open line 2 in the supplied file external/lvgl/docs/src/_static/jquery.js and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [external/lvgl/docs/src/_static/jquery.js](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/lvgl/docs/src/_static/jquery.js#L2) · line 2 · SHA-256 22dc2b5ae897fe9b7d69c804eda741771a2b85daae153267199b7d950838df19_
+
+```
+    1 | /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
+    2 | !function(e,t){"use strict";"object"==typeof module&&"object"==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error("jQuery requires a window with a document");return t(e)}:t(e)}("undefined"!=typeof window?window:this,function(C,e){"use strict";var t=[],
+```
+
+**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Use a CSPRNG (secrets, crypto.getRandomValues, crypto/rand).
+
+**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+
+### QSI-2026-41628 — certifi 2022.12.7 is affected by GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:PyPI/certifi@2022.12.7`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 39.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230) for PyPI package certifi at version 2022.12.7: Certifi removes GLOBALTRUST root certificate. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-248v-346w-9cwc
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-248v-346w-9cwc](https://osv.dev/vulnerability/GHSA-248v-346w-9cwc) · line 13 · SHA-256 3d74205f26ab1e3c65bcb869a954fae59f9758d2bbf87e429684d71964bbb864_
+
+```
+{"id": "GHSA-248v-346w-9cwc", "aliases": ["CVE-2024-39689", "PYSEC-2024-230"], "modified": "2026-09-10T03:50:15.994602411Z", "summary": "Certifi removes GLOBALTRUST root certificate", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (2024.7.4).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-41638 — pygments 2.14.0 is affected by GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:PyPI/pygments@2.14.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 39.2 / 100
+- CVSS v3.1: 3.3 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev reports GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987) for PyPI package pygments at version 2.14.0: Pygments has Regular Expression Denial of Service (ReDoS) due to Inefficient Regex for GUID Matching. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-5239-wwwm-4pmq
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-5239-wwwm-4pmq](https://osv.dev/vulnerability/GHSA-5239-wwwm-4pmq) · line 34 · SHA-256 3a3de252c0c0118999a686c303b22756537724efae2e918007008069280ec161_
+
+```
+{"id": "GHSA-5239-wwwm-4pmq", "aliases": ["CVE-2026-4539", "PYSEC-2026-2987"], "modified": "2026-09-10T03:50:59.780634752Z", "summary": "Pygments has Regular Expression Denial of Service (ReDoS) due to Inefficient Regex for GUID Matching", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (2.20.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-41611 — In bundled third-party code: Quantum-vulnerable ECDSA key (secp256r1) in external/cryptoauthlib/app/pkcs11/README.md
+
+- Severity: **Info** · Classification: Long-term post-quantum risk · Confidence: High
+- Affected asset: `file:external/cryptoauthlib/app/pkcs11/README.md#line 280`
+- Data source: external/cryptoauthlib/app/pkcs11/README.md
+- Detection method: Public key parsing.
+- Analyzer: certificates 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 39.0 / 100
+- CVSS v3.1: not applicable
+
+A ECDSA secp256r1 public key was found (line 280).
+
+**Potential impact.** Long-term risk once a CRQC exists; for key exchange, recorded traffic could be decrypted retroactively.
+
+**Reproduction steps.**
+
+```
+Open line 280 in the supplied file external/cryptoauthlib/app/pkcs11/README.md and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_key · external/cryptoauthlib/app/pkcs11/README.md · line 280 · SHA-256 87a3decbb47c307b59a5585db9eecff49e5997a1eb7350dbfae08a97c0f3fa07_
+
+```
+ECDSA public key, secp256r1
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability.
+
+**Recommendation.** Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Retest procedure.** Re-audit after migration.
+
+### QSI-2026-41624 — keccak 0.1.4 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-28): not applicable to this code.** keccak 0.1.4's unsoundness is in the opt-in ARMv8 assembly backend behind the asm Cargo feature, which is off by default and which no manifest in src/rust enables. Its consumers are bitbox02-rust and sha3, both using the portable implementation. Upgrading to 0.1.6 is still the cheap move during routine maintenance.
+- Affected asset: `dependency:crates.io/keccak@0.1.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 35.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) for crates.io package keccak at version 0.1.4: Unsoundness in opt-in ARMv8 assembly backend for `keccak`. The affected code sits behind the `asm` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-3288-p39f-rqpv
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv) · manifest · SHA-256 638750a493b76f126adef65e1dd53e2ef494cf4b1d4c7edcc7db12181ba27f6c_
+
+```
+{"id": "GHSA-3288-p39f-rqpv", "aliases": ["RUSTSEC-2026-0012"], "modified": "2026-09-10T03:50:59.332505686Z", "summary": "Unsoundness in opt-in ARMv8 assembly backend for `keccak`", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.1.6).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-41625 — time 0.3.44 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-28): not applicable to this code.** time 0.3.44's stack-exhaustion issue is in the RFC 2822 and RFC 3339 parsing entry points (time::Date::parse, time::OffsetDateTime::parse and friends). time is pulled in by the workspace's own util crate, which uses it for datetime formatting in util/src/datetime.rs, not for parsing attacker-supplied strings, and no audited file names the affected functions. _automated severity: Medium._
+- Affected asset: `dependency:crates.io/time@0.3.44`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 35.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) for crates.io package time at version 0.3.44: time vulnerable to stack exhaustion Denial of Service attack. Some product source files did not fit the size limits, so the affected functions were not looked up.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-r6v5-fh4h-64xc
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc) · manifest · SHA-256 f9407c25f7cc6bacd2695a5be9ea893203cf87df27320f0289d5e50d5077d0d1_
+
+```
+{"id": "GHSA-r6v5-fh4h-64xc", "aliases": ["CVE-2026-25727", "RUSTSEC-2026-0009"], "modified": "2026-09-10T03:50:35.583241382Z", "summary": "time vulnerable to stack exhaustion Denial of Service attack", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:L/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.3.47).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-41614 — In bundled third-party code: Quantum-vulnerable MQV: key wrapping and data encryption at rest (1 file(s))
+
+- Severity: **Info** · Classification: Long-term post-quantum risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
+- Affected asset: `source-code:MQV:key_wrapping`
+- Data source: external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 34.4 / 100
+- CVSS v3.1: not applicable
+
+1 reference(s) to MQV across 1 file(s), e.g. external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c:105. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later).
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
 **Reproduction steps.**
 
 ```
-Open src/rust/bitbox02-rust/src/keystore.rs:897 and inspect the quoted lines; the evidence lists further files.
+Open external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c:105 and inspect the quoted lines; the evidence lists further files.
 ```
 
 **Evidence.**
 
-_file_excerpt · [src/rust/bitbox02-rust/src/keystore.rs](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/src/rust/bitbox02-rust/src/keystore.rs#L897) · line 897 · SHA-256 4c865a127c8bb4a820585d2f29be3a734a01dc66058a4678b8e15a387c370cd4_
+_file_excerpt · [external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c#L105) · line 105 · SHA-256 c5141bf301a1b9fa7dcb5429b74b9884e2383ecfc70f7b940fa29a0d8bd0c236_
 
 ```
-  896 |         .map_err(|_| ())?;
-  897 |     let sig = SECP256K1.sign_schnorr_with_aux_rand(
-  898 |         &bitcoin::secp256k1::Message::from_digest(*msg),
+  104 |     { CKM_ECDH1_COFACTOR_DERIVE,                                                                                        { 0,   0,   CKF_HW | CKF_DERIVE | PCKS11_MECH_ECC508_EC_CAPABILITY                                         } },
+  105 |     { CKM_ECMQV_DERIVE,                                                                                                 { 0,   0,   CKF_HW | CKF_DERIVE | PCKS11_MECH_ECC508_EC_CAPABILITY                                         } },
+  106 |     { CKM_ECDH_AES_KEY_WRAP,                                                                                            { 0,   0,   CKF_HW | CKF_WRAP | CKF_UNWRAP | PCKS11_MECH_ECC508_EC_CAPABILITY                              } },
 ```
 
 **Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
 
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for crypto-agility.
+**Recommendation.** Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17839 — Quantum-vulnerable ECDH: role not determined (4 file(s))
+### QSI-2026-41615 — In bundled third-party code: Quantum-vulnerable ECDH: key wrapping and data encryption at rest (2 file(s))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
+- Severity: **Info** · Classification: Long-term post-quantum risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
+- Affected asset: `source-code:ECDH:key_wrapping`
+- Data source: external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 34.4 / 100
+- CVSS v3.1: not applicable
+
+26 reference(s) to ECDH across 2 file(s), e.g. external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c:103. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later).
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c:103 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c#L103) · line 103 · SHA-256 b8453b4366084e0b3b4b1458621b489afa082d4718480be8649b99e254e009c2_
+
+```
+  102 |     { CKM_ECDSA_SHA256,                                                                                                 { 256, 256, CKF_HW | CKF_SIGN | CKF_VERIFY | PCKS11_MECH_ECC508_EC_CAPABILITY                              } },
+  103 |     { CKM_ECDH1_DERIVE,                                                                                                 { 0,   0,   CKF_HW | CKF_DERIVE | PCKS11_MECH_ECC508_EC_CAPABILITY                                         } },
+  104 |     { CKM_ECDH1_COFACTOR_DERIVE,                                                                                        { 0,   0,   CKF_HW | CKF_DERIVE | PCKS11_MECH_ECC508_EC_CAPABILITY                                         } },
+```
+
+_file_excerpt · [external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c#L104) · line 104 · SHA-256 4470ba301bbabf5ca0c2505153bb022c6ef7a58e4bc8516e15e36cd1cbaa65a1_
+
+```
+  103 |     { CKM_ECDH1_DERIVE,                                                                                                 { 0,   0,   CKF_HW | CKF_DERIVE | PCKS11_MECH_ECC508_EC_CAPABILITY                                         } },
+  104 |     { CKM_ECDH1_COFACTOR_DERIVE,                                                                                        { 0,   0,   CKF_HW | CKF_DERIVE | PCKS11_MECH_ECC508_EC_CAPABILITY                                         } },
+  105 |     { CKM_ECMQV_DERIVE,                                                                                                 { 0,   0,   CKF_HW | CKF_DERIVE | PCKS11_MECH_ECC508_EC_CAPABILITY                                         } },
+```
+
+_file_excerpt · [external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c#L106) · line 106 · SHA-256 b7da47a31c5e54a56a5883fb943b64a33393e63bc7fee32a6a9a5fc40bceb6ad_
+
+```
+  105 |     { CKM_ECMQV_DERIVE,                                                                                                 { 0,   0,   CKF_HW | CKF_DERIVE | PCKS11_MECH_ECC508_EC_CAPABILITY                                         } },
+  106 |     { CKM_ECDH_AES_KEY_WRAP,                                                                                            { 0,   0,   CKF_HW | CKF_WRAP | CKF_UNWRAP | PCKS11_MECH_ECC508_EC_CAPABILITY                              } },
+  107 |     //CKM_FASTHASH,
+```
+
+_file_excerpt · [external/cryptoauthlib/python/cryptoauthlib/atcab.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/python/cryptoauthlib/atcab.py#L974) · line 974 · SHA-256 87004ff616be22235a821a5c8d5b9ead791c529f62209f2bc0cea638b486c206_
+
+```
+  973 |     """
+  974 |     Base function for generating premaster secret key using ECDH.
+  975 | 
+```
+
+_file_excerpt · [external/cryptoauthlib/python/cryptoauthlib/atcab.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/python/cryptoauthlib/atcab.py#L977) · line 977 · SHA-256 8e5f1c528fbe7b2ee242f9afec3b53fc230249d43b130247f4590ed07951b297_
+
+```
+  976 |     Args:
+  977 |         mode                Mode to be used for ECDH computation (int)
+  978 |         key_id              Slot of key for ECDH computation (int)
+```
+
+_file_excerpt · [external/cryptoauthlib/python/cryptoauthlib/atcab.py](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/python/cryptoauthlib/atcab.py#L978) · line 978 · SHA-256 204aab89e32c109386818d0b5149a61c7c3ce73f3684eb12b5709f32b09a5a47_
+
+```
+  977 |         mode                Mode to be used for ECDH computation (int)
+  978 |         key_id              Slot of key for ECDH computation (int)
+  979 |         public_key          Public key input to ECDH calculation. X and Y
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-41612 — In bundled third-party code: Quantum-vulnerable ECDH: role not determined (4 file(s))
+
+- Severity: **Info** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:ECDH:general`
 - Data source: external/cryptoauthlib/lib/calib/calib_command.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 40.2 / 100
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 31.2 / 100
 - CVSS v3.1: not applicable
 
-7 reference(s) to ECDH across 4 file(s), e.g. external/cryptoauthlib/lib/calib/calib_command.h:181. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+8 reference(s) to ECDH across 4 file(s), e.g. external/cryptoauthlib/lib/calib/calib_command.h:181. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -3039,6 +3276,14 @@ _file_excerpt · [external/cryptoauthlib/lib/calib/calib_ecdh.c](https://github.
   160 |         }
 ```
 
+_file_excerpt · [external/cryptoauthlib/lib/pkcs11/pkcs11_key.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/pkcs11/pkcs11_key.c#L850) · line 850 · SHA-256 4a107ad6cd0f00a53069d0f0191b6d6904c5bd0c131a2e664cc16ae7b8fc620f_
+
+```
+  849 | 
+  850 |     if (CKM_ECDH1_DERIVE == pMechanism->mechanism || CKM_ECDH1_COFACTOR_DERIVE == pMechanism->mechanism)
+  851 |     {
+```
+
 _file_excerpt · [external/cryptoauthlib/lib/pkcs11/pkcs11_key.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/pkcs11/pkcs11_key.c#L953) · line 953 · SHA-256 c41a3072038479a783a892f81f7afc850c71c7798fb752eb6480c7f82e64ee87_
 
 ```
@@ -3061,15 +3306,52 @@ _file_excerpt · [external/cryptoauthlib/python/setup.py](https://github.com/Bit
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17842 — Quantum-vulnerable X25519: role not determined (6 file(s))
+### QSI-2026-41613 — In bundled third-party code: Quantum-vulnerable Finite-field Diffie-Hellman: role not determined (1 file(s))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
+- Severity: **Info** · Classification: Long-term post-quantum risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
+- Affected asset: `source-code:Finite-field Diffie-Hellman:general`
+- Data source: external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 31.2 / 100
+- CVSS v3.1: not applicable
+
+1 reference(s) to Finite-field Diffie-Hellman across 1 file(s), e.g. external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c:125. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c:125 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c#L125) · line 125 · SHA-256 5d27091ef8c455c46c7f7f38e2f4c61a25132587b2686ca7aee1834e5d5538d5_
+
+```
+  124 |     //CKM_AES_CBC_ENCRYPT_DATA,
+  125 |     { CKM_DH_PKCS_PARAMETER_GEN,                                                                                        { 0,   0,   CKF_HW | CKF_GENERATE | CKF_GENERATE_KEY_PAIR                                                  } }
+  126 |     //CKM_AES_OFB,
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-41617 — In bundled third-party code: Quantum-vulnerable X25519: role not determined (6 file(s))
+
+- Severity: **Info** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Affected asset: `source-code:X25519:general`
 - Data source: external/optiga-trust-m/external/mbedtls/3rdparty/everest/include/everest/Hacl_Curve25519.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 40.2 / 100
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 31.2 / 100
 - CVSS v3.1: not applicable
 
 6 reference(s) to X25519 across 6 file(s), e.g. external/optiga-trust-m/external/mbedtls/3rdparty/everest/include/everest/Hacl_Curve25519.h:18. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
@@ -3137,256 +3419,52 @@ _file_excerpt · [external/optiga-trust-m/external/mbedtls/3rdparty/everest/libr
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-17852 — bytes 1.5.0 is affected by GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
+### QSI-2026-41618 — In bundled third-party code: ECB block-cipher mode used in external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/bytes@1.5.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 33.1 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007) for crates.io package bytes at version 1.5.0: bytes has integer overflow in BytesMut::reserve. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-434x-w66g-qw3r
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-434x-w66g-qw3r](https://osv.dev/vulnerability/GHSA-434x-w66g-qw3r) · manifest · SHA-256 58c8425f679122ea78208908d7c42d7c0f6eb030e5fbaef6d65097f3e6709156_
-
-```
-{"id": "GHSA-434x-w66g-qw3r", "aliases": ["CVE-2026-25541", "RUSTSEC-2026-0007"], "modified": "2026-09-10T03:50:33.995841351Z", "summary": "bytes has integer overflow in BytesMut::reserve", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (1.11.1).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-17841 — Non-cryptographic RNG near security-sensitive identifiers in external/lvgl/docs/src/_static/jquery.js
-
-- Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `file:external/lvgl/docs/src/_static/jquery.js`
-- Data source: external/lvgl/docs/src/_static/jquery.js
+- Severity: **Info** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `file:external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h`
+- Data source: external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 25.2 / 100
+- Analyzer: source_code 1.16.2 · 2026-11-23 12:06 UTC
+- Priority score: 26.0 / 100
 - CVSS v3.1: not applicable
 
-'Math.random()' at line 2 on a line mentioning key/token/secret/password/nonce.
+1 usage(s) of ECB mode (first at line 184).
 
-**Potential impact.** Predictable values may allow token or key guessing.
+**Potential impact.** ECB reveals patterns in encrypted data and provides no integrity.
 
 **Reproduction steps.**
 
 ```
-Open line 2 in the supplied file external/lvgl/docs/src/_static/jquery.js and inspect the quoted lines (see evidence).
+Open line 184 in the supplied file external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h and inspect the quoted lines (see evidence).
 ```
 
 **Evidence.**
 
-_file_excerpt · [external/lvgl/docs/src/_static/jquery.js](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/lvgl/docs/src/_static/jquery.js#L2) · line 2 · SHA-256 22dc2b5ae897fe9b7d69c804eda741771a2b85daae153267199b7d950838df19_
+_file_excerpt · [external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h](https://github.com/BitBoxSwiss/bitbox02-firmware/blob/ae548ef4e40f548a17542ba457f138db4fa0069d/external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h#L184) · line 184 · SHA-256 b4ca0728db5ccfb494e9c1d28a1f570024b573214a88c0c50c5651e07549de35_
 
 ```
-    1 | /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
-    2 | !function(e,t){"use strict";"object"==typeof module&&"object"==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error("jQuery requires a window with a document");return t(e)}:t(e)}("undefined"!=typeof window?window:this,function(C,e){"use strict";var t=[],
+  182 | typedef enum {
+  183 |     MBEDTLS_MODE_NONE = 0,               /**< None.                        */
+  184 |     MBEDTLS_MODE_ECB,                    /**< The ECB cipher mode.         */
+  185 |     MBEDTLS_MODE_CBC,                    /**< The CBC cipher mode.         */
+  186 |     MBEDTLS_MODE_CFB,                    /**< The CFB cipher mode.         */
 ```
 
 **Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
 
-**Recommendation.** Use a CSPRNG (secrets, crypto.getRandomValues, crypto/rand).
+**Recommendation.** Use an AEAD mode (GCM) with unique nonces.
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-17853 — certifi 2022.12.7 is affected by GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:PyPI/certifi@2022.12.7`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 39.2 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230) for PyPI package certifi at version 2022.12.7: Certifi removes GLOBALTRUST root certificate. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-248v-346w-9cwc
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-248v-346w-9cwc](https://osv.dev/vulnerability/GHSA-248v-346w-9cwc) · line 13 · SHA-256 3d74205f26ab1e3c65bcb869a954fae59f9758d2bbf87e429684d71964bbb864_
-
-```
-{"id": "GHSA-248v-346w-9cwc", "aliases": ["CVE-2024-39689", "PYSEC-2024-230"], "modified": "2026-09-10T03:50:15.994602411Z", "summary": "Certifi removes GLOBALTRUST root certificate", "severity": null, "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (2024.7.4).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-17863 — pygments 2.14.0 is affected by GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:PyPI/pygments@2.14.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 39.2 / 100
-- CVSS v3.1: 3.3 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L`)
-
-OSV.dev reports GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987) for PyPI package pygments at version 2.14.0: Pygments has Regular Expression Denial of Service (ReDoS) due to Inefficient Regex for GUID Matching. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-5239-wwwm-4pmq
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-5239-wwwm-4pmq](https://osv.dev/vulnerability/GHSA-5239-wwwm-4pmq) · line 34 · SHA-256 3a3de252c0c0118999a686c303b22756537724efae2e918007008069280ec161_
-
-```
-{"id": "GHSA-5239-wwwm-4pmq", "aliases": ["CVE-2026-4539", "PYSEC-2026-2987"], "modified": "2026-09-10T03:50:59.780634752Z", "summary": "Pygments has Regular Expression Denial of Service (ReDoS) due to Inefficient Regex for GUID Matching", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (2.20.0).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-17848 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
-
-- Severity: **Low** · Classification: Confirmed technical vulnerability · Confidence: Low
-> **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** crypto-bigint 0.5.5 (multiple timing variability issues in operations intended to be constant-time) is reachable in shipped firmware, and the path is worth stating exactly because it is narrower than it looks. src/rust/util/Cargo.toml:17 takes p256 as an *optional* dependency with features ["arithmetic", "ecdsa"], and lib.rs guards it with #[cfg(feature = "p256")]. That feature is switched on in exactly one place: src/rust/bitbox02-rust-c/Cargo.toml, inside the app-u2f feature block ("util/p256"). So p256 -> elliptic-curve -> crypto-bigint is compiled in whenever the U2F/FIDO app is built — the Multi edition — and is absent from a Bitcoin-only build. What it does there is secret-dependent: util/src/p256.rs exports rust_p256_sign, which calls SigningKey::sign_prehash with a private key over the C FFI, i.e. U2F authentication signatures on NIST P-256. The keys at stake are therefore FIDO credentials, NOT bitcoin spending keys: those go through bitbox-secp256k1 (libsecp256k1 in C), which this advisory does not touch. Stated precisely: no exploit is demonstrated, and the attacker model is physical possession plus timing measurement, which is the threat a hardware wallet exists to resist — hence medium rather than low. Fix available in crypto-bigint 0.7.6; maintainers should match the advisory's named operations against p256's scalar arithmetic.
-- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 23.9 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
-
-```
-{"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-17849 — keccak 0.1.4 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
-
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-28): not applicable to this code.** keccak 0.1.4's unsoundness is in the opt-in ARMv8 assembly backend behind the asm Cargo feature, which is off by default and which no manifest in src/rust enables. Its consumers are bitbox02-rust and sha3, both using the portable implementation. Upgrading to 0.1.6 is still the cheap move during routine maintenance.
-- Affected asset: `dependency:crates.io/keccak@0.1.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 35.2 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) for crates.io package keccak at version 0.1.4: Unsoundness in opt-in ARMv8 assembly backend for `keccak`. The affected code sits behind the `asm` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-3288-p39f-rqpv
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv) · manifest · SHA-256 638750a493b76f126adef65e1dd53e2ef494cf4b1d4c7edcc7db12181ba27f6c_
-
-```
-{"id": "GHSA-3288-p39f-rqpv", "aliases": ["RUSTSEC-2026-0012"], "modified": "2026-09-10T03:50:59.332505686Z", "summary": "Unsoundness in opt-in ARMv8 assembly backend for `keccak`", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (0.1.6).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-17850 — time 0.3.44 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
-
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-28): not applicable to this code.** time 0.3.44's stack-exhaustion issue is in the RFC 2822 and RFC 3339 parsing entry points (time::Date::parse, time::OffsetDateTime::parse and friends). time is pulled in by the workspace's own util crate, which uses it for datetime formatting in util/src/datetime.rs, not for parsing attacker-supplied strings, and no audited file names the affected functions. _automated severity: Medium._
-- Affected asset: `dependency:crates.io/time@0.3.44`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
-- Priority score: 35.2 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) for crates.io package time at version 0.3.44: time vulnerable to stack exhaustion Denial of Service attack. Some product source files did not fit the size limits, so the affected functions were not looked up.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-r6v5-fh4h-64xc
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc) · manifest · SHA-256 f9407c25f7cc6bacd2695a5be9ea893203cf87df27320f0289d5e50d5077d0d1_
-
-```
-{"id": "GHSA-r6v5-fh4h-64xc", "aliases": ["CVE-2026-25727", "RUSTSEC-2026-0009"], "modified": "2026-09-10T03:50:35.583241382Z", "summary": "time vulnerable to stack exhaustion Denial of Service attack", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:L/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H"}], "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (0.3.47).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-17846 — anyhow 1.0.31 is affected by RUSTSEC-2026-0190 (no severity rating)
+### QSI-2026-41621 — anyhow 1.0.31 is affected by RUSTSEC-2026-0190 (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** anyhow 1.0.31 (unsoundness in Error::downcast_mut) enters only through prost-derive, which is a proc-macro crate, so it runs in the code generator at build time and is never linked into the firmware image. Traced in src/rust/Cargo.lock: anyhow <- prost-derive <- prost <- bitbox-proto <- bitbox02-rust <- bitbox02-rust-c. Error::downcast_mut is not called anywhere in the audited tree. _automated severity: Low._
 - Affected asset: `dependency:crates.io/anyhow@1.0.31`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 20.9 / 100
 - CVSS v3.1: not applicable
 
@@ -3414,14 +3492,14 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17851 — anyhow 1.0.75 is affected by RUSTSEC-2026-0190 (no severity rating)
+### QSI-2026-41626 — anyhow 1.0.75 is affected by RUSTSEC-2026-0190 (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** anyhow 1.0.31 (unsoundness in Error::downcast_mut) enters only through prost-derive, which is a proc-macro crate, so it runs in the code generator at build time and is never linked into the firmware image. Traced in src/rust/Cargo.lock: anyhow <- prost-derive <- prost <- bitbox-proto <- bitbox02-rust <- bitbox02-rust-c. Error::downcast_mut is not called anywhere in the audited tree. _automated severity: Low._
 - Affected asset: `dependency:crates.io/anyhow@1.0.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 20.9 / 100
 - CVSS v3.1: not applicable
 
@@ -3449,14 +3527,14 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-17845 — No post-quantum capable cryptographic library detected
+### QSI-2026-41620 — No post-quantum capable cryptographic library detected
 
 - Severity: **Info** · Classification: Insufficient data · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Accurate and the single most quotable row for a migration budget: across 40 dependency manifests the tree declares curve25519-dalek, ecdsa, ed25519-dalek, p256, secp256k1 and x25519-dalek, and nothing PQC-capable. On a Cortex-M target that is not an oversight — ML-DSA and SLH-DSA signature and key sizes are the constraint, and a no_std PQ implementation that fits the flash and RAM budget is itself the engineering problem. Worth stating as a finding precisely because the fix is not "add a crate".
 - Affected asset: `dependencies`
 - Data source: dependency manifests
 - Detection method: Dependency name matching.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 15.0 / 100
 - CVSS v3.1: not applicable
 
@@ -3484,14 +3562,14 @@ Crypto libraries: curve25519-dalek, ecdsa, ed25519-dalek, p256, secp256k1, x2551
 
 **Retest procedure.** Re-scan after upgrades.
 
-### QSI-2026-17847 — bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)
+### QSI-2026-41622 — bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** bare-metal 0.2.5 is flagged as deprecated, not vulnerable; the advisory reports no defect. Recording the decision to keep it, which is what an informational advisory asks for. It is relevant to post-quantum readiness only in the weak sense that an unmaintained crate will not gain PQ support, and this one carries no cryptography at all.
 - Affected asset: `dependency:crates.io/bare-metal@0.2.5`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-06 13:05 UTC
+- Analyzer: dependencies 1.16.2 · 2026-11-23 12:06 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -3544,7 +3622,7 @@ _Planning assumptions: x for key establishment, x for signatures, y are the defa
 ### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
 
 - Classical only — channel key exchange (TLS, Noise, handshakes): X25519 (5 file(s))
-- Classical only — key wrapping and data encryption at rest: ECDH, X25519 (2 file(s))
+- Classical only — key wrapping and data encryption at rest: ECDH, MQV, X25519 (3 file(s))
 - Classical only — firmware and boot verification (root of trust): ECDSA (3 file(s))
 
 **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
@@ -3555,12 +3633,12 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **firmware and boot verification (root of trust)** | ECDSA (3) | QSI-2026-17831 | Plan a hybrid firmware signature (the classical one plus ML-DSA or SLH-DSA, both required) and the path to ship the new keys in a bootloader update |
-| **key wrapping and data encryption at rest** | ECDH (1), X25519 (1) | QSI-2026-17833, QSI-2026-17840 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **channel key exchange (TLS, Noise, handshakes)** | X25519 (5) | QSI-2026-17832 | Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols) |
-| **transaction and message signing** | ECDSA (17), Ed25519 (7), Schnorr (BIP-340) (5) | QSI-2026-17803, QSI-2026-17835, QSI-2026-17836, QSI-2026-17844 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | Ed25519 (1) | QSI-2026-17834 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | ECDSA (10), X25519 (6), ECDH (4), Schnorr (BIP-340) (1) | QSI-2026-17802, QSI-2026-17837, QSI-2026-17839, QSI-2026-17842 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **firmware and boot verification (root of trust)** | ECDSA (3) | QSI-2026-41604 | Plan a hybrid firmware signature (the classical one plus ML-DSA or SLH-DSA, both required) and the path to ship the new keys in a bootloader update |
+| **key wrapping and data encryption at rest** | X25519 (1) | QSI-2026-41607 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **channel key exchange (TLS, Noise, handshakes)** | X25519 (5) | QSI-2026-41606 | Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols) |
+| **transaction and message signing** | ECDSA (19), Ed25519 (7), Schnorr (BIP-340) (6) | QSI-2026-41576, QSI-2026-41609, QSI-2026-41610, QSI-2026-41619 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **authentication and identity (certificates, tokens, device attestation)** | Ed25519 (1) | QSI-2026-41608 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
+| **role not determined** | ECDSA (11) | QSI-2026-41605 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -3570,7 +3648,8 @@ No readiness questionnaire was completed for this project.
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
 | Shor's algorithm — factoring | breaks | Q1 | RSA (41) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (6), ECDSA (36), Ed25519 (11), Schnorr (BIP-340) (4), X25519 (15) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Shor's algorithm — discrete logarithms in finite fields | breaks | Q1 | Finite-field Diffie-Hellman (1) | Breaks finite-field Diffie–Hellman and DSA at every size. Move key establishment to ML-KEM (hybrid with X25519 or ECDH during the transition) and signatures to ML-DSA or SLH-DSA. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (7), ECDSA (37), Ed25519 (11), MQV (1), Schnorr (BIP-340) (4), X25519 (15) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
 | Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-128 (4), Blowfish (1), CMAC (3), Camellia (1), ChaCha20-Poly1305 (4), HKDF (1), HMAC (12), Keccak-256 (4), RC4 (1), RIPEMD-160 (1), SHA-1 (5), SHA-2 (31) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | Keccak-256 (4), RIPEMD-160 (1), SHA-1 (5), SHA-2 (31) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 | Simon's algorithm — superposition attacks on symmetric constructions | only with superposition queries | Q2 | GCM mode (2) | No action for ordinary deployments of AES-GCM or CBC-MAC — the attack model does not apply. Record it as a model assumption; see the offline variant for Even–Mansour-type designs. |
@@ -3597,132 +3676,134 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-17830 | Remove certificate-verification overrides in scripts/generate_version_headers.py. | root-cause fix | No verification overrides remain outside explicitly marked test code. |
-| P1 | QSI-2026-17801 | Use an AEAD mode (GCM) with unique nonces. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P1 | QSI-2026-17843 | Use an AEAD mode (GCM) with unique nonces. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P2 | QSI-2026-17854 | Upgrade certifi to a fixed version (2026.10.18). | root-cause fix | Dependency scan no longer reports GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320). |
-| P2 | QSI-2026-17855 | Upgrade certifi to a fixed version (2023.7.22). | root-cause fix | Dependency scan no longer reports GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135). |
-| P2 | QSI-2026-17859 | Upgrade jinja2 to a fixed version (3.1.5). | root-cause fix | Dependency scan no longer reports GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472). |
-| P2 | QSI-2026-17862 | Upgrade jinja2 to a fixed version (3.1.5). | root-cause fix | Dependency scan no longer reports GHSA-q2x7-8rv6-6q7h (CVE-2024-56326, PYSEC-2026-1475). |
-| P2 | QSI-2026-17869 | Upgrade urllib3 to a fixed version (2.6.0). | root-cause fix | Dependency scan no longer reports GHSA-2xpw-w6gg-jr37 (CVE-2025-66471, PYSEC-2026-1994). |
-| P2 | QSI-2026-17871 | Upgrade urllib3 to a fixed version (2.6.3). | root-cause fix | Dependency scan no longer reports GHSA-38jv-5279-wg99 (CVE-2026-21441, PYSEC-2026-1996). |
-| P2 | QSI-2026-17872 | Upgrade urllib3 to a fixed version (2.8.0). | root-cause fix | Dependency scan no longer reports GHSA-8988-9cw3-xx77 (CVE-2026-97687, PYSEC-2026-4175). |
-| P2 | QSI-2026-17874 | Upgrade urllib3 to a fixed version (2.6.0). | root-cause fix | Dependency scan no longer reports GHSA-gm62-xv2j-4w53 (CVE-2025-66418, PYSEC-2026-1998). |
-| P2 | QSI-2026-17878 | Upgrade urllib3 to a fixed version (2.8.0). | root-cause fix | Dependency scan no longer reports GHSA-vxq7-64xx-v4gw (CVE-2026-97689, PYSEC-2026-4177). |
-| P2 | QSI-2026-17856 | Upgrade idna to a fixed version (3.15). | root-cause fix | Dependency scan no longer reports GHSA-65pc-fj4g-8rjx (CVE-2026-45409, PYSEC-2026-215). |
-| P2 | QSI-2026-17857 | Upgrade idna to a fixed version (3.7). | root-cause fix | Dependency scan no longer reports GHSA-jjg7-2v4v-x38h (CVE-2024-3651, PYSEC-2024-60). |
-| P2 | QSI-2026-17858 | Upgrade jinja2 to a fixed version (3.1.6). | root-cause fix | Dependency scan no longer reports GHSA-cpwx-vrp4-4pq7 (CVE-2025-27516, PYSEC-2026-1471). |
-| P2 | QSI-2026-17860 | Upgrade jinja2 to a fixed version (3.1.3). | root-cause fix | Dependency scan no longer reports GHSA-h5c8-rqwp-cp95 (CVE-2024-22195, PYSEC-2026-1473). |
-| P2 | QSI-2026-17861 | Upgrade jinja2 to a fixed version (3.1.4). | root-cause fix | Dependency scan no longer reports GHSA-h75v-3vvj-5mfj (CVE-2024-34064, PYSEC-2026-1474). |
-| P2 | QSI-2026-17864 | Upgrade pygments to a fixed version (2.15.0). | root-cause fix | Dependency scan no longer reports GHSA-mrwq-x4v8-fh7p (CVE-2022-40896, PYSEC-2023-117). |
-| P2 | QSI-2026-17865 | Upgrade requests to a fixed version (2.32.4). | root-cause fix | Dependency scan no longer reports GHSA-9hjg-9r4m-mvj7 (CVE-2024-47081, PYSEC-2026-1872). |
-| P2 | QSI-2026-17866 | Upgrade requests to a fixed version (2.32.0). | root-cause fix | Dependency scan no longer reports GHSA-9wx4-h78v-vm56 (CVE-2024-35195, PYSEC-2026-1873). |
-| P2 | QSI-2026-17867 | Upgrade requests to a fixed version (2.33.0). | root-cause fix | Dependency scan no longer reports GHSA-gc5v-m9x4-r6x2 (CVE-2026-25645, PYSEC-2026-2275). |
-| P2 | QSI-2026-17868 | Upgrade requests to a fixed version (2.31.0). | root-cause fix | Dependency scan no longer reports GHSA-j8r2-6x86-q33q (CVE-2023-32681, PYSEC-2023-74). |
-| P2 | QSI-2026-17870 | Upgrade urllib3 to a fixed version (1.26.19, 2.2.2). | root-cause fix | Dependency scan no longer reports GHSA-34jh-p97f-mpxf (CVE-2024-37891, PYSEC-2026-1995). |
-| P2 | QSI-2026-17873 | Upgrade urllib3 to a fixed version (1.26.18, 2.0.7). | root-cause fix | Dependency scan no longer reports GHSA-g4mx-q9vg-27p4 (CVE-2023-45803, PYSEC-2023-212). |
-| P2 | QSI-2026-17875 | Upgrade urllib3 to a fixed version (2.5.0). | root-cause fix | Dependency scan no longer reports GHSA-pq67-6m6q-mj2v (CVE-2025-50181, PYSEC-2026-1999). |
-| P2 | QSI-2026-17876 | Upgrade urllib3 to a fixed version (2.7.0). | root-cause fix | Dependency scan no longer reports GHSA-qccp-gfcp-xxvc (CVE-2026-44431, PYSEC-2026-141). |
-| P2 | QSI-2026-17877 | Upgrade urllib3 to a fixed version (1.26.17, 2.0.6). | root-cause fix | Dependency scan no longer reports GHSA-v845-jxx5-vc9f (CVE-2023-43804, PYSEC-2023-192). |
-| P2 | QSI-2026-17879 | Upgrade zipp to a fixed version (3.19.1). | root-cause fix | Dependency scan no longer reports GHSA-jfmj-5v4g-7637 (CVE-2024-5569, PYSEC-2026-2074). |
-| P2 | QSI-2026-17852 | Upgrade bytes to a fixed version (1.11.1). | root-cause fix | Dependency scan no longer reports GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
-| P2 | QSI-2026-17853 | Upgrade certifi to a fixed version (2024.7.4). | root-cause fix | Dependency scan no longer reports GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230). |
-| P2 | QSI-2026-17863 | Upgrade pygments to a fixed version (2.20.0). | root-cause fix | Dependency scan no longer reports GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987). |
-| P2 | QSI-2026-17849 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
-| P2 | QSI-2026-17850 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
+| P1 | QSI-2026-41603 | Remove certificate-verification overrides in scripts/generate_version_headers.py. | root-cause fix | No verification overrides remain outside explicitly marked test code. |
+| P1 | QSI-2026-41575 | Use an AEAD mode (GCM) with unique nonces. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P2 | QSI-2026-41629 | Upgrade certifi to a fixed version (2026.10.18). | root-cause fix | Dependency scan no longer reports GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320). |
+| P2 | QSI-2026-41630 | Upgrade certifi to a fixed version (2023.7.22). | root-cause fix | Dependency scan no longer reports GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135). |
+| P2 | QSI-2026-41634 | Upgrade jinja2 to a fixed version (3.1.5). | root-cause fix | Dependency scan no longer reports GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472). |
+| P2 | QSI-2026-41637 | Upgrade jinja2 to a fixed version (3.1.5). | root-cause fix | Dependency scan no longer reports GHSA-q2x7-8rv6-6q7h (CVE-2024-56326, PYSEC-2026-1475). |
+| P2 | QSI-2026-41644 | Upgrade urllib3 to a fixed version (2.6.0). | root-cause fix | Dependency scan no longer reports GHSA-2xpw-w6gg-jr37 (CVE-2025-66471, PYSEC-2026-1994). |
+| P2 | QSI-2026-41646 | Upgrade urllib3 to a fixed version (2.6.3). | root-cause fix | Dependency scan no longer reports GHSA-38jv-5279-wg99 (CVE-2026-21441, PYSEC-2026-1996). |
+| P2 | QSI-2026-41647 | Upgrade urllib3 to a fixed version (2.8.0). | root-cause fix | Dependency scan no longer reports GHSA-8988-9cw3-xx77 (CVE-2026-97687, PYSEC-2026-4175). |
+| P2 | QSI-2026-41649 | Upgrade urllib3 to a fixed version (2.6.0). | root-cause fix | Dependency scan no longer reports GHSA-gm62-xv2j-4w53 (CVE-2025-66418, PYSEC-2026-1998). |
+| P2 | QSI-2026-41653 | Upgrade urllib3 to a fixed version (2.8.0). | root-cause fix | Dependency scan no longer reports GHSA-vxq7-64xx-v4gw (CVE-2026-97689, PYSEC-2026-4177). |
+| P2 | QSI-2026-41631 | Upgrade idna to a fixed version (3.15). | root-cause fix | Dependency scan no longer reports GHSA-65pc-fj4g-8rjx (CVE-2026-45409, PYSEC-2026-215). |
+| P2 | QSI-2026-41632 | Upgrade idna to a fixed version (3.7). | root-cause fix | Dependency scan no longer reports GHSA-jjg7-2v4v-x38h (CVE-2024-3651, PYSEC-2024-60). |
+| P2 | QSI-2026-41633 | Upgrade jinja2 to a fixed version (3.1.6). | root-cause fix | Dependency scan no longer reports GHSA-cpwx-vrp4-4pq7 (CVE-2025-27516, PYSEC-2026-1471). |
+| P2 | QSI-2026-41635 | Upgrade jinja2 to a fixed version (3.1.3). | root-cause fix | Dependency scan no longer reports GHSA-h5c8-rqwp-cp95 (CVE-2024-22195, PYSEC-2026-1473). |
+| P2 | QSI-2026-41636 | Upgrade jinja2 to a fixed version (3.1.4). | root-cause fix | Dependency scan no longer reports GHSA-h75v-3vvj-5mfj (CVE-2024-34064, PYSEC-2026-1474). |
+| P2 | QSI-2026-41639 | Upgrade pygments to a fixed version (2.15.0). | root-cause fix | Dependency scan no longer reports GHSA-mrwq-x4v8-fh7p (CVE-2022-40896, PYSEC-2023-117). |
+| P2 | QSI-2026-41640 | Upgrade requests to a fixed version (2.32.4). | root-cause fix | Dependency scan no longer reports GHSA-9hjg-9r4m-mvj7 (CVE-2024-47081, PYSEC-2026-1872). |
+| P2 | QSI-2026-41641 | Upgrade requests to a fixed version (2.32.0). | root-cause fix | Dependency scan no longer reports GHSA-9wx4-h78v-vm56 (CVE-2024-35195, PYSEC-2026-1873). |
+| P2 | QSI-2026-41642 | Upgrade requests to a fixed version (2.33.0). | root-cause fix | Dependency scan no longer reports GHSA-gc5v-m9x4-r6x2 (CVE-2026-25645, PYSEC-2026-2275). |
+| P2 | QSI-2026-41643 | Upgrade requests to a fixed version (2.31.0). | root-cause fix | Dependency scan no longer reports GHSA-j8r2-6x86-q33q (CVE-2023-32681, PYSEC-2023-74). |
+| P2 | QSI-2026-41645 | Upgrade urllib3 to a fixed version (1.26.19, 2.2.2). | root-cause fix | Dependency scan no longer reports GHSA-34jh-p97f-mpxf (CVE-2024-37891, PYSEC-2026-1995). |
+| P2 | QSI-2026-41648 | Upgrade urllib3 to a fixed version (1.26.18, 2.0.7). | root-cause fix | Dependency scan no longer reports GHSA-g4mx-q9vg-27p4 (CVE-2023-45803, PYSEC-2023-212). |
+| P2 | QSI-2026-41650 | Upgrade urllib3 to a fixed version (2.5.0). | root-cause fix | Dependency scan no longer reports GHSA-pq67-6m6q-mj2v (CVE-2025-50181, PYSEC-2026-1999). |
+| P2 | QSI-2026-41651 | Upgrade urllib3 to a fixed version (2.7.0). | root-cause fix | Dependency scan no longer reports GHSA-qccp-gfcp-xxvc (CVE-2026-44431, PYSEC-2026-141). |
+| P2 | QSI-2026-41652 | Upgrade urllib3 to a fixed version (1.26.17, 2.0.6). | root-cause fix | Dependency scan no longer reports GHSA-v845-jxx5-vc9f (CVE-2023-43804, PYSEC-2023-192). |
+| P2 | QSI-2026-41654 | Upgrade zipp to a fixed version (3.19.1). | root-cause fix | Dependency scan no longer reports GHSA-jfmj-5v4g-7637 (CVE-2024-5569, PYSEC-2026-2074). |
+| P2 | QSI-2026-41627 | Upgrade bytes to a fixed version (1.11.1). | root-cause fix | Dependency scan no longer reports GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
+| P2 | QSI-2026-41628 | Upgrade certifi to a fixed version (2024.7.4). | root-cause fix | Dependency scan no longer reports GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230). |
+| P2 | QSI-2026-41638 | Upgrade pygments to a fixed version (2.20.0). | root-cause fix | Dependency scan no longer reports GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987). |
+| P2 | QSI-2026-41624 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P2 | QSI-2026-41625 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P2 | QSI-2026-17841 | Use a CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P3 | QSI-2026-17848 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-17846 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
-| P3 | QSI-2026-17851 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
+| P2 | QSI-2026-41616 | Use a CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P3 | QSI-2026-41623 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
+| P3 | QSI-2026-41621 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
+| P3 | QSI-2026-41626 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-17844 | Add ECDSA, Ed25519, Schnorr (BIP-340) usages at the wallet's transaction signing to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17804 | Add RSA usages at file:releases/pubkeys/JuliusWiedemann.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17805 | Add RSA usages at file:releases/pubkeys/JunghoonLee.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17806 | Add RSA usages at file:releases/pubkeys/My1.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17807 | Add RSA usages at file:releases/pubkeys/My1.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17808 | Add RSA usages at file:releases/pubkeys/TheCharlatan.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17809 | Add RSA usages at file:releases/pubkeys/beerosagos.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17810 | Add RSA usages at file:releases/pubkeys/benma.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17811 | Add RSA usages at file:releases/pubkeys/brianddk.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17812 | Add RSA usages at file:releases/pubkeys/cstenglein.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17813 | Add RSA usages at file:releases/pubkeys/frknakk.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17814 | Add RSA usages at file:releases/pubkeys/guggerf.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17815 | Add RSA usages at file:releases/pubkeys/jonathancross.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17816 | Add RSA usages at file:releases/pubkeys/jonathancross.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17817 | Add RSA usages at file:releases/pubkeys/nickez.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17818 | Add RSA usages at file:releases/pubkeys/offbyn.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17819 | Add Ed25519 usages at file:releases/pubkeys/psteiger.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17820 | Add RSA usages at file:releases/pubkeys/stadicus.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17821 | Add RSA usages at file:releases/pubkeys/strnbrg.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17822 | Add RSA usages at file:releases/pubkeys/sutterseba.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17823 | Add RSA usages at file:releases/pubkeys/tomasvrba.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17824 | Add RSA usages at file:releases/pubkeys/userofreddit44.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17825 | Add RSA usages at file:releases/pubkeys/x1ddos.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17826 | Add RSA usages at file:releases/pubkeys/x1ddos.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17827 | Add RSA usages at file:releases/pubkeys/x1ddos.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17828 | Add Ed25519 usages at file:releases/pubkeys/yaziza.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17829 | Add RSA usages at file:releases/pubkeys/yaziza.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17838 | Add ECDSA usages at file:external/cryptoauthlib/app/pkcs11/README.md to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17831 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17833 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17840 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17803 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17832 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17835 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17836 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17802 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17834 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17837 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17839 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-17842 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-17844 | Plan migration of ECDSA, Ed25519, Schnorr (BIP-340) to ? (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ? or a hybrid scheme in use. |
-| P4 | QSI-2026-17804 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17805 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17806 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17807 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17808 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17809 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17810 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17811 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17812 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17813 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17814 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17815 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17816 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17817 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17818 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17819 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17820 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17821 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17822 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17823 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17824 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17825 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17826 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17827 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17828 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17829 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17838 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-17831 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17833 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-17840 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-17803 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17832 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-17835 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-17836 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17802 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17834 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-17837 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-17839 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-17842 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-17847 | Replace bare-metal with a maintained alternative or record why it stays. | root-cause fix | bare-metal replaced, or the decision recorded. |
+| P3 | QSI-2026-41619 | Add ECDSA, Ed25519, Schnorr (BIP-340) usages at the wallet's transaction signing to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41577 | Add RSA usages at file:releases/pubkeys/JuliusWiedemann.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41578 | Add RSA usages at file:releases/pubkeys/JunghoonLee.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41579 | Add RSA usages at file:releases/pubkeys/My1.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41580 | Add RSA usages at file:releases/pubkeys/My1.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41581 | Add RSA usages at file:releases/pubkeys/TheCharlatan.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41582 | Add RSA usages at file:releases/pubkeys/beerosagos.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41583 | Add RSA usages at file:releases/pubkeys/benma.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41584 | Add RSA usages at file:releases/pubkeys/brianddk.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41585 | Add RSA usages at file:releases/pubkeys/cstenglein.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41586 | Add RSA usages at file:releases/pubkeys/frknakk.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41587 | Add RSA usages at file:releases/pubkeys/guggerf.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41588 | Add RSA usages at file:releases/pubkeys/jonathancross.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41589 | Add RSA usages at file:releases/pubkeys/jonathancross.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41590 | Add RSA usages at file:releases/pubkeys/nickez.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41591 | Add RSA usages at file:releases/pubkeys/offbyn.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41592 | Add Ed25519 usages at file:releases/pubkeys/psteiger.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41593 | Add RSA usages at file:releases/pubkeys/stadicus.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41594 | Add RSA usages at file:releases/pubkeys/strnbrg.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41595 | Add RSA usages at file:releases/pubkeys/sutterseba.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41596 | Add RSA usages at file:releases/pubkeys/tomasvrba.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41597 | Add RSA usages at file:releases/pubkeys/userofreddit44.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41598 | Add RSA usages at file:releases/pubkeys/x1ddos.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41599 | Add RSA usages at file:releases/pubkeys/x1ddos.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41600 | Add RSA usages at file:releases/pubkeys/x1ddos.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41601 | Add Ed25519 usages at file:releases/pubkeys/yaziza.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41602 | Add RSA usages at file:releases/pubkeys/yaziza.asc to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41604 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41607 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41576 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41606 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41609 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41610 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41605 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41608 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41611 | Add ECDSA usages at file:external/cryptoauthlib/app/pkcs11/README.md to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41614 | Add MQV usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41615 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41612 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41613 | Add Finite-field Diffie-Hellman usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-41617 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-41619 | Plan migration of ECDSA, Ed25519, Schnorr (BIP-340) to ? (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ? or a hybrid scheme in use. |
+| P4 | QSI-2026-41577 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41578 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41579 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41580 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41581 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41582 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41583 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41584 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41585 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41586 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41587 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41588 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41589 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41590 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41591 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41592 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41593 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41594 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41595 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41596 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41597 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41598 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41599 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41600 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41601 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41602 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41604 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41607 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41576 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41606 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41609 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-41610 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41605 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41608 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-41611 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-41614 | Plan migration of MQV to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41615 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41612 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41613 | Plan migration of Finite-field Diffie-Hellman to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41617 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-41618 | Use an AEAD mode (GCM) with unique nonces. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P4 | QSI-2026-41622 | Replace bare-metal with a maintained alternative or record why it stays. | root-cause fix | bare-metal replaced, or the decision recorded. |
 
 ## 11. Tools used
 
@@ -3730,13 +3811,19 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -3760,54 +3847,55 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 17. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
 18. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
 19. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-20. M. Kaplan, G. Leurent, A. Leverrier, M. Naya-Plasencia — Breaking Symmetric Cryptosystems using Quantum Period Finding (CRYPTO 2016; arXiv:1602.05973) — Springer / arXiv. <https://arxiv.org/abs/1602.05973> (peer-reviewed article: superposition-query forgeries on CBC-MAC, PMAC, GMAC, GCM, OCB)
-21. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-22. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-23. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
-24. NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths — NIST. <https://csrc.nist.gov/pubs/sp/800/131/a/r2/final> (final (2019))
-25. NIST SP 800-90A Rev. 1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators — NIST. <https://csrc.nist.gov/pubs/sp/800/90/a/r1/final> (final (June 2015; supersedes SP 800-90A of 2012): which constructions count as a cryptographically secure generator, and why a general-purpose PRNG does not)
-26. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-27. OSV advisory GHSA-248v-346w-9cwc — OSV.dev. <https://osv.dev/vulnerability/GHSA-248v-346w-9cwc> (modified 2026-09-10T03:50:15.994602411Z)
-28. OSV advisory GHSA-2xpw-w6gg-jr37 — OSV.dev. <https://osv.dev/vulnerability/GHSA-2xpw-w6gg-jr37> (modified 2026-09-25T17:15:05.968189421Z)
-29. OSV advisory GHSA-3288-p39f-rqpv — OSV.dev. <https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv> (modified 2026-09-10T03:50:59.332505686Z)
-30. OSV advisory GHSA-34jh-p97f-mpxf — OSV.dev. <https://osv.dev/vulnerability/GHSA-34jh-p97f-mpxf> (modified 2026-09-10T03:50:14.811193644Z)
-31. OSV advisory GHSA-38jv-5279-wg99 — OSV.dev. <https://osv.dev/vulnerability/GHSA-38jv-5279-wg99> (modified 2026-09-10T03:50:32.562010895Z)
-32. OSV advisory GHSA-434x-w66g-qw3r — OSV.dev. <https://osv.dev/vulnerability/GHSA-434x-w66g-qw3r> (modified 2026-09-10T03:50:33.995841351Z)
-33. OSV advisory GHSA-5239-wwwm-4pmq — OSV.dev. <https://osv.dev/vulnerability/GHSA-5239-wwwm-4pmq> (modified 2026-09-10T03:50:59.780634752Z)
-34. OSV advisory GHSA-65pc-fj4g-8rjx — OSV.dev. <https://osv.dev/vulnerability/GHSA-65pc-fj4g-8rjx> (modified 2026-09-10T03:50:45.700124422Z)
-35. OSV advisory GHSA-6q48-6c7w-9gw2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-6q48-6c7w-9gw2> (modified 2026-10-26T16:15:35.371128995Z)
-36. OSV advisory GHSA-8988-9cw3-xx77 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8988-9cw3-xx77> (modified 2026-10-01T17:55:53.793608550Z)
-37. OSV advisory GHSA-9hjg-9r4m-mvj7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9hjg-9r4m-mvj7> (modified 2026-10-19T20:00:04.716114530Z)
-38. OSV advisory GHSA-9wx4-h78v-vm56 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9wx4-h78v-vm56> (modified 2026-09-10T03:50:13.740879755Z)
-39. OSV advisory GHSA-cpwx-vrp4-4pq7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-cpwx-vrp4-4pq7> (modified 2026-09-10T03:49:48.526758681Z)
-40. OSV advisory GHSA-g4mx-q9vg-27p4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g4mx-q9vg-27p4> (modified 2026-09-10T03:50:03.706889410Z)
-41. OSV advisory GHSA-gc5v-m9x4-r6x2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-gc5v-m9x4-r6x2> (modified 2026-09-10T03:50:39.207922076Z)
-42. OSV advisory GHSA-gm62-xv2j-4w53 — OSV.dev. <https://osv.dev/vulnerability/GHSA-gm62-xv2j-4w53> (modified 2026-09-10T03:50:58.741847479Z)
-43. OSV advisory GHSA-gmj6-6f8f-6699 — OSV.dev. <https://osv.dev/vulnerability/GHSA-gmj6-6f8f-6699> (modified 2026-09-10T03:50:56.152882717Z)
-44. OSV advisory GHSA-h5c8-rqwp-cp95 — OSV.dev. <https://osv.dev/vulnerability/GHSA-h5c8-rqwp-cp95> (modified 2026-09-10T03:50:00.236017440Z)
-45. OSV advisory GHSA-h75v-3vvj-5mfj — OSV.dev. <https://osv.dev/vulnerability/GHSA-h75v-3vvj-5mfj> (modified 2026-09-10T03:50:13.786450101Z)
-46. OSV advisory GHSA-j8r2-6x86-q33q — OSV.dev. <https://osv.dev/vulnerability/GHSA-j8r2-6x86-q33q> (modified 2026-09-10T03:50:01.756149727Z)
-47. OSV advisory GHSA-jfmj-5v4g-7637 — OSV.dev. <https://osv.dev/vulnerability/GHSA-jfmj-5v4g-7637> (modified 2026-09-10T03:49:18.747455573Z)
-48. OSV advisory GHSA-jjg7-2v4v-x38h — OSV.dev. <https://osv.dev/vulnerability/GHSA-jjg7-2v4v-x38h> (modified 2026-09-10T03:50:12.774088619Z)
-49. OSV advisory GHSA-mrwq-x4v8-fh7p — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrwq-x4v8-fh7p> (modified 2024-10-24T22:27:47.389299Z)
-50. OSV advisory GHSA-pq67-6m6q-mj2v — OSV.dev. <https://osv.dev/vulnerability/GHSA-pq67-6m6q-mj2v> (modified 2026-09-10T03:50:25.299291456Z)
-51. OSV advisory GHSA-q2x7-8rv6-6q7h — OSV.dev. <https://osv.dev/vulnerability/GHSA-q2x7-8rv6-6q7h> (modified 2026-09-10T03:50:21.662855250Z)
-52. OSV advisory GHSA-qccp-gfcp-xxvc — OSV.dev. <https://osv.dev/vulnerability/GHSA-qccp-gfcp-xxvc> (modified 2026-09-10T03:50:47.272765640Z)
-53. OSV advisory GHSA-r6v5-fh4h-64xc — OSV.dev. <https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc> (modified 2026-09-10T03:50:35.583241382Z)
-54. OSV advisory GHSA-v845-jxx5-vc9f — OSV.dev. <https://osv.dev/vulnerability/GHSA-v845-jxx5-vc9f> (modified 2026-09-10T03:49:24.753610811Z)
-55. OSV advisory GHSA-vxq7-64xx-v4gw — OSV.dev. <https://osv.dev/vulnerability/GHSA-vxq7-64xx-v4gw> (modified 2026-10-01T17:55:57.514829071Z)
-56. OSV advisory GHSA-xqr8-7jwr-rhp7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xqr8-7jwr-rhp7> (modified 2026-09-10T03:50:08.653753752Z)
-57. OSV advisory RUSTSEC-2026-0110 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0110> (modified 2026-04-24T09:45:08.136572Z)
-58. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
-59. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-60. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
-61. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-62. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-63. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+20. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
+21. M. Kaplan, G. Leurent, A. Leverrier, M. Naya-Plasencia — Breaking Symmetric Cryptosystems using Quantum Period Finding (CRYPTO 2016; arXiv:1602.05973) — Springer / arXiv. <https://arxiv.org/abs/1602.05973> (peer-reviewed article: superposition-query forgeries on CBC-MAC, PMAC, GMAC, GCM, OCB)
+22. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+23. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+24. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+25. NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths — NIST. <https://csrc.nist.gov/pubs/sp/800/131/a/r2/final> (final (2019))
+26. NIST SP 800-90A Rev. 1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators — NIST. <https://csrc.nist.gov/pubs/sp/800/90/a/r1/final> (final (June 2015; supersedes SP 800-90A of 2012): which constructions count as a cryptographically secure generator, and why a general-purpose PRNG does not)
+27. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+28. OSV advisory GHSA-248v-346w-9cwc — OSV.dev. <https://osv.dev/vulnerability/GHSA-248v-346w-9cwc> (modified 2026-09-10T03:50:15.994602411Z)
+29. OSV advisory GHSA-2xpw-w6gg-jr37 — OSV.dev. <https://osv.dev/vulnerability/GHSA-2xpw-w6gg-jr37> (modified 2026-09-25T17:15:05.968189421Z)
+30. OSV advisory GHSA-3288-p39f-rqpv — OSV.dev. <https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv> (modified 2026-09-10T03:50:59.332505686Z)
+31. OSV advisory GHSA-34jh-p97f-mpxf — OSV.dev. <https://osv.dev/vulnerability/GHSA-34jh-p97f-mpxf> (modified 2026-09-10T03:50:14.811193644Z)
+32. OSV advisory GHSA-38jv-5279-wg99 — OSV.dev. <https://osv.dev/vulnerability/GHSA-38jv-5279-wg99> (modified 2026-09-10T03:50:32.562010895Z)
+33. OSV advisory GHSA-434x-w66g-qw3r — OSV.dev. <https://osv.dev/vulnerability/GHSA-434x-w66g-qw3r> (modified 2026-09-10T03:50:33.995841351Z)
+34. OSV advisory GHSA-5239-wwwm-4pmq — OSV.dev. <https://osv.dev/vulnerability/GHSA-5239-wwwm-4pmq> (modified 2026-09-10T03:50:59.780634752Z)
+35. OSV advisory GHSA-65pc-fj4g-8rjx — OSV.dev. <https://osv.dev/vulnerability/GHSA-65pc-fj4g-8rjx> (modified 2026-09-10T03:50:45.700124422Z)
+36. OSV advisory GHSA-6q48-6c7w-9gw2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-6q48-6c7w-9gw2> (modified 2026-10-26T16:15:35.371128995Z)
+37. OSV advisory GHSA-8988-9cw3-xx77 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8988-9cw3-xx77> (modified 2026-10-01T17:55:53.793608550Z)
+38. OSV advisory GHSA-9hjg-9r4m-mvj7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9hjg-9r4m-mvj7> (modified 2026-10-19T20:00:04.716114530Z)
+39. OSV advisory GHSA-9wx4-h78v-vm56 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9wx4-h78v-vm56> (modified 2026-09-10T03:50:13.740879755Z)
+40. OSV advisory GHSA-cpwx-vrp4-4pq7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-cpwx-vrp4-4pq7> (modified 2026-11-18T00:45:13.756181700Z)
+41. OSV advisory GHSA-g4mx-q9vg-27p4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g4mx-q9vg-27p4> (modified 2026-09-10T03:50:03.706889410Z)
+42. OSV advisory GHSA-gc5v-m9x4-r6x2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-gc5v-m9x4-r6x2> (modified 2026-09-10T03:50:39.207922076Z)
+43. OSV advisory GHSA-gm62-xv2j-4w53 — OSV.dev. <https://osv.dev/vulnerability/GHSA-gm62-xv2j-4w53> (modified 2026-09-10T03:50:58.741847479Z)
+44. OSV advisory GHSA-gmj6-6f8f-6699 — OSV.dev. <https://osv.dev/vulnerability/GHSA-gmj6-6f8f-6699> (modified 2026-09-10T03:50:56.152882717Z)
+45. OSV advisory GHSA-h5c8-rqwp-cp95 — OSV.dev. <https://osv.dev/vulnerability/GHSA-h5c8-rqwp-cp95> (modified 2026-09-10T03:50:00.236017440Z)
+46. OSV advisory GHSA-h75v-3vvj-5mfj — OSV.dev. <https://osv.dev/vulnerability/GHSA-h75v-3vvj-5mfj> (modified 2026-09-10T03:50:13.786450101Z)
+47. OSV advisory GHSA-j8r2-6x86-q33q — OSV.dev. <https://osv.dev/vulnerability/GHSA-j8r2-6x86-q33q> (modified 2026-09-10T03:50:01.756149727Z)
+48. OSV advisory GHSA-jfmj-5v4g-7637 — OSV.dev. <https://osv.dev/vulnerability/GHSA-jfmj-5v4g-7637> (modified 2026-09-10T03:49:18.747455573Z)
+49. OSV advisory GHSA-jjg7-2v4v-x38h — OSV.dev. <https://osv.dev/vulnerability/GHSA-jjg7-2v4v-x38h> (modified 2026-09-10T03:50:12.774088619Z)
+50. OSV advisory GHSA-mrwq-x4v8-fh7p — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrwq-x4v8-fh7p> (modified 2024-10-24T22:27:47.389299Z)
+51. OSV advisory GHSA-pq67-6m6q-mj2v — OSV.dev. <https://osv.dev/vulnerability/GHSA-pq67-6m6q-mj2v> (modified 2026-09-10T03:50:25.299291456Z)
+52. OSV advisory GHSA-q2x7-8rv6-6q7h — OSV.dev. <https://osv.dev/vulnerability/GHSA-q2x7-8rv6-6q7h> (modified 2026-09-10T03:50:21.662855250Z)
+53. OSV advisory GHSA-qccp-gfcp-xxvc — OSV.dev. <https://osv.dev/vulnerability/GHSA-qccp-gfcp-xxvc> (modified 2026-09-10T03:50:47.272765640Z)
+54. OSV advisory GHSA-r6v5-fh4h-64xc — OSV.dev. <https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc> (modified 2026-09-10T03:50:35.583241382Z)
+55. OSV advisory GHSA-v845-jxx5-vc9f — OSV.dev. <https://osv.dev/vulnerability/GHSA-v845-jxx5-vc9f> (modified 2026-09-10T03:49:24.753610811Z)
+56. OSV advisory GHSA-vxq7-64xx-v4gw — OSV.dev. <https://osv.dev/vulnerability/GHSA-vxq7-64xx-v4gw> (modified 2026-10-01T17:55:57.514829071Z)
+57. OSV advisory GHSA-xqr8-7jwr-rhp7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xqr8-7jwr-rhp7> (modified 2026-09-10T03:50:08.653753752Z)
+58. OSV advisory RUSTSEC-2026-0110 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0110> (modified 2026-04-24T09:45:08.136572Z)
+59. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
+60. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+61. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+62. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+63. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+64. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Appendices: Cryptographic inventory
 
-By origin: dependency manifests 10 (0 Shor-breakable) · keys and certificates 44 (44 Shor-breakable) · own code 91 (47 Shor-breakable) · third-party code in the tree 57 (22 Shor-breakable).
+By origin: dependency manifests 10 (0 Shor-breakable) · keys and certificates 44 (44 Shor-breakable) · own code 89 (45 Shor-breakable) · third-party code in the tree 63 (28 Shor-breakable).
 
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
@@ -3839,13 +3927,15 @@ By origin: dependency manifests 10 (0 Shor-breakable) · keys and certificates 4
 | GCM mode |  |  | n/a | acceptable | 2 | 2 | external/cryptoauthlib/lib/calib/calib_aes_gcm.c; external/cryptoauthlib/lib/calib/calib_aes_gcm.h |
 | TLS 1.1 |  |  | n/a | deprecated | 1 | 1 | external/optiga-trust-m/external/mbedtls/configs/config-mini-tls1_1.h |
 | TLS 1.2 |  |  | n/a | acceptable | 1 | 1 | external/optiga-trust-m/external/mbedtls/configs/config-ccm-psk-tls1_2.h |
-| ECDH |  |  | vulnerable (Shor) | acceptable | 6 | 6 | external/cryptoauthlib/lib/calib/calib_command.h:181; external/cryptoauthlib/lib/calib/calib_ecdh.c:159; external/cryptoauthlib/lib/mbedtls/atca_mbedtls_ecdh.c |
+| ECDH |  |  | vulnerable (Shor) | acceptable | 7 | 7 | external/cryptoauthlib/lib/calib/calib_command.h:181; external/cryptoauthlib/lib/calib/calib_ecdh.c:159; external/cryptoauthlib/lib/mbedtls/atca_mbedtls_ecdh.c |
 | ECDSA | secp256r1 |  | vulnerable (Shor) | acceptable | 1 | 1 | external/cryptoauthlib/app/pkcs11/README.md (line 280) |
-| ECDSA |  |  | vulnerable (Shor) | acceptable | 13 | 13 | external/cryptoauthlib/lib/crypto/atca_crypto_sw_ecdsa.c; external/cryptoauthlib/lib/crypto/atca_crypto_sw_ecdsa.h; external/cryptoauthlib/lib/mbedtls/atca_mbedtls_ecdsa.c:51 |
+| ECDSA |  |  | vulnerable (Shor) | acceptable | 14 | 14 | external/cryptoauthlib/lib/crypto/atca_crypto_sw_ecdsa.c; external/cryptoauthlib/lib/crypto/atca_crypto_sw_ecdsa.h; external/cryptoauthlib/lib/mbedtls/atca_mbedtls_ecdsa.c:51 |
 | ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 21 | 21 | messages/btc.proto:4; messages/eth.proto:4; py/bitbox02/bitbox02/bitbox02/bitbox02.py:21 |
 | ECDSA | P-256 |  | vulnerable (Shor) | acceptable | 1 | 1 | src/rust/util/src/p256.rs:28 |
 | Ed25519 | BIP32-Ed25519 |  | vulnerable (Shor) | acceptable | 1 | 1 | messages/cardano.proto:4 |
 | Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 10 | 10 | releases/pubkeys/psteiger.asc (line 1); releases/pubkeys/yaziza.asc (line 1); src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs:11 |
+| Finite-field Diffie-Hellman |  |  | vulnerable (Shor) | acceptable | 1 | 1 | external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c:125 |
+| MQV |  |  | vulnerable (Shor) | acceptable | 1 | 1 | external/cryptoauthlib/lib/pkcs11/pkcs11_mech.c:105 |
 | RSA | 4096-bit |  | vulnerable (Shor) | acceptable | 33 | 33 | releases/pubkeys/JuliusWiedemann.asc (line 1); releases/pubkeys/JunghoonLee.asc (line 1); releases/pubkeys/My1.asc (line 1) |
 | RSA | 2048-bit |  | vulnerable (Shor) | acceptable | 5 | 5 | releases/pubkeys/My1.asc (line 1); releases/pubkeys/brianddk.asc (line 1); releases/pubkeys/jonathancross.asc (line 1) |
 | RSA | 3072-bit |  | vulnerable (Shor) | acceptable | 3 | 3 | releases/pubkeys/userofreddit44.asc (line 1); releases/pubkeys/x1ddos.asc (line 1) |

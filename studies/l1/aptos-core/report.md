@@ -4,20 +4,20 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-06 16:20 UTC |
+| Report date | 2026-11-23 13:49 UTC |
 | Report version | 1 |
-| Audit run | 30269b00-7b13-4dea-be58-d53a0e2a5767 (Document audit) |
-| Analyzer engine | qsi-engine 1.3.0 |
+| Audit run | 73b4940e-f8b9-423e-8ae7-a8aad41085e6 (Document audit) |
+| Analyzer engine | qsi-engine 1.16.2 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `496bbf2c0ceaa6407d995b8152ee8fd44f8f95ed1f641fbd08068a5bb313751f` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+| Content SHA-256 | `b7a7dc4c731404676151f2d73f6db5c6d0e609baf47398e68952c4d8896584ea` |
+| Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
 - High: **0**
-- Medium: **9**
+- Medium: **10**
 - Low: **0**
 - Info: **0**
 
@@ -25,7 +25,7 @@
 - Known vulnerable component: 0
 - Confirmed configuration error: 0
 - Potential cryptographic risk: 0
-- Long-term post-quantum risk: 9
+- Long-term post-quantum risk: 10
 - Improvement recommendation: 0
 - Insufficient data: 0
 
@@ -45,7 +45,7 @@ Repository: <https://github.com/aptos-labs/aptos-core> @ `81d89f428fe8e4b69d53b4
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 331 | aptos-move/framework/src/aptos.rs: 223 lines scanned with 16 rule patterns and 267 registry patterns; aptos-move/framework/src/built_package.rs: 773 lines scanned with 16 rule patterns and 267 registry patterns; aptos-move/framework/src/chunked_publish.rs: 223 lines scanned with 16 rule patterns and 267 registry patterns |
+| source_code | checked | 331 | aptos-move/framework/src/aptos.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns; aptos-move/framework/src/built_package.rs: 773 lines scanned with 16 rule patterns and 340 registry patterns; aptos-move/framework/src/chunked_publish.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns |
 | dependencies | checked | 4 | crates/aptos-crypto/Cargo.toml: 78 dependencies parsed (0 pinned); keyless/pepper/common/Cargo.toml: 18 dependencies parsed (0 pinned); keyless/pepper/service/Cargo.toml: 36 dependencies parsed (0 pinned) |
 | secrets | checked | 3 | crates/aptos-crypto/src/x25519.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); types/src/network_address/mod.rs: value(s) at line(s) 908 (test_network_address_display), 1069 (test_find_noise_proto), 1089 (test_parse_handshake) are declared inside a fixture and treated as test data, although the file itself is not test code; types/src/network_address/mod.rs: 5 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | keys | checked | 1 | types/src/jwks/rsa/insecure_test_jwk_private_key.txt: private key block at line 1 is not reported: its path marks it as a non-production key ("insecure") |
@@ -61,36 +61,104 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree aptos-core at 81d89f428fe8e4b69d53b4916993e9a930afc37c. 336 files analysed; of 625 files, 95 are test, fuzzing, benchmark or example code and were left out, 194 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 5 path(s) of the repository: aptos-move/framework/aptos-framework/sources, aptos-move/framework/src, crates/aptos-crypto, keyless, types; 22057 files outside them were not read. Files no analyzer reads include: aptos-move/framework/aptos-framework/sources/account/account.move, aptos-move/framework/aptos-framework/sources/account/account.spec.move, aptos-move/framework/aptos-framework/sources/account/account_abstraction.move, aptos-move/framework/aptos-framework/sources/account/account_abstraction.spec.move, aptos-move/framework/aptos-framework/sources/account/auth_data.move. No requests were sent to the owner's systems.
+Static review of the source tree aptos-core at 81d89f428fe8e4b69d53b4916993e9a930afc37c. 336 files analysed; of 625 files, 95 are test, fuzzing, benchmark or example code and were left out, 194 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 5 path(s) of the repository: aptos-move/framework/aptos-framework/sources, aptos-move/framework/src, crates/aptos-crypto, keyless, types; 22060 files outside them were not read. Files no analyzer reads include: aptos-move/framework/aptos-framework/sources/account/account.move, aptos-move/framework/aptos-framework/sources/account/account.spec.move, aptos-move/framework/aptos-framework/sources/account/account_abstraction.move, aptos-move/framework/aptos-framework/sources/account/account_abstraction.spec.move, aptos-move/framework/aptos-framework/sources/account/auth_data.move. No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
 - Indicative posture index: **100** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 60.4%
+- Quantum-vulnerable share of inventory: 59.1%
 
 ## 7. Detailed findings
 
-### QSI-2026-19659 — Quantum-vulnerable BLS12-381: transaction and message signing (2 file(s))
+### QSI-2026-44065 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:BLS12-381:transaction_signing`
-- Data source: crates/aptos-crypto/src/bls12381/bls12381_keys.rs
+- Affected asset: `source-code:X25519:key_wrapping`
+- Data source: crates/aptos-crypto/src/noise.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
-- Priority score: 35.6 / 100
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Priority score: 36.9 / 100
 - CVSS v3.1: not applicable
 
-3 reference(s) to BLS12-381 across 2 file(s), e.g. crates/aptos-crypto/src/bls12381/bls12381_keys.rs:77. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+26 reference(s) to X25519 across 1 file(s), e.g. crates/aptos-crypto/src/noise.rs:65. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later).
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
 **Reproduction steps.**
 
 ```
-Open crates/aptos-crypto/src/bls12381/bls12381_keys.rs:77 and inspect the quoted lines; the evidence lists further files.
+Open crates/aptos-crypto/src/noise.rs:65 and inspect the quoted lines; the evidence lists further files.
 ```
 
 **Evidence.**
+
+_file_excerpt · [crates/aptos-crypto/src/noise.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L65) · line 65 · SHA-256 21f98045a9d7699e76ccf75949f7da21bb9582d0e9cce6c86a823b43280710bd_
+
+```
+   64 | 
+   65 | use crate::{hash::HashValue, hkdf::Hkdf, traits::Uniform as _, x25519, ValidCryptoMaterial};
+   66 | use ring::aead::{self, Aad, LessSafeKey, UnboundKey};
+```
+
+_file_excerpt · [crates/aptos-crypto/src/noise.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L104) · line 104 · SHA-256 c42db5b8ba200f00cea1b1af6a1e59e326dfdf1720dc5852f8111f8c7b23abc4_
+
+```
+  103 |     // e
+  104 |     let e_len = x25519::PUBLIC_KEY_SIZE;
+  105 |     // encrypted s
+```
+
+_file_excerpt · [crates/aptos-crypto/src/noise.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L106) · line 106 · SHA-256 b77110997bf970e95f378f3e430067fa6d2c6e9e44a6aa6d7afc327b132c655d_
+
+```
+  105 |     // encrypted s
+  106 |     let enc_s_len = encrypted_len(x25519::PUBLIC_KEY_SIZE);
+  107 |     // encrypted payload
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-44062 — Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s))
+
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:BLS12-381:transaction_signing`
+- Data source: crates/aptos-crypto/src/bls12381/bls12381_keys.rs
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Priority score: 35.6 / 100
+- CVSS v3.1: not applicable
+
+14 reference(s) to BLS12-381 across 4 file(s), e.g. crates/aptos-crypto/src/bls12381/bls12381_keys.rs:36. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open crates/aptos-crypto/src/bls12381/bls12381_keys.rs:36 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_keys.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_keys.rs#L36) · line 36 · SHA-256 81b8462733cc4916ed911ea5a12f3405977476266e8a51a6ee8cd467d1aa1bfa_
+
+```
+   35 | pub struct PublicKey {
+   36 |     pub(crate) pubkey: blst::min_pk::PublicKey,
+   37 |     // NOTE: In order to minimize the size of this struct, we do not keep the PoP here.
+```
+
+_file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_keys.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_keys.rs#L44) · line 44 · SHA-256 eb02f9d0fadc9d4da5dbc32b76b42911d149d7f74b2ee78f0871bb87a8af2884_
+
+```
+   43 | pub struct PrivateKey {
+   44 |     pub(crate) privkey: blst::min_pk::SecretKey,
+   45 | }
+```
 
 _file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_keys.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_keys.rs#L77) · line 77 · SHA-256 f86b41febe322eda289a9b3744910f9f56e1842a57985dd8f18e9dfde490efc2_
 
@@ -100,12 +168,44 @@ _file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_keys.rs](https://git
    78 | 
 ```
 
-_file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_keys.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_keys.rs#L80) · line 80 · SHA-256 a99c05717793c659435d625fc91a078fa8de99cac0b7c2f81426a4891e0dba25_
+_file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_pop.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_pop.rs#L30) · line 30 · SHA-256 06630226020a3269001bdb1ad77e0104e0a1b677c79b9f94f05838afb1869b61_
 
 ```
-   79 |         // CRYPTONOTE(Alin): We assume the PKs have had their PoPs verified and thus have also been subgroup-checked
-   80 |         let aggpk = blst::min_pk::AggregatePublicKey::aggregate(&blst_pubkeys[..], false)
-   81 |             .map_err(|e| anyhow!("{:?}", e))?;
+   29 | pub struct ProofOfPossession {
+   30 |     pub(crate) pop: blst::min_pk::Signature,
+   31 | }
+```
+
+_file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_pop.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_pop.rs#L137) · line 137 · SHA-256 d0b2c6c7ca43c0fb54ed2116a00e560b1f11f1f2d4a3146c1e0360ba18d87267_
+
+```
+  136 |         Ok(Self {
+  137 |             pop: blst::min_pk::Signature::from_bytes(bytes)
+  138 |                 .map_err(|_| CryptoMaterialError::DeserializationError)?,
+```
+
+_file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_sigs.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_sigs.rs#L38) · line 38 · SHA-256 7a6ea860574f4d177572ad68df977e2dc574ba6ff56f3582b1d8a3be5a75dbbc_
+
+```
+   37 | pub struct Signature {
+   38 |     pub(crate) sig: blst::min_pk::Signature,
+   39 | }
+```
+
+_file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_sigs.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_sigs.rs#L71) · line 71 · SHA-256 dbb851a2ebe69101d49d5fbc1e368bc8b2abb844f664ede6d5d27a87067d05ba_
+
+```
+   70 |         let sigs: Vec<_> = sigs.iter().map(|s| &s.sig).collect();
+   71 |         let agg_sig = blst::min_pk::AggregateSignature::aggregate(&sigs[..], false)
+   72 |             .map_err(|e| anyhow!("{:?}", e))?;
+```
+
+_file_excerpt · [crates/aptos-crypto/src/bls12381/bls12381_sigs.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_sigs.rs#L89) · line 89 · SHA-256 8c07db1d6e2ab71af6c5f558ee3eb86d3f9e0d7670fc9c6a97e4e29b565a3189_
+
+```
+   88 |             .map(|&pk| &pk.pubkey)
+   89 |             .collect::<Vec<&blst::min_pk::PublicKey>>();
+   90 | 
 ```
 
 _file_excerpt · [crates/aptos-crypto/src/constant_time/zkcrypto_scalar_mul.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/constant_time/zkcrypto_scalar_mul.rs#L4) · line 4 · SHA-256 221f1dca25f14b9dfb0bda3a9eef2c447551e2ee404ab82af2906b77afbe582c_
@@ -122,13 +222,13 @@ _file_excerpt · [crates/aptos-crypto/src/constant_time/zkcrypto_scalar_mul.rs](
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19660 — Quantum-vulnerable Ed25519: transaction and message signing (10 file(s))
+### QSI-2026-44063 — Quantum-vulnerable Ed25519: transaction and message signing (10 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: crates/aptos-crypto/src/ed25519/ed25519_keys.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -230,89 +330,13 @@ _file_excerpt · [crates/aptos-crypto/src/multi_ed25519.rs](https://github.com/a
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19662 — Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (2 file(s))
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:X25519:channel`
-- Data source: crates/aptos-crypto/src/noise.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
-- Priority score: 35.6 / 100
-- CVSS v3.1: not applicable
-
-36 reference(s) to X25519 across 2 file(s), e.g. crates/aptos-crypto/src/noise.rs:65. Role, judged from paths, function names and nearby code: channel key exchange (TLS, Noise, handshakes). Traffic protected by this key exchange can be recorded now and decrypted later; a hybrid exchange keeps the classical guarantees and adds post-quantum ones.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open crates/aptos-crypto/src/noise.rs:65 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [crates/aptos-crypto/src/noise.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L65) · line 65 · SHA-256 21f98045a9d7699e76ccf75949f7da21bb9582d0e9cce6c86a823b43280710bd_
-
-```
-   64 | 
-   65 | use crate::{hash::HashValue, hkdf::Hkdf, traits::Uniform as _, x25519, ValidCryptoMaterial};
-   66 | use ring::aead::{self, Aad, LessSafeKey, UnboundKey};
-```
-
-_file_excerpt · [crates/aptos-crypto/src/noise.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L104) · line 104 · SHA-256 c42db5b8ba200f00cea1b1af6a1e59e326dfdf1720dc5852f8111f8c7b23abc4_
-
-```
-  103 |     // e
-  104 |     let e_len = x25519::PUBLIC_KEY_SIZE;
-  105 |     // encrypted s
-```
-
-_file_excerpt · [crates/aptos-crypto/src/noise.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L106) · line 106 · SHA-256 b77110997bf970e95f378f3e430067fa6d2c6e9e44a6aa6d7afc327b132c655d_
-
-```
-  105 |     // encrypted s
-  106 |     let enc_s_len = encrypted_len(x25519::PUBLIC_KEY_SIZE);
-  107 |     // encrypted payload
-```
-
-_file_excerpt · [types/src/network_address/mod.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L8) · line 8 · SHA-256 4e7aafdd34a2f6c3daa63b8613f3d54065e58c42599434b49c750a80c7e3b156_
-
-```
-    7 |     traits::{CryptoMaterialError, ValidCryptoMaterialStringExt},
-    8 |     x25519,
-    9 | };
-```
-
-_file_excerpt · [types/src/network_address/mod.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L122) · line 122 · SHA-256 74a6f19114396ccb2c0c1d35129e8a6590a3243fe4c2ba18b831a8eabde622e7_
-
-```
-  121 |     // human-readable x25519::PublicKey is lower-case hex encoded
-  122 |     NoiseIK(x25519::PublicKey),
-  123 |     // TODO(philiphayes): use actual handshake::MessagingProtocolVersion. we
-```
-
-_file_excerpt · [types/src/network_address/mod.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L166) · line 166 · SHA-256 614fe3ed0c2b75b2f74023381798dd798583e5bc0022e8571275e8155143e354_
-
-```
-  165 | 
-  166 |     #[error("error parsing x25519 public key: {0}")]
-  167 |     ParseX25519PubkeyError(#[from] CryptoMaterialError),
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols).
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-19663 — Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))
+### QSI-2026-44066 — Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: crates/aptos-crypto/src/secp256k1_ecdsa.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -406,13 +430,13 @@ _file_excerpt · [crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.r
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19667 — Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))
+### QSI-2026-44070 — Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:BN254 (alt_bn128):transaction_signing`
 - Data source: types/src/keyless/mod.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -450,13 +474,65 @@ _file_excerpt · [types/src/keyless/mod.rs](https://github.com/aptos-labs/aptos-
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19661 — Quantum-vulnerable X25519: role not determined (3 file(s))
+### QSI-2026-44071 — Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (1 file(s))
+
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:X25519:channel`
+- Data source: types/src/network_address/mod.rs
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Priority score: 35.6 / 100
+- CVSS v3.1: not applicable
+
+10 reference(s) to X25519 across 1 file(s), e.g. types/src/network_address/mod.rs:8. Role, judged from paths, function names and nearby code: channel key exchange (TLS, Noise, handshakes). Traffic protected by this key exchange can be recorded now and decrypted later; a hybrid exchange keeps the classical guarantees and adds post-quantum ones.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open types/src/network_address/mod.rs:8 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [types/src/network_address/mod.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L8) · line 8 · SHA-256 4e7aafdd34a2f6c3daa63b8613f3d54065e58c42599434b49c750a80c7e3b156_
+
+```
+    7 |     traits::{CryptoMaterialError, ValidCryptoMaterialStringExt},
+    8 |     x25519,
+    9 | };
+```
+
+_file_excerpt · [types/src/network_address/mod.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L122) · line 122 · SHA-256 74a6f19114396ccb2c0c1d35129e8a6590a3243fe4c2ba18b831a8eabde622e7_
+
+```
+  121 |     // human-readable x25519::PublicKey is lower-case hex encoded
+  122 |     NoiseIK(x25519::PublicKey),
+  123 |     // TODO(philiphayes): use actual handshake::MessagingProtocolVersion. we
+```
+
+_file_excerpt · [types/src/network_address/mod.rs](https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L166) · line 166 · SHA-256 614fe3ed0c2b75b2f74023381798dd798583e5bc0022e8571275e8155143e354_
+
+```
+  165 | 
+  166 |     #[error("error parsing x25519 public key: {0}")]
+  167 |     ParseX25519PubkeyError(#[from] CryptoMaterialError),
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols).
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-44064 — Quantum-vulnerable X25519: role not determined (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:X25519:general`
 - Data source: crates/aptos-crypto/src/lib.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -534,13 +610,13 @@ _file_excerpt · [types/src/account_address.rs](https://github.com/aptos-labs/ap
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19664 — Quantum-vulnerable Ed25519: role not determined (4 file(s))
+### QSI-2026-44067 — Quantum-vulnerable Ed25519: role not determined (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: keyless/pepper/common/src/account_recovery_db.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -626,13 +702,13 @@ _file_excerpt · [types/src/keyless/circuit_testcases.rs](https://github.com/apt
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19665 — Quantum-vulnerable BN254 (alt_bn128): role not determined (6 file(s))
+### QSI-2026-44068 — Quantum-vulnerable BN254 (alt_bn128): role not determined (6 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:BN254 (alt_bn128):general`
 - Data source: keyless/pepper/service/src/external_resources/groth16_vk.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -734,13 +810,13 @@ _file_excerpt · [types/src/keyless/groth16_sig.rs](https://github.com/aptos-lab
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-19666 — Quantum-vulnerable RSA: role not determined (1 file(s))
+### QSI-2026-44069 — Quantum-vulnerable RSA: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:general`
 - Data source: types/src/jwks/rsa/mod.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-06 16:20 UTC
+- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -814,7 +890,8 @@ _Planning assumptions: x for key establishment, x for signatures, y are the defa
 - Present, not wired: SLH-DSA — crates/aptos-crypto/src/slh_dsa_sha2_128s/slh_dsa_keys.rs
 - Present, not wired: SLH-DSA — crates/aptos-crypto/src/slh_dsa_sha2_128s/slh_dsa_sigs.rs
 - A post-quantum library is declared as a dependency
-- Classical only — channel key exchange (TLS, Noise, handshakes): X25519 (2 file(s))
+- Classical only — channel key exchange (TLS, Noise, handshakes): X25519 (1 file(s))
+- Classical only — key wrapping and data encryption at rest: X25519 (1 file(s))
 
 **Next step:** Extend post-quantum protection to the critical roles that stay classical, starting with what can be recorded today (wrapped keys, channel key exchange).
 
@@ -824,9 +901,10 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **channel key exchange (TLS, Noise, handshakes)** | X25519 (2) | QSI-2026-19662 | Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols) |
-| **transaction and message signing** | Ed25519 (10), ECDSA (3), BLS12-381 (2), BN254 (alt_bn128) (1) | QSI-2026-19659, QSI-2026-19660, QSI-2026-19663, QSI-2026-19667 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | BN254 (alt_bn128) (6), Ed25519 (4), X25519 (3), RSA (1) | QSI-2026-19661, QSI-2026-19664, QSI-2026-19665, QSI-2026-19666 | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | X25519 (1) | QSI-2026-44065 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **channel key exchange (TLS, Noise, handshakes)** | X25519 (1) | QSI-2026-44071 | Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols) |
+| **transaction and message signing** | Ed25519 (10), BLS12-381 (4), ECDSA (3), BN254 (alt_bn128) (1) | QSI-2026-44062, QSI-2026-44063, QSI-2026-44066, QSI-2026-44070 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | BN254 (alt_bn128) (6), Ed25519 (4), X25519 (3), RSA (1) | QSI-2026-44064, QSI-2026-44067, QSI-2026-44068, QSI-2026-44069 | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -837,7 +915,7 @@ No readiness questionnaire was completed for this project.
 |---|---|---|---|---|
 | Shor's algorithm — factoring | breaks | Q1 | RSA (2) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
 | Shor's algorithm — discrete logarithms in finite fields | breaks | Q1 | BLS12-381 (6), BN254 (alt_bn128) (8), ElGamal (1), Groth16 (3) | Breaks finite-field Diffie–Hellman and DSA at every size. Move key establishment to ML-KEM (hybrid with X25519 or ECDH during the transition) and signatures to ML-DSA or SLH-DSA. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BLS12-381 (6), BN254 (alt_bn128) (8), ECDSA (6), Ed25519 (24), Groth16 (3), X25519 (8) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BLS12-381 (6), BN254 (alt_bn128) (8), ECDSA (4), Ed25519 (23), Groth16 (3), X25519 (8) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
 | Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (2), HKDF (2), HMAC (2), Poseidon (9), SHA-2 (1), SHA-3 (4), SLH-DSA (3) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | Poseidon (9), SHA-2 (1), SHA-3 (4) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 | Simon's algorithm — superposition attacks on symmetric constructions | only with superposition queries | Q2 | GCM mode (1) | No action for ordinary deployments of AES-GCM or CBC-MAC — the attack model does not apply. Record it as a model assumption; see the offline variant for Even–Mansour-type designs. |
@@ -865,24 +943,26 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-19659 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19660 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19662 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19663 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19667 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19661 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19664 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19665 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-19666 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-19659 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-19660 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19662 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-19663 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19667 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-19661 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-19664 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-19665 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-19666 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-44065 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44062 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44063 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44066 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44070 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44071 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44064 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44067 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44068 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-44069 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-44065 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-44062 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-44063 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44066 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44070 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-44071 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-44064 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-44067 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-44068 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-44069 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -890,13 +970,19 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.3.0
+- crediting 1.3.0
+- dependencies 1.4.4
+- hndl 1.0.0
 - inventory_document 1.1.0
-- solidity 1.3.0
-- source_code 1.4.0
+- mpc 1.0.0
+- solidity 1.8.1
+- source_code 1.10.2
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.3.0
+- ton_contracts 1.0.0
+- validator_keys 1.2.0
+- wallet_login 1.0.0
+- qsi-engine 1.16.2
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -931,7 +1017,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 ## Appendices: Cryptographic inventory
 
-By origin: dependency manifests 14 (0 Shor-breakable) · own code 82 (58 Shor-breakable).
+By origin: dependency manifests 14 (0 Shor-breakable) · own code 79 (55 Shor-breakable).
 
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
@@ -944,22 +1030,22 @@ By origin: dependency manifests 14 (0 Shor-breakable) · own code 82 (58 Shor-br
 | SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | crates/aptos-crypto/src/noise.rs:189 |
 | SHA-3 | SHA3-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 2 | 2 | crates/aptos-crypto/src/asymmetric_encryption/elgamal_curve25519_aes256_gcm.rs:32; keyless/pepper/common/src/account_recovery_db.rs:28 |
 | Crypto library | workspace | ed25519-dalek (ed25519-dalek) | n/a | acceptable | 2 | 2 | crates/aptos-crypto/Cargo.toml; keyless/pepper/common/Cargo.toml |
-| Crypto library | workspace | x25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
 | Crypto library | workspace | bls12_381 (bls12_381) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
-| Crypto library | workspace | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
 | Crypto library | workspace | ring (ring (Rust)) | n/a | acceptable | 2 | 2 | crates/aptos-crypto/Cargo.toml; types/Cargo.toml |
 | Crypto library | workspace | p256 (RustCrypto elliptic curves) | n/a | acceptable | 2 | 2 | crates/aptos-crypto/Cargo.toml; types/Cargo.toml |
+| Crypto library | workspace | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
+| Crypto library | workspace | x25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
 | Crypto library | workspace | jsonwebtoken (jsonwebtoken (Node)) | n/a | acceptable | 3 | 3 | keyless/pepper/common/Cargo.toml; keyless/pepper/service/Cargo.toml; types/Cargo.toml |
 | Crypto library | workspace | rsa (RustCrypto rsa) | n/a | acceptable | 1 | 1 | types/Cargo.toml |
 | GCM mode |  |  | n/a | acceptable | 1 | 1 | crates/aptos-crypto/src/asymmetric_encryption/elgamal_curve25519_aes256_gcm.rs |
 | PQC library | workspace | slh-dsa (RustCrypto post-quantum crates) | post-quantum | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
 | SLH-DSA |  |  | post-quantum | acceptable | 3 | 3 | crates/aptos-crypto/src/slh_dsa_sha2_128s/slh_dsa_keys.rs:18; crates/aptos-crypto/src/slh_dsa_sha2_128s/slh_dsa_sigs.rs:16; types/src/on_chain_config/aptos_features.rs:170 |
-| BLS12-381 |  |  | vulnerable (Shor) | acceptable | 6 | 6 | crates/aptos-crypto/src/bls12381/bls12381_keys.rs:77; crates/aptos-crypto/src/bls12381/bls12381_pop.rs; crates/aptos-crypto/src/bls12381/bls12381_sigs.rs |
+| BLS12-381 |  |  | vulnerable (Shor) | acceptable | 6 | 6 | crates/aptos-crypto/src/bls12381/bls12381_keys.rs:36; crates/aptos-crypto/src/bls12381/bls12381_pop.rs:30; crates/aptos-crypto/src/bls12381/bls12381_sigs.rs:38 |
 | BN254 (alt_bn128) |  |  | vulnerable (Shor) | acceptable | 8 | 8 | keyless/pepper/service/src/external_resources/groth16_vk.rs:6; types/src/keyless/bn254_circom.rs; types/src/keyless/circuit_constants.rs:11 |
 | ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 1 | 1 | crates/aptos-crypto/src/secp256k1_ecdsa.rs:120 |
-| ECDSA |  |  | vulnerable (Shor) | acceptable | 3 | 3 | crates/aptos-crypto/src/secp256r1_ecdsa/mod.rs:44; crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_keys.rs:26; crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.rs:24 |
+| ECDSA |  |  | vulnerable (Shor) | acceptable | 1 | 1 | crates/aptos-crypto/src/secp256r1_ecdsa/mod.rs:44 |
 | ECDSA | P-256 |  | vulnerable (Shor) | acceptable | 2 | 2 | crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_keys.rs:26; crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.rs:24 |
-| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 24 | 24 | crates/aptos-crypto/src/ed25519/ed25519_keys.rs:16; crates/aptos-crypto/src/ed25519/ed25519_keys.rs:9; crates/aptos-crypto/src/ed25519/ed25519_sigs.rs:7 |
+| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 23 | 23 | crates/aptos-crypto/src/ed25519/ed25519_keys.rs:16; crates/aptos-crypto/src/ed25519/ed25519_keys.rs:9; crates/aptos-crypto/src/ed25519/ed25519_sigs.rs:19 |
 | ElGamal |  |  | vulnerable (Shor) | deprecated | 1 | 1 | crates/aptos-crypto/src/asymmetric_encryption/elgamal_curve25519_aes256_gcm.rs |
 | Groth16 |  |  | vulnerable (Shor) | acceptable | 3 | 3 | keyless/pepper/service/src/external_resources/groth16_vk.rs; types/src/keyless/groth16_sig.rs; types/src/keyless/groth16_vk.rs |
 | RSA |  |  | vulnerable (Shor) | acceptable | 1 | 1 | types/src/jwks/rsa/mod.rs:45 |

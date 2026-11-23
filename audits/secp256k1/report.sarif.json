@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-19257",
+            "qsiId": "QSI-2026-43598",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,25 +68,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-19259",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Квантово-уязвимый ECDSA: роль не определена (13 файл(ов))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-19256",
+            "qsiId": "QSI-2026-43600",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,22 +86,40 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-19258",
+            "qsiId": "QSI-2026-43599",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
             "security-severity": "5.0"
           }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: роль не определена (13 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-43597",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "1.0"
+          }
         }
       ],
       "automationDetails": {
-        "id": "qsi/secp256k1 @ 1b4181f93f7a/3ecb8bb3-d3ba-4187-a476-95b8774fdeab"
+        "id": "qsi/secp256k1 @ 1b4181f93f7a/bda4a0e1-2b1e-4609-a9b9-bcda31c90584"
       },
       "properties": {
-        "qsiContentSha256": "b2eba808578c3ddd17cd99b1e5738564388cf08523b9d91b4ebbc533a3017666",
+        "qsiContentSha256": "1e5d6c5002bf169f0bfdc70ccdc773de3b6c6232e5f085b2dac1f0a67cff8254",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T14:35:08.724514+00:00",
+        "qsiGeneratedAt": "2026-11-23T13:12:30.797388+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

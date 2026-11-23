@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.3.0",
+          "version": "1.16.2",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "caadb0817a8af347815ab91cd52576b5"
           },
           "properties": {
-            "qsiId": "QSI-2026-18011",
+            "qsiId": "QSI-2026-41884",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -62,13 +62,13 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))"
+            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (9 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-18012",
+            "qsiId": "QSI-2026-41885",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -86,7 +86,7 @@
             "qsiFindingKey/v1": "56ce4b42a955143d4d6555212784bad6"
           },
           "properties": {
-            "qsiId": "QSI-2026-18013",
+            "qsiId": "QSI-2026-41886",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,7 +104,7 @@
             "qsiFindingKey/v1": "dddc06ae3551b9ff5cf5afa8bf517a7f"
           },
           "properties": {
-            "qsiId": "QSI-2026-18014",
+            "qsiId": "QSI-2026-41887",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -122,7 +122,7 @@
             "qsiFindingKey/v1": "5cbcb5815d8848ab9b8496655468e460"
           },
           "properties": {
-            "qsiId": "QSI-2026-18015",
+            "qsiId": "QSI-2026-41888",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -140,7 +140,7 @@
             "qsiFindingKey/v1": "bec890f753512e16cda5732a4d1d9cd0"
           },
           "properties": {
-            "qsiId": "QSI-2026-18017",
+            "qsiId": "QSI-2026-41890",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -158,7 +158,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-18016",
+            "qsiId": "QSI-2026-41889",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -167,13 +167,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/fireblocks-mpc-lib-en @ 00ae08b7f1bd/1b8fa6af-00da-4c82-aae7-66504b9373a8"
+        "id": "qsi/fireblocks-mpc-lib-en @ 00ae08b7f1bd/87ea88b9-6562-49f8-a06d-5a7ac3937c6a"
       },
       "properties": {
-        "qsiContentSha256": "23fbd77d28cfee88fe35b18ec32795741bb197e17d217cbdef227c02036a02e3",
+        "qsiContentSha256": "2b71c33da28fd1f454e91761924c72bae3cdf0f9dab21bd39f7c16db2aa38d11",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-06T13:14:34.459116+00:00",
+        "qsiGeneratedAt": "2026-11-23T12:22:55.351823+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [
