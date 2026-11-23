@@ -77,7 +77,7 @@ def audits_dir() -> pathlib.Path:
 
 
 def analyse(d: pathlib.Path) -> dict:
-    rep = json.loads((d / "report.json").read_text())
+    rep = json.loads((d / "report.json").read_text(encoding="utf-8"))
     ref = ((rep.get("audit") or {}).get("parameters") or {}).get("ref") or ""
     proj = rep.get("project") or {}
     r = {"name": d.name, "commit": ref[:12] or "—", "upstream": proj.get("client_name") or "",
@@ -116,7 +116,7 @@ def main(argv: list[str]) -> int:
     uniq = [n for n in names if not n.endswith("-en") and n != "trezor-vendored-crypto"]
     pq_strict, pq_loose = [], []
     for n in uniq:
-        inv = json.loads((A / n / "report.json").read_text()).get("inventory", [])
+        inv = json.loads((A / n / "report.json").read_text(encoding="utf-8")).get("inventory", [])
         st = {row.get("quantum_status") for row in inv}
         if "pqc" in st:
             pq_strict.append(n)
@@ -172,7 +172,7 @@ def main(argv: list[str]) -> int:
     if not want_all and len(quoted) == 10:
         qr = qs = 0
         for n in quoted:
-            s = json.loads((A / n / "report.json").read_text())["summary"]
+            s = json.loads((A / n / "report.json").read_text(encoding="utf-8"))["summary"]
             qr += s["inventory_total"]
             qs += s["inventory_by_quantum_status"].get("vulnerable_shor", 0)
         tr = sum(r["rows"] for r in res)
