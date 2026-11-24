@@ -1,8 +1,8 @@
 {
-  "content_sha256": "9817741d486a6c75a538611f043540c2b5f9bca82848b4a45a4168fe8f6aa1a1",
+  "content_sha256": "57d4712c4ea496b59b47089d4e312745c731ae6bbb963a54636265041952a410",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-24T12:40:39.590970+00:00",
+  "generated_at": "2026-11-24T17:25:20.816683+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "fe126331-9823-4923-a04a-12a43515335f",
+    "id": "55abac1e-862e-45f6-bedc-6e2595c180d6",
     "mode": "document",
     "title": "Document audit: hyperledger-fabric",
     "status": "completed",
-    "engine_version": "1.20.0",
-    "started_at": "2026-11-24T12:39:55.654144+00:00",
-    "finished_at": "2026-11-24T12:40:39.468438+00:00",
+    "engine_version": "1.21.0",
+    "started_at": "2026-11-24T17:24:37.223506+00:00",
+    "finished_at": "2026-11-24T17:25:20.690857+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Crypto exchange, custodian or wallet",
     "parameters": {
@@ -10252,8 +10252,8 @@
   },
   "findings": [
     {
-      "id": "2ab60d37-ec09-4578-8a41-63a1977a1e82",
-      "public_id": "QSI-2026-50431",
+      "id": "c56075b9-d7a6-448b-bd6e-b939cffaabf5",
+      "public_id": "QSI-2026-50980",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
       "description": "2 reference(s) to ECDSA across 1 file(s), e.g. cmd/common/signer/signer.go:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -10272,8 +10272,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "cmd/common/signer/signer.go",
-      "analyzer": "source_code 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.289490+00:00",
+      "analyzer": "source_code 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.505031+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -10369,8 +10369,8 @@
           "content": "   10 | \t\"crypto\"\n   11 | \t\"crypto/ecdsa\"\n   12 | \t\"crypto/ed25519\"",
           "content_sha256": "8ca7cf4a477c1e85b6a04804930e34f52fce6fc67c009fa9a7197362c13fc24d",
           "source_sha256": "17c163a929b559ef19ed6777353cde8185eeb4bbf57e2878243cf70797a3b0c7",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.300121+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.516715+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/cmd/common/signer/signer.go#L11"
         },
         {
@@ -10380,8 +10380,8 @@
           "content": "  149 | func signECDSA(k *ecdsa.PrivateKey, digest []byte) (signature []byte, err error) {\n  150 | \tr, s, err := ecdsa.Sign(rand.Reader, k, digest)\n  151 | \tif err != nil {",
           "content_sha256": "f011e69596df627e3b3b07a4a83601487a855461b916d998f1b2d2d6c355769d",
           "source_sha256": "17c163a929b559ef19ed6777353cde8185eeb4bbf57e2878243cf70797a3b0c7",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.300129+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.516725+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/cmd/common/signer/signer.go#L150"
         }
       ],
@@ -10419,8 +10419,8 @@
       ]
     },
     {
-      "id": "a274d924-2861-45df-a97b-a2386b21a17d",
-      "public_id": "QSI-2026-50432",
+      "id": "e9400df0-b494-47f1-8550-d67ea5ecc891",
+      "public_id": "QSI-2026-50981",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))",
       "description": "1 reference(s) to Ed25519 across 1 file(s), e.g. cmd/common/signer/signer.go:103. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -10439,8 +10439,8 @@
       "triage": null,
       "affected_asset": "source-code:Ed25519:transaction_signing",
       "data_source": "cmd/common/signer/signer.go",
-      "analyzer": "source_code 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.296656+00:00",
+      "analyzer": "source_code 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.513218+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -10536,8 +10536,8 @@
           "content": "  102 | \tcase ed25519.PrivateKey:\n  103 | \t\treturn ed25519.Sign(si.key.(ed25519.PrivateKey), msg), nil\n  104 | \tdefault:",
           "content_sha256": "1fadca5c51485178e981fb470c56ccaa27c5299f4e25a910b8840674df903560",
           "source_sha256": "17c163a929b559ef19ed6777353cde8185eeb4bbf57e2878243cf70797a3b0c7",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.311890+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.529110+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/cmd/common/signer/signer.go#L103"
         }
       ],
@@ -10575,8 +10575,8 @@
       ]
     },
     {
-      "id": "4d3da4cd-b6e7-4c87-a293-7d9b02c8358c",
-      "public_id": "QSI-2026-50433",
+      "id": "3ce23c97-3ce6-45ff-86ae-5eda73225dbf",
+      "public_id": "QSI-2026-50982",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))",
       "description": "2 reference(s) to ECDSA across 2 file(s), e.g. common/crypto/sanitize.go:10. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier.",
@@ -10595,8 +10595,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:authentication",
       "data_source": "common/crypto/sanitize.go",
-      "analyzer": "source_code 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.309245+00:00",
+      "analyzer": "source_code 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.526403+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -10692,8 +10692,8 @@
           "content": "    9 | import (\n   10 | \t\"crypto/ecdsa\"\n   11 | \t\"crypto/x509\"",
           "content_sha256": "7084b7c99f554eecd0fd9091a867a2f25ebd736f4f12161ea4ea116842e57482",
           "source_sha256": "07ebd62082c189a82e33775b5fbcaf46685a1a12d4677a5d8c92d246ee065fd1",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.318910+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.536330+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/common/crypto/sanitize.go#L10"
         },
         {
@@ -10703,8 +10703,8 @@
           "content": "   20 | \t\"bytes\"\n   21 | \t\"crypto/ecdsa\"\n   22 | \t\"crypto/x509\"",
           "content_sha256": "e90e392283b6e3044a88683aa385394d372eda877012ec6cd9f21b1bb1e1c94c",
           "source_sha256": "109d3fecdcba4e48f02886aa9267348f622093a29fa7f85aff24e2bffc4f02ed",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.318918+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.536339+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/msp/cert.go#L21"
         }
       ],
@@ -10742,8 +10742,8 @@
       ]
     },
     {
-      "id": "fbe25382-321b-4a85-afae-fbb77adaa78d",
-      "public_id": "QSI-2026-50434",
+      "id": "27106d93-c33b-4c66-90de-62df330cf939",
+      "public_id": "QSI-2026-50983",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: role not determined (7 file(s))",
       "description": "13 reference(s) to ECDSA across 7 file(s), e.g. common/crypto/tlsgen/key.go:11. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -10762,8 +10762,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "common/crypto/tlsgen/key.go",
-      "analyzer": "source_code 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.316783+00:00",
+      "analyzer": "source_code 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.533983+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -10859,8 +10859,8 @@
           "content": "   10 | \t\"crypto\"\n   11 | \t\"crypto/ecdsa\"\n   12 | \t\"crypto/elliptic\"",
           "content_sha256": "9dcdbc8c39c2a748e23237a075a1ee592602e309634b495ca8ee95d667e3de28",
           "source_sha256": "5087586f9dbed00e39741671106e43a9c7a86dfae42c33c1c0c3dbddf9c23715",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327221+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547061+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/common/crypto/tlsgen/key.go#L11"
         },
         {
@@ -10870,8 +10870,8 @@
           "content": "   26 | func newPrivKey() (*ecdsa.PrivateKey, []byte, error) {\n   27 | \tprivateKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)\n   28 | \tif err != nil {",
           "content_sha256": "36cd8f56fd06275a66a36a49980ed0bc027499c6a15d1086ccc80ea2b105b5bc",
           "source_sha256": "5087586f9dbed00e39741671106e43a9c7a86dfae42c33c1c0c3dbddf9c23715",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327229+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547080+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/common/crypto/tlsgen/key.go#L27"
         },
         {
@@ -10881,8 +10881,8 @@
           "content": "    9 | import (\n   10 | \t\"crypto/ecdsa\"\n   11 | \t\"crypto/ed25519\"",
           "content_sha256": "7983932d009be78f478f371ae58c3f86b9f6b72f687b9ed011a4aee4ad95d71d",
           "source_sha256": "5fc4f91644273dee98c763ff9dc5c2d0094f55f7b84049f60e45d26aa7079f8a",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327234+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547085+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/integration/nwo/signingid.go#L10"
         },
         {
@@ -10892,8 +10892,8 @@
           "content": "   61 | \tcase *ecdsa.PrivateKey:\n   62 | \t\tr, _s, err := ecdsa.Sign(rand.Reader, k, digest[:])\n   63 | \t\tif err != nil {",
           "content_sha256": "1fa03b22a497e32b00bc23cf5b6dd3ef33e3a433f7dcdec570513ad35a1e9e84",
           "source_sha256": "5fc4f91644273dee98c763ff9dc5c2d0094f55f7b84049f60e45d26aa7079f8a",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327238+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547090+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/integration/nwo/signingid.go#L62"
         },
         {
@@ -10903,8 +10903,8 @@
           "content": "   10 | \t\"crypto\"\n   11 | \t\"crypto/ecdsa\"\n   12 | \t\"encoding/asn1\"",
           "content_sha256": "7c3c9ad2241d45350461ababc968c86b8e98df8d015e0369a24a0fe7b5d20d74",
           "source_sha256": "239a42d597cab9a1ffb2704dcfb5325c346efe1f41ed16573d27c528be46cb26",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327243+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547094+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/integration/pkcs11/p11key.go#L11"
         },
         {
@@ -10914,8 +10914,8 @@
           "content": "   41 | \tmech := []*pkcs11.Mechanism{\n   42 | \t\tpkcs11.NewMechanism(pkcs11.CKM_ECDSA, nil),\n   43 | \t}",
           "content_sha256": "fff4469e0e727764101542c41dbd3d3ee85c4ef9ae96a9fc0772773403d42784",
           "source_sha256": "239a42d597cab9a1ffb2704dcfb5325c346efe1f41ed16573d27c528be46cb26",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327248+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547099+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/integration/pkcs11/p11key.go#L42"
         },
         {
@@ -10925,8 +10925,8 @@
           "content": "    9 | \t\"crypto\"\n   10 | \t\"crypto/ecdsa\"\n   11 | \t\"crypto/ed25519\"",
           "content_sha256": "28e1ebfdc5314af7f1518d8c3b1f1fe1dedb76343c9bd9f0c3d65a20ece8c7cd",
           "source_sha256": "9c4a52420badd786f188cad199eea405aff611bca991af3a4567be070d4e62e7",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327252+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547104+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/internal/cryptogen/ca/ca.go#L10"
         },
         {
@@ -10936,8 +10936,8 @@
           "content": "    9 | \t\"crypto\"\n   10 | \t\"crypto/ecdsa\"\n   11 | \t\"crypto/ed25519\"",
           "content_sha256": "28e1ebfdc5314af7f1518d8c3b1f1fe1dedb76343c9bd9f0c3d65a20ece8c7cd",
           "source_sha256": "5c9ce9a5c042bf0b17e2ead9d464a61a485c280ca7157e9c041a9f1dae33e417",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327257+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547108+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/internal/cryptogen/csp/csp.go#L10"
         },
         {
@@ -10947,8 +10947,8 @@
           "content": "   84 | \tcase \"ecdsa\":\n   85 | \t\tpriv, err = ecdsa.GenerateKey(elliptic.P256(), rand.Reader)\n   86 | \tcase \"ed25519\":",
           "content_sha256": "145d377cd11be49991dd933abde274f50113c7f05784293ca783b26d0d4be8ff",
           "source_sha256": "5c9ce9a5c042bf0b17e2ead9d464a61a485c280ca7157e9c041a9f1dae33e417",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327261+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547113+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/internal/cryptogen/csp/csp.go#L85"
         },
         {
@@ -10958,8 +10958,8 @@
           "content": "  129 | func (e *ECDSASigner) Sign(rand io.Reader, digest []byte, opts crypto.SignerOpts) ([]byte, error) {\n  130 | \tr, s, err := ecdsa.Sign(rand, e.PrivateKey, digest)\n  131 | \tif err != nil {",
           "content_sha256": "c418dec4450d28371606fd0d96d57a9f6595572b84a49e8a17bab4e8045d13d1",
           "source_sha256": "5c9ce9a5c042bf0b17e2ead9d464a61a485c280ca7157e9c041a9f1dae33e417",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.327266+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.547118+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/internal/cryptogen/csp/csp.go#L130"
         }
       ],
@@ -10997,8 +10997,8 @@
       ]
     },
     {
-      "id": "a9bd9d1e-a8a1-40ac-8ed4-f330a0ad413d",
-      "public_id": "QSI-2026-50435",
+      "id": "d1e4dd9b-82a8-4228-bd62-6a84eba19137",
+      "public_id": "QSI-2026-50984",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDH: role not determined (2 file(s))",
       "description": "2 reference(s) to ECDH across 2 file(s), e.g. common/crypto/tlsgen/key.go:125. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -11017,8 +11017,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDH:general",
       "data_source": "common/crypto/tlsgen/key.go",
-      "analyzer": "source_code 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.324836+00:00",
+      "analyzer": "source_code 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.542175+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -11114,8 +11114,8 @@
           "content": "  124 | func computeSKI(key *ecdsa.PublicKey) ([]byte, error) {\n  125 | \tecdhPk, err := key.ECDH()\n  126 | \tif err != nil {",
           "content_sha256": "6c9e8147d92efa0629fa152aaeed0ae0b611281b61afef381df8b726d2b460c9",
           "source_sha256": "5087586f9dbed00e39741671106e43a9c7a86dfae42c33c1c0c3dbddf9c23715",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.335638+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.559552+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/common/crypto/tlsgen/key.go#L125"
         },
         {
@@ -11125,8 +11125,8 @@
           "content": "  175 | \tcase *ecdsa.PrivateKey:\n  176 | \t\tecdhKey, err := kk.ECDH()\n  177 | \t\tif err != nil {",
           "content_sha256": "d5a2c3f468ada1cca9f2bac4b3877e1ad37dd14c9c244c67525edf6d6079d809",
           "source_sha256": "9c4a52420badd786f188cad199eea405aff611bca991af3a4567be070d4e62e7",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.335647+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.559560+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/internal/cryptogen/ca/ca.go#L176"
         }
       ],
@@ -11164,8 +11164,8 @@
       ]
     },
     {
-      "id": "3087490d-57b4-4fa6-a572-7e1f66048310",
-      "public_id": "QSI-2026-50437",
+      "id": "3bd7f2d0-ce9c-48de-800b-762fb0b8a861",
+      "public_id": "QSI-2026-50986",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Ed25519: role not determined (2 file(s))",
       "description": "3 reference(s) to Ed25519 across 2 file(s), e.g. integration/nwo/signingid.go:72. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -11184,8 +11184,8 @@
       "triage": null,
       "affected_asset": "source-code:Ed25519:general",
       "data_source": "integration/nwo/signingid.go",
-      "analyzer": "source_code 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.339947+00:00",
+      "analyzer": "source_code 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.563925+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -11281,8 +11281,8 @@
           "content": "   71 | \tcase ed25519.PrivateKey:\n   72 | \t\treturn ed25519.Sign(k, msg), nil\n   73 | \tdefault:",
           "content_sha256": "1cd06a572b80e81212b611338acaada11769b9a861aad4a3dbef55253e270ee0",
           "source_sha256": "5fc4f91644273dee98c763ff9dc5c2d0094f55f7b84049f60e45d26aa7079f8a",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.348993+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.573395+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/integration/nwo/signingid.go#L72"
         },
         {
@@ -11292,8 +11292,8 @@
           "content": "   86 | \tcase \"ed25519\":\n   87 | \t\t_, priv, err = ed25519.GenerateKey(rand.Reader)\n   88 | \tdefault:",
           "content_sha256": "a62ce5e5d32b9cf92b326954f35a68c01f52ece0f651146afe1d287e0e0816c4",
           "source_sha256": "5c9ce9a5c042bf0b17e2ead9d464a61a485c280ca7157e9c041a9f1dae33e417",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.349001+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.573404+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/internal/cryptogen/csp/csp.go#L87"
         },
         {
@@ -11303,8 +11303,8 @@
           "content": "  181 | func (e *ED25519Signer) Sign(rand io.Reader, msg []byte, opts crypto.SignerOpts) ([]byte, error) {\n  182 | \tsig := ed25519.Sign(e.PrivateKey, msg)\n  183 | ",
           "content_sha256": "3009ad2f91fe009ff14480bb74fee558cbbb53477de28a15f1f99cabcf2eefaa",
           "source_sha256": "5c9ce9a5c042bf0b17e2ead9d464a61a485c280ca7157e9c041a9f1dae33e417",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.349006+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.573410+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/internal/cryptogen/csp/csp.go#L182"
         }
       ],
@@ -11342,8 +11342,8 @@
       ]
     },
     {
-      "id": "bacde138-9a2b-45ff-884d-98dcb827f52b",
-      "public_id": "QSI-2026-50436",
+      "id": "9ba14025-21a9-4c26-989a-06601ae76ff4",
+      "public_id": "QSI-2026-50985",
       "rule_id": "CODE-WEAK-HASH",
       "title": "MD5 used in common/deliverclient/orderers/connection.go",
       "description": "2 call site(s) of MD5 (first at line 11).",
@@ -11362,8 +11362,8 @@
       "triage": null,
       "affected_asset": "file:common/deliverclient/orderers/connection.go",
       "data_source": "common/deliverclient/orderers/connection.go",
-      "analyzer": "source_code 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.333787+00:00",
+      "analyzer": "source_code 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.557317+00:00",
       "risk_score": 33.7,
       "risk_breakdown": {
         "score": 33.7,
@@ -11418,8 +11418,8 @@
           "content": "    9 | import (\n   10 | \t\"bytes\"\n   11 | \t\"crypto/md5\"\n   12 | \t\"crypto/sha256\"\n   13 | \t\"fmt\"",
           "content_sha256": "5f725154eb3b4e46d92f2507aa51c107f83335a8f91b6bb0f8e819e776baa85c",
           "source_sha256": "fa072f2d16bdf050f1439eb6d0ab5d3d1c1f7fa612506de267aa96071e165d27",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.341931+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.566191+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/common/deliverclient/orderers/connection.go#L11"
         },
         {
@@ -11429,8 +11429,8 @@
           "content": "   42 | \n   43 | \tif e.RootCerts != nil {\n   44 | \t\thasher := md5.New()\n   45 | \t\tfor _, cert := range e.RootCerts {\n   46 | \t\t\thasher.Write(cert)",
           "content_sha256": "2d175c78e52285fd59899e3efc4903f3fde7328df11f4f8fb9711d5b36d78369",
           "source_sha256": "fa072f2d16bdf050f1439eb6d0ab5d3d1c1f7fa612506de267aa96071e165d27",
-          "collector": "source_code 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.341940+00:00",
+          "collector": "source_code 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.566199+00:00",
           "url": "https://github.com/hyperledger/fabric/blob/13ef9e5ee59466b152c8fe65b3a095234de671f7/common/deliverclient/orderers/connection.go#L44"
         }
       ],
@@ -11453,8 +11453,8 @@
       ]
     },
     {
-      "id": "19104931-eb6d-40b5-b753-2baccc809628",
-      "public_id": "QSI-2026-50438",
+      "id": "205bfdce-248d-4baa-b22e-b8d64e192d00",
+      "public_id": "QSI-2026-50987",
       "rule_id": "CERT-QV-KEY",
       "title": "Quantum-vulnerable ECDSA key in certificate (ca.org1.example.com)",
       "description": "The certificate ca.org1.example.com uses a ECDSA secp256r1 public key, valid until 2027-11-10. ECDSA is broken by Shor's algorithm on a CRQC.",
@@ -11473,8 +11473,8 @@
       "triage": null,
       "affected_asset": "certificate:ca.org1.example.com",
       "data_source": "sampleconfig/msp/cacerts/cacert.pem",
-      "analyzer": "certificates 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.347294+00:00",
+      "analyzer": "certificates 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.571384+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
@@ -11570,8 +11570,8 @@
           "content": "Subject: CN=ca.org1.example.com,OU=COP,O=org1.example.com,L=San Francisco,ST=California,C=US\nIssuer: CN=ca.org1.example.com,OU=COP,O=org1.example.com,L=San Francisco,ST=California,C=US\nSerial: bd5f1009f3e73a789a827c31d49bfe56\nNot before: 2017-11-12T13:41:11+00:00\nNot after: 2027-11-10T13:41:11+00:00\nPublic key: ECDSA secp256r1\nSignature algorithm: 1.2.840.10045.4.3.2 (ECDSA)\nSignature hash: sha256\nCA: True\nSAN: -\nSHA-256 fingerprint: dfbbd654ce60aaac86dc995580aad33347a4a5baaf484ca64892cebd8ed014f2",
           "content_sha256": "7d234b9db694a12867c13b15237565e0ed9ef98c6d0b3ce9ac79f192e1930cc1",
           "source_sha256": "6d24d0804ade3d38931f6fd3545cc5fd793b2b8aa2dc188b8d61424b01a2f020",
-          "collector": "certificates 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.355473+00:00",
+          "collector": "certificates 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.580056+00:00",
           "url": null
         }
       ],
@@ -11609,8 +11609,8 @@
       ]
     },
     {
-      "id": "df900db8-0a80-4fc2-ac0f-5a6b37448427",
-      "public_id": "QSI-2026-50439",
+      "id": "421743da-a0d4-4ab0-b556-df5033de1e1b",
+      "public_id": "QSI-2026-50988",
       "rule_id": "CERT-QV-KEY",
       "title": "Quantum-vulnerable ECDSA key in certificate (Org2-child1)",
       "description": "The certificate Org2-child1 uses a ECDSA secp256r1 public key, valid until 2027-05-06. ECDSA is broken by Shor's algorithm on a CRQC.",
@@ -11629,8 +11629,8 @@
       "triage": null,
       "affected_asset": "certificate:Org2-child1",
       "data_source": "sampleconfig/msp/tlsintermediatecerts/tlsintermediate.pem",
-      "analyzer": "certificates 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.353906+00:00",
+      "analyzer": "certificates 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.578473+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
@@ -11726,8 +11726,8 @@
           "content": "Subject: CN=Org2-child1,O=Org2-child1,L=San Francisco,ST=California,C=US\nIssuer: CN=Org2,O=Org2,L=San Francisco,ST=California,C=US\nSerial: 36982801213d7e2d28a1954a727c2767\nNot before: 2017-05-08T09:30:34+00:00\nNot after: 2027-05-06T09:30:34+00:00\nPublic key: ECDSA secp256r1\nSignature algorithm: 1.2.840.10045.4.3.2 (ECDSA)\nSignature hash: sha256\nCA: True\nSAN: -\nSHA-256 fingerprint: 9b616809f5500b33c2b0e19be94a8bd1122b049dd8b19b957487ad4ed0d24ed5",
           "content_sha256": "d5fc619450742a088d4757537f3f7311c9445391166ce0c5da0d55aa1c6047ae",
           "source_sha256": "e9f18cc371b6c3b70ad082bee55f3d886073a2e46a416fd53cd4ccebd52ead79",
-          "collector": "certificates 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.361304+00:00",
+          "collector": "certificates 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.585874+00:00",
           "url": null
         }
       ],
@@ -11765,11 +11765,11 @@
       ]
     },
     {
-      "id": "539e947b-f702-4761-ada2-59bf513b985f",
-      "public_id": "QSI-2026-50451",
+      "id": "1dce2423-da17-4f18-ace3-ba20f729a31e",
+      "public_id": "QSI-2026-51000",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)",
-      "description": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.headerFieldNameError.Error.",
+      "description": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.SettingID.String.",
       "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
       "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
       "retest": "Re-run the dependency scan after upgrading.",
@@ -11786,8 +11786,8 @@
       "reachability": "called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.417787+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.640539+00:00",
       "risk_score": 33.9,
       "risk_breakdown": {
         "score": 33.9,
@@ -11842,8 +11842,8 @@
           "content": "{\"id\": \"GO-2026-6603\", \"aliases\": [\"BIT-golang-2026-78659\", \"CVE-2026-78659\"], \"modified\": \"2026-11-23T21:12:29.903950358Z\", \"summary\": \"HTTP/2 server memory exhaustion due to Trailer headers in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "41efef6f9e261038a26d570f9d667deff8b8cf67065d827b3e65e9b8473ee664",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.424305+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.646625+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6603"
         }
       ],
@@ -11866,11 +11866,11 @@
       ]
     },
     {
-      "id": "a018b736-b474-417e-b4f3-b0b032ba9b65",
-      "public_id": "QSI-2026-50453",
+      "id": "32a9c3e6-4907-487f-9965-ce97adfc3bda",
+      "public_id": "QSI-2026-51002",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)",
-      "description": "OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.55.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.headerFieldNameError.Error.",
+      "description": "OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.55.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.connError.Error.",
       "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
       "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
       "retest": "Re-run the dependency scan after upgrading.",
@@ -11887,8 +11887,8 @@
       "reachability": "called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.427554+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.650167+00:00",
       "risk_score": 33.9,
       "risk_breakdown": {
         "score": 33.9,
@@ -11943,8 +11943,8 @@
           "content": "{\"id\": \"GO-2026-6611\", \"aliases\": [\"BIT-golang-2026-78669\", \"CVE-2026-78669\"], \"modified\": \"2026-11-23T21:12:29.007257358Z\", \"summary\": \"Excessive CPU consumption from repeated initial window changes in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "3f6098f691faf768a7e747628144bd25947e949fc71b328f78074bdf4638333d",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.433829+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.656408+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6611"
         }
       ],
@@ -11967,11 +11967,11 @@
       ]
     },
     {
-      "id": "a19ae553-8fa7-4e13-a134-8c7aed69ac43",
-      "public_id": "QSI-2026-50454",
+      "id": "789b6c96-2a4f-4d90-9019-545d7e8cbae8",
+      "public_id": "QSI-2026-51003",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)",
-      "description": "OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.55.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.connError.Error.",
+      "description": "OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.55.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.FrameHeader.String.",
       "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
       "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
       "retest": "Re-run the dependency scan after upgrading.",
@@ -11988,8 +11988,8 @@
       "reachability": "called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.432389+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.654870+00:00",
       "risk_score": 33.9,
       "risk_breakdown": {
         "score": 33.9,
@@ -12044,8 +12044,8 @@
           "content": "{\"id\": \"GO-2026-6612\", \"aliases\": [\"BIT-golang-2026-78663\", \"CVE-2026-78663\"], \"modified\": \"2026-11-23T21:12:28.295006823Z\", \"summary\": \"Double flow control refund on HTTP/2 server streams in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "40f1c70bf5caae6f0b12a32a6c014a0273cd45a558ef1781abe540233ca17af8",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.438778+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.660908+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6612"
         }
       ],
@@ -12068,11 +12068,11 @@
       ]
     },
     {
-      "id": "90ba80d1-7f3a-4069-a0fd-ed43b882b35c",
-      "public_id": "QSI-2026-50455",
+      "id": "c5bb9554-a397-4ef4-82fc-d80bb2284a2d",
+      "public_id": "QSI-2026-51004",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)",
-      "description": "OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.duplicatePseudoHeaderError.Error.",
+      "description": "OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.headerFieldNameError.Error.",
       "impact": "Unknown without triage: read the advisory and check whether the affected code is reachable in your build.",
       "recommendation": "Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.",
       "retest": "Re-run the dependency scan after upgrading.",
@@ -12089,8 +12089,8 @@
       "reachability": "called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.437260+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.659518+00:00",
       "risk_score": 33.9,
       "risk_breakdown": {
         "score": 33.9,
@@ -12145,8 +12145,8 @@
           "content": "{\"id\": \"GO-2026-6617\", \"aliases\": [\"BIT-golang-2026-97032\", \"CVE-2026-97032\"], \"modified\": \"2026-11-23T21:12:28.960393562Z\", \"summary\": \"HTTP/2 server crash due to HPACK encoder race in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "1800738d8fafba90c8d7a323150d3d2a9a4d5c3c678c22ad01fcea25a234a31e",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.443331+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.665677+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6617"
         }
       ],
@@ -12169,8 +12169,8 @@
       ]
     },
     {
-      "id": "6c9ae76b-5eca-41d2-8765-2e6f3512cee9",
-      "public_id": "QSI-2026-50448",
+      "id": "0dacccf0-d575-4bd8-b152-f5d303092135",
+      "public_id": "QSI-2026-50997",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/crypto v0.58.0 is affected by GO-2026-5932 (no severity rating)",
       "description": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.58.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. No product source file imports golang.org/x/crypto: it comes in through other dependencies, whose use of it was not traced. The advisory names no affected functions, so reachability was not determined.",
@@ -12190,8 +12190,8 @@
       "reachability": "via_dependencies",
       "affected_asset": "dependency:Go/golang.org/x/crypto@v0.58.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.401591+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.625727+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -12246,8 +12246,8 @@
           "content": "{\"id\": \"GO-2026-5932\", \"aliases\": [], \"modified\": \"2026-11-02T22:15:06.677088389Z\", \"summary\": \"The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "7567598e736f75fe8f2c913606229875f197cdfc5e798ba52e2dfa3ab75088b4",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.409026+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.632575+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-5932"
         }
       ],
@@ -12270,8 +12270,8 @@
       ]
     },
     {
-      "id": "79c9b10d-b15e-412f-9af8-9bcc4e41604f",
-      "public_id": "QSI-2026-50460",
+      "id": "c07277ac-7415-4138-a546-9da64b6f0430",
+      "public_id": "QSI-2026-51009",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)",
       "description": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code.",
@@ -12291,8 +12291,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/google.golang.org/grpc@v1.83.1",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.461155+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.683605+00:00",
       "risk_score": 35.2,
       "risk_breakdown": {
         "score": 35.2,
@@ -12347,8 +12347,8 @@
           "content": "{\"id\": \"GHSA-2v4p-qf9q-27wj\", \"aliases\": [\"CVE-2026-84445\", \"GO-2026-6443\"], \"modified\": \"2026-09-25T18:00:05.270054427Z\", \"summary\": \"gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X\"}], \"declared_in_manifest\": true}",
           "content_sha256": "3566bf539cd1bed726145fc02332a18308f9a065bb8b992c0e44deb9ec44221a",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.503249+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.727079+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj"
         }
       ],
@@ -12371,8 +12371,8 @@
       ]
     },
     {
-      "id": "4a9bf959-f729-411d-b2fe-36b28362c349",
-      "public_id": "QSI-2026-50440",
+      "id": "62e287f5-2b60-4217-8f10-5f8e7a87e465",
+      "public_id": "QSI-2026-50989",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.57.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.57.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.",
@@ -12392,8 +12392,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.57.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.359701+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.584282+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -12448,8 +12448,8 @@
           "content": "{\"id\": \"GO-2026-6603\", \"aliases\": [\"BIT-golang-2026-78659\", \"CVE-2026-78659\"], \"modified\": \"2026-11-23T21:12:29.903950358Z\", \"summary\": \"HTTP/2 server memory exhaustion due to Trailer headers in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "41efef6f9e261038a26d570f9d667deff8b8cf67065d827b3e65e9b8473ee664",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.366640+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.591425+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6603"
         }
       ],
@@ -12472,8 +12472,8 @@
       ]
     },
     {
-      "id": "767b679f-e5df-4c59-99b4-7a59dbc3074c",
-      "public_id": "QSI-2026-50441",
+      "id": "d5bbe2bc-3eed-4a44-b66a-db6f0c3ff092",
+      "public_id": "QSI-2026-50990",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.57.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.57.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.",
@@ -12493,8 +12493,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.57.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.365114+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.589770+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -12549,8 +12549,8 @@
           "content": "{\"id\": \"GO-2026-6610\", \"aliases\": [\"BIT-golang-2026-78660\", \"CVE-2026-78660\"], \"modified\": \"2026-11-23T21:12:29.831892156Z\", \"summary\": \"HTTP/2 transport accepts malformed framing-related headers in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "0ed28b7d57d567c00a5d74ef09d210e9b41ca752a9f786aab84734fcca7dab74",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.371604+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.596914+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6610"
         }
       ],
@@ -12573,8 +12573,8 @@
       ]
     },
     {
-      "id": "1d0a1b74-fc08-4c55-9458-76595fbc5b15",
-      "public_id": "QSI-2026-50442",
+      "id": "534383cd-e103-4459-bd6d-c6615d8bd380",
+      "public_id": "QSI-2026-50991",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.57.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.57.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.",
@@ -12594,8 +12594,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.57.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.370183+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.595432+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -12650,8 +12650,8 @@
           "content": "{\"id\": \"GO-2026-6611\", \"aliases\": [\"BIT-golang-2026-78669\", \"CVE-2026-78669\"], \"modified\": \"2026-11-23T21:12:29.007257358Z\", \"summary\": \"Excessive CPU consumption from repeated initial window changes in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "3f6098f691faf768a7e747628144bd25947e949fc71b328f78074bdf4638333d",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.376642+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.602213+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6611"
         }
       ],
@@ -12674,8 +12674,8 @@
       ]
     },
     {
-      "id": "56ab53a5-4b13-4192-a21e-dc7c4d7c6f01",
-      "public_id": "QSI-2026-50443",
+      "id": "1009f653-05b1-4068-807d-af7ab036f4e5",
+      "public_id": "QSI-2026-50992",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.57.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.57.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.",
@@ -12695,8 +12695,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.57.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.375140+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.600724+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -12751,8 +12751,8 @@
           "content": "{\"id\": \"GO-2026-6612\", \"aliases\": [\"BIT-golang-2026-78663\", \"CVE-2026-78663\"], \"modified\": \"2026-11-23T21:12:28.295006823Z\", \"summary\": \"Double flow control refund on HTTP/2 server streams in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "40f1c70bf5caae6f0b12a32a6c014a0273cd45a558ef1781abe540233ca17af8",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.382364+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.607606+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6612"
         }
       ],
@@ -12775,8 +12775,8 @@
       ]
     },
     {
-      "id": "da5931d1-f0b2-4826-b8ae-e1c462af4b86",
-      "public_id": "QSI-2026-50444",
+      "id": "2fab6230-5155-4dfd-8c9c-97071c8609c1",
+      "public_id": "QSI-2026-50993",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.57.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.57.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.",
@@ -12796,8 +12796,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.57.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.380836+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.606114+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -12852,8 +12852,8 @@
           "content": "{\"id\": \"GO-2026-6617\", \"aliases\": [\"BIT-golang-2026-97032\", \"CVE-2026-97032\"], \"modified\": \"2026-11-23T21:12:28.960393562Z\", \"summary\": \"HTTP/2 server crash due to HPACK encoder race in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "1800738d8fafba90c8d7a323150d3d2a9a4d5c3c678c22ad01fcea25a234a31e",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.387601+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.612532+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6617"
         }
       ],
@@ -12876,8 +12876,8 @@
       ]
     },
     {
-      "id": "1cd574a0-ff2e-41cc-b6e2-f86886c10f5a",
-      "public_id": "QSI-2026-50445",
+      "id": "920b3395-4ae1-4bbf-ba8e-c855639b7e5a",
+      "public_id": "QSI-2026-50994",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.57.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.57.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.",
@@ -12897,8 +12897,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.57.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.386071+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.611000+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -12953,8 +12953,8 @@
           "content": "{\"id\": \"GO-2026-6860\", \"aliases\": [\"CVE-2026-78661\"], \"modified\": \"2026-10-27T21:30:04.890809062Z\", \"summary\": \"Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "850b298c34c0a0f97f8e85b1a9e277a2618a27421c9c964f241541b7a5147e9e",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.393089+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.617509+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6860"
         }
       ],
@@ -12977,8 +12977,8 @@
       ]
     },
     {
-      "id": "aebb6bc2-a7ea-45c2-9a76-50452a19e802",
-      "public_id": "QSI-2026-50446",
+      "id": "fb5a9dab-c210-4e85-99c8-e44e76d883eb",
+      "public_id": "QSI-2026-50995",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.57.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.57.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.",
@@ -12998,8 +12998,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.57.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.391382+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.616059+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13054,8 +13054,8 @@
           "content": "{\"id\": \"GO-2026-6866\", \"aliases\": [\"CVE-2026-97045\"], \"modified\": \"2026-10-27T21:45:08.978077289Z\", \"summary\": \"Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "1950021930f2080580e00f4ada7bb415c92766857f916c4a233c6035c68078b8",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.398276+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.622487+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6866"
         }
       ],
@@ -13078,8 +13078,8 @@
       ]
     },
     {
-      "id": "b7f0f942-6180-4995-81bc-43e9e73ee163",
-      "public_id": "QSI-2026-50447",
+      "id": "fdd2351f-9379-44fd-ad3f-b71e5c09ae12",
+      "public_id": "QSI-2026-50996",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/text v0.40.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6629 (CVE-2026-56851) for Go package golang.org/x/text at version v0.40.0: Panic parsing crafted input in x/text/secure/precis in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/text is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.",
@@ -13099,8 +13099,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/text@v0.40.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.396772+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.620982+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13155,8 +13155,8 @@
           "content": "{\"id\": \"GO-2026-6629\", \"aliases\": [\"CVE-2026-56851\"], \"modified\": \"2026-11-23T21:12:29.495073874Z\", \"summary\": \"Panic parsing crafted input in x/text/secure/precis in golang.org/x/text\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "41214c2900243582e86ff2d02722e1ef316bbc64e14dce6180f3c37e992fdcaa",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.403451+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.627381+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6629"
         }
       ],
@@ -13179,8 +13179,8 @@
       ]
     },
     {
-      "id": "a1f6b95b-fcfe-40f4-ac4c-b591e028e97f",
-      "public_id": "QSI-2026-50449",
+      "id": "88766329-df2c-4b1e-854f-969b7336de70",
+      "public_id": "QSI-2026-50998",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-5026 (CVE-2026-39821) (no severity rating)",
       "description": "OSV.dev reports GO-2026-5026 (CVE-2026-39821) for Go package golang.org/x/net at version v0.55.0: Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code.",
@@ -13200,8 +13200,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.407513+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.630899+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13256,8 +13256,8 @@
           "content": "{\"id\": \"GO-2026-5026\", \"aliases\": [\"CVE-2026-39821\"], \"modified\": \"2026-11-23T21:12:28.671130412Z\", \"summary\": \"Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "0c8c1c1d52d99f1aa4409e163a96e360b04c6bb0633261fe5b868c1a207a5cdc",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.414182+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.637334+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-5026"
         }
       ],
@@ -13280,8 +13280,8 @@
       ]
     },
     {
-      "id": "290af373-5e97-4ec4-9757-47075670d529",
-      "public_id": "QSI-2026-50450",
+      "id": "9e42cfac-7d65-43ed-85c0-a23bbafd77ba",
+      "public_id": "QSI-2026-50999",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-5942 (CVE-2026-46600) (no severity rating)",
       "description": "OSV.dev reports GO-2026-5942 (CVE-2026-46600) for Go package golang.org/x/net at version v0.55.0: Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/net, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.",
@@ -13301,8 +13301,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.412585+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.635872+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13357,8 +13357,8 @@
           "content": "{\"id\": \"GO-2026-5942\", \"aliases\": [\"BIT-golang-2026-46600\", \"CVE-2026-46600\"], \"modified\": \"2026-08-17T12:25:32.471119200Z\", \"summary\": \"Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "b350c02f839159da0b17f9fc366081b6ecbfab32d57793400c90cafc79008499",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.419402+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.641954+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-5942"
         }
       ],
@@ -13381,8 +13381,8 @@
       ]
     },
     {
-      "id": "230ab5d4-0299-4865-8f1e-b6aa1e90d940",
-      "public_id": "QSI-2026-50452",
+      "id": "4a49ea23-90d7-47d2-b1e8-51c653c3c324",
+      "public_id": "QSI-2026-51001",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.55.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code.",
@@ -13402,8 +13402,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.422781+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.645074+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13458,8 +13458,8 @@
           "content": "{\"id\": \"GO-2026-6610\", \"aliases\": [\"BIT-golang-2026-78660\", \"CVE-2026-78660\"], \"modified\": \"2026-11-23T21:12:29.831892156Z\", \"summary\": \"HTTP/2 transport accepts malformed framing-related headers in net/http\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "0ed28b7d57d567c00a5d74ef09d210e9b41ca752a9f786aab84734fcca7dab74",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.428986+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.651591+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6610"
         }
       ],
@@ -13482,8 +13482,8 @@
       ]
     },
     {
-      "id": "ab875fa8-9533-4f84-ad8f-0429482f3490",
-      "public_id": "QSI-2026-50456",
+      "id": "13513d2a-909a-4a8b-88ef-da890d60dd2b",
+      "public_id": "QSI-2026-51005",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.55.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/net, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.",
@@ -13503,8 +13503,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.441936+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.664267+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13559,8 +13559,8 @@
           "content": "{\"id\": \"GO-2026-6860\", \"aliases\": [\"CVE-2026-78661\"], \"modified\": \"2026-10-27T21:30:04.890809062Z\", \"summary\": \"Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "850b298c34c0a0f97f8e85b1a9e277a2618a27421c9c964f241541b7a5147e9e",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.448018+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.670551+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6860"
         }
       ],
@@ -13583,8 +13583,8 @@
       ]
     },
     {
-      "id": "31162097-5172-4058-91a8-7d94a93ad949",
-      "public_id": "QSI-2026-50457",
+      "id": "fd0cb5f3-e1ce-4033-95fc-1292df20933c",
+      "public_id": "QSI-2026-51006",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/net v0.55.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.55.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/net, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.",
@@ -13604,8 +13604,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/net@v0.55.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.446537+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.668862+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13660,8 +13660,8 @@
           "content": "{\"id\": \"GO-2026-6866\", \"aliases\": [\"CVE-2026-97045\"], \"modified\": \"2026-10-27T21:45:08.978077289Z\", \"summary\": \"Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "1950021930f2080580e00f4ada7bb415c92766857f916c4a233c6035c68078b8",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.452918+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.675470+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6866"
         }
       ],
@@ -13684,8 +13684,8 @@
       ]
     },
     {
-      "id": "4987ddbc-38ff-43ec-9f79-ba03835c31f0",
-      "public_id": "QSI-2026-50458",
+      "id": "74ecd0da-099d-4f56-be90-9cadd70fa4a4",
+      "public_id": "QSI-2026-51007",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/text v0.37.0 is affected by GO-2026-5970 (CVE-2026-56852) (no severity rating)",
       "description": "OSV.dev reports GO-2026-5970 (CVE-2026-56852) for Go package golang.org/x/text at version v0.37.0: Infinite loop on invalid input in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code.",
@@ -13705,8 +13705,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/text@v0.37.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.451403+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.673859+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13761,8 +13761,8 @@
           "content": "{\"id\": \"GO-2026-5970\", \"aliases\": [\"CVE-2026-56852\"], \"modified\": \"2026-11-23T21:12:29.269820156Z\", \"summary\": \"Infinite loop on invalid input in golang.org/x/text\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "e965b42570e47460633ab14761c247210322f7fd2bcaec0ba80a47fa7231bc2a",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.457860+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.680439+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-5970"
         }
       ],
@@ -13785,8 +13785,8 @@
       ]
     },
     {
-      "id": "fe0bab3f-07ca-4bdc-b30a-b9c91410b8a9",
-      "public_id": "QSI-2026-50459",
+      "id": "ba5033c3-fcd1-4c18-bacf-16740afe3d86",
+      "public_id": "QSI-2026-51008",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "golang.org/x/text v0.37.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating)",
       "description": "OSV.dev reports GO-2026-6629 (CVE-2026-56851) for Go package golang.org/x/text at version v0.37.0: Panic parsing crafted input in x/text/secure/precis in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/text, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.",
@@ -13806,8 +13806,8 @@
       "reachability": "not_called",
       "affected_asset": "dependency:Go/golang.org/x/text@v0.37.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.20.0",
-      "detected_at": "2026-11-24T12:40:39.456293+00:00",
+      "analyzer": "dependencies 1.21.0",
+      "detected_at": "2026-11-24T17:25:20.678822+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -13862,8 +13862,8 @@
           "content": "{\"id\": \"GO-2026-6629\", \"aliases\": [\"CVE-2026-56851\"], \"modified\": \"2026-11-23T21:12:29.495073874Z\", \"summary\": \"Panic parsing crafted input in x/text/secure/precis in golang.org/x/text\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "41214c2900243582e86ff2d02722e1ef316bbc64e14dce6180f3c37e992fdcaa",
           "source_sha256": null,
-          "collector": "dependencies 1.20.0",
-          "collected_at": "2026-11-24T12:40:39.462618+00:00",
+          "collector": "dependencies 1.21.0",
+          "collected_at": "2026-11-24T17:25:20.684990+00:00",
           "url": "https://osv.dev/vulnerability/GO-2026-6629"
         }
       ],
@@ -13907,14 +13907,14 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-50431",
-      "QSI-2026-50432",
-      "QSI-2026-50433",
-      "QSI-2026-50434",
-      "QSI-2026-50435",
-      "QSI-2026-50437",
-      "QSI-2026-50438",
-      "QSI-2026-50439"
+      "QSI-2026-50980",
+      "QSI-2026-50981",
+      "QSI-2026-50982",
+      "QSI-2026-50983",
+      "QSI-2026-50984",
+      "QSI-2026-50986",
+      "QSI-2026-50987",
+      "QSI-2026-50988"
     ],
     "roles": [
       {
@@ -13934,8 +13934,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-50431",
-          "QSI-2026-50432"
+          "QSI-2026-50980",
+          "QSI-2026-50981"
         ],
         "files": 2
       },
@@ -13952,7 +13952,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-50433"
+          "QSI-2026-50982"
         ],
         "files": 2
       },
@@ -13977,17 +13977,17 @@
           }
         ],
         "findings": [
-          "QSI-2026-50434",
-          "QSI-2026-50435",
-          "QSI-2026-50437"
+          "QSI-2026-50983",
+          "QSI-2026-50984",
+          "QSI-2026-50986"
         ],
         "files": 11
       }
     ],
     "maturity": {
-      "level": 4,
-      "label": "post-quantum by default in the critical paths",
-      "next": "Keep the inventory current and review new code paths before release.",
+      "level": 3,
+      "label": "hybrid protection in a critical path",
+      "next": "Pin the toolchain version and set the TLS groups in the code (X25519MLKEM768 first): the hybrid key exchange found rests on a default the code does not show, and a toolchain or library change would change it.",
       "facts": [
         "Hybrid — channel key exchange (TLS, Noise, handshakes): common/fabhttp/tls.go (classical group + X25519MLKEM768)",
         "Hybrid — channel key exchange (TLS, Noise, handshakes): gossip/util/grpc.go (classical group + X25519MLKEM768)",
@@ -13998,7 +13998,8 @@
         "In use: X25519MLKEM768 — gossip/util/grpc.go",
         "In use: X25519MLKEM768 — integration/nwo/network.go",
         "In use: X25519MLKEM768 — integration/nwo/operational_client.go",
-        "In use: X25519MLKEM768 — internal/osnadmin/httpclient.go"
+        "In use: X25519MLKEM768 — internal/osnadmin/httpclient.go",
+        "The hybrid rests only on a toolchain's or library's default (Go crypto/tls without CurvePreferences, rustls with aws-lc-rs and no prefer-post-quantum): the code does not configure it"
       ]
     },
     "quantum_algorithms": [
@@ -14166,7 +14167,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443).",
         "status": "todo",
-        "finding": "QSI-2026-50460",
+        "finding": "QSI-2026-51009",
         "finding_title": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)",
         "severity": "info"
       }
@@ -14186,7 +14187,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "No security-relevant MD5 usage remains.",
         "status": "todo",
-        "finding": "QSI-2026-50436",
+        "finding": "QSI-2026-50985",
         "finding_title": "MD5 used in common/deliverclient/orderers/connection.go",
         "severity": "medium"
       },
@@ -14204,7 +14205,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50451",
+        "finding": "QSI-2026-51000",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)",
         "severity": "low"
       },
@@ -14222,7 +14223,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50453",
+        "finding": "QSI-2026-51002",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)",
         "severity": "low"
       },
@@ -14240,7 +14241,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50454",
+        "finding": "QSI-2026-51003",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)",
         "severity": "low"
       },
@@ -14258,7 +14259,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50455",
+        "finding": "QSI-2026-51004",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)",
         "severity": "low"
       },
@@ -14276,7 +14277,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-5932, or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50448",
+        "finding": "QSI-2026-50997",
         "finding_title": "golang.org/x/crypto v0.58.0 is affected by GO-2026-5932 (no severity rating)",
         "severity": "low"
       },
@@ -14294,7 +14295,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50440",
+        "finding": "QSI-2026-50989",
         "finding_title": "golang.org/x/net v0.57.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)",
         "severity": "info"
       },
@@ -14312,7 +14313,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50441",
+        "finding": "QSI-2026-50990",
         "finding_title": "golang.org/x/net v0.57.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)",
         "severity": "info"
       },
@@ -14330,7 +14331,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50442",
+        "finding": "QSI-2026-50991",
         "finding_title": "golang.org/x/net v0.57.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)",
         "severity": "info"
       },
@@ -14348,7 +14349,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50443",
+        "finding": "QSI-2026-50992",
         "finding_title": "golang.org/x/net v0.57.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)",
         "severity": "info"
       },
@@ -14366,7 +14367,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50444",
+        "finding": "QSI-2026-50993",
         "finding_title": "golang.org/x/net v0.57.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)",
         "severity": "info"
       },
@@ -14384,7 +14385,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50445",
+        "finding": "QSI-2026-50994",
         "finding_title": "golang.org/x/net v0.57.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)",
         "severity": "info"
       },
@@ -14402,7 +14403,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50446",
+        "finding": "QSI-2026-50995",
         "finding_title": "golang.org/x/net v0.57.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)",
         "severity": "info"
       },
@@ -14420,7 +14421,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6629 (CVE-2026-56851), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50447",
+        "finding": "QSI-2026-50996",
         "finding_title": "golang.org/x/text v0.40.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating)",
         "severity": "info"
       },
@@ -14438,7 +14439,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-5026 (CVE-2026-39821), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50449",
+        "finding": "QSI-2026-50998",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-5026 (CVE-2026-39821) (no severity rating)",
         "severity": "info"
       },
@@ -14456,7 +14457,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-5942 (CVE-2026-46600), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50450",
+        "finding": "QSI-2026-50999",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-5942 (CVE-2026-46600) (no severity rating)",
         "severity": "info"
       },
@@ -14474,7 +14475,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50452",
+        "finding": "QSI-2026-51001",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)",
         "severity": "info"
       },
@@ -14492,7 +14493,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50456",
+        "finding": "QSI-2026-51005",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)",
         "severity": "info"
       },
@@ -14510,7 +14511,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50457",
+        "finding": "QSI-2026-51006",
         "finding_title": "golang.org/x/net v0.55.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)",
         "severity": "info"
       },
@@ -14528,7 +14529,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-5970 (CVE-2026-56852), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50458",
+        "finding": "QSI-2026-51007",
         "finding_title": "golang.org/x/text v0.37.0 is affected by GO-2026-5970 (CVE-2026-56852) (no severity rating)",
         "severity": "info"
       },
@@ -14546,7 +14547,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "Dependency scan no longer reports GO-2026-6629 (CVE-2026-56851), or the triage is recorded.",
         "status": "todo",
-        "finding": "QSI-2026-50459",
+        "finding": "QSI-2026-51008",
         "finding_title": "golang.org/x/text v0.37.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating)",
         "severity": "info"
       }
@@ -14566,7 +14567,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-50431",
+        "finding": "QSI-2026-50980",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -14584,7 +14585,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-50432",
+        "finding": "QSI-2026-50981",
         "finding_title": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -14602,7 +14603,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-50433",
+        "finding": "QSI-2026-50982",
         "finding_title": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))",
         "severity": "medium"
       },
@@ -14620,7 +14621,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-50434",
+        "finding": "QSI-2026-50983",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (7 file(s))",
         "severity": "medium"
       },
@@ -14638,7 +14639,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-50435",
+        "finding": "QSI-2026-50984",
         "finding_title": "Quantum-vulnerable ECDH: role not determined (2 file(s))",
         "severity": "medium"
       },
@@ -14656,7 +14657,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-50437",
+        "finding": "QSI-2026-50986",
         "finding_title": "Quantum-vulnerable Ed25519: role not determined (2 file(s))",
         "severity": "medium"
       },
@@ -14674,7 +14675,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-50438",
+        "finding": "QSI-2026-50987",
         "finding_title": "Quantum-vulnerable ECDSA key in certificate (ca.org1.example.com)",
         "severity": "low"
       },
@@ -14692,7 +14693,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-50439",
+        "finding": "QSI-2026-50988",
         "finding_title": "Quantum-vulnerable ECDSA key in certificate (Org2-child1)",
         "severity": "low"
       },
@@ -14710,7 +14711,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-50431",
+        "finding": "QSI-2026-50980",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -14728,7 +14729,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-50432",
+        "finding": "QSI-2026-50981",
         "finding_title": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -14746,7 +14747,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-50433",
+        "finding": "QSI-2026-50982",
         "finding_title": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))",
         "severity": "medium"
       },
@@ -14764,7 +14765,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-50434",
+        "finding": "QSI-2026-50983",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (7 file(s))",
         "severity": "medium"
       },
@@ -14782,7 +14783,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-50435",
+        "finding": "QSI-2026-50984",
         "finding_title": "Quantum-vulnerable ECDH: role not determined (2 file(s))",
         "severity": "medium"
       },
@@ -14800,7 +14801,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-50437",
+        "finding": "QSI-2026-50986",
         "finding_title": "Quantum-vulnerable Ed25519: role not determined (2 file(s))",
         "severity": "medium"
       },
@@ -14818,7 +14819,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-50438",
+        "finding": "QSI-2026-50987",
         "finding_title": "Quantum-vulnerable ECDSA key in certificate (ca.org1.example.com)",
         "severity": "low"
       },
@@ -14836,7 +14837,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-50439",
+        "finding": "QSI-2026-50988",
         "finding_title": "Quantum-vulnerable ECDSA key in certificate (Org2-child1)",
         "severity": "low"
       }
@@ -14865,7 +14866,7 @@
     },
     {
       "name": "dependencies",
-      "version": "1.6.0"
+      "version": "1.6.1"
     },
     {
       "name": "hndl",
@@ -14913,7 +14914,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.20.0"
+      "version": "1.21.0"
     },
     {
       "name": "OSV.dev API",

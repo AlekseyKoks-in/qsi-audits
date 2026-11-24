@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.20.0",
+          "version": "1.21.0",
           "rules": [
             {
               "id": "CERT-QV-KEY",
@@ -78,10 +78,10 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GO-2026-6603 (CVE-2026-78659) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. govulncheck проследил вызов из кода продукта до затронутого кода: github.com/zcash/lightwalletd/frontend.DarksideStreamer.StageTransactionsStream → golang.org/x/net/http2.duplicatePseudoHeaderError.Error. Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость определил govulncheck@v1.9.0 по базе уязвимостей Go от 2026-11-23: граф вызовов от пакетов продукта (без тестов, примеров и бенчмарков) через все зависимости до затронутых функций. Вызовы через рефлексию, unsafe-указатели и ассемблер не прослеживаются."
+                "text": "OSV.dev сообщает GO-2026-6603 (CVE-2026-78659) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. govulncheck проследил вызов из кода продукта до затронутого кода: github.com/zcash/lightwalletd/frontend.DarksideStreamer.StageTransactionsStream → golang.org/x/net/http2.headerFieldValueError.Error. Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость определил govulncheck@v1.9.0 по базе уязвимостей Go от 2026-11-23: граф вызовов от пакетов продукта (без тестов, примеров и бенчмарков) через все зависимости до затронутых функций. Вызовы через рефлексию, unsafe-указатели и ассемблер не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev сообщает GO-2026-6603 (CVE-2026-78659) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. govulncheck проследил вызов из кода продукта до затронутого кода: github.com/zcash/lightwalletd/frontend.DarksideStreamer.StageTransactionsStream → golang.org/x/net/http2.duplicatePseudoHeaderError.Error. Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость определил govulncheck@v1.9.0 по базе уязвимостей Go от 2026-11-23: граф вызовов от пакетов продукта (без тестов, примеров и бенчмарков) через все зависимости до затронутых функций. Вызовы через рефлексию, unsafe-указатели и ассемблер не прослеживаются."
+                "text": "OSV.dev сообщает GO-2026-6603 (CVE-2026-78659) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. govulncheck проследил вызов из кода продукта до затронутого кода: github.com/zcash/lightwalletd/frontend.DarksideStreamer.StageTransactionsStream → golang.org/x/net/http2.headerFieldValueError.Error. Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость определил govulncheck@v1.9.0 по базе уязвимостей Go от 2026-11-23: граф вызовов от пакетов продукта (без тестов, примеров и бенчмарков) через все зависимости до затронутых функций. Вызовы через рефлексию, unsafe-указатели и ассемблер не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/GO-2026-6603"
             },
@@ -125,7 +125,7 @@
             "qsiFindingKey/v1": "77376b17760f0bd734d35835f428f011"
           },
           "properties": {
-            "qsiId": "QSI-2026-48171",
+            "qsiId": "QSI-2026-50694",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -155,7 +155,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-48169",
+            "qsiId": "QSI-2026-50692",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -173,7 +173,7 @@
             "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
           },
           "properties": {
-            "qsiId": "QSI-2026-48175",
+            "qsiId": "QSI-2026-50698",
             "severity": "low",
             "confidence": "high",
             "classification": "known_vulnerable_component",
@@ -203,7 +203,7 @@
             "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
           },
           "properties": {
-            "qsiId": "QSI-2026-48176",
+            "qsiId": "QSI-2026-50699",
             "severity": "low",
             "confidence": "high",
             "classification": "known_vulnerable_component",
@@ -233,7 +233,7 @@
             "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
           },
           "properties": {
-            "qsiId": "QSI-2026-48177",
+            "qsiId": "QSI-2026-50700",
             "severity": "low",
             "confidence": "high",
             "classification": "known_vulnerable_component",
@@ -263,7 +263,7 @@
             "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
           },
           "properties": {
-            "qsiId": "QSI-2026-48178",
+            "qsiId": "QSI-2026-50701",
             "severity": "low",
             "confidence": "high",
             "classification": "known_vulnerable_component",
@@ -293,7 +293,7 @@
             "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
           },
           "properties": {
-            "qsiId": "QSI-2026-48179",
+            "qsiId": "QSI-2026-50702",
             "severity": "low",
             "confidence": "high",
             "classification": "known_vulnerable_component",
@@ -323,7 +323,7 @@
             "qsiFindingKey/v1": "f820eb2fee5050a6c79b4f50f505762a"
           },
           "properties": {
-            "qsiId": "QSI-2026-48170",
+            "qsiId": "QSI-2026-50693",
             "severity": "info",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -353,7 +353,7 @@
             "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
           },
           "properties": {
-            "qsiId": "QSI-2026-48172",
+            "qsiId": "QSI-2026-50695",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -383,7 +383,7 @@
             "qsiFindingKey/v1": "79a4e71ca0cc9cb4bf47ce78bf674bdc"
           },
           "properties": {
-            "qsiId": "QSI-2026-48173",
+            "qsiId": "QSI-2026-50696",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -413,7 +413,7 @@
             "qsiFindingKey/v1": "c8622f739268e0accd76421999e40824"
           },
           "properties": {
-            "qsiId": "QSI-2026-48174",
+            "qsiId": "QSI-2026-50697",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -443,7 +443,7 @@
             "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
           },
           "properties": {
-            "qsiId": "QSI-2026-48180",
+            "qsiId": "QSI-2026-50703",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -473,7 +473,7 @@
             "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
           },
           "properties": {
-            "qsiId": "QSI-2026-48181",
+            "qsiId": "QSI-2026-50704",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -494,13 +494,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/lightwalletd @ 4abfe9cd7b9b/de674d2a-55c9-4423-8d57-d272cf072cb5"
+        "id": "qsi/lightwalletd @ 4abfe9cd7b9b/4daeeab6-17c1-4e57-b6e1-d92e64f35f94"
       },
       "properties": {
-        "qsiContentSha256": "064501f87c2d15bd1548e3b6ba8a618beccb0153a68b8ec91f6e1ab286182dfb",
+        "qsiContentSha256": "e0fa5bd5f70ded1e7ed3914849cc00e96a6d73b4d67bc2dec65f011f6123e970",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-24T10:43:55.355551+00:00",
+        "qsiGeneratedAt": "2026-11-24T17:17:39.292190+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

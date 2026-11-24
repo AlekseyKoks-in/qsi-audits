@@ -526,6 +526,24 @@ stellar-core vendors). Every codebase whose critical and high findings moved:
 
 **The studies** quote own-code rows, and no study bundle's own-code or post-quantum figures moved, so the three study reports stand as written. The bundles as they were and the logs of this run are kept with it.
 
+## Correction, 2026-11-24: level 4 needs a hybrid the code configures
+
+Every brief names a post-quantum maturity level. Level 4, "post-quantum by default in the critical paths", was given to
+4 bundles, `foundry`, `lightwalletd`, `scroll` and `hyperledger-fabric`, whose only protection of a critical path was a hybrid TLS key exchange inferred
+from a default: Go's `crypto/tls` with `CurvePreferences` unset (X25519MLKEM768 since Go 1.24) or rustls with the
+aws-lc-rs provider and no `prefer-post-quantum`. Neither shows in the code which Go version or rustls release it gets.
+Engine 1.21.0 gives such a hybrid level 3 at most, says in the report that the hybrid is a default, and names pinning
+the toolchain and setting the TLS groups in the code as the next step; level 4 needs the hybrid configured in the code.
+The 4 bundles were re-audited the same evening at their recorded commits with it. Their inventories and the
+findings of their own code are unchanged, and no bundle here is at level 4 now.
+
+| bundle | level before | after | findings before | after | critical + high before | after |
+|---|---:|---:|---:|---:|---:|---:|
+| `audits/foundry` | 4 | **3** | 52 | **52** | 3 | **3** |
+| `audits/lightwalletd` | 4 | **3** | 13 | **13** | 0 | **0** |
+| `audits/scroll` | 4 | **3** | 271 | **271** | 31 | **31** |
+| `studies/institutional/hyperledger-fabric` | 4 | **3** | 30 | **30** | 0 | **0** |
+
 ## Institutional ledgers and bank-facing platforms
 
 A separate study, kept out of the totals above: Canton, Arc, Hyperledger Fabric and Besu, Corda and the Open Bank
@@ -836,6 +854,13 @@ NIST для ML-DSA-65) и сверяет ключ с `PUBLIC-KEY-MLDSA.pem` в �
 по бюллетеням в этих комплектах стало 1 454 вместо 433; инвентаризация не изменилась, кроме одной
 строки ECDH в `metamask-extension` (импорт `eciesjs`): итог стал таким — строк 3 989, по Шору
 1 947 (было 3 988 и 1 946). Тем же переаудитом заменён `arc-node` — один комплект в обоих исследованиях: пакетов 1 000 → 1 993, находок по бюллетеням 30 → 37; 37 строк своего кода и 12 по Шору, которые цитируют исследования, тогда не изменились (их меняет поправка 19 ноября). На прежнем пределе остаётся: `audits/nitro`.
+
+**Поправка 24 ноября (вечер).** Уровень зрелости 4 («постквантовое по умолчанию в критичных путях») стоял у
+4 комплектов (`foundry`, `lightwalletd`, `scroll` и `hyperledger-fabric`), где единственной защитой критичного пути был гибридный обмен ключами TLS,
+выведенный из умолчания: Go `crypto/tls` без `CurvePreferences` или rustls с aws-lc-rs без `prefer-post-quantum`. Движок
+1.21.0 даёт такому гибриду не выше 3-го уровня и советует закрепить тулчейн и задать группы TLS в коде; уровень 4
+требует явной настройки. Комплекты переаудированы на тех же коммитах: инвентаризация и находки собственного кода
+прежние; уровня 4 сейчас нет ни у одного комплекта.
 
 **Перевыпуск 24 ноября.** Все комплекты с апстримом, 59 в `audits/` и 20 в `studies/`,
 переаудированы 24 ноября движком 1.20.0 на записанных коммите, дереве, языке, профиле риска и решениях аналитика;
