@@ -1,8 +1,8 @@
 {
-  "content_sha256": "3bddc30255c4b700b5d0c66e064c05a011eea8c2e28607ab9a692aea5be00b1c",
+  "content_sha256": "c0d59d2d2b3db903b63814d71153935dc9813e60ce6414416a29a1b653a55b87",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-23T13:07:22.016998+00:00",
+  "generated_at": "2026-11-24T11:14:28.661974+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "4ca3a4b9-c268-4365-981d-d025ab34261b",
+    "id": "ceac2103-1814-4474-a47a-238dcde8b7d7",
     "mode": "document",
     "title": "Document audit: safe-smart-account",
     "status": "completed",
-    "engine_version": "1.16.2",
-    "started_at": "2026-11-23T13:06:36.113561+00:00",
-    "finished_at": "2026-11-23T13:07:21.932251+00:00",
+    "engine_version": "1.20.0",
+    "started_at": "2026-11-24T11:13:42.908072+00:00",
+    "finished_at": "2026-11-24T11:14:28.576874+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -491,7 +491,7 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": ".solcover.js: 15 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": ".solcover.js: 15 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1036,12 +1036,12 @@
     },
     {
       "area": "source_code",
-      "detail": "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "eslint.config.mjs: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "hardhat.config.ts: 134 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1056,92 +1056,97 @@
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_accessors.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/deploy/deploy_accessors.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_factories.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/deploy/deploy_factories.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_handlers.ts: 30 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/deploy/deploy_handlers.ts: 30 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_libraries.ts: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/deploy/deploy_libraries.ts: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_migrations.ts: 21 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/deploy/deploy_migrations.ts: 21 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_safe_l2.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/deploy/deploy_safe_l2.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_safe_singleton.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/deploy/deploy_safe_singleton.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/index.ts: 4 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/index.ts: 4 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/deploy_contracts.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/tasks/deploy_contracts.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/local_verify.ts: 47 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/tasks/local_verify.ts: 47 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/show_codesize.ts: 37 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/tasks/show_codesize.ts: 37 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/constants.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/utils/constants.ts: 1 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/execution.ts: 284 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/utils/execution.ts: 284 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/multisend.ts: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/utils/multisend.ts: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/proxies.ts: 28 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/utils/proxies.ts: 28 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/solc.ts: 18 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/utils/solc.ts: 18 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/solc.d.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/solc.d.ts: 1 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "entropy",
       "detail": "random-number generation: 20 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "status": "checked"
+    },
+    {
+      "area": "key_storage",
+      "detail": "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0",
       "status": "checked"
     },
     {
@@ -1167,9 +1172,9 @@
       "count": 20,
       "rows": 20,
       "examples": [
-        ".solcover.js: 15 lines scanned with 16 rule patterns and 340 registry patterns",
-        "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 340 registry patterns",
-        "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 340 registry patterns"
+        ".solcover.js: 15 lines scanned with 17 rule patterns and 340 registry patterns",
+        "eslint.config.mjs: 20 lines scanned with 17 rule patterns and 340 registry patterns",
+        "hardhat.config.ts: 134 lines scanned with 17 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -1220,6 +1225,15 @@
       "rows": 1,
       "examples": [
         "random-number generation: 20 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    },
+    {
+      "area": "key_storage",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0"
       ]
     },
     {
@@ -1596,6 +1610,7 @@
       "contracts/proxies/SafeProxyFactory.sol",
       "eslint.config.mjs",
       "hardhat.config.ts",
+      "key settings with a fallback in the code",
       "package-lock.json",
       "package.json",
       "random-number generation",
@@ -1659,8 +1674,8 @@
   },
   "findings": [
     {
-      "id": "5137d3bc-43ae-42e8-9260-b6e619c65588",
-      "public_id": "QSI-2026-43301",
+      "id": "c1e8306d-e289-4e58-8a8b-0b4edcec184f",
+      "public_id": "QSI-2026-49216",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))",
       "description": "3 упоминаний ECDSA в 2 файл(ах), например contracts/Safe.sol:403. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -1679,8 +1694,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "contracts/Safe.sol",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:07:21.888107+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T11:14:28.533588+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -1776,8 +1791,8 @@
           "content": "  401 |                 // If `v > 30` then default `v` (27, 28) has been adjusted to encode an `eth_sign` signature.\n  402 |                 // To support `eth_sign` and similar we adjust `v` and hash the `dataHash` with the EIP-191 message prefix before applying `ecrecover`.\n  403 |                 currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), uint8(v - 4), r, s);\n  404 |             } else {\n  405 |                 // Default is `ecrecover` for the provided `dataHash`.",
           "content_sha256": "be7c18bdbce908e503f1c899b447b921a9a3880ec49ae5d3d5ea33045ae5aec7",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.907199+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.553742+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L403"
         },
         {
@@ -1787,8 +1802,8 @@
           "content": "  404 |             } else {\n  405 |                 // Default is `ecrecover` for the provided `dataHash`.\n  406 |                 currentOwner = ecrecover(dataHash, uint8(v), r, s);\n  407 |             }\n  408 |             if (currentOwner <= lastOwner || owners[currentOwner] == address(0) || currentOwner == SENTINEL_OWNERS)",
           "content_sha256": "361e3d349b65a6cf85ae3cc313307e936af7349c06d154fd2e39b0f84d9b4714",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.907207+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.553750+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L406"
         },
         {
@@ -1798,8 +1813,8 @@
           "content": "  112 |         signer: signerAddress,\n  113 |         data: await signer.signTypedData({ verifyingContract: safeAddress, chainId: cid }, EIP712_SAFE_TX_TYPE, safeTx),\n  114 |     };",
           "content_sha256": "a189cee56b6fb9aa095cce0a3b5099d5f195bc22ad24f9e656e950cde6a753c0",
           "source_sha256": "d2d395bd775bb64117ad4d323fb164f4dd5ef7c616c64f26beeabbf0096121b3",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.907212+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.553755+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/src/utils/execution.ts#L113"
         }
       ],
@@ -1837,8 +1852,8 @@
       ]
     },
     {
-      "id": "c4943372-da96-4c55-9395-0185a8a6b649",
-      "public_id": "QSI-2026-43300",
+      "id": "c296553a-7b48-4dab-a2b4-872e0e0b1478",
+      "public_id": "QSI-2026-49215",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)",
       "description": "pragma >=0.7.0 <0.9.0 в 50 файл(ах), впервые в contracts/Safe.sol:2. (см. SWC-103)",
@@ -1857,8 +1872,8 @@
       "triage": null,
       "affected_asset": "solidity:pragma:>=0.7.0 <0.9.0",
       "data_source": "contracts/Safe.sol",
-      "analyzer": "solidity 1.16.2",
-      "detected_at": "2026-11-23T13:07:21.881266+00:00",
+      "analyzer": "solidity 1.20.0",
+      "detected_at": "2026-11-24T11:14:28.526055+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -1913,8 +1928,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {FallbackManager} from \"./base/FallbackManager.sol\";",
           "content_sha256": "e88d87460c9e31999f74a385f7211f2a3d247576a8d5e7321fb8ab7610726718",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891596+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537341+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L2"
         },
         {
@@ -1924,8 +1939,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | // The import is used in the @inheritdoc, false positive",
           "content_sha256": "15c9f4200fba8411f86f51e4783fa81326529bbdedb3a85d3d69541f7783cbd7",
           "source_sha256": "6030700562329d1ebd42ec3c0494b10c9001dbe9080fbb4abf75c1563ed466db",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891604+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537350+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/SafeL2.sol#L2"
         },
         {
@@ -1935,8 +1950,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {Executor, Enum} from \"../base/Executor.sol\";",
           "content_sha256": "af5c840a272a5dab66211c10e60731181ce16ddf9518928201829db6baacef22",
           "source_sha256": "ea5890f27c3a488246ecb1880d632f4a5a30fcbbb65a512bad7a1c5b88f86082",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891608+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537355+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/accessors/SimulateTxAccessor.sol#L2"
         },
         {
@@ -1946,8 +1961,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | import {Enum} from \"../interfaces/Enum.sol\";\n    4 | ",
           "content_sha256": "c8eec2e4083c16adc0bf1e7eea14ca740cca55b1f5676d9cb4a355576c6800c6",
           "source_sha256": "dcea582290abd1dc0ce89171389d78b716e89f6c788fce523c5cb562e81743e8",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891613+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537359+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/Executor.sol#L2"
         },
         {
@@ -1957,8 +1972,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {SelfAuthorized} from \"../common/SelfAuthorized.sol\";",
           "content_sha256": "f0696aecda7f2d4390ae2470ec51a56b07a6565df8ff4be3d0a6524628ffb825",
           "source_sha256": "da724d64eb3238f1cb3355bf8b87c459cf812fc3f6dd100f2f89290a8a169eb9",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891618+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537364+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/FallbackManager.sol#L2"
         },
         {
@@ -1968,8 +1983,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | /* solhint-disable one-contract-per-file */\n    3 | pragma solidity >=0.7.0 <0.9.0;\n    4 | \n    5 | import {SelfAuthorized} from \"./../common/SelfAuthorized.sol\";",
           "content_sha256": "2f8023b221054a49f2c7512edfc7f592b58e8c7053625f4af7216c1251f2bd74",
           "source_sha256": "e1db96b2ed4f15aa42c8ceca0d8701048e7b6fe276cb437a4f814d85f69119a9",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891622+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537369+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/GuardManager.sol#L3"
         },
         {
@@ -1979,8 +1994,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | /* solhint-disable one-contract-per-file */\n    3 | pragma solidity >=0.7.0 <0.9.0;\n    4 | import {SelfAuthorized} from \"./../common/SelfAuthorized.sol\";\n    5 | import {IERC165} from \"./../interfaces/IERC165.sol\";",
           "content_sha256": "6fd7193061543bd17b02478604b1e136ee186957854410e2482d2fd544017605",
           "source_sha256": "3b7be17091c7c9e37c9ddaba41e57464b1c4a334500d34eaddd94721f8cd83b3",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891627+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537374+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/ModuleManager.sol#L3"
         },
         {
@@ -1990,8 +2005,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {EIP7702} from \"../common/EIP7702.sol\";",
           "content_sha256": "43281753a6047468ec8145eb656909a730f9b1bb7e3a6388e81a52f7cc0c1714",
           "source_sha256": "c9744122158f543336c11bafc70d376711f48c4dd310fe09f385231f264a3fc1",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891658+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537378+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/OwnerManager.sol#L2"
         },
         {
@@ -2001,8 +2016,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | /**",
           "content_sha256": "4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f",
           "source_sha256": "719f239f789764c2d79150ab0d6d5b3b49af4fee4409f0e6c3303350e30aad3a",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891667+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537383+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7702.sol#L2"
         },
         {
@@ -2012,8 +2027,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | /**",
           "content_sha256": "4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f",
           "source_sha256": "445d712873ba07b5ef800edd7038d8483da9d2ae1f56ee972e18076a7ee90992",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.891672+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.537387+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7951.sol#L2"
         }
       ],
@@ -2036,8 +2051,8 @@
       ]
     },
     {
-      "id": "90e1d7a4-ee91-486a-882b-30cd3569f394",
-      "public_id": "QSI-2026-43302",
+      "id": "c08daf60-d067-4067-9a6e-c7884d8a2a75",
+      "public_id": "QSI-2026-49217",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)",
       "description": "pragma >=0.5.0 <0.9.0 в 1 файл(ах), впервые в contracts/interfaces/ViewStorageAccessible.sol:2. (см. SWC-103)",
@@ -2056,8 +2071,8 @@
       "triage": null,
       "affected_asset": "solidity:pragma:>=0.5.0 <0.9.0",
       "data_source": "contracts/interfaces/ViewStorageAccessible.sol",
-      "analyzer": "solidity 1.16.2",
-      "detected_at": "2026-11-23T13:07:21.905229+00:00",
+      "analyzer": "solidity 1.20.0",
+      "detected_at": "2026-11-24T11:14:28.551793+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -2112,8 +2127,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.5.0 <0.9.0;\n    3 | \n    4 | /**",
           "content_sha256": "983f9c51447ea383d35f05b85564c2a8e5c2eb17d9109edf52dad4e588c49ca6",
           "source_sha256": "c03720d0b31ec9208f2372c1ed397e2b4e7c77f60dc80a571721e50d66a598cf",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.915165+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.561225+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/interfaces/ViewStorageAccessible.sol#L2"
         }
       ],
@@ -2136,8 +2151,8 @@
       ]
     },
     {
-      "id": "62a0d1d1-2281-4422-a244-9a796bcf2249",
-      "public_id": "QSI-2026-43303",
+      "id": "0200ae30-5334-41ec-a777-c3145e379e9a",
+      "public_id": "QSI-2026-49218",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)",
       "description": "pragma >=0.7.4 <0.9.0 в 1 файл(ах), впервые в contracts/libraries/SafeStorage.sol:2. (см. SWC-103)",
@@ -2156,8 +2171,8 @@
       "triage": null,
       "affected_asset": "solidity:pragma:>=0.7.4 <0.9.0",
       "data_source": "contracts/libraries/SafeStorage.sol",
-      "analyzer": "solidity 1.16.2",
-      "detected_at": "2026-11-23T13:07:21.912944+00:00",
+      "analyzer": "solidity 1.20.0",
+      "detected_at": "2026-11-24T11:14:28.559092+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -2212,8 +2227,8 @@
           "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.4 <0.9.0;\n    3 | \n    4 | /**",
           "content_sha256": "11c26335bd27fe89dda40165c6fea219ab0021d1c0b45a5bace32a1322a9ae25",
           "source_sha256": "642b3e3f69348c8bb715ed222fd510f71e265f6cf45b71b8d7d88b2bdff00cea",
-          "collector": "solidity 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.920493+00:00",
+          "collector": "solidity 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.566356+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/libraries/SafeStorage.sol#L2"
         }
       ],
@@ -2236,8 +2251,8 @@
       ]
     },
     {
-      "id": "abd768bb-7bef-45d6-98e4-388953afd8f9",
-      "public_id": "QSI-2026-43305",
+      "id": "eeea7105-d3aa-4fce-b64f-c29aa00775f9",
+      "public_id": "QSI-2026-49220",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 176 бюллетеней (94 с оценкой high или critical) для 46 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; @openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -2256,8 +2271,8 @@
       "triage": null,
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:07:21.923690+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:14:28.569439+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -2312,8 +2327,8 @@
           "content": "@fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx\n@humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g\n@isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2\n@openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh\nadm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85\najv@6.12.6 [dev]: GHSA-2g4f-4pwh-qvx6\najv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6\naxios@0.21.4 [dev]: GHSA-3g43-6gmg-66jw, GHSA-3p68-rc4w-qgx5, GHSA-43fc-jf86-j433, GHSA-5c9x-8gcm-mpgx, GHSA-62hf-57xw-28j9, GHSA-6chq-wfr3-2hj9, GHSA-7q8q-rj6j-mhjq, GHSA-898c-q2cr-xwhg, GHSA-fvcv-3m26-pcqx, GHSA-hfxv-24rg-xrqf, GHSA-j5f8-grm9-p9fc, GHSA-jr5f-v2jv-69x6, GHSA-m7pr-hjqh-92cm, GHSA-mmx7-hfxf-jppx, GHSA-p92q-9vqr-4j8v, GHSA-pf86-5x62-jrwf, GHSA-pjwm-pj3p-43mv, GHSA-pmwg-cvhr-8vh7, GHSA-vf2m-468p-8v99, GHSA-w9j2-pvgh-6h63\naxios@1.13.2 [dev]: GHSA-35jp-ww65-95wh, GHSA-3g43-6gmg-66jw, GHSA-3p68-rc4w-qgx5, GHSA-3pq3-5fj3-cg6v, GHSA-3w6x-2g7m-8v23, GHSA-42h9-826w-cgv3, GHSA-43fc-jf86-j433, GHSA-445q-vr5w-6q77, GHSA-4hqw-qxg8-jxx2, GHSA-542g-h47m-68v8, GHSA-5c9x-8gcm-mpgx, GHSA-62hf-57xw-28j9, GHSA-6chq-wfr3-2hj9, GHSA-777c-7fjr-54vf, GHSA-7q8q-rj6j-mhjq, GHSA-898c-q2cr-xwhg, GHSA-9fr6-4gfg-395g, GHSA-fvcv-3m26-pcqx, GHSA-hfxv-24rg-xrqf, GHSA-j5f8-grm9-p9fc\nbn.js@4.11.6 [dev]: GHSA-378v-28hj-76wf\nbn.js@4.12.2 [dev]: GHSA-378v-28hj-76wf\nbn.js@5.2.2 [dev]: GHSA-378v-28hj-76wf\nbrace-expansion@1.1.12 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895\nbrace-expansion@2.0.2 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895\ncookie@0.4.2 [dev]: GHSA-pxg6-pf52-xh8x\ndiff@4.0.2 [dev]: GHSA-73rr-hh4g-fpgx\ndiff@5.2.0 [dev]: GHSA-73rr-hh4g-fpgx\nelliptic@6.5.4 [dev]: GHSA-434g-2637-qmqr, GHSA-49q7-c7j4-3p7m, GHSA-848j-6mx2-7j84, GHSA-977x-g7h5-7qgw, GHSA-f7q4-pwc6-w24p, GHSA-fc9h-whq2-v747, GHSA-vjh7-7g9h-fjfh\nelliptic@6.6.1 [dev]: GHSA-848j-6mx2-7j84\nfast-uri@3.1.0 [dev]: GHSA-333x-w4r6-6crp, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p8w7, GHSA-f65p-4m7j-42xc, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-q3j6-qgpj-74h6, GHSA-qw65-cvwx-89v3, GHSA-v2hh-gcrm-f6hx, GHSA-v39h-62p7-jpjc, GHSA-w74x-v6f9-j3xg, GHSA-xhq7-xmqj-769h\nflatted@3.3.3 [dev]: GHSA-25h7-pfq9-p65f, GHSA-rf6f-7fwh-wjgh\nfollow-redirects@1.15.11 [dev]: GHSA-r4q5-vmmm-2653\nform-data@4.0.5 [dev]: GHSA-hmw2-7cc7-3qxx\nglob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4\nglob@13.0.0 [dev]: GHSA-3g3m-2fjr-6pw4\nhandlebars@4.7.8 [dev]: GHSA-2qvq-rjwj-gvw9, GHSA-2w6w-674q-4c4q, GHSA-3mfm-83xf-c92r, GHSA-442j-39wm-28r2, GHSA-7rx3-28cr-v5wh, GHSA-8r5x-fm3f-whwj, GHSA-9cx6-37pm-9jff, GHSA-p8wg-vrv2-v86f, GHSA-xhpv-hc6g-r9c6, GHSA-xjpj-3mr7-gcpf, GHSA-xw65-4hp5-5hc7\nimmutable@4.3.7 [dev]: GHSA-v56q-mh7h-f735, GHSA-wf6x-7x77-mvgw, GHSA-xvcm-6775-5m9r\njs-yaml@3.14.2 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68\njs-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68\nlodash@4.17.21 [dev]: GHSA-r5fr-rjxr-66jc, GHSA-xxjr-mmjv-4gpg\nminimatch@10.1.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249\nminimatch@3.1.2 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj\nminimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj\nminimatch@9.0.5 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249\npbkdf2@3.1.5 [dev]: GHSA-477h-4r7f-fvrx\npicomatch@2.3.1 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj\npicomatch@4.0.3 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj\nserialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA-qj8w-gfj5-8c6v\ntmp@0.0.33 [dev]: GHSA-52f5-9888-hmc6, GHSA-ph9p-34f9-6g65\nundici@5.29.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g52, GHSA-4992-7rv2-5pvq, GHSA-8xcm-r25x-g524, GHSA-9fm3-97px-rjf6, GHSA-g8m3-5g58-fq7m, GHSA-g9mf-h72j-4rw9, GHSA-m8rv-5g2x-5cg5, GHSA-p88m-4jfj-68fv, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-v3r7-h72x-cjcm, GHSA-v9p9-hfj2-hcw8, GHSA-vrm6-8vpv-qv8q, GHSA-vxpw-j846-p89q\nuuid@8.3.2 [dev]: GHSA-w5hq-g745-h8pq\nws@7.4.6 [dev]: GHSA-3h5v-q93c-6h6q, GHSA-96hv-2xvq-fx4p\nws@7.5.10 [dev]: GHSA-96hv-2xvq-fx4p\nws@8.17.1 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p\nws@8.18.0 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p\nws@8.18.3 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p",
           "content_sha256": "e7e0d4ba12d0451485a23e0ef896adc8947c8f2642b075c4597d34ce70699112",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.951041+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.595772+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -2336,8 +2351,8 @@
       ]
     },
     {
-      "id": "2278ba3f-e206-464b-aab6-c401d8ad9a36",
-      "public_id": "QSI-2026-43304",
+      "id": "1a9ae4ec-7c6a-48b6-95db-a50c1adcc7a6",
+      "public_id": "QSI-2026-49219",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.",
@@ -2356,8 +2371,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:07:21.918730+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:14:28.564552+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -2419,8 +2434,8 @@
           "content": "Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1",
           "content_sha256": "47e156b611a62a94da8b2ebeeacd5c7d245cbbdc38b44af530ee4ffe425233ff",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:07:21.926178+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:14:28.571829+00:00",
           "url": null
         }
       ],
@@ -2448,7 +2463,7 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-43301"
+      "QSI-2026-49216"
     ],
     "roles": [
       {
@@ -2464,7 +2479,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-43301"
+          "QSI-2026-49216"
         ],
         "files": 2
       }
@@ -2597,7 +2612,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-43301",
+        "finding": "QSI-2026-49216",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))",
         "severity": "medium"
       },
@@ -2615,7 +2630,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-43300",
+        "finding": "QSI-2026-49215",
         "finding_title": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)",
         "severity": "low"
       },
@@ -2633,7 +2648,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-43302",
+        "finding": "QSI-2026-49217",
         "finding_title": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)",
         "severity": "low"
       },
@@ -2651,7 +2666,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-43303",
+        "finding": "QSI-2026-49218",
         "finding_title": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)",
         "severity": "low"
       },
@@ -2669,7 +2684,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-43301",
+        "finding": "QSI-2026-49216",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))",
         "severity": "medium"
       },
@@ -2687,7 +2702,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-43305",
+        "finding": "QSI-2026-49220",
         "finding_title": "176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки",
         "severity": "info"
       }
@@ -2712,11 +2727,11 @@
     },
     {
       "name": "crediting",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "dependencies",
-      "version": "1.4.4"
+      "version": "1.6.0"
     },
     {
       "name": "hndl",
@@ -2725,6 +2740,10 @@
     {
       "name": "inventory_document",
       "version": "1.1.0"
+    },
+    {
+      "name": "key_storage",
+      "version": "1.0.0"
     },
     {
       "name": "mpc",
@@ -2736,7 +2755,7 @@
     },
     {
       "name": "source_code",
-      "version": "1.10.2"
+      "version": "1.11.0"
     },
     {
       "name": "tls_code",
@@ -2760,7 +2779,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.16.2"
+      "version": "1.20.0"
     },
     {
       "name": "OSV.dev API",
@@ -3171,7 +3190,7 @@
       "family": "library",
       "parameter": "2.0.1",
       "usage": "npm dependency",
-      "library": "@noble/curves (noble-curves)",
+      "library": "@noble/hashes (noble-hashes)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3184,7 +3203,7 @@
       "family": "library",
       "parameter": "2.0.1",
       "usage": "npm dependency",
-      "library": "@noble/hashes (noble-hashes)",
+      "library": "@noble/curves (noble-curves)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3473,7 +3492,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "2.0.1",
-      "library": "@noble/curves (noble-curves)",
+      "library": "@noble/hashes (noble-hashes)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3485,7 +3504,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "2.0.1",
-      "library": "@noble/hashes (noble-hashes)",
+      "library": "@noble/curves (noble-curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,

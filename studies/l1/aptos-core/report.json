@@ -1,8 +1,8 @@
 {
-  "content_sha256": "b7a7dc4c731404676151f2d73f6db5c6d0e609baf47398e68952c4d8896584ea",
+  "content_sha256": "92a5d00f642106ef4521894ba02b2b0a048a6a1847f52c3f1848e345ec0e052b",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-23T13:49:11.749033+00:00",
+  "generated_at": "2026-11-24T12:02:07.919090+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "73b4940e-f8b9-423e-8ae7-a8aad41085e6",
+    "id": "630aa0c7-322b-44e2-97a9-1d55c405f16c",
     "mode": "document",
     "title": "Document audit: aptos-core",
     "status": "completed",
-    "engine_version": "1.16.2",
-    "started_at": "2026-11-23T13:48:52.267866+00:00",
-    "finished_at": "2026-11-23T13:49:11.630348+00:00",
+    "engine_version": "1.20.0",
+    "started_at": "2026-11-24T12:01:41.889579+00:00",
+    "finished_at": "2026-11-24T12:02:07.788639+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Crypto exchange, custodian or wallet",
     "parameters": {
@@ -2074,52 +2074,52 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/aptos.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/aptos.rs: 223 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/built_package.rs: 773 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/built_package.rs: 773 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/chunked_publish.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/chunked_publish.rs: 223 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/docgen.rs: 128 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/docgen.rs: 128 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/extended_checks.rs: 988 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/extended_checks.rs: 988 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/lib.rs: 48 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/lib.rs: 48 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/main.rs: 100 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/main.rs: 100 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/prover.rs: 473 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/prover.rs: 473 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/release_builder.rs: 127 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/release_builder.rs: 127 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "aptos-move/framework/src/release_bundle.rs: 35 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "aptos-move/framework/src/release_bundle.rs: 35 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2129,302 +2129,302 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/differentiate.rs: 85 lines scanned with 16 rule patterns and 340 registry patterns; 45 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/arkworks/differentiate.rs: 85 lines scanned with 17 rule patterns and 340 registry patterns; 45 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/hashing.rs: 121 lines scanned with 16 rule patterns and 340 registry patterns; 69 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/arkworks/hashing.rs: 121 lines scanned with 17 rule patterns and 340 registry patterns; 69 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/mod.rs: 122 lines scanned with 16 rule patterns and 340 registry patterns; 12 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/arkworks/mod.rs: 122 lines scanned with 17 rule patterns and 340 registry patterns; 12 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/msm.rs: 137 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/arkworks/msm.rs: 137 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/random.rs: 134 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/arkworks/random.rs: 134 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/scrape.rs: 320 lines scanned with 16 rule patterns and 340 registry patterns; 85 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/arkworks/scrape.rs: 320 lines scanned with 17 rule patterns and 340 registry patterns; 85 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/serialization.rs: 131 lines scanned with 16 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/arkworks/serialization.rs: 131 lines scanned with 17 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/shamir.rs: 511 lines scanned with 16 rule patterns and 340 registry patterns; 151 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/arkworks/shamir.rs: 511 lines scanned with 17 rule patterns and 340 registry patterns; 151 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/srs.rs: 242 lines scanned with 16 rule patterns and 340 registry patterns; 42 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/arkworks/srs.rs: 242 lines scanned with 17 rule patterns and 340 registry patterns; 42 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/vanishing_poly.rs: 96 lines scanned with 16 rule patterns and 340 registry patterns; 28 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/arkworks/vanishing_poly.rs: 96 lines scanned with 17 rule patterns and 340 registry patterns; 28 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/arkworks/weighted_sum.rs: 40 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/arkworks/weighted_sum.rs: 40 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/asymmetric_encryption/elgamal_curve25519_aes256_gcm.rs: 168 lines scanned with 16 rule patterns and 340 registry patterns; 32 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/asymmetric_encryption/elgamal_curve25519_aes256_gcm.rs: 168 lines scanned with 17 rule patterns and 340 registry patterns; 32 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/asymmetric_encryption/mod.rs: 39 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/asymmetric_encryption/mod.rs: 39 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/bls12381/bls12381_keys.rs: 297 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/bls12381/bls12381_keys.rs: 297 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/bls12381/bls12381_pop.rs: 160 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/bls12381/bls12381_pop.rs: 160 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/bls12381/bls12381_sigs.rs: 225 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/bls12381/bls12381_sigs.rs: 225 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/bls12381/bls12381_validatable.rs: 198 lines scanned with 16 rule patterns and 340 registry patterns; 70 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/bls12381/bls12381_validatable.rs: 198 lines scanned with 17 rule patterns and 340 registry patterns; 70 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/bls12381/mod.rs: 430 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/bls12381/mod.rs: 430 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/blstrs/evaluation_domain.rs: 231 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/blstrs/evaluation_domain.rs: 231 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/blstrs/fft.rs: 226 lines scanned with 16 rule patterns and 340 registry patterns; 25 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/blstrs/fft.rs: 226 lines scanned with 17 rule patterns and 340 registry patterns; 25 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/blstrs/lagrange.rs: 407 lines scanned with 16 rule patterns and 340 registry patterns; 98 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/blstrs/lagrange.rs: 407 lines scanned with 17 rule patterns and 340 registry patterns; 98 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/blstrs/mod.rs: 194 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/blstrs/mod.rs: 194 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/blstrs/polynomials.rs: 664 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/blstrs/polynomials.rs: 664 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/blstrs/random.rs: 203 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/blstrs/random.rs: 203 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/blstrs/scalar_secret_key.rs: 45 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/blstrs/scalar_secret_key.rs: 45 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/blstrs/threshold_config.rs: 153 lines scanned with 16 rule patterns and 340 registry patterns; 15 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/blstrs/threshold_config.rs: 153 lines scanned with 17 rule patterns and 340 registry patterns; 15 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/bulletproofs/mod.rs: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/bulletproofs/mod.rs: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/compat.rs: 62 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/compat.rs: 62 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/constant_time/blstrs_scalar_mul.rs: 124 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/constant_time/blstrs_scalar_mul.rs: 124 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/constant_time/mod.rs: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/constant_time/mod.rs: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/constant_time/zkcrypto_scalar_mul.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/constant_time/zkcrypto_scalar_mul.rs: 103 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/ed25519/ed25519_keys.rs: 342 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/ed25519/ed25519_keys.rs: 342 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/ed25519/ed25519_sigs.rs: 199 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/ed25519/ed25519_sigs.rs: 199 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/ed25519/mod.rs: 55 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/ed25519/mod.rs: 55 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/elgamal/curve25519.rs: 44 lines scanned with 16 rule patterns and 340 registry patterns; 9 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/elgamal/curve25519.rs: 44 lines scanned with 17 rule patterns and 340 registry patterns; 9 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/elgamal/mod.rs: 78 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/elgamal/mod.rs: 78 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/encoding_type.rs: 130 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/encoding_type.rs: 130 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/hash.rs: 901 lines scanned with 16 rule patterns and 340 registry patterns; 56 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/hash.rs: 901 lines scanned with 17 rule patterns and 340 registry patterns; 56 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/hkdf.rs: 198 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/hkdf.rs: 198 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/input_secret.rs: 82 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/input_secret.rs: 82 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/lib.rs: 45 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/lib.rs: 45 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/multi_ed25519.rs: 684 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/multi_ed25519.rs: 684 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/noise.rs: 714 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/noise.rs: 714 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/player.rs: 35 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/player.rs: 35 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/poseidon_bn254/alt_fr.rs: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/poseidon_bn254/alt_fr.rs: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/poseidon_bn254/constants.rs: 14859 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/poseidon_bn254/constants.rs: 14859 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/poseidon_bn254/keyless.rs: 393 lines scanned with 16 rule patterns and 340 registry patterns; 81 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/poseidon_bn254/keyless.rs: 393 lines scanned with 17 rule patterns and 340 registry patterns; 81 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/poseidon_bn254/mod.rs: 144 lines scanned with 16 rule patterns and 340 registry patterns; 28 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/poseidon_bn254/mod.rs: 144 lines scanned with 17 rule patterns and 340 registry patterns; 28 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/secp256k1_ecdsa.rs: 299 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/secp256k1_ecdsa.rs: 299 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/secp256r1_ecdsa/mod.rs: 64 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/secp256r1_ecdsa/mod.rs: 64 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_keys.rs: 287 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_keys.rs: 287 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.rs: 197 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.rs: 197 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/slh_dsa_sha2_128s/mod.rs: 51 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/slh_dsa_sha2_128s/mod.rs: 51 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/slh_dsa_sha2_128s/slh_dsa_keys.rs: 557 lines scanned with 16 rule patterns and 340 registry patterns; 254 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/slh_dsa_sha2_128s/slh_dsa_keys.rs: 557 lines scanned with 17 rule patterns and 340 registry patterns; 254 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/slh_dsa_sha2_128s/slh_dsa_sigs.rs: 135 lines scanned with 16 rule patterns and 340 registry patterns; 11 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/slh_dsa_sha2_128s/slh_dsa_sigs.rs: 135 lines scanned with 17 rule patterns and 340 registry patterns; 11 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/traits/mod.rs: 395 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/traits/mod.rs: 395 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/utils.rs: 58 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/utils.rs: 58 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/validatable.rs: 142 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/validatable.rs: 142 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/weighted_config.rs: 567 lines scanned with 16 rule patterns and 340 registry patterns; 78 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/aptos-crypto/src/weighted_config.rs: 567 lines scanned with 17 rule patterns and 340 registry patterns; 78 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/aptos-crypto/src/x25519.rs: 272 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "crates/aptos-crypto/src/x25519.rs: 272 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2439,32 +2439,32 @@
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/common/src/account_recovery_db.rs: 40 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/common/src/account_recovery_db.rs: 40 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/common/src/jwt.rs: 33 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/common/src/jwt.rs: 33 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/common/src/lib.rs: 232 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/common/src/lib.rs: 232 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/common/src/vuf/bls12381_g1_bls.rs: 128 lines scanned with 16 rule patterns and 340 registry patterns; 16 lines in #[cfg(test)] modules ignored",
+      "detail": "keyless/pepper/common/src/vuf/bls12381_g1_bls.rs: 128 lines scanned with 17 rule patterns and 340 registry patterns; 16 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/common/src/vuf/mod.rs: 31 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/common/src/vuf/mod.rs: 31 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/common/src/vuf/slip_10.rs: 186 lines scanned with 16 rule patterns and 340 registry patterns; 44 lines in #[cfg(test)] modules ignored",
+      "detail": "keyless/pepper/common/src/vuf/slip_10.rs: 186 lines scanned with 17 rule patterns and 340 registry patterns; 44 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -2474,102 +2474,102 @@
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/accounts/account_managers.rs: 107 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/accounts/account_managers.rs: 107 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/accounts/account_recovery_db.rs: 247 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/accounts/account_recovery_db.rs: 247 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/accounts/mod.rs: 5 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/accounts/mod.rs: 5 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/dedicated_handlers/handlers.rs: 490 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/dedicated_handlers/handlers.rs: 490 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/dedicated_handlers/mod.rs: 5 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/dedicated_handlers/mod.rs: 5 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/dedicated_handlers/pepper_request.rs: 770 lines scanned with 16 rule patterns and 340 registry patterns; 298 lines in #[cfg(test)] modules ignored",
+      "detail": "keyless/pepper/service/src/dedicated_handlers/pepper_request.rs: 770 lines scanned with 17 rule patterns and 340 registry patterns; 298 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/deployment_information.rs: 40 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/deployment_information.rs: 40 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/error.rs: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/error.rs: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/external_resources/groth16_vk.rs: 155 lines scanned with 16 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
+      "detail": "keyless/pepper/service/src/external_resources/groth16_vk.rs: 155 lines scanned with 17 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/external_resources/jwk_fetcher.rs: 310 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/external_resources/jwk_fetcher.rs: 310 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/external_resources/jwk_types.rs: 178 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/external_resources/jwk_types.rs: 178 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/external_resources/keyless_config.rs: 125 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/external_resources/keyless_config.rs: 125 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/external_resources/mod.rs: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/external_resources/mod.rs: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/external_resources/resource_fetcher.rs: 289 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/external_resources/resource_fetcher.rs: 289 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/lib.rs: 15 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/lib.rs: 15 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/main.rs: 550 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/main.rs: 550 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/metrics.rs: 171 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/metrics.rs: 171 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/request_handler.rs: 446 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "keyless/pepper/service/src/request_handler.rs: 446 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/utils.rs: 138 lines scanned with 16 rule patterns and 340 registry patterns; 42 lines in #[cfg(test)] modules ignored",
+      "detail": "keyless/pepper/service/src/utils.rs: 138 lines scanned with 17 rule patterns and 340 registry patterns; 42 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "keyless/pepper/service/src/vuf_keypair.rs: 245 lines scanned with 16 rule patterns and 340 registry patterns; 49 lines in #[cfg(test)] modules ignored",
+      "detail": "keyless/pepper/service/src/vuf_keypair.rs: 245 lines scanned with 17 rule patterns and 340 registry patterns; 49 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -2579,617 +2579,617 @@
     },
     {
       "area": "source_code",
-      "detail": "types/src/access_path.rs: 256 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/access_path.rs: 256 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_address.rs: 306 lines scanned with 16 rule patterns and 340 registry patterns; 38 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/account_address.rs: 306 lines scanned with 17 rule patterns and 340 registry patterns; 38 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/constants/account.rs: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/constants/account.rs: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/constants/addresses.rs: 14 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/constants/addresses.rs: 14 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/constants/mod.rs: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/constants/mod.rs: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/burn.rs: 73 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/burn.rs: 73 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/burn_event.rs: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/burn_event.rs: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/burn_token.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/burn_token.rs: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/burn_token_event.rs: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/burn_token_event.rs: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/cancel_offer.rs: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/cancel_offer.rs: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/claim.rs: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/claim.rs: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/coin_deposit.rs: 62 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/coin_deposit.rs: 62 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/coin_register.rs: 50 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/coin_register.rs: 50 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/coin_register_event.rs: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/coin_register_event.rs: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/coin_withdraw.rs: 62 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/coin_withdraw.rs: 62 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/collection_description_mutate.rs: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/collection_description_mutate.rs: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/collection_description_mutate_event.rs: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/collection_description_mutate_event.rs: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/collection_maximum_mutate.rs: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/collection_maximum_mutate.rs: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/collection_maximum_mutate_event.rs: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/collection_maximum_mutate_event.rs: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/collection_mutation.rs: 72 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/collection_mutation.rs: 72 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/collection_mutation_event.rs: 47 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/collection_mutation_event.rs: 47 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/collection_uri_mutate.rs: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/collection_uri_mutate.rs: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/collection_uri_mutate_event.rs: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/collection_uri_mutate_event.rs: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/create_collection.rs: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/create_collection.rs: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/create_collection_event.rs: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/create_collection_event.rs: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/create_token_data_event.rs: 133 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/create_token_data_event.rs: 133 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/default_property_mutate.rs: 99 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/default_property_mutate.rs: 99 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/default_property_mutate_event.rs: 91 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/default_property_mutate_event.rs: 91 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/deposit_event.rs: 49 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/deposit_event.rs: 49 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/description_mutate.rs: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/description_mutate.rs: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/description_mutate_event.rs: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/description_mutate_event.rs: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/fungible_asset.rs: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/fungible_asset.rs: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/key_rotation.rs: 55 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/key_rotation.rs: 55 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/key_rotation_event.rs: 56 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/key_rotation_event.rs: 56 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/maximum_mutate.rs: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/maximum_mutate.rs: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/maximum_mutate_event.rs: 83 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/maximum_mutate_event.rs: 83 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/mint.rs: 69 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/mint.rs: 69 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/mint_event.rs: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/mint_event.rs: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/mint_token.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/mint_token.rs: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/mint_token_event.rs: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/mint_token_event.rs: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/mod.rs: 128 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/mod.rs: 128 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/mutate_property_map.rs: 88 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/mutate_property_map.rs: 88 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/mutate_token_property_map_event.rs: 80 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/mutate_token_property_map_event.rs: 80 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/new_block.rs: 133 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/new_block.rs: 133 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/new_epoch.rs: 46 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/new_epoch.rs: 46 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/offer.rs: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/offer.rs: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/opt_in_transfer.rs: 57 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/opt_in_transfer.rs: 57 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/opt_in_transfer_event.rs: 48 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/opt_in_transfer_event.rs: 48 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/randomness_event.rs: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/randomness_event.rs: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/royalty_mutate.rs: 109 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/royalty_mutate.rs: 109 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/royalty_mutate_event.rs: 109 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/royalty_mutate_event.rs: 109 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_cancel_offer_event.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_cancel_offer_event.rs: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_claim_event.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_claim_event.rs: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_data_creation.rs: 145 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_data_creation.rs: 145 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_deposit.rs: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_deposit.rs: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_deposit_event.rs: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_deposit_event.rs: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_mutation.rs: 73 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_mutation.rs: 73 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_mutation_event.rs: 61 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_mutation_event.rs: 61 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_offer_event.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_offer_event.rs: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_withdraw.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_withdraw.rs: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/token_withdraw_event.rs: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/token_withdraw_event.rs: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/transfer.rs: 58 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/transfer.rs: 58 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/transfer_event.rs: 58 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/transfer_event.rs: 58 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/uri_mutation.rs: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/uri_mutation.rs: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/uri_mutation_event.rs: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/uri_mutation_event.rs: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/events/withdraw_event.rs: 49 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/events/withdraw_event.rs: 49 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/mod.rs: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/mod.rs: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/aggregator.rs: 82 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/aggregator.rs: 82 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/any.rs: 40 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/any.rs: 40 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/chain_id.rs: 33 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/chain_id.rs: 33 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/challenge.rs: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/challenge.rs: 24 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/coin_info.rs: 110 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/coin_info.rs: 110 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/coin_store.rs: 110 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/coin_store.rs: 110 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/collection.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/collection.rs: 65 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/collections.rs: 64 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/collections.rs: 64 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/core_account.rs: 110 lines scanned with 16 rule patterns and 340 registry patterns; 11 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/account_config/resources/core_account.rs: 110 lines scanned with 17 rule patterns and 340 registry patterns; 11 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/fixed_supply.rs: 64 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/fixed_supply.rs: 64 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/fungible_asset_metadata.rs: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/fungible_asset_metadata.rs: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/fungible_store.rs: 100 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/fungible_store.rs: 100 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/mod.rs: 42 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/mod.rs: 42 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/object.rs: 90 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/object.rs: 90 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/pending_claims.rs: 57 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/pending_claims.rs: 57 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/token.rs: 71 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/token.rs: 71 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/token_event_store_v1.rs: 99 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/token_event_store_v1.rs: 99 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/token_store.rs: 77 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/token_store.rs: 77 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/type_info.rs: 43 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/type_info.rs: 43 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/account_config/resources/unlimited_supply.rs: 57 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/account_config/resources/unlimited_supply.rs: 57 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/aggregate_signature.rs: 133 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/aggregate_signature.rs: 133 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_executor/config.rs: 254 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/block_executor/config.rs: 254 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_executor/mod.rs: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/block_executor/mod.rs: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_executor/output.rs: 78 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/block_executor/output.rs: 78 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_executor/partitioner.rs: 625 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/block_executor/partitioner.rs: 625 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_executor/transaction_slice_metadata.rs: 178 lines scanned with 16 rule patterns and 340 registry patterns; 89 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/block_executor/transaction_slice_metadata.rs: 178 lines scanned with 17 rule patterns and 340 registry patterns; 89 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_executor/value.rs: 114 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/block_executor/value.rs: 114 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_info.rs: 239 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/block_info.rs: 239 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_metadata.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/block_metadata.rs: 103 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/block_metadata_ext.rs: 224 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/block_metadata_ext.rs: 224 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/bytes.rs: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/bytes.rs: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/chain_id.rs: 247 lines scanned with 16 rule patterns and 340 registry patterns; 37 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/chain_id.rs: 247 lines scanned with 17 rule patterns and 340 registry patterns; 37 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/contract_event.rs: 462 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/contract_event.rs: 462 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/crypto/algebra.rs: 215 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/crypto/algebra.rs: 215 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/crypto/mod.rs: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/crypto/mod.rs: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/decryption.rs: 101 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/decryption.rs: 101 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/delayed_fields.rs: 119 lines scanned with 16 rule patterns and 340 registry patterns; 60 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/delayed_fields.rs: 119 lines scanned with 17 rule patterns and 340 registry patterns; 60 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/dkg/chunky_dkg.rs: 627 lines scanned with 16 rule patterns and 340 registry patterns; 88 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/dkg/chunky_dkg.rs: 627 lines scanned with 17 rule patterns and 340 registry patterns; 88 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/dkg/dummy_dkg/mod.rs: 166 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/dkg/dummy_dkg/mod.rs: 166 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/dkg/mod.rs: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/dkg/mod.rs: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/dkg/randomness_dkg.rs: 238 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/dkg/randomness_dkg.rs: 238 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/dkg/real_dkg/mod.rs: 476 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/dkg/real_dkg/mod.rs: 476 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/dkg/real_dkg/rounding/mod.rs: 367 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/dkg/real_dkg/rounding/mod.rs: 367 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/epoch_change.rs: 368 lines scanned with 16 rule patterns and 340 registry patterns; 230 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/epoch_change.rs: 368 lines scanned with 17 rule patterns and 340 registry patterns; 230 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/epoch_state.rs: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/epoch_state.rs: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/error.rs: 226 lines scanned with 16 rule patterns and 340 registry patterns; 22 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/error.rs: 226 lines scanned with 17 rule patterns and 340 registry patterns; 22 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/event.rs: 122 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/event.rs: 122 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/executable.rs: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/executable.rs: 24 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/fee_statement.rs: 111 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/fee_statement.rs: 111 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/function_info.rs: 75 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/function_info.rs: 75 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/governance.rs: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/governance.rs: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/indexer/indexer_db_reader.rs: 83 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/indexer/indexer_db_reader.rs: 83 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/indexer/mod.rs: 4 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/indexer/mod.rs: 4 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/jwks/jwk/mod.rs: 125 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/jwks/jwk/mod.rs: 125 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/jwks/mod.rs: 502 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/jwks/mod.rs: 502 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/jwks/patch/mod.rs: 45 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/jwks/patch/mod.rs: 45 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -3204,137 +3204,137 @@
     },
     {
       "area": "source_code",
-      "detail": "types/src/jwks/rsa/mod.rs: 193 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/jwks/rsa/mod.rs: 193 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/jwks/unsupported/mod.rs: 75 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/jwks/unsupported/mod.rs: 75 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/bn254_circom.rs: 453 lines scanned with 16 rule patterns and 340 registry patterns; 59 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/keyless/bn254_circom.rs: 453 lines scanned with 17 rule patterns and 340 registry patterns; 59 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/circuit_constants.rs: 115 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/keyless/circuit_constants.rs: 115 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/circuit_testcases.rs: 285 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/keyless/circuit_testcases.rs: 285 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/configuration.rs: 97 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/keyless/configuration.rs: 97 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/groth16_sig.rs: 236 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/keyless/groth16_sig.rs: 236 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/groth16_vk.rs: 148 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/keyless/groth16_vk.rs: 148 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/mod.rs: 503 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/keyless/mod.rs: 503 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/openid_sig.rs: 225 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/keyless/openid_sig.rs: 225 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/proof_simulation.rs: 394 lines scanned with 16 rule patterns and 340 registry patterns; 211 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/keyless/proof_simulation.rs: 394 lines scanned with 17 rule patterns and 340 registry patterns; 211 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/keyless/zkp_sig.rs: 28 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/keyless/zkp_sig.rs: 28 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/lazy_bls.rs: 365 lines scanned with 16 rule patterns and 340 registry patterns; 218 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/lazy_bls.rs: 365 lines scanned with 17 rule patterns and 340 registry patterns; 218 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/lazy_crypto.rs: 150 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/lazy_crypto.rs: 150 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/ledger_info.rs: 1087 lines scanned with 16 rule patterns and 340 registry patterns; 437 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/ledger_info.rs: 1087 lines scanned with 17 rule patterns and 340 registry patterns; 437 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/lib.rs: 77 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/lib.rs: 77 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/mempool_status.rs: 101 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/mempool_status.rs: 101 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_any.rs: 54 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_any.rs: 54 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_fixed_point.rs: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_fixed_point.rs: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_stdlib/mod.rs: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_stdlib/mod.rs: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_stdlib/reflect.rs: 31 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_stdlib/reflect.rs: 31 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_stdlib/result.rs: 7 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_stdlib/result.rs: 7 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_utils/as_move_value.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_utils/as_move_value.rs: 65 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_utils/mod.rs: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_utils/mod.rs: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_utils/move_event_v1.rs: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_utils/move_event_v1.rs: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/move_utils/move_event_v2.rs: 15 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/move_utils/move_event_v2.rs: 15 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/network_address/mod.rs: 1136 lines scanned with 16 rule patterns and 340 registry patterns; 239 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/network_address/mod.rs: 1136 lines scanned with 17 rule patterns and 340 registry patterns; 239 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -3349,432 +3349,437 @@
     },
     {
       "area": "source_code",
-      "detail": "types/src/nibble/mod.rs: 71 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/nibble/mod.rs: 71 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/nibble/nibble_path/mod.rs: 382 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/nibble/nibble_path/mod.rs: 382 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/object_address.rs: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/object_address.rs: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/approved_execution_hashes.rs: 29 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/approved_execution_hashes.rs: 29 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/aptos_features.rs: 714 lines scanned with 16 rule patterns and 340 registry patterns; 33 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/on_chain_config/aptos_features.rs: 714 lines scanned with 17 rule patterns and 340 registry patterns; 33 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/aptos_version.rs: 34 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/aptos_version.rs: 34 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/chain_id.rs: 9 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/chain_id.rs: 9 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/chunky_dkg_config.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/chunky_dkg_config.rs: 223 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/commit_history.rs: 41 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/commit_history.rs: 41 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/consensus_config.rs: 656 lines scanned with 16 rule patterns and 340 registry patterns; 65 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/on_chain_config/consensus_config.rs: 656 lines scanned with 17 rule patterns and 340 registry patterns; 65 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/epoch_timeout_config.rs: 41 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/epoch_timeout_config.rs: 41 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/execution_config.rs: 587 lines scanned with 16 rule patterns and 340 registry patterns; 160 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/on_chain_config/execution_config.rs: 587 lines scanned with 17 rule patterns and 340 registry patterns; 160 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/gas_schedule.rs: 108 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/gas_schedule.rs: 108 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/hot_state_config.rs: 138 lines scanned with 16 rule patterns and 340 registry patterns; 53 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/on_chain_config/hot_state_config.rs: 138 lines scanned with 17 rule patterns and 340 registry patterns; 53 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/jwk_consensus_config.rs: 132 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/jwk_consensus_config.rs: 132 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/mod.rs: 306 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/mod.rs: 306 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/randomness_api_v0_config.rs: 58 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/randomness_api_v0_config.rs: 58 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/randomness_config.rs: 234 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/randomness_config.rs: 234 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/timed_features.rs: 637 lines scanned with 16 rule patterns and 340 registry patterns; 165 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/on_chain_config/timed_features.rs: 637 lines scanned with 17 rule patterns and 340 registry patterns; 165 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/timestamp.rs: 15 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/timestamp.rs: 15 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/transaction_fee.rs: 13 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/transaction_fee.rs: 13 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/on_chain_config/validator_set.rs: 108 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/on_chain_config/validator_set.rs: 108 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/proof/accumulator/mock.rs: 306 lines scanned with 16 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/proof/accumulator/mock.rs: 306 lines scanned with 17 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/proof/accumulator/mod.rs: 335 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/proof/accumulator/mod.rs: 335 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/proof/definition.rs: 1022 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/proof/definition.rs: 1022 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/proof/mod.rs: 123 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/proof/mod.rs: 123 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/proof/position/mod.rs: 534 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/proof/position/mod.rs: 534 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/proof/proptest_proof.rs: 166 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/proof/proptest_proof.rs: 166 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/proptest_types.rs: 1419 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/proptest_types.rs: 1419 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/quorum_store/mod.rs: 57 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/quorum_store/mod.rs: 57 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/randomness.rs: 136 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/randomness.rs: 136 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/secret_sharing.rs: 226 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/secret_sharing.rs: 226 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/serde_helper/bcs_utils.rs: 30 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/serde_helper/bcs_utils.rs: 30 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/serde_helper/mod.rs: 5 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/serde_helper/mod.rs: 5 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/serde_helper/vec_bytes.rs: 29 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/serde_helper/vec_bytes.rs: 29 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/stake_pool.rs: 114 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/stake_pool.rs: 114 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/staking_contract.rs: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/staking_contract.rs: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_proof.rs: 77 lines scanned with 16 rule patterns and 340 registry patterns; 15 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/state_proof.rs: 77 lines scanned with 17 rule patterns and 340 registry patterns; 15 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/errors.rs: 21 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/errors.rs: 21 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/hot_state.rs: 187 lines scanned with 16 rule patterns and 340 registry patterns; 28 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/state_store/hot_state.rs: 187 lines scanned with 17 rule patterns and 340 registry patterns; 28 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/mod.rs: 231 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/mod.rs: 231 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/native_collateral.rs: 209 lines scanned with 16 rule patterns and 340 registry patterns; 132 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/state_store/native_collateral.rs: 209 lines scanned with 17 rule patterns and 340 registry patterns; 132 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/native_order.rs: 755 lines scanned with 16 rule patterns and 340 registry patterns; 329 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/state_store/native_order.rs: 755 lines scanned with 17 rule patterns and 340 registry patterns; 329 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/native_position.rs: 166 lines scanned with 16 rule patterns and 340 registry patterns; 104 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/state_store/native_position.rs: 166 lines scanned with 17 rule patterns and 340 registry patterns; 104 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/state_key/inner.rs: 265 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/state_key/inner.rs: 265 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/state_key/mod.rs: 530 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/state_key/mod.rs: 530 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/state_key/prefix.rs: 70 lines scanned with 16 rule patterns and 340 registry patterns; 26 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/state_store/state_key/prefix.rs: 70 lines scanned with 17 rule patterns and 340 registry patterns; 26 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/state_key/registry.rs: 373 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/state_key/registry.rs: 373 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/state_slot.rs: 333 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/state_slot.rs: 333 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/state_storage_usage.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/state_storage_usage.rs: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/state_value.rs: 391 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/state_value.rs: 391 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/state_store/table.rs: 47 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/state_store/table.rs: 47 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/timestamp.rs: 26 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/timestamp.rs: 26 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/analyzed_transaction.rs: 297 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/analyzed_transaction.rs: 297 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/authenticator.rs: 2679 lines scanned with 16 rule patterns and 340 registry patterns; 935 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/transaction/authenticator.rs: 2679 lines scanned with 17 rule patterns and 340 registry patterns; 935 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/block_epilogue.rs: 182 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/block_epilogue.rs: 182 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/block_output.rs: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/block_output.rs: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/change_set.rs: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/change_set.rs: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/encrypted_payload.rs: 355 lines scanned with 16 rule patterns and 340 registry patterns; 91 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/transaction/encrypted_payload.rs: 355 lines scanned with 17 rule patterns and 340 registry patterns; 91 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/mod.rs: 3841 lines scanned with 16 rule patterns and 340 registry patterns; 108 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/transaction/mod.rs: 3841 lines scanned with 17 rule patterns and 340 registry patterns; 108 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/module.rs: 91 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/module.rs: 91 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/multisig.rs: 117 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/multisig.rs: 117 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/script.rs: 164 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/script.rs: 164 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/session_id.rs: 274 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/session_id.rs: 274 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/signature_verified_transaction.rs: 177 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/signature_verified_transaction.rs: 177 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/use_case.rs: 387 lines scanned with 16 rule patterns and 340 registry patterns; 276 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/transaction/use_case.rs: 387 lines scanned with 17 rule patterns and 340 registry patterns; 276 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/user_transaction_context.rs: 169 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/user_transaction_context.rs: 169 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/validation.rs: 141 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/transaction/validation.rs: 141 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/transaction/webauthn.rs: 944 lines scanned with 16 rule patterns and 340 registry patterns; 722 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/transaction/webauthn.rs: 944 lines scanned with 17 rule patterns and 340 registry patterns; 722 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/trusted_state.rs: 280 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/trusted_state.rs: 280 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/utility_coin.rs: 65 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/utility_coin.rs: 65 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/validator_config.rs: 67 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/validator_config.rs: 67 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/validator_info.rs: 101 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/validator_info.rs: 101 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/validator_performances.rs: 15 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/validator_performances.rs: 15 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/validator_signer.rs: 149 lines scanned with 16 rule patterns and 340 registry patterns; 68 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/validator_signer.rs: 149 lines scanned with 17 rule patterns and 340 registry patterns; 68 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/validator_txn.rs: 75 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/validator_txn.rs: 75 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/validator_verifier.rs: 1143 lines scanned with 16 rule patterns and 340 registry patterns; 416 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/validator_verifier.rs: 1143 lines scanned with 17 rule patterns and 340 registry patterns; 416 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/vesting.rs: 12 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/vesting.rs: 12 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/vm/code.rs: 33 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/vm/code.rs: 33 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/vm/mod.rs: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/vm/mod.rs: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/vm/module_metadata.rs: 824 lines scanned with 16 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/vm/module_metadata.rs: 824 lines scanned with 17 rule patterns and 340 registry patterns; 51 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/vm/modules.rs: 50 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/vm/modules.rs: 50 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/vm_status.rs: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "types/src/vm_status.rs: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/waypoint.rs: 225 lines scanned with 16 rule patterns and 340 registry patterns; 37 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/waypoint.rs: 225 lines scanned with 17 rule patterns and 340 registry patterns; 37 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/src/write_set.rs: 1206 lines scanned with 16 rule patterns and 340 registry patterns; 108 lines in #[cfg(test)] modules ignored",
+      "detail": "types/src/write_set.rs: 1206 lines scanned with 17 rule patterns and 340 registry patterns; 108 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "entropy",
       "detail": "random-number generation: 331 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "status": "checked"
+    },
+    {
+      "area": "key_storage",
+      "detail": "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0",
       "status": "checked"
     },
     {
@@ -3790,9 +3795,9 @@
       "count": 331,
       "rows": 331,
       "examples": [
-        "aptos-move/framework/src/aptos.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns",
-        "aptos-move/framework/src/built_package.rs: 773 lines scanned with 16 rule patterns and 340 registry patterns",
-        "aptos-move/framework/src/chunked_publish.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns"
+        "aptos-move/framework/src/aptos.rs: 223 lines scanned with 17 rule patterns and 340 registry patterns",
+        "aptos-move/framework/src/built_package.rs: 773 lines scanned with 17 rule patterns and 340 registry patterns",
+        "aptos-move/framework/src/chunked_publish.rs: 223 lines scanned with 17 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -3842,6 +3847,15 @@
       "rows": 1,
       "examples": [
         "random-number generation: 331 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    },
+    {
+      "area": "key_storage",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0"
       ]
     },
     {
@@ -3948,6 +3962,7 @@
       "crates/aptos-crypto/src/validatable.rs",
       "crates/aptos-crypto/src/weighted_config.rs",
       "crates/aptos-crypto/src/x25519.rs",
+      "key settings with a fallback in the code",
       "keyless/pepper/common/Cargo.toml",
       "keyless/pepper/common/src/account_recovery_db.rs",
       "keyless/pepper/common/src/jwt.rs",
@@ -4259,8 +4274,8 @@
   },
   "findings": [
     {
-      "id": "ec8cfa72-30f7-4de0-a2f0-e3d1246f5c7c",
-      "public_id": "QSI-2026-44065",
+      "id": "f774be1e-3f69-4a37-9f54-3cd89a4d0a27",
+      "public_id": "QSI-2026-49977",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))",
       "description": "26 reference(s) to X25519 across 1 file(s), e.g. crates/aptos-crypto/src/noise.rs:65. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later).",
@@ -4279,8 +4294,8 @@
       "triage": null,
       "affected_asset": "source-code:X25519:key_wrapping",
       "data_source": "crates/aptos-crypto/src/noise.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.568479+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.723646+00:00",
       "risk_score": 36.9,
       "risk_breakdown": {
         "mosca": {
@@ -4376,8 +4391,8 @@
           "content": "   64 | \n   65 | use crate::{hash::HashValue, hkdf::Hkdf, traits::Uniform as _, x25519, ValidCryptoMaterial};\n   66 | use ring::aead::{self, Aad, LessSafeKey, UnboundKey};",
           "content_sha256": "21f98045a9d7699e76ccf75949f7da21bb9582d0e9cce6c86a823b43280710bd",
           "source_sha256": "2cb8c0264ae10b0e55f89da85b7505bce380a505886e62d210a86a0524968c3e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.578730+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.735273+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L65"
         },
         {
@@ -4387,8 +4402,8 @@
           "content": "  103 |     // e\n  104 |     let e_len = x25519::PUBLIC_KEY_SIZE;\n  105 |     // encrypted s",
           "content_sha256": "c42db5b8ba200f00cea1b1af6a1e59e326dfdf1720dc5852f8111f8c7b23abc4",
           "source_sha256": "2cb8c0264ae10b0e55f89da85b7505bce380a505886e62d210a86a0524968c3e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.578738+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.735282+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L104"
         },
         {
@@ -4398,8 +4413,8 @@
           "content": "  105 |     // encrypted s\n  106 |     let enc_s_len = encrypted_len(x25519::PUBLIC_KEY_SIZE);\n  107 |     // encrypted payload",
           "content_sha256": "b77110997bf970e95f378f3e430067fa6d2c6e9e44a6aa6d7afc327b132c655d",
           "source_sha256": "2cb8c0264ae10b0e55f89da85b7505bce380a505886e62d210a86a0524968c3e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.578743+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.735286+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/noise.rs#L106"
         }
       ],
@@ -4437,8 +4452,8 @@
       ]
     },
     {
-      "id": "21190039-4948-4013-b036-079d230709e3",
-      "public_id": "QSI-2026-44062",
+      "id": "2872e911-aa1e-4b06-8d19-874cc21002a8",
+      "public_id": "QSI-2026-49974",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s))",
       "description": "14 reference(s) to BLS12-381 across 4 file(s), e.g. crates/aptos-crypto/src/bls12381/bls12381_keys.rs:36. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -4457,8 +4472,8 @@
       "triage": null,
       "affected_asset": "source-code:BLS12-381:transaction_signing",
       "data_source": "crates/aptos-crypto/src/bls12381/bls12381_keys.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.533892+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.689372+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -4554,8 +4569,8 @@
           "content": "   35 | pub struct PublicKey {\n   36 |     pub(crate) pubkey: blst::min_pk::PublicKey,\n   37 |     // NOTE: In order to minimize the size of this struct, we do not keep the PoP here.",
           "content_sha256": "81b8462733cc4916ed911ea5a12f3405977476266e8a51a6ee8cd467d1aa1bfa",
           "source_sha256": "b2ebf8767ada59dc70cc0b6b01f525d9bdcb77753bd527770db30b44f476e512",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546692+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701325+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_keys.rs#L36"
         },
         {
@@ -4565,8 +4580,8 @@
           "content": "   43 | pub struct PrivateKey {\n   44 |     pub(crate) privkey: blst::min_pk::SecretKey,\n   45 | }",
           "content_sha256": "eb02f9d0fadc9d4da5dbc32b76b42911d149d7f74b2ee78f0871bb87a8af2884",
           "source_sha256": "b2ebf8767ada59dc70cc0b6b01f525d9bdcb77753bd527770db30b44f476e512",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546701+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701334+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_keys.rs#L44"
         },
         {
@@ -4576,8 +4591,8 @@
           "content": "   76 |     pub fn aggregate(pubkeys: Vec<&Self>) -> Result<PublicKey> {\n   77 |         let blst_pubkeys: Vec<_> = pubkeys.iter().map(|pk| &pk.pubkey).collect();\n   78 | ",
           "content_sha256": "f86b41febe322eda289a9b3744910f9f56e1842a57985dd8f18e9dfde490efc2",
           "source_sha256": "b2ebf8767ada59dc70cc0b6b01f525d9bdcb77753bd527770db30b44f476e512",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546706+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701339+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_keys.rs#L77"
         },
         {
@@ -4587,8 +4602,8 @@
           "content": "   29 | pub struct ProofOfPossession {\n   30 |     pub(crate) pop: blst::min_pk::Signature,\n   31 | }",
           "content_sha256": "06630226020a3269001bdb1ad77e0104e0a1b677c79b9f94f05838afb1869b61",
           "source_sha256": "ce93253d1294e232768f51235d4d29145f569e38a9f97df18de89d13405a5c38",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546711+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701344+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_pop.rs#L30"
         },
         {
@@ -4598,8 +4613,8 @@
           "content": "  136 |         Ok(Self {\n  137 |             pop: blst::min_pk::Signature::from_bytes(bytes)\n  138 |                 .map_err(|_| CryptoMaterialError::DeserializationError)?,",
           "content_sha256": "d0b2c6c7ca43c0fb54ed2116a00e560b1f11f1f2d4a3146c1e0360ba18d87267",
           "source_sha256": "ce93253d1294e232768f51235d4d29145f569e38a9f97df18de89d13405a5c38",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546715+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701349+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_pop.rs#L137"
         },
         {
@@ -4609,8 +4624,8 @@
           "content": "   37 | pub struct Signature {\n   38 |     pub(crate) sig: blst::min_pk::Signature,\n   39 | }",
           "content_sha256": "7a6ea860574f4d177572ad68df977e2dc574ba6ff56f3582b1d8a3be5a75dbbc",
           "source_sha256": "76831485928ebc9dd3d96224d913361f7a120b60f8e714bad1bf6856735843b8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546753+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701354+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_sigs.rs#L38"
         },
         {
@@ -4620,8 +4635,8 @@
           "content": "   70 |         let sigs: Vec<_> = sigs.iter().map(|s| &s.sig).collect();\n   71 |         let agg_sig = blst::min_pk::AggregateSignature::aggregate(&sigs[..], false)\n   72 |             .map_err(|e| anyhow!(\"{:?}\", e))?;",
           "content_sha256": "dbb851a2ebe69101d49d5fbc1e368bc8b2abb844f664ede6d5d27a87067d05ba",
           "source_sha256": "76831485928ebc9dd3d96224d913361f7a120b60f8e714bad1bf6856735843b8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546759+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701358+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_sigs.rs#L71"
         },
         {
@@ -4631,8 +4646,8 @@
           "content": "   88 |             .map(|&pk| &pk.pubkey)\n   89 |             .collect::<Vec<&blst::min_pk::PublicKey>>();\n   90 | ",
           "content_sha256": "8c07db1d6e2ab71af6c5f558ee3eb86d3f9e0d7670fc9c6a97e4e29b565a3189",
           "source_sha256": "76831485928ebc9dd3d96224d913361f7a120b60f8e714bad1bf6856735843b8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546764+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701363+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/bls12381/bls12381_sigs.rs#L89"
         },
         {
@@ -4642,8 +4657,8 @@
           "content": "    3 | \n    4 | use bls12_381::{G1Projective, Scalar};\n    5 | use dudect_bencher::{",
           "content_sha256": "221f1dca25f14b9dfb0bda3a9eef2c447551e2ee404ab82af2906b77afbe582c",
           "source_sha256": "c791efc46427451263e753218ac6a2b1a74c9192762c79a971d5c9fdcb0f56b0",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.546769+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.701368+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/constant_time/zkcrypto_scalar_mul.rs#L4"
         }
       ],
@@ -4681,8 +4696,8 @@
       ]
     },
     {
-      "id": "e52ae8fc-4eba-497b-aed2-587b441bb24a",
-      "public_id": "QSI-2026-44063",
+      "id": "239b4824-e0cd-4f46-8470-c2809a14c21b",
+      "public_id": "QSI-2026-49975",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Ed25519: transaction and message signing (10 file(s))",
       "description": "151 reference(s) to Ed25519 across 10 file(s), e.g. crates/aptos-crypto/src/ed25519/ed25519_keys.rs:9. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -4701,8 +4716,8 @@
       "triage": null,
       "affected_asset": "source-code:Ed25519:transaction_signing",
       "data_source": "crates/aptos-crypto/src/ed25519/ed25519_keys.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.543286+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.697538+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -4798,8 +4813,8 @@
           "content": "    8 | use crate::{\n    9 |     ed25519::{Ed25519Signature, ED25519_PRIVATE_KEY_LENGTH, ED25519_PUBLIC_KEY_LENGTH},\n   10 |     hash::CryptoHash,",
           "content_sha256": "adf76b09b67a86ab80f62343703cd06f08aaa6ef2d74c838afbaf3087a568625",
           "source_sha256": "79a6f426fb5efb58ae8e072947d4e9347eda7cc281509f2dff57263559b8c4a9",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.560996+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716208+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/ed25519_keys.rs#L9"
         },
         {
@@ -4809,8 +4824,8 @@
           "content": "   15 | use curve25519_dalek::{edwards::CompressedEdwardsY, scalar::Scalar};\n   16 | use ed25519_dalek::ExpandedSecretKey;\n   17 | #[cfg(any(test, feature = \"fuzzing\"))]",
           "content_sha256": "1caccba153f57a757992b88183d03a08f2b137bc1eed9afe190890307f3f240e",
           "source_sha256": "79a6f426fb5efb58ae8e072947d4e9347eda7cc281509f2dff57263559b8c4a9",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561004+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716216+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/ed25519_keys.rs#L16"
         },
         {
@@ -4820,8 +4835,8 @@
           "content": "   23 | #[derive(DeserializeKey, SerializeKey, SilentDebug, SilentDisplay)]\n   24 | pub struct Ed25519PrivateKey(pub(crate) ed25519_dalek::SecretKey);\n   25 | ",
           "content_sha256": "1a0100275641151db47cb652da5dffeeadab86a7c7dce2b1bbae80b7b138b328",
           "source_sha256": "79a6f426fb5efb58ae8e072947d4e9347eda7cc281509f2dff57263559b8c4a9",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561010+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716220+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/ed25519_keys.rs#L24"
         },
         {
@@ -4831,8 +4846,8 @@
           "content": "    6 | use crate::{\n    7 |     ed25519::{Ed25519PrivateKey, Ed25519PublicKey, ED25519_SIGNATURE_LENGTH, L},\n    8 |     hash::CryptoHash,",
           "content_sha256": "e348dba0532f4e56f86d5b2e1db90e28010ed349c9accf0f2f0204c73a272062",
           "source_sha256": "838e7e95fe58782ee363ebf441d73b32f13e4987712a4e23c8c6b7d45b281856",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561015+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716225+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/ed25519_sigs.rs#L7"
         },
         {
@@ -4842,8 +4857,8 @@
           "content": "   18 | #[derive(DeserializeKey, Clone, SerializeKey)]\n   19 | pub struct Ed25519Signature(pub(crate) ed25519_dalek::Signature);\n   20 | ",
           "content_sha256": "7c9df4c2d607763e63885116d7333c8f1ec08aebc1c8cec80201faf59a31672d",
           "source_sha256": "838e7e95fe58782ee363ebf441d73b32f13e4987712a4e23c8c6b7d45b281856",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561020+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716230+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/ed25519_sigs.rs#L19"
         },
         {
@@ -4853,8 +4868,8 @@
           "content": "   43 |     ) -> std::result::Result<Ed25519Signature, CryptoMaterialError> {\n   44 |         match ed25519_dalek::Signature::try_from(bytes) {\n   45 |             Ok(dalek_signature) => Ok(Ed25519Signature(dalek_signature)),",
           "content_sha256": "2d4aff20c28e007490dbb4df38c52c7ce6cf4f507647f7fbf72494e771ad4a64",
           "source_sha256": "838e7e95fe58782ee363ebf441d73b32f13e4987712a4e23c8c6b7d45b281856",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561025+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716234+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/ed25519_sigs.rs#L44"
         },
         {
@@ -4864,8 +4879,8 @@
           "content": "   33 | /// The length of the Ed25519PrivateKey\n   34 | pub const ED25519_PRIVATE_KEY_LENGTH: usize = ed25519_dalek::SECRET_KEY_LENGTH;\n   35 | /// The length of the Ed25519PublicKey",
           "content_sha256": "4109af929d07df4dac5c3148e82f383831c21b4c7a72e67752f1cb2e414a1de4",
           "source_sha256": "7b21ea56b9c4fbf31f19ae1789d1bfe612ffa33d990560cb65a8b2f958c38d58",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561030+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716239+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/mod.rs#L34"
         },
         {
@@ -4875,8 +4890,8 @@
           "content": "   35 | /// The length of the Ed25519PublicKey\n   36 | pub const ED25519_PUBLIC_KEY_LENGTH: usize = ed25519_dalek::PUBLIC_KEY_LENGTH;\n   37 | /// The length of the Ed25519Signature",
           "content_sha256": "e36e845052f25c992bc097ff2643a8919a542814ca3d80a30c23bbdeefd221d2",
           "source_sha256": "7b21ea56b9c4fbf31f19ae1789d1bfe612ffa33d990560cb65a8b2f958c38d58",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561034+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716243+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/mod.rs#L36"
         },
         {
@@ -4886,8 +4901,8 @@
           "content": "   37 | /// The length of the Ed25519Signature\n   38 | pub const ED25519_SIGNATURE_LENGTH: usize = ed25519_dalek::SIGNATURE_LENGTH;\n   39 | ",
           "content_sha256": "fa75a35cf657ddee121a387d195c85f31e9bd4ff176e92985131bd3a19a2caed",
           "source_sha256": "7b21ea56b9c4fbf31f19ae1789d1bfe612ffa33d990560cb65a8b2f958c38d58",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561039+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716248+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/ed25519/mod.rs#L38"
         },
         {
@@ -4897,8 +4912,8 @@
           "content": "    9 | use crate::{\n   10 |     ed25519::{\n   11 |         Ed25519PrivateKey, Ed25519PublicKey, Ed25519Signature, ED25519_PRIVATE_KEY_LENGTH,",
           "content_sha256": "0d5facec0d4dac56115065a9c632c1ed1a25aaa7e14a7ba15b8ac6bb9921271d",
           "source_sha256": "ae1c4781f7a6ba11430ff69a738a66c695301f1366134b1102b69b4f9657ceae",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.561044+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.716252+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/multi_ed25519.rs#L10"
         }
       ],
@@ -4936,8 +4951,8 @@
       ]
     },
     {
-      "id": "73438b2c-e0d2-4bec-8921-1a992550a66e",
-      "public_id": "QSI-2026-44066",
+      "id": "ee6abaca-1661-4865-a0e3-ada91464e2ea",
+      "public_id": "QSI-2026-49978",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))",
       "description": "14 reference(s) to ECDSA across 3 file(s), e.g. crates/aptos-crypto/src/secp256k1_ecdsa.rs:120. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -4956,8 +4971,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "crates/aptos-crypto/src/secp256k1_ecdsa.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.576642+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.732883+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -5053,8 +5068,8 @@
           "content": "  119 | impl ValidCryptoMaterial for PrivateKey {\n  120 |     const AIP_80_PREFIX: &'static str = \"secp256k1-priv-\";\n  121 | ",
           "content_sha256": "0a1fc93a27f369c174809d52f96d68567e75108bf4af7db9ab12f33309312dfb",
           "source_sha256": "6c3560abca72d30a926e776c6d8575440ff115c2b2e95f90818b04079a2b305d",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587102+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743680+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256k1_ecdsa.rs#L120"
         },
         {
@@ -5064,8 +5079,8 @@
           "content": "  185 | impl ValidCryptoMaterial for PublicKey {\n  186 |     const AIP_80_PREFIX: &'static str = \"secp256k1-pub-\";\n  187 | ",
           "content_sha256": "5fc60fc076c992614ddae3137a4c2774ba1d79a69368c280f4b82969a02a1d0c",
           "source_sha256": "6c3560abca72d30a926e776c6d8575440ff115c2b2e95f90818b04079a2b305d",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587111+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743689+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256k1_ecdsa.rs#L186"
         },
         {
@@ -5075,8 +5090,8 @@
           "content": "  288 | impl ValidCryptoMaterial for Signature {\n  289 |     const AIP_80_PREFIX: &'static str = \"secp256k1-sig-\";\n  290 | ",
           "content_sha256": "77cce12d3bdba7700d8f5431dce16cccfb1eb7eaf8e08e29177a821bc85a3dea",
           "source_sha256": "6c3560abca72d30a926e776c6d8575440ff115c2b2e95f90818b04079a2b305d",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587117+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743693+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256k1_ecdsa.rs#L289"
         },
         {
@@ -5086,8 +5101,8 @@
           "content": "   25 | #[key_name(\"Secp256r1EcdsaPrivateKey\")]\n   26 | pub struct PrivateKey(pub(crate) p256::ecdsa::SigningKey);\n   27 | ",
           "content_sha256": "84af77bba23df6b8d90baf6a3498d3b5a95a1b4e3a08d61ffa1e1116262322f5",
           "source_sha256": "89ccb0ac1699817da1b5220747870eaa01ba06f2356e33f8d75a7e85cf16f719",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587123+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743698+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_keys.rs#L26"
         },
         {
@@ -5097,8 +5112,8 @@
           "content": "   41 | #[key_name(\"Secp256r1EcdsaPublicKey\")]\n   42 | pub struct PublicKey(pub(crate) p256::ecdsa::VerifyingKey);\n   43 | ",
           "content_sha256": "67a910a2cba142805ca03842c07ad5995bcd28afd9755e1dc58ec17f8d277806",
           "source_sha256": "89ccb0ac1699817da1b5220747870eaa01ba06f2356e33f8d75a7e85cf16f719",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587128+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743703+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_keys.rs#L42"
         },
         {
@@ -5108,8 +5123,8 @@
           "content": "   65 |     ) -> std::result::Result<PrivateKey, CryptoMaterialError> {\n   66 |         match p256::ecdsa::SigningKey::from_slice(bytes) {\n   67 |             Ok(p256_secret_key) => Ok(PrivateKey(p256_secret_key)),",
           "content_sha256": "77b6daa36734653a5846b1caa099fbc550c118768f7bd39749cf49d52dffaa0b",
           "source_sha256": "89ccb0ac1699817da1b5220747870eaa01ba06f2356e33f8d75a7e85cf16f719",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587132+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743707+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_keys.rs#L66"
         },
         {
@@ -5119,8 +5134,8 @@
           "content": "   23 | #[key_name(\"Secp256r1EcdsaSignature\")]\n   24 | pub struct Signature(pub(crate) p256::ecdsa::Signature);\n   25 | ",
           "content_sha256": "a323ce9f251b5a44ced790963b723501b8adabadc96888ad9a7fbfad5c039566",
           "source_sha256": "33d282f06a6e7d76d77dd13cbe304689838f5dd2ca56007948dc39418833317c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587137+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743712+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.rs#L24"
         },
         {
@@ -5130,8 +5145,8 @@
           "content": "   40 |     ) -> std::result::Result<Signature, CryptoMaterialError> {\n   41 |         match p256::ecdsa::Signature::try_from(bytes) {\n   42 |             Ok(p256_signature) => Ok(Signature(p256_signature)),",
           "content_sha256": "870bc135c86c31b1a04131454f9174df611635be94fbea23c9df58f60f7a1f7a",
           "source_sha256": "33d282f06a6e7d76d77dd13cbe304689838f5dd2ca56007948dc39418833317c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587142+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743716+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.rs#L41"
         },
         {
@@ -5141,8 +5156,8 @@
           "content": "   97 |         let new_s_nonzero = NonZeroScalar::new(new_s).unwrap();\n   98 |         let new_sig = p256::ecdsa::Signature::from_scalars(r, new_s_nonzero).unwrap();\n   99 |         Signature(new_sig)",
           "content_sha256": "3f403f5ecdb50dfc7676ddf953a25712ebbf6649c2f9e3f0318c7529c0468f98",
           "source_sha256": "33d282f06a6e7d76d77dd13cbe304689838f5dd2ca56007948dc39418833317c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.587147+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.743721+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.rs#L98"
         }
       ],
@@ -5180,8 +5195,8 @@
       ]
     },
     {
-      "id": "e41eaaf6-f26e-4f98-adb3-07146d7a3240",
-      "public_id": "QSI-2026-44070",
+      "id": "d2c6006c-8c78-406d-a9c6-c6261f44b15a",
+      "public_id": "QSI-2026-49982",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))",
       "description": "2 reference(s) to BN254 (alt_bn128) across 1 file(s), e.g. types/src/keyless/mod.rs:17. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -5200,8 +5215,8 @@
       "triage": null,
       "affected_asset": "source-code:BN254 (alt_bn128):transaction_signing",
       "data_source": "types/src/keyless/mod.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.612239+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.769560+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -5297,8 +5312,8 @@
           "content": "   16 | use aptos_crypto_derive::{BCSCryptoHash, CryptoHasher};\n   17 | use ark_bn254::Bn254;\n   18 | use ark_groth16::PreparedVerifyingKey;",
           "content_sha256": "cbc533ba4a0ce3f09b8065b0bbeb02e7698f15ef6145e4fd754d42bf0ce1d9b5",
           "source_sha256": "aec84ffbda933e5e148001155cd65cd20890ad13d6bacadc89818ce16bd5f232",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.620518+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.778742+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/mod.rs#L17"
         },
         {
@@ -5308,8 +5323,8 @@
           "content": "   62 | /// A VK that we use often for keyless e2e tests and smoke tests.\n   63 | pub static VERIFICATION_KEY_FOR_TESTING: Lazy<PreparedVerifyingKey<Bn254>> =\n   64 |     Lazy::new(prepared_vk_for_testing);",
           "content_sha256": "ba7a34f492e7d3a1c0740b7e81dac32c308ebe5fea669e29b5e31dbc995f6a32",
           "source_sha256": "aec84ffbda933e5e148001155cd65cd20890ad13d6bacadc89818ce16bd5f232",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.620526+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.778751+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/mod.rs#L63"
         }
       ],
@@ -5347,8 +5362,8 @@
       ]
     },
     {
-      "id": "3d574885-bd29-44ba-af06-b9e4be901266",
-      "public_id": "QSI-2026-44071",
+      "id": "9b7e046e-e5df-44d6-a8b0-a303226a626d",
+      "public_id": "QSI-2026-49983",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (1 file(s))",
       "description": "10 reference(s) to X25519 across 1 file(s), e.g. types/src/network_address/mod.rs:8. Role, judged from paths, function names and nearby code: channel key exchange (TLS, Noise, handshakes). Traffic protected by this key exchange can be recorded now and decrypted later; a hybrid exchange keeps the classical guarantees and adds post-quantum ones.",
@@ -5367,8 +5382,8 @@
       "triage": null,
       "affected_asset": "source-code:X25519:channel",
       "data_source": "types/src/network_address/mod.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.618734+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.776715+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -5464,8 +5479,8 @@
           "content": "    7 |     traits::{CryptoMaterialError, ValidCryptoMaterialStringExt},\n    8 |     x25519,\n    9 | };",
           "content_sha256": "4e7aafdd34a2f6c3daa63b8613f3d54065e58c42599434b49c750a80c7e3b156",
           "source_sha256": "4975d0e2ec175a34a40327721910a12733f99070948a0e1a9db1742b98a09853",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.671947+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.830296+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L8"
         },
         {
@@ -5475,8 +5490,8 @@
           "content": "  121 |     // human-readable x25519::PublicKey is lower-case hex encoded\n  122 |     NoiseIK(x25519::PublicKey),\n  123 |     // TODO(philiphayes): use actual handshake::MessagingProtocolVersion. we",
           "content_sha256": "74a6f19114396ccb2c0c1d35129e8a6590a3243fe4c2ba18b831a8eabde622e7",
           "source_sha256": "4975d0e2ec175a34a40327721910a12733f99070948a0e1a9db1742b98a09853",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.671956+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.830306+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L122"
         },
         {
@@ -5486,8 +5501,8 @@
           "content": "  165 | \n  166 |     #[error(\"error parsing x25519 public key: {0}\")]\n  167 |     ParseX25519PubkeyError(#[from] CryptoMaterialError),",
           "content_sha256": "614fe3ed0c2b75b2f74023381798dd798583e5bc0022e8571275e8155143e354",
           "source_sha256": "4975d0e2ec175a34a40327721910a12733f99070948a0e1a9db1742b98a09853",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.671961+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.830312+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/network_address/mod.rs#L166"
         }
       ],
@@ -5525,8 +5540,8 @@
       ]
     },
     {
-      "id": "7358a941-7ee7-4142-913c-24491e44c56e",
-      "public_id": "QSI-2026-44064",
+      "id": "cc82449f-a0a1-4b06-8818-b7226cd589dd",
+      "public_id": "QSI-2026-49976",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable X25519: role not determined (3 file(s))",
       "description": "17 reference(s) to X25519 across 3 file(s), e.g. crates/aptos-crypto/src/lib.rs:34. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5545,8 +5560,8 @@
       "triage": null,
       "affected_asset": "source-code:X25519:general",
       "data_source": "crates/aptos-crypto/src/lib.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.558551+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.713767+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -5642,8 +5657,8 @@
           "content": "   33 | pub mod weighted_config;\n   34 | pub mod x25519;\n   35 | ",
           "content_sha256": "f134d93afe02965c942aabb6047efed4da543bcb252f8809256b8b68023bd847",
           "source_sha256": "6536c4a7b7bd5d55ddc372edf35c88335b09d18de020015aebb4c482143dd907",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.570678+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.726393+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/lib.rs#L34"
         },
         {
@@ -5653,8 +5668,8 @@
           "content": "   34 |     traits::{self, CryptoMaterialError, ValidCryptoMaterial, ValidCryptoMaterialStringExt},\n   35 |     x25519,\n   36 | };",
           "content_sha256": "cd421b6ecb48ccae14cf74794f6dc5d3e6e4604dad96c9a86e09924cf387a2c6",
           "source_sha256": "98ce32435fbf406d0b5f541260fefdb82a3fbbf7a734fec59d221fe79e23245c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.570687+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.726402+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/x25519.rs#L35"
         },
         {
@@ -5664,8 +5679,8 @@
           "content": "   48 | //\n   49 | pub use x25519_dalek;\n   50 | ",
           "content_sha256": "f36c219d0438d9571c16a3e24335b85bdeb2d9d3f76329bf3b30f516d0a36b2d",
           "source_sha256": "98ce32435fbf406d0b5f541260fefdb82a3fbbf7a734fec59d221fe79e23245c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.570693+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.726407+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/x25519.rs#L49"
         },
         {
@@ -5675,8 +5690,8 @@
           "content": "   67 | #[cfg_attr(any(test, feature = \"fuzzing\"), derive(Clone))]\n   68 | pub struct PrivateKey(x25519_dalek::StaticSecret);\n   69 | ",
           "content_sha256": "62032054174ffee15e2c56a8f615a05646757644061691a29be5bedb23841d4f",
           "source_sha256": "98ce32435fbf406d0b5f541260fefdb82a3fbbf7a734fec59d221fe79e23245c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.570698+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.726412+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/crates/aptos-crypto/src/x25519.rs#L68"
         },
         {
@@ -5686,8 +5701,8 @@
           "content": "    7 |     hash::{CryptoHasher, HashValue},\n    8 |     x25519,\n    9 | };",
           "content_sha256": "60d89570fe4ecd229fa47359b9ef69023bf2d8827a46efc259eb6796a0429133",
           "source_sha256": "ee51cce722e41a743f94cf1fd4d0a38034ff59bf9fb2682700437155f1a134bb",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.570702+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.726416+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/account_address.rs#L8"
         },
         {
@@ -5697,8 +5712,8 @@
           "content": "  139 | // See this issue for potential improvements: https://github.com/aptos-labs/aptos-core/issues/3960\n  140 | pub fn from_identity_public_key(identity_public_key: x25519::PublicKey) -> AccountAddress {\n  141 |     let mut array = [0u8; AccountAddress::LENGTH];",
           "content_sha256": "a03e636a2a3651852d60d27d8b841ba7302caf9773d571273c7cdb52be0d15ad",
           "source_sha256": "ee51cce722e41a743f94cf1fd4d0a38034ff59bf9fb2682700437155f1a134bb",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.570707+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.726421+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/account_address.rs#L140"
         },
         {
@@ -5708,8 +5723,8 @@
           "content": "  143 |     // keep only the last 16 bytes\n  144 |     array.copy_from_slice(&pubkey_slice[x25519::PUBLIC_KEY_SIZE - AccountAddress::LENGTH..]);\n  145 |     AccountAddress::new(array)",
           "content_sha256": "60b516aca6b2d73706710a24a8e076ef7fe5272b002129931a954fa2f95b723f",
           "source_sha256": "ee51cce722e41a743f94cf1fd4d0a38034ff59bf9fb2682700437155f1a134bb",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.570712+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.726425+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/account_address.rs#L144"
         }
       ],
@@ -5747,8 +5762,8 @@
       ]
     },
     {
-      "id": "e6809a04-d099-47f8-b9de-3d2b5d6a6c0a",
-      "public_id": "QSI-2026-44067",
+      "id": "22da5874-417b-4eb9-8b0b-c766416634da",
+      "public_id": "QSI-2026-49979",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Ed25519: role not determined (4 file(s))",
       "description": "8 reference(s) to Ed25519 across 4 file(s), e.g. keyless/pepper/common/src/account_recovery_db.rs:6. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5767,8 +5782,8 @@
       "triage": null,
       "affected_asset": "source-code:Ed25519:general",
       "data_source": "keyless/pepper/common/src/account_recovery_db.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.584797+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.741249+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -5864,8 +5879,8 @@
           "content": "    5 | use aptos_crypto::compat::Sha3_256;\n    6 | use ed25519_dalek::Digest;\n    7 | ",
           "content_sha256": "02ad39cd3ff40d72b87d99b9b831167be159bb8a884d0ac819b09009066219c6",
           "source_sha256": "511cee839218320b0c80a0d6d39a88beed134b4f64d71adf0ab40de26e7c7f18",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.596208+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.752759+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/keyless/pepper/common/src/account_recovery_db.rs#L6"
         },
         {
@@ -5875,8 +5890,8 @@
           "content": "    6 | pub extern crate derivation_path;\n    7 | pub extern crate ed25519_dalek;\n    8 | ",
           "content_sha256": "55bd92343ceed586851337d79d69c5713464591d8dc1223743f6d2fb24e50d46",
           "source_sha256": "3f246c07d30f5759f0eec0c7600a2cd892e075aeb41c05964049e308c6ee39bc",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.596217+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.752767+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/keyless/pepper/common/src/vuf/slip_10.rs#L7"
         },
         {
@@ -5886,8 +5901,8 @@
           "content": "   12 | pub use derivation_path::{ChildIndex, DerivationPath};\n   13 | pub use ed25519_dalek::{PublicKey, SecretKey};\n   14 | use hmac::{Hmac, Mac};",
           "content_sha256": "8b5a0cd4032bfcb9514272fadbd1cc057daf874a5aa7482dca93265104c2e759",
           "source_sha256": "3f246c07d30f5759f0eec0c7600a2cd892e075aeb41c05964049e308c6ee39bc",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.596223+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.752772+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/keyless/pepper/common/src/vuf/slip_10.rs#L13"
         },
         {
@@ -5897,8 +5912,8 @@
           "content": "   16 | };\n   17 | use aptos_crypto::ed25519::Ed25519PublicKey;\n   18 | use aptos_keyless_pepper_common::{",
           "content_sha256": "a48683095bc2b7fa5407bd4300b9b89fbd2d2251dc96f1a3d2f45c32261d630f",
           "source_sha256": "46b496f4bce4ad545fc06c386c0e11adf0630d00069866a8ed1da3d913577522",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.596228+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.752776+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/keyless/pepper/service/src/dedicated_handlers/handlers.rs#L17"
         },
         {
@@ -5908,8 +5923,8 @@
           "content": "  331 |         Some(public_key_bytes) => Some(EphemeralPublicKey::ed25519(\n  332 |             Ed25519PublicKey::try_from(public_key_bytes.as_slice()).map_err(|error| {\n  333 |                 PepperServiceError::InternalError(format!(",
           "content_sha256": "d7e13e0ab6a536c71db9df79afc46eb9c48297931b6a36490cd8aafa35743d31",
           "source_sha256": "46b496f4bce4ad545fc06c386c0e11adf0630d00069866a8ed1da3d913577522",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.596232+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.752781+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/keyless/pepper/service/src/dedicated_handlers/handlers.rs#L332"
         },
         {
@@ -5919,8 +5934,8 @@
           "content": "   19 | };\n   20 | use aptos_crypto::{ed25519::Ed25519PrivateKey, PrivateKey, Uniform};\n   21 | use ark_bn254::Bn254;",
           "content_sha256": "80e0e13b47f0f080c33a94538f572b39340ce59d7a12ffc7c4d94c52db7ed7c6",
           "source_sha256": "792305e4068a22b3a300c4734f5f2d27b29f506f04f1f3107bf5bb0872e216e8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.596237+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.752786+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/circuit_testcases.rs#L20"
         },
         {
@@ -5930,8 +5945,8 @@
           "content": "  150 | \n  151 | pub(crate) static SAMPLE_ESK: Lazy<Ed25519PrivateKey> =\n  152 |     Lazy::new(Ed25519PrivateKey::generate_for_testing);",
           "content_sha256": "ce8a0b28f35892a16fb066050c2e1a8d9466731b3a205679be1bbca33213f1e3",
           "source_sha256": "792305e4068a22b3a300c4734f5f2d27b29f506f04f1f3107bf5bb0872e216e8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.596242+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.752790+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/circuit_testcases.rs#L151"
         },
         {
@@ -5941,8 +5956,8 @@
           "content": "  151 | pub(crate) static SAMPLE_ESK: Lazy<Ed25519PrivateKey> =\n  152 |     Lazy::new(Ed25519PrivateKey::generate_for_testing);\n  153 | ",
           "content_sha256": "f97b86c13556a982a6661478a0b0cb7636899a3c523c02ae57c9eadf6b002ac5",
           "source_sha256": "792305e4068a22b3a300c4734f5f2d27b29f506f04f1f3107bf5bb0872e216e8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.596247+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.752795+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/circuit_testcases.rs#L152"
         }
       ],
@@ -5980,8 +5995,8 @@
       ]
     },
     {
-      "id": "588015c1-c661-46e5-948f-025f2570b846",
-      "public_id": "QSI-2026-44068",
+      "id": "f63e9973-fec7-45c3-b0f1-73c39ee01ae4",
+      "public_id": "QSI-2026-49980",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable BN254 (alt_bn128): role not determined (6 file(s))",
       "description": "24 reference(s) to BN254 (alt_bn128) across 6 file(s), e.g. keyless/pepper/service/src/external_resources/groth16_vk.rs:6. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -6000,8 +6015,8 @@
       "triage": null,
       "affected_asset": "source-code:BN254 (alt_bn128):general",
       "data_source": "keyless/pepper/service/src/external_resources/groth16_vk.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.594258+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.750647+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -6097,8 +6112,8 @@
           "content": "    5 | use anyhow::{anyhow, Result};\n    6 | use ark_bn254::Bn254;\n    7 | use ark_groth16::{PreparedVerifyingKey, VerifyingKey};",
           "content_sha256": "8b71194ad53a02db1b15dd081670d21504c9d2bfa14c15b3003a7be10517cc79",
           "source_sha256": "6b43294876f6294ecfa0953d3d7f4ef952ba458c0f36554a9e279e38d05961b0",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605844+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762848+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/keyless/pepper/service/src/external_resources/groth16_vk.rs#L6"
         },
         {
@@ -6108,8 +6123,8 @@
           "content": "   46 |     /// Converts the on-chain verification key to a prepared verifying key\n   47 |     pub fn to_ark_prepared_verifying_key(&self) -> Result<PreparedVerifyingKey<Bn254>> {\n   48 |         // Collect and parse the gamma_abc_g1 elements",
           "content_sha256": "c92b34abfe8acfd578a35eb1f6a2d59be216084165af58b9ef55a5ef65a21880",
           "source_sha256": "6b43294876f6294ecfa0953d3d7f4ef952ba458c0f36554a9e279e38d05961b0",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605854+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762862+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/keyless/pepper/service/src/external_resources/groth16_vk.rs#L47"
         },
         {
@@ -6119,8 +6134,8 @@
           "content": "   10 | use aptos_crypto::poseidon_bn254;\n   11 | use ark_bn254::Bn254;\n   12 | use ark_groth16::{PreparedVerifyingKey, VerifyingKey};",
           "content_sha256": "8714c79b04efe1e9428b8ac6055e6cda1f3b008f535881d839713db56092f5d3",
           "source_sha256": "4e47662a9faa45b82f150000e9557dedeb476c0b1a13fb68fdcf589f9b15ec8b",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605859+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762867+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/circuit_constants.rs#L11"
         },
         {
@@ -6130,8 +6145,8 @@
           "content": "   29 | /// https://github.com/aptos-labs/devnet-groth16-keys/commit/02e5675f46ce97f8b61a4638e7a0aaeaa4351f76\n   30 | pub fn prepared_vk_for_testing() -> PreparedVerifyingKey<Bn254> {\n   31 |     // Convert the projective points to affine.",
           "content_sha256": "ac39114a4a4160acdfcf11a9c8e9f7c7a0cc8bcea12e80685e72159e5b5e8df8",
           "source_sha256": "4e47662a9faa45b82f150000e9557dedeb476c0b1a13fb68fdcf589f9b15ec8b",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605863+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762871+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/circuit_constants.rs#L30"
         },
         {
@@ -6141,8 +6156,8 @@
           "content": "  101 | pub struct Groth16TrapdoorSetup {\n  102 |     pub simulation_pk: Trapdoor<Bn254>,\n  103 |     pub prepared_vk: PreparedVerifyingKey<Bn254>,",
           "content_sha256": "f7d97ed84d9587a0def5ee51627c14fd791790704b7c80a081f25046569918aa",
           "source_sha256": "4e47662a9faa45b82f150000e9557dedeb476c0b1a13fb68fdcf589f9b15ec8b",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605868+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762876+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/circuit_constants.rs#L102"
         },
         {
@@ -6152,8 +6167,8 @@
           "content": "   20 | use aptos_crypto::{ed25519::Ed25519PrivateKey, PrivateKey, Uniform};\n   21 | use ark_bn254::Bn254;\n   22 | use ark_groth16::{PreparedVerifyingKey, VerifyingKey};",
           "content_sha256": "b89ecf8dca334e4f373b14be738d126c94d3f8274b6b2b1b7dc43bf6c882fb43",
           "source_sha256": "792305e4068a22b3a300c4734f5f2d27b29f506f04f1f3107bf5bb0872e216e8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605873+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762880+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/circuit_testcases.rs#L21"
         },
         {
@@ -6163,8 +6178,8 @@
           "content": "  204 | /// A new Groth16 VK to test the VK rotation.  Using https://raw.githubusercontent.com/aptos-labs/devnet-groth16-keys/refs/heads/master/verification_key.json\n  205 | pub(crate) static SAMPLE_UPGRADED_VK: Lazy<PreparedVerifyingKey<Bn254>> = Lazy::new(|| {\n  206 |     let alpha_g1 = g1_projective_str_to_affine(",
           "content_sha256": "7a31aaf35992b186681f27b482553c40ffd2901c7df978b53e36fe12774de45e",
           "source_sha256": "792305e4068a22b3a300c4734f5f2d27b29f506f04f1f3107bf5bb0872e216e8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605878+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762885+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/circuit_testcases.rs#L205"
         },
         {
@@ -6174,8 +6189,8 @@
           "content": "   16 | use aptos_crypto_derive::{BCSCryptoHash, CryptoHasher};\n   17 | use ark_bn254::{Bn254, Fr};\n   18 | use ark_ff::{BigInteger, PrimeField};",
           "content_sha256": "ac3f63a07e42fdc8535a951ef251dd8fa1b4d283f116eb4f18904247b0c729b9",
           "source_sha256": "9de9c6410d73e6d2f7bd990b378957661e189b58e84c4e899b18d6cb3643ed8c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605882+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762889+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/groth16_sig.rs#L17"
         },
         {
@@ -6185,8 +6200,8 @@
           "content": "  162 |         public_inputs_hash: Fr,\n  163 |         pvk: &PreparedVerifyingKey<Bn254>,\n  164 |     ) -> anyhow::Result<()> {",
           "content_sha256": "e7018db89ae59472286666220c398aa35ed4b5d2bb6162e88b9211f8f3abead4",
           "source_sha256": "9de9c6410d73e6d2f7bd990b378957661e189b58e84c4e899b18d6cb3643ed8c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605887+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762894+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/groth16_sig.rs#L163"
         },
         {
@@ -6196,8 +6211,8 @@
           "content": "  217 |         public_inputs_hash: Fr,\n  218 |         pvk: &PreparedVerifyingKey<Bn254>,\n  219 |     ) -> anyhow::Result<()> {",
           "content_sha256": "0a7b806327385c8f13574ddf1b99f4ba952029879a3d1feaa3757c313091a49e",
           "source_sha256": "9de9c6410d73e6d2f7bd990b378957661e189b58e84c4e899b18d6cb3643ed8c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.605892+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.762898+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/keyless/groth16_sig.rs#L218"
         }
       ],
@@ -6235,8 +6250,8 @@
       ]
     },
     {
-      "id": "7a868c1c-94ca-49c2-8723-e862d7374703",
-      "public_id": "QSI-2026-44069",
+      "id": "adfa14b6-882c-4c98-84d4-e3ed5d6c33a1",
+      "public_id": "QSI-2026-49981",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable RSA: role not determined (1 file(s))",
       "description": "3 reference(s) to RSA across 1 file(s), e.g. types/src/jwks/rsa/mod.rs:45. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -6255,8 +6270,8 @@
       "triage": null,
       "affected_asset": "source-code:RSA:general",
       "data_source": "types/src/jwks/rsa/mod.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:49:11.603654+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:02:07.760651+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -6352,8 +6367,8 @@
           "content": "   44 |     // TODO(keyless): Hacking around the difficulty of parsing PKCS#8-encoded PEM files with the `pem` crate\n   45 |     let der = rsa::RsaPrivateKey::from_pkcs8_pem(include_str!(\"insecure_test_jwk_private_key.txt\"))\n   46 |         .unwrap()",
           "content_sha256": "0aeed392528e804e81c65f28227f220c4f05ff1bdc4a98e6522f519cc102b9cc",
           "source_sha256": "f5389d0b7d210a3ce2ff377055ee7f2352c48d9893cf2cf8cf72f586e234bd15",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.614153+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.771695+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/jwks/rsa/mod.rs#L45"
         },
         {
@@ -6363,8 +6378,8 @@
           "content": "   61 |             kty: \"RSA\".to_string(),\n   62 |             alg: \"RS256\".to_string(),\n   63 |             e: \"AQAB\".to_string(),",
           "content_sha256": "badfcb56f8b0b0bdfdaca56c7b9f0fdb8ae485d74d3daa225b8e78a2fb450755",
           "source_sha256": "f5389d0b7d210a3ce2ff377055ee7f2352c48d9893cf2cf8cf72f586e234bd15",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.614161+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.771704+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/jwks/rsa/mod.rs#L62"
         },
         {
@@ -6374,8 +6389,8 @@
           "content": "   82 |             kty:\"RSA\".to_owned(),\n   83 |             alg:\"RS256\".to_owned(),\n   84 |             e:\"AQAB\".to_owned(),",
           "content_sha256": "d1a9a53ec8744bfbb8c1fda5c05f046f54da1d55ec5bf082d5e3ddeeb6ab385e",
           "source_sha256": "f5389d0b7d210a3ce2ff377055ee7f2352c48d9893cf2cf8cf72f586e234bd15",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:49:11.614166+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:02:07.771709+00:00",
           "url": "https://github.com/aptos-labs/aptos-core/blob/81d89f428fe8e4b69d53b4916993e9a930afc37c/types/src/jwks/rsa/mod.rs#L83"
         }
       ],
@@ -6434,16 +6449,16 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-44065",
-      "QSI-2026-44062",
-      "QSI-2026-44063",
-      "QSI-2026-44066",
-      "QSI-2026-44070",
-      "QSI-2026-44071",
-      "QSI-2026-44064",
-      "QSI-2026-44067",
-      "QSI-2026-44068",
-      "QSI-2026-44069"
+      "QSI-2026-49977",
+      "QSI-2026-49974",
+      "QSI-2026-49975",
+      "QSI-2026-49978",
+      "QSI-2026-49982",
+      "QSI-2026-49983",
+      "QSI-2026-49976",
+      "QSI-2026-49979",
+      "QSI-2026-49980",
+      "QSI-2026-49981"
     ],
     "roles": [
       {
@@ -6459,7 +6474,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-44065"
+          "QSI-2026-49977"
         ],
         "files": 1
       },
@@ -6476,7 +6491,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-44071"
+          "QSI-2026-49983"
         ],
         "files": 1
       },
@@ -6505,10 +6520,10 @@
           }
         ],
         "findings": [
-          "QSI-2026-44062",
-          "QSI-2026-44063",
-          "QSI-2026-44066",
-          "QSI-2026-44070"
+          "QSI-2026-49974",
+          "QSI-2026-49975",
+          "QSI-2026-49978",
+          "QSI-2026-49982"
         ],
         "files": 18
       },
@@ -6537,10 +6552,10 @@
           }
         ],
         "findings": [
-          "QSI-2026-44064",
-          "QSI-2026-44067",
-          "QSI-2026-44068",
-          "QSI-2026-44069"
+          "QSI-2026-49976",
+          "QSI-2026-49979",
+          "QSI-2026-49980",
+          "QSI-2026-49981"
         ],
         "files": 14
       }
@@ -6808,7 +6823,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44065",
+        "finding": "QSI-2026-49977",
         "finding_title": "Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))",
         "severity": "medium"
       },
@@ -6826,7 +6841,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44062",
+        "finding": "QSI-2026-49974",
         "finding_title": "Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s))",
         "severity": "medium"
       },
@@ -6844,7 +6859,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44063",
+        "finding": "QSI-2026-49975",
         "finding_title": "Quantum-vulnerable Ed25519: transaction and message signing (10 file(s))",
         "severity": "medium"
       },
@@ -6862,7 +6877,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44066",
+        "finding": "QSI-2026-49978",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))",
         "severity": "medium"
       },
@@ -6880,7 +6895,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44070",
+        "finding": "QSI-2026-49982",
         "finding_title": "Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -6898,7 +6913,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44071",
+        "finding": "QSI-2026-49983",
         "finding_title": "Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (1 file(s))",
         "severity": "medium"
       },
@@ -6916,7 +6931,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44064",
+        "finding": "QSI-2026-49976",
         "finding_title": "Quantum-vulnerable X25519: role not determined (3 file(s))",
         "severity": "medium"
       },
@@ -6934,7 +6949,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44067",
+        "finding": "QSI-2026-49979",
         "finding_title": "Quantum-vulnerable Ed25519: role not determined (4 file(s))",
         "severity": "medium"
       },
@@ -6952,7 +6967,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44068",
+        "finding": "QSI-2026-49980",
         "finding_title": "Quantum-vulnerable BN254 (alt_bn128): role not determined (6 file(s))",
         "severity": "medium"
       },
@@ -6970,7 +6985,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44069",
+        "finding": "QSI-2026-49981",
         "finding_title": "Quantum-vulnerable RSA: role not determined (1 file(s))",
         "severity": "medium"
       },
@@ -6988,7 +7003,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44065",
+        "finding": "QSI-2026-49977",
         "finding_title": "Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))",
         "severity": "medium"
       },
@@ -7006,7 +7021,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44062",
+        "finding": "QSI-2026-49974",
         "finding_title": "Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s))",
         "severity": "medium"
       },
@@ -7024,7 +7039,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44063",
+        "finding": "QSI-2026-49975",
         "finding_title": "Quantum-vulnerable Ed25519: transaction and message signing (10 file(s))",
         "severity": "medium"
       },
@@ -7042,7 +7057,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44066",
+        "finding": "QSI-2026-49978",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))",
         "severity": "medium"
       },
@@ -7060,7 +7075,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44070",
+        "finding": "QSI-2026-49982",
         "finding_title": "Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -7078,7 +7093,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44071",
+        "finding": "QSI-2026-49983",
         "finding_title": "Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (1 file(s))",
         "severity": "medium"
       },
@@ -7096,7 +7111,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44064",
+        "finding": "QSI-2026-49976",
         "finding_title": "Quantum-vulnerable X25519: role not determined (3 file(s))",
         "severity": "medium"
       },
@@ -7114,7 +7129,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44067",
+        "finding": "QSI-2026-49979",
         "finding_title": "Quantum-vulnerable Ed25519: role not determined (4 file(s))",
         "severity": "medium"
       },
@@ -7132,7 +7147,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44068",
+        "finding": "QSI-2026-49980",
         "finding_title": "Quantum-vulnerable BN254 (alt_bn128): role not determined (6 file(s))",
         "severity": "medium"
       },
@@ -7150,7 +7165,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44069",
+        "finding": "QSI-2026-49981",
         "finding_title": "Quantum-vulnerable RSA: role not determined (1 file(s))",
         "severity": "medium"
       }
@@ -7175,11 +7190,11 @@
     },
     {
       "name": "crediting",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "dependencies",
-      "version": "1.4.4"
+      "version": "1.6.0"
     },
     {
       "name": "hndl",
@@ -7188,6 +7203,10 @@
     {
       "name": "inventory_document",
       "version": "1.1.0"
+    },
+    {
+      "name": "key_storage",
+      "version": "1.0.0"
     },
     {
       "name": "mpc",
@@ -7199,7 +7218,7 @@
     },
     {
       "name": "source_code",
-      "version": "1.10.2"
+      "version": "1.11.0"
     },
     {
       "name": "tls_code",
@@ -7223,7 +7242,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.16.2"
+      "version": "1.20.0"
     },
     {
       "name": "OSV.dev API",
@@ -7688,19 +7707,6 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "ed25519-dalek (ed25519-dalek)",
-      "location": "crates/aptos-crypto/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1,
-      "origin": "dependency"
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
       "library": "bls12_381 (bls12_381)",
       "location": "crates/aptos-crypto/Cargo.toml",
       "quantum_status": "not_applicable",
@@ -7714,7 +7720,20 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "ring (ring (Rust))",
+      "library": "x25519-dalek (ed25519-dalek)",
+      "location": "crates/aptos-crypto/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "ed25519-dalek (ed25519-dalek)",
       "location": "crates/aptos-crypto/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -7753,7 +7772,7 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "x25519-dalek (ed25519-dalek)",
+      "library": "ring (ring (Rust))",
       "location": "crates/aptos-crypto/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -7805,20 +7824,7 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "ring (ring (Rust))",
-      "location": "types/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1,
-      "origin": "dependency"
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "jsonwebtoken (jsonwebtoken (Node))",
       "location": "types/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -7844,7 +7850,20 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "jsonwebtoken (jsonwebtoken (Node))",
+      "library": "p256 (RustCrypto elliptic curves)",
+      "location": "types/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "ring (ring (Rust))",
       "location": "types/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -8739,19 +8758,6 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "ed25519-dalek (ed25519-dalek)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 2,
-      "rows": 2,
-      "examples": [
-        "crates/aptos-crypto/Cargo.toml",
-        "keyless/pepper/common/Cargo.toml"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "workspace",
       "library": "bls12_381 (bls12_381)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -8764,14 +8770,26 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "ring (ring (Rust))",
+      "library": "x25519-dalek (ed25519-dalek)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "crates/aptos-crypto/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "workspace",
+      "library": "ed25519-dalek (ed25519-dalek)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 2,
       "rows": 2,
       "examples": [
         "crates/aptos-crypto/Cargo.toml",
-        "types/Cargo.toml"
+        "keyless/pepper/common/Cargo.toml"
       ]
     },
     {
@@ -8802,13 +8820,14 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "x25519-dalek (ed25519-dalek)",
+      "library": "ring (ring (Rust))",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
+      "count": 2,
+      "rows": 2,
       "examples": [
-        "crates/aptos-crypto/Cargo.toml"
+        "crates/aptos-crypto/Cargo.toml",
+        "types/Cargo.toml"
       ]
     },
     {

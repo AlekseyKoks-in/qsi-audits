@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-44411",
+            "qsiId": "QSI-2026-50324",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,7 +68,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-44412",
+            "qsiId": "QSI-2026-50325",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -77,13 +77,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/xrpl-validator-keys-tool @ 4c0fb75eec96/c985c5c9-ede6-4e51-94c7-204dcc5b6410"
+        "id": "qsi/xrpl-validator-keys-tool @ 4c0fb75eec96/208bd147-7985-4479-ba51-18a41bf67470"
       },
       "properties": {
-        "qsiContentSha256": "6c80fbf6ef1fde2e9b4ec20bc59ab9c5a4d6c204de73c4f1183def1a8b838901",
+        "qsiContentSha256": "f8dff8a3487151c9960f43793e556d0c583460b867ea88dd687cdab0cacafcbb",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "web3",
-        "qsiGeneratedAt": "2026-11-23T14:10:58.101921+00:00",
+        "qsiGeneratedAt": "2026-11-24T12:29:19.833820+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

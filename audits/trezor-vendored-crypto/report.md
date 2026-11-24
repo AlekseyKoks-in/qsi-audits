@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 13:24 UTC |
+| Report date | 2026-11-24 11:34 UTC |
 | Report version | 1 |
-| Audit run | adc96479-47ec-4f04-b1ba-a6c206d3a690 (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | b6998e49-e0de-422c-82c3-e7e1e71a1ff7 (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `9b69ef40818565677dd438852d5d830a74714b3fc1581aface0f8964c7725226` |
+| Content SHA-256 | `a8a4a4ee3674869449b4e7825689e0dedcad75a74eaf6b1995352b8b76855802` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -45,9 +45,10 @@ Repository: <https://github.com/trezor/trezor-firmware> @ `72489948b3c44a37598de
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 504 | vendor/mldsa-native/.github/actions/cbmc/report.py: 297 lines scanned with 16 rule patterns and 340 registry patterns; vendor/mldsa-native/dev/aarch64_clean/meta.h: 247 lines scanned with 16 rule patterns and 340 registry patterns; vendor/mldsa-native/dev/aarch64_clean/src/aarch64_zetas.c: 231 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 504 | vendor/mldsa-native/.github/actions/cbmc/report.py: 297 lines scanned with 17 rule patterns and 340 registry patterns; vendor/mldsa-native/dev/aarch64_clean/meta.h: 247 lines scanned with 17 rule patterns and 340 registry patterns; vendor/mldsa-native/dev/aarch64_clean/src/aarch64_zetas.c: 231 lines scanned with 17 rule patterns and 340 registry patterns |
 | entropy | checked | 1 | random-number generation: 504 code files read with 519 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | mpc | checked | 1 | Paillier in 1 file(s), 0 in a multi-party context; modulus proofs absent |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -66,13 +67,13 @@ Static review of the source tree trezor-vendored-crypto at 72489948b3c44a37598de
 
 ## 7. Detailed findings
 
-### QSI-2026-43711 — Quantum-vulnerable ECDSA: transaction and message signing (21 file(s))
+### QSI-2026-49623 — Quantum-vulnerable ECDSA: transaction and message signing (21 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: vendor/secp256k1-zkp/contrib/lax_der_parsing.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:24 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:34 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -174,13 +175,13 @@ _file_excerpt · [vendor/secp256k1-zkp/include/secp256k1.h](https://github.com/t
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43713 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s))
+### QSI-2026-49625 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Schnorr (BIP-340):transaction_signing`
 - Data source: vendor/secp256k1-zkp/include/secp256k1_schnorrsig.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:24 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:34 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -258,13 +259,13 @@ _file_excerpt · [vendor/secp256k1-zkp/src/modules/schnorrsig/main_impl.h](https
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43712 — Quantum-vulnerable ECDH: role not determined (4 file(s))
+### QSI-2026-49624 — Quantum-vulnerable ECDH: role not determined (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDH:general`
 - Data source: vendor/secp256k1-zkp/include/secp256k1_ecdh.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:24 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:34 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -364,8 +365,8 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (21), Schnorr (BIP-340) (3) | QSI-2026-43711, QSI-2026-43713 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | ECDH (4) | QSI-2026-43712 | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility |
+| **transaction and message signing** | ECDSA (21), Schnorr (BIP-340) (3) | QSI-2026-49623, QSI-2026-49625 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | ECDH (4) | QSI-2026-49624 | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -401,12 +402,12 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-43711 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43713 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43712 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-43711 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43713 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-43712 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P3 | QSI-2026-49623 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49625 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49624 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-49623 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49625 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-49624 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -414,19 +415,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents

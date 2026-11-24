@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -28,37 +28,12 @@
                 "security-severity": "9.5"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125) для пакета npm @storybook/core версии 8.6.18: Storybook: Missing origin validation in Storybook preview allows code injection from malicious websites. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (8.6.19). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125) для пакета npm @storybook/core версии 8.6.18: Storybook: Missing origin validation in Storybook preview allows code injection from malicious websites. Ни один исходный файл продукта не импортирует @storybook/core: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (8.6.19). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125) для пакета npm @storybook/core версии 8.6.18: Storybook: Missing origin validation in Storybook preview allows code injection from malicious websites. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (8.6.19). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125) для пакета npm @storybook/core версии 8.6.18: Storybook: Missing origin validation in Storybook preview allows code injection from malicious websites. Ни один исходный файл продукта не импортирует @storybook/core: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (8.6.19). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-f2ph-cmg5-wxc8"
-            },
-            {
-              "id": "CODE-HARDCODED-SECRET",
-              "name": "CodeHardcodedSecret",
-              "shortDescription": {
-                "text": "Возможный секрет в коде ts/state/smart/fun/giphy.preload.ts"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "1 значений, похожих на секреты, типа generic_assignment (первое — строка 22). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "help": {
-                "text": "1 значений, похожих на секреты, типа generic_assignment (первое — строка 22). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
             },
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -84,6 +59,31 @@
                 "text": "2 упоминаний X25519 в 2 файл(ах), например ts/textsecure/MessageReceiver.preload.ts:1380. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»). Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "CODE-HARDCODED-SECRET",
+              "name": "CodeHardcodedSecret",
+              "shortDescription": {
+                "text": "Возможный секрет в коде ts/state/smart/fun/giphy.preload.ts"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "1 значений, похожих на секреты, типа generic_assignment (первое — строка 22). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "1 значений, похожих на секреты, типа generic_assignment (первое — строка 22). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
             },
             {
               "id": "DEP-ADVISORY-DEV",
@@ -125,7 +125,7 @@
             "qsiFindingKey/v1": "8891ea08cfd7d7a8a621f34634f8cad3"
           },
           "properties": {
-            "qsiId": "QSI-2026-43615",
+            "qsiId": "QSI-2026-49527",
             "severity": "critical",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -143,7 +143,7 @@
             "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
           },
           "properties": {
-            "qsiId": "QSI-2026-43608",
+            "qsiId": "QSI-2026-49520",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -161,7 +161,7 @@
             "qsiFindingKey/v1": "92b03968a4e7444fed6a04caabf905d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-43643",
+            "qsiId": "QSI-2026-49555",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -179,42 +179,12 @@
             "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
           },
           "properties": {
-            "qsiId": "QSI-2026-43644",
+            "qsiId": "QSI-2026-49556",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "7.5"
           }
-        },
-        {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 1,
-          "level": "error",
-          "message": {
-            "text": "Возможный секрет в коде ts/state/smart/fun/giphy.preload.ts"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "1d1fad58b69cbbc9644f90db24d2237f"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43606",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "ts/state/smart/fun/giphy.preload.ts"
-                },
-                "region": {
-                  "startLine": 22
-                }
-              }
-            }
-          ]
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
@@ -227,7 +197,7 @@
             "qsiFindingKey/v1": "7bdffbe6d1e957f01b13bd54158d627b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43610",
+            "qsiId": "QSI-2026-49522",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -245,7 +215,7 @@
             "qsiFindingKey/v1": "569f88ac5a95073354780369d2fe6ac7"
           },
           "properties": {
-            "qsiId": "QSI-2026-43613",
+            "qsiId": "QSI-2026-49525",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -263,7 +233,7 @@
             "qsiFindingKey/v1": "84ae338a2b32878da2f742931bf773d1"
           },
           "properties": {
-            "qsiId": "QSI-2026-43614",
+            "qsiId": "QSI-2026-49526",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -281,7 +251,7 @@
             "qsiFindingKey/v1": "625a9822aed560fc576eef8fdd5fa542"
           },
           "properties": {
-            "qsiId": "QSI-2026-43616",
+            "qsiId": "QSI-2026-49528",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -299,7 +269,7 @@
             "qsiFindingKey/v1": "0a93b72f516675f607465928b63538e1"
           },
           "properties": {
-            "qsiId": "QSI-2026-43617",
+            "qsiId": "QSI-2026-49529",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -317,7 +287,7 @@
             "qsiFindingKey/v1": "6d5e4db975d93e2e59896578f7b391ac"
           },
           "properties": {
-            "qsiId": "QSI-2026-43622",
+            "qsiId": "QSI-2026-49534",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -335,7 +305,7 @@
             "qsiFindingKey/v1": "7daf1aa1d161d1960fe6c2ecfd739abb"
           },
           "properties": {
-            "qsiId": "QSI-2026-43624",
+            "qsiId": "QSI-2026-49536",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -353,7 +323,7 @@
             "qsiFindingKey/v1": "e5fc7fb305d695f4bd646a38bd44d3d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-43627",
+            "qsiId": "QSI-2026-49539",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -371,7 +341,7 @@
             "qsiFindingKey/v1": "e5fc7fb305d695f4bd646a38bd44d3d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-43628",
+            "qsiId": "QSI-2026-49540",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -389,7 +359,7 @@
             "qsiFindingKey/v1": "499e0aaed8d045b78e6738394fe32c73"
           },
           "properties": {
-            "qsiId": "QSI-2026-43629",
+            "qsiId": "QSI-2026-49541",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -407,7 +377,7 @@
             "qsiFindingKey/v1": "7bdffbe6d1e957f01b13bd54158d627b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43635",
+            "qsiId": "QSI-2026-49547",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -425,7 +395,7 @@
             "qsiFindingKey/v1": "9fc9a9d3c10cc50ab9d398c0a1b5573c"
           },
           "properties": {
-            "qsiId": "QSI-2026-43637",
+            "qsiId": "QSI-2026-49549",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -443,7 +413,7 @@
             "qsiFindingKey/v1": "569f88ac5a95073354780369d2fe6ac7"
           },
           "properties": {
-            "qsiId": "QSI-2026-43641",
+            "qsiId": "QSI-2026-49553",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -461,7 +431,7 @@
             "qsiFindingKey/v1": "84ae338a2b32878da2f742931bf773d1"
           },
           "properties": {
-            "qsiId": "QSI-2026-43642",
+            "qsiId": "QSI-2026-49554",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -470,7 +440,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (2 файл(ов))"
@@ -479,7 +449,7 @@
             "qsiFindingKey/v1": "eea411a740e8c8ff6e16a6953594accc"
           },
           "properties": {
-            "qsiId": "QSI-2026-43607",
+            "qsiId": "QSI-2026-49519",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -488,7 +458,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый X25519: роль не определена (3 файл(ов))"
@@ -497,7 +467,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-43605",
+            "qsiId": "QSI-2026-49517",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -515,7 +485,7 @@
             "qsiFindingKey/v1": "156b25f742ea6e412aca32e75ea63ea3"
           },
           "properties": {
-            "qsiId": "QSI-2026-43609",
+            "qsiId": "QSI-2026-49521",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -533,7 +503,7 @@
             "qsiFindingKey/v1": "dc8a3b4381582f7ca9e0a04d6a61f3b9"
           },
           "properties": {
-            "qsiId": "QSI-2026-43611",
+            "qsiId": "QSI-2026-49523",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -551,7 +521,7 @@
             "qsiFindingKey/v1": "28eb2fe4fbeee74df366ab31937b063d"
           },
           "properties": {
-            "qsiId": "QSI-2026-43612",
+            "qsiId": "QSI-2026-49524",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -569,7 +539,7 @@
             "qsiFindingKey/v1": "cb07144a7faeb4977dc1ccbd8f5f67de"
           },
           "properties": {
-            "qsiId": "QSI-2026-43619",
+            "qsiId": "QSI-2026-49531",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -587,7 +557,7 @@
             "qsiFindingKey/v1": "2a588f34d80f70307f829bf6cb6872dd"
           },
           "properties": {
-            "qsiId": "QSI-2026-43620",
+            "qsiId": "QSI-2026-49532",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -605,7 +575,7 @@
             "qsiFindingKey/v1": "83276b96c27acd81b8ecfc5ec24f807a"
           },
           "properties": {
-            "qsiId": "QSI-2026-43623",
+            "qsiId": "QSI-2026-49535",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -623,7 +593,7 @@
             "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
           },
           "properties": {
-            "qsiId": "QSI-2026-43625",
+            "qsiId": "QSI-2026-49537",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -641,7 +611,7 @@
             "qsiFindingKey/v1": "7a9a0e722bf8efc5a1269e081d19f5ff"
           },
           "properties": {
-            "qsiId": "QSI-2026-43626",
+            "qsiId": "QSI-2026-49538",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -659,7 +629,7 @@
             "qsiFindingKey/v1": "6947063401774d3473bcd5dd2ac52f47"
           },
           "properties": {
-            "qsiId": "QSI-2026-43630",
+            "qsiId": "QSI-2026-49542",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -677,7 +647,7 @@
             "qsiFindingKey/v1": "8a5cfb657d119f8618ef326aabdb8b68"
           },
           "properties": {
-            "qsiId": "QSI-2026-43631",
+            "qsiId": "QSI-2026-49543",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -695,7 +665,7 @@
             "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
           },
           "properties": {
-            "qsiId": "QSI-2026-43632",
+            "qsiId": "QSI-2026-49544",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -713,7 +683,7 @@
             "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
           },
           "properties": {
-            "qsiId": "QSI-2026-43633",
+            "qsiId": "QSI-2026-49545",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -731,7 +701,7 @@
             "qsiFindingKey/v1": "dc8a3b4381582f7ca9e0a04d6a61f3b9"
           },
           "properties": {
-            "qsiId": "QSI-2026-43636",
+            "qsiId": "QSI-2026-49548",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -749,7 +719,7 @@
             "qsiFindingKey/v1": "399aced54289841396a961e1f0ad3cc6"
           },
           "properties": {
-            "qsiId": "QSI-2026-43638",
+            "qsiId": "QSI-2026-49550",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -767,7 +737,7 @@
             "qsiFindingKey/v1": "28eb2fe4fbeee74df366ab31937b063d"
           },
           "properties": {
-            "qsiId": "QSI-2026-43639",
+            "qsiId": "QSI-2026-49551",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -785,7 +755,7 @@
             "qsiFindingKey/v1": "6d6a81c06eea2509f12340dbbaf54bdf"
           },
           "properties": {
-            "qsiId": "QSI-2026-43640",
+            "qsiId": "QSI-2026-49552",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -803,7 +773,7 @@
             "qsiFindingKey/v1": "e11c4dd85b502f6788535ca5ffc4a878"
           },
           "properties": {
-            "qsiId": "QSI-2026-43618",
+            "qsiId": "QSI-2026-49530",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -821,7 +791,7 @@
             "qsiFindingKey/v1": "e7cbfff98eecf7aacf2ee6c13efb7a4f"
           },
           "properties": {
-            "qsiId": "QSI-2026-43621",
+            "qsiId": "QSI-2026-49533",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -839,12 +809,42 @@
             "qsiFindingKey/v1": "ea7a7100367ab3684c77769adaa042b1"
           },
           "properties": {
-            "qsiId": "QSI-2026-43634",
+            "qsiId": "QSI-2026-49546",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
             "security-severity": "3.0"
           }
+        },
+        {
+          "ruleId": "CODE-HARDCODED-SECRET",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Возможный секрет в коде ts/state/smart/fun/giphy.preload.ts"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1d1fad58b69cbbc9644f90db24d2237f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49518",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "ts/state/smart/fun/giphy.preload.ts"
+                },
+                "region": {
+                  "startLine": 22
+                }
+              }
+            }
+          ]
         },
         {
           "ruleId": "DEP-ADVISORY-DEV",
@@ -857,7 +857,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-43645",
+            "qsiId": "QSI-2026-49557",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -875,13 +875,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/signal-desktop @ 17502b9d1a9e/550fb676-beca-47a2-96ac-d04b32824d4f"
+        "id": "qsi/signal-desktop @ 17502b9d1a9e/0fcf75cd-1f8b-45e3-928e-7efc0a030b21"
       },
       "properties": {
-        "qsiContentSha256": "bf42495eef7461a5e088431dcfce02a81639871bcb40c512aeec5fa93b685429",
+        "qsiContentSha256": "435c1ba319928a3ce0b0c42b8cd1309a9cec47966f4a876a8e0d40d465da3f63",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:15:44.784126+00:00",
+        "qsiGeneratedAt": "2026-11-24T11:25:13.606167+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

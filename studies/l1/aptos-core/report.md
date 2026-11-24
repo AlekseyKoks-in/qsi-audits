@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 13:49 UTC |
+| Report date | 2026-11-24 12:02 UTC |
 | Report version | 1 |
-| Audit run | 73b4940e-f8b9-423e-8ae7-a8aad41085e6 (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | 630aa0c7-322b-44e2-97a9-1d55c405f16c (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `b7a7dc4c731404676151f2d73f6db5c6d0e609baf47398e68952c4d8896584ea` |
+| Content SHA-256 | `92a5d00f642106ef4521894ba02b2b0a048a6a1847f52c3f1848e345ec0e052b` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -45,12 +45,13 @@ Repository: <https://github.com/aptos-labs/aptos-core> @ `81d89f428fe8e4b69d53b4
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 331 | aptos-move/framework/src/aptos.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns; aptos-move/framework/src/built_package.rs: 773 lines scanned with 16 rule patterns and 340 registry patterns; aptos-move/framework/src/chunked_publish.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 331 | aptos-move/framework/src/aptos.rs: 223 lines scanned with 17 rule patterns and 340 registry patterns; aptos-move/framework/src/built_package.rs: 773 lines scanned with 17 rule patterns and 340 registry patterns; aptos-move/framework/src/chunked_publish.rs: 223 lines scanned with 17 rule patterns and 340 registry patterns |
 | dependencies | checked | 4 | crates/aptos-crypto/Cargo.toml: 78 dependencies parsed (0 pinned); keyless/pepper/common/Cargo.toml: 18 dependencies parsed (0 pinned); keyless/pepper/service/Cargo.toml: 36 dependencies parsed (0 pinned) |
 | secrets | checked | 3 | crates/aptos-crypto/src/x25519.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); types/src/network_address/mod.rs: value(s) at line(s) 908 (test_network_address_display), 1069 (test_find_noise_proto), 1089 (test_parse_handshake) are declared inside a fixture and treated as test data, although the file itself is not test code; types/src/network_address/mod.rs: 5 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | keys | checked | 1 | types/src/jwks/rsa/insecure_test_jwk_private_key.txt: private key block at line 1 is not reported: its path marks it as a non-production key ("insecure") |
 | certificates_and_keys | checked | 1 | types/src/jwks/rsa/insecure_test_jwk_private_key.txt: certificates/keys parsed |
 | entropy | checked | 1 | random-number generation: 331 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
 | osv_advisories | not checked | 1 | no exactly pinned versions to query |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -70,13 +71,13 @@ Static review of the source tree aptos-core at 81d89f428fe8e4b69d53b4916993e9a93
 
 ## 7. Detailed findings
 
-### QSI-2026-44065 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
+### QSI-2026-49977 — Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:X25519:key_wrapping`
 - Data source: crates/aptos-crypto/src/noise.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 36.9 / 100
 - CVSS v3.1: not applicable
 
@@ -122,13 +123,13 @@ _file_excerpt · [crates/aptos-crypto/src/noise.rs](https://github.com/aptos-lab
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44062 — Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s))
+### QSI-2026-49974 — Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:BLS12-381:transaction_signing`
 - Data source: crates/aptos-crypto/src/bls12381/bls12381_keys.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -222,13 +223,13 @@ _file_excerpt · [crates/aptos-crypto/src/constant_time/zkcrypto_scalar_mul.rs](
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44063 — Quantum-vulnerable Ed25519: transaction and message signing (10 file(s))
+### QSI-2026-49975 — Quantum-vulnerable Ed25519: transaction and message signing (10 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: crates/aptos-crypto/src/ed25519/ed25519_keys.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -330,13 +331,13 @@ _file_excerpt · [crates/aptos-crypto/src/multi_ed25519.rs](https://github.com/a
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44066 — Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))
+### QSI-2026-49978 — Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: crates/aptos-crypto/src/secp256k1_ecdsa.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -430,13 +431,13 @@ _file_excerpt · [crates/aptos-crypto/src/secp256r1_ecdsa/secp256r1_ecdsa_sigs.r
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44070 — Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))
+### QSI-2026-49982 — Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:BN254 (alt_bn128):transaction_signing`
 - Data source: types/src/keyless/mod.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -474,13 +475,13 @@ _file_excerpt · [types/src/keyless/mod.rs](https://github.com/aptos-labs/aptos-
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44071 — Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (1 file(s))
+### QSI-2026-49983 — Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:X25519:channel`
 - Data source: types/src/network_address/mod.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -526,13 +527,13 @@ _file_excerpt · [types/src/network_address/mod.rs](https://github.com/aptos-lab
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44064 — Quantum-vulnerable X25519: role not determined (3 file(s))
+### QSI-2026-49976 — Quantum-vulnerable X25519: role not determined (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:X25519:general`
 - Data source: crates/aptos-crypto/src/lib.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -610,13 +611,13 @@ _file_excerpt · [types/src/account_address.rs](https://github.com/aptos-labs/ap
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44067 — Quantum-vulnerable Ed25519: role not determined (4 file(s))
+### QSI-2026-49979 — Quantum-vulnerable Ed25519: role not determined (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: keyless/pepper/common/src/account_recovery_db.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -702,13 +703,13 @@ _file_excerpt · [types/src/keyless/circuit_testcases.rs](https://github.com/apt
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44068 — Quantum-vulnerable BN254 (alt_bn128): role not determined (6 file(s))
+### QSI-2026-49980 — Quantum-vulnerable BN254 (alt_bn128): role not determined (6 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:BN254 (alt_bn128):general`
 - Data source: keyless/pepper/service/src/external_resources/groth16_vk.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -810,13 +811,13 @@ _file_excerpt · [types/src/keyless/groth16_sig.rs](https://github.com/aptos-lab
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44069 — Quantum-vulnerable RSA: role not determined (1 file(s))
+### QSI-2026-49981 — Quantum-vulnerable RSA: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:general`
 - Data source: types/src/jwks/rsa/mod.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:49 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:02 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -901,10 +902,10 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **key wrapping and data encryption at rest** | X25519 (1) | QSI-2026-44065 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **channel key exchange (TLS, Noise, handshakes)** | X25519 (1) | QSI-2026-44071 | Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols) |
-| **transaction and message signing** | Ed25519 (10), BLS12-381 (4), ECDSA (3), BN254 (alt_bn128) (1) | QSI-2026-44062, QSI-2026-44063, QSI-2026-44066, QSI-2026-44070 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | BN254 (alt_bn128) (6), Ed25519 (4), X25519 (3), RSA (1) | QSI-2026-44064, QSI-2026-44067, QSI-2026-44068, QSI-2026-44069 | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | X25519 (1) | QSI-2026-49977 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **channel key exchange (TLS, Noise, handshakes)** | X25519 (1) | QSI-2026-49983 | Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols) |
+| **transaction and message signing** | Ed25519 (10), BLS12-381 (4), ECDSA (3), BN254 (alt_bn128) (1) | QSI-2026-49974, QSI-2026-49975, QSI-2026-49978, QSI-2026-49982 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | BN254 (alt_bn128) (6), Ed25519 (4), X25519 (3), RSA (1) | QSI-2026-49976, QSI-2026-49979, QSI-2026-49980, QSI-2026-49981 | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -943,26 +944,26 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-44065 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44062 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44063 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44066 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44070 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44071 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44064 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44067 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44068 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44069 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-44065 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-44062 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-44063 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44066 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44070 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-44071 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-44064 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-44067 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44068 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-44069 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-49977 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49974 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49975 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49978 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49982 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49983 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49976 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49979 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49980 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49981 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-49977 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-49974 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-49975 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49978 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49982 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-49983 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-49976 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-49979 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49980 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-49981 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -970,19 +971,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -1029,12 +1031,12 @@ By origin: dependency manifests 14 (0 Shor-breakable) · own code 79 (55 Shor-br
 | Poseidon |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 9 | 9 | crates/aptos-crypto/src/lib.rs:24; crates/aptos-crypto/src/poseidon_bn254/constants.rs:4; crates/aptos-crypto/src/poseidon_bn254/keyless.rs:6 |
 | SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | crates/aptos-crypto/src/noise.rs:189 |
 | SHA-3 | SHA3-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 2 | 2 | crates/aptos-crypto/src/asymmetric_encryption/elgamal_curve25519_aes256_gcm.rs:32; keyless/pepper/common/src/account_recovery_db.rs:28 |
-| Crypto library | workspace | ed25519-dalek (ed25519-dalek) | n/a | acceptable | 2 | 2 | crates/aptos-crypto/Cargo.toml; keyless/pepper/common/Cargo.toml |
 | Crypto library | workspace | bls12_381 (bls12_381) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
-| Crypto library | workspace | ring (ring (Rust)) | n/a | acceptable | 2 | 2 | crates/aptos-crypto/Cargo.toml; types/Cargo.toml |
+| Crypto library | workspace | x25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
+| Crypto library | workspace | ed25519-dalek (ed25519-dalek) | n/a | acceptable | 2 | 2 | crates/aptos-crypto/Cargo.toml; keyless/pepper/common/Cargo.toml |
 | Crypto library | workspace | p256 (RustCrypto elliptic curves) | n/a | acceptable | 2 | 2 | crates/aptos-crypto/Cargo.toml; types/Cargo.toml |
 | Crypto library | workspace | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
-| Crypto library | workspace | x25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | crates/aptos-crypto/Cargo.toml |
+| Crypto library | workspace | ring (ring (Rust)) | n/a | acceptable | 2 | 2 | crates/aptos-crypto/Cargo.toml; types/Cargo.toml |
 | Crypto library | workspace | jsonwebtoken (jsonwebtoken (Node)) | n/a | acceptable | 3 | 3 | keyless/pepper/common/Cargo.toml; keyless/pepper/service/Cargo.toml; types/Cargo.toml |
 | Crypto library | workspace | rsa (RustCrypto rsa) | n/a | acceptable | 1 | 1 | types/Cargo.toml |
 | GCM mode |  |  | n/a | acceptable | 1 | 1 | crates/aptos-crypto/src/asymmetric_encryption/elgamal_curve25519_aes256_gcm.rs |

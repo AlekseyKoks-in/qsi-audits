@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 14:10 UTC |
+| Report date | 2026-11-24 12:28 UTC |
 | Report version | 1 |
-| Audit run | 3e857c1c-b3f3-42d3-9898-b8e8bb0aa742 (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | 124d0641-3e54-4726-ad7c-ed3df8e8f1cc (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Web3 project |
-| Content SHA-256 | `4fd3c29df9370d3276dc083cfce139b8f1a50345f000c35615233f03f0e0df9a` |
+| Content SHA-256 | `972c472877a17df448360aed5db7e566d4e4124a8f3edbb021595a6cb9a4687a` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -45,13 +45,14 @@ Repository: <https://github.com/XRPLF/rippled> @ `82217fbd0ac4234c3a97fedcf94f35
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 1232 | .github/scripts/check-pr-description.py: 85 lines scanned with 16 rule patterns and 340 registry patterns; .github/scripts/format-inline-bash.py: 403 lines scanned with 16 rule patterns and 340 registry patterns; .github/scripts/levelization/generate.py: 335 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 1232 | .github/scripts/check-pr-description.py: 85 lines scanned with 17 rule patterns and 340 registry patterns; .github/scripts/format-inline-bash.py: 403 lines scanned with 17 rule patterns and 340 registry patterns; .github/scripts/levelization/generate.py: 335 lines scanned with 17 rule patterns and 340 registry patterns |
 | certificates | error (not checked) | 1 | bin/check-distrusted-roots.sh line 36: certificate could not be parsed (ValueError) |
 | certificates_and_keys | checked | 1 | bin/check-distrusted-roots.sh: certificates/keys parsed |
 | dependencies | checked | 4 | cmake/scripts/codegen/requirements.txt: 4 dependencies parsed (0 pinned); crates/Cargo.lock: 33 dependencies parsed (33 pinned); crates/Cargo.toml: 1 dependencies parsed (0 pinned) |
 | secrets | checked | 2 | include/xrpl/config/Constants.h: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); src/xrpld/rpc/handlers/transaction/Simulate.cpp: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | entropy | checked | 1 | random-number generation: 1232 code files read with 12 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| crediting | checked | 1 | payment crediting: 2 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| crediting | checked | 1 | payment crediting: 2 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node, 0 from fetched Solana transactions; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
 | osv_advisories | checked | 1 | 33 pinned packages queried at OSV.dev; 0 affected |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -62,7 +63,7 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree xrpl-rippled at 82217fbd0ac4234c3a97fedcf94f35e5796aa9f2. 1246 files analysed; of 2189 files, 685 are test, fuzzing, benchmark or example code and were left out, 258 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .clang-format, .clang-tidy, .codecov.yml, .cspell.config.yaml, .envrc. 37 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree xrpl-rippled at 82217fbd0ac4234c3a97fedcf94f35e5796aa9f2. 1246 files analysed; of 2189 files, 685 are test, fuzzing, benchmark or example code and were left out, 258 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .clang-format, .clang-tidy, .codecov.yml, .cspell.config.yaml, .envrc. 134 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
@@ -71,13 +72,13 @@ Static review of the source tree xrpl-rippled at 82217fbd0ac4234c3a97fedcf94f35e
 
 ## 7. Detailed findings
 
-### QSI-2026-44407 — Quantum-vulnerable ECDSA: transaction and message signing (5 file(s))
+### QSI-2026-50320 — Quantum-vulnerable ECDSA: transaction and message signing (5 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: include/xrpl/protocol/detail/secp256k1.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:28 UTC
 - Priority score: 33.0 / 100
 - CVSS v3.1: not applicable
 
@@ -179,13 +180,13 @@ _file_excerpt · [src/xrpld/rpc/handlers/admin/keygen/WalletPropose.cpp](https:/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44409 — Quantum-vulnerable Ed25519: transaction and message signing (3 file(s))
+### QSI-2026-50322 — Quantum-vulnerable Ed25519: transaction and message signing (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: src/libxrpl/protocol/PublicKey.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:28 UTC
 - Priority score: 33.0 / 100
 - CVSS v3.1: not applicable
 
@@ -271,13 +272,13 @@ _file_excerpt · [src/xrpld/rpc/handlers/admin/keygen/WalletPropose.cpp](https:/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44404 — Quantum-vulnerable ECDSA: role not determined (15 file(s))
+### QSI-2026-50317 — Quantum-vulnerable ECDSA: role not determined (15 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: conanfile.py
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:28 UTC
 - Priority score: 31.7 / 100
 - CVSS v3.1: not applicable
 
@@ -379,13 +380,13 @@ _file_excerpt · [include/xrpl/protocol/STValidation.h](https://github.com/XRPLF
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44405 — Quantum-vulnerable Ed25519: role not determined (3 file(s))
+### QSI-2026-50318 — Quantum-vulnerable Ed25519: role not determined (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: conanfile.py
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:28 UTC
 - Priority score: 31.7 / 100
 - CVSS v3.1: not applicable
 
@@ -455,13 +456,13 @@ _file_excerpt · [src/xrpld/rpc/detail/RPCHelpers.cpp](https://github.com/XRPLF/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44410 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
+### QSI-2026-50323 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:authentication`
 - Data source: src/xrpld/app/main/NodeIdentity.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:28 UTC
 - Priority score: 31.7 / 100
 - CVSS v3.1: not applicable
 
@@ -499,13 +500,13 @@ _file_excerpt · [src/xrpld/app/main/NodeIdentity.cpp](https://github.com/XRPLF/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44406 — Quantum-vulnerable EC-ElGamal: role not determined (2 file(s))
+### QSI-2026-50319 — Quantum-vulnerable EC-ElGamal: role not determined (2 file(s))
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:EC-ElGamal:general`
 - Data source: include/xrpl/protocol/Protocol.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:28 UTC
 - Priority score: 25.2 / 100
 - CVSS v3.1: not applicable
 
@@ -559,13 +560,13 @@ _file_excerpt · [src/libxrpl/protocol/ConfidentialTransfer.cpp](https://github.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44408 — Quantum-vulnerable RSA: role not determined (1 file(s))
+### QSI-2026-50321 — Quantum-vulnerable RSA: role not determined (1 file(s))
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:general`
 - Data source: src/libxrpl/basics/make_SSLContext.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:28 UTC
 - Priority score: 25.2 / 100
 - CVSS v3.1: not applicable
 
@@ -636,9 +637,9 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (5), Ed25519 (3) | QSI-2026-44407, QSI-2026-44409 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1) | QSI-2026-44410 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | ECDSA (15), Ed25519 (3), EC-ElGamal (2), RSA (1) | QSI-2026-44404, QSI-2026-44405, QSI-2026-44406, QSI-2026-44408 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **transaction and message signing** | ECDSA (5), Ed25519 (3) | QSI-2026-50320, QSI-2026-50322 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1) | QSI-2026-50323 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
+| **role not determined** | ECDSA (15), Ed25519 (3), EC-ElGamal (2), RSA (1) | QSI-2026-50317, QSI-2026-50318, QSI-2026-50319, QSI-2026-50321 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -675,20 +676,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-44407 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44409 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44404 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44405 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44410 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44406 | Add EC-ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44408 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-44407 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44409 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44404 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44405 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44410 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44406 | Plan migration of EC-ElGamal to NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use. |
-| P4 | QSI-2026-44408 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-50320 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50322 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50317 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50318 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50323 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50319 | Add EC-ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50321 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-50320 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50322 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50317 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50318 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50323 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50319 | Plan migration of EC-ElGamal to NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use. |
+| P4 | QSI-2026-50321 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -696,19 +697,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents

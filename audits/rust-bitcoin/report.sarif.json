@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-43251",
+            "qsiId": "QSI-2026-49191",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43252",
+            "qsiId": "QSI-2026-49192",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -136,7 +136,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43253",
+            "qsiId": "QSI-2026-49193",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -154,7 +154,7 @@
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-43254",
+            "qsiId": "QSI-2026-49194",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -172,7 +172,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-43255",
+            "qsiId": "QSI-2026-49195",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -190,7 +190,7 @@
             "qsiFindingKey/v1": "7442b1c54fc03c4c83f5aba63caf750d"
           },
           "properties": {
-            "qsiId": "QSI-2026-43256",
+            "qsiId": "QSI-2026-49196",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -199,13 +199,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/rust-bitcoin @ f127ba2ae14e/f0eba11b-3b9e-4f52-a028-3ec55377ca74"
+        "id": "qsi/rust-bitcoin @ f127ba2ae14e/2f9ae3ff-79a4-4fec-a853-7dcdf4fcdb1f"
       },
       "properties": {
-        "qsiContentSha256": "7988c9238422112d2d73d440a21a195c43e524120ce1f6445890ef09d044c91b",
+        "qsiContentSha256": "f4dc3e0b70ab65b8fe5c47e906dfac4613a025b492d02c58dcfa8542da6e62b3",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:04:04.855757+00:00",
+        "qsiGeneratedAt": "2026-11-24T11:10:57.181769+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

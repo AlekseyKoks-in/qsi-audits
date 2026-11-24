@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -53,10 +53,10 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.20). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует crossbeam-epoch: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.20). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Car…"
               },
               "help": {
-                "text": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.20). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует crossbeam-epoch: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.20). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0204"
             },
@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-43677",
+            "qsiId": "QSI-2026-49589",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "8523edb9ce7f414dc285e274554d2cfa"
           },
           "properties": {
-            "qsiId": "QSI-2026-43675",
+            "qsiId": "QSI-2026-49587",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -136,7 +136,7 @@
             "qsiFindingKey/v1": "456f634943fc1707e18c94639d3e1722"
           },
           "properties": {
-            "qsiId": "QSI-2026-43676",
+            "qsiId": "QSI-2026-49588",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -154,7 +154,7 @@
             "qsiFindingKey/v1": "448a6164ab26507814c597ba435e2257"
           },
           "properties": {
-            "qsiId": "QSI-2026-43679",
+            "qsiId": "QSI-2026-49591",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -181,7 +181,7 @@
             "qsiFindingKey/v1": "3a9cb039a1a27f8519f8e2488f772de8"
           },
           "properties": {
-            "qsiId": "QSI-2026-43680",
+            "qsiId": "QSI-2026-49592",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -208,7 +208,7 @@
             "qsiFindingKey/v1": "0bd45fc7e5f7979e1b2252763239ed1b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43681",
+            "qsiId": "QSI-2026-49593",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -235,7 +235,7 @@
             "qsiFindingKey/v1": "a7730dd1c85805eef8ffca29044b06f2"
           },
           "properties": {
-            "qsiId": "QSI-2026-43682",
+            "qsiId": "QSI-2026-49594",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -262,7 +262,7 @@
             "qsiFindingKey/v1": "811b1c8cb6d8c8b008a86908089a7614"
           },
           "properties": {
-            "qsiId": "QSI-2026-43683",
+            "qsiId": "QSI-2026-49595",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -289,7 +289,7 @@
             "qsiFindingKey/v1": "e2d83f9392f52051e87accb3e5626418"
           },
           "properties": {
-            "qsiId": "QSI-2026-43684",
+            "qsiId": "QSI-2026-49596",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -316,7 +316,7 @@
             "qsiFindingKey/v1": "3a3f7138d247df632d48a3db5576a9f5"
           },
           "properties": {
-            "qsiId": "QSI-2026-43685",
+            "qsiId": "QSI-2026-49597",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -343,7 +343,7 @@
             "qsiFindingKey/v1": "4d9bed4fc9a3931f906e181ff7595013"
           },
           "properties": {
-            "qsiId": "QSI-2026-43686",
+            "qsiId": "QSI-2026-49598",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -370,7 +370,7 @@
             "qsiFindingKey/v1": "f2df69ee31485713b89987b4cb976a7d"
           },
           "properties": {
-            "qsiId": "QSI-2026-43687",
+            "qsiId": "QSI-2026-49599",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -397,7 +397,7 @@
             "qsiFindingKey/v1": "9265853f0f5680940a594345abca4112"
           },
           "properties": {
-            "qsiId": "QSI-2026-43688",
+            "qsiId": "QSI-2026-49600",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -424,7 +424,7 @@
             "qsiFindingKey/v1": "c32e3bb2e4c02c0d993c61e01e786b41"
           },
           "properties": {
-            "qsiId": "QSI-2026-43678",
+            "qsiId": "QSI-2026-49590",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -442,13 +442,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/tachyon @ 6cdaebccf147/4c3fcb47-4df1-4716-99ab-55bcd7b84973"
+        "id": "qsi/tachyon @ 6cdaebccf147/1def9d6b-b8d8-4d5e-b916-b10c6dd0a7ca"
       },
       "properties": {
-        "qsiContentSha256": "614a055aae95b5b38a161527c826b5ea15aae26880b8a2535505eed2186338ed",
+        "qsiContentSha256": "d2582758173de8cfbdbd330e9c2fa474974d00acd862a78e5003fd9874e6dd55",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:17:23.544106+00:00",
+        "qsiGeneratedAt": "2026-11-24T11:26:56.373769+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

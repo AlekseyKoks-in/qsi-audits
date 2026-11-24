@@ -2,10 +2,10 @@
 
 61 audit bundles over **53 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**4,065 inventory rows**, of which **2,000 fall to Shor's algorithm**, **28 are post-quantum** and
-**14 are hybrid** (post-quantum combined with classical), from **30,786 parsed files**. Those last two
+**4,045 inventory rows**, of which **1,991 fall to Shor's algorithm**, **28 are post-quantum** and
+**13 are hybrid** (post-quantum combined with classical), from **30,744 parsed files**. Those last two
 are kept apart on purpose: write-ups of mine dated before 2026-10-30 quote a single "29 post-quantum" that was
-28+14-style addition of the two, which is why one number appeared in two different places.
+28+13-style addition of the two, which is why one number appeared in two different places.
 
 ### What those rows rest on
 
@@ -14,18 +14,18 @@ table to read before quoting any other number in this repository.
 
 | what the row rests on | rows | Shor-breakable |
 |---|---:|---:|
-| a line of source code | 2,288 | 1,495 |
+| a line of source code | 2,286 | 1,494 |
 | name of a dependency in a manifest | 869 | 0 |
 | name of a source file (low confidence) | 348 | 155 |
 | a deployed smart contract | 121 | 3 |
 | OpenPGP key committed to the repository | 119 | 119 |
 | the chain a wallet supports | 114 | 114 |
-| a certificate or key file | 114 | 59 |
-| other | 92 | 55 |
+| a certificate or key file | 101 | 53 |
+| other | 87 | 53 |
 
 Two things in that table are worth saying out loud rather than leaving for a careful reader to notice.
 
-**155 of the 2,000 Shor-breakable rows rest on the name of a source file**, not on a line of
+**155 of the 1,991 Shor-breakable rows rest on the name of a source file**, not on a line of
 code. That signal exists because `trezor-firmware/crypto/pbkdf2.c` *defines* PBKDF2 instead of calling it, so no
 call-site pattern reaches it and the inventory missed it entirely — a file named after an algorithm is the project
 telling you what is in it. It is still weaker evidence than a call, the reports mark it `confidence: low`, and a
@@ -460,6 +460,72 @@ read and were restored from the evidence archive.
 The three study reports carry a dated note. The bundles as they were, the logs of both runs and both comparisons are
 kept with this run.
 
+## Re-issue, 2026-11-24: which advisories reach the code, and key storage
+
+Every bundle published here that has an upstream commit, 59 in `audits/` and 20 in `studies/`, was
+re-audited on 24 November at its recorded commit, tree, language, risk profile and analyst decisions, with engine 1.20.0;
+`audits/lottery-demo` and `audits/nitro` keep their published bundles, for the reasons given under 22 November. The comparison prompted engine 1.20.1, with which `trezor-firmware`, `trustwallet-wallet-core` and `go-algorand` ran again (with the English bundles of `trezor-firmware` and `trustwallet-wallet-core`): it reports Go modules that hold only tests or samples as nothing to scan rather than as a failed scan, and retries a scan with cgo when a cgo wrapper's types are missing. Every re-issued
+bundle was compared with the one it replaces, input by input, row by row and finding by
+finding, and passed `bundle-qa`; each, before and after, is in
+[reports/REISSUE-2026-11-24.md](reports/REISSUE-2026-11-24.md). What the engine gained since 1.16.2:
+
+- **Whether a dependency advisory reaches the code.** Every advisory finding now carries a verdict. For Go, govulncheck
+  builds the call graph from the product's own packages, tests and tools left out, through every dependency to the
+  functions the Go vulnerability database names: a traced call keeps the advisory's severity with high confidence, and
+  no call path makes it informational. It runs on every tree that holds a Go module, and the reports of 9 codebases,
+  the studies included, record its result: 44 advisories with a traced call, 120 without one. Elsewhere the
+  check is by imports and names: a module only tests use, affected
+  functions the code does not name, a Cargo feature that is off or a platform not built make an advisory unlikely to
+  apply, and a package that only other dependencies bring in stays open for review, marked as such, because without a
+  call graph it can be neither confirmed nor set aside. Of 1,802 advisory findings, with OSV.dev's data of 24 November,
+  295 are marked unlikely to apply. Each brief now lists first the code's own findings and the advisories whose affected functions the code
+  names or calls, one row per package.
+- **Key storage in backends** (`KEYMGMT-*`: a key with a fallback value in code or configuration, decryption that falls
+  back to a constant key, a nonce derived from data, private keys in a database column the service decrypts without a
+  KMS, an author's warning on key code), **Solana crediting** (a payment read from a failed transaction, a token
+  payment without its mint) and **Go's `Sum`** on a fresh hasher, which hashes nothing. In the codebases here, which are wallets, libraries and nodes rather than the backends these rules were written for, they report one finding: Corda's node keeps the private keys of its confidential identities in its database unencrypted (`node_our_key_pairs`) and signs with them there, which the analyst decision confirms at medium.
+- **Test support the path rules missed**: BoringSSL's BoGo suite (`bogo/`), test-container helpers
+  (`testcontainers/`) and Storybook (`.storybook/`); and seven false-finding shapes found when every high finding of the
+  portfolio was read against its source on 23 November: a C declaration of `random`, a value that repeats its own
+  name, a header name, a Kotlin `$CONST` template, an SMT-LIB keyword compared with a token, a register-field
+  `#define`, and a `verify=False` that belongs to no HTTP client.
+
+**The inventory** moves from 4,065 / 2,000 to **4,045 / 1,991**, post-quantum rows stay at 28 and hybrid rows move from 14 to **13** (`rustls` −1), and the
+Bitcoin slice stays at 823 / 570. Every codebase whose inventory moved:
+
+| codebase | rows before | after | Shor before | after | own-code rows before | after | why |
+|---|---:|---:|---:|---:|---:|---:|---|
+| `rustls` | 111 | **97** | 29 | **22** | 88 | **87** | BoringSSL's test suite (BoGo) under `bogo/` is test code: its runner, key files and certificates (tree 137 → 120 files) |
+| `scroll` | 98 | **93** | 12 | **10** | 60 | **55** | the test-container helpers under `common/testcontainers/` are test support, which the section of 22 November said the path rules did not yet treat as such: the test keystore and the Web3Signer key configuration (tree 389 → 385 files) |
+| `signal-desktop` | 29 | **28** | 5 | **5** | 27 | **26** | Storybook's configuration under `.storybook/` is test code: a SHA-256 row in its test runner (tree 2,202 → 2,198 files) |
+
+**The findings** of the deduplicated codebases move from 2,316 to **2,278**, the critical and high ones from
+537 to **508**: 28 to **2** in the code itself and 509 to **506** advisories. Across the codebases
+and the studies 21 more findings carry an analyst decision, from the decision files written on 23 and
+24 November after the high findings without one were read against their source; each decision states its reason in
+the report. In the study bundles the critical and high findings move from 48 to **24** by the same
+decisions and fixes (Canton's and Corda's test certificates and keys, OBP-API's documentation examples, the SQLite that
+stellar-core vendors). Every codebase whose critical and high findings moved:
+
+| codebase | critical + high before | after | why |
+|---|---:|---:|---|
+| `bitbox02-firmware` | 11 | **9** | a register-field `#define` in the vendored SAMD51 headers was read as ECB mode, and the `verify=False` of the version script's own GPG check as disabled TLS: both shapes are fixed in the engine |
+| `embit` | 1 | **0** | `ECKey.generate()` in `util/key.py`, Bitcoin Core's test-framework key code, draws the secret with Python's `random`; nothing in embit calls it, so the decision records it as a latent hazard at low |
+| `foundry` | 5 | **3** | Anvil's `--mnemonic-seed-unsafe` derives the test accounts of a local development node from a seed the user passes (`not_applicable`), and an SMT-LIB keyword compared with a token in the symbolic solver was read as a secret: a shape fixed in the engine |
+| `jade` | 2 | **0** | the keys of Jade's "fakeprod" mode under `tools/`, committed on purpose for development builds (`not_applicable`) |
+| `krux` | 1 | **0** | Krux never calls the vendored copy of embit's `util/key.py` (`not_applicable`; the finding is embit's) |
+| `lido-core` | 44 | **43** | `lib/pdg.ts` is a Hardhat test helper whose BLS keys come from the public test mnemonic (`not_applicable`) |
+| `metamask-extension` | 33 | **32** | a crediting finding in Storybook's test data: `.storybook/` is test code |
+| `rabby` | 171 | **170** | the Google Analytics 4 API secret in `src/utils/ga4.ts`, which ships in every copy of the extension and opens nothing (`not_applicable`) |
+| `reown-appkit` | 155 | **154** | the fund-wallet view preselects a token from a list keyed by contract address; nothing there credits a payment (`not_applicable`) |
+| `rustls` | 6 | **0** | the BoGo test keys and certificates, now test code |
+| `scroll` | 38 | **31** | three Solidity findings in the cross-domain messengers are the detector reading a messenger's purpose as a defect (`false_positive`, each with the guard that makes it safe), and govulncheck decides the Go advisories: a traced call raises two to critical, no call path lowers others to informational |
+| `seedsigner` | 2 | **0** | the decoy words of the "Verify Word" quiz are not key generation (`false_positive`), and `tools/mnemonic.py` is a developer helper outside the device image (`not_applicable`) |
+| `signal-desktop` | 19 | **18** | the Giphy API key of the GIF picker, a client key that ships with the app by design (`not_applicable`) |
+| `sigstore-js` | 10 | **9** | the certificate in `DEMO.md` is an example of the CLI's output, a ten-minute Fulcio certificate long expired (`false_positive`) |
+
+**The studies** quote own-code rows, and no study bundle's own-code or post-quantum figures moved, so the three study reports stand as written. The bundles as they were and the logs of this run are kept with it.
+
 ## Institutional ledgers and bank-facing platforms
 
 A separate study, kept out of the totals above: Canton, Arc, Hyperledger Fabric and Besu, Corda and the Open Bank
@@ -491,7 +557,7 @@ These bundles use two of those three methods and **declare the third**: live net
 19 March 2027, so nobody can claim conformance to them yet.
 
 The memorandum's algorithm table names seven quantum-vulnerable algorithms and then adds "Other non-PQC
-Asymmetric Algorithms". Measured here, **40% of the 2,000 Shor-breakable rows fall only under
+Asymmetric Algorithms". Measured here, **40% of the 1,991 Shor-breakable rows fall only under
 that catch-all**, across 18 distinct algorithms, the largest being Ed25519 — which the memorandum never
 names. A tool built from the seven named algorithms finds RSA and ECDSA and misses the cryptography modern
 systems are actually built from. The full mapping, and the one gap this exercise found in my own registry (MQV,
@@ -501,9 +567,9 @@ the seventh named algorithm, which had no entry), are in
 
 On 27 October 2026 NIST published **IR 8547 in final form**, stricter than its 2024 draft: ECDSA, EdDSA, RSA and
 Diffie-Hellman are now deprecated after 2030 at every key size, not only at 112 bits. Measured here, that puts a
-2030 milestone on **344 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
-and up — and says nothing at all about the 475 secp256k1 rows, a curve NIST never approved; with the
-535 rows in families no NIST standard covers, about half of the exposure here (1,010 of 2,000 rows) sits outside NIST's dates.
+2030 milestone on **342 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
+and up — and says nothing at all about the 473 secp256k1 rows, a curve NIST never approved; with the
+535 rows in families no NIST standard covers, about half of the exposure here (1,008 of 1,991 rows) sits outside NIST's dates.
 The split is section 3 of the same report.
 
 ## A check any project can run: does your scanner have a word for this cryptography?
@@ -648,20 +714,20 @@ none.
 | `bitwarden-sdk` | Bitwarden | `25b6c8c3860a` | 1625 | 120 | 13 | 5 |
 | `ethers-js` | ethers.js project | `3ea4c226dd0b` | 759 | 116 | 43 | 0 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 113 | 74 | 7 |
-| `rustls` | rustls project | `84bf9eaa9857` | 137 | 111 | 29 | 0 |
 | `coinbase-cb-mpc` | Coinbase | `0b716706f998` | 174 | 108 | 93 | 2 |
 | `libwally-core` | Blockstream (libwally) | `374df231d054` | 245 | 108 | 86 | 0 |
 | `nitro` | Offchain Labs (Arbitrum) | `ccc5c828d9ea` | 1038 | 108 | 13 | 0 |
 | `krux` | Krux (selfcustody) | `9b3a4314a205` | 244 | 101 | 66 | 0 |
 | `foundry` | Foundry (Paradigm) | `7f0a409a5c20` | 757 | 100 | 18 | 0 |
-| `scroll` | scroll | `3046bbd18a6a` | 389 | 98 | 12 | 0 |
 | `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 97 | 71 | 0 |
+| `rustls` | rustls project | `84bf9eaa9857` | 120 | 97 | 22 | 0 |
 | `aave-v3-origin` | Aave DAO | `8305565ae342` | 569 | 95 | 11 | 0 |
+| `scroll` | scroll | `3046bbd18a6a` | 385 | 93 | 10 | 0 |
 | `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 91 | 89 | 0 |
 | `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 140 | 89 | 66 | 0 |
 | `zingolib` | Zingo Labs | `81d799775f11` | 204 | 82 | 3 | 1 |
 | `rabby` | Rabby Wallet (DeBank) | `663c0e80e9f6` | 1695 | 72 | 30 | 0 |
-| `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1249 | 71 | 20 | 0 |
+| `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1246 | 71 | 20 | 0 |
 | `lido-core` | Lido | `2bd532298d85` | 267 | 70 | 8 | 0 |
 | `noir` | Aztec / Noir | `5c98fecd3fe6` | 782 | 68 | 7 | 0 |
 | `orchard` | Electric Coin Company (Zcash) | `616a669df8c9` | 49 | 66 | 42 | 0 |
@@ -670,7 +736,7 @@ none.
 | `cairo` | StarkWare | `68a61f6c6251` | 673 | 61 | 25 | 0 |
 | `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 57 | 33 | 0 |
 | `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 56 | 39 | 0 |
-| `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4870 | 53 | 13 | 0 |
+| `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4856 | 53 | 13 | 0 |
 | `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 114 | 49 | 48 | 0 |
 | `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 48 | 7 | 0 |
 | `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 47 | 24 | 0 |
@@ -678,7 +744,7 @@ none.
 | `zcash-swift-wallet-sdk` | Electric Coin Company (Zcash) | `4895ee058da9` | 205 | 43 | 3 | 0 |
 | `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 85 | 40 | 39 | 0 |
 | `safe-smart-account` | Safe | `247b8ce3bdbf` | 74 | 30 | 3 | 0 |
-| `signal-desktop` | Signal Messenger | `17502b9d1a9e` | 2202 | 29 | 5 | 4 |
+| `signal-desktop` | Signal Messenger | `17502b9d1a9e` | 2198 | 28 | 5 | 4 |
 | `tachyon` | Tachyon (Zcash) | `6cdaebccf147` | 57 | 25 | 10 | 0 |
 | `bdk-wallet` | Bitcoin Dev Kit (bdk_wallet) | `09c677305139` | 27 | 14 | 11 | 0 |
 | `rustcrypto-rsa` | RustCrypto project | `f96c4b5d629a` | 35 | 11 | 6 | 0 |
@@ -701,8 +767,10 @@ include it. It is the only entry in this repository that is not an audit of real
 - **Not a cryptographic review** of any implementation, and not a claim that any of these projects is weak.
 - **Not a vulnerability report.** An inventory says a primitive is present and where, not that it is used
   wrongly. Where a finding is a defect rather than an inventory row, the report says which.
-- **Not reachability analysis.** Where it cannot be established that an affected code path is reached, the report
-  says so instead of implying it.
+- **Not a full reachability analysis.** Since 24 November a dependency advisory in Go code is traced by govulncheck
+  from the product's packages to the affected functions; elsewhere it is judged by imports and names, and one that
+  cannot be settled that way stays open for review and says so. A finding in the audited code itself is not traced to
+  an entry point.
 - **Not a migration implementation.** Signature schemes change by consensus and by maintainers, not by a scanner.
 
 ## Known limits, and mistakes of mine that these numbers survived
@@ -747,8 +815,8 @@ that is the most useful message I can get — the two corrections above both beg
 
 Подписанные комплекты аудита (61) по **53 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**4 065 строк инвентаризации**, из них **2 000 ломает алгоритм Шора**, и **28 уже
-постквантовых**; разобрано **30 786 файлов**.
+**4 045 строк инвентаризации**, из них **1 991 ломает алгоритм Шора**, и **28 уже
+постквантовых**; разобрано **30 744 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -768,6 +836,20 @@ NIST для ML-DSA-65) и сверяет ключ с `PUBLIC-KEY-MLDSA.pem` в �
 по бюллетеням в этих комплектах стало 1 454 вместо 433; инвентаризация не изменилась, кроме одной
 строки ECDH в `metamask-extension` (импорт `eciesjs`): итог стал таким — строк 3 989, по Шору
 1 947 (было 3 988 и 1 946). Тем же переаудитом заменён `arc-node` — один комплект в обоих исследованиях: пакетов 1 000 → 1 993, находок по бюллетеням 30 → 37; 37 строк своего кода и 12 по Шору, которые цитируют исследования, тогда не изменились (их меняет поправка 19 ноября). На прежнем пределе остаётся: `audits/nitro`.
+
+**Перевыпуск 24 ноября.** Все комплекты с апстримом, 59 в `audits/` и 20 в `studies/`,
+переаудированы 24 ноября движком 1.20.0 на записанных коммите, дереве, языке, профиле риска и решениях аналитика;
+`audits/lottery-demo` и `audits/nitro` сохраняют опубликованные комплекты (причины — в абзаце о 22–23 ноября ниже). Сверка дала движок 1.20.1, им ещё раз прогнаны `trezor-firmware`, `trustwallet-wallet-core` и `go-algorand` (и английские версии `trezor-firmware` и `trustwallet-wallet-core`): Go-модули, где только тесты или примеры, теперь «сканировать нечего», а не сбой, а скан повторяется с cgo, когда не хватает типов обёртки cgo. Каждый сверен с
+прежним и прошёл `bundle-qa`; до и после — в
+[reports/REISSUE-2026-11-24.md](reports/REISSUE-2026-11-24.md). Новое: у каждого бюллетеня зависимости есть вердикт
+достижимости — для Go граф вызовов govulncheck от пакетов продукта (результат записан в отчётах 9 кодовых баз:
+вызов прослежен у 44, нет вызова у 120), для прочих экосистем — по импортам и именам; маловероятными помечены 295 из
+1 802. Правила хранения ключей (`KEYMGMT-*`), зачисления на Solana и `Sum` в Go нашли одну находку: узел Corda хранит закрытые ключи конфиденциальных идентичностей в своей базе без шифрования (`node_our_key_pairs`) и подписывает ими там же — решение аналитика подтверждает её со средней важностью. Тестовым
+кодом теперь считаются набор BoGo (`bogo/`), помощники testcontainers и Storybook. Итог портфеля: **строк 4 045,
+по Шору 1 991** (было 4 065 и 2 000), постквантовых по-прежнему 28, гибридных 13 (было 14); срез биткоина — по-прежнему 823 и 570. Находок
+2 278 вместо 2 316, критических и высоких 508 вместо 537: ещё 21 находок получили решение
+аналитика после чтения исходников, ложные формы исправлены в движке, а govulncheck поднимает бюллетень с прослеженным
+вызовом и опускает до информационного тот, до которого вызов не доходит. Таблицы — в английском разделе.
 
 **Перевыпуск 22–23 ноября.** Все комплекты с апстримом, 59 в `audits/` и 20 в `studies/`,
 переаудированы 23 ноября на записанных коммите, дереве, языке, профиле риска и решениях аналитика движком 1.16.2; все
@@ -820,8 +902,9 @@ ML-DSA-65 (`python3 verify.py studies/xrpl/*`). Строк 241, по Шору 19
 validator-keys-tool нет постквантового типа ключа. Подробно — [reports/XRPL-PQ-INVENTORY-2026-11-21.md](reports/XRPL-PQ-INVENTORY-2026-11-21.md).
 
 **Чем это не является:** не криптографический разбор реализаций и не утверждение, что эти проекты слабы; не отчёт
-об уязвимостях — инвентаризация говорит, что примитив присутствует и где, а не что он применён неверно; не анализ
-достижимости; не реализация миграции.
+об уязвимостях — инвентаризация говорит, что примитив присутствует и где, а не что он применён неверно; не полный
+анализ достижимости (с 24 ноября бюллетени Go проверяет граф вызовов govulncheck, прочие — импорты и имена, а находки в
+самом коде до точки входа не прослеживаются); не реализация миграции.
 
 **Честно об ограничениях.** Инструмент построен при значительной помощи ИИ, но решения принимаются вручную:
 сканер предлагает строки-кандидаты, каждая разбирается по реальным исходникам до публикации — в последней партии

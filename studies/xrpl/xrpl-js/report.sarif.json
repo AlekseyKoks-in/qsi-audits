@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -125,7 +125,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-44378",
+            "qsiId": "QSI-2026-50291",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -143,7 +143,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-44380",
+            "qsiId": "QSI-2026-50293",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -161,7 +161,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-44382",
+            "qsiId": "QSI-2026-50295",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -179,7 +179,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-44376",
+            "qsiId": "QSI-2026-50289",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -197,7 +197,7 @@
             "qsiFindingKey/v1": "53a0de5a3a0aa42a7457a86427178be9"
           },
           "properties": {
-            "qsiId": "QSI-2026-44381",
+            "qsiId": "QSI-2026-50294",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -215,7 +215,7 @@
             "qsiFindingKey/v1": "efdc4d587b2d71d3dce86b3cee0780ad"
           },
           "properties": {
-            "qsiId": "QSI-2026-44379",
+            "qsiId": "QSI-2026-50292",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -233,7 +233,7 @@
             "qsiFindingKey/v1": "fa34198662ed4654d505a0eac8a789b5"
           },
           "properties": {
-            "qsiId": "QSI-2026-44377",
+            "qsiId": "QSI-2026-50290",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -251,7 +251,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-44384",
+            "qsiId": "QSI-2026-50297",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -278,7 +278,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-44383",
+            "qsiId": "QSI-2026-50296",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -287,13 +287,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/xrpl-js @ 126168271b8c/a00fb235-2a69-45d6-844c-d0fd9b27795a"
+        "id": "qsi/xrpl-js @ 126168271b8c/22ad9cdd-66c7-4162-a9e8-c1b53206b328"
       },
       "properties": {
-        "qsiContentSha256": "fb68b22583eae87f45a54396ee016e42626be38e84c07e364adae962242556f8",
+        "qsiContentSha256": "2dee7faa79d4a251b5d562c2e1b4e650bb907ea86372d81825e28752ee2db94d",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "web3",
-        "qsiGeneratedAt": "2026-11-23T14:06:34.975840+00:00",
+        "qsiGeneratedAt": "2026-11-24T12:24:25.343773+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

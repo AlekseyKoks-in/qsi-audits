@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -28,62 +28,12 @@
                 "security-severity": "9.5"
               },
               "fullDescription": {
-                "text": "OSV.dev reports GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) for PyPI package certifi at version 2022.12.7: certifi bundles emSign root CAs with compromised intermediate CA keys. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (2026.10.18). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev reports GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) for PyPI package certifi at version 2022.12.7: certifi bundles emSign root CAs with compromised intermediate CA keys. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (2026.10.18). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
               },
               "help": {
-                "text": "OSV.dev reports GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) for PyPI package certifi at version 2022.12.7: certifi bundles emSign root CAs with compromised intermediate CA keys. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (2026.10.18). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev reports GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) for PyPI package certifi at version 2022.12.7: certifi bundles emSign root CAs with compromised intermediate CA keys. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (2026.10.18). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-6q48-6c7w-9gw2"
-            },
-            {
-              "id": "CODE-TLS-VERIFY-DISABLED",
-              "name": "CodeTlsVerifyDisabled",
-              "shortDescription": {
-                "text": "TLS certificate verification disabled in scripts/generate_version_headers.py"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "6.8"
-              },
-              "fullDescription": {
-                "text": "1 occurrence(s) of disabled verification (verify=False), first at line 230. Remove the override; use a proper CA bundle or pinning. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "1 occurrence(s) of disabled verification (verify=False), first at line 230. Remove the override; use a proper CA bundle or pinning. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
-            },
-            {
-              "id": "CODE-ECB-MODE",
-              "name": "CodeEcbMode",
-              "shortDescription": {
-                "text": "ECB block-cipher mode used in external/samd51a-ds/include/component/aes.h"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "1 usage(s) of ECB mode (first at line 81). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "1 usage(s) of ECB mode (first at line 81). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
             },
             {
               "id": "CHAINMAP-QV",
@@ -178,10 +128,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
               },
               "help": {
-                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
               },
               "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
             },
@@ -209,6 +159,31 @@
                 "text": "'Math.random()' at line 2 on a line mentioning key/token/secret/password/nonce. Use a CSPRNG (secrets, crypto.getRandomValues, crypto/rand). Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "helpUri": "https://csrc.nist.gov/pubs/sp/800/90/a/r1/final"
+            },
+            {
+              "id": "CODE-ECB-MODE",
+              "name": "CodeEcbMode",
+              "shortDescription": {
+                "text": "In bundled third-party code: ECB block-cipher mode used in external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "1 usage(s) of ECB mode (first at line 184). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "1 usage(s) of ECB mode (first at line 184). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
             },
             {
               "id": "DEP-NO-PQC-LIBRARY",
@@ -275,42 +250,12 @@
             "qsiFindingKey/v1": "b1137c114c5c0c76b2e77eadc7df4738"
           },
           "properties": {
-            "qsiId": "QSI-2026-41629",
+            "qsiId": "QSI-2026-47573",
             "severity": "critical",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "9.5"
           }
-        },
-        {
-          "ruleId": "CODE-TLS-VERIFY-DISABLED",
-          "ruleIndex": 1,
-          "level": "error",
-          "message": {
-            "text": "TLS certificate verification disabled in scripts/generate_version_headers.py"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "793b633732a7d544c47fd90d65831e74"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-41603",
-            "severity": "high",
-            "confidence": "high",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "6.8"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "scripts/generate_version_headers.py"
-                },
-                "region": {
-                  "startLine": 230
-                }
-              }
-            }
-          ]
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
@@ -323,7 +268,7 @@
             "qsiFindingKey/v1": "a01b43133d4eca70b09191737162b55a"
           },
           "properties": {
-            "qsiId": "QSI-2026-41630",
+            "qsiId": "QSI-2026-47574",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -341,7 +286,7 @@
             "qsiFindingKey/v1": "98f8f7dadd1b60c637a4583be22366ee"
           },
           "properties": {
-            "qsiId": "QSI-2026-41634",
+            "qsiId": "QSI-2026-47578",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -359,7 +304,7 @@
             "qsiFindingKey/v1": "fbb32152eaa6887385516b1ba2300035"
           },
           "properties": {
-            "qsiId": "QSI-2026-41637",
+            "qsiId": "QSI-2026-47581",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -377,7 +322,7 @@
             "qsiFindingKey/v1": "d0a5a18ba4e4fc7b689db30e5713f069"
           },
           "properties": {
-            "qsiId": "QSI-2026-41644",
+            "qsiId": "QSI-2026-47588",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -395,7 +340,7 @@
             "qsiFindingKey/v1": "698682edd225868254ff54993797a427"
           },
           "properties": {
-            "qsiId": "QSI-2026-41646",
+            "qsiId": "QSI-2026-47590",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -413,7 +358,7 @@
             "qsiFindingKey/v1": "acfbd97e64523186c99a98de9b095da1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41647",
+            "qsiId": "QSI-2026-47591",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -431,7 +376,7 @@
             "qsiFindingKey/v1": "47d3c6039146b195aaccfe10db35f167"
           },
           "properties": {
-            "qsiId": "QSI-2026-41649",
+            "qsiId": "QSI-2026-47593",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -449,7 +394,7 @@
             "qsiFindingKey/v1": "26bd5bb57229e9306a7d928ff46c2bb1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41653",
+            "qsiId": "QSI-2026-47597",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -457,38 +402,8 @@
           }
         },
         {
-          "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "ECB block-cipher mode used in external/samd51a-ds/include/component/aes.h"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "4d8e100f3024c7b31a452c7cf88d5761"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-41575",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "external/samd51a-ds/include/component/aes.h"
-                },
-                "region": {
-                  "startLine": 81
-                }
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CHAINMAP-QV",
-          "ruleIndex": 3,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Transaction signing for 3 chain(s) relies on elliptic-curve signatures"
@@ -497,7 +412,7 @@
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-41619",
+            "qsiId": "QSI-2026-47563",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -506,7 +421,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/JuliusWiedemann.asc"
@@ -515,7 +430,7 @@
             "qsiFindingKey/v1": "2d852d2cd779179d1032172f948dcd41"
           },
           "properties": {
-            "qsiId": "QSI-2026-41577",
+            "qsiId": "QSI-2026-47522",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -524,7 +439,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/JunghoonLee.asc"
@@ -533,7 +448,7 @@
             "qsiFindingKey/v1": "c0a4eaaeb2cd2d0235008bf7b537448f"
           },
           "properties": {
-            "qsiId": "QSI-2026-41578",
+            "qsiId": "QSI-2026-47523",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -542,7 +457,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/My1.asc"
@@ -551,7 +466,7 @@
             "qsiFindingKey/v1": "c6053731007d10ca3d042647ab72fa57"
           },
           "properties": {
-            "qsiId": "QSI-2026-41579",
+            "qsiId": "QSI-2026-47524",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -560,7 +475,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/My1.asc"
@@ -569,7 +484,7 @@
             "qsiFindingKey/v1": "c6053731007d10ca3d042647ab72fa57"
           },
           "properties": {
-            "qsiId": "QSI-2026-41580",
+            "qsiId": "QSI-2026-47525",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -578,7 +493,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/TheCharlatan.asc"
@@ -587,7 +502,7 @@
             "qsiFindingKey/v1": "ce319c5d70c0e4491a0ce87dbd817a2e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41581",
+            "qsiId": "QSI-2026-47526",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -596,7 +511,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/beerosagos.asc"
@@ -605,7 +520,7 @@
             "qsiFindingKey/v1": "6184714ebc18658e1a35558a7d43c695"
           },
           "properties": {
-            "qsiId": "QSI-2026-41582",
+            "qsiId": "QSI-2026-47527",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -614,7 +529,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/benma.asc"
@@ -623,7 +538,7 @@
             "qsiFindingKey/v1": "f9def3b6e380290f642e4603a2fdf0b2"
           },
           "properties": {
-            "qsiId": "QSI-2026-41583",
+            "qsiId": "QSI-2026-47528",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -632,7 +547,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/brianddk.asc"
@@ -641,7 +556,7 @@
             "qsiFindingKey/v1": "6b838bcaf394d4fbc21e6968a211e56e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41584",
+            "qsiId": "QSI-2026-47529",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -650,7 +565,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/cstenglein.asc"
@@ -659,7 +574,7 @@
             "qsiFindingKey/v1": "7896331209a70b9d37da5c8bb545cf02"
           },
           "properties": {
-            "qsiId": "QSI-2026-41585",
+            "qsiId": "QSI-2026-47530",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -668,7 +583,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/frknakk.asc"
@@ -677,7 +592,7 @@
             "qsiFindingKey/v1": "9a1a12a485baf425ca953084db8dc654"
           },
           "properties": {
-            "qsiId": "QSI-2026-41586",
+            "qsiId": "QSI-2026-47531",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -686,7 +601,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/guggerf.asc"
@@ -695,7 +610,7 @@
             "qsiFindingKey/v1": "b0633337092cf105cfae16101dd768af"
           },
           "properties": {
-            "qsiId": "QSI-2026-41587",
+            "qsiId": "QSI-2026-47532",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -704,7 +619,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/jonathancross.asc"
@@ -713,7 +628,7 @@
             "qsiFindingKey/v1": "3b221fd5dc866e8ac68b720ff99e361e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41588",
+            "qsiId": "QSI-2026-47533",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -722,7 +637,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/jonathancross.asc"
@@ -731,7 +646,7 @@
             "qsiFindingKey/v1": "3b221fd5dc866e8ac68b720ff99e361e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41589",
+            "qsiId": "QSI-2026-47534",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -740,7 +655,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/nickez.asc"
@@ -749,7 +664,7 @@
             "qsiFindingKey/v1": "8da163ff11731e6b648db8974bdd42b9"
           },
           "properties": {
-            "qsiId": "QSI-2026-41590",
+            "qsiId": "QSI-2026-47535",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -758,7 +673,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/offbyn.asc"
@@ -767,7 +682,7 @@
             "qsiFindingKey/v1": "57c9748b99a019cbdc54f87b5ea9c873"
           },
           "properties": {
-            "qsiId": "QSI-2026-41591",
+            "qsiId": "QSI-2026-47536",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -776,7 +691,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519 key (Ed25519) in releases/pubkeys/psteiger.asc"
@@ -785,7 +700,7 @@
             "qsiFindingKey/v1": "c6906c14673bacd3b9391a263b79110b"
           },
           "properties": {
-            "qsiId": "QSI-2026-41592",
+            "qsiId": "QSI-2026-47537",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -794,7 +709,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/stadicus.asc"
@@ -803,7 +718,7 @@
             "qsiFindingKey/v1": "b16c487f64c4e2bebb464facf4b11ca6"
           },
           "properties": {
-            "qsiId": "QSI-2026-41593",
+            "qsiId": "QSI-2026-47538",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -812,7 +727,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/strnbrg.asc"
@@ -821,7 +736,7 @@
             "qsiFindingKey/v1": "c19a33201830ba9a8feaa6fcbc9eea57"
           },
           "properties": {
-            "qsiId": "QSI-2026-41594",
+            "qsiId": "QSI-2026-47539",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -830,7 +745,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/sutterseba.asc"
@@ -839,7 +754,7 @@
             "qsiFindingKey/v1": "a00ee903ada99a6e06501c9068f9649a"
           },
           "properties": {
-            "qsiId": "QSI-2026-41595",
+            "qsiId": "QSI-2026-47540",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -848,7 +763,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/tomasvrba.asc"
@@ -857,7 +772,7 @@
             "qsiFindingKey/v1": "edcf4c86b96247095fe9e3dff94ac78c"
           },
           "properties": {
-            "qsiId": "QSI-2026-41596",
+            "qsiId": "QSI-2026-47541",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -866,7 +781,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (3072-bit) in releases/pubkeys/userofreddit44.asc"
@@ -875,7 +790,7 @@
             "qsiFindingKey/v1": "2d81160c7d82f9e4ff2638cc21390a2e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41597",
+            "qsiId": "QSI-2026-47542",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -884,7 +799,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/x1ddos.asc"
@@ -893,7 +808,7 @@
             "qsiFindingKey/v1": "5aafba1f8d4d3bce880e0eb854a5d740"
           },
           "properties": {
-            "qsiId": "QSI-2026-41598",
+            "qsiId": "QSI-2026-47543",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -902,7 +817,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (2048-bit) in releases/pubkeys/x1ddos.asc"
@@ -911,7 +826,7 @@
             "qsiFindingKey/v1": "5aafba1f8d4d3bce880e0eb854a5d740"
           },
           "properties": {
-            "qsiId": "QSI-2026-41599",
+            "qsiId": "QSI-2026-47544",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -920,7 +835,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (3072-bit) in releases/pubkeys/x1ddos.asc"
@@ -929,7 +844,7 @@
             "qsiFindingKey/v1": "5aafba1f8d4d3bce880e0eb854a5d740"
           },
           "properties": {
-            "qsiId": "QSI-2026-41600",
+            "qsiId": "QSI-2026-47545",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -938,7 +853,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519 key (Ed25519) in releases/pubkeys/yaziza.asc"
@@ -947,7 +862,7 @@
             "qsiFindingKey/v1": "5cd0861142d55c6cd8502c6d0f0ba908"
           },
           "properties": {
-            "qsiId": "QSI-2026-41601",
+            "qsiId": "QSI-2026-47546",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -956,7 +871,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (4096-bit) in releases/pubkeys/yaziza.asc"
@@ -965,7 +880,7 @@
             "qsiFindingKey/v1": "5cd0861142d55c6cd8502c6d0f0ba908"
           },
           "properties": {
-            "qsiId": "QSI-2026-41602",
+            "qsiId": "QSI-2026-47547",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -983,7 +898,7 @@
             "qsiFindingKey/v1": "9d180846df82ba3e0ba4c5ce4571fdbd"
           },
           "properties": {
-            "qsiId": "QSI-2026-41631",
+            "qsiId": "QSI-2026-47575",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1001,7 +916,7 @@
             "qsiFindingKey/v1": "afcb357253b1e3a0c56ca70490eb5bb6"
           },
           "properties": {
-            "qsiId": "QSI-2026-41632",
+            "qsiId": "QSI-2026-47576",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1019,7 +934,7 @@
             "qsiFindingKey/v1": "13272a545807a9af124f1237ba274965"
           },
           "properties": {
-            "qsiId": "QSI-2026-41633",
+            "qsiId": "QSI-2026-47577",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1037,7 +952,7 @@
             "qsiFindingKey/v1": "d19587ff61e1811c0655dde49bd630a2"
           },
           "properties": {
-            "qsiId": "QSI-2026-41635",
+            "qsiId": "QSI-2026-47579",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1055,7 +970,7 @@
             "qsiFindingKey/v1": "accd194de94a1139ed0aded1445b0881"
           },
           "properties": {
-            "qsiId": "QSI-2026-41636",
+            "qsiId": "QSI-2026-47580",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1073,7 +988,7 @@
             "qsiFindingKey/v1": "70777d9e369a1cd504952277be027d2e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41639",
+            "qsiId": "QSI-2026-47583",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1091,7 +1006,7 @@
             "qsiFindingKey/v1": "ff4ac256000bfb3ad0ebb840ff8a21d1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41640",
+            "qsiId": "QSI-2026-47584",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1109,7 +1024,7 @@
             "qsiFindingKey/v1": "2655fbfb16d3a79630b9cce92cc096a7"
           },
           "properties": {
-            "qsiId": "QSI-2026-41641",
+            "qsiId": "QSI-2026-47585",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1127,7 +1042,7 @@
             "qsiFindingKey/v1": "7e53924d9b4b9ca1cb699e5a3188d13f"
           },
           "properties": {
-            "qsiId": "QSI-2026-41642",
+            "qsiId": "QSI-2026-47586",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1145,7 +1060,7 @@
             "qsiFindingKey/v1": "6208eeae2479658a2cd35c82c0d4b259"
           },
           "properties": {
-            "qsiId": "QSI-2026-41643",
+            "qsiId": "QSI-2026-47587",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1163,7 +1078,7 @@
             "qsiFindingKey/v1": "566999a0d1f37cd0e7f2ab0e84a861cc"
           },
           "properties": {
-            "qsiId": "QSI-2026-41645",
+            "qsiId": "QSI-2026-47589",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1181,7 +1096,7 @@
             "qsiFindingKey/v1": "09cee39bdfb353738f996dff7f7cf2eb"
           },
           "properties": {
-            "qsiId": "QSI-2026-41648",
+            "qsiId": "QSI-2026-47592",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1199,7 +1114,7 @@
             "qsiFindingKey/v1": "c05043c560949e34b43137ca14e00337"
           },
           "properties": {
-            "qsiId": "QSI-2026-41650",
+            "qsiId": "QSI-2026-47594",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1217,7 +1132,7 @@
             "qsiFindingKey/v1": "d4e92d46483333bc65c91ebe18abd36d"
           },
           "properties": {
-            "qsiId": "QSI-2026-41651",
+            "qsiId": "QSI-2026-47595",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1235,7 +1150,7 @@
             "qsiFindingKey/v1": "6a551023076f49b9ca91f15c6c05bb89"
           },
           "properties": {
-            "qsiId": "QSI-2026-41652",
+            "qsiId": "QSI-2026-47596",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1253,7 +1168,7 @@
             "qsiFindingKey/v1": "c7d4610e4869b79581a3597028ba6b74"
           },
           "properties": {
-            "qsiId": "QSI-2026-41654",
+            "qsiId": "QSI-2026-47598",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1262,7 +1177,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: firmware and boot verification (root of trust) (3 file(s))"
@@ -1271,7 +1186,7 @@
             "qsiFindingKey/v1": "a40c69f2e897406891adf400d5d59cf8"
           },
           "properties": {
-            "qsiId": "QSI-2026-41604",
+            "qsiId": "QSI-2026-47548",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1280,7 +1195,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))"
@@ -1289,7 +1204,7 @@
             "qsiFindingKey/v1": "eea411a740e8c8ff6e16a6953594accc"
           },
           "properties": {
-            "qsiId": "QSI-2026-41607",
+            "qsiId": "QSI-2026-47551",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1298,7 +1213,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: transaction and message signing (16 file(s))"
@@ -1307,7 +1222,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41576",
+            "qsiId": "QSI-2026-47521",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1316,7 +1231,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (5 file(s))"
@@ -1325,7 +1240,7 @@
             "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
           },
           "properties": {
-            "qsiId": "QSI-2026-41606",
+            "qsiId": "QSI-2026-47550",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1334,7 +1249,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s))"
@@ -1343,7 +1258,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-41609",
+            "qsiId": "QSI-2026-47553",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1352,7 +1267,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519: transaction and message signing (4 file(s))"
@@ -1361,7 +1276,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-41610",
+            "qsiId": "QSI-2026-47554",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1370,7 +1285,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: role not determined (11 file(s))"
@@ -1379,7 +1294,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-41605",
+            "qsiId": "QSI-2026-47549",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1388,7 +1303,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))"
@@ -1397,7 +1312,7 @@
             "qsiFindingKey/v1": "0aba2e2bcd7b95bfa30682b0b2fddff5"
           },
           "properties": {
-            "qsiId": "QSI-2026-41608",
+            "qsiId": "QSI-2026-47552",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1415,7 +1330,7 @@
             "qsiFindingKey/v1": "6f42502cb5eeb8f316e35896e0476819"
           },
           "properties": {
-            "qsiId": "QSI-2026-41627",
+            "qsiId": "QSI-2026-47571",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1424,7 +1339,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 4,
           "level": "warning",
           "message": {
             "text": "crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating) (dependency: crates.io/crypto-bigint@0.5.5)"
@@ -1433,7 +1348,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-41623",
+            "qsiId": "QSI-2026-47567",
             "severity": "medium",
             "confidence": "low",
             "classification": "confirmed_vulnerability",
@@ -1442,7 +1357,7 @@
         },
         {
           "ruleId": "CODE-INSECURE-RANDOM",
-          "ruleIndex": 7,
+          "ruleIndex": 5,
           "level": "warning",
           "message": {
             "text": "Non-cryptographic RNG near security-sensitive identifiers in external/lvgl/docs/src/_static/jquery.js"
@@ -1451,7 +1366,7 @@
             "qsiFindingKey/v1": "796beec272ad3c31533edd8e0c252c12"
           },
           "properties": {
-            "qsiId": "QSI-2026-41616",
+            "qsiId": "QSI-2026-47560",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -1481,7 +1396,7 @@
             "qsiFindingKey/v1": "416f073a6395ba8c0315c3f6fec96810"
           },
           "properties": {
-            "qsiId": "QSI-2026-41628",
+            "qsiId": "QSI-2026-47572",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1499,7 +1414,7 @@
             "qsiFindingKey/v1": "b8b921ce82f7599553657d3deb2986c9"
           },
           "properties": {
-            "qsiId": "QSI-2026-41638",
+            "qsiId": "QSI-2026-47582",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1508,7 +1423,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "In bundled third-party code: Quantum-vulnerable ECDSA key (secp256r1) in external/cryptoauthlib/app/pkcs11/README.md"
@@ -1517,7 +1432,7 @@
             "qsiFindingKey/v1": "18325be3c2badee3d6a8f34f44a68726"
           },
           "properties": {
-            "qsiId": "QSI-2026-41611",
+            "qsiId": "QSI-2026-47555",
             "severity": "info",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -1535,7 +1450,7 @@
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-41624",
+            "qsiId": "QSI-2026-47568",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1553,7 +1468,7 @@
             "qsiFindingKey/v1": "2ac8c159371cd6957a4d2f0c1eb519e1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41625",
+            "qsiId": "QSI-2026-47569",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1562,7 +1477,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "In bundled third-party code: Quantum-vulnerable MQV: key wrapping and data encryption at rest (1 file(s))"
@@ -1571,7 +1486,7 @@
             "qsiFindingKey/v1": "6474819685492d9d71269b6befdbd1a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-41614",
+            "qsiId": "QSI-2026-47558",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1580,7 +1495,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "In bundled third-party code: Quantum-vulnerable ECDH: key wrapping and data encryption at rest (2 file(s))"
@@ -1589,7 +1504,7 @@
             "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
           },
           "properties": {
-            "qsiId": "QSI-2026-41615",
+            "qsiId": "QSI-2026-47559",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1598,7 +1513,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "In bundled third-party code: Quantum-vulnerable ECDH: role not determined (4 file(s))"
@@ -1607,7 +1522,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-41612",
+            "qsiId": "QSI-2026-47556",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1616,7 +1531,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "In bundled third-party code: Quantum-vulnerable Finite-field Diffie-Hellman: role not determined (1 file(s))"
@@ -1625,7 +1540,7 @@
             "qsiFindingKey/v1": "bc674daf034cfd15b449b56eada92826"
           },
           "properties": {
-            "qsiId": "QSI-2026-41613",
+            "qsiId": "QSI-2026-47557",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1634,7 +1549,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "In bundled third-party code: Quantum-vulnerable X25519: role not determined (6 file(s))"
@@ -1643,7 +1558,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-41617",
+            "qsiId": "QSI-2026-47561",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1652,7 +1567,7 @@
         },
         {
           "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 2,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
             "text": "In bundled third-party code: ECB block-cipher mode used in external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h"
@@ -1661,7 +1576,7 @@
             "qsiFindingKey/v1": "8998a74e6b7e917173dd3e8b99c86802"
           },
           "properties": {
-            "qsiId": "QSI-2026-41618",
+            "qsiId": "QSI-2026-47562",
             "severity": "info",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -1682,7 +1597,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "anyhow 1.0.31 is affected by RUSTSEC-2026-0190 (no severity rating) (dependency: crates.io/anyhow@1.0.31)"
@@ -1691,7 +1606,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41621",
+            "qsiId": "QSI-2026-47565",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1700,7 +1615,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "anyhow 1.0.75 is affected by RUSTSEC-2026-0190 (no severity rating) (dependency: crates.io/anyhow@1.0.75)"
@@ -1709,7 +1624,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41626",
+            "qsiId": "QSI-2026-47570",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1718,7 +1633,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "No post-quantum capable cryptographic library detected"
@@ -1727,7 +1642,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-41620",
+            "qsiId": "QSI-2026-47564",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -1736,7 +1651,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 9,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained) (dependency: crates.io/bare-metal@0.2.5)"
@@ -1745,7 +1660,7 @@
             "qsiFindingKey/v1": "7442b1c54fc03c4c83f5aba63caf750d"
           },
           "properties": {
-            "qsiId": "QSI-2026-41622",
+            "qsiId": "QSI-2026-47566",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -1754,13 +1669,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/bitbox02-firmware-en @ ae548ef4e40f/9369b086-8e14-4cd6-8afe-d6d1af67cfe0"
+        "id": "qsi/bitbox02-firmware-en @ ae548ef4e40f/fcc41b4f-afea-4145-a29a-656ae3ead5e6"
       },
       "properties": {
-        "qsiContentSha256": "357ec07b6a756dc3b5dfed6e6ce414376d65c932e1e18b00e470ed46b9407ce7",
+        "qsiContentSha256": "c9ec88003237e24bc30817b83bb6831ceb366ef8e090f6f7fd0a63e28848054c",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T12:06:24.832656+00:00",
+        "qsiGeneratedAt": "2026-11-24T10:10:09.605206+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

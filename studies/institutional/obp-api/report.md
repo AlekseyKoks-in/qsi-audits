@@ -4,32 +4,34 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 13:47 UTC |
+| Report date | 2026-11-24 12:00 UTC |
 | Report version | 1 |
-| Audit run | b6defd6d-fe8e-4556-848f-ecaee3103f46 (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | 5ab997b7-c15d-4480-8384-981f120a981e (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `ff8c7de416fb7b8f67263000d05d98e6b20bf754fa6321d21dbaa974a1c43f15` |
+| Content SHA-256 | `e5a7852ac0bd2a437c9b86ce887fe8f140790ffa617ff73ab1a470aa832d1c60` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
-- High: **19**
+- High: **8**
 - Medium: **12**
 - Low: **5**
-- Info: **3**
+- Info: **7**
 
 - Confirmed technical vulnerability: 0
 - Known vulnerable component: 19
-- Confirmed configuration error: 11
+- Confirmed configuration error: 4
 - Potential cryptographic risk: 0
 - Long-term post-quantum risk: 4
 - Improvement recommendation: 4
 - Insufficient data: 1
 
 Mosca's inequality (x + y > z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+
+Analyst review: 0 confirmed, 4 not applicable, 7 dismissed as false positives.
 
 **Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
@@ -45,7 +47,7 @@ Repository: <https://github.com/OpenBankProject/OBP-API> @ `6a4a13ef079fa33707f4
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 1172 | .github/scripts/check_test_isolation.py: 231 lines scanned with 16 rule patterns and 340 registry patterns; obp-api/src/main/scala/bootstrap/http4s/Http4sMtls.scala: 236 lines scanned with 16 rule patterns and 340 registry patterns; obp-api/src/main/scala/bootstrap/http4s/Http4sServer.scala: 80 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 1172 | .github/scripts/check_test_isolation.py: 231 lines scanned with 17 rule patterns and 340 registry patterns; obp-api/src/main/scala/bootstrap/http4s/Http4sMtls.scala: 236 lines scanned with 17 rule patterns and 340 registry patterns; obp-api/src/main/scala/bootstrap/http4s/Http4sServer.scala: 80 lines scanned with 17 rule patterns and 340 registry patterns |
 | tls_configuration | checked | 4 | dev/mtls-nginx/nginx.conf: nginx TLS directives parsed; obp-api/src/main/resources/docs/introductory_system_documentation.md: nginx TLS directives parsed; obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala: openssl TLS directives parsed |
 | certificates | error (not checked) | 14 | docs/MTLS.md line 403: certificate could not be parsed (ValueError); obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala line 2968: certificate could not be parsed (ValueError); obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala line 3067: certificate could not be parsed (ValueError) |
 | certificates_and_keys | checked | 10 | docs/MTLS.md: certificates/keys parsed; obp-api/src/main/resources/props/sample.props.template: certificates/keys parsed; obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala: certificates/keys parsed |
@@ -54,6 +56,7 @@ Repository: <https://github.com/OpenBankProject/OBP-API> @ `6a4a13ef079fa33707f4
 | secrets | checked | 27 | obp-api/src/main/resources/docs/introductory_system_documentation.md: 25 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); obp-api/src/main/resources/props/sample.props.template: 11 secret-like value(s) in a configuration template are the values it tells the operator to replace; obp-api/src/main/scala/code/api/OAuth2.scala: JWT(s) at line(s) 395, 422, 522 expired (exp claim 2019-01-17 to 2019-01-17); an expired token authenticates nothing, so it is not reported as a secret |
 | tls_code | checked | 1 | obp-api/src/main/scala/code/api/util/migration/MigrationOfDynamicEntityRoleNames.scala: TLS key-exchange settings read |
 | entropy | checked | 1 | random-number generation: 10 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
 | osv_advisories | checked | 1 | 82 pinned packages queried at OSV.dev; 7 affected |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -90,101 +93,13 @@ Static review of the source tree obp-api at 6a4a13ef079fa33707f4ee3dba1e600570ed
 
 ## 7. Detailed findings
 
-### QSI-2026-44024 — Certificate has expired (app.example.com)
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: High
-- Affected asset: `certificate:app.example.com`
-- Data source: obp-api/src/main/resources/props/sample.props.template
-- Detection method: X.509 parsing (pyca/cryptography), comparison of notAfter with the analysis time (UTC).
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 61.4 / 100
-- CVSS v3.1: not applicable
-
-The X.509 certificate with subject app.example.com expired on 2025-11-26 (362 days ago).
-
-**Potential impact.** Clients that validate certificates will refuse connections; users may be trained to ignore warnings.
-
-**Reproduction steps.**
-
-```
-openssl x509 -in obp-api/src/main/resources/props/sample.props.template -noout -enddate
-```
-
-**Evidence.**
-
-_certificate · obp-api/src/main/resources/props/sample.props.template · line 2027 · SHA-256 0dda242ea754f0359967578bc4499e17a3c382359f0acb4bb6edcca1c07416ef_
-
-```
-Subject: CN=app.example.com
-Issuer: CN=app.example.com
-Serial: 18c10eb6474
-Not before: 2023-11-27T13:15:11+00:00
-Not after: 2025-11-26T13:15:11+00:00
-Public key: RSA 2048-bit
-Signature algorithm: 1.2.840.113549.1.1.11
-Signature hash: sha256
-CA: False
-SAN: -
-SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b20c726
-```
-
-**Limitations of the check.** Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256.
-
-**Recommendation.** Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring.
-
-**Retest procedure.** Re-parse the deployed certificate and confirm notAfter is in the future.
-
-### QSI-2026-44028 — Certificate has expired (app.example.com)
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: High
-- Affected asset: `certificate:app.example.com`
-- Data source: obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala
-- Detection method: X.509 parsing (pyca/cryptography), comparison of notAfter with the analysis time (UTC).
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 61.4 / 100
-- CVSS v3.1: not applicable
-
-The X.509 certificate with subject app.example.com expired on 2025-11-26 (362 days ago).
-
-**Potential impact.** Clients that validate certificates will refuse connections; users may be trained to ignore warnings.
-
-**Reproduction steps.**
-
-```
-openssl x509 -in obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala -noout -enddate
-```
-
-**Evidence.**
-
-_certificate · obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala · line 3040 · SHA-256 0dda242ea754f0359967578bc4499e17a3c382359f0acb4bb6edcca1c07416ef_
-
-```
-Subject: CN=app.example.com
-Issuer: CN=app.example.com
-Serial: 18c10eb6474
-Not before: 2023-11-27T13:15:11+00:00
-Not after: 2025-11-26T13:15:11+00:00
-Public key: RSA 2048-bit
-Signature algorithm: 1.2.840.113549.1.1.11
-Signature hash: sha256
-CA: False
-SAN: -
-SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b20c726
-```
-
-**Limitations of the check.** Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256.
-
-**Recommendation.** Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring.
-
-**Retest procedure.** Re-parse the deployed certificate and confirm notAfter is in the future.
-
-### QSI-2026-44043 — org.postgresql:postgresql 42.7.11 is affected by GHSA-j92g-9f8w-j867 (CVE-2026-54291)
+### QSI-2026-49955 — org.postgresql:postgresql 42.7.11 is affected by GHSA-j92g-9f8w-j867 (CVE-2026-54291)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/org.postgresql:postgresql@42.7.11`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -206,19 +121,19 @@ _tool_output · [OSV.dev GHSA-j92g-9f8w-j867](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-j92g-9f8w-j867", "aliases": ["BIT-postgresql-jdbc-driver-2026-54291", "CVE-2026-54291"], "modified": "2026-09-10T03:50:12.377062079Z", "summary": "PostgreSQL JDBC Driver: Silent channel-binding authentication downgrade via unsupported certificate algorithms", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:L/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (42.7.12).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44044 — org.xerial.snappy:snappy-java 1.1.10.4 is affected by GHSA-gwq9-9ffj-mvrv (CVE-2026-93451)
+### QSI-2026-49956 — org.xerial.snappy:snappy-java 1.1.10.4 is affected by GHSA-gwq9-9ffj-mvrv (CVE-2026-93451)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/org.xerial.snappy:snappy-java@1.1.10.4`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -240,19 +155,19 @@ _tool_output · [OSV.dev GHSA-gwq9-9ffj-mvrv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-gwq9-9ffj-mvrv", "aliases": ["CVE-2026-93451"], "modified": "2026-10-27T15:47:24.498155855Z", "summary": "snappy-java: Heap buffer overflow in Snappy.uncompress*Array typed-array methods", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (1.1.10.9).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44045 — org.xerial.snappy:snappy-java 1.1.10.4 is affected by GHSA-q233-g92q-qxp6 (CVE-2026-108106)
+### QSI-2026-49957 — org.xerial.snappy:snappy-java 1.1.10.4 is affected by GHSA-q233-g92q-qxp6 (CVE-2026-108106)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/org.xerial.snappy:snappy-java@1.1.10.4`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -274,19 +189,19 @@ _tool_output · [OSV.dev GHSA-q233-g92q-qxp6](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-q233-g92q-qxp6", "aliases": ["CVE-2026-108106"], "modified": "2026-10-27T15:47:24.815707184Z", "summary": "snappy-java: Unbounded memory allocation from attacker-declared uncompressed lengtha", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (1.1.10.9).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44048 — org.jsoup:jsoup 1.18.3 is affected by GHSA-65r4-943x-97jj (CVE-2026-75140)
+### QSI-2026-49960 — org.jsoup:jsoup 1.18.3 is affected by GHSA-65r4-943x-97jj (CVE-2026-75140)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/org.jsoup:jsoup@1.18.3`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -308,19 +223,19 @@ _tool_output · [OSV.dev GHSA-65r4-943x-97jj](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-65r4-943x-97jj", "aliases": ["CVE-2026-75140"], "modified": "2026-10-05T22:45:05.710363586Z", "summary": "jsoup XmlTreeBuilder vulnerable to memory exhaustion through deeply nested namespace declarations", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (1.23.2).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44052 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-68mj-5wr7-6fgg (CVE-2026-69219)
+### QSI-2026-49964 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-68mj-5wr7-6fgg (CVE-2026-69219)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -342,19 +257,19 @@ _tool_output · [OSV.dev GHSA-68mj-5wr7-6fgg](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-68mj-5wr7-6fgg", "aliases": ["CVE-2026-69219"], "modified": "2026-09-10T03:51:13.151154373Z", "summary": "RabbitMQ Java client ValueReader: Oversized LongString/bytes length triggers OOM via unchecked allocation", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.33.1).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44053 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-6g32-pxv4-2wfj (CVE-2026-63337)
+### QSI-2026-49965 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-6g32-pxv4-2wfj (CVE-2026-63337)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -376,19 +291,19 @@ _tool_output · [OSV.dev GHSA-6g32-pxv4-2wfj](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-6g32-pxv4-2wfj", "aliases": ["CVE-2026-63337"], "modified": "2026-09-10T03:51:13.214436792Z", "summary": "RabbitMQ Java client: Unvalidated Class.forName in JSON-RPC ProcedureDescription enables arbitrary class loading", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:P/VC:H/VI:H/VA:H/SC:L/SI:L/SA:L"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.33.0).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44055 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-93j5-89vc-pph4 (CVE-2026-69220)
+### QSI-2026-49967 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-93j5-89vc-pph4 (CVE-2026-69220)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -410,19 +325,19 @@ _tool_output · [OSV.dev GHSA-93j5-89vc-pph4](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-93j5-89vc-pph4", "aliases": ["CVE-2026-69220"], "modified": "2026-09-10T03:51:13.771990072Z", "summary": "RabbitMQ Java client ValueReader: Unbounded recursive table/array nesting causes StackOverflowError DoS", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.33.1).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44058 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-jh4v-gfqj-7rhx (CVE-2026-75516)
+### QSI-2026-49970 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-jh4v-gfqj-7rhx (CVE-2026-75516)
 
 - Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 50.2 / 100
 - CVSS v3.1: not applicable
 
@@ -444,355 +359,19 @@ _tool_output · [OSV.dev GHSA-jh4v-gfqj-7rhx](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-jh4v-gfqj-7rhx", "aliases": ["CVE-2026-75516"], "modified": "2026-09-17T15:00:06.805894716Z", "summary": "RabbitMQ Java client has frame-level OOM: Math.min(maxInboundMessageBodySize, 0) defeats frame size enforcement", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.34.0).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44023 — Possible hard-coded secret in obp-api/src/main/resources/docs/introductory_system_documentation.md
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:obp-api/src/main/resources/docs/introductory_system_documentation.md`
-- Data source: obp-api/src/main/resources/docs/introductory_system_documentation.md
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-1 secret-like value(s) of type generic_assignment (first at line 5126). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 5126 in the supplied file obp-api/src/main/resources/docs/introductory_system_documentation.md and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [obp-api/src/main/resources/docs/introductory_system_documentation.md](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/resources/docs/introductory_system_documentation.md#L5126) · line 5126 · SHA-256 9f978bb1c5c0376841869923240b332ccf2e14a3e17db416ed08cd0973f45105_
-
-```
- 5126 | Authorization: DirectLogin token="[REDACTED]"
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44032 — Possible hard-coded secret in obp-api/src/main/scala/code/api/util/APIUtil.scala
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:obp-api/src/main/scala/code/api/util/APIUtil.scala`
-- Data source: obp-api/src/main/scala/code/api/util/APIUtil.scala
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-2 secret-like value(s) of type jwt (first at line 2917). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 2917 in the supplied file obp-api/src/main/scala/code/api/util/APIUtil.scala and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [obp-api/src/main/scala/code/api/util/APIUtil.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/util/APIUtil.scala#L2917) · line 2917 · SHA-256 71dee0294a08de49a803c572db3a855e6ec543c3780db750e55a709ec8fc0372_
-
-```
- 2917 |       } // Direct Login i.e DirectLogin: token=[REDACTED]
-```
-
-_file_excerpt · [obp-api/src/main/scala/code/api/util/APIUtil.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/util/APIUtil.scala#L2920) · line 2920 · SHA-256 598c88fda54708850cf3b23fd58e904fcdedb8b706a6b2fd414db9ed8fda2c4d_
-
-```
- 2920 |       } // Direct Login Deprecated i.e Authorization: DirectLogin token=[REDACTED]
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44034 — Possible hard-coded secret in obp-api/src/main/scala/code/api/util/DBUtil.scala
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:obp-api/src/main/scala/code/api/util/DBUtil.scala`
-- Data source: obp-api/src/main/scala/code/api/util/DBUtil.scala
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-1 secret-like value(s) of type generic_assignment (first at line 133). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 133 in the supplied file obp-api/src/main/scala/code/api/util/DBUtil.scala and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [obp-api/src/main/scala/code/api/util/DBUtil.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/util/DBUtil.scala#L133) · line 133 · SHA-256 b069e50e99435587fb78140c5ac70fab362414f32b9864e72c01916c8b50a50d_
-
-```
-  133 |     val password = params.find(_.startsWith("password="[REDACTED]"=", 2)(1))
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44036 — Possible hard-coded secret in obp-api/src/main/scala/code/api/util/Glossary.scala
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:obp-api/src/main/scala/code/api/util/Glossary.scala`
-- Data source: obp-api/src/main/scala/code/api/util/Glossary.scala
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-3 secret-like value(s) of type jwt (first at line 3125). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 3125 in the supplied file obp-api/src/main/scala/code/api/util/Glossary.scala and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [obp-api/src/main/scala/code/api/util/Glossary.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/util/Glossary.scala#L3125) · line 3125 · SHA-256 4f05d808f419bcb03e1caaf94f8242fc7efad0681585bdaf903b2999ba25656a_
-
-```
- 3125 | |[REDACTED]
-```
-
-_file_excerpt · [obp-api/src/main/scala/code/api/util/Glossary.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/util/Glossary.scala#L3152) · line 3152 · SHA-256 9ba493a3c379601d4552149cc1f45a29c46a62a37fc1863d9584c5fcb24f7575_
-
-```
- 3152 | |        DAuth: [REDACTED]
-```
-
-_file_excerpt · [obp-api/src/main/scala/code/api/util/Glossary.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/util/Glossary.scala#L3157) · line 3157 · SHA-256 a50fc66a160123653089814f1743de0b86c3a6f8a0efdf2ab1b5d8fdac1f4638_
-
-```
- 3157 | |curl -v -H 'DAuth: [REDACTED]' $getServerUrl/obp/v3.0.0/users/current
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44037 — Possible hard-coded secret in obp-api/src/main/scala/code/api/v5_1_0/Http4s510.scala
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:obp-api/src/main/scala/code/api/v5_1_0/Http4s510.scala`
-- Data source: obp-api/src/main/scala/code/api/v5_1_0/Http4s510.scala
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-1 secret-like value(s) of type jwt (first at line 3327). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 3327 in the supplied file obp-api/src/main/scala/code/api/v5_1_0/Http4s510.scala and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [obp-api/src/main/scala/code/api/v5_1_0/Http4s510.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/v5_1_0/Http4s510.scala#L3327) · line 3327 · SHA-256 14aa4e819e9718f8a9ad41ad1be753dfc2216f342019bcad8607888e222fe488_
-
-```
- 3327 |       ConsumerJwtPostJsonV510("[REDACTED]"),
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44038 — Possible hard-coded secret in obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala`
-- Data source: obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-2 secret-like value(s) of type generic_assignment (first at line 9610). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 9610 in the supplied file obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala#L9610) · line 9610 · SHA-256 30bb303e069156eb4c167e6b14a7139d29f488878793241be5fec759e34e1cdd_
-
-```
- 9610 |           client_secret = "[REDACTED]"
-```
-
-_file_excerpt · [obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala#L12748) · line 12748 · SHA-256 29aedecdc352e146b7a9ac91d114a9c77e2e52066c4942ca4b513eca8370860a_
-
-```
-12748 |             token = "[REDACTED]"
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44039 — Possible hard-coded secret in obp-api/src/main/scala/code/paymetngateway/StripeExample.scala
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:obp-api/src/main/scala/code/paymetngateway/StripeExample.scala`
-- Data source: obp-api/src/main/scala/code/paymetngateway/StripeExample.scala
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-1 secret-like value(s) of type generic_assignment (first at line 42). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 42 in the supplied file obp-api/src/main/scala/code/paymetngateway/StripeExample.scala and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [obp-api/src/main/scala/code/paymetngateway/StripeExample.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/paymetngateway/StripeExample.scala#L42) · line 42 · SHA-256 4832568d60d673765255866449deea640cc2b6cb1d05ee3cdf1f1c8b19adbeb8_
-
-```
-   42 |     Stripe.apiKey = "[REDACTED]"
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44040 — Possible hard-coded secret in obp-api/src/main/scala/code/sandbox/OBPDataImport.scala
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:obp-api/src/main/scala/code/sandbox/OBPDataImport.scala`
-- Data source: obp-api/src/main/scala/code/sandbox/OBPDataImport.scala
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-2 secret-like value(s) of type generic_assignment (first at line 815). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 815 in the supplied file obp-api/src/main/scala/code/sandbox/OBPDataImport.scala and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [obp-api/src/main/scala/code/sandbox/OBPDataImport.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/sandbox/OBPDataImport.scala#L815) · line 815 · SHA-256 8ffc27b6c250f11a97e5a35889799272cb27867a9b2b93e2d6d0cfcbee114b46_
-
-```
-  815 |   val user1 = SandboxUserImport(email = "user1@example.com", password = "[REDACTED]", user_name = "User 1")
-```
-
-_file_excerpt · [obp-api/src/main/scala/code/sandbox/OBPDataImport.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/sandbox/OBPDataImport.scala#L816) · line 816 · SHA-256 9784bcbafb4b541a11c4d482c1e1aade8b47ac85cd53dcb29ce3ef100ef3d50a_
-
-```
-  816 |   val user2 = SandboxUserImport(email = "user2@example.com", password = "[REDACTED]", user_name = "User 2")
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44041 — Possible hard-coded secret in scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json
-
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `file:scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json`
-- Data source: scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
-- Priority score: 47.1 / 100
-- CVSS v3.1: not applicable
-
-1 secret-like value(s) of type generic_assignment (first at line 784). Values were redacted by QSI.
-
-**Potential impact.** Credentials in source code leak through repositories, builds and logs.
-
-**Reproduction steps.**
-
-```
-Open line 784 in the supplied file scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json#L784) · line 784 · SHA-256 4d569836ba65f375f67efdc78b0a2c53f98844ab28da46a25e5da2d01357007d_
-
-```
-  784 |       "example_request_body": "PostUserInvitationAnonymousJsonV400(secret_key = [REDACTED]",
-```
-
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
-
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
-
-### QSI-2026-44046 — org.xerial.snappy:snappy-java 1.1.10.4 is affected by GHSA-xqrx-qh46-34m7 (CVE-2026-116590)
+### QSI-2026-49958 — org.xerial.snappy:snappy-java 1.1.10.4 is affected by GHSA-xqrx-qh46-34m7 (CVE-2026-116590)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/org.xerial.snappy:snappy-java@1.1.10.4`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -814,19 +393,19 @@ _tool_output · [OSV.dev GHSA-xqrx-qh46-34m7](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-xqrx-qh46-34m7", "aliases": ["CVE-2026-116590"], "modified": "2026-10-27T15:47:25.122359555Z", "summary": "snappy-java: JVM crash from unchecked ranges in Snappy.arrayCopy and SnappyOutputStream.rawWrite", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (1.1.10.9).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44047 — org.apache.logging.log4j:log4j-api 2.26.0 is affected by GHSA-qv9r-c865-cp47 (CVE-2026-49844)
+### QSI-2026-49959 — org.apache.logging.log4j:log4j-api 2.26.0 is affected by GHSA-qv9r-c865-cp47 (CVE-2026-49844)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/org.apache.logging.log4j:log4j-api@2.26.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -848,19 +427,19 @@ _tool_output · [OSV.dev GHSA-qv9r-c865-cp47](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-qv9r-c865-cp47", "aliases": ["CVE-2026-49844"], "modified": "2026-09-10T03:50:52.972700022Z", "summary": "Apache Log4j API: Improper encoding of non-finite floating-point values during MapMessage JSON serialization", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:L/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (2.25.5, 2.26.1).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44049 — org.jsoup:jsoup 1.18.3 is affected by GHSA-pmhh-3w7g-xqp8 (CVE-2026-71497)
+### QSI-2026-49961 — org.jsoup:jsoup 1.18.3 is affected by GHSA-pmhh-3w7g-xqp8 (CVE-2026-71497)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/org.jsoup:jsoup@1.18.3`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -882,19 +461,19 @@ _tool_output · [OSV.dev GHSA-pmhh-3w7g-xqp8](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-pmhh-3w7g-xqp8", "aliases": ["CVE-2026-71497"], "modified": "2026-09-10T03:50:53.809983880Z", "summary": "jsoup: Cleaner may expose markup with custom raw-text elements", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (1.23.1).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44050 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-5m9f-rphj-c435 (CVE-2026-63336)
+### QSI-2026-49962 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-5m9f-rphj-c435 (CVE-2026-63336)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -916,19 +495,19 @@ _tool_output · [OSV.dev GHSA-5m9f-rphj-c435](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-5m9f-rphj-c435", "aliases": ["CVE-2026-63336"], "modified": "2026-09-10T03:51:13.150501327Z", "summary": "RabbitMQ Java client: TrustEverythingTrustManager used by default in useSslProtocol() enables MITM", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:N/VC:N/VI:N/VA:N/SC:H/SI:L/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.33.0).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44054 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-7822-rcf6-97fx (CVE-2026-106122)
+### QSI-2026-49966 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-7822-rcf6-97fx (CVE-2026-106122)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -950,19 +529,19 @@ _tool_output · [OSV.dev GHSA-7822-rcf6-97fx](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-7822-rcf6-97fx", "aliases": ["CVE-2026-106122"], "modified": "2026-10-07T20:30:07.156315722Z", "summary": "RabbitMQ: Malformed UTF-8 in shortstr properties permanently disables RPC consumers", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.36.0).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44056 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-cqgh-8p3p-mx4m (CVE-2026-106121)
+### QSI-2026-49968 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-cqgh-8p3p-mx4m (CVE-2026-106121)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 4.9 (`CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -984,19 +563,19 @@ _tool_output · [OSV.dev GHSA-cqgh-8p3p-mx4m](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-cqgh-8p3p-mx4m", "aliases": ["CVE-2026-106121"], "modified": "2026-10-07T21:00:04.481305005Z", "summary": "RabbitMQ: JSONReader in the default JSON-RPC mapper never terminates on truncated input, causing DoS", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.36.1).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44057 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-h6w7-qmcm-q6xr (CVE-2026-106123)
+### QSI-2026-49969 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-h6w7-qmcm-q6xr (CVE-2026-106123)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.5 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -1018,19 +597,19 @@ _tool_output · [OSV.dev GHSA-h6w7-qmcm-q6xr](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-h6w7-qmcm-q6xr", "aliases": ["CVE-2026-106123"], "modified": "2026-10-19T19:45:04.498976139Z", "summary": "RabbitMQ Java client: plaintext broker credentials leaked in exception message from ConnectionFactoryConfigurator.load()", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:P/PR:L/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.35.0).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44059 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-qx7j-jv8m-fppr (CVE-2026-63335)
+### QSI-2026-49971 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-qx7j-jv8m-fppr (CVE-2026-63335)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1052,19 +631,19 @@ _tool_output · [OSV.dev GHSA-qx7j-jv8m-fppr](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-qx7j-jv8m-fppr", "aliases": ["CVE-2026-63335"], "modified": "2026-09-10T03:50:54.002021426Z", "summary": "RabbitMQ Java client malformed body frame triggers raw command assembler exception", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:N/SC:N/SI:N/SA:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.31.0).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44060 — com.google.guava:guava 32.0.0-jre is affected by GHSA-xxph-c9ww-hj94 (CVE-2026-102554)
+### QSI-2026-49972 — com.google.guava:guava 32.0.0-jre is affected by GHSA-xxph-c9ww-hj94 (CVE-2026-102554)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.google.guava:guava@32.0.0-jre`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1086,19 +665,19 @@ _tool_output · [OSV.dev GHSA-xxph-c9ww-hj94](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-xxph-c9ww-hj94", "aliases": ["CVE-2026-102554"], "modified": "2026-10-27T14:45:04.803511466Z", "summary": "Google Guava: CompactHashMap/CompactHashSet/MapMakerInternalMap deserialization triggers uncontrolled memory allocation", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (33.7.2).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44061 — org.json:json 20250107 is affected by GHSA-ghc9-756g-vrcv (CVE-2026-59171)
+### QSI-2026-49973 — org.json:json 20250107 is affected by GHSA-ghc9-756g-vrcv (CVE-2026-59171)
 
 - Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/org.json:json@20250107`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1120,19 +699,19 @@ _tool_output · [OSV.dev GHSA-ghc9-756g-vrcv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-ghc9-756g-vrcv", "aliases": ["CVE-2026-59171"], "modified": "2026-11-09T21:30:07.800246808Z", "summary": "JSON-java: JSONTokener Has Unbounded Numeric String Resource-Exhaustion DoS", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (20260719).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44033 — Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (5 file(s))
+### QSI-2026-49945 — Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (5 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:authentication`
 - Data source: obp-api/src/main/scala/code/api/util/BerlinGroupSigning.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1218,13 +797,13 @@ _file_excerpt · [obp-api/src/main/scala/code/api/util/SelfSignedCertificateUtil
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44035 — Quantum-vulnerable RSA: role not determined (3 file(s))
+### QSI-2026-49947 — Quantum-vulnerable RSA: role not determined (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:general`
 - Data source: obp-api/src/main/scala/code/api/util/Glossary.scala
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1270,13 +849,13 @@ _file_excerpt · [obp-api/src/main/scala/code/messageoutbox/WebhookOutbox.scala]
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44051 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-5xwg-cfvj-gff5 (CVE-2026-61634)
+### QSI-2026-49963 — com.rabbitmq:amqp-client 5.22.0 is affected by GHSA-5xwg-cfvj-gff5 (CVE-2026-61634)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
 - Affected asset: `dependency:Maven/com.rabbitmq:amqp-client@5.22.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 39.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1298,19 +877,19 @@ _tool_output · [OSV.dev GHSA-5xwg-cfvj-gff5](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-5xwg-cfvj-gff5", "aliases": ["CVE-2026-61634"], "modified": "2026-09-10T03:51:13.134044568Z", "summary": "RabbitMQ Java client accepts broker frames larger than the negotiated AMQP frame_max", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (5.33.0).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44025 — Quantum-vulnerable RSA key in certificate (app.example.com)
+### QSI-2026-49937 — Quantum-vulnerable RSA key in certificate (app.example.com)
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `certificate:app.example.com`
 - Data source: obp-api/src/main/resources/props/sample.props.template
 - Detection method: X.509 public key algorithm identification.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 36.5 / 100
 - CVSS v3.1: not applicable
 
@@ -1348,13 +927,13 @@ SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b2
 
 **Retest procedure.** Re-audit once PQC or hybrid certificates are deployed.
 
-### QSI-2026-44029 — Quantum-vulnerable RSA key in certificate (app.example.com)
+### QSI-2026-49941 — Quantum-vulnerable RSA key in certificate (app.example.com)
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `certificate:app.example.com`
 - Data source: obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala
 - Detection method: X.509 public key algorithm identification.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 36.5 / 100
 - CVSS v3.1: not applicable
 
@@ -1392,13 +971,13 @@ SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b2
 
 **Retest procedure.** Re-audit once PQC or hybrid certificates are deployed.
 
-### QSI-2026-44026 — Leaf certificate validity of 730 days (app.example.com)
+### QSI-2026-49938 — Leaf certificate validity of 730 days (app.example.com)
 
 - Severity: **Low** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `certificate:app.example.com`
 - Data source: obp-api/src/main/resources/props/sample.props.template
 - Detection method: X.509 validity period computation.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 30.9 / 100
 - CVSS v3.1: not applicable
 
@@ -1436,13 +1015,13 @@ SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b2
 
 **Retest procedure.** Check notBefore/notAfter of the next issuance.
 
-### QSI-2026-44030 — Leaf certificate validity of 730 days (app.example.com)
+### QSI-2026-49942 — Leaf certificate validity of 730 days (app.example.com)
 
 - Severity: **Low** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `certificate:app.example.com`
 - Data source: obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala
 - Detection method: X.509 validity period computation.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 30.9 / 100
 - CVSS v3.1: not applicable
 
@@ -1480,13 +1059,179 @@ SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b2
 
 **Retest procedure.** Check notBefore/notAfter of the next issuance.
 
-### QSI-2026-44027 — Self-signed end-entity certificate (app.example.com)
+### QSI-2026-49936 — Certificate has expired (app.example.com)
+
+- Severity: **Info** · Classification: Confirmed configuration error · Confidence: High
+> **Analyst review (QSI review, 2026-11-24): not applicable to this code.** An example certificate for app.example.com, in the settings template (props/sample.props.template) and in the Swagger examples (SwaggerDefinitionsJSON.scala). Nothing in a deployment trusts it. _automated severity: High._
+- Affected asset: `certificate:app.example.com`
+- Data source: obp-api/src/main/resources/props/sample.props.template
+- Detection method: X.509 parsing (pyca/cryptography), comparison of notAfter with the analysis time (UTC).
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:00 UTC
+- Priority score: 42.6 / 100
+- CVSS v3.1: not applicable
+
+The X.509 certificate with subject app.example.com expired on 2025-11-26 (362 days ago).
+
+**Potential impact.** Clients that validate certificates will refuse connections; users may be trained to ignore warnings.
+
+**Reproduction steps.**
+
+```
+openssl x509 -in obp-api/src/main/resources/props/sample.props.template -noout -enddate
+```
+
+**Evidence.**
+
+_certificate · obp-api/src/main/resources/props/sample.props.template · line 2027 · SHA-256 0dda242ea754f0359967578bc4499e17a3c382359f0acb4bb6edcca1c07416ef_
+
+```
+Subject: CN=app.example.com
+Issuer: CN=app.example.com
+Serial: 18c10eb6474
+Not before: 2023-11-27T13:15:11+00:00
+Not after: 2025-11-26T13:15:11+00:00
+Public key: RSA 2048-bit
+Signature algorithm: 1.2.840.113549.1.1.11
+Signature hash: sha256
+CA: False
+SAN: -
+SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b20c726
+```
+
+**Limitations of the check.** Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256.
+
+**Recommendation.** Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring.
+
+**Retest procedure.** Re-parse the deployed certificate and confirm notAfter is in the future.
+
+### QSI-2026-49940 — Certificate has expired (app.example.com)
+
+- Severity: **Info** · Classification: Confirmed configuration error · Confidence: High
+> **Analyst review (QSI review, 2026-11-24): not applicable to this code.** An example certificate for app.example.com, in the settings template (props/sample.props.template) and in the Swagger examples (SwaggerDefinitionsJSON.scala). Nothing in a deployment trusts it. _automated severity: High._
+- Affected asset: `certificate:app.example.com`
+- Data source: obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala
+- Detection method: X.509 parsing (pyca/cryptography), comparison of notAfter with the analysis time (UTC).
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:00 UTC
+- Priority score: 42.6 / 100
+- CVSS v3.1: not applicable
+
+The X.509 certificate with subject app.example.com expired on 2025-11-26 (362 days ago).
+
+**Potential impact.** Clients that validate certificates will refuse connections; users may be trained to ignore warnings.
+
+**Reproduction steps.**
+
+```
+openssl x509 -in obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala -noout -enddate
+```
+
+**Evidence.**
+
+_certificate · obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala · line 3040 · SHA-256 0dda242ea754f0359967578bc4499e17a3c382359f0acb4bb6edcca1c07416ef_
+
+```
+Subject: CN=app.example.com
+Issuer: CN=app.example.com
+Serial: 18c10eb6474
+Not before: 2023-11-27T13:15:11+00:00
+Not after: 2025-11-26T13:15:11+00:00
+Public key: RSA 2048-bit
+Signature algorithm: 1.2.840.113549.1.1.11
+Signature hash: sha256
+CA: False
+SAN: -
+SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b20c726
+```
+
+**Limitations of the check.** Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256.
+
+**Recommendation.** Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring.
+
+**Retest procedure.** Re-parse the deployed certificate and confirm notAfter is in the future.
+
+### QSI-2026-49951 — Possible hard-coded secret in obp-api/src/main/scala/code/paymetngateway/StripeExample.scala
+
+- Severity: **Info** · Classification: Confirmed configuration error · Confidence: Medium
+> **Analyst review (QSI review, 2026-11-24): not applicable to this code.** A Stripe test-mode key (the sk_test_ kind) in an example integration; test keys move no money. _automated severity: High._
+- Affected asset: `file:obp-api/src/main/scala/code/paymetngateway/StripeExample.scala`
+- Data source: obp-api/src/main/scala/code/paymetngateway/StripeExample.scala
+- Detection method: Regular-expression matching of language-specific API patterns.
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:00 UTC
+- Priority score: 40.4 / 100
+- CVSS v3.1: not applicable
+
+1 secret-like value(s) of type generic_assignment (first at line 42). Values were redacted by QSI.
+
+**Potential impact.** Credentials in source code leak through repositories, builds and logs.
+
+**Reproduction steps.**
+
+```
+Open line 42 in the supplied file obp-api/src/main/scala/code/paymetngateway/StripeExample.scala and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [obp-api/src/main/scala/code/paymetngateway/StripeExample.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/paymetngateway/StripeExample.scala#L42) · line 42 · SHA-256 4832568d60d673765255866449deea640cc2b6cb1d05ee3cdf1f1c8b19adbeb8_
+
+```
+   42 |     Stripe.apiKey = "[REDACTED]"
+```
+
+**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
+
+**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+
+### QSI-2026-49952 — Possible hard-coded secret in obp-api/src/main/scala/code/sandbox/OBPDataImport.scala
+
+- Severity: **Info** · Classification: Confirmed configuration error · Confidence: Medium
+> **Analyst review (QSI review, 2026-11-24): not applicable to this code.** The demo users of the sandbox data import (code/sandbox), sample accounts for trying the API; the values are not quoted here. _automated severity: High._
+- Affected asset: `file:obp-api/src/main/scala/code/sandbox/OBPDataImport.scala`
+- Data source: obp-api/src/main/scala/code/sandbox/OBPDataImport.scala
+- Detection method: Regular-expression matching of language-specific API patterns.
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:00 UTC
+- Priority score: 40.4 / 100
+- CVSS v3.1: not applicable
+
+2 secret-like value(s) of type generic_assignment (first at line 815). Values were redacted by QSI.
+
+**Potential impact.** Credentials in source code leak through repositories, builds and logs.
+
+**Reproduction steps.**
+
+```
+Open line 815 in the supplied file obp-api/src/main/scala/code/sandbox/OBPDataImport.scala and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [obp-api/src/main/scala/code/sandbox/OBPDataImport.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/sandbox/OBPDataImport.scala#L815) · line 815 · SHA-256 8ffc27b6c250f11a97e5a35889799272cb27867a9b2b93e2d6d0cfcbee114b46_
+
+```
+  815 |   val user1 = SandboxUserImport(email = "user1@example.com", password = "[REDACTED]", user_name = "User 1")
+```
+
+_file_excerpt · [obp-api/src/main/scala/code/sandbox/OBPDataImport.scala](https://github.com/OpenBankProject/OBP-API/blob/6a4a13ef079fa33707f4ee3dba1e600570ed34b4/obp-api/src/main/scala/code/sandbox/OBPDataImport.scala#L816) · line 816 · SHA-256 9784bcbafb4b541a11c4d482c1e1aade8b47ac85cd53dcb29ce3ef100ef3d50a_
+
+```
+  816 |   val user2 = SandboxUserImport(email = "user2@example.com", password = "[REDACTED]", user_name = "User 2")
+```
+
+**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Move secrets to a secrets manager/environment; rotate the exposed values.
+
+**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+
+### QSI-2026-49939 — Self-signed end-entity certificate (app.example.com)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `certificate:app.example.com`
 - Data source: obp-api/src/main/resources/props/sample.props.template
 - Detection method: X.509 issuer/subject comparison, BasicConstraints.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 32.0 / 100
 - CVSS v3.1: not applicable
 
@@ -1524,13 +1269,13 @@ SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b2
 
 **Retest procedure.** Check issuer of the deployed certificate.
 
-### QSI-2026-44031 — Self-signed end-entity certificate (app.example.com)
+### QSI-2026-49943 — Self-signed end-entity certificate (app.example.com)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 - Affected asset: `certificate:app.example.com`
 - Data source: obp-api/src/main/scala/code/api/ResourceDocs1_4_0/SwaggerDefinitionsJSON.scala
 - Detection method: X.509 issuer/subject comparison, BasicConstraints.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 32.0 / 100
 - CVSS v3.1: not applicable
 
@@ -1568,13 +1313,13 @@ SHA-256 fingerprint: 25d91ac53796ca8c5598ee6d180ff0efb3919b4592b4ecef1c68fad35b2
 
 **Retest procedure.** Check issuer of the deployed certificate.
 
-### QSI-2026-44042 — No post-quantum capable cryptographic library detected
+### QSI-2026-49954 — No post-quantum capable cryptographic library detected
 
 - Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `dependencies`
 - Data source: dependency manifests
 - Detection method: Dependency name matching.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:47 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:00 UTC
 - Priority score: 13.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1602,6 +1347,19 @@ Crypto libraries: com.nimbusds:nimbus-jose-jwt
 
 **Retest procedure.** Re-scan after upgrades.
 
+### Dismissed after review
+
+_The analyst dismissed these findings as false positives; they are not counted in this report._
+
+| ID | Detailed findings | Analyst review |
+|---|---|---|
+| QSI-2026-49935 | Possible hard-coded secret in obp-api/src/main/resources/docs/introductory_system_documentation.md | Example DirectLogin and DAuth headers in the introductory documentation, placeholders for developers to copy. |
+| QSI-2026-49944 | Possible hard-coded secret in obp-api/src/main/scala/code/api/util/APIUtil.scala | Example DirectLogin tokens in comments that explain the header format. |
+| QSI-2026-49946 | Possible hard-coded secret in obp-api/src/main/scala/code/api/util/DBUtil.scala | Code, not a value: DBUtil tests a string with startsWith("password=") and goes on with code; the scanner read the literal and the code after it as an assignment. |
+| QSI-2026-49948 | Possible hard-coded secret in obp-api/src/main/scala/code/api/util/Glossary.scala | Example DAuth and DirectLogin headers in the glossary entries that the API serves as documentation. |
+| QSI-2026-49949 | Possible hard-coded secret in obp-api/src/main/scala/code/api/v5_1_0/Http4s510.scala | Example request bodies in the resource descriptions of the http4s endpoints (v5.1.0 and v6.0.0). |
+| QSI-2026-49950 | Possible hard-coded secret in obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala | Example request bodies in the resource descriptions of the http4s endpoints (v5.1.0 and v6.0.0). |
+| QSI-2026-49953 | Possible hard-coded secret in scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json | A saved copy of the generated resource documentation, holding the same example headers and request bodies. |
 
 ## 8. Post-quantum assessment
 
@@ -1635,8 +1393,8 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **authentication and identity (certificates, tokens, device attestation)** | RSA (5) | QSI-2026-44033 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | RSA (3) | QSI-2026-44035 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **authentication and identity (certificates, tokens, device attestation)** | RSA (5) | QSI-2026-49945 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
+| **role not determined** | RSA (3) | QSI-2026-49947 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -1681,36 +1439,29 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-44024 | Renew the certificate for app.example.com and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
-| P1 | QSI-2026-44028 | Renew the certificate for app.example.com and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
-| P1 | QSI-2026-44023 | Rotate and remove secrets found in obp-api/src/main/resources/docs/introductory_system_documentation.md. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-44032 | Rotate and remove secrets found in obp-api/src/main/scala/code/api/util/APIUtil.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-44034 | Rotate and remove secrets found in obp-api/src/main/scala/code/api/util/DBUtil.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-44036 | Rotate and remove secrets found in obp-api/src/main/scala/code/api/util/Glossary.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-44037 | Rotate and remove secrets found in obp-api/src/main/scala/code/api/v5_1_0/Http4s510.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-44038 | Rotate and remove secrets found in obp-api/src/main/scala/code/api/v6_0_0/Http4s600.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-44039 | Rotate and remove secrets found in obp-api/src/main/scala/code/paymetngateway/StripeExample.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-44040 | Rotate and remove secrets found in obp-api/src/main/scala/code/sandbox/OBPDataImport.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P1 | QSI-2026-44041 | Rotate and remove secrets found in scripts/resource_doc_baseline/lift_resource_docs_v4_0_0.json. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
-| P2 | QSI-2026-44043 | Upgrade org.postgresql:postgresql to a fixed version (42.7.12). | root-cause fix | Dependency scan no longer reports GHSA-j92g-9f8w-j867 (CVE-2026-54291). |
-| P2 | QSI-2026-44044 | Upgrade org.xerial.snappy:snappy-java to a fixed version (1.1.10.9). | root-cause fix | Dependency scan no longer reports GHSA-gwq9-9ffj-mvrv (CVE-2026-93451). |
-| P2 | QSI-2026-44045 | Upgrade org.xerial.snappy:snappy-java to a fixed version (1.1.10.9). | root-cause fix | Dependency scan no longer reports GHSA-q233-g92q-qxp6 (CVE-2026-108106). |
-| P2 | QSI-2026-44048 | Upgrade org.jsoup:jsoup to a fixed version (1.23.2). | root-cause fix | Dependency scan no longer reports GHSA-65r4-943x-97jj (CVE-2026-75140). |
-| P2 | QSI-2026-44052 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.1). | root-cause fix | Dependency scan no longer reports GHSA-68mj-5wr7-6fgg (CVE-2026-69219). |
-| P2 | QSI-2026-44053 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.0). | root-cause fix | Dependency scan no longer reports GHSA-6g32-pxv4-2wfj (CVE-2026-63337). |
-| P2 | QSI-2026-44055 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.1). | root-cause fix | Dependency scan no longer reports GHSA-93j5-89vc-pph4 (CVE-2026-69220). |
-| P2 | QSI-2026-44058 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.34.0). | root-cause fix | Dependency scan no longer reports GHSA-jh4v-gfqj-7rhx (CVE-2026-75516). |
-| P2 | QSI-2026-44046 | Upgrade org.xerial.snappy:snappy-java to a fixed version (1.1.10.9). | root-cause fix | Dependency scan no longer reports GHSA-xqrx-qh46-34m7 (CVE-2026-116590). |
-| P2 | QSI-2026-44047 | Upgrade org.apache.logging.log4j:log4j-api to a fixed version (2.25.5, 2.26.1). | root-cause fix | Dependency scan no longer reports GHSA-qv9r-c865-cp47 (CVE-2026-49844). |
-| P2 | QSI-2026-44049 | Upgrade org.jsoup:jsoup to a fixed version (1.23.1). | root-cause fix | Dependency scan no longer reports GHSA-pmhh-3w7g-xqp8 (CVE-2026-71497). |
-| P2 | QSI-2026-44050 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.0). | root-cause fix | Dependency scan no longer reports GHSA-5m9f-rphj-c435 (CVE-2026-63336). |
-| P2 | QSI-2026-44054 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.36.0). | root-cause fix | Dependency scan no longer reports GHSA-7822-rcf6-97fx (CVE-2026-106122). |
-| P2 | QSI-2026-44056 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.36.1). | root-cause fix | Dependency scan no longer reports GHSA-cqgh-8p3p-mx4m (CVE-2026-106121). |
-| P2 | QSI-2026-44057 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.35.0). | root-cause fix | Dependency scan no longer reports GHSA-h6w7-qmcm-q6xr (CVE-2026-106123). |
-| P2 | QSI-2026-44059 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.31.0). | root-cause fix | Dependency scan no longer reports GHSA-qx7j-jv8m-fppr (CVE-2026-63335). |
-| P2 | QSI-2026-44060 | Upgrade com.google.guava:guava to a fixed version (33.7.2). | root-cause fix | Dependency scan no longer reports GHSA-xxph-c9ww-hj94 (CVE-2026-102554). |
-| P2 | QSI-2026-44061 | Upgrade org.json:json to a fixed version (20260719). | root-cause fix | Dependency scan no longer reports GHSA-ghc9-756g-vrcv (CVE-2026-59171). |
-| P2 | QSI-2026-44051 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.0). | root-cause fix | Dependency scan no longer reports GHSA-5xwg-cfvj-gff5 (CVE-2026-61634). |
+| P1 | QSI-2026-49936 | Renew the certificate for app.example.com and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
+| P1 | QSI-2026-49940 | Renew the certificate for app.example.com and enable automated renewal with alerting ≥ 30 days before expiry. | root-cause fix | The deployed certificate is valid and renewal is automated. |
+| P1 | QSI-2026-49951 | Rotate and remove secrets found in obp-api/src/main/scala/code/paymetngateway/StripeExample.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
+| P1 | QSI-2026-49952 | Rotate and remove secrets found in obp-api/src/main/scala/code/sandbox/OBPDataImport.scala. | root-cause fix | Secret scanner reports no secrets; old values revoked. |
+| P2 | QSI-2026-49955 | Upgrade org.postgresql:postgresql to a fixed version (42.7.12). | root-cause fix | Dependency scan no longer reports GHSA-j92g-9f8w-j867 (CVE-2026-54291). |
+| P2 | QSI-2026-49956 | Upgrade org.xerial.snappy:snappy-java to a fixed version (1.1.10.9). | root-cause fix | Dependency scan no longer reports GHSA-gwq9-9ffj-mvrv (CVE-2026-93451). |
+| P2 | QSI-2026-49957 | Upgrade org.xerial.snappy:snappy-java to a fixed version (1.1.10.9). | root-cause fix | Dependency scan no longer reports GHSA-q233-g92q-qxp6 (CVE-2026-108106). |
+| P2 | QSI-2026-49960 | Upgrade org.jsoup:jsoup to a fixed version (1.23.2). | root-cause fix | Dependency scan no longer reports GHSA-65r4-943x-97jj (CVE-2026-75140). |
+| P2 | QSI-2026-49964 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.1). | root-cause fix | Dependency scan no longer reports GHSA-68mj-5wr7-6fgg (CVE-2026-69219). |
+| P2 | QSI-2026-49965 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.0). | root-cause fix | Dependency scan no longer reports GHSA-6g32-pxv4-2wfj (CVE-2026-63337). |
+| P2 | QSI-2026-49967 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.1). | root-cause fix | Dependency scan no longer reports GHSA-93j5-89vc-pph4 (CVE-2026-69220). |
+| P2 | QSI-2026-49970 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.34.0). | root-cause fix | Dependency scan no longer reports GHSA-jh4v-gfqj-7rhx (CVE-2026-75516). |
+| P2 | QSI-2026-49958 | Upgrade org.xerial.snappy:snappy-java to a fixed version (1.1.10.9). | root-cause fix | Dependency scan no longer reports GHSA-xqrx-qh46-34m7 (CVE-2026-116590). |
+| P2 | QSI-2026-49959 | Upgrade org.apache.logging.log4j:log4j-api to a fixed version (2.25.5, 2.26.1). | root-cause fix | Dependency scan no longer reports GHSA-qv9r-c865-cp47 (CVE-2026-49844). |
+| P2 | QSI-2026-49961 | Upgrade org.jsoup:jsoup to a fixed version (1.23.1). | root-cause fix | Dependency scan no longer reports GHSA-pmhh-3w7g-xqp8 (CVE-2026-71497). |
+| P2 | QSI-2026-49962 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.0). | root-cause fix | Dependency scan no longer reports GHSA-5m9f-rphj-c435 (CVE-2026-63336). |
+| P2 | QSI-2026-49966 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.36.0). | root-cause fix | Dependency scan no longer reports GHSA-7822-rcf6-97fx (CVE-2026-106122). |
+| P2 | QSI-2026-49968 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.36.1). | root-cause fix | Dependency scan no longer reports GHSA-cqgh-8p3p-mx4m (CVE-2026-106121). |
+| P2 | QSI-2026-49969 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.35.0). | root-cause fix | Dependency scan no longer reports GHSA-h6w7-qmcm-q6xr (CVE-2026-106123). |
+| P2 | QSI-2026-49971 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.31.0). | root-cause fix | Dependency scan no longer reports GHSA-qx7j-jv8m-fppr (CVE-2026-63335). |
+| P2 | QSI-2026-49972 | Upgrade com.google.guava:guava to a fixed version (33.7.2). | root-cause fix | Dependency scan no longer reports GHSA-xxph-c9ww-hj94 (CVE-2026-102554). |
+| P2 | QSI-2026-49973 | Upgrade org.json:json to a fixed version (20260719). | root-cause fix | Dependency scan no longer reports GHSA-ghc9-756g-vrcv (CVE-2026-59171). |
+| P2 | QSI-2026-49963 | Upgrade com.rabbitmq:amqp-client to a fixed version (5.33.0). | root-cause fix | Dependency scan no longer reports GHSA-5xwg-cfvj-gff5 (CVE-2026-61634). |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
@@ -1719,18 +1470,18 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-44033 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44035 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44025 | Add RSA usages at certificate:app.example.com to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44029 | Add RSA usages at certificate:app.example.com to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44026 | Use shorter validity with automated renewal. | root-cause fix | Check notBefore/notAfter of the next issuance. |
-| P3 | QSI-2026-44030 | Use shorter validity with automated renewal. | root-cause fix | Check notBefore/notAfter of the next issuance. |
-| P4 | QSI-2026-44033 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44035 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44025 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-44029 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-44027 | Use a certificate from a public or internal CA, or pin explicitly. | root-cause fix | Check issuer of the deployed certificate. |
-| P4 | QSI-2026-44031 | Use a certificate from a public or internal CA, or pin explicitly. | root-cause fix | Check issuer of the deployed certificate. |
+| P3 | QSI-2026-49945 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49947 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49937 | Add RSA usages at certificate:app.example.com to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49941 | Add RSA usages at certificate:app.example.com to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49938 | Use shorter validity with automated renewal. | root-cause fix | Check notBefore/notAfter of the next issuance. |
+| P3 | QSI-2026-49942 | Use shorter validity with automated renewal. | root-cause fix | Check notBefore/notAfter of the next issuance. |
+| P4 | QSI-2026-49945 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49947 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49937 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-49941 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-49939 | Use a certificate from a public or internal CA, or pin explicitly. | root-cause fix | Check issuer of the deployed certificate. |
+| P4 | QSI-2026-49943 | Use a certificate from a public or internal CA, or pin explicitly. | root-cause fix | Check issuer of the deployed certificate. |
 
 ## 11. Tools used
 
@@ -1738,19 +1489,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents

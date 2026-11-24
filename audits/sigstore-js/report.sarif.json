@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -28,10 +28,10 @@
                 "security-severity": "9.1"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GHSA-jqcg-44mw-7w3h (CVE-2026-90711) для пакета npm proxy-addr версии 2.0.7: proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2.0.8). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-jqcg-44mw-7w3h (CVE-2026-90711) для пакета npm proxy-addr версии 2.0.7: proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet. Ни один исходный файл продукта не импортирует proxy-addr: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2.0.8). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev сообщает GHSA-jqcg-44mw-7w3h (CVE-2026-90711) для пакета npm proxy-addr версии 2.0.7: proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2.0.8). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-jqcg-44mw-7w3h (CVE-2026-90711) для пакета npm proxy-addr версии 2.0.7: proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet. Ни один исходный файл продукта не импортирует proxy-addr: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2.0.8). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-jqcg-44mw-7w3h"
             },
@@ -59,31 +59,6 @@
                 "text": "Блок «EC PRIVATE KEY» найден в строке 5 файла packages/cli/src/signer.ts. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
               },
               "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
-            },
-            {
-              "id": "CERT-EXPIRED",
-              "name": "CertExpired",
-              "shortDescription": {
-                "text": "Срок действия сертификата истёк ((empty))"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "certificates",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "Срок действия сертификата X.509 с субъектом (empty) истёк 2023-08-11 (1199 дн. назад). Перевыпустите сертификат и автоматизируйте продление (например, ACME) с мониторингом сроков. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256."
-              },
-              "help": {
-                "text": "Срок действия сертификата X.509 с субъектом (empty) истёк 2023-08-11 (1199 дн. назад). Перевыпустите сертификат и автоматизируйте продление (например, ACME) с мониторингом сроков. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
             },
             {
               "id": "KEY-QV-PUBLIC",
@@ -225,7 +200,7 @@
             "qsiFindingKey/v1": "36a4bc50e6c80291be86799e8f59c0ad"
           },
           "properties": {
-            "qsiId": "QSI-2026-43670",
+            "qsiId": "QSI-2026-49582",
             "severity": "critical",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -252,7 +227,7 @@
             "qsiFindingKey/v1": "0ca094a70170e073e4153cc78ef318ce"
           },
           "properties": {
-            "qsiId": "QSI-2026-43648",
+            "qsiId": "QSI-2026-49560",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -272,24 +247,6 @@
           ]
         },
         {
-          "ruleId": "CERT-EXPIRED",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "Срок действия сертификата истёк ((empty))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "9d2451a5b524539be5e7b0c29c00c2c2"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43646",
-            "severity": "high",
-            "confidence": "high",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          }
-        },
-        {
           "ruleId": "DEP-KNOWN-ADVISORY",
           "ruleIndex": 0,
           "level": "error",
@@ -300,7 +257,7 @@
             "qsiFindingKey/v1": "d7e2af9f0fc6d67be06280b7b34f6ebc"
           },
           "properties": {
-            "qsiId": "QSI-2026-43652",
+            "qsiId": "QSI-2026-49564",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -327,7 +284,7 @@
             "qsiFindingKey/v1": "a97f2c6f2d257322275f3044907e947a"
           },
           "properties": {
-            "qsiId": "QSI-2026-43654",
+            "qsiId": "QSI-2026-49566",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -354,7 +311,7 @@
             "qsiFindingKey/v1": "f7e8c4679956e2618817ee2208769add"
           },
           "properties": {
-            "qsiId": "QSI-2026-43656",
+            "qsiId": "QSI-2026-49568",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -381,7 +338,7 @@
             "qsiFindingKey/v1": "d7e2af9f0fc6d67be06280b7b34f6ebc"
           },
           "properties": {
-            "qsiId": "QSI-2026-43657",
+            "qsiId": "QSI-2026-49569",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -408,7 +365,7 @@
             "qsiFindingKey/v1": "a97f2c6f2d257322275f3044907e947a"
           },
           "properties": {
-            "qsiId": "QSI-2026-43659",
+            "qsiId": "QSI-2026-49571",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -435,7 +392,7 @@
             "qsiFindingKey/v1": "d7e2af9f0fc6d67be06280b7b34f6ebc"
           },
           "properties": {
-            "qsiId": "QSI-2026-43667",
+            "qsiId": "QSI-2026-49579",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -462,7 +419,7 @@
             "qsiFindingKey/v1": "a97f2c6f2d257322275f3044907e947a"
           },
           "properties": {
-            "qsiId": "QSI-2026-43669",
+            "qsiId": "QSI-2026-49581",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -480,7 +437,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ ECDSA (secp256r1) в packages/cli/src/signer.ts"
@@ -489,7 +446,7 @@
             "qsiFindingKey/v1": "c54d547a0a3284b8f7f283eaceea0e36"
           },
           "properties": {
-            "qsiId": "QSI-2026-43649",
+            "qsiId": "QSI-2026-49561",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -507,7 +464,7 @@
             "qsiFindingKey/v1": "84a7ab124d4db916ee85eea8154bac57"
           },
           "properties": {
-            "qsiId": "QSI-2026-43661",
+            "qsiId": "QSI-2026-49573",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -525,7 +482,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))"
@@ -534,7 +491,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43650",
+            "qsiId": "QSI-2026-49562",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -552,7 +509,7 @@
             "qsiFindingKey/v1": "d9a4face229b6e3eb187858a4f78901e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43653",
+            "qsiId": "QSI-2026-49565",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -579,7 +536,7 @@
             "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
           },
           "properties": {
-            "qsiId": "QSI-2026-43655",
+            "qsiId": "QSI-2026-49567",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -606,7 +563,7 @@
             "qsiFindingKey/v1": "d9a4face229b6e3eb187858a4f78901e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43658",
+            "qsiId": "QSI-2026-49570",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -633,7 +590,7 @@
             "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
           },
           "properties": {
-            "qsiId": "QSI-2026-43660",
+            "qsiId": "QSI-2026-49572",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -660,7 +617,7 @@
             "qsiFindingKey/v1": "537be754fc583dd296a29e42766c0b64"
           },
           "properties": {
-            "qsiId": "QSI-2026-43662",
+            "qsiId": "QSI-2026-49574",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -687,7 +644,7 @@
             "qsiFindingKey/v1": "f60accf858dc5dc061345f9c9912ca9f"
           },
           "properties": {
-            "qsiId": "QSI-2026-43663",
+            "qsiId": "QSI-2026-49575",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -714,7 +671,7 @@
             "qsiFindingKey/v1": "b36522f20d5048e3e09c3fc9db8d8967"
           },
           "properties": {
-            "qsiId": "QSI-2026-43664",
+            "qsiId": "QSI-2026-49576",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -741,7 +698,7 @@
             "qsiFindingKey/v1": "938769ac38cc88b48c8cb206da1275de"
           },
           "properties": {
-            "qsiId": "QSI-2026-43665",
+            "qsiId": "QSI-2026-49577",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -768,7 +725,7 @@
             "qsiFindingKey/v1": "7a9a0e722bf8efc5a1269e081d19f5ff"
           },
           "properties": {
-            "qsiId": "QSI-2026-43666",
+            "qsiId": "QSI-2026-49578",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -795,7 +752,7 @@
             "qsiFindingKey/v1": "d9a4face229b6e3eb187858a4f78901e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43668",
+            "qsiId": "QSI-2026-49580",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -822,7 +779,7 @@
             "qsiFindingKey/v1": "5eae0405711ecaa841966573121b57f1"
           },
           "properties": {
-            "qsiId": "QSI-2026-43671",
+            "qsiId": "QSI-2026-49583",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -849,7 +806,7 @@
             "qsiFindingKey/v1": "156b25f742ea6e412aca32e75ea63ea3"
           },
           "properties": {
-            "qsiId": "QSI-2026-43672",
+            "qsiId": "QSI-2026-49584",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -867,7 +824,7 @@
         },
         {
           "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 5,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Квантово-уязвимый ключ ECDSA в сертификате ((empty))"
@@ -876,7 +833,7 @@
             "qsiFindingKey/v1": "25df2eae1091e24e8e608d7031aaa218"
           },
           "properties": {
-            "qsiId": "QSI-2026-43647",
+            "qsiId": "QSI-2026-49559",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -894,7 +851,7 @@
             "qsiFindingKey/v1": "a9a2b54863e53d3973710590114af0f2"
           },
           "properties": {
-            "qsiId": "QSI-2026-43673",
+            "qsiId": "QSI-2026-49585",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -912,7 +869,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-DEV",
-          "ruleIndex": 6,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
             "text": "20 бюллетеней в 11 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
@@ -921,7 +878,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-43674",
+            "qsiId": "QSI-2026-49586",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -939,7 +896,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 7,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
             "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
@@ -948,7 +905,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-43651",
+            "qsiId": "QSI-2026-49563",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -957,13 +914,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/sigstore-js @ 769a53d87132/ecd5f4c9-64c8-4ead-bf46-91476f653fe2"
+        "id": "qsi/sigstore-js @ 769a53d87132/c572542d-4061-4bb6-8094-b1f1410d4d50"
       },
       "properties": {
-        "qsiContentSha256": "a5a4680f90889063630ae364d3bf304903749f7b1b18cbc74f26d97c07a06c7d",
+        "qsiContentSha256": "60b964217cf750c6a1bee736cdb817c9c0c97bc82a22d9a62389eea60f6c7c7c",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:16:47.998964+00:00",
+        "qsiGeneratedAt": "2026-11-24T11:26:18.057513+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

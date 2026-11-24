@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: fireblocks-mpc-lib @ 00ae08b7f1bd
 
-*One-page brief* · Reviewed: 2026-11-23 12:23 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Fireblocks — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-24 10:29 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Fireblocks — public repository (passive review)
 
 Source: https://github.com/fireblocks/mpc-lib/tree/00ae08b7f1bdbb887aedece384aca2f942aae432
 
@@ -12,13 +12,13 @@ Source: https://github.com/fireblocks/mpc-lib/tree/00ae08b7f1bdbb887aedece384aca
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable Paillier: threshold signing and MPC protocols (30 file(s)) (QSI-2026-41891) · *confirmed by the analyst*\
+1. **Medium** · Quantum-vulnerable Paillier: threshold signing and MPC protocols (30 file(s)) (QSI-2026-47833) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-2. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (9 file(s)) (QSI-2026-41892) · *confirmed by the analyst*\
+2. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (9 file(s)) (QSI-2026-47834) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-3. **Medium** · Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (7 file(s)) (QSI-2026-41893) · *confirmed by the analyst*\
+3. **Medium** · Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (7 file(s)) (QSI-2026-47835) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-4. **Medium** · Quantum-vulnerable FROST: threshold signing and MPC protocols (7 file(s)) (QSI-2026-41894) · *confirmed by the analyst*\
+4. **Medium** · Quantum-vulnerable FROST: threshold signing and MPC protocols (7 file(s)) (QSI-2026-47836) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
 
 3 more in the full report.
@@ -36,7 +36,7 @@ Analyst review: 7 confirmed, 0 not applicable, 0 dismissed as false positives. (
 
 Static review of source code and manifests; files analysed: 123. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `5407ed765f0aaf6ac2866f9c60af12b8e26660d5eb141e8a3fc22c931b4ecbf1`
+Full report, content SHA-256: `dbd045493971f9bc9bd84e490f757d02a1fd2e061c87cb18074082923b27e5e3`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

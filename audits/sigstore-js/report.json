@@ -1,8 +1,8 @@
 {
-  "content_sha256": "a5a4680f90889063630ae364d3bf304903749f7b1b18cbc74f26d97c07a06c7d",
+  "content_sha256": "60b964217cf750c6a1bee736cdb817c9c0c97bc82a22d9a62389eea60f6c7c7c",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-23T13:16:47.998964+00:00",
+  "generated_at": "2026-11-24T11:26:18.057513+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,17 +15,30 @@
     "is_demo": false
   },
   "audit": {
-    "id": "ecd5f4c9-64c8-4ead-bf46-91476f653fe2",
+    "id": "c572542d-4061-4bb6-8094-b1f1410d4d50",
     "mode": "document",
     "title": "Document audit: sigstore-js",
     "status": "completed",
-    "engine_version": "1.16.2",
-    "started_at": "2026-11-23T13:16:30.334586+00:00",
-    "finished_at": "2026-11-23T13:16:47.906217+00:00",
+    "engine_version": "1.20.0",
+    "started_at": "2026-11-24T11:26:01.345276+00:00",
+    "finished_at": "2026-11-24T11:26:17.961559+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
       "ref": "769a53d8713248a8bf49edfc2a5d1955b0dcc24d",
+      "triage": {
+        "analyst": "QSI review, 2026-11-24",
+        "decisions": [
+          {
+            "note": "The certificate in DEMO.md is an example of the output: a Fulcio code-signing certificate, valid for ten minutes by design and long expired, pasted into the walkthrough. Nothing trusts it.",
+            "match": {
+              "rule": "CERT-EXPIRED",
+              "asset": "certificate:(empty)"
+            },
+            "decision": "false_positive"
+          }
+        ]
+      },
       "language": "ru",
       "repo_url": "https://github.com/sigstore/sigstore-js",
       "osv_lookup": true,
@@ -1132,17 +1145,17 @@
     },
     {
       "area": "source_code",
-      "detail": "eslint.config.mjs: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "eslint.config.mjs: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "jest.config.base.js: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "jest.config.base.js: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "jest.config.js: 26 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "jest.config.js: 26 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1157,7 +1170,7 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/bundle/jest.config.js: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/bundle/jest.config.js: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1167,42 +1180,42 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/bundle/src/build.ts: 140 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/bundle/src/build.ts: 140 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/bundle/src/bundle.ts: 152 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/bundle/src/bundle.ts: 152 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/bundle/src/error.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/bundle/src/error.ts: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/bundle/src/index.ts: 67 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/bundle/src/index.ts: 67 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/bundle/src/serialized.ts: 127 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/bundle/src/serialized.ts: 127 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/bundle/src/utility.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/bundle/src/utility.ts: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/bundle/src/validate.ts: 246 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/bundle/src/validate.ts: 246 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/jest.config.js: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/jest.config.js: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1212,52 +1225,52 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/commands/attach.ts: 121 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/commands/attach.ts: 121 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/commands/attest.ts: 195 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/commands/attest.ts: 195 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/commands/initialize.ts: 39 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/commands/initialize.ts: 39 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/commands/token.ts: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/commands/token.ts: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/commands/verify.ts: 112 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/commands/verify.ts: 112 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/index.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/index.ts: 1 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/oauth/client.ts: 69 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/oauth/client.ts: 69 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/oauth/index.ts: 64 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/oauth/index.ts: 64 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/oauth/server.ts: 142 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/oauth/server.ts: 142 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/oci/name.ts: 88 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/oci/name.ts: 88 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1267,17 +1280,17 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/cli/src/signer.ts: 33 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/cli/src/signer.ts: 33 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/client/jest.config.js: 27 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/client/jest.config.js: 27 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/client/jest.setup.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/client/jest.setup.ts: 19 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1287,17 +1300,17 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/client/src/config.ts: 221 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/client/src/config.ts: 221 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/client/src/index.ts: 29 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/client/src/index.ts: 29 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/client/src/sigstore.ts: 113 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/client/src/sigstore.ts: 113 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1307,37 +1320,37 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/conformance/src/commands/sign-bundle.ts: 83 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/conformance/src/commands/sign-bundle.ts: 83 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/conformance/src/commands/verify-bundle.ts: 196 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/conformance/src/commands/verify-bundle.ts: 196 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/conformance/src/config.ts: 41 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/conformance/src/config.ts: 41 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/conformance/src/index.ts: 1 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/conformance/src/index.ts: 1 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/conformance/src/staging.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/conformance/src/staging.ts: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/conformance/src/trust.ts: 37 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/conformance/src/trust.ts: 37 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/jest.config.js: 27 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/jest.config.js: 27 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1347,117 +1360,117 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/asn1/error.ts: 18 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/asn1/error.ts: 18 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/asn1/index.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/asn1/index.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/asn1/length.ts: 85 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/asn1/length.ts: 85 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/asn1/obj.ts: 209 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/asn1/obj.ts: 209 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/asn1/parse.ts: 165 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/asn1/parse.ts: 165 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/asn1/tag.ts: 105 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/asn1/tag.ts: 105 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/crypto.ts: 73 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/crypto.ts: 73 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/dsse.ts: 28 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/dsse.ts: 28 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/encoding.ts: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/encoding.ts: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/index.ts: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/index.ts: 24 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/json.ts: 58 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/json.ts: 58 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/oid.ts: 19 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/oid.ts: 19 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/pem.ts: 45 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/pem.ts: 45 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/rfc3161/error.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/rfc3161/error.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/rfc3161/index.ts: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/rfc3161/index.ts: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/rfc3161/timestamp.ts: 235 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/rfc3161/timestamp.ts: 235 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/rfc3161/tstinfo.ts: 62 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/rfc3161/tstinfo.ts: 62 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/stream.ts: 141 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/stream.ts: 141 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/x509/cert.ts: 267 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/x509/cert.ts: 267 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/x509/ext.ts: 185 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/x509/ext.ts: 185 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/x509/index.ts: 18 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/x509/index.ts: 18 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/core/src/x509/sct.ts: 148 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/core/src/x509/sct.ts: 148 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/jest-types/index.d.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/jest-types/index.d.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1467,7 +1480,7 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/jest/all.js: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/jest/all.js: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1477,27 +1490,27 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/jest/src/all/index.ts: 28 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/jest/src/all/index.ts: 28 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/jest/src/index.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/jest/src/index.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/jest/src/matchers/index.ts: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/jest/src/matchers/index.ts: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/jest/src/matchers/toThrowWithCode.ts: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/jest/src/matchers/toThrowWithCode.ts: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/jest.config.js: 27 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/jest.config.js: 27 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1507,57 +1520,57 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/constants.ts: 37 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/constants.ts: 37 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/credentials.ts: 104 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/credentials.ts: 104 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/error.ts: 57 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/error.ts: 57 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/fetch.ts: 109 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/fetch.ts: 109 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/image.ts: 234 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/image.ts: 234 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/index.ts: 60 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/index.ts: 60 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/name.ts: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/name.ts: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/proc-log.d.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/proc-log.d.ts: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/registry.ts: 559 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/registry.ts: 559 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/oci/src/types.ts: 56 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/oci/src/types.ts: 56 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/jest.config.js: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/jest.config.js: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1567,132 +1580,132 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/dsse.ts: 83 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/dsse.ts: 83 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/hashedrekord.ts: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/hashedrekord.ts: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/index.ts: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/index.ts: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/intoto.ts: 134 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/intoto.ts: 134 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/ConsistencyProof.ts: 12 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/ConsistencyProof.ts: 12 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/Error.ts: 9 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/Error.ts: 9 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/InactiveShardLogInfo.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/InactiveShardLogInfo.ts: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/InclusionProof.ts: 27 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/InclusionProof.ts: 27 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/LogEntry.ts: 27 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/LogEntry.ts: 27 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/LogInfo.ts: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/LogInfo.ts: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/ProposedEntry.ts: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/ProposedEntry.ts: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/SearchIndex.ts: 15 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/SearchIndex.ts: 15 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/SearchLogQuery.ts: 11 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/SearchLogQuery.ts: 11 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/alpine.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/alpine.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/cose.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/cose.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/dsse.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/dsse.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/hashedrekord.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/hashedrekord.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/helm.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/helm.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/intoto.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/intoto.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/jar.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/jar.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/rekord.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/rekord.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/rfc3161.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/rfc3161.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/rpm.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/rpm.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/__generated__/models/tuf.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/__generated__/models/tuf.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/rekor-types/src/index.ts: 55 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/rekor-types/src/index.ts: 55 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/jest.config.js: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/jest.config.js: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1702,177 +1715,177 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/bundler/base.ts: 114 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/bundler/base.ts: 114 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/bundler/bundle.ts: 62 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/bundler/bundle.ts: 62 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/bundler/dsse.ts: 64 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/bundler/dsse.ts: 64 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/bundler/index.ts: 18 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/bundler/index.ts: 18 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/bundler/message.ts: 34 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/bundler/message.ts: 34 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/config.ts: 224 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/config.ts: 224 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/error.ts: 62 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/error.ts: 62 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/external/error.ts: 34 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/external/error.ts: 34 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/external/fetch.ts: 119 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/external/fetch.ts: 119 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/external/fulcio.ts: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/external/fulcio.ts: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/external/rekor-v2.ts: 54 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/external/rekor-v2.ts: 54 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/external/rekor.ts: 119 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/external/rekor.ts: 119 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/external/tsa.ts: 61 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/external/tsa.ts: 61 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/identity/ci.ts: 84 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/identity/ci.ts: 84 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/identity/index.ts: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/identity/index.ts: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/identity/provider.ts: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/identity/provider.ts: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/index.ts: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/index.ts: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/proc-log.d.ts: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/proc-log.d.ts: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/signer/fulcio/ca.ts: 88 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/signer/fulcio/ca.ts: 88 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/signer/fulcio/ephemeral.ts: 46 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/signer/fulcio/ephemeral.ts: 46 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/signer/fulcio/index.ts: 108 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/signer/fulcio/index.ts: 108 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/signer/index.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/signer/index.ts: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/signer/signer.ts: 43 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/signer/signer.ts: 43 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/types/fetch.ts: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/types/fetch.ts: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/util/index.ts: 18 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/util/index.ts: 18 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/util/oidc.ts: 41 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/util/oidc.ts: 41 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/util/ua.ts: 26 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/util/ua.ts: 26 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/witness/index.ts: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/witness/index.ts: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/witness/tlog/client.ts: 144 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/witness/tlog/client.ts: 144 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/witness/tlog/entry.ts: 244 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/witness/tlog/entry.ts: 244 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/witness/tlog/index.ts: 137 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/witness/tlog/index.ts: 137 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/witness/tsa/client.ts: 61 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/witness/tsa/client.ts: 61 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/witness/tsa/index.ts: 55 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/witness/tsa/index.ts: 55 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/sign/src/witness/witness.ts: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/sign/src/witness/witness.ts: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/tuf/jest.config.js: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/tuf/jest.config.js: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1882,32 +1895,32 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/tuf/src/appdata.ts: 40 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/tuf/src/appdata.ts: 40 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/tuf/src/client.ts: 177 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/tuf/src/client.ts: 177 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/tuf/src/error.ts: 42 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/tuf/src/error.ts: 42 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/tuf/src/index.ts: 69 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/tuf/src/index.ts: 69 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/tuf/src/target.ts: 83 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/tuf/src/target.ts: 83 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/jest.config.js: 27 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/jest.config.js: 27 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1917,122 +1930,127 @@
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/bundle/dsse.ts: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/bundle/dsse.ts: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/bundle/index.ts: 100 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/bundle/index.ts: 100 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/bundle/message.ts: 70 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/bundle/message.ts: 70 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/error.ts: 52 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/error.ts: 52 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/index.ts: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/index.ts: 24 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/key/certificate.ts: 283 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/key/certificate.ts: 283 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/key/index.ts: 102 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/key/index.ts: 102 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/key/sct.ts: 104 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/key/sct.ts: 104 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/policy.ts: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/policy.ts: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/shared.types.ts: 98 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/shared.types.ts: 98 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/timestamp/index.ts: 57 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/timestamp/index.ts: 57 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/timestamp/tsa.ts: 84 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/timestamp/tsa.ts: 84 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/tlog/checkpoint.ts: 211 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/tlog/checkpoint.ts: 211 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/tlog/dsse.ts: 134 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/tlog/dsse.ts: 134 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/tlog/hashedrekord.ts: 120 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/tlog/hashedrekord.ts: 120 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/tlog/index.ts: 134 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/tlog/index.ts: 134 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/tlog/intoto.ts: 77 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/tlog/intoto.ts: 77 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/tlog/merkle.ts: 140 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/tlog/merkle.ts: 140 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/tlog/set.ts: 80 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/tlog/set.ts: 80 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/trust/filter.ts: 51 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/trust/filter.ts: 51 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/trust/index.ts: 124 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/trust/index.ts: 124 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/trust/trust.types.ts: 49 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/trust/trust.types.ts: 49 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "packages/verify/src/verifier.ts: 240 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packages/verify/src/verifier.ts: 240 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "entropy",
       "detail": "random-number generation: 165 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "status": "checked"
+    },
+    {
+      "area": "key_storage",
+      "detail": "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0",
       "status": "checked"
     },
     {
@@ -2058,9 +2076,9 @@
       "count": 165,
       "rows": 165,
       "examples": [
-        "eslint.config.mjs: 22 lines scanned with 16 rule patterns and 340 registry patterns",
-        "jest.config.base.js: 23 lines scanned with 16 rule patterns and 340 registry patterns",
-        "jest.config.js: 26 lines scanned with 16 rule patterns and 340 registry patterns"
+        "eslint.config.mjs: 22 lines scanned with 17 rule patterns and 340 registry patterns",
+        "jest.config.base.js: 23 lines scanned with 17 rule patterns and 340 registry patterns",
+        "jest.config.js: 26 lines scanned with 17 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -2081,6 +2099,15 @@
       "rows": 1,
       "examples": [
         "random-number generation: 165 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    },
+    {
+      "area": "key_storage",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0"
       ]
     },
     {
@@ -2105,6 +2132,7 @@
       "eslint.config.mjs",
       "jest.config.base.js",
       "jest.config.js",
+      "key settings with a fallback in the code",
       "package-lock.json",
       "package.json",
       "packages/bundle/jest.config.js",
@@ -2284,12 +2312,28 @@
       "random-number generation"
     ]
   },
-  "dismissed": [],
-  "triage": null,
+  "dismissed": [
+    {
+      "public_id": "QSI-2026-49558",
+      "rule_id": "CERT-EXPIRED",
+      "title": "Срок действия сертификата истёк ((empty))",
+      "note": "The certificate in DEMO.md is an example of the output: a Fulcio code-signing certificate, valid for ten minutes by design and long expired, pasted into the walkthrough. Nothing trusts it.",
+      "analyst": "QSI review, 2026-11-24"
+    }
+  ],
+  "triage": {
+    "analyst": "QSI review, 2026-11-24",
+    "counts": {
+      "confirmed": 0,
+      "not_applicable": 0,
+      "false_positive": 1
+    },
+    "text": "Проверка аналитика: подтверждено — 0, не применимо — 0, отклонено как ложные срабатывания — 1."
+  },
   "summary": {
     "by_severity": {
       "critical": 1,
-      "high": 9,
+      "high": 8,
       "medium": 15,
       "low": 2,
       "info": 2
@@ -2297,13 +2341,13 @@
     "by_classification": {
       "confirmed_vulnerability": 1,
       "known_vulnerable_component": 22,
-      "confirmed_misconfiguration": 1,
+      "confirmed_misconfiguration": 0,
       "potential_crypto_risk": 0,
       "pq_long_term_risk": 3,
       "improvement": 1,
       "insufficient_data": 1
     },
-    "total": 29,
+    "total": 28,
     "posture_index": 0,
     "pq_vulnerable_share": 30.0,
     "inventory_total": 10,
@@ -2326,15 +2370,15 @@
   },
   "findings": [
     {
-      "id": "7c953166-9b29-4200-b48b-9b823f114496",
-      "public_id": "QSI-2026-43670",
+      "id": "26ee124b-5423-4db1-9124-19ffb10f7671",
+      "public_id": "QSI-2026-49582",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "proxy-addr 2.0.7 затронут GHSA-jqcg-44mw-7w3h (CVE-2026-90711)",
-      "description": "OSV.dev сообщает GHSA-jqcg-44mw-7w3h (CVE-2026-90711) для пакета npm proxy-addr версии 2.0.7: proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-jqcg-44mw-7w3h (CVE-2026-90711) для пакета npm proxy-addr версии 2.0.7: proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet. Ни один исходный файл продукта не импортирует proxy-addr: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (2.0.8).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-jqcg-44mw-7w3h",
       "category": "dependencies",
@@ -2344,11 +2388,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/proxy-addr@2.0.7",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.880764+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.931784+00:00",
       "risk_score": 40.6,
       "risk_breakdown": {
         "cvss": {
@@ -2423,8 +2467,8 @@
           "content": "{\"id\": \"GHSA-jqcg-44mw-7w3h\", \"aliases\": [\"CVE-2026-90711\"], \"modified\": \"2026-10-05T23:45:07.322157228Z\", \"summary\": \"proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "068ebda1c94e135a6ba184368cc0247de44a750d8b4a53b327cb3256fede4aa0",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.887795+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.938941+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-jqcg-44mw-7w3h"
         }
       ],
@@ -2447,8 +2491,8 @@
       ]
     },
     {
-      "id": "7c12f1e6-4f73-4f92-bcd0-931c49e0aef3",
-      "public_id": "QSI-2026-43648",
+      "id": "6e8a6662-af8e-4b75-844d-23aee0e16128",
+      "public_id": "QSI-2026-49560",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в packages/cli/src/signer.ts",
       "description": "Блок «EC PRIVATE KEY» найден в строке 5 файла packages/cli/src/signer.ts. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2467,8 +2511,8 @@
       "triage": null,
       "affected_asset": "file:packages/cli/src/signer.ts",
       "data_source": "packages/cli/src/signer.ts",
-      "analyzer": "certificates 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.758097+00:00",
+      "analyzer": "certificates 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.810663+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2543,8 +2587,8 @@
           "content": "Line 5: -----BEGIN EC PRIVATE KEY----- … [REDACTED BY QSI] … -----END …",
           "content_sha256": "da98be3290bfbd0dae64a05e2bc855eb234b8db812572a82f6d956a7f4488ebc",
           "source_sha256": "26c2716645d88c4a850d5d8c7e6753f349694b8e5a58de17baf2a484a96fe0f2",
-          "collector": "certificates 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.767581+00:00",
+          "collector": "certificates 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.820242+00:00",
           "url": "https://github.com/sigstore/sigstore-js/blob/769a53d8713248a8bf49edfc2a5d1955b0dcc24d/packages/cli/src/signer.ts#L5"
         }
       ],
@@ -2582,115 +2626,15 @@
       ]
     },
     {
-      "id": "0d5a8abc-42a7-4f72-a551-e2621ac0c8d8",
-      "public_id": "QSI-2026-43646",
-      "rule_id": "CERT-EXPIRED",
-      "title": "Срок действия сертификата истёк ((empty))",
-      "description": "Срок действия сертификата X.509 с субъектом (empty) истёк 2023-08-11 (1199 дн. назад).",
-      "impact": "Клиенты, проверяющие сертификаты, откажут в соединении; пользователи могут привыкнуть игнорировать предупреждения.",
-      "recommendation": "Перевыпустите сертификат и автоматизируйте продление (например, ACME) с мониторингом сроков.",
-      "retest": "Повторно разберите развёрнутый сертификат и убедитесь, что notAfter в будущем.",
-      "limitations": "Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256.",
-      "method": "Разбор X.509 (pyca/cryptography), сравнение notAfter с временем анализа (UTC).",
-      "repro": "openssl x509 -in DEMO.md -noout -enddate",
-      "category": "certificates",
-      "classification": "confirmed_misconfiguration",
-      "severity": "high",
-      "confidence": "high",
-      "preliminary": false,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "certificate:(empty)",
-      "data_source": "DEMO.md",
-      "analyzer": "certificates 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.740238+00:00",
-      "risk_score": 61.4,
-      "risk_breakdown": {
-        "score": 61.4,
-        "factors": {
-          "ease": 1.0,
-          "asset": 0.6,
-          "impact": 0.37,
-          "urgency": 1.0,
-          "exposure": 0.8,
-          "severity": 0.8,
-          "exploitability": 0.3
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 61.4,
-        "references": [],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 7.4,
-          "urgency": 10.0,
-          "exposure": 12.0,
-          "severity": 20.0,
-          "exploitability": 6.0
-        },
-        "confidence_multiplier": 1.0
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "SP800-57",
-          "url": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final",
-          "title": "NIST SP 800-57 Part 1 Rev. 5 — Recommendation for Key Management",
-          "status": "final (2020)",
-          "publisher": "NIST"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "certificate",
-          "source": "DEMO.md",
-          "location": "line 167",
-          "content": "Subject: \nIssuer: CN=sigstore-intermediate,O=sigstore.dev\nSerial: 7831dfb1e8a745d9fb75a2bff19fc5c996cfddb2\nNot before: 2023-08-11T19:18:53+00:00\nNot after: 2023-08-11T19:28:53+00:00\nPublic key: ECDSA secp256r1\nSignature algorithm: 1.2.840.10045.4.3.3 (ECDSA)\nSignature hash: sha384\nCA: False\nSAN: -\nSHA-256 fingerprint: ef251c2a0bee8fcc5748f8e887c4621a343add7926744dc5cc1a0d37ed10a70a",
-          "content_sha256": "bae733af16eb1384eaa5f82f716c90884517dea53f84b4fa7ba3359f03f6dbc9",
-          "source_sha256": "c2f21d5948090c477ff0a027464fe6f5ec42ceeffe6d198392f2b0584bf5e5b1",
-          "collector": "certificates 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.750132+00:00",
-          "url": null
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "root_cause",
-          "action": "Перевыпустите сертификат для (empty) и включите автоматическое продление с оповещением не позднее чем за 30 дней.",
-          "rationale": "Устраняет первопричину, описанную в находке.",
-          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
-          "priority": "P1",
-          "horizon_days": 30,
-          "complexity": "low",
-          "dependencies": "Окно изменений и согласование владельца.",
-          "side_effects": "Не ожидаются.",
-          "pre_tests": "Воспроизведите находку по описанным шагам.",
-          "post_tests": "Выполните процедуру повторной проверки из находки.",
-          "closure_criteria": "Развёрнутый сертификат действителен, продление автоматизировано.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "d3a7efdf-2093-4f72-be85-02f262520376",
-      "public_id": "QSI-2026-43652",
+      "id": "758a124d-e2db-4a11-a4e9-b060bae51f84",
+      "public_id": "QSI-2026-49564",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 5.0.9 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276)",
-      "description": "OSV.dev сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276) для пакета npm brace-expansion версии 5.0.9: brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276) для пакета npm brace-expansion версии 5.0.9: brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.19, 2.1.5, 3.0.7, 5.0.10).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-6j4f-fj2g-mc7p",
       "category": "dependencies",
@@ -2700,11 +2644,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@5.0.9",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.784569+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.837179+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -2779,8 +2723,8 @@
           "content": "{\"id\": \"GHSA-6j4f-fj2g-mc7p\", \"aliases\": [\"CVE-2026-102276\"], \"modified\": \"2026-09-30T00:00:03.836613572Z\", \"summary\": \"brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": false}",
           "content_sha256": "cf933227a5523b6f51c16be2051db199cf5f5331c14d818f4a5f89484522a199",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.791848+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.843920+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-6j4f-fj2g-mc7p"
         }
       ],
@@ -2803,15 +2747,15 @@
       ]
     },
     {
-      "id": "5ed9fa92-3e4c-4d58-a18d-48af39ae52d5",
-      "public_id": "QSI-2026-43654",
+      "id": "d2ab8da6-393a-46a1-8c52-a67e0c7c8bf7",
+      "public_id": "QSI-2026-49566",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 5.0.9 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278)",
-      "description": "OSV.dev сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278) для пакета npm brace-expansion версии 5.0.9: brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278) для пакета npm brace-expansion версии 5.0.9: brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.20, 2.1.6, 3.0.8, 5.0.11).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-qhr7-859c-m2p7",
       "category": "dependencies",
@@ -2821,11 +2765,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@5.0.9",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.795677+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.847652+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -2900,8 +2844,8 @@
           "content": "{\"id\": \"GHSA-qhr7-859c-m2p7\", \"aliases\": [\"CVE-2026-102278\"], \"modified\": \"2026-09-30T00:00:04.402763332Z\", \"summary\": \"brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": false}",
           "content_sha256": "275e692c3e2352812e486e115c46ddfbc08d41860e0602c22f5e55a57cd20be1",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.802964+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.855103+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-qhr7-859c-m2p7"
         }
       ],
@@ -2924,15 +2868,15 @@
       ]
     },
     {
-      "id": "ca4ab127-3b43-4e88-9821-4393edfcae9e",
-      "public_id": "QSI-2026-43656",
+      "id": "02619fd9-8855-4d42-b96d-fb228593d976",
+      "public_id": "QSI-2026-49568",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "body-parser 2.3.0 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)",
-      "description": "OSV.dev сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181) для пакета npm body-parser версии 2.3.0: body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181) для пакета npm body-parser версии 2.3.0: body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body. Ни один исходный файл продукта не импортирует body-parser: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.20.9, 2.4.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-27r3-jxmh-p828",
       "category": "dependencies",
@@ -2942,11 +2886,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/body-parser@2.3.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.806814+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.858479+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -3021,8 +2965,8 @@
           "content": "{\"id\": \"GHSA-27r3-jxmh-p828\", \"aliases\": [\"CVE-2026-111181\"], \"modified\": \"2026-10-23T21:00:06.131613693Z\", \"summary\": \"body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": false}",
           "content_sha256": "d543d5d551c4905cfb479113347b1052576dde0acd9bf492cd62c4e048d1ccf8",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.814410+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.865903+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-27r3-jxmh-p828"
         }
       ],
@@ -3045,15 +2989,15 @@
       ]
     },
     {
-      "id": "f21534f4-ad72-44d9-a04c-96f9f9c8ff6c",
-      "public_id": "QSI-2026-43657",
+      "id": "203b4d78-f843-494b-b7d8-3519bd3e396e",
+      "public_id": "QSI-2026-49569",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 2.1.4 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276)",
-      "description": "OSV.dev сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276) для пакета npm brace-expansion версии 2.1.4: brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276) для пакета npm brace-expansion версии 2.1.4: brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.19, 2.1.5, 3.0.7, 5.0.10).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-6j4f-fj2g-mc7p",
       "category": "dependencies",
@@ -3063,11 +3007,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@2.1.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.812369+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.863906+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -3142,8 +3086,8 @@
           "content": "{\"id\": \"GHSA-6j4f-fj2g-mc7p\", \"aliases\": [\"CVE-2026-102276\"], \"modified\": \"2026-09-30T00:00:03.836613572Z\", \"summary\": \"brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": false}",
           "content_sha256": "cf933227a5523b6f51c16be2051db199cf5f5331c14d818f4a5f89484522a199",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.819886+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.871551+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-6j4f-fj2g-mc7p"
         }
       ],
@@ -3166,15 +3110,15 @@
       ]
     },
     {
-      "id": "9c2970b0-7c74-4636-8afe-eca7a23252cc",
-      "public_id": "QSI-2026-43659",
+      "id": "54179e5b-7a67-4545-a92d-7a17b4ee1c53",
+      "public_id": "QSI-2026-49571",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 2.1.4 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278)",
-      "description": "OSV.dev сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278) для пакета npm brace-expansion версии 2.1.4: brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278) для пакета npm brace-expansion версии 2.1.4: brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.20, 2.1.6, 3.0.8, 5.0.11).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-qhr7-859c-m2p7",
       "category": "dependencies",
@@ -3184,11 +3128,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@2.1.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.823509+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.875194+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -3263,8 +3207,8 @@
           "content": "{\"id\": \"GHSA-qhr7-859c-m2p7\", \"aliases\": [\"CVE-2026-102278\"], \"modified\": \"2026-09-30T00:00:04.402763332Z\", \"summary\": \"brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": false}",
           "content_sha256": "275e692c3e2352812e486e115c46ddfbc08d41860e0602c22f5e55a57cd20be1",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.830290+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.881928+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-qhr7-859c-m2p7"
         }
       ],
@@ -3287,15 +3231,15 @@
       ]
     },
     {
-      "id": "a5e049ca-722b-45d7-9741-a6816e8123b9",
-      "public_id": "QSI-2026-43667",
+      "id": "687b0733-cfa5-4c51-8286-5c9c79235ea5",
+      "public_id": "QSI-2026-49579",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 1.1.18 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276)",
-      "description": "OSV.dev сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276) для пакета npm brace-expansion версии 1.1.18: brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276) для пакета npm brace-expansion версии 1.1.18: brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.19, 2.1.5, 3.0.7, 5.0.10).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-6j4f-fj2g-mc7p",
       "category": "dependencies",
@@ -3305,11 +3249,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@1.1.18",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.864687+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.916379+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -3384,8 +3328,8 @@
           "content": "{\"id\": \"GHSA-6j4f-fj2g-mc7p\", \"aliases\": [\"CVE-2026-102276\"], \"modified\": \"2026-09-30T00:00:03.836613572Z\", \"summary\": \"brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": false}",
           "content_sha256": "cf933227a5523b6f51c16be2051db199cf5f5331c14d818f4a5f89484522a199",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.871969+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.923167+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-6j4f-fj2g-mc7p"
         }
       ],
@@ -3408,15 +3352,15 @@
       ]
     },
     {
-      "id": "c4005af2-7b50-4af2-a889-4f0695550c03",
-      "public_id": "QSI-2026-43669",
+      "id": "726534ac-c827-4126-b6b7-702eb4926b16",
+      "public_id": "QSI-2026-49581",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 1.1.18 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278)",
-      "description": "OSV.dev сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278) для пакета npm brace-expansion версии 1.1.18: brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278) для пакета npm brace-expansion версии 1.1.18: brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.20, 2.1.6, 3.0.8, 5.0.11).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-qhr7-859c-m2p7",
       "category": "dependencies",
@@ -3426,11 +3370,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@1.1.18",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.875583+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.926410+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -3505,8 +3449,8 @@
           "content": "{\"id\": \"GHSA-qhr7-859c-m2p7\", \"aliases\": [\"CVE-2026-102278\"], \"modified\": \"2026-09-30T00:00:04.402763332Z\", \"summary\": \"brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": false}",
           "content_sha256": "275e692c3e2352812e486e115c46ddfbc08d41860e0602c22f5e55a57cd20be1",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.882359+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.933506+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-qhr7-859c-m2p7"
         }
       ],
@@ -3529,8 +3473,8 @@
       ]
     },
     {
-      "id": "051e0967-84a3-4cda-b8b2-813b99cd67fd",
-      "public_id": "QSI-2026-43649",
+      "id": "307ede6b-cdb3-4f71-bb98-8681b9c576af",
+      "public_id": "QSI-2026-49561",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ ECDSA (secp256r1) в packages/cli/src/signer.ts",
       "description": "Найден открытый ключ ECDSA secp256r1 (строка 12).",
@@ -3549,8 +3493,8 @@
       "triage": null,
       "affected_asset": "file:packages/cli/src/signer.ts#line 12",
       "data_source": "packages/cli/src/signer.ts",
-      "analyzer": "certificates 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.765708+00:00",
+      "analyzer": "certificates 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.818316+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -3639,8 +3583,8 @@
           "content": "ECDSA public key, secp256r1",
           "content_sha256": "87a3decbb47c307b59a5585db9eecff49e5997a1eb7350dbfae08a97c0f3fa07",
           "source_sha256": "26c2716645d88c4a850d5d8c7e6753f349694b8e5a58de17baf2a484a96fe0f2",
-          "collector": "certificates 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.774410+00:00",
+          "collector": "certificates 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.827081+00:00",
           "url": null
         }
       ],
@@ -3678,15 +3622,15 @@
       ]
     },
     {
-      "id": "21af533a-7358-4c7c-90ed-a23e5d9750b2",
-      "public_id": "QSI-2026-43661",
+      "id": "d6c1dae1-153c-4a5d-a64d-c1fc1506291d",
+      "public_id": "QSI-2026-49573",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505)",
       "description": "OSV.dev сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505) для пакета npm elliptic версии 6.6.1: Elliptic Uses a Cryptographic Primitive with a Risky Implementation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-848j-6mx2-7j84",
       "category": "dependencies",
@@ -3699,8 +3643,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:npm/elliptic@6.6.1",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.833929+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.885289+00:00",
       "risk_score": 44.2,
       "risk_breakdown": {
         "cvss": {
@@ -3775,8 +3719,8 @@
           "content": "{\"id\": \"GHSA-848j-6mx2-7j84\", \"aliases\": [\"CVE-2025-14505\"], \"modified\": \"2026-09-10T03:50:32.794069999Z\", \"summary\": \"Elliptic Uses a Cryptographic Primitive with a Risky Implementation\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L\"}, {\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N/E:P\"}], \"declared_in_manifest\": true}",
           "content_sha256": "b32797e721acee5f454dcfa7a91f9741d677253a0d002c941a32a62a1f72f36f",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.840814+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.893084+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-848j-6mx2-7j84"
         }
       ],
@@ -3799,8 +3743,8 @@
       ]
     },
     {
-      "id": "26605f0f-3da9-4cc6-aa9f-6199a29c5f23",
-      "public_id": "QSI-2026-43650",
+      "id": "f28a28f2-5358-430e-a731-52e4f0b21850",
+      "public_id": "QSI-2026-49562",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
       "description": "1 упоминаний ECDSA в 1 файл(ах), например packages/conformance/src/commands/verify-bundle.ts:189. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -3819,8 +3763,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "packages/conformance/src/commands/verify-bundle.ts",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.772270+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.824944+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -3916,8 +3860,8 @@
           "content": "  188 |   switch (curve) {\n  189 |     case 'prime256v1':\n  190 |       return new EC('p256');",
           "content_sha256": "ec59ccc9dd99b3400e4b9c1ad39a0fe13844789c4506617af5c7fc0bfe121003",
           "source_sha256": "51b04961ad1221e9614164ecf7c12eb9f293188f8174e47dd4e1f567890299a4",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.780452+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.833492+00:00",
           "url": "https://github.com/sigstore/sigstore-js/blob/769a53d8713248a8bf49edfc2a5d1955b0dcc24d/packages/conformance/src/commands/verify-bundle.ts#L189"
         }
       ],
@@ -3955,15 +3899,15 @@
       ]
     },
     {
-      "id": "b88790b6-4bf0-4238-8d47-90164668a97f",
-      "public_id": "QSI-2026-43653",
+      "id": "00a753cd-e1d1-49f1-8a1e-a78e577ead40",
+      "public_id": "QSI-2026-49565",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 5.0.9 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277)",
-      "description": "OSV.dev сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277) для пакета npm brace-expansion версии 5.0.9: brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277) для пакета npm brace-expansion версии 5.0.9: brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.21, 2.1.7, 3.0.9, 5.0.12).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-q2hr-2g5m-vwhr",
       "category": "dependencies",
@@ -3973,11 +3917,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@5.0.9",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.790019+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.842055+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -4052,8 +3996,8 @@
           "content": "{\"id\": \"GHSA-q2hr-2g5m-vwhr\", \"aliases\": [\"CVE-2026-102277\"], \"modified\": \"2026-09-30T00:00:03.849541183Z\", \"summary\": \"brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L\"}], \"declared_in_manifest\": false}",
           "content_sha256": "798c3854b19c9033c4e4ebcc2656a9cbdd2e1551dfba1a6307865066fff2c348",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.797537+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.849623+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-q2hr-2g5m-vwhr"
         }
       ],
@@ -4076,15 +4020,15 @@
       ]
     },
     {
-      "id": "0c5b0c37-cfc8-401f-ab36-a8c573e65ce2",
-      "public_id": "QSI-2026-43655",
+      "id": "ac839982-d793-43fa-aa81-c98f31970d1b",
+      "public_id": "QSI-2026-49567",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "minimatch 10.2.5 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)",
-      "description": "OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 10.2.5: minimatch has potential denial of service via globparts amplification. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 10.2.5: minimatch has potential denial of service via globparts amplification. Ни один исходный файл продукта не импортирует minimatch: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (11.0.1).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-g3hv-75wg-m249",
       "category": "dependencies",
@@ -4094,11 +4038,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/minimatch@10.2.5",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.801185+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.853259+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "score": 33.1,
@@ -4153,8 +4097,8 @@
           "content": "{\"id\": \"GHSA-g3hv-75wg-m249\", \"aliases\": [\"CVE-2026-118764\"], \"modified\": \"2026-11-04T17:01:25.850114200Z\", \"summary\": \"minimatch has potential denial of service via globparts amplification\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "3a2de0ffc2f9af01774aed03eec898dd2779c85ad398dc716c8b11637e9de14c",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.808560+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.860264+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249"
         }
       ],
@@ -4177,15 +4121,15 @@
       ]
     },
     {
-      "id": "0f9831cd-b19e-4f59-b73e-428b40b11240",
-      "public_id": "QSI-2026-43658",
+      "id": "a4369e4f-4d1d-42a9-81fb-48696a1e1c66",
+      "public_id": "QSI-2026-49570",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 2.1.4 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277)",
-      "description": "OSV.dev сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277) для пакета npm brace-expansion версии 2.1.4: brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277) для пакета npm brace-expansion версии 2.1.4: brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.21, 2.1.7, 3.0.9, 5.0.12).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-q2hr-2g5m-vwhr",
       "category": "dependencies",
@@ -4195,11 +4139,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@2.1.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.818285+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.869871+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -4274,8 +4218,8 @@
           "content": "{\"id\": \"GHSA-q2hr-2g5m-vwhr\", \"aliases\": [\"CVE-2026-102277\"], \"modified\": \"2026-09-30T00:00:03.849541183Z\", \"summary\": \"brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L\"}], \"declared_in_manifest\": false}",
           "content_sha256": "798c3854b19c9033c4e4ebcc2656a9cbdd2e1551dfba1a6307865066fff2c348",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.825203+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.876925+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-q2hr-2g5m-vwhr"
         }
       ],
@@ -4298,15 +4242,15 @@
       ]
     },
     {
-      "id": "ec6762cd-5290-4896-96a5-611f4608a104",
-      "public_id": "QSI-2026-43660",
+      "id": "a3a8b0a2-608d-40c4-87cf-afff8a8e7bc9",
+      "public_id": "QSI-2026-49572",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)",
-      "description": "OSV.dev сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) для пакета npm glob версии 13.0.6: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) для пакета npm glob версии 13.0.6: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal. Ни один исходный файл продукта не импортирует glob: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (14.0.2).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-3g3m-2fjr-6pw4",
       "category": "dependencies",
@@ -4316,11 +4260,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/glob@13.0.6",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.828752+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.880387+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "score": 33.1,
@@ -4375,8 +4319,8 @@
           "content": "{\"id\": \"GHSA-3g3m-2fjr-6pw4\", \"aliases\": [\"CVE-2026-118773\"], \"modified\": \"2026-10-30T23:15:04.503965732Z\", \"summary\": \"Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "11e82fad921f8ab71fe7cdf71c7992fc9705fcb2eaeb1d475b40f8cff97152c6",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.835575+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.886854+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4"
         }
       ],
@@ -4399,15 +4343,15 @@
       ]
     },
     {
-      "id": "3d7f5288-ba44-4356-a514-07ea4412c000",
-      "public_id": "QSI-2026-43662",
+      "id": "e2812d51-7ff7-4dc1-9ec6-f96f005b4654",
+      "public_id": "QSI-2026-49574",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "ip-address 10.4.0 затронут GHSA-2vr4-cq9g-pvrc (CVE-2026-101910)",
-      "description": "OSV.dev сообщает GHSA-2vr4-cq9g-pvrc (CVE-2026-101910) для пакета npm ip-address версии 10.4.0: ip-address: no classifier recognizes the NAT64 local-use range 64:ff9b:1::/48, allowing SSRF and trust-boundary bypass. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-2vr4-cq9g-pvrc (CVE-2026-101910) для пакета npm ip-address версии 10.4.0: ip-address: no classifier recognizes the NAT64 local-use range 64:ff9b:1::/48, allowing SSRF and trust-boundary bypass. Ни один исходный файл продукта не импортирует ip-address: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (10.5.1).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-2vr4-cq9g-pvrc",
       "category": "dependencies",
@@ -4417,11 +4361,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/ip-address@10.4.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.839255+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.890536+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "score": 33.1,
@@ -4476,8 +4420,8 @@
           "content": "{\"id\": \"GHSA-2vr4-cq9g-pvrc\", \"aliases\": [\"CVE-2026-101910\"], \"modified\": \"2026-09-28T21:00:05.355682124Z\", \"summary\": \"ip-address: no classifier recognizes the NAT64 local-use range 64:ff9b:1::/48, allowing SSRF and trust-boundary bypass\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:H/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "23aa8f5aff21740715edc1a3a04428e67595ae44752ff208884973de7c05f6f8",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.845913+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.898492+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-2vr4-cq9g-pvrc"
         }
       ],
@@ -4500,15 +4444,15 @@
       ]
     },
     {
-      "id": "7c57eeac-7170-4ff7-9cf2-309db3efc255",
-      "public_id": "QSI-2026-43663",
+      "id": "3f804bb9-2eb0-4235-b685-9d68ceed5e1a",
+      "public_id": "QSI-2026-49575",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "ip-address 10.4.0 затронут GHSA-h3mg-xc3c-68pw (CVE-2026-101911)",
-      "description": "OSV.dev сообщает GHSA-h3mg-xc3c-68pw (CVE-2026-101911) для пакета npm ip-address версии 10.4.0: ip-address: Address6 builds a parse diagnostic proportional to the input with no length bound, allowing a single long string to stall or crash the process. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-h3mg-xc3c-68pw (CVE-2026-101911) для пакета npm ip-address версии 10.4.0: ip-address: Address6 builds a parse diagnostic proportional to the input with no length bound, allowing a single long string to stall or crash the process. Ни один исходный файл продукта не импортирует ip-address: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (10.7.1).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-h3mg-xc3c-68pw",
       "category": "dependencies",
@@ -4518,11 +4462,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/ip-address@10.4.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.844380+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.896616+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "score": 33.1,
@@ -4577,8 +4521,8 @@
           "content": "{\"id\": \"GHSA-h3mg-xc3c-68pw\", \"aliases\": [\"CVE-2026-101911\"], \"modified\": \"2026-09-30T00:00:04.407982988Z\", \"summary\": \"ip-address: Address6 builds a parse diagnostic proportional to the input with no length bound, allowing a single long string to stall or crash the process\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "084104e164917fcb371e479d007af8b749882c861c64fcacd02041d6e2826f13",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.850867+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.903351+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-h3mg-xc3c-68pw"
         }
       ],
@@ -4601,15 +4545,15 @@
       ]
     },
     {
-      "id": "d6b95924-d34e-4675-b40d-6b7aefb7757a",
-      "public_id": "QSI-2026-43664",
+      "id": "ae25f924-55be-41d5-9bcf-935df06e80ce",
+      "public_id": "QSI-2026-49576",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "ip-address 10.4.0 затронут GHSA-j6r3-76f7-8jcv (CVE-2026-101912)",
-      "description": "OSV.dev сообщает GHSA-j6r3-76f7-8jcv (CVE-2026-101912) для пакета npm ip-address версии 10.4.0: ip-address: isInSubnet() and isHostInSubnet() compare addresses of different families as if they shared an address space, allowing an allowlist check to admit an address outside its range. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-j6r3-76f7-8jcv (CVE-2026-101912) для пакета npm ip-address версии 10.4.0: ip-address: isInSubnet() and isHostInSubnet() compare addresses of different families as if they shared an address space, allowing an allowlist check to admit an address outside its range. Ни один исходный файл продукта не импортирует ip-address: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (10.7.1).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-j6r3-76f7-8jcv",
       "category": "dependencies",
@@ -4619,11 +4563,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/ip-address@10.4.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.849340+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.901793+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "score": 33.1,
@@ -4678,8 +4622,8 @@
           "content": "{\"id\": \"GHSA-j6r3-76f7-8jcv\", \"aliases\": [\"CVE-2026-101912\"], \"modified\": \"2026-09-30T00:00:03.843448355Z\", \"summary\": \"ip-address: isInSubnet() and isHostInSubnet() compare addresses of different families as if they shared an address space, allowing an allowlist check to admit an address outside its range\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "b9f0b89bd954b0b0d9c1b4d78cdd26b719df1b9c13c106e6d87c1add480a2db7",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.856299+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.908493+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-j6r3-76f7-8jcv"
         }
       ],
@@ -4702,15 +4646,15 @@
       ]
     },
     {
-      "id": "c62db4ce-b783-4a10-b311-18402621ad0b",
-      "public_id": "QSI-2026-43665",
+      "id": "3c785aa6-ccc0-4a79-a9d7-094daaf399d4",
+      "public_id": "QSI-2026-49577",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "ip-address 10.4.0 затронут GHSA-rpw4-54j3-4h4q (CVE-2026-101913)",
-      "description": "OSV.dev сообщает GHSA-rpw4-54j3-4h4q (CVE-2026-101913) для пакета npm ip-address версии 10.4.0: ip-address: Address6.isLinkLocal() recognizes fe80::/64 rather than fe80::/10, allowing SSRF and trust-boundary bypass to on-link hosts. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-rpw4-54j3-4h4q (CVE-2026-101913) для пакета npm ip-address версии 10.4.0: ip-address: Address6.isLinkLocal() recognizes fe80::/64 rather than fe80::/10, allowing SSRF and trust-boundary bypass to on-link hosts. Ни один исходный файл продукта не импортирует ip-address: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (10.5.1).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-rpw4-54j3-4h4q",
       "category": "dependencies",
@@ -4720,11 +4664,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/ip-address@10.4.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.854699+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.906872+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "score": 33.1,
@@ -4779,8 +4723,8 @@
           "content": "{\"id\": \"GHSA-rpw4-54j3-4h4q\", \"aliases\": [\"CVE-2026-101913\"], \"modified\": \"2026-09-28T21:00:05.359993143Z\", \"summary\": \"ip-address: Address6.isLinkLocal() recognizes fe80::/64 rather than fe80::/10, allowing SSRF and trust-boundary bypass to on-link hosts\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:L/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "dc0bdf91e8de82dfc03986ef28acb52ed28cd0fe6e1c47fb73ddb402120d2d37",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.861048+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.913174+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-rpw4-54j3-4h4q"
         }
       ],
@@ -4803,15 +4747,15 @@
       ]
     },
     {
-      "id": "435d4fe3-1346-462a-b592-2388751ba333",
-      "public_id": "QSI-2026-43666",
+      "id": "0039250b-75cb-4bc0-86d7-508b37fe391b",
+      "public_id": "QSI-2026-49578",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "ip-address 10.4.0 затронут GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997)",
-      "description": "OSV.dev сообщает GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997) для пакета npm ip-address версии 10.4.0: ip-address: Address6 matches a zone identifier in quadratic time ahead of its length limit, allowing a single long string to stall the process. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997) для пакета npm ip-address версии 10.4.0: ip-address: Address6 matches a zone identifier in quadratic time ahead of its length limit, allowing a single long string to stall the process. Ни один исходный файл продукта не импортирует ip-address: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (10.7.4).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-rxp7-6hxx-x8q5",
       "category": "dependencies",
@@ -4821,11 +4765,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/ip-address@10.4.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.859579+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.911709+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "score": 33.1,
@@ -4880,8 +4824,8 @@
           "content": "{\"id\": \"GHSA-rxp7-6hxx-x8q5\", \"aliases\": [\"CVE-2026-111997\"], \"modified\": \"2026-10-22T16:30:30.129356757Z\", \"summary\": \"ip-address: Address6 matches a zone identifier in quadratic time ahead of its length limit, allowing a single long string to stall the process\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "7dc8c20c8ae73d58d9b3ae97df00f6c5b5020d9aba1bf5eaa5bb382651e4fb20",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.866313+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.918045+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-rxp7-6hxx-x8q5"
         }
       ],
@@ -4904,15 +4848,15 @@
       ]
     },
     {
-      "id": "536668ce-0a7a-4e7e-8634-02e51b16e10e",
-      "public_id": "QSI-2026-43668",
+      "id": "3ed5b0da-5462-4b1d-a648-50de0c94d535",
+      "public_id": "QSI-2026-49580",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "brace-expansion 1.1.18 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277)",
-      "description": "OSV.dev сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277) для пакета npm brace-expansion версии 1.1.18: brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277) для пакета npm brace-expansion версии 1.1.18: brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service. Ни один исходный файл продукта не импортирует brace-expansion: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (1.1.21, 2.1.7, 3.0.9, 5.0.12).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-q2hr-2g5m-vwhr",
       "category": "dependencies",
@@ -4922,11 +4866,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/brace-expansion@1.1.18",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.870263+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.921477+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -5001,8 +4945,8 @@
           "content": "{\"id\": \"GHSA-q2hr-2g5m-vwhr\", \"aliases\": [\"CVE-2026-102277\"], \"modified\": \"2026-09-30T00:00:03.849541183Z\", \"summary\": \"brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L\"}], \"declared_in_manifest\": false}",
           "content_sha256": "798c3854b19c9033c4e4ebcc2656a9cbdd2e1551dfba1a6307865066fff2c348",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.877192+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.928052+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-q2hr-2g5m-vwhr"
         }
       ],
@@ -5025,15 +4969,15 @@
       ]
     },
     {
-      "id": "3355a67c-8c25-4b07-a95b-7359ff23b726",
-      "public_id": "QSI-2026-43671",
+      "id": "1491dbb6-aaad-4f7c-a204-fced7a9a1dfb",
+      "public_id": "QSI-2026-49583",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "qs 6.15.2 затронут GHSA-4mjr-xmp4-gh2g (CVE-2026-82417)",
-      "description": "OSV.dev сообщает GHSA-4mjr-xmp4-gh2g (CVE-2026-82417) для пакета npm qs версии 6.15.2: qs: Denial of Service via Attacker Controlled isBuffer. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-4mjr-xmp4-gh2g (CVE-2026-82417) для пакета npm qs версии 6.15.2: qs: Denial of Service via Attacker Controlled isBuffer. Ни один исходный файл продукта не импортирует qs: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (6.16.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-4mjr-xmp4-gh2g",
       "category": "dependencies",
@@ -5043,11 +4987,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/qs@6.15.2",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.886286+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.936986+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -5122,8 +5066,8 @@
           "content": "{\"id\": \"GHSA-4mjr-xmp4-gh2g\", \"aliases\": [\"CVE-2026-82417\"], \"modified\": \"2026-09-10T03:51:14.991984096Z\", \"summary\": \"qs: Denial of Service via Attacker Controlled isBuffer\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L\"}, {\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "afef9a11fcfc48b7311cfed5a422a080a74b32761380006786083623b479434f",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.892833+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.944492+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-4mjr-xmp4-gh2g"
         }
       ],
@@ -5146,15 +5090,15 @@
       ]
     },
     {
-      "id": "8c326811-c1ad-4383-9398-0cf3fee28a1e",
-      "public_id": "QSI-2026-43672",
+      "id": "f6d95969-cc37-4832-9eb9-d22d9822b6a4",
+      "public_id": "QSI-2026-49584",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "qs 6.15.2 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)",
-      "description": "OSV.dev сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816) для пакета npm qs версии 6.15.2: qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS). Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816) для пакета npm qs версии 6.15.2: qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS). Ни один исходный файл продукта не импортирует qs: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (6.16.1).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-6pq8-jhm2-2vcw",
       "category": "dependencies",
@@ -5164,11 +5108,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/qs@6.15.2",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.891327+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.942746+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -5243,8 +5187,8 @@
           "content": "{\"id\": \"GHSA-6pq8-jhm2-2vcw\", \"aliases\": [\"CVE-2026-110816\"], \"modified\": \"2026-10-27T16:15:05.324423680Z\", \"summary\": \"qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS)\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L\"}, {\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "4fd7af689173b0c3abc4f3e9006070e7de778a692b621288cc277cd4bcb7ab05",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.897846+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.949599+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-6pq8-jhm2-2vcw"
         }
       ],
@@ -5267,8 +5211,8 @@
       ]
     },
     {
-      "id": "509367b2-6b5e-4c30-a3d1-c0037c3e174f",
-      "public_id": "QSI-2026-43647",
+      "id": "4f153bde-5806-447e-9f11-8afb2f5b6fb8",
+      "public_id": "QSI-2026-49559",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ ECDSA в сертификате ((empty))",
       "description": "Сертификат (empty) использует открытый ключ ECDSA secp256r1, действителен до 2023-08-11. ECDSA взламывается алгоритмом Шора на CRQC.",
@@ -5287,8 +5231,8 @@
       "triage": null,
       "affected_asset": "certificate:(empty)",
       "data_source": "DEMO.md",
-      "analyzer": "certificates 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.746096+00:00",
+      "analyzer": "certificates 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.798469+00:00",
       "risk_score": 36.5,
       "risk_breakdown": {
         "mosca": {
@@ -5384,8 +5328,8 @@
           "content": "Subject: \nIssuer: CN=sigstore-intermediate,O=sigstore.dev\nSerial: 7831dfb1e8a745d9fb75a2bff19fc5c996cfddb2\nNot before: 2023-08-11T19:18:53+00:00\nNot after: 2023-08-11T19:28:53+00:00\nPublic key: ECDSA secp256r1\nSignature algorithm: 1.2.840.10045.4.3.3 (ECDSA)\nSignature hash: sha384\nCA: False\nSAN: -\nSHA-256 fingerprint: ef251c2a0bee8fcc5748f8e887c4621a343add7926744dc5cc1a0d37ed10a70a",
           "content_sha256": "bae733af16eb1384eaa5f82f716c90884517dea53f84b4fa7ba3359f03f6dbc9",
           "source_sha256": "c2f21d5948090c477ff0a027464fe6f5ec42ceeffe6d198392f2b0584bf5e5b1",
-          "collector": "certificates 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.759947+00:00",
+          "collector": "certificates 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.812639+00:00",
           "url": null
         }
       ],
@@ -5423,15 +5367,15 @@
       ]
     },
     {
-      "id": "97b9c910-02ab-452d-a16c-8d9c8e13f336",
-      "public_id": "QSI-2026-43673",
+      "id": "c7d23219-7721-48bb-b962-c94b7e26d814",
+      "public_id": "QSI-2026-49585",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "qs 6.15.2 затронут GHSA-x5fp-wj9c-mxmx (CVE-2026-82562)",
-      "description": "OSV.dev сообщает GHSA-x5fp-wj9c-mxmx (CVE-2026-82562) для пакета npm qs версии 6.15.2: qs array-limit bypass via bracket-key comma parsing. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает GHSA-x5fp-wj9c-mxmx (CVE-2026-82562) для пакета npm qs версии 6.15.2: qs array-limit bypass via bracket-key comma parsing. Ни один исходный файл продукта не импортирует qs: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (6.16.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-x5fp-wj9c-mxmx",
       "category": "dependencies",
@@ -5441,11 +5385,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:npm/qs@6.15.2",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.896332+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.947987+00:00",
       "risk_score": 29.4,
       "risk_breakdown": {
         "cvss": {
@@ -5520,8 +5464,8 @@
           "content": "{\"id\": \"GHSA-x5fp-wj9c-mxmx\", \"aliases\": [\"CVE-2026-82562\"], \"modified\": \"2026-09-10T03:50:54.569331980Z\", \"summary\": \"qs array-limit bypass via bracket-key comma parsing\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L\"}, {\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
           "content_sha256": "ab9f70e61d9bf8b7815b971ebbe0469a1cc4a588076113a5a3c86ff35cdd480c",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.902837+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.954305+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-x5fp-wj9c-mxmx"
         }
       ],
@@ -5544,8 +5488,8 @@
       ]
     },
     {
-      "id": "8b74f9dd-4c4f-492a-97db-5acaa4612222",
-      "public_id": "QSI-2026-43674",
+      "id": "24b73dde-b248-4ed0-ba8b-bb2176346346",
+      "public_id": "QSI-2026-49586",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "20 бюллетеней в 11 пакет(ах) npm, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 20 бюллетеней (10 с оценкой high или critical) для 11 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @babel/core@7.29.0 [dev]: GHSA-4x5r-pxfx-6jf8; @humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g; baseline-browser-mapping@2.10.31 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.2 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; diff@4.0.2 [dev]: GHSA-73rr-hh4g-fpgx. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -5564,8 +5508,8 @@
       "triage": null,
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.901187+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.952760+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -5620,8 +5564,8 @@
           "content": "@babel/core@7.29.0 [dev]: GHSA-4x5r-pxfx-6jf8\n@humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g\nbaseline-browser-mapping@2.10.31 [dev]: GHSA-w5vr-8v7q-w6rv\nbrowserslist@4.28.2 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx\ndiff@4.0.2 [dev]: GHSA-73rr-hh4g-fpgx\nglob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4\nhandlebars@4.7.9 [dev]: GHSA-8r5x-fm3f-whwj, GHSA-p8wg-vrv2-v86f, GHSA-xw65-4hp5-5hc7\njs-yaml@3.14.2 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68\njs-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68\nminimatch@10.2.6 [dev]: GHSA-g3hv-75wg-m249\nminimatch@9.0.9 [dev]: GHSA-g3hv-75wg-m249",
           "content_sha256": "20031fb881da314634ad1b96dff256c8605ac3f7b5010f8e828a96a5b7a258c4",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.919994+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.975815+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -5644,8 +5588,8 @@
       ]
     },
     {
-      "id": "e0b2420c-da4a-4e88-988b-c7df37ba4b2d",
-      "public_id": "QSI-2026-43651",
+      "id": "a6d66504-6cf6-4d53-ba44-911b968501af",
+      "public_id": "QSI-2026-49563",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 14 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/hashes, elliptic, jose), но ни одной из списка поддерживающих PQC.",
@@ -5664,8 +5608,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T13:16:47.778716+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:26:17.831701+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -5727,8 +5671,8 @@
           "content": "Crypto libraries: @noble/hashes, elliptic, jose",
           "content_sha256": "be9f89f81d86a21db4093cb67ce699dea602e96a88023e0893120c90271c9222",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T13:16:47.786417+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:26:17.839063+00:00",
           "url": null
         }
       ],
@@ -5756,9 +5700,9 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-43649",
-      "QSI-2026-43650",
-      "QSI-2026-43647"
+      "QSI-2026-49561",
+      "QSI-2026-49562",
+      "QSI-2026-49559"
     ],
     "roles": [
       {
@@ -5774,7 +5718,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-43650"
+          "QSI-2026-49562"
         ],
         "files": 1
       }
@@ -5905,26 +5849,8 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-43648",
+        "finding": "QSI-2026-49560",
         "finding_title": "Закрытый ключ присутствует в packages/cli/src/signer.ts",
-        "severity": "high"
-      },
-      {
-        "kind": "root_cause",
-        "action": "Перевыпустите сертификат для (empty) и включите автоматическое продление с оповещением не позднее чем за 30 дней.",
-        "rationale": "Устраняет первопричину, описанную в находке.",
-        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
-        "priority": "P1",
-        "horizon_days": 30,
-        "complexity": "low",
-        "dependencies": "Окно изменений и согласование владельца.",
-        "side_effects": "Не ожидаются.",
-        "pre_tests": "Воспроизведите находку по описанным шагам.",
-        "post_tests": "Выполните процедуру повторной проверки из находки.",
-        "closure_criteria": "Развёрнутый сертификат действителен, продление автоматизировано.",
-        "status": "todo",
-        "finding": "QSI-2026-43646",
-        "finding_title": "Срок действия сертификата истёк ((empty))",
         "severity": "high"
       },
       {
@@ -5941,7 +5867,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-jqcg-44mw-7w3h (CVE-2026-90711).",
         "status": "todo",
-        "finding": "QSI-2026-43670",
+        "finding": "QSI-2026-49582",
         "finding_title": "proxy-addr 2.0.7 затронут GHSA-jqcg-44mw-7w3h (CVE-2026-90711)",
         "severity": "critical"
       },
@@ -5959,7 +5885,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276).",
         "status": "todo",
-        "finding": "QSI-2026-43652",
+        "finding": "QSI-2026-49564",
         "finding_title": "brace-expansion 5.0.9 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276)",
         "severity": "high"
       },
@@ -5977,7 +5903,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278).",
         "status": "todo",
-        "finding": "QSI-2026-43654",
+        "finding": "QSI-2026-49566",
         "finding_title": "brace-expansion 5.0.9 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278)",
         "severity": "high"
       },
@@ -5995,7 +5921,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181).",
         "status": "todo",
-        "finding": "QSI-2026-43656",
+        "finding": "QSI-2026-49568",
         "finding_title": "body-parser 2.3.0 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)",
         "severity": "high"
       },
@@ -6013,7 +5939,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276).",
         "status": "todo",
-        "finding": "QSI-2026-43657",
+        "finding": "QSI-2026-49569",
         "finding_title": "brace-expansion 2.1.4 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276)",
         "severity": "high"
       },
@@ -6031,7 +5957,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278).",
         "status": "todo",
-        "finding": "QSI-2026-43659",
+        "finding": "QSI-2026-49571",
         "finding_title": "brace-expansion 2.1.4 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278)",
         "severity": "high"
       },
@@ -6049,7 +5975,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276).",
         "status": "todo",
-        "finding": "QSI-2026-43667",
+        "finding": "QSI-2026-49579",
         "finding_title": "brace-expansion 1.1.18 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276)",
         "severity": "high"
       },
@@ -6067,7 +5993,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278).",
         "status": "todo",
-        "finding": "QSI-2026-43669",
+        "finding": "QSI-2026-49581",
         "finding_title": "brace-expansion 1.1.18 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278)",
         "severity": "high"
       },
@@ -6085,7 +6011,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505).",
         "status": "todo",
-        "finding": "QSI-2026-43661",
+        "finding": "QSI-2026-49573",
         "finding_title": "elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505)",
         "severity": "medium"
       },
@@ -6103,7 +6029,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277).",
         "status": "todo",
-        "finding": "QSI-2026-43653",
+        "finding": "QSI-2026-49565",
         "finding_title": "brace-expansion 5.0.9 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277)",
         "severity": "medium"
       },
@@ -6121,7 +6047,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764).",
         "status": "todo",
-        "finding": "QSI-2026-43655",
+        "finding": "QSI-2026-49567",
         "finding_title": "minimatch 10.2.5 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)",
         "severity": "medium"
       },
@@ -6139,7 +6065,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277).",
         "status": "todo",
-        "finding": "QSI-2026-43658",
+        "finding": "QSI-2026-49570",
         "finding_title": "brace-expansion 2.1.4 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277)",
         "severity": "medium"
       },
@@ -6157,7 +6083,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773).",
         "status": "todo",
-        "finding": "QSI-2026-43660",
+        "finding": "QSI-2026-49572",
         "finding_title": "glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)",
         "severity": "medium"
       },
@@ -6175,7 +6101,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-2vr4-cq9g-pvrc (CVE-2026-101910).",
         "status": "todo",
-        "finding": "QSI-2026-43662",
+        "finding": "QSI-2026-49574",
         "finding_title": "ip-address 10.4.0 затронут GHSA-2vr4-cq9g-pvrc (CVE-2026-101910)",
         "severity": "medium"
       },
@@ -6193,7 +6119,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-h3mg-xc3c-68pw (CVE-2026-101911).",
         "status": "todo",
-        "finding": "QSI-2026-43663",
+        "finding": "QSI-2026-49575",
         "finding_title": "ip-address 10.4.0 затронут GHSA-h3mg-xc3c-68pw (CVE-2026-101911)",
         "severity": "medium"
       },
@@ -6211,7 +6137,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-j6r3-76f7-8jcv (CVE-2026-101912).",
         "status": "todo",
-        "finding": "QSI-2026-43664",
+        "finding": "QSI-2026-49576",
         "finding_title": "ip-address 10.4.0 затронут GHSA-j6r3-76f7-8jcv (CVE-2026-101912)",
         "severity": "medium"
       },
@@ -6229,7 +6155,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-rpw4-54j3-4h4q (CVE-2026-101913).",
         "status": "todo",
-        "finding": "QSI-2026-43665",
+        "finding": "QSI-2026-49577",
         "finding_title": "ip-address 10.4.0 затронут GHSA-rpw4-54j3-4h4q (CVE-2026-101913)",
         "severity": "medium"
       },
@@ -6247,7 +6173,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997).",
         "status": "todo",
-        "finding": "QSI-2026-43666",
+        "finding": "QSI-2026-49578",
         "finding_title": "ip-address 10.4.0 затронут GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997)",
         "severity": "medium"
       },
@@ -6265,7 +6191,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277).",
         "status": "todo",
-        "finding": "QSI-2026-43668",
+        "finding": "QSI-2026-49580",
         "finding_title": "brace-expansion 1.1.18 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277)",
         "severity": "medium"
       },
@@ -6283,7 +6209,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-4mjr-xmp4-gh2g (CVE-2026-82417).",
         "status": "todo",
-        "finding": "QSI-2026-43671",
+        "finding": "QSI-2026-49583",
         "finding_title": "qs 6.15.2 затронут GHSA-4mjr-xmp4-gh2g (CVE-2026-82417)",
         "severity": "medium"
       },
@@ -6301,7 +6227,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816).",
         "status": "todo",
-        "finding": "QSI-2026-43672",
+        "finding": "QSI-2026-49584",
         "finding_title": "qs 6.15.2 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)",
         "severity": "medium"
       },
@@ -6319,7 +6245,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-x5fp-wj9c-mxmx (CVE-2026-82562).",
         "status": "todo",
-        "finding": "QSI-2026-43673",
+        "finding": "QSI-2026-49585",
         "finding_title": "qs 6.15.2 затронут GHSA-x5fp-wj9c-mxmx (CVE-2026-82562)",
         "severity": "low"
       }
@@ -6339,7 +6265,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-43648",
+        "finding": "QSI-2026-49560",
         "finding_title": "Закрытый ключ присутствует в packages/cli/src/signer.ts",
         "severity": "high"
       }
@@ -6359,7 +6285,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-43649",
+        "finding": "QSI-2026-49561",
         "finding_title": "Квантово-уязвимый ключ ECDSA (secp256r1) в packages/cli/src/signer.ts",
         "severity": "medium"
       },
@@ -6377,7 +6303,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-43650",
+        "finding": "QSI-2026-49562",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -6395,7 +6321,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-43647",
+        "finding": "QSI-2026-49559",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате ((empty))",
         "severity": "low"
       },
@@ -6413,7 +6339,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-43649",
+        "finding": "QSI-2026-49561",
         "finding_title": "Квантово-уязвимый ключ ECDSA (secp256r1) в packages/cli/src/signer.ts",
         "severity": "medium"
       },
@@ -6431,7 +6357,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-43650",
+        "finding": "QSI-2026-49562",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -6449,7 +6375,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-43647",
+        "finding": "QSI-2026-49559",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате ((empty))",
         "severity": "low"
       },
@@ -6467,7 +6393,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-43674",
+        "finding": "QSI-2026-49586",
         "finding_title": "20 бюллетеней в 11 пакет(ах) npm, нужных только для разработки или сборки",
         "severity": "info"
       }
@@ -6492,11 +6418,11 @@
     },
     {
       "name": "crediting",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "dependencies",
-      "version": "1.4.4"
+      "version": "1.6.0"
     },
     {
       "name": "hndl",
@@ -6505,6 +6431,10 @@
     {
       "name": "inventory_document",
       "version": "1.1.0"
+    },
+    {
+      "name": "key_storage",
+      "version": "1.0.0"
     },
     {
       "name": "mpc",
@@ -6516,7 +6446,7 @@
     },
     {
       "name": "source_code",
-      "version": "1.10.2"
+      "version": "1.11.0"
     },
     {
       "name": "tls_code",
@@ -6540,7 +6470,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.16.2"
+      "version": "1.20.0"
     },
     {
       "name": "OSV.dev API",
@@ -6666,13 +6596,6 @@
       "publisher": "NIST",
       "url": "https://csrc.nist.gov/pubs/ir/8547/final",
       "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
-    },
-    {
-      "key": "SP800-57",
-      "url": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final",
-      "title": "NIST SP 800-57 Part 1 Rev. 5 — Recommendation for Key Management",
-      "status": "final (2020)",
-      "publisher": "NIST"
     },
     {
       "key": "NIST-PQC-SEC",

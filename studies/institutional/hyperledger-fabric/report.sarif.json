@@ -8,33 +8,8 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
-            {
-              "id": "DEP-KNOWN-ADVISORY",
-              "name": "DepKnownAdvisory",
-              "shortDescription": {
-                "text": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "dependencies",
-                  "known_vulnerable_component"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The advisory lists only unexported functions (google.golang.org/grpc/internal/transport.http2Server.HandleStreams, google.golang.org/grpc/internal/transport.http2Server.operateHeaders, google.golang.org/grpc/internal/xds/server.RouteAndProcess), which code outside the package cannot call by name, so reachability was not determined. Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against t…"
-              },
-              "help": {
-                "text": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The advisory lists only unexported functions (google.golang.org/grpc/internal/transport.http2Server.HandleStreams, google.golang.org/grpc/internal/transport.http2Server.operateHeaders, google.golang.org/grpc/internal/xds/server.RouteAndProcess), which code outside the package cannot call by name, so reachability was not determined. Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
-              },
-              "helpUri": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj"
-            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
@@ -114,7 +89,7 @@
               "id": "DEP-ADVISORY-UNRATED",
               "name": "DepAdvisoryUnrated",
               "shortDescription": {
-                "text": "golang.org/x/crypto v0.58.0 is affected by GO-2026-5932 (no severity rating)"
+                "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -128,38 +103,45 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.58.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package…"
+                "text": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.headerFieldNameError.Error. Triage the advisory; upgrade to a fixed version (0.60.0) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
               },
               "help": {
-                "text": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.58.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
+                "text": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.headerFieldNameError.Error. Triage the advisory; upgrade to a fixed version (0.60.0) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
               },
-              "helpUri": "https://osv.dev/vulnerability/GO-2026-5932"
+              "helpUri": "https://osv.dev/vulnerability/GO-2026-6603"
+            },
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code. Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). Advisory data comes from OSV.dev at the recorded time. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
+              },
+              "help": {
+                "text": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code. Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). Advisory data comes from OSV.dev at the recorded time. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj"
             }
           ]
         }
       },
       "results": [
         {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) (dependency: Go/google.golang.org/grpc@v1.83.1)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "10c9911f8c1c5b9e7f9e712538641295"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44022",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.5"
-          }
-        },
-        {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))"
@@ -168,7 +150,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43994",
+            "qsiId": "QSI-2026-50431",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -177,7 +159,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))"
@@ -186,7 +168,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-43995",
+            "qsiId": "QSI-2026-50432",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -195,7 +177,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))"
@@ -204,7 +186,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-43996",
+            "qsiId": "QSI-2026-50433",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -213,7 +195,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: role not determined (7 file(s))"
@@ -222,7 +204,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43997",
+            "qsiId": "QSI-2026-50434",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -231,7 +213,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDH: role not determined (2 file(s))"
@@ -240,7 +222,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-43998",
+            "qsiId": "QSI-2026-50435",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -249,7 +231,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519: role not determined (2 file(s))"
@@ -258,7 +240,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-44000",
+            "qsiId": "QSI-2026-50437",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -267,7 +249,7 @@
         },
         {
           "ruleId": "CODE-WEAK-HASH",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "MD5 used in common/deliverclient/orderers/connection.go"
@@ -276,7 +258,7 @@
             "qsiFindingKey/v1": "d95121b52ccb3f7b77cfa250bb11e788"
           },
           "properties": {
-            "qsiId": "QSI-2026-43999",
+            "qsiId": "QSI-2026-50436",
             "severity": "medium",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -297,7 +279,7 @@
         },
         {
           "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "Quantum-vulnerable ECDSA key in certificate (ca.org1.example.com)"
@@ -306,7 +288,7 @@
             "qsiFindingKey/v1": "9dce70ac7f89593c0cd5b991565a90e5"
           },
           "properties": {
-            "qsiId": "QSI-2026-44001",
+            "qsiId": "QSI-2026-50438",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -327,7 +309,7 @@
         },
         {
           "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "Quantum-vulnerable ECDSA key in certificate (Org2-child1)"
@@ -336,7 +318,7 @@
             "qsiFindingKey/v1": "51076becc1d70ebf5b8d44062892aa71"
           },
           "properties": {
-            "qsiId": "QSI-2026-44002",
+            "qsiId": "QSI-2026-50439",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -345,187 +327,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/crypto v0.58.0 is affected by GO-2026-5932 (no severity rating) (dependency: Go/golang.org/x/crypto@v0.58.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44011",
-            "severity": "low",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44003",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44004",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44005",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44006",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44007",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44008",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44009",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/text v0.40.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating) (dependency: Go/golang.org/x/text@v0.40.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "1f5d392cf2cbe83a831464c3efcc2392"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44010",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.55.0 is affected by GO-2026-5942 (CVE-2026-46600) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "a2b6d45297f7a1a20dce14a1a15539d6"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44012",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
@@ -534,34 +336,16 @@
             "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
           },
           "properties": {
-            "qsiId": "QSI-2026-44013",
-            "severity": "info",
-            "confidence": "low",
+            "qsiId": "QSI-2026-50451",
+            "severity": "low",
+            "confidence": "high",
             "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
+            "security-severity": "3.0"
           }
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-44014",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
@@ -570,16 +354,16 @@
             "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
           },
           "properties": {
-            "qsiId": "QSI-2026-44015",
-            "severity": "info",
-            "confidence": "low",
+            "qsiId": "QSI-2026-50453",
+            "severity": "low",
+            "confidence": "high",
             "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
+            "security-severity": "3.0"
           }
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
@@ -588,16 +372,16 @@
             "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
           },
           "properties": {
-            "qsiId": "QSI-2026-44016",
-            "severity": "info",
-            "confidence": "low",
+            "qsiId": "QSI-2026-50454",
+            "severity": "low",
+            "confidence": "high",
             "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
+            "security-severity": "3.0"
           }
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
@@ -606,7 +390,61 @@
             "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
           },
           "properties": {
-            "qsiId": "QSI-2026-44017",
+            "qsiId": "QSI-2026-50455",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.58.0 is affected by GO-2026-5932 (no severity rating) (dependency: Go/golang.org/x/crypto@v0.58.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50448",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) (dependency: Go/google.golang.org/grpc@v1.83.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "10c9911f8c1c5b9e7f9e712538641295"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50460",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50440",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -615,7 +453,187 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50441",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50442",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50443",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50444",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50445",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.57.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating) (dependency: Go/golang.org/x/net@v0.57.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50446",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/text v0.40.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating) (dependency: Go/golang.org/x/text@v0.40.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1f5d392cf2cbe83a831464c3efcc2392"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50447",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.55.0 is affected by GO-2026-5026 (CVE-2026-39821) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "50e04c8a66836787b884afa80c6d1621"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50449",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.55.0 is affected by GO-2026-5942 (CVE-2026-46600) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b6d45297f7a1a20dce14a1a15539d6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50450",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50452",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
@@ -624,7 +642,7 @@
             "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
           },
           "properties": {
-            "qsiId": "QSI-2026-44018",
+            "qsiId": "QSI-2026-50456",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -633,7 +651,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "golang.org/x/net v0.55.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating) (dependency: Go/golang.org/x/net@v0.55.0)"
@@ -642,7 +660,7 @@
             "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
           },
           "properties": {
-            "qsiId": "QSI-2026-44019",
+            "qsiId": "QSI-2026-50457",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -651,7 +669,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "golang.org/x/text v0.37.0 is affected by GO-2026-5970 (CVE-2026-56852) (no severity rating) (dependency: Go/golang.org/x/text@v0.37.0)"
@@ -660,7 +678,7 @@
             "qsiFindingKey/v1": "3af8d59dfce04d9a4a7ff89a19689c5e"
           },
           "properties": {
-            "qsiId": "QSI-2026-44020",
+            "qsiId": "QSI-2026-50458",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -669,7 +687,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "golang.org/x/text v0.37.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating) (dependency: Go/golang.org/x/text@v0.37.0)"
@@ -678,7 +696,7 @@
             "qsiFindingKey/v1": "1f5d392cf2cbe83a831464c3efcc2392"
           },
           "properties": {
-            "qsiId": "QSI-2026-44021",
+            "qsiId": "QSI-2026-50459",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -687,13 +705,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/hyperledger-fabric @ 13ef9e5ee594/395c2226-1c4e-4909-ba08-e5a3d23fe49f"
+        "id": "qsi/hyperledger-fabric @ 13ef9e5ee594/fe126331-9823-4923-a04a-12a43515335f"
       },
       "properties": {
-        "qsiContentSha256": "85f378bab7e3f81956275ce19fef5e4710cb74ce13bfb093ba3b276effbe9f91",
+        "qsiContentSha256": "9817741d486a6c75a538611f043540c2b5f9bca82848b4a45a4168fe8f6aa1a1",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:45:55.183235+00:00",
+        "qsiGeneratedAt": "2026-11-24T12:40:39.590970+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

@@ -8,58 +8,8 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
-            {
-              "id": "CERT-EXPIRED",
-              "name": "CertExpired",
-              "shortDescription": {
-                "text": "Certificate has expired (Corda Node Root CA)"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "certificates",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (129 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
-              },
-              "help": {
-                "text": "The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (129 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
-            },
-            {
-              "id": "CODE-HARDCODED-SECRET",
-              "name": "CodeHardcodedSecret",
-              "shortDescription": {
-                "text": "Possible hard-coded secret in core/src/main/kotlin/net/corda/core/CordaOID.kt"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "1 secret-like value(s) of type generic_assignment (first at line 21). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "1 secret-like value(s) of type generic_assignment (first at line 21). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
-            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
@@ -86,6 +36,31 @@
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
             {
+              "id": "KEYMGMT-KEYS-IN-DB",
+              "name": "KeymgmtKeysInDb",
+              "shortDescription": {
+                "text": "Key material stored in the application's database with no KMS or HSM (2 file(s))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "Columns that hold key material (key_material, private_key; first in node/src/main/kotlin/net/corda/node/services/keys/BasicHSMKeyManagementService.kt, line 62) are part of the service's own data model, the service reads them back to decrypt or sign with them (node/src/main/kotlin/net/corda/node/services/persistence/AesDbEncryptionService.kt:65), and no KMS, HSM, secrets-vault service or custody API appears anywhere in the audited tree. Encryption: application code encrypts it before storing (node-api/src/main/kotlin/net/corda/nodeapi/internal/crypto/AesEncryption.kt:45). Keep signing keys in an HSM or a KMS that signs (or in an MPC or custody service) so they never leave it; if keys must be stored, use envelope encryption — a data key per record, wrapped by a KMS key whose use is logged and rate-limited. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "Columns that hold key material (key_material, private_key; first in node/src/main/kotlin/net/corda/node/services/keys/BasicHSMKeyManagementService.kt, line 62) are part of the service's own data model, the service reads them back to decrypt or sign with them (node/src/main/kotlin/net/corda/node/services/persistence/AesDbEncryptionService.kt:65), and no KMS, HSM, secrets-vault service or custody API appears anywhere in the audited tree. Encryption: application code encrypts it before storing (node-api/src/main/kotlin/net/corda/nodeapi/internal/crypto/AesEncryption.kt:45). Keep signing keys in an HSM or a KMS that signs (or in an MPC or custody service) so they never leave it; if keys must be stored, use envelope encryption — a data key per record, wrapped by a KMS key whose use is logged and rate-limited. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
+            },
+            {
               "id": "CERT-QV-KEY",
               "name": "CertQvKey",
               "shortDescription": {
@@ -109,92 +84,39 @@
                 "text": "The certificate Corda Node Root CA uses a ECDSA secp256k1 public key, valid until 2026-07-17. ECDSA is broken by Shor's algorithm on a CRQC. Track in the PQC inventory; prefer short certificate lifetimes; follow CA/Browser Forum and NIST PQC transition guidance for ML-DSA certificates. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "CERT-EXPIRED",
+              "name": "CertExpired",
+              "shortDescription": {
+                "text": "Certificate has expired (Corda Node Root CA)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "certificates",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (130 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
+              },
+              "help": {
+                "text": "The X.509 certificate with subject Corda Node Root CA expired on 2026-07-17 (130 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
             }
           ]
         }
       },
       "results": [
         {
-          "ruleId": "CERT-EXPIRED",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Certificate has expired (Corda Node Root CA)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "69cbd90d48fdbb9d869d36da450478c5"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43972",
-            "severity": "high",
-            "confidence": "high",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 1,
-          "level": "error",
-          "message": {
-            "text": "Possible hard-coded secret in core/src/main/kotlin/net/corda/core/CordaOID.kt"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "68f28aa074209c99c24670e940551472"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43974",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "core/src/main/kotlin/net/corda/core/CordaOID.kt"
-                },
-                "region": {
-                  "startLine": 21
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 1,
-          "level": "error",
-          "message": {
-            "text": "Possible hard-coded secret in node/src/main/kotlin/net/corda/node/utilities/registration/HTTPNetworkRegistrationService.kt"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "8d2d3ca3d1ab43c130cb916386d623cd"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43981",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "node/src/main/kotlin/net/corda/node/utilities/registration/HTTPNetworkRegistrationService.kt"
-                },
-                "region": {
-                  "startLine": 31
-                }
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))"
@@ -203,7 +125,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43978",
+            "qsiId": "QSI-2026-50415",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -211,8 +133,26 @@
           }
         },
         {
+          "ruleId": "KEYMGMT-KEYS-IN-DB",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Key material stored in the application's database with no KMS or HSM (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fdf2163c8cefe5816cf75f22cef90e1c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50418",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA: role not determined (2 file(s))"
@@ -221,7 +161,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-43975",
+            "qsiId": "QSI-2026-50412",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -230,7 +170,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: role not determined (4 file(s))"
@@ -239,7 +179,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43976",
+            "qsiId": "QSI-2026-50413",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -248,7 +188,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519: role not determined (1 file(s))"
@@ -257,7 +197,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-43977",
+            "qsiId": "QSI-2026-50414",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -266,7 +206,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))"
@@ -275,7 +215,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-43979",
+            "qsiId": "QSI-2026-50416",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -284,7 +224,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))"
@@ -293,7 +233,7 @@
             "qsiFindingKey/v1": "0aba2e2bcd7b95bfa30682b0b2fddff5"
           },
           "properties": {
-            "qsiId": "QSI-2026-43980",
+            "qsiId": "QSI-2026-50417",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -302,7 +242,7 @@
         },
         {
           "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "Quantum-vulnerable ECDSA key in certificate (Corda Node Root CA)"
@@ -311,22 +251,40 @@
             "qsiFindingKey/v1": "156ecb21588418d24e6f0660642a9f3b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43973",
+            "qsiId": "QSI-2026-50411",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
             "security-severity": "3.0"
           }
+        },
+        {
+          "ruleId": "CERT-EXPIRED",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Certificate has expired (Corda Node Root CA)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "69cbd90d48fdbb9d869d36da450478c5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50410",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "1.0"
+          }
         }
       ],
       "automationDetails": {
-        "id": "qsi/corda @ 80033580ecfd/c1422785-a96a-487f-9bb0-ce0b2d4f0fa0"
+        "id": "qsi/corda @ 80033580ecfd/26b85af7-1179-4a20-b574-921ddeccb09e"
       },
       "properties": {
-        "qsiContentSha256": "fd8dc48777a644a94728c1767e9ca2a0929e1aefdb2820ea6910253638bfa2ae",
+        "qsiContentSha256": "a3970b566692c303952af8c0e1119edb968a2f09d380d4b54145e37dd7a78488",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:44:03.384404+00:00",
+        "qsiGeneratedAt": "2026-11-24T12:37:45.908540+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

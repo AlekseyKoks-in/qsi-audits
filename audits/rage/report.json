@@ -1,8 +1,8 @@
 {
-  "content_sha256": "16db84ba1beba5d3450133fd6e0ab59e5b89b39b4a6eb27d5d93bd50a12ca0ca",
+  "content_sha256": "4d39e37a98b4854df837d800c91a60ccad168a087cc70c077773fbb46b903334",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-23T12:58:16.965104+00:00",
+  "generated_at": "2026-11-24T11:04:57.045942+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "379c4b7b-490d-4558-95fa-b83fe9789aa9",
+    "id": "752c5ee7-4287-4ae1-bef4-8708e003442b",
     "mode": "document",
     "title": "Document audit: rage",
     "status": "completed",
-    "engine_version": "1.16.2",
-    "started_at": "2026-11-23T12:57:56.827212+00:00",
-    "finished_at": "2026-11-23T12:58:16.853696+00:00",
+    "engine_version": "1.20.0",
+    "started_at": "2026-11-24T11:04:38.518233+00:00",
+    "finished_at": "2026-11-24T11:04:56.932868+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -386,27 +386,27 @@
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/format.rs: 624 lines scanned with 16 rule patterns and 340 registry patterns; 225 lines in #[cfg(test)] modules ignored",
+      "detail": "age-core/src/format.rs: 624 lines scanned with 17 rule patterns and 340 registry patterns; 225 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/io.rs: 69 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age-core/src/io.rs: 69 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/lib.rs: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age-core/src/lib.rs: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/plugin.rs: 523 lines scanned with 16 rule patterns and 340 registry patterns; 109 lines in #[cfg(test)] modules ignored",
+      "detail": "age-core/src/plugin.rs: 523 lines scanned with 17 rule patterns and 340 registry patterns; 109 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/primitives.rs: 225 lines scanned with 16 rule patterns and 340 registry patterns; 47 lines in #[cfg(test)] modules ignored",
+      "detail": "age-core/src/primitives.rs: 225 lines scanned with 17 rule patterns and 340 registry patterns; 47 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -416,17 +416,17 @@
     },
     {
       "area": "source_code",
-      "detail": "age-plugin/src/identity.rs: 369 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age-plugin/src/identity.rs: 369 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-plugin/src/lib.rs: 357 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age-plugin/src/lib.rs: 357 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-plugin/src/recipient.rs: 480 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age-plugin/src/recipient.rs: 480 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -436,52 +436,52 @@
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common.rs: 220 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/cli_common.rs: 220 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common/error.rs: 116 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/cli_common/error.rs: 116 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common/file_io.rs: 471 lines scanned with 16 rule patterns and 340 registry patterns; 38 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/cli_common/file_io.rs: 471 lines scanned with 17 rule patterns and 340 registry patterns; 38 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common/identities.rs: 273 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/cli_common/identities.rs: 273 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common/recipients.rs: 223 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/cli_common/recipients.rs: 223 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/encrypted.rs: 354 lines scanned with 16 rule patterns and 340 registry patterns; 130 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/encrypted.rs: 354 lines scanned with 17 rule patterns and 340 registry patterns; 130 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/error.rs: 443 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/error.rs: 443 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/format.rs: 435 lines scanned with 16 rule patterns and 340 registry patterns; 79 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/format.rs: 435 lines scanned with 17 rule patterns and 340 registry patterns; 79 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/i18n.rs: 103 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/i18n.rs: 103 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/identity.rs: 395 lines scanned with 16 rule patterns and 340 registry patterns; 76 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/identity.rs: 395 lines scanned with 17 rule patterns and 340 registry patterns; 76 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -496,37 +496,37 @@
     },
     {
       "area": "source_code",
-      "detail": "age/src/keys.rs: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/keys.rs: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/lib.rs: 463 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/lib.rs: 463 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native.rs: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/native.rs: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native/scrypt.rs: 279 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/native/scrypt.rs: 279 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native/tag.rs: 135 lines scanned with 16 rule patterns and 340 registry patterns; 13 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/native/tag.rs: 135 lines scanned with 17 rule patterns and 340 registry patterns; 13 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native/tagpq.rs: 115 lines scanned with 16 rule patterns and 340 registry patterns; 12 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/native/tagpq.rs: 115 lines scanned with 17 rule patterns and 340 registry patterns; 12 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native/x25519.rs: 292 lines scanned with 16 rule patterns and 340 registry patterns; 52 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/native/x25519.rs: 292 lines scanned with 17 rule patterns and 340 registry patterns; 52 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -541,37 +541,37 @@
     },
     {
       "area": "source_code",
-      "detail": "age/src/plugin.rs: 878 lines scanned with 16 rule patterns and 340 registry patterns; 105 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/plugin.rs: 878 lines scanned with 17 rule patterns and 340 registry patterns; 105 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/primitives.rs: 71 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/primitives.rs: 71 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/primitives/armor.rs: 1598 lines scanned with 16 rule patterns and 340 registry patterns; 256 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/primitives/armor.rs: 1598 lines scanned with 17 rule patterns and 340 registry patterns; 256 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/primitives/stream.rs: 1085 lines scanned with 16 rule patterns and 340 registry patterns; 403 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/primitives/stream.rs: 1085 lines scanned with 17 rule patterns and 340 registry patterns; 403 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/protocol.rs: 587 lines scanned with 16 rule patterns and 340 registry patterns; 249 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/protocol.rs: 587 lines scanned with 17 rule patterns and 340 registry patterns; 249 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/simple.rs: 107 lines scanned with 16 rule patterns and 340 registry patterns; 33 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/simple.rs: 107 lines scanned with 17 rule patterns and 340 registry patterns; 33 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/ssh.rs: 587 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "age/src/ssh.rs: 587 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -621,17 +621,17 @@
     },
     {
       "area": "source_code",
-      "detail": "age/src/ssh/identity.rs: 589 lines scanned with 16 rule patterns and 340 registry patterns; 209 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/ssh/identity.rs: 589 lines scanned with 17 rule patterns and 340 registry patterns; 209 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/ssh/recipient.rs: 321 lines scanned with 16 rule patterns and 340 registry patterns; 39 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/ssh/recipient.rs: 321 lines scanned with 17 rule patterns and 340 registry patterns; 39 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/util.rs: 243 lines scanned with 16 rule patterns and 340 registry patterns; 47 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/util.rs: 243 lines scanned with 17 rule patterns and 340 registry patterns; 47 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -641,7 +641,7 @@
     },
     {
       "area": "source_code",
-      "detail": "rage/build.rs: 468 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/build.rs: 468 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -656,62 +656,67 @@
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-keygen/cli.rs: 48 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage-keygen/cli.rs: 48 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-keygen/error.rs: 52 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage-keygen/error.rs: 52 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-keygen/main.rs: 86 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage-keygen/main.rs: 86 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-mount/cli.rs: 61 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage-mount/cli.rs: 61 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-mount/main.rs: 242 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage-mount/main.rs: 242 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-mount/tar.rs: 295 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage-mount/tar.rs: 295 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-mount/zip.rs: 288 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage-mount/zip.rs: 288 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage/cli.rs: 158 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage/cli.rs: 158 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage/error.rs: 248 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage/error.rs: 248 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage/i18n.rs: 31 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage/i18n.rs: 31 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage/main.rs: 402 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "rage/src/bin/rage/main.rs: 402 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "entropy",
       "detail": "random-number generation: 47 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "status": "checked"
+    },
+    {
+      "area": "key_storage",
+      "detail": "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0",
       "status": "checked"
     },
     {
@@ -738,9 +743,9 @@
       "count": 47,
       "rows": 47,
       "examples": [
-        "age-core/src/format.rs: 624 lines scanned with 16 rule patterns and 340 registry patterns; 225 lines in #[cfg(test)] modules ignored",
-        "age-core/src/io.rs: 69 lines scanned with 16 rule patterns and 340 registry patterns",
-        "age-core/src/lib.rs: 20 lines scanned with 16 rule patterns and 340 registry patterns"
+        "age-core/src/format.rs: 624 lines scanned with 17 rule patterns and 340 registry patterns; 225 lines in #[cfg(test)] modules ignored",
+        "age-core/src/io.rs: 69 lines scanned with 17 rule patterns and 340 registry patterns",
+        "age-core/src/lib.rs: 20 lines scanned with 17 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -781,6 +786,15 @@
       "rows": 1,
       "examples": [
         "random-number generation: 47 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    },
+    {
+      "area": "key_storage",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0"
       ]
     },
     {
@@ -841,6 +855,7 @@
       "age/src/ssh/identity.rs",
       "age/src/ssh/recipient.rs",
       "age/src/util.rs",
+      "key settings with a fallback in the code",
       "rage/Cargo.toml",
       "rage/build.rs",
       "rage/src/bin/rage-keygen/cli.rs",
@@ -900,15 +915,15 @@
   },
   "findings": [
     {
-      "id": "f1f4aab1-470e-43d9-9239-fdc6d7b596e9",
-      "public_id": "QSI-2026-42829",
+      "id": "327539c8-1d12-4221-8641-bec98fcdcba7",
+      "public_id": "QSI-2026-48769",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548)",
       "description": "OSV.dev сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548) для пакета crates.io zip версии 8.6.0: zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (9.0.5).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-m665-v7pm-7grj",
       "category": "dependencies",
@@ -921,8 +936,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.751784+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.817661+00:00",
       "risk_score": 54.2,
       "risk_breakdown": {
         "score": 54.2,
@@ -977,8 +992,8 @@
           "content": "{\"id\": \"GHSA-m665-v7pm-7grj\", \"aliases\": [\"CVE-2026-115905\", \"RUSTSEC-2026-0548\"], \"modified\": \"2026-11-17T10:26:05.424821880Z\", \"summary\": \"zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE\", \"severity\": [{\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:L\"}], \"declared_in_manifest\": true}",
           "content_sha256": "3f9522dbb356ba2c51f12a97cd8fda6ffb933adf869fe92a52eaa907f2a95f19",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.758216+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.825064+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-m665-v7pm-7grj"
         }
       ],
@@ -1001,15 +1016,15 @@
       ]
     },
     {
-      "id": "1814d3cb-4793-4543-8e33-a60b69ec3808",
-      "public_id": "QSI-2026-42833",
+      "id": "f0d39d1e-f7e2-476f-8034-28130ad11e0b",
+      "public_id": "QSI-2026-48773",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут RUSTSEC-2026-0369",
       "description": "OSV.dev сообщает RUSTSEC-2026-0369 для пакета crates.io zip версии 8.6.0: ZipStreamReader::extract() and ZipArchive::extract() apply Unix permissions through symlinks without confining the target. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (9.0.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0369",
       "category": "dependencies",
@@ -1022,8 +1037,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.771908+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.838608+00:00",
       "risk_score": 54.2,
       "risk_breakdown": {
         "cvss": {
@@ -1098,8 +1113,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0369\", \"aliases\": [\"GHSA-4684-h2q9-2vcp\"], \"modified\": \"2026-10-16T23:30:02.387698467Z\", \"summary\": \"ZipStreamReader::extract() and ZipArchive::extract() apply Unix permissions through symlinks without confining the target\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H\"}], \"declared_in_manifest\": true}",
           "content_sha256": "9aef5f045615f47bcb38c8fa6cc96616234dcdc509a2b8225bfe413eddd70e04",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.778074+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.845310+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0369"
         }
       ],
@@ -1122,15 +1137,15 @@
       ]
     },
     {
-      "id": "00ceb90c-0cdc-41a5-98ed-22ed014787f0",
-      "public_id": "QSI-2026-42827",
+      "id": "db66d882-879c-4708-9e09-ff0fd4350588",
+      "public_id": "QSI-2026-48767",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-9hj8-73fh-9963 (CVE-2026-115907, RUSTSEC-2026-0547)",
       "description": "OSV.dev сообщает GHSA-9hj8-73fh-9963 (CVE-2026-115907, RUSTSEC-2026-0547) для пакета crates.io zip версии 8.6.0: zip: legacy Shrink/Reduce/Implode decoder: denial of service from attacker-controlled ZIP64 uncompressed size. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (9.0.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-9hj8-73fh-9963",
       "category": "dependencies",
@@ -1143,8 +1158,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.741415+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.807712+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -1219,8 +1234,8 @@
           "content": "{\"id\": \"GHSA-9hj8-73fh-9963\", \"aliases\": [\"CVE-2026-115907\", \"RUSTSEC-2026-0547\"], \"modified\": \"2026-11-17T10:26:14.175658092Z\", \"summary\": \"zip: legacy Shrink/Reduce/Implode decoder: denial of service from attacker-controlled ZIP64 uncompressed size\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": true}",
           "content_sha256": "4beb2d51ffe1e124ff7bb550b6f5ff131105d684595e0b9b8776bdac53269f8c",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.748383+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.814431+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-9hj8-73fh-9963"
         }
       ],
@@ -1243,15 +1258,15 @@
       ]
     },
     {
-      "id": "6b157845-b857-4a34-8a3c-a1673a9d1275",
-      "public_id": "QSI-2026-42828",
+      "id": "9050f905-ecab-48da-a1c1-cc728916f083",
+      "public_id": "QSI-2026-48768",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-hjqx-j4rw-g7xv (CVE-2026-115908, RUSTSEC-2026-0546)",
       "description": "OSV.dev сообщает GHSA-hjqx-j4rw-g7xv (CVE-2026-115908, RUSTSEC-2026-0546) для пакета crates.io zip версии 8.6.0: zip: Arbitrary file write outside the extraction directory, because ZipArchive::extract validates symlink targets lexically. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (9.0.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-hjqx-j4rw-g7xv",
       "category": "dependencies",
@@ -1264,8 +1279,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.746737+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.812716+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -1340,8 +1355,8 @@
           "content": "{\"id\": \"GHSA-hjqx-j4rw-g7xv\", \"aliases\": [\"CVE-2026-115908\", \"RUSTSEC-2026-0546\"], \"modified\": \"2026-11-17T10:25:40.757510179Z\", \"summary\": \"zip: Arbitrary file write outside the extraction directory, because ZipArchive::extract validates symlink targets lexically. \", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H\"}], \"declared_in_manifest\": true}",
           "content_sha256": "3cc94f5547856db54a2db96dcb3a46a8b6b1ab725d46cb2fbcc2046042b0caa6",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.753226+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.819220+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-hjqx-j4rw-g7xv"
         }
       ],
@@ -1364,15 +1379,15 @@
       ]
     },
     {
-      "id": "d2eedab4-ce38-4ddf-bc7e-12301fa80a78",
-      "public_id": "QSI-2026-42830",
+      "id": "0861c2f3-9cc4-4e92-bc98-bdcc6c196bc7",
+      "public_id": "QSI-2026-48770",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-q7v9-x93c-xqv3 (CVE-2026-115909, RUSTSEC-2026-0429)",
       "description": "OSV.dev сообщает GHSA-q7v9-x93c-xqv3 (CVE-2026-115909, RUSTSEC-2026-0429) для пакета crates.io zip версии 8.6.0: zip: Unbounded Symlink-Target Handling Can Abort Or Exhaust Memory During Extraction. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (9.0.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-q7v9-x93c-xqv3",
       "category": "dependencies",
@@ -1385,8 +1400,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.756467+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.823129+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -1461,8 +1476,8 @@
           "content": "{\"id\": \"GHSA-q7v9-x93c-xqv3\", \"aliases\": [\"CVE-2026-115909\", \"RUSTSEC-2026-0429\"], \"modified\": \"2026-11-02T10:10:53.649189132Z\", \"summary\": \"zip: Unbounded Symlink-Target Handling Can Abort Or Exhaust Memory During Extraction\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": true}",
           "content_sha256": "21681ccd2acf5cec55626da20f07b4c5a08d22a64fa0662eee4116b1c4f21ef1",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.763607+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.830221+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-q7v9-x93c-xqv3"
         }
       ],
@@ -1485,15 +1500,15 @@
       ]
     },
     {
-      "id": "b65917e5-1ac2-4ffb-b165-d5f225ed0c0e",
-      "public_id": "QSI-2026-42831",
+      "id": "dbf1025b-04bf-4d6d-b2b3-a0c6e97af20a",
+      "public_id": "QSI-2026-48771",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут RUSTSEC-2026-0367",
       "description": "OSV.dev сообщает RUSTSEC-2026-0367 для пакета crates.io zip версии 8.6.0: Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (9.0.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0367",
       "category": "dependencies",
@@ -1506,8 +1521,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.761783+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.828345+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -1582,8 +1597,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0367\", \"aliases\": [\"GHSA-vv5m-jxxh-4627\"], \"modified\": \"2026-10-16T23:30:02.392172556Z\", \"summary\": \" Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H\"}], \"declared_in_manifest\": true}",
           "content_sha256": "15f1d3dcd40074f7815d474465495a74632c16549a413ab89f8ddf2c2b88fbb5",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.768601+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.835276+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0367"
         }
       ],
@@ -1606,15 +1621,15 @@
       ]
     },
     {
-      "id": "25712afe-3ac0-44d5-99bf-5c4c67311b4a",
-      "public_id": "QSI-2026-42824",
+      "id": "35cf40eb-7f6f-4138-a280-e35ee2fb5858",
+      "public_id": "QSI-2026-48764",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "rsa 0.10.0-rc.18 затронут RUSTSEC-2023-0071 (CVE-2023-49092)",
       "description": "OSV.dev сообщает RUSTSEC-2023-0071 (CVE-2023-49092) для пакета crates.io rsa версии 0.10.0-rc.18: Marvin Attack: potential key recovery through timing sidechannels. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (0.10.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2023-0071",
       "category": "dependencies",
@@ -1627,8 +1642,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/rsa@0.10.0-rc.18",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.725917+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.791798+00:00",
       "risk_score": 44.2,
       "risk_breakdown": {
         "cvss": {
@@ -1703,8 +1718,8 @@
           "content": "{\"id\": \"RUSTSEC-2023-0071\", \"aliases\": [\"CVE-2023-49092\", \"GHSA-4grx-2x9w-596c\", \"GHSA-c38w-74pg-36hr\"], \"modified\": \"2026-11-08T23:15:02.609337046Z\", \"summary\": \"Marvin Attack: potential key recovery through timing sidechannels\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N\"}], \"declared_in_manifest\": true}",
           "content_sha256": "b865991a04843323e013066bcb284335131dad8a53225f01c4a1b8571ad53da2",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.732792+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.799055+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2023-0071"
         }
       ],
@@ -1727,15 +1742,15 @@
       ]
     },
     {
-      "id": "e2431e46-ee13-4304-9f17-58bb4c74d653",
-      "public_id": "QSI-2026-42826",
+      "id": "293b1d84-36da-4131-b344-6194e89fb6e0",
+      "public_id": "QSI-2026-48766",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-8hxf-qr8p-62x4 (CVE-2026-115906, RUSTSEC-2026-0545)",
       "description": "OSV.dev сообщает GHSA-8hxf-qr8p-62x4 (CVE-2026-115906, RUSTSEC-2026-0545) для пакета crates.io zip версии 8.6.0: zip: AES Entry HMAC Authentication Bypass on Premature EOF. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
       "recommendation": "Обновите до исправленной версии (9.0.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-8hxf-qr8p-62x4",
       "category": "dependencies",
@@ -1748,8 +1763,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.736167+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.802555+00:00",
       "risk_score": 44.2,
       "risk_breakdown": {
         "cvss": {
@@ -1824,8 +1839,8 @@
           "content": "{\"id\": \"GHSA-8hxf-qr8p-62x4\", \"aliases\": [\"CVE-2026-115906\", \"RUSTSEC-2026-0545\"], \"modified\": \"2026-11-17T10:26:09.858808117Z\", \"summary\": \"zip: AES Entry HMAC Authentication Bypass on Premature EOF\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N\"}], \"declared_in_manifest\": true}",
           "content_sha256": "548445b222927495259cebebb6e66aea682a31adecc80761530e7cb9d488d410",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.743152+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.809412+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-8hxf-qr8p-62x4"
         }
       ],
@@ -1848,8 +1863,8 @@
       ]
     },
     {
-      "id": "dd81d461-63de-40c4-816e-af960b1aa548",
-      "public_id": "QSI-2026-42816",
+      "id": "23716946-4a05-41bd-b208-45e240bbe578",
+      "public_id": "QSI-2026-48756",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (4 файл(ов))",
       "description": "10 упоминаний X25519 в 4 файл(ах), например age/src/lib.rs:259. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
@@ -1868,8 +1883,8 @@
       "triage": null,
       "affected_asset": "source-code:X25519:key_wrapping",
       "data_source": "age/src/lib.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.663008+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.728854+00:00",
       "risk_score": 36.9,
       "risk_breakdown": {
         "mosca": {
@@ -1965,8 +1980,8 @@
           "content": "  258 | pub use native::tagpq;\n  259 | pub use native::x25519;\n  260 | ",
           "content_sha256": "97aa08d50fd46207d19c0dbcece4d115dab63ea31e056bc595a5f0d1de4dc1d0",
           "source_sha256": "fa1f17a56d7ac3ff7b8ccc2472aa21f261d0c2ea53946498e9537e0ab6a074dc",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.682549+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.747887+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/lib.rs#L259"
         },
         {
@@ -1976,8 +1991,8 @@
           "content": "   15 | use subtle::ConstantTimeEq;\n   16 | use x25519_dalek::{EphemeralSecret, PublicKey, StaticSecret};\n   17 | use zeroize::Zeroize;",
           "content_sha256": "05df6829be49cabd10d88d6036ce76d2ba7040e231172dca53924a0750b6570f",
           "source_sha256": "16e457867be81be4d998264e8cc9695b7a95660865e758a79e3501100846f9f5",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.682558+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.747896+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/native/x25519.rs#L16"
         },
         {
@@ -1987,8 +2002,8 @@
           "content": "   19 | use std::io;\n   20 | use x25519_dalek::{PublicKey as X25519PublicKey, StaticSecret};\n   21 | use zeroize::Zeroize;",
           "content_sha256": "1ee07b7a7c8bc78c730da898a54e4637f245085669e2241423890dd326877b88",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.682563+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.747901+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L20"
         },
         {
@@ -1998,8 +2013,8 @@
           "content": "  102 |                 }\n  103 |                 if stanza.body.len() != crate::x25519::ENCRYPTED_FILE_KEY_BYTES {\n  104 |                     return Some(Err(DecryptError::InvalidHeader));",
           "content_sha256": "87ba13f8a1497fd71ed3922f4e03c558c1286a2a000a6bcef5cc9ce029e2c31c",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.682568+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.747905+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L103"
         },
         {
@@ -2009,8 +2024,8 @@
           "content": "  107 |                 let epk =\n  108 |                     base64_arg::<_, { crate::x25519::EPK_LEN_BYTES }, 33>(stanza.args.get(1)?)?\n  109 |                         .into();",
           "content_sha256": "0be5d59c2834e0cc9449d59da2a0d0ef4d12c1baafef72fc5be3f97c0be8471b",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.682573+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.747910+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L108"
         },
         {
@@ -2020,8 +2035,8 @@
           "content": "   23 | use sha2::Sha256;\n   24 | use x25519_dalek::{EphemeralSecret, PublicKey as X25519PublicKey, StaticSecret};\n   25 | ",
           "content_sha256": "6abe103c9a43a94a19a02b55300b17593e658208804bda30ec6d4a8f8935c00a",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.682577+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.747914+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L24"
         },
         {
@@ -2031,8 +2046,8 @@
           "content": "  180 |             Recipient::SshEd25519(ssh_key, ed25519_pk) => {\n  181 |                 let pk: X25519PublicKey = ed25519_pk.to_montgomery().to_bytes().into();\n  182 | ",
           "content_sha256": "900291691f762d6c9ce5739d76737af6565a43944e9e9595ede307ce1202091b",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.682582+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.747919+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L181"
         },
         {
@@ -2042,8 +2057,8 @@
           "content": "  183 |                 let esk = EphemeralSecret::random_from_rng(&mut rng);\n  184 |                 let epk: X25519PublicKey = (&esk).into();\n  185 | ",
           "content_sha256": "a3dd61d18bb5abc2d5d5ecda2460b8425e0990823960a38a07f6f02254910caf",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.682586+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.747924+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L184"
         }
       ],
@@ -2081,8 +2096,8 @@
       ]
     },
     {
-      "id": "105cd4b4-d160-4d79-962b-b9f2656af658",
-      "public_id": "QSI-2026-42815",
+      "id": "762ca29b-0e3d-495d-8e99-99861e541ee2",
+      "public_id": "QSI-2026-48755",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: роль не определена (5 файл(ов))",
       "description": "9 упоминаний X25519 в 5 файл(ах), например age/src/cli_common/recipients.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -2101,8 +2116,8 @@
       "triage": null,
       "affected_asset": "source-code:X25519:general",
       "data_source": "age/src/cli_common/recipients.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.654027+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.720041+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2198,8 +2213,8 @@
           "content": "    4 | use super::{ReadError, identities::parse_identity_files};\n    5 | use crate::{Recipient, identity::RecipientsAccumulator, tag, tagpq, util::LimitedReader, x25519};\n    6 | ",
           "content_sha256": "949c4c42018679fc2651bed9e0f1f3b1745770fe5a7fb8e36b731e989e25846d",
           "source_sha256": "af2b6d7dd5958b91e56c35ddb3df73b9bde23b5cab9118e4d2ab719816d8bcee",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.666986+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733118+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/cli_common/recipients.rs#L5"
         },
         {
@@ -2209,8 +2224,8 @@
           "content": "   58 | ) -> Result<(), ReadError> {\n   59 |     if let Ok(pk) = s.parse::<x25519::Recipient>() {\n   60 |         recipients.push(Box::new(pk));",
           "content_sha256": "67e9a05a95b80abd2572165233020bf982389af48ab6e32fc58921fbabd4bd0c",
           "source_sha256": "af2b6d7dd5958b91e56c35ddb3df73b9bde23b5cab9118e4d2ab719816d8bcee",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.666995+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733128+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/cli_common/recipients.rs#L59"
         },
         {
@@ -2220,8 +2235,8 @@
           "content": "    9 |     Callbacks, DecryptError, EncryptError, IdentityFileConvertError, NoCallbacks,\n   10 |     util::LimitedReader, x25519,\n   11 | };",
           "content_sha256": "90fb4d93d25a26413a6a2e13c88d3522480c3fe8ad04bd9a4714789f9afefbad",
           "source_sha256": "8be708188c5e0f9efa1f3aca44a943060147a23b4ced3a32d4d716d588fbbf02",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.667000+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733133+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/identity.rs#L10"
         },
         {
@@ -2231,8 +2246,8 @@
           "content": "   24 |     /// The standard age identity type.\n   25 |     Native(x25519::Identity),\n   26 |     /// A plugin-compatible identity.",
           "content_sha256": "36e6ff8be827a3d1ca9c83b6bea9f135da0c2e3134d6065b0db4a549b1a84b24",
           "source_sha256": "8be708188c5e0f9efa1f3aca44a943060147a23b4ced3a32d4d716d588fbbf02",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.667004+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733137+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/identity.rs#L25"
         },
         {
@@ -2242,8 +2257,8 @@
           "content": "   91 | \n   92 |             match line.parse::<x25519::Identity>() {\n   93 |                 Ok(identity) => {",
           "content_sha256": "5dbfb3ab6c2704e8c45630f92fe5b306c65e38bd00cda43237b0113c8a40e8e5",
           "source_sha256": "8be708188c5e0f9efa1f3aca44a943060147a23b4ced3a32d4d716d588fbbf02",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.667009+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733142+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/identity.rs#L92"
         },
         {
@@ -2253,8 +2268,8 @@
           "content": "    8 | pub mod tagpq;\n    9 | pub mod x25519;\n   10 | ",
           "content_sha256": "05ec1745e4a1eddf7f1b06b954c98bdc480a6ed460e540bdf7f35b369715f3e3",
           "source_sha256": "881b02385f188b684cc7f08f33984810dcad7fc318d3f5a8ab6d7439b516e0b5",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.667014+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733147+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/native.rs#L9"
         },
         {
@@ -2264,8 +2279,8 @@
           "content": "  257 |                     .paragraph(fl!(\"man-rage-recipients-and-identities\"))\n  258 |                     .subheading(fl!(\"man-rage-native-x25519-keys-heading\"))\n  259 |                     .paragraph(fl!(",
           "content_sha256": "99ac994fe5cd88e6869eb03bccd9531e1423147477843660c83708e8f60cdab2",
           "source_sha256": "55db85f9f5e07cdc650b647e80f184bde2536567f61eb1c6dccdae7ac8475def",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.667018+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733151+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/rage/build.rs#L258"
         },
         {
@@ -2275,8 +2290,8 @@
           "content": "  259 |                     .paragraph(fl!(\n  260 |                         \"man-rage-native-x25519-keys\",\n  261 |                         example_age_recipient = \"age1gde3ncmahlqd9gg50tanl99r960llztrhfapnmx853s4tjum03uqfssgdh\",",
           "content_sha256": "b74d073343a9a1960ff582b2292f1366a84e5fd86311591a7ba8e0e30cf6307d",
           "source_sha256": "55db85f9f5e07cdc650b647e80f184bde2536567f61eb1c6dccdae7ac8475def",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.667023+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733156+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/rage/build.rs#L260"
         },
         {
@@ -2286,8 +2301,8 @@
           "content": "   56 | fn generate(mut output: file_io::OutputWriter) -> io::Result<()> {\n   57 |     let sk = age::x25519::Identity::generate();\n   58 |     let pk = sk.to_public();",
           "content_sha256": "d3f1ab0f99eee13a2589f6865cb86ef7e63c343058c209297f0b40cba1267813",
           "source_sha256": "88b956d279fb1ab6d05dd77e531e784c0cfee0a2544dc8a8779e8cdc10a9e9e4",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.667028+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.733161+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/rage/src/bin/rage-keygen/main.rs#L57"
         }
       ],
@@ -2325,8 +2340,8 @@
       ]
     },
     {
-      "id": "68ffee5c-1153-48f7-8a04-0f9e89a7e338",
-      "public_id": "QSI-2026-42817",
+      "id": "957eaa5b-4223-42dc-b186-6e437ca5e780",
+      "public_id": "QSI-2026-48757",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (3 файл(ов))",
       "description": "10 упоминаний RSA в 3 файл(ах), например age/src/ssh.rs:346. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.",
@@ -2345,8 +2360,8 @@
       "triage": null,
       "affected_asset": "source-code:RSA:authentication",
       "data_source": "age/src/ssh.rs",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.679843+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.745517+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2442,8 +2457,8 @@
           "content": "  345 |     /// - [OpenSSH serialization code](https://github.com/openssh/openssh-portable/blob/4103a3ec7c68493dbc4f0994a229507e943a86d3/sshkey.c#L3187-L3198)\n  346 |     fn openssh_rsa_privkey(input: &[u8]) -> IResult<&[u8], rsa::RsaPrivateKey> {\n  347 |         delimited(",
           "content_sha256": "7e3785d0dbcd802591dcf43f3e19518c5a11074bbe503579789d417cce71a346",
           "source_sha256": "2dd1be76df20f7ed8cf9ae837709b179ceae4440f9ccc3413ff28446cbab1b1e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.692671+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.757732+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh.rs#L346"
         },
         {
@@ -2453,8 +2468,8 @@
           "content": "  350 |                 (mpint, mpint, mpint, mpint, mpint, mpint),\n  351 |                 |(n, e, d, _iqmp, p, q)| rsa::RsaPrivateKey::from_components(n, e, d, vec![p, q]),\n  352 |             ),",
           "content_sha256": "4053b2391fbea71b39dd399191ef97f6307a2fb093522f2d6f7ac1d7eda26864",
           "source_sha256": "2dd1be76df20f7ed8cf9ae837709b179ceae4440f9ccc3413ff28446cbab1b1e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.692680+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.757740+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh.rs#L351"
         },
         {
@@ -2464,8 +2479,8 @@
           "content": "  505 |         max_size: usize,\n  506 |     ) -> impl Fn(&[u8]) -> IResult<&[u8], Option<rsa::RsaPublicKey>> {\n  507 |         move |input| {",
           "content_sha256": "7e7e503abedc0514c33f3905e22bdec016c5f8f737be09dd7bee1c7ea3e02b2e",
           "source_sha256": "2dd1be76df20f7ed8cf9ae837709b179ceae4440f9ccc3413ff28446cbab1b1e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.692685+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.757746+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh.rs#L506"
         },
         {
@@ -2475,8 +2490,8 @@
           "content": "   37 |     /// An ssh-rsa private key.\n   38 |     SshRsa(Vec<u8>, Box<rsa::RsaPrivateKey>),\n   39 |     /// An ssh-ed25519 key pair.",
           "content_sha256": "de035e6101f0cc8f4ddb886275317cee992d29d5439c38800bf9838042a88fbd",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.692690+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.757751+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L38"
         },
         {
@@ -2486,8 +2501,8 @@
           "content": "  343 |                     } else {\n  344 |                         rsa::RsaPrivateKey::from_pkcs1_der(&privkey)\n  345 |                             .ok()",
           "content_sha256": "65a19cbac089efc2a127c79940f7095fa0f59dcc40fa90892aeb787fe96b6cc3",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.692694+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.757755+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L344"
         },
         {
@@ -2497,8 +2512,8 @@
           "content": "   41 |     /// An ssh-rsa public key.\n   42 |     SshRsa(Vec<u8>, rsa::RsaPublicKey),\n   43 |     /// An ssh-ed25519 public key.",
           "content_sha256": "479bf142c9167d7508156b2bb610dc3f5f7b0340b5df42a781aca3cdf0e5ab43",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.692699+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.757760+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L42"
         },
         {
@@ -2508,8 +2523,8 @@
           "content": "   76 |     fn from_str(s: &str) -> Result<Self, Self::Err> {\n   77 |         match ssh_recipient(rsa::RsaPublicKey::MAX_SIZE)(s) {\n   78 |             Ok((_, ParsedRecipient::Supported(pk))) => Ok(pk),",
           "content_sha256": "6951b047acbed0bc3e239453ac347280898f4087616b23546fd33c6aada0285a",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.692703+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.757765+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L77"
         },
         {
@@ -2519,8 +2534,8 @@
           "content": "  123 |             | Identity::Encrypted(EncryptedKey { ssh_key, .. }) => {\n  124 |                 match read_ssh::rsa_pubkey(rsa::RsaPublicKey::MAX_SIZE)(&ssh_key) {\n  125 |                     Ok((_, pk)) => {",
           "content_sha256": "bff2dfed80a0d3876ae441e29798cd20bba3594c349b887486d2c80a81d28b78",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.692708+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.757769+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L124"
         }
       ],
@@ -2558,15 +2573,15 @@
       ]
     },
     {
-      "id": "b783236e-aa4f-4e93-9de9-2f6b72154ab2",
-      "public_id": "QSI-2026-42820",
+      "id": "45de500e-df9c-4aa0-9b10-835234d85dea",
+      "public_id": "QSI-2026-48760",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует crypto-bigint: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387",
       "category": "dependencies",
@@ -2576,11 +2591,11 @@
       "preliminary": true,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:crates.io/crypto-bigint@0.7.5",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.705141+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.770681+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2635,8 +2650,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0387\", \"aliases\": [], \"modified\": \"2026-10-24T03:45:02.365137418Z\", \"summary\": \"Multiple timing variability issues in operations intended to be constant-time\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.712069+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.778242+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -2659,15 +2674,15 @@
       ]
     },
     {
-      "id": "cbcdc0f8-5f85-4c86-ba6c-0cb74e8da57d",
-      "public_id": "QSI-2026-42821",
+      "id": "5f306f3f-e739-4c43-b742-58efce59f94c",
+      "public_id": "QSI-2026-48761",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует ctutils: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (0.4.4).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0385",
       "category": "dependencies",
@@ -2677,11 +2692,11 @@
       "preliminary": true,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:crates.io/ctutils@0.4.2",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.710516+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.776545+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2736,8 +2751,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0385\", \"aliases\": [], \"modified\": \"2026-10-23T08:30:02.389575143Z\", \"summary\": \"Non-constant-time mask generation and `u128` comparisons\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.717330+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.783334+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -2760,15 +2775,15 @@
       ]
     },
     {
-      "id": "3ebf6940-0c9d-41eb-8b48-a80bed34e424",
-      "public_id": "QSI-2026-42825",
+      "id": "1d4482ec-097b-4cfc-a401-fdc4586a445e",
+      "public_id": "QSI-2026-48765",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "rustix 1.1.4 затронут RUSTSEC-2026-0486 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0486 для пакета crates.io rustix версии 1.1.4: xattr functions mark unwritten bytes as initialized when given a zero-length buffer. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (rustix::fs::fgetxattr, rustix::fs::flistxattr, rustix::fs::getxattr, rustix::fs::lgetxattr, rustix::fs::listxattr, rustix::fs::llistxattr); rustix приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0486 для пакета crates.io rustix версии 1.1.4: xattr functions mark unwritten bytes as initialized when given a zero-length buffer. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует rustix: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (rustix::fs::fgetxattr, rustix::fs::flistxattr, rustix::fs::getxattr, rustix::fs::lgetxattr, rustix::fs::listxattr, rustix::fs::llistxattr); rustix приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (1.1.6).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0486",
       "category": "dependencies",
@@ -2781,8 +2796,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/rustix@1.1.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.731264+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.797355+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2837,8 +2852,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0486\", \"aliases\": [\"GHSA-jh2m-fhpj-3vr7\"], \"modified\": \"2026-11-11T08:45:02.466292839Z\", \"summary\": \"xattr functions mark unwritten bytes as initialized when given a zero-length buffer\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "3a9db0a5ea2efefb678d315af96712a5f277c0e348371bd9630df7afe1635fbe",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.737955+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.804314+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0486"
         }
       ],
@@ -2861,15 +2876,15 @@
       ]
     },
     {
-      "id": "bad04330-0fb0-4b49-9008-24ad9eb0b7fe",
-      "public_id": "QSI-2026-42832",
+      "id": "52c385f6-f8bb-4611-8f0d-7281cdfad4bf",
+      "public_id": "QSI-2026-48772",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zip 8.6.0 затронут RUSTSEC-2026-0368 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0368 для пакета crates.io zip версии 8.6.0: zip: `ZipArchive::extract` creates symbolic links whose attacker-controlled targets are outside the destination directory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (9.0.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0368",
       "category": "dependencies",
@@ -2882,8 +2897,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.767027+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.833615+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2938,8 +2953,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0368\", \"aliases\": [\"GHSA-4v9h-p7m9-rh26\"], \"modified\": \"2026-10-16T23:30:02.383750571Z\", \"summary\": \"zip: `ZipArchive::extract` creates symbolic links whose attacker-controlled targets are outside the destination directory\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "5290c9a29df3d85ab102844569d01115b101b377c4c3e6ad6ff25e6c67e65a22",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.773461+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.840262+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0368"
         }
       ],
@@ -2962,15 +2977,15 @@
       ]
     },
     {
-      "id": "126498b1-1aec-4472-8103-4bcfda875365",
-      "public_id": "QSI-2026-42834",
+      "id": "f8d8b860-5799-499c-9598-3d3ad16444a3",
+      "public_id": "QSI-2026-48774",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0391 для пакета crates.io zstd версии 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd::stream::raw::Decoder::with_context, zstd::stream::raw::Encoder::with_context); zstd приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0391 для пакета crates.io zstd версии 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd::stream::raw::Decoder::with_context, zstd::stream::raw::Encoder::with_context); zstd приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (0.13.4, 0.14.3).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0391",
       "category": "dependencies",
@@ -2983,8 +2998,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd@0.13.3",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.776606+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.843474+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3039,8 +3054,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0391\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.590733846Z\", \"summary\": \"Data from an abandoned stream leaks into the next stream on a reused context\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "f6b1f88e9d83bcb9d217fcbdccae0800038e990f9744b0323a94b3c98f05b7b9",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.782988+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.850366+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0391"
         }
       ],
@@ -3063,15 +3078,15 @@
       ]
     },
     {
-      "id": "20ea85d8-8ed0-4bf9-bbe4-3b157e58c8ee",
-      "public_id": "QSI-2026-42835",
+      "id": "68373675-433b-4c49-9520-ddae370af3ea",
+      "public_id": "QSI-2026-48775",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0395 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free with `CParameter::StableInBuffer`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::set_parameter); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0395 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free with `CParameter::StableInBuffer`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::set_parameter); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0395",
       "category": "dependencies",
@@ -3084,8 +3099,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.781347+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.848687+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3140,8 +3155,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0395\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.420559993Z\", \"summary\": \"Use-after-free with `CParameter::StableInBuffer`\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "728850176f43ecf2b9c562524c791d0da3abc31547980bb333caeadf51eb3ce4",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.787963+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.855532+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0395"
         }
       ],
@@ -3164,15 +3179,15 @@
       ]
     },
     {
-      "id": "0875d286-7bf9-43fd-adde-c9b4e288a181",
-      "public_id": "QSI-2026-42836",
+      "id": "6b7fa227-5ae6-4073-895f-068cbdf1388e",
+      "public_id": "QSI-2026-48776",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0396 для пакета crates.io zstd-safe версии 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0396 для пакета crates.io zstd-safe версии 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0396",
       "category": "dependencies",
@@ -3185,8 +3200,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.786392+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.853837+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3241,8 +3256,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0396\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.400899521Z\", \"summary\": \"`Seekable` reads a NULL or out-of-bounds seek table\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "4530740c3dd2640b5c96ad098b4e771f286dd562d83e8e4aa6214c518b1f08ee",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.793108+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.860543+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0396"
         }
       ],
@@ -3265,15 +3280,15 @@
       ]
     },
     {
-      "id": "a586315a-83d2-41b7-92b4-7251bd0bf73d",
-      "public_id": "QSI-2026-42837",
+      "id": "53b88e80-1df6-40b4-942a-6bd8f373c769",
+      "public_id": "QSI-2026-48777",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0397 для пакета crates.io zstd-safe версии 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::OutBuffer::around_pos); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0397 для пакета crates.io zstd-safe версии 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::OutBuffer::around_pos); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0397",
       "category": "dependencies",
@@ -3286,8 +3301,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.791486+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.858894+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3342,8 +3357,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0397\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.445177143Z\", \"summary\": \"`OutBuffer::around_pos` exposes uninitialized memory\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "4ad3bc187fa64e24d070e53c5d01373b2aba040ea27757bbf26f8efea74c0967",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.798399+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.865754+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0397"
         }
       ],
@@ -3366,15 +3381,15 @@
       ]
     },
     {
-      "id": "6a301244-8ded-44ca-aac1-069aa00176fb",
-      "public_id": "QSI-2026-42838",
+      "id": "ec0894a9-4cec-4971-91b6-14fad19d98ae",
+      "public_id": "QSI-2026-48778",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0398 для пакета crates.io zstd-safe версии 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0398 для пакета crates.io zstd-safe версии 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0398",
       "category": "dependencies",
@@ -3387,8 +3402,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.796631+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.864019+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3443,8 +3458,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0398\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.419709171Z\", \"summary\": \"`Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "7e1e8fe35e2578f061734431e3a9558d8cc0dab6043f409c833b43c905bf10d3",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.803449+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.870634+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0398"
         }
       ],
@@ -3467,15 +3482,15 @@
       ]
     },
     {
-      "id": "6e3c4284-ded6-4b1b-8a3c-1ac073e4b5ab",
-      "public_id": "QSI-2026-42839",
+      "id": "d07e9593-9a2a-491b-a9d5-44f0ee812086",
+      "public_id": "QSI-2026-48779",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0399 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0399 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0399",
       "category": "dependencies",
@@ -3488,8 +3503,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.801889+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.868999+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3544,8 +3559,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0399\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.328955732Z\", \"summary\": \"Use-after-free through `init_using_cdict` and `init_using_ddict`\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "58cd19f1b734988f6219b3659cd613c349a5c6693e08cb4e8b9846d1f92bb38f",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.808015+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.875722+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0399"
         }
       ],
@@ -3568,15 +3583,15 @@
       ]
     },
     {
-      "id": "4e1a0a84-9b18-4210-a392-a36e8a150404",
-      "public_id": "QSI-2026-42840",
+      "id": "03c3f101-7a2b-4808-af51-862231ec5bb3",
+      "public_id": "QSI-2026-48780",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0400 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0400 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0400",
       "category": "dependencies",
@@ -3589,8 +3604,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.806514+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.874079+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3645,8 +3660,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0400\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.428341570Z\", \"summary\": \"Use-after-free of a dictionary after a one-shot call on a context with an open stream\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "00f83f7c4931137d6b18e25256c039f2c52bd627946f5f05f74c2cc7b2615d30",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.813653+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.883472+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0400"
         }
       ],
@@ -3669,15 +3684,15 @@
       ]
     },
     {
-      "id": "aa9f3716-db14-41b5-901d-d1cfcadf9ba5",
-      "public_id": "QSI-2026-42841",
+      "id": "0fe51996-37e8-449d-ad99-9abf429636a8",
+      "public_id": "QSI-2026-48781",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0401 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::train_from_buffer); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0401 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::train_from_buffer); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0401",
       "category": "dependencies",
@@ -3690,8 +3705,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.811158+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.878895+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3746,8 +3761,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0401\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.353698025Z\", \"summary\": \"Out-of-bounds read in `train_from_buffer` when sample sizes overflow\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "dd6e9bd27e75cf4c8d9a5333bbc4dda81ef2f2990271b711f964d6bc829e71fd",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.818870+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.895114+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0401"
         }
       ],
@@ -3770,15 +3785,15 @@
       ]
     },
     {
-      "id": "d13f58ce-130d-4359-a52a-1c298ad673d9",
-      "public_id": "QSI-2026-42842",
+      "id": "4f75449b-e82d-429e-a0f9-42dd7e5a9f85",
+      "public_id": "QSI-2026-48782",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0402 для пакета crates.io zstd-safe версии 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0402 для пакета crates.io zstd-safe версии 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0402",
       "category": "dependencies",
@@ -3791,8 +3806,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.816931+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.890032+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3847,8 +3862,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0402\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:04.162155944Z\", \"summary\": \"Heap buffer overflow in `CCtx::try_clone` on a multithreaded context\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "464c8c61aa6d0a29b646ba665145c6d256c18786ece14e1921252cecf4a4e54e",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.823609+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.901642+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0402"
         }
       ],
@@ -3871,15 +3886,15 @@
       ]
     },
     {
-      "id": "fc96c117-8d31-4237-9108-77ef46ce2792",
-      "public_id": "QSI-2026-42843",
+      "id": "dff1da8f-cb93-4a41-8892-6cbf99d7e723",
+      "public_id": "QSI-2026-48783",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0403 для пакета crates.io zstd-safe версии 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0403 для пакета crates.io zstd-safe версии 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0403",
       "category": "dependencies",
@@ -3892,8 +3907,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.822149+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.899804+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3948,8 +3963,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0403\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:04.136442771Z\", \"summary\": \"Uninitialized memory exposed when streaming decompression of a legacy frame fails\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "09699f0d23ac15a18937ce02a1b778a246ec661449852b62d6415d8d60ed2147",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.828727+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.907692+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0403"
         }
       ],
@@ -3972,15 +3987,15 @@
       ]
     },
     {
-      "id": "aee614c5-8e57-4c84-9245-e9768e9c18af",
-      "public_id": "QSI-2026-42844",
+      "id": "7067dae1-5201-45d0-a3f9-a6dede844c66",
+      "public_id": "QSI-2026-48784",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0404 для пакета crates.io zstd-safe версии 7.2.4: Double free in `DCtx::try_clone`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0404 для пакета crates.io zstd-safe версии 7.2.4: Double free in `DCtx::try_clone`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0404",
       "category": "dependencies",
@@ -3993,8 +4008,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.827150+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.905472+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4049,8 +4064,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0404\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:04.168804805Z\", \"summary\": \"Double free in `DCtx::try_clone`\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "e265647b9f2c582eebfcac7889bee04fada79ea833147205829d693f4c6f8131",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.833804+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.912875+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0404"
         }
       ],
@@ -4073,15 +4088,15 @@
       ]
     },
     {
-      "id": "7d388d23-368b-49bd-9790-49a2c49e3559",
-      "public_id": "QSI-2026-42845",
+      "id": "71bd17b6-626f-43c3-b384-ef13a11eb2b6",
+      "public_id": "QSI-2026-48785",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0405 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0405 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0405",
       "category": "dependencies",
@@ -4094,8 +4109,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.832236+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.911172+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4150,8 +4165,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0405\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.399517581Z\", \"summary\": \"Out-of-bounds read with an out-of-range `InBuffer::pos`\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "e784735107b5a74149056e3244a7f30afbcf59892ceaa6d018ec1739be5661d5",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.838601+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.917877+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0405"
         }
       ],
@@ -4174,15 +4189,15 @@
       ]
     },
     {
-      "id": "6b48b041-1af9-4dba-9ae3-6f278f52aaa6",
-      "public_id": "QSI-2026-42846",
+      "id": "112fa11d-668d-4d2b-8c79-0024104434a2",
+      "public_id": "QSI-2026-48786",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)",
-      "description": "OSV.dev сообщает RUSTSEC-2026-0406 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0406 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни один исходный файл продукта не импортирует zstd-safe: он приходит через другие зависимости, и как они его используют, не прослеживалось. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0406",
       "category": "dependencies",
@@ -4195,8 +4210,8 @@
       "reachability": "not_referenced",
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.836926+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.916145+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4251,8 +4266,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0406\", \"aliases\": [], \"modified\": \"2026-11-02T09:30:03.591194710Z\", \"summary\": \"Use-after-free when changing a multithreaded context with an unfinished frame\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "f08bb0f8849019aa21c995ae08e9c10ff924c83b0464e87d3143ab07935008f5",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.843670+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.923295+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0406"
         }
       ],
@@ -4275,15 +4290,15 @@
       ]
     },
     {
-      "id": "60c97626-beab-418d-a085-e84a8f3fd3e5",
-      "public_id": "QSI-2026-42847",
+      "id": "594c26bf-6919-445b-bec4-c5385eb4b4f1",
+      "public_id": "QSI-2026-48787",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0410 для пакета crates.io zstd-sys версии 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Касается только целевых платформ wasm32.",
       "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
       "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (2.1.2).",
       "retest": "Повторите сканирование зависимостей после обновления.",
-      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
       "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
       "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0410",
       "category": "dependencies",
@@ -4296,8 +4311,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.842030+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.921579+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4352,8 +4367,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0410\", \"aliases\": [], \"modified\": \"2026-10-26T14:00:05.788985783Z\", \"summary\": \"WebAssembly allocator shim corrupts memory on allocation failure\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "1e892df4ce7c9911f01547e4a80d1fb3ea5a27b8c1c89c0514917e08bbf3bdc5",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.848708+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.928094+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0410"
         }
       ],
@@ -4376,8 +4391,8 @@
       ]
     },
     {
-      "id": "a834b655-bd78-47b2-a071-8c36588f6903",
-      "public_id": "QSI-2026-42819",
+      "id": "8d7e081f-ca6b-4d24-801e-cd12b184009d",
+      "public_id": "QSI-2026-48759",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "chrono 0.4.45: информационный бюллетень RUSTSEC-2026-0543 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2026-0543 для пакета crates.io chrono версии 0.4.45 как информационный (unmaintained): chrono is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -4397,8 +4412,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/chrono@0.4.45",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.698454+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.763527+00:00",
       "risk_score": 19.8,
       "risk_breakdown": {
         "score": 19.8,
@@ -4453,8 +4468,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0543\", \"aliases\": [], \"modified\": \"2026-11-17T10:15:02.344223779Z\", \"summary\": \"chrono is unmaintained\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "a8494058c018d8118c03e54ea9ad511eaba883e2c4747ef22a665ecac9a41b00",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.707100+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.772967+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0543"
         }
       ],
@@ -4477,8 +4492,8 @@
       ]
     },
     {
-      "id": "1abdae5e-d505-44a5-bc48-ed89e44ae39e",
-      "public_id": "QSI-2026-42848",
+      "id": "268875a6-8511-41c2-bb03-ce24080aa438",
+      "public_id": "QSI-2026-48788",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "4 бюллетеней в 3 пакет(ах) crates.io, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 4 бюллетеней (2 с оценкой high или critical) для 3 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, pprof@0.13.0 [dev]: GHSA-gw5w-5j7f-jmjj; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195; tokio@1.52.3 [dev]: RUSTSEC-2026-0386. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -4497,8 +4512,8 @@
       "triage": null,
       "affected_asset": "dependencies:crates.io:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.846844+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.926541+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -4553,8 +4568,8 @@
           "content": "pprof@0.13.0 [dev]: GHSA-gw5w-5j7f-jmjj\nquick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195\ntokio@1.52.3 [dev]: RUSTSEC-2026-0386",
           "content_sha256": "9d9b06d343ab87c0c3691f419ae25b559874c19803ae3bbe7fd1c99ca4493185",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.874960+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.957133+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -4577,8 +4592,8 @@
       ]
     },
     {
-      "id": "76758a37-cb3d-4842-b50b-43f71b566dd5",
-      "public_id": "QSI-2026-42818",
+      "id": "41a64a5d-6686-41de-bbcf-d3301a7848e0",
+      "public_id": "QSI-2026-48758",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "basic-toml 0.1.10: информационный бюллетень RUSTSEC-2026-0374 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2026-0374 для пакета crates.io basic-toml версии 0.1.10 как информационный (unmaintained): `basic-toml` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -4595,11 +4610,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:crates.io/basic-toml@0.1.10",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.690549+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.755584+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -4654,8 +4669,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0374\", \"aliases\": [], \"modified\": \"2026-10-20T11:15:37.076409305Z\", \"summary\": \"`basic-toml` is unmaintained\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "5043412c341a3842fb5b4d44f2440bd25fa5620f52d2ed3398ec617b542ae0db",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.700637+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.765895+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0374"
         }
       ],
@@ -4678,8 +4693,8 @@
       ]
     },
     {
-      "id": "08fb073e-e64c-401e-8d65-e9ea857355ec",
-      "public_id": "QSI-2026-42822",
+      "id": "666c7f83-b96c-49b9-98e8-b5fc681f670b",
+      "public_id": "QSI-2026-48762",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "humantime 2.4.0: информационный бюллетень RUSTSEC-2026-0542 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2026-0542 для пакета crates.io humantime версии 2.4.0 как информационный (unmaintained): humantime is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -4696,11 +4711,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:crates.io/humantime@2.4.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.715707+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.781848+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -4755,8 +4770,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0542\", \"aliases\": [], \"modified\": \"2026-11-17T10:15:02.347148964Z\", \"summary\": \"humantime is unmaintained\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "caf5ab6a2010add85bc70c11c514b3b9da488452dbd5e9996fdfaff17f0eb536",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.722472+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.788089+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0542"
         }
       ],
@@ -4779,8 +4794,8 @@
       ]
     },
     {
-      "id": "d86629b2-5c4e-4588-91f6-be3c4cd4a7df",
-      "public_id": "QSI-2026-42823",
+      "id": "3ca3da06-ac35-42be-9735-213d91b51985",
+      "public_id": "QSI-2026-48763",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2026-0173 для пакета crates.io proc-macro-error2 версии 2.0.1 как информационный (unmaintained): proc-macro-error2 is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -4797,11 +4812,11 @@
       "preliminary": false,
       "status": "open",
       "triage": null,
-      "reachability": "unknown",
+      "reachability": "via_dependencies",
       "affected_asset": "dependency:crates.io/proc-macro-error2@2.0.1",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T12:58:16.721043+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T11:04:56.786703+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -4856,8 +4871,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0173\", \"aliases\": [], \"modified\": \"2026-06-07T21:00:04.318567692Z\", \"summary\": \"proc-macro-error2 is unmaintained\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "0ecc182141bd9effc6d35bc24dc20c57e6473fb3877ad59a5fbdb1cd55b56528",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T12:58:16.727522+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T11:04:56.793506+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0173"
         }
       ],
@@ -4901,9 +4916,9 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-42816",
-      "QSI-2026-42815",
-      "QSI-2026-42817"
+      "QSI-2026-48756",
+      "QSI-2026-48755",
+      "QSI-2026-48757"
     ],
     "roles": [
       {
@@ -4919,7 +4934,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-42816"
+          "QSI-2026-48756"
         ],
         "files": 4
       },
@@ -4936,7 +4951,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-42817"
+          "QSI-2026-48757"
         ],
         "files": 3
       },
@@ -4953,7 +4968,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-42815"
+          "QSI-2026-48755"
         ],
         "files": 5
       }
@@ -5129,7 +5144,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548).",
         "status": "todo",
-        "finding": "QSI-2026-42829",
+        "finding": "QSI-2026-48769",
         "finding_title": "zip 8.6.0 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905, RUSTSEC-2026-0548)",
         "severity": "critical"
       },
@@ -5147,7 +5162,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2026-0369.",
         "status": "todo",
-        "finding": "QSI-2026-42833",
+        "finding": "QSI-2026-48773",
         "finding_title": "zip 8.6.0 затронут RUSTSEC-2026-0369",
         "severity": "critical"
       },
@@ -5165,7 +5180,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-9hj8-73fh-9963 (CVE-2026-115907, RUSTSEC-2026-0547).",
         "status": "todo",
-        "finding": "QSI-2026-42827",
+        "finding": "QSI-2026-48767",
         "finding_title": "zip 8.6.0 затронут GHSA-9hj8-73fh-9963 (CVE-2026-115907, RUSTSEC-2026-0547)",
         "severity": "high"
       },
@@ -5183,7 +5198,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-hjqx-j4rw-g7xv (CVE-2026-115908, RUSTSEC-2026-0546).",
         "status": "todo",
-        "finding": "QSI-2026-42828",
+        "finding": "QSI-2026-48768",
         "finding_title": "zip 8.6.0 затронут GHSA-hjqx-j4rw-g7xv (CVE-2026-115908, RUSTSEC-2026-0546)",
         "severity": "high"
       },
@@ -5201,7 +5216,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-q7v9-x93c-xqv3 (CVE-2026-115909, RUSTSEC-2026-0429).",
         "status": "todo",
-        "finding": "QSI-2026-42830",
+        "finding": "QSI-2026-48770",
         "finding_title": "zip 8.6.0 затронут GHSA-q7v9-x93c-xqv3 (CVE-2026-115909, RUSTSEC-2026-0429)",
         "severity": "high"
       },
@@ -5219,7 +5234,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2026-0367.",
         "status": "todo",
-        "finding": "QSI-2026-42831",
+        "finding": "QSI-2026-48771",
         "finding_title": "zip 8.6.0 затронут RUSTSEC-2026-0367",
         "severity": "high"
       },
@@ -5237,7 +5252,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2023-0071 (CVE-2023-49092).",
         "status": "todo",
-        "finding": "QSI-2026-42824",
+        "finding": "QSI-2026-48764",
         "finding_title": "rsa 0.10.0-rc.18 затронут RUSTSEC-2023-0071 (CVE-2023-49092)",
         "severity": "medium"
       },
@@ -5255,7 +5270,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-8hxf-qr8p-62x4 (CVE-2026-115906, RUSTSEC-2026-0545).",
         "status": "todo",
-        "finding": "QSI-2026-42826",
+        "finding": "QSI-2026-48766",
         "finding_title": "zip 8.6.0 затронут GHSA-8hxf-qr8p-62x4 (CVE-2026-115906, RUSTSEC-2026-0545)",
         "severity": "medium"
       }
@@ -5275,7 +5290,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42820",
+        "finding": "QSI-2026-48760",
         "finding_title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5293,7 +5308,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42821",
+        "finding": "QSI-2026-48761",
         "finding_title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5311,7 +5326,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0486 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42825",
+        "finding": "QSI-2026-48765",
         "finding_title": "rustix 1.1.4 затронут RUSTSEC-2026-0486 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5329,7 +5344,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0368 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42832",
+        "finding": "QSI-2026-48772",
         "finding_title": "zip 8.6.0 затронут RUSTSEC-2026-0368 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5347,7 +5362,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0391 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42834",
+        "finding": "QSI-2026-48774",
         "finding_title": "zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5365,7 +5380,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42835",
+        "finding": "QSI-2026-48775",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5383,7 +5398,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0396 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42836",
+        "finding": "QSI-2026-48776",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5401,7 +5416,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42837",
+        "finding": "QSI-2026-48777",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5419,7 +5434,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0398 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42838",
+        "finding": "QSI-2026-48778",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5437,7 +5452,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42839",
+        "finding": "QSI-2026-48779",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5455,7 +5470,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42840",
+        "finding": "QSI-2026-48780",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5473,7 +5488,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42841",
+        "finding": "QSI-2026-48781",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5491,7 +5506,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42842",
+        "finding": "QSI-2026-48782",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5509,7 +5524,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42843",
+        "finding": "QSI-2026-48783",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5527,7 +5542,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42844",
+        "finding": "QSI-2026-48784",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5545,7 +5560,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0405 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42845",
+        "finding": "QSI-2026-48785",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5563,7 +5578,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42846",
+        "finding": "QSI-2026-48786",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5581,7 +5596,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-42847",
+        "finding": "QSI-2026-48787",
         "finding_title": "zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)",
         "severity": "low"
       }
@@ -5601,7 +5616,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-42816",
+        "finding": "QSI-2026-48756",
         "finding_title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (4 файл(ов))",
         "severity": "medium"
       },
@@ -5619,7 +5634,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-42815",
+        "finding": "QSI-2026-48755",
         "finding_title": "Квантово-уязвимый X25519: роль не определена (5 файл(ов))",
         "severity": "medium"
       },
@@ -5637,7 +5652,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-42817",
+        "finding": "QSI-2026-48757",
         "finding_title": "Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (3 файл(ов))",
         "severity": "medium"
       },
@@ -5655,7 +5670,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-42816",
+        "finding": "QSI-2026-48756",
         "finding_title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (4 файл(ов))",
         "severity": "medium"
       },
@@ -5673,7 +5688,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-42815",
+        "finding": "QSI-2026-48755",
         "finding_title": "Квантово-уязвимый X25519: роль не определена (5 файл(ов))",
         "severity": "medium"
       },
@@ -5691,7 +5706,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-42817",
+        "finding": "QSI-2026-48757",
         "finding_title": "Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (3 файл(ов))",
         "severity": "medium"
       },
@@ -5709,7 +5724,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "chrono заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-42819",
+        "finding": "QSI-2026-48759",
         "finding_title": "chrono 0.4.45: информационный бюллетень RUSTSEC-2026-0543 (unmaintained)",
         "severity": "info"
       },
@@ -5727,7 +5742,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-42848",
+        "finding": "QSI-2026-48788",
         "finding_title": "4 бюллетеней в 3 пакет(ах) crates.io, нужных только для разработки или сборки",
         "severity": "info"
       },
@@ -5745,7 +5760,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "basic-toml заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-42818",
+        "finding": "QSI-2026-48758",
         "finding_title": "basic-toml 0.1.10: информационный бюллетень RUSTSEC-2026-0374 (unmaintained)",
         "severity": "info"
       },
@@ -5763,7 +5778,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "humantime заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-42822",
+        "finding": "QSI-2026-48762",
         "finding_title": "humantime 2.4.0: информационный бюллетень RUSTSEC-2026-0542 (unmaintained)",
         "severity": "info"
       },
@@ -5781,7 +5796,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "proc-macro-error2 заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-42823",
+        "finding": "QSI-2026-48763",
         "finding_title": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)",
         "severity": "info"
       }
@@ -5806,11 +5821,11 @@
     },
     {
       "name": "crediting",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "dependencies",
-      "version": "1.4.4"
+      "version": "1.6.0"
     },
     {
       "name": "hndl",
@@ -5819,6 +5834,10 @@
     {
       "name": "inventory_document",
       "version": "1.1.0"
+    },
+    {
+      "name": "key_storage",
+      "version": "1.0.0"
     },
     {
       "name": "mpc",
@@ -5830,7 +5849,7 @@
     },
     {
       "name": "source_code",
-      "version": "1.10.2"
+      "version": "1.11.0"
     },
     {
       "name": "tls_code",
@@ -5854,7 +5873,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.16.2"
+      "version": "1.20.0"
     },
     {
       "name": "OSV.dev API",
@@ -6573,7 +6592,7 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "x25519-dalek (ed25519-dalek)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "location": "age/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -6586,7 +6605,7 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "x25519-dalek (ed25519-dalek)",
       "location": "age/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -7005,7 +7024,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "x25519-dalek (ed25519-dalek)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -7017,7 +7036,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "x25519-dalek (ed25519-dalek)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,

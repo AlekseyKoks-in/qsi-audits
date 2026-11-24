@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:15678aaa-9c2b-4b4c-8994-80f6086e2b23",
+  "serialNumber": "urn:uuid:15d014e3-6a09-4bcc-8f65-ed21c8f78992",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-23T12:51:06Z",
+    "timestamp": "2026-11-24T10:57:22Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.16.2"
+          "version": "1.20.0"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c9cba99d-30e2-42bc-a61b-bfb04b17650d",
+      "bom-ref": "9b91dbba-00e7-4f62-a411-ffddd1a84597",
       "name": "AES-128",
       "properties": [
         {
@@ -72,7 +72,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d97157b5-5ba0-4354-8514-275ba55c3199",
+      "bom-ref": "7f11e51e-bbd4-4872-9f95-65948ac76b80",
       "name": "AES-128",
       "properties": [
         {
@@ -126,7 +126,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b4782397-8adc-43f0-bd59-10460756ee4a",
+      "bom-ref": "4fb7eec6-13d9-41f2-b2fe-edf527608c6a",
       "name": "BLAKE3",
       "properties": [
         {
@@ -175,7 +175,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e3bf296c-c9c1-4a4d-b1f7-16deac4249b6",
+      "bom-ref": "fc64fe95-783d-44b5-8b0b-4ef0adde9c31",
       "name": "BLS12-381",
       "properties": [
         {
@@ -223,7 +223,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8befbb3d-8ba4-4daf-85e8-cabe52d6b08c",
+      "bom-ref": "d6f64573-844d-490a-86e0-b9551271bf50",
       "name": "BLS12-381",
       "properties": [
         {
@@ -271,7 +271,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0380be0b-1067-4142-b57d-10484d6a169d",
+      "bom-ref": "770b5eb1-2945-4c58-a2c3-524d788bcdb6",
       "name": "Crypto library",
       "properties": [
         {
@@ -312,7 +312,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2cef7bbe-4cfd-4e28-a783-284056518e82",
+      "bom-ref": "e7aea113-0088-4d86-b28d-106ef092908b",
       "name": "Crypto library",
       "properties": [
         {
@@ -353,7 +353,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5f1cd7ea-cb4f-4a47-a2f3-df65770d5eaa",
+      "bom-ref": "593129de-0c4f-4d94-a6dc-9be77c41a3b6",
       "name": "Crypto library",
       "properties": [
         {
@@ -394,7 +394,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8bbadce5-9283-4a4a-a5d9-f61252d59e8d",
+      "bom-ref": "0f509a8d-be25-4631-b4fc-ef24ee552533",
       "name": "Crypto library",
       "properties": [
         {
@@ -435,7 +435,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "924bb267-1757-4b75-9363-f7c6f5c8f469",
+      "bom-ref": "c972d5f9-d98f-4135-b478-53ee8c93b306",
       "name": "Crypto library",
       "properties": [
         {
@@ -476,7 +476,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "87da65d3-721a-40c5-96a0-7982eb830192",
+      "bom-ref": "331be066-1989-4e77-8e4d-46c5c4f3b402",
       "name": "Crypto library",
       "properties": [
         {
@@ -517,7 +517,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "633cdc9d-dac0-4dfa-b654-62e10f995a36",
+      "bom-ref": "94f152b1-69ad-433d-ac9a-ec8ce785e56c",
       "name": "Crypto library",
       "properties": [
         {
@@ -558,7 +558,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2a7d63e9-b4ff-432b-b2cb-18cacb0441da",
+      "bom-ref": "e906331d-6be8-4fb8-9972-eb10a3d3f13c",
       "name": "Crypto library",
       "properties": [
         {
@@ -599,7 +599,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "910243ff-7347-4a7c-b5c9-6dc54915c7ec",
+      "bom-ref": "18c90c0e-e059-49ba-989f-7e1e00123f40",
       "name": "Crypto library",
       "properties": [
         {
@@ -640,7 +640,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b16ca7a3-0119-4d48-8e8f-0fdcdbc43f54",
+      "bom-ref": "d46085d9-fddc-49aa-90e1-4dc553823acc",
       "name": "Crypto library",
       "properties": [
         {
@@ -681,7 +681,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "aed94237-50a0-44dd-87f9-15453221f663",
+      "bom-ref": "2d4a4b08-59fd-4279-b90e-6d8c422cc86d",
       "name": "Crypto library",
       "properties": [
         {
@@ -726,7 +726,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7b3167e8-02a9-46fa-96cb-25b170203bc7",
+      "bom-ref": "21ca9714-bf6a-491d-87db-f92f6de6e405",
       "name": "Crypto library",
       "properties": [
         {
@@ -771,7 +771,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "88c6e8f5-d8ac-41e2-ad1c-6cee6bae4877",
+      "bom-ref": "068ca09d-2999-4c6a-8084-32e68e0bd845",
       "name": "Crypto library",
       "properties": [
         {
@@ -816,7 +816,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "35d98201-a267-4856-997f-81a99c407486",
+      "bom-ref": "82c46703-3504-45f9-9a18-9c5d3dcc10cc",
       "name": "Crypto library",
       "properties": [
         {
@@ -861,7 +861,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "483eef4c-73db-452e-b25e-5beb4bfa88ad",
+      "bom-ref": "b93ae39b-4cd3-43e9-81f4-41e5148db877",
       "name": "Crypto library",
       "properties": [
         {
@@ -906,7 +906,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0ce55dca-089a-4808-8df4-720c1ea05806",
+      "bom-ref": "dcdf8ceb-d5ea-462a-8068-9d372ef753ad",
       "name": "Crypto library",
       "properties": [
         {
@@ -951,7 +951,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "abc5588b-3b42-490f-88dd-603c8dca3561",
+      "bom-ref": "85550575-d34f-4d22-96f9-06520ec98715",
       "name": "Crypto library",
       "properties": [
         {
@@ -996,7 +996,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4a14660b-9de8-438c-a116-10bf452fec5b",
+      "bom-ref": "2b637cb3-6321-4ae9-96bf-ac6b8b753ba4",
       "name": "Crypto library",
       "properties": [
         {
@@ -1041,7 +1041,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f77fdfc7-0bd9-401e-985d-c25370f9c779",
+      "bom-ref": "ff085e95-9e7d-43f4-a2c1-5cf055bb7f44",
       "name": "Crypto library",
       "properties": [
         {
@@ -1086,7 +1086,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "342bc466-e9bb-4546-a306-bbd4be53a882",
+      "bom-ref": "1875dce5-4036-42bb-b604-b2054ce2519c",
       "name": "Crypto library",
       "properties": [
         {
@@ -1131,7 +1131,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4df11460-9997-4642-afa7-2a3e28854711",
+      "bom-ref": "ed4807a2-7a86-4f23-8729-4f996684fedb",
       "name": "Crypto library",
       "properties": [
         {
@@ -1176,7 +1176,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ed34a0b3-3864-4718-846a-d37df4b06ca2",
+      "bom-ref": "00896b6a-4836-4351-bb86-b7ff71bce44e",
       "name": "Crypto library",
       "properties": [
         {
@@ -1221,7 +1221,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "46bc9550-30f9-4326-9811-df21f10fd05f",
+      "bom-ref": "f9746e36-34e9-49b5-8b19-e5afb26193a4",
       "name": "Crypto library",
       "properties": [
         {
@@ -1266,7 +1266,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7230892f-da1d-4ca2-b2ba-47be1885769f",
+      "bom-ref": "f1f5ee9a-5f96-40f8-8da0-ec02d97f32b3",
       "name": "Crypto library",
       "properties": [
         {
@@ -1311,7 +1311,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d401841a-19f9-41b8-ad7b-1e2636835c04",
+      "bom-ref": "212966e8-b345-411b-88bc-d9d2bb0d03aa",
       "name": "Crypto library",
       "properties": [
         {
@@ -1356,7 +1356,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c09531ed-ad40-42c1-b608-593fd879a181",
+      "bom-ref": "a55747b9-c820-40cb-8dfb-bbab7dcfbffd",
       "name": "Crypto library",
       "properties": [
         {
@@ -1401,7 +1401,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d77ba129-f357-49a8-bf86-960a59a67a0c",
+      "bom-ref": "2c4ad066-8b96-4140-b838-f32730ffa38d",
       "name": "Crypto library",
       "properties": [
         {
@@ -1446,7 +1446,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4a8159aa-d271-4561-894f-341f06e88c27",
+      "bom-ref": "81809fc5-5c6b-4442-b8d4-16b2484fe73e",
       "name": "ECDSA",
       "properties": [
         {
@@ -1494,7 +1494,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "95e8491f-dfe9-423a-946d-83d25f4a214a",
+      "bom-ref": "f3c3a9ae-46fe-4eba-a2fb-c8a21692c991",
       "name": "ECDSA",
       "properties": [
         {
@@ -1550,7 +1550,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d6f48478-89ad-49d1-be1e-b40260338f3a",
+      "bom-ref": "bda55ba4-dab8-4623-aaa9-bc407bd1753c",
       "name": "ECDSA",
       "properties": [
         {
@@ -1606,7 +1606,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2477c90a-673f-4e83-9772-49453b471cd1",
+      "bom-ref": "6a0b8495-e295-46f9-b962-1f90eef19572",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1652,7 +1652,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "df667ec4-e093-4898-bcf2-4cbcd896fedb",
+      "bom-ref": "b58e4f69-bae2-4d66-9ac3-18e4211b9652",
       "name": "Pedersen hash",
       "properties": [
         {
@@ -1701,7 +1701,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1717fd13-cdd6-4bb1-aa5e-0e46c6a9c75d",
+      "bom-ref": "6a308dab-4622-4f54-bb7e-0ad686a98567",
       "name": "Poseidon",
       "properties": [
         {
@@ -1749,7 +1749,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "402b5a81-7157-483b-9b8c-2654b9e2de39",
+      "bom-ref": "573eded6-2703-4bef-a2de-7d52151ad241",
       "name": "Poseidon",
       "properties": [
         {
@@ -1797,7 +1797,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1a802545-8dd7-4b5f-a930-414e2830a66a",
+      "bom-ref": "b8ccac1f-5ae3-42b3-a58e-8afb8c9360a2",
       "name": "Poseidon",
       "properties": [
         {
@@ -1845,7 +1845,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "af714024-e084-420a-894f-6cd055a4f656",
+      "bom-ref": "4b764c43-40db-4b35-99a9-8066469d4ef1",
       "name": "Poseidon",
       "properties": [
         {
@@ -1893,7 +1893,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "78618814-a3de-4cf8-9f86-effe05a58f20",
+      "bom-ref": "96cc58d4-213b-49bb-ab80-db8a621b6921",
       "name": "Poseidon",
       "properties": [
         {
@@ -1941,7 +1941,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0bf07c4b-9d82-4184-a56d-a3a51358143e",
+      "bom-ref": "1acd57cf-a693-4d66-8f7c-31f50fd97a6a",
       "name": "Poseidon",
       "properties": [
         {
@@ -1989,7 +1989,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "080010ab-51d0-471c-a434-0df201bdaeb1",
+      "bom-ref": "500aaac5-52c5-45ed-895a-97b9e8bd2204",
       "name": "Poseidon",
       "properties": [
         {
@@ -2037,7 +2037,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "260b1330-7eab-4c32-af0b-d8b3a0ca8af7",
+      "bom-ref": "c2868ebd-2d53-4d28-b80f-750e6b6aa752",
       "name": "Poseidon",
       "properties": [
         {
@@ -2085,7 +2085,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d1ac790a-5629-4f63-8c2e-5717513dc311",
+      "bom-ref": "9a465669-a30b-47fd-ade0-8db3ef6fbbc9",
       "name": "Poseidon",
       "properties": [
         {
@@ -2133,7 +2133,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a3535657-fcba-4aaf-87f6-473a02faee8a",
+      "bom-ref": "86e041e4-933c-4a9f-81f4-926aae70908e",
       "name": "Poseidon",
       "properties": [
         {
@@ -2181,7 +2181,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "784e1155-025e-46e6-99b2-8deebdba324e",
+      "bom-ref": "de8c1904-7ea0-4f40-a37a-1352cec35158",
       "name": "Poseidon",
       "properties": [
         {
@@ -2229,7 +2229,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b3411cfc-0124-48d8-a3fd-81046d906086",
+      "bom-ref": "cf570a60-41df-453d-a0c0-5b6e53880504",
       "name": "Poseidon",
       "properties": [
         {
@@ -2277,7 +2277,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "61fa0c75-9ac4-44a5-84ef-0ffc8a130cef",
+      "bom-ref": "c24e795f-de40-4f6b-8ba5-6a2fde4aeadf",
       "name": "Poseidon",
       "properties": [
         {
@@ -2325,7 +2325,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e3b44395-0ca8-4588-bcd8-f3b3ab717943",
+      "bom-ref": "a81ebd13-f013-41bc-8a29-de051e489831",
       "name": "Poseidon",
       "properties": [
         {
@@ -2373,7 +2373,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f61ddec9-fd48-4642-b7fa-01a7c3ba22bd",
+      "bom-ref": "c7237127-a699-4df2-9bf1-dea2d9a90a39",
       "name": "Poseidon",
       "properties": [
         {
@@ -2421,7 +2421,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8fa9b36f-4c6e-4396-aadc-706a4e1372ee",
+      "bom-ref": "6e93eab9-aca7-43a7-bc2c-0ddc1d5334d6",
       "name": "Poseidon",
       "properties": [
         {
@@ -2469,7 +2469,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a3e46f5f-b955-409e-96e8-e8b9e169e83a",
+      "bom-ref": "06f0d970-ae8b-4b0b-a0de-3bd579aba397",
       "name": "Poseidon",
       "properties": [
         {
@@ -2517,7 +2517,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a311e09a-e06a-4e8e-be01-92501c250466",
+      "bom-ref": "3ddfeed9-04e3-41a8-8430-c3e5dc185daf",
       "name": "Poseidon",
       "properties": [
         {
@@ -2565,7 +2565,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7eeae3b4-ccc5-4594-99e7-ce383315ce11",
+      "bom-ref": "ce11eca0-2fcf-42d8-92c1-335ece5f3cc7",
       "name": "Poseidon",
       "properties": [
         {
@@ -2613,7 +2613,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "06d89c20-a1b0-44c5-8c7d-e08f549e900f",
+      "bom-ref": "e22f86ee-9f02-4b81-b725-d1fd1b8e0a96",
       "name": "Poseidon",
       "properties": [
         {
@@ -2661,7 +2661,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bfe2d35d-c993-4b67-983a-4a023b0654cc",
+      "bom-ref": "42b9f99d-4fca-4890-b526-d38497f936a5",
       "name": "Poseidon",
       "properties": [
         {
@@ -2709,7 +2709,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6b45279a-ccfa-4fb6-953b-98977f1d88c6",
+      "bom-ref": "a947b487-28de-4969-9964-ec4dc510ad25",
       "name": "Poseidon",
       "properties": [
         {
@@ -2757,7 +2757,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ffc3d495-81b9-4a28-ac77-55c7734a31f5",
+      "bom-ref": "8e5c115e-8132-41d0-a80e-74f7cdf51bf5",
       "name": "Poseidon",
       "properties": [
         {
@@ -2805,7 +2805,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "41d9c4a8-2336-42c6-a50f-05a24324d3a6",
+      "bom-ref": "2571151a-26ea-4718-885b-e041719541b1",
       "name": "Poseidon",
       "properties": [
         {
@@ -2853,7 +2853,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "01b85625-e12b-4c3b-875e-f35cc0ed2145",
+      "bom-ref": "00b15abf-193d-473b-99fb-9b2154cdbeb5",
       "name": "Poseidon",
       "properties": [
         {
@@ -2901,7 +2901,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "08cf43f8-e905-445b-ae31-de87b7dbf310",
+      "bom-ref": "6df48875-1281-4d3b-b145-9ff2f3d6a7c3",
       "name": "Poseidon",
       "properties": [
         {
@@ -2949,7 +2949,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b7017a12-bea7-48ed-a2d4-eaea056607be",
+      "bom-ref": "1ee3bbd5-963a-4bf2-b31e-fb688350856f",
       "name": "Poseidon",
       "properties": [
         {
@@ -2997,7 +2997,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0029c88a-911d-4a9c-adc1-962519e69c6c",
+      "bom-ref": "908da914-27a6-4d44-b241-d616bc6f72d8",
       "name": "Poseidon",
       "properties": [
         {
@@ -3045,7 +3045,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4cc33656-c728-49af-ac55-266a44492939",
+      "bom-ref": "44908353-0ad1-4ca5-93bf-567364747c7c",
       "name": "Poseidon",
       "properties": [
         {
@@ -3093,7 +3093,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7e1fb740-d9d9-476f-97b0-03453c6649d3",
+      "bom-ref": "8bbcb899-d1f5-4d36-ad14-7e24ba12f468",
       "name": "Poseidon",
       "properties": [
         {
@@ -3141,7 +3141,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6f686303-a708-42eb-85de-c82ca6c0133d",
+      "bom-ref": "9194531a-8743-40ef-8202-a17dc98e4bf4",
       "name": "Poseidon",
       "properties": [
         {

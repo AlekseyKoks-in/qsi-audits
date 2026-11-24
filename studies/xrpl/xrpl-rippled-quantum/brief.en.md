@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: xrpl-rippled-quantum @ 816e5b65bd95
 
-*One-page brief* · Reviewed: 2026-11-23 14:09 UTC · Risk profile: Web3 project · Client: XRPL Foundation — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-24 12:27 UTC · Risk profile: Web3 project · Client: XRPL Foundation — public repository (passive review)
 
 Source: https://github.com/XRPLF/rippled/tree/816e5b65bd956a6a27e85d8722af03f488a5a2b2
 
@@ -12,13 +12,13 @@ Source: https://github.com/XRPLF/rippled/tree/816e5b65bd956a6a27e85d8722af03f488
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (5 file(s)) (QSI-2026-44400) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (5 file(s)) (QSI-2026-50313) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (3 file(s)) (QSI-2026-44402) · *preliminary*\
+2. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (3 file(s)) (QSI-2026-50315) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable ECDSA: role not determined (15 file(s)) (QSI-2026-44397) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDSA: role not determined (15 file(s)) (QSI-2026-50310) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
-4. **Medium** · Quantum-vulnerable Ed25519: role not determined (4 file(s)) (QSI-2026-44398) · *preliminary*\
+4. **Medium** · Quantum-vulnerable Ed25519: role not determined (4 file(s)) (QSI-2026-50311) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
 
 3 more in the full report.
@@ -35,7 +35,7 @@ Source: https://github.com/XRPLF/rippled/tree/816e5b65bd956a6a27e85d8722af03f488
 
 Static review of source code and manifests; files analysed: 1258. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `7f074c9c5faa2a4ef5c0c7c159542386500867d1edbfbbae105181a34f53e490`
+Full report, content SHA-256: `3b6cc10dd29a9c7d4b49e0a13d1470c777cea07a62512d4646cb464299720913`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

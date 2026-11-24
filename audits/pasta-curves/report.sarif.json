@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -75,7 +75,7 @@
             "qsiFindingKey/v1": "51c0d95643bc4443dd2bc31ce8ac4783"
           },
           "properties": {
-            "qsiId": "QSI-2026-42465",
+            "qsiId": "QSI-2026-48405",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -93,7 +93,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-42466",
+            "qsiId": "QSI-2026-48406",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -111,13 +111,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/pasta-curves @ e3c0f0246f56/bd99954b-24ee-4274-954b-081e5950a269"
+        "id": "qsi/pasta-curves @ e3c0f0246f56/d891527a-571a-4424-a423-226629c12a4d"
       },
       "properties": {
-        "qsiContentSha256": "d51d057aa8b60c034c258639e4b137d6ecdf5721d0338f577ef3edb25d3303a4",
+        "qsiContentSha256": "c5f9e7c0b4883c413f6f347a9c3d6f4f2f8a5a1d6961fb9cb9eef9f8b1754023",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T12:53:08.819096+00:00",
+        "qsiGeneratedAt": "2026-11-24T10:59:35.861293+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

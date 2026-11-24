@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -28,10 +28,10 @@
                 "security-severity": "7.5"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0). Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (14.3.3, 15.0.3). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0). Ни один исходный файл продукта не импортирует markdown-it: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (14.3.3, 15.0.3). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослежив…"
               },
               "help": {
-                "text": "OSV.dev сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0). Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (14.3.3, 15.0.3). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0). Ни один исходный файл продукта не импортирует markdown-it: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (14.3.3, 15.0.3). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-gfr2-rv44-r23c"
             },
@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "947e04d7f733036f7c8eb3c415e38833"
           },
           "properties": {
-            "qsiId": "QSI-2026-42243",
+            "qsiId": "QSI-2026-48184",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -127,7 +127,7 @@
             "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
           },
           "properties": {
-            "qsiId": "QSI-2026-42246",
+            "qsiId": "QSI-2026-48187",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -154,7 +154,7 @@
             "qsiFindingKey/v1": "a485bc45a5405282aba6af2ba5891438"
           },
           "properties": {
-            "qsiId": "QSI-2026-42241",
+            "qsiId": "QSI-2026-48182",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -172,7 +172,7 @@
             "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
           },
           "properties": {
-            "qsiId": "QSI-2026-42242",
+            "qsiId": "QSI-2026-48183",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -199,7 +199,7 @@
             "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
           },
           "properties": {
-            "qsiId": "QSI-2026-42245",
+            "qsiId": "QSI-2026-48186",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -226,7 +226,7 @@
             "qsiFindingKey/v1": "b0aa12c201eb807b5b56f469cb17df97"
           },
           "properties": {
-            "qsiId": "QSI-2026-42244",
+            "qsiId": "QSI-2026-48185",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -253,7 +253,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-42247",
+            "qsiId": "QSI-2026-48188",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -271,13 +271,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/matrix-js-sdk @ 61b08bd037a3/f7e3ec3c-cd56-486f-862f-271cfe875637"
+        "id": "qsi/matrix-js-sdk @ 61b08bd037a3/e0613326-61bd-4d7a-90ed-fc038bb8791b"
       },
       "properties": {
-        "qsiContentSha256": "2c9f2fe152ff09994d521231bf043fe3767a345ecca684c9a23987aff37e45c4",
+        "qsiContentSha256": "3dd170854bf1954aa80ce093e4b55d2c9d6de64a400e2a729027a4f928c729d1",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T12:39:47.838737+00:00",
+        "qsiGeneratedAt": "2026-11-24T10:44:50.523355+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: pasta-curves @ e3c0f0246f56
 
-*One-page brief* · Reviewed: 2026-11-23 12:53 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-24 10:59 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
 
 Source: https://github.com/zcash/pasta_curves/tree/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9
 
@@ -12,7 +12,7 @@ Source: https://github.com/zcash/pasta_curves/tree/e3c0f0246f56d351f1a94ff0a74c8
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable Pasta curves (Pallas/Vesta): role not determined (4 file(s)) (QSI-2026-42465) · *preliminary*\
+1. **Medium** · Quantum-vulnerable Pasta curves (Pallas/Vesta): role not determined (4 file(s)) (QSI-2026-48405) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for…
 
 ## What the quantum-vulnerable cryptography protects
@@ -25,7 +25,7 @@ Source: https://github.com/zcash/pasta_curves/tree/e3c0f0246f56d351f1a94ff0a74c8
 
 Static review of source code and manifests; files analysed: 35. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `d51d057aa8b60c034c258639e4b137d6ecdf5721d0338f577ef3edb25d3303a4`
+Full report, content SHA-256: `c5f9e7c0b4883c413f6f347a9c3d6f4f2f8a5a1d6961fb9cb9eef9f8b1754023`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

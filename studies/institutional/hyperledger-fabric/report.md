@@ -4,25 +4,25 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 13:45 UTC |
+| Report date | 2026-11-24 12:40 UTC |
 | Report version | 1 |
-| Audit run | 395c2226-1c4e-4909-ba08-e5a3d23fe49f (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | fe126331-9823-4923-a04a-12a43515335f (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `85f378bab7e3f81956275ce19fef5e4710cb74ce13bfb093ba3b276effbe9f91` |
+| Content SHA-256 | `9817741d486a6c75a538611f043540c2b5f9bca82848b4a45a4168fe8f6aa1a1` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
-- High: **1**
+- High: **0**
 - Medium: **7**
-- Low: **3**
-- Info: **18**
+- Low: **7**
+- Info: **16**
 
 - Confirmed technical vulnerability: 0
-- Known vulnerable component: 20
+- Known vulnerable component: 21
 - Confirmed configuration error: 0
 - Potential cryptographic risk: 1
 - Long-term post-quantum risk: 8
@@ -45,7 +45,7 @@ Repository: <https://github.com/hyperledger/fabric> @ `13ef9e5ee59466b152c8fe65b
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 788 | ccaas_builder/cmd/detect/main.go: 68 lines scanned with 16 rule patterns and 340 registry patterns; ccaas_builder/cmd/release/main.go: 106 lines scanned with 16 rule patterns and 340 registry patterns; cmd/common/cli.go: 157 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 788 | ccaas_builder/cmd/detect/main.go: 68 lines scanned with 17 rule patterns and 340 registry patterns; ccaas_builder/cmd/release/main.go: 106 lines scanned with 17 rule patterns and 340 registry patterns; cmd/common/cli.go: 157 lines scanned with 17 rule patterns and 340 registry patterns |
 | dependencies | checked | 6 | ccaas_builder/go.mod: 10 dependencies parsed (10 pinned); docs/requirements.txt: 39 dependencies parsed (39 pinned); docs/source/requirements.txt: 1 dependencies parsed (1 pinned) |
 | tls_code | checked | 32 | cmd/common/comm/client.go: TLS key-exchange settings read; cmd/common/comm/config.go: TLS key-exchange settings read; cmd/common/signer/signer.go: TLS key-exchange settings read |
 | certificates | error (not checked) | 14 | docs/source/cc_service.md line 164: certificate could not be parsed (ValueError); docs/source/commands/peerchaincode.md line 161: certificate could not be parsed (ValueError); docs/source/discovery-cli.md line 137: certificate could not be parsed (ValueError) |
@@ -53,6 +53,8 @@ Repository: <https://github.com/hyperledger/fabric> @ `13ef9e5ee59466b152c8fe65b
 | tls_key_exchange_groups | Insufficient data | 1 | internal/pkg/gateway/endorse.go line 102: not in the algorithm registry, not assessed: append(groups |
 | tls_configuration | checked | 1 | internal/pkg/gateway/endorse.go: openssl TLS directives parsed |
 | entropy | checked | 1 | random-number generation: 788 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (a KMS, HSM or vault service is used); author warnings: 0 |
+| govulncheck | checked | 1 | govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: 3 of 4 Go module(s) scanned from their product packages; not scanned: tools (no product packages in this module) |
 | osv_advisories | checked | 1 | 385 pinned packages queried at OSV.dev; 6 affected |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -81,52 +83,18 @@ Static review of the source tree hyperledger-fabric at 13ef9e5ee59466b152c8fe65b
 
 ## 6. Overall security posture
 
-- Indicative posture index: **84** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
+- Indicative posture index: **92** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
 - Quantum-vulnerable share of inventory: 37.0%
 
 ## 7. Detailed findings
 
-### QSI-2026-44022 — google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)
-
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:Go/google.golang.org/grpc@v1.83.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
-- Priority score: 50.2 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The advisory lists only unexported functions (google.golang.org/grpc/internal/transport.http2Server.HandleStreams, google.golang.org/grpc/internal/transport.http2Server.operateHeaders, google.golang.org/grpc/internal/xds/server.RouteAndProcess), which code outside the package cannot call by name, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-2v4p-qf9q-27wj
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-2v4p-qf9q-27wj](https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj) · line 15 · SHA-256 3566bf539cd1bed726145fc02332a18308f9a065bb8b992c0e44deb9ec44221a_
-
-```
-{"id": "GHSA-2v4p-qf9q-27wj", "aliases": ["CVE-2026-84445", "GO-2026-6443"], "modified": "2026-09-25T18:00:05.270054427Z", "summary": "gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X"}], "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
-
-**Recommendation.** Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-43994 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+### QSI-2026-50431 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: cmd/common/signer/signer.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -164,13 +132,13 @@ _file_excerpt · [cmd/common/signer/signer.go](https://github.com/hyperledger/fa
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43995 — Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))
+### QSI-2026-50432 — Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: cmd/common/signer/signer.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -200,13 +168,13 @@ _file_excerpt · [cmd/common/signer/signer.go](https://github.com/hyperledger/fa
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43996 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))
+### QSI-2026-50433 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:authentication`
 - Data source: common/crypto/sanitize.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -244,13 +212,13 @@ _file_excerpt · [msp/cert.go](https://github.com/hyperledger/fabric/blob/13ef9e
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43997 — Quantum-vulnerable ECDSA: role not determined (7 file(s))
+### QSI-2026-50434 — Quantum-vulnerable ECDSA: role not determined (7 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: common/crypto/tlsgen/key.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -352,13 +320,13 @@ _file_excerpt · [internal/cryptogen/csp/csp.go](https://github.com/hyperledger/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43998 — Quantum-vulnerable ECDH: role not determined (2 file(s))
+### QSI-2026-50435 — Quantum-vulnerable ECDH: role not determined (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDH:general`
 - Data source: common/crypto/tlsgen/key.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -396,13 +364,13 @@ _file_excerpt · [internal/cryptogen/ca/ca.go](https://github.com/hyperledger/fa
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44000 — Quantum-vulnerable Ed25519: role not determined (2 file(s))
+### QSI-2026-50437 — Quantum-vulnerable Ed25519: role not determined (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: integration/nwo/signingid.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -448,13 +416,13 @@ _file_excerpt · [internal/cryptogen/csp/csp.go](https://github.com/hyperledger/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43999 — MD5 used in common/deliverclient/orderers/connection.go
+### QSI-2026-50436 — MD5 used in common/deliverclient/orderers/connection.go
 
 - Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `file:common/deliverclient/orderers/connection.go`
 - Data source: common/deliverclient/orderers/connection.go
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 33.7 / 100
 - CVSS v3.1: not applicable
 
@@ -496,13 +464,13 @@ _file_excerpt · [common/deliverclient/orderers/connection.go](https://github.co
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-44001 — Quantum-vulnerable ECDSA key in certificate (ca.org1.example.com)
+### QSI-2026-50438 — Quantum-vulnerable ECDSA key in certificate (ca.org1.example.com)
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `certificate:ca.org1.example.com`
 - Data source: sampleconfig/msp/cacerts/cacert.pem
 - Detection method: X.509 public key algorithm identification.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 40.0 / 100
 - CVSS v3.1: not applicable
 
@@ -540,13 +508,13 @@ SHA-256 fingerprint: dfbbd654ce60aaac86dc995580aad33347a4a5baaf484ca64892cebd8ed
 
 **Retest procedure.** Re-audit once PQC or hybrid certificates are deployed.
 
-### QSI-2026-44002 — Quantum-vulnerable ECDSA key in certificate (Org2-child1)
+### QSI-2026-50439 — Quantum-vulnerable ECDSA key in certificate (Org2-child1)
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `certificate:Org2-child1`
 - Data source: sampleconfig/msp/tlsintermediatecerts/tlsintermediate.pem
 - Detection method: X.509 public key algorithm identification.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: certificates 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 40.0 / 100
 - CVSS v3.1: not applicable
 
@@ -584,17 +552,153 @@ SHA-256 fingerprint: 9b616809f5500b33c2b0e19be94a8bd1122b049dd8b19b957487ad4ed0d
 
 **Retest procedure.** Re-audit once PQC or hybrid certificates are deployed.
 
-### QSI-2026-44011 — golang.org/x/crypto v0.58.0 is affected by GO-2026-5932 (no severity rating)
+### QSI-2026-50451 — golang.org/x/net v0.55.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: High · _preliminary — requires further verification_
+- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
+- Priority score: 33.9 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.headerFieldNameError.Error.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6603
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GO-2026-6603](https://osv.dev/vulnerability/GO-2026-6603) · line 11 · SHA-256 41efef6f9e261038a26d570f9d667deff8b8cf67065d827b3e65e9b8473ee664_
+
+```
+{"id": "GO-2026-6603", "aliases": ["BIT-golang-2026-78659", "CVE-2026-78659"], "modified": "2026-11-23T21:12:29.903950358Z", "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-50453 — golang.org/x/net v0.55.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: High · _preliminary — requires further verification_
+- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
+- Priority score: 33.9 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.55.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.headerFieldNameError.Error.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6611
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GO-2026-6611](https://osv.dev/vulnerability/GO-2026-6611) · line 11 · SHA-256 3f6098f691faf768a7e747628144bd25947e949fc71b328f78074bdf4638333d_
+
+```
+{"id": "GO-2026-6611", "aliases": ["BIT-golang-2026-78669", "CVE-2026-78669"], "modified": "2026-11-23T21:12:29.007257358Z", "summary": "Excessive CPU consumption from repeated initial window changes in net/http", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-50454 — golang.org/x/net v0.55.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: High · _preliminary — requires further verification_
+- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
+- Priority score: 33.9 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.55.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.connError.Error.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6612
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GO-2026-6612](https://osv.dev/vulnerability/GO-2026-6612) · line 11 · SHA-256 40f1c70bf5caae6f0b12a32a6c014a0273cd45a558ef1781abe540233ca17af8_
+
+```
+{"id": "GO-2026-6612", "aliases": ["BIT-golang-2026-78663", "CVE-2026-78663"], "modified": "2026-11-23T21:12:28.295006823Z", "summary": "Double flow control refund on HTTP/2 server streams in net/http", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-50455 — golang.org/x/net v0.55.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: High · _preliminary — requires further verification_
+- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
+- Priority score: 33.9 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: module.main → … → golang.org/x/net/http2.duplicatePseudoHeaderError.Error.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6617
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GO-2026-6617](https://osv.dev/vulnerability/GO-2026-6617) · line 11 · SHA-256 1800738d8fafba90c8d7a323150d3d2a9a4d5c3c678c22ad01fcea25a234a31e_
+
+```
+{"id": "GO-2026-6617", "aliases": ["BIT-golang-2026-97032", "CVE-2026-97032"], "modified": "2026-11-23T21:12:28.960393562Z", "summary": "HTTP/2 server crash due to HPACK encoder race in net/http", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-50448 — golang.org/x/crypto v0.58.0 is affected by GO-2026-5932 (no severity rating)
 
 - Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/crypto@v0.58.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 20.3 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.58.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.58.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. No product source file imports golang.org/x/crypto: it comes in through other dependencies, whose use of it was not traced. The advisory names no affected functions, so reachability was not determined.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -606,29 +710,63 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-5932
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-5932](https://osv.dev/vulnerability/GO-2026-5932) · line 108 · SHA-256 79b7a13fb7767fbace049b5199d913b96ffabce881fc497fd2222d40644da151_
+_tool_output · [OSV.dev GO-2026-5932](https://osv.dev/vulnerability/GO-2026-5932) · line 108 · SHA-256 7567598e736f75fe8f2c913606229875f197cdfc5e798ba52e2dfa3ab75088b4_
 
 ```
-{"id": "GO-2026-5932", "aliases": [], "modified": "2026-11-02T22:15:06.677088389Z", "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-5932", "aliases": [], "modified": "2026-11-02T22:15:06.677088389Z", "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44003 — golang.org/x/net v0.57.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)
+### QSI-2026-50460 — google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:Go/google.golang.org/grpc@v1.83.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
+- Priority score: 35.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-2v4p-qf9q-27wj
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-2v4p-qf9q-27wj](https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj) · line 15 · SHA-256 3566bf539cd1bed726145fc02332a18308f9a065bb8b992c0e44deb9ec44221a_
+
+```
+{"id": "GHSA-2v4p-qf9q-27wj", "aliases": ["CVE-2026-84445", "GO-2026-6443"], "modified": "2026-09-25T18:00:05.270054427Z", "summary": "gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
+
+**Recommendation.** Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-50440 — golang.org/x/net v0.57.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.57.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.57.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.57.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -640,29 +778,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6603
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6603](https://osv.dev/vulnerability/GO-2026-6603) · line 15 · SHA-256 6ac515cc0fd1d1d6952429ecee827517211426aa989a89c7e94af4efd1f38c7a_
+_tool_output · [OSV.dev GO-2026-6603](https://osv.dev/vulnerability/GO-2026-6603) · line 15 · SHA-256 41efef6f9e261038a26d570f9d667deff8b8cf67065d827b3e65e9b8473ee664_
 
 ```
-{"id": "GO-2026-6603", "aliases": ["BIT-golang-2026-78659", "CVE-2026-78659"], "modified": "2026-11-14T13:12:13.462737073Z", "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6603", "aliases": ["BIT-golang-2026-78659", "CVE-2026-78659"], "modified": "2026-11-23T21:12:29.903950358Z", "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44004 — golang.org/x/net v0.57.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)
+### QSI-2026-50441 — golang.org/x/net v0.57.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.57.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.57.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.Transport.NewClientConn, golang.org/x/net/http2.Transport.RoundTrip, golang.org/x/net/http2.Transport.RoundTripOpt, golang.org/x/net/http2.clientConnPool.GetClientConn, golang.org/x/net/http2.clientConnReadLoop.handleResponse, golang.org/x/net/http2.noDialClientConnPool.GetClientConn …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.57.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -674,29 +812,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6610
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6610](https://osv.dev/vulnerability/GO-2026-6610) · line 15 · SHA-256 f1495629ef0bf84b8a91d8c0bd05d7d03060325f82f90f20c5231ee80abf37f7_
+_tool_output · [OSV.dev GO-2026-6610](https://osv.dev/vulnerability/GO-2026-6610) · line 15 · SHA-256 0ed28b7d57d567c00a5d74ef09d210e9b41ca752a9f786aab84734fcca7dab74_
 
 ```
-{"id": "GO-2026-6610", "aliases": ["BIT-golang-2026-78660", "CVE-2026-78660"], "modified": "2026-11-14T13:12:14.502576208Z", "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6610", "aliases": ["BIT-golang-2026-78660", "CVE-2026-78660"], "modified": "2026-11-23T21:12:29.831892156Z", "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44005 — golang.org/x/net v0.57.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)
+### QSI-2026-50442 — golang.org/x/net v0.57.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.57.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.57.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ClientConn.addStreamLocked, golang.org/x/net/http2.ConfigureServer …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.57.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -708,29 +846,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6611
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6611](https://osv.dev/vulnerability/GO-2026-6611) · line 15 · SHA-256 89af1dfea803377889ea080898561a9e2b4a28fbe10e6c5b7793b593481f62b3_
+_tool_output · [OSV.dev GO-2026-6611](https://osv.dev/vulnerability/GO-2026-6611) · line 15 · SHA-256 3f6098f691faf768a7e747628144bd25947e949fc71b328f78074bdf4638333d_
 
 ```
-{"id": "GO-2026-6611", "aliases": ["BIT-golang-2026-78669", "CVE-2026-78669"], "modified": "2026-11-14T13:12:14.349122729Z", "summary": "Excessive CPU consumption from repeated initial window changes in net/http", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6611", "aliases": ["BIT-golang-2026-78669", "CVE-2026-78669"], "modified": "2026-11-23T21:12:29.007257358Z", "summary": "Excessive CPU consumption from repeated initial window changes in net/http", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44006 — golang.org/x/net v0.57.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)
+### QSI-2026-50443 — golang.org/x/net v0.57.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.57.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.57.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.57.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -742,29 +880,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6612
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6612](https://osv.dev/vulnerability/GO-2026-6612) · line 15 · SHA-256 471a502807e6b891eecb00c57c4810365eef3610ae37dacb2590a2fe9d0b0677_
+_tool_output · [OSV.dev GO-2026-6612](https://osv.dev/vulnerability/GO-2026-6612) · line 15 · SHA-256 40f1c70bf5caae6f0b12a32a6c014a0273cd45a558ef1781abe540233ca17af8_
 
 ```
-{"id": "GO-2026-6612", "aliases": ["BIT-golang-2026-78663", "CVE-2026-78663"], "modified": "2026-11-14T13:12:14.440833902Z", "summary": "Double flow control refund on HTTP/2 server streams in net/http", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6612", "aliases": ["BIT-golang-2026-78663", "CVE-2026-78663"], "modified": "2026-11-23T21:12:28.295006823Z", "summary": "Double flow control refund on HTTP/2 server streams in net/http", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44007 — golang.org/x/net v0.57.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)
+### QSI-2026-50444 — golang.org/x/net v0.57.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.57.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.57.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.57.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -776,29 +914,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6617
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6617](https://osv.dev/vulnerability/GO-2026-6617) · line 15 · SHA-256 7bad24ba5502930ee2b24af1b3153a7b5f3d3b7c98f55d994f83fbfd89b3f491_
+_tool_output · [OSV.dev GO-2026-6617](https://osv.dev/vulnerability/GO-2026-6617) · line 15 · SHA-256 1800738d8fafba90c8d7a323150d3d2a9a4d5c3c678c22ad01fcea25a234a31e_
 
 ```
-{"id": "GO-2026-6617", "aliases": ["BIT-golang-2026-97032", "CVE-2026-97032"], "modified": "2026-11-14T13:12:14.222191133Z", "summary": "HTTP/2 server crash due to HPACK encoder race in net/http", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6617", "aliases": ["BIT-golang-2026-97032", "CVE-2026-97032"], "modified": "2026-11-23T21:12:28.960393562Z", "summary": "HTTP/2 server crash due to HPACK encoder race in net/http", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44008 — golang.org/x/net v0.57.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)
+### QSI-2026-50445 — golang.org/x/net v0.57.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.57.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.57.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Parse, golang.org/x/net/html.ParseFragment, golang.org/x/net/html.ParseFragmentWithOptions, golang.org/x/net/html.ParseWithOptions, golang.org/x/net/html.parser.addText, golang.org/x/net/html.parser.fosterParent …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.57.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -810,29 +948,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6860
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6860](https://osv.dev/vulnerability/GO-2026-6860) · line 15 · SHA-256 1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28_
+_tool_output · [OSV.dev GO-2026-6860](https://osv.dev/vulnerability/GO-2026-6860) · line 15 · SHA-256 850b298c34c0a0f97f8e85b1a9e277a2618a27421c9c964f241541b7a5147e9e_
 
 ```
-{"id": "GO-2026-6860", "aliases": ["CVE-2026-78661"], "modified": "2026-10-27T21:30:04.890809062Z", "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6860", "aliases": ["CVE-2026-78661"], "modified": "2026-10-27T21:30:04.890809062Z", "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44009 — golang.org/x/net v0.57.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)
+### QSI-2026-50446 — golang.org/x/net v0.57.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.57.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.57.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.57.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -844,29 +982,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6866
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6866](https://osv.dev/vulnerability/GO-2026-6866) · line 15 · SHA-256 102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42_
+_tool_output · [OSV.dev GO-2026-6866](https://osv.dev/vulnerability/GO-2026-6866) · line 15 · SHA-256 1950021930f2080580e00f4ada7bb415c92766857f916c4a233c6035c68078b8_
 
 ```
-{"id": "GO-2026-6866", "aliases": ["CVE-2026-97045"], "modified": "2026-10-27T21:45:08.978077289Z", "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6866", "aliases": ["CVE-2026-97045"], "modified": "2026-10-27T21:45:08.978077289Z", "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44010 — golang.org/x/text v0.40.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating)
+### QSI-2026-50447 — golang.org/x/text v0.40.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/text@v0.40.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6629 (CVE-2026-56851) for Go package golang.org/x/text at version v0.40.0: Panic parsing crafted input in x/text/secure/precis in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/text/secure/precis.Profile.Append, golang.org/x/text/secure/precis.Profile.AppendCompareKey, golang.org/x/text/secure/precis.Profile.Bytes, golang.org/x/text/secure/precis.Profile.Compare, golang.org/x/text/secure/precis.Profile.CompareKey, golang.org/x/text/secure/precis.Profile.NewTransformer …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6629 (CVE-2026-56851) for Go package golang.org/x/text at version v0.40.0: Panic parsing crafted input in x/text/secure/precis in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/text is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -878,29 +1016,63 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6629
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6629](https://osv.dev/vulnerability/GO-2026-6629) · line 18 · SHA-256 492c5875995057c360a1e33a78220ecced05f39dc6b8d089484d0451fc3439d7_
+_tool_output · [OSV.dev GO-2026-6629](https://osv.dev/vulnerability/GO-2026-6629) · line 18 · SHA-256 41214c2900243582e86ff2d02722e1ef316bbc64e14dce6180f3c37e992fdcaa_
 
 ```
-{"id": "GO-2026-6629", "aliases": ["CVE-2026-56851"], "modified": "2026-11-14T13:12:14.100810021Z", "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6629", "aliases": ["CVE-2026-56851"], "modified": "2026-11-23T21:12:29.495073874Z", "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.41.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44012 — golang.org/x/net v0.55.0 is affected by GO-2026-5942 (CVE-2026-46600) (no severity rating)
+### QSI-2026-50449 — golang.org/x/net v0.55.0 is affected by GO-2026-5026 (CVE-2026-39821) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-5942 (CVE-2026-46600) for Go package golang.org/x/net at version v0.55.0: Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/dns/dnsmessage.Message.Unpack, golang.org/x/net/dns/dnsmessage.Parser.Additional, golang.org/x/net/dns/dnsmessage.Parser.AllAdditionals, golang.org/x/net/dns/dnsmessage.Parser.AllAnswers, golang.org/x/net/dns/dnsmessage.Parser.AllAuthorities, golang.org/x/net/dns/dnsmessage.Parser.Answer …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-5026 (CVE-2026-39821) for Go package golang.org/x/net at version v0.55.0: Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-5026
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GO-2026-5026](https://osv.dev/vulnerability/GO-2026-5026) · line 11 · SHA-256 0c8c1c1d52d99f1aa4409e163a96e360b04c6bb0633261fe5b868c1a207a5cdc_
+
+```
+{"id": "GO-2026-5026", "aliases": ["CVE-2026-39821"], "modified": "2026-11-23T21:12:28.671130412Z", "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.57.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-50450 — golang.org/x/net v0.55.0 is affected by GO-2026-5942 (CVE-2026-46600) (no severity rating)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
+- Priority score: 17.8 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GO-2026-5942 (CVE-2026-46600) for Go package golang.org/x/net at version v0.55.0: Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/net, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -912,63 +1084,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-5942
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-5942](https://osv.dev/vulnerability/GO-2026-5942) · line 11 · SHA-256 269e9768d90ae705c6a1a4bc91c14ed7037c3197d295e15bd8bdc0e4fd623f21_
+_tool_output · [OSV.dev GO-2026-5942](https://osv.dev/vulnerability/GO-2026-5942) · line 11 · SHA-256 b350c02f839159da0b17f9fc366081b6ecbfab32d57793400c90cafc79008499_
 
 ```
-{"id": "GO-2026-5942", "aliases": ["BIT-golang-2026-46600", "CVE-2026-46600"], "modified": "2026-08-17T12:25:32.471119200Z", "summary": "Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-5942", "aliases": ["BIT-golang-2026-46600", "CVE-2026-46600"], "modified": "2026-08-17T12:25:32.471119200Z", "summary": "Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.56.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44013 — golang.org/x/net v0.55.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)
+### QSI-2026-50452 — golang.org/x/net v0.55.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GO-2026-6603
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GO-2026-6603](https://osv.dev/vulnerability/GO-2026-6603) · line 11 · SHA-256 6ac515cc0fd1d1d6952429ecee827517211426aa989a89c7e94af4efd1f38c7a_
-
-```
-{"id": "GO-2026-6603", "aliases": ["BIT-golang-2026-78659", "CVE-2026-78659"], "modified": "2026-11-14T13:12:13.462737073Z", "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http", "severity": null, "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-44014 — golang.org/x/net v0.55.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)
-
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
-- Priority score: 17.8 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.55.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.Transport.NewClientConn, golang.org/x/net/http2.Transport.RoundTrip, golang.org/x/net/http2.Transport.RoundTripOpt, golang.org/x/net/http2.clientConnPool.GetClientConn, golang.org/x/net/http2.clientConnReadLoop.handleResponse, golang.org/x/net/http2.noDialClientConnPool.GetClientConn …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.55.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -980,131 +1118,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6610
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6610](https://osv.dev/vulnerability/GO-2026-6610) · line 11 · SHA-256 f1495629ef0bf84b8a91d8c0bd05d7d03060325f82f90f20c5231ee80abf37f7_
+_tool_output · [OSV.dev GO-2026-6610](https://osv.dev/vulnerability/GO-2026-6610) · line 11 · SHA-256 0ed28b7d57d567c00a5d74ef09d210e9b41ca752a9f786aab84734fcca7dab74_
 
 ```
-{"id": "GO-2026-6610", "aliases": ["BIT-golang-2026-78660", "CVE-2026-78660"], "modified": "2026-11-14T13:12:14.502576208Z", "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6610", "aliases": ["BIT-golang-2026-78660", "CVE-2026-78660"], "modified": "2026-11-23T21:12:29.831892156Z", "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44015 — golang.org/x/net v0.55.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)
+### QSI-2026-50456 — golang.org/x/net v0.55.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.55.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ClientConn.addStreamLocked, golang.org/x/net/http2.ConfigureServer …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GO-2026-6611
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GO-2026-6611](https://osv.dev/vulnerability/GO-2026-6611) · line 11 · SHA-256 89af1dfea803377889ea080898561a9e2b4a28fbe10e6c5b7793b593481f62b3_
-
-```
-{"id": "GO-2026-6611", "aliases": ["BIT-golang-2026-78669", "CVE-2026-78669"], "modified": "2026-11-14T13:12:14.349122729Z", "summary": "Excessive CPU consumption from repeated initial window changes in net/http", "severity": null, "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-44016 — golang.org/x/net v0.55.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)
-
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
-- Priority score: 17.8 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.55.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GO-2026-6612
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GO-2026-6612](https://osv.dev/vulnerability/GO-2026-6612) · line 11 · SHA-256 471a502807e6b891eecb00c57c4810365eef3610ae37dacb2590a2fe9d0b0677_
-
-```
-{"id": "GO-2026-6612", "aliases": ["BIT-golang-2026-78663", "CVE-2026-78663"], "modified": "2026-11-14T13:12:14.440833902Z", "summary": "Double flow control refund on HTTP/2 server streams in net/http", "severity": null, "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-44017 — golang.org/x/net v0.55.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)
-
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
-- Priority score: 17.8 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.55.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GO-2026-6617
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GO-2026-6617](https://osv.dev/vulnerability/GO-2026-6617) · line 11 · SHA-256 7bad24ba5502930ee2b24af1b3153a7b5f3d3b7c98f55d994f83fbfd89b3f491_
-
-```
-{"id": "GO-2026-6617", "aliases": ["BIT-golang-2026-97032", "CVE-2026-97032"], "modified": "2026-11-14T13:12:14.222191133Z", "summary": "HTTP/2 server crash due to HPACK encoder race in net/http", "severity": null, "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
-
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-44018 — golang.org/x/net v0.55.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)
-
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
-- Priority score: 17.8 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.55.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Parse, golang.org/x/net/html.ParseFragment, golang.org/x/net/html.ParseFragmentWithOptions, golang.org/x/net/html.ParseWithOptions, golang.org/x/net/html.parser.addText, golang.org/x/net/html.parser.fosterParent …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.55.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/net, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -1116,29 +1152,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6860
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6860](https://osv.dev/vulnerability/GO-2026-6860) · line 11 · SHA-256 1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28_
+_tool_output · [OSV.dev GO-2026-6860](https://osv.dev/vulnerability/GO-2026-6860) · line 11 · SHA-256 850b298c34c0a0f97f8e85b1a9e277a2618a27421c9c964f241541b7a5147e9e_
 
 ```
-{"id": "GO-2026-6860", "aliases": ["CVE-2026-78661"], "modified": "2026-10-27T21:30:04.890809062Z", "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6860", "aliases": ["CVE-2026-78661"], "modified": "2026-10-27T21:30:04.890809062Z", "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44019 — golang.org/x/net v0.55.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)
+### QSI-2026-50457 — golang.org/x/net v0.55.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/net@v0.55.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.55.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.55.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/net, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -1150,29 +1186,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6866
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6866](https://osv.dev/vulnerability/GO-2026-6866) · line 11 · SHA-256 102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42_
+_tool_output · [OSV.dev GO-2026-6866](https://osv.dev/vulnerability/GO-2026-6866) · line 11 · SHA-256 1950021930f2080580e00f4ada7bb415c92766857f916c4a233c6035c68078b8_
 
 ```
-{"id": "GO-2026-6866", "aliases": ["CVE-2026-97045"], "modified": "2026-10-27T21:45:08.978077289Z", "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6866", "aliases": ["CVE-2026-97045"], "modified": "2026-10-27T21:45:08.978077289Z", "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44020 — golang.org/x/text v0.37.0 is affected by GO-2026-5970 (CVE-2026-56852) (no severity rating)
+### QSI-2026-50458 — golang.org/x/text v0.37.0 is affected by GO-2026-5970 (CVE-2026-56852) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/text@v0.37.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-5970 (CVE-2026-56852) for Go package golang.org/x/text at version v0.37.0: Infinite loop on invalid input in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/text/unicode/norm.Form.Append, golang.org/x/text/unicode/norm.Form.AppendString, golang.org/x/text/unicode/norm.Form.Bytes, golang.org/x/text/unicode/norm.Form.FirstBoundary, golang.org/x/text/unicode/norm.Form.FirstBoundaryInString, golang.org/x/text/unicode/norm.Form.IsNormal …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-5970 (CVE-2026-56852) for Go package golang.org/x/text at version v0.37.0: Infinite loop on invalid input in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck followed the calls from the product's packages through every dependency: the affected package is imported, but no call reaches the affected functions, so the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -1184,29 +1220,29 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-5970
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-5970](https://osv.dev/vulnerability/GO-2026-5970) · line 13 · SHA-256 de0013fb97d095b8f202cc52d0e70cdcc4bae77f096dcd26d720095b0d5fd14e_
+_tool_output · [OSV.dev GO-2026-5970](https://osv.dev/vulnerability/GO-2026-5970) · line 13 · SHA-256 e965b42570e47460633ab14761c247210322f7fd2bcaec0ba80a47fa7231bc2a_
 
 ```
-{"id": "GO-2026-5970", "aliases": ["CVE-2026-56852"], "modified": "2026-11-14T13:12:13.157756222Z", "summary": "Infinite loop on invalid input in golang.org/x/text", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-5970", "aliases": ["CVE-2026-56852"], "modified": "2026-11-23T21:12:29.269820156Z", "summary": "Infinite loop on invalid input in golang.org/x/text", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.39.0) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44021 — golang.org/x/text v0.37.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating)
+### QSI-2026-50459 — golang.org/x/text v0.37.0 is affected by GO-2026-6629 (CVE-2026-56851) (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/text@v0.37.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:45 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:40 UTC
 - Priority score: 17.8 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-6629 (CVE-2026-56851) for Go package golang.org/x/text at version v0.37.0: Panic parsing crafted input in x/text/secure/precis in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/text/secure/precis.Profile.Append, golang.org/x/text/secure/precis.Profile.AppendCompareKey, golang.org/x/text/secure/precis.Profile.Bytes, golang.org/x/text/secure/precis.Profile.Compare, golang.org/x/text/secure/precis.Profile.CompareKey, golang.org/x/text/secure/precis.Profile.NewTransformer …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev reports GO-2026-6629 (CVE-2026-56851) for Go package golang.org/x/text at version v0.37.0: Panic parsing crafted input in x/text/secure/precis in golang.org/x/text. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/text, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -1218,13 +1254,13 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-6629
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-6629](https://osv.dev/vulnerability/GO-2026-6629) · line 13 · SHA-256 492c5875995057c360a1e33a78220ecced05f39dc6b8d089484d0451fc3439d7_
+_tool_output · [OSV.dev GO-2026-6629](https://osv.dev/vulnerability/GO-2026-6629) · line 13 · SHA-256 41214c2900243582e86ff2d02722e1ef316bbc64e14dce6180f3c37e992fdcaa_
 
 ```
-{"id": "GO-2026-6629", "aliases": ["CVE-2026-56851"], "modified": "2026-11-14T13:12:14.100810021Z", "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-6629", "aliases": ["CVE-2026-56851"], "modified": "2026-11-23T21:12:29.495073874Z", "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.41.0) if it applies.
 
@@ -1273,9 +1309,9 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (1), Ed25519 (1) | QSI-2026-43994, QSI-2026-43995 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (2) | QSI-2026-43996 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | ECDSA (7), ECDH (2), Ed25519 (2) | QSI-2026-43997, QSI-2026-43998, QSI-2026-44000 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **transaction and message signing** | ECDSA (1), Ed25519 (1) | QSI-2026-50431, QSI-2026-50432 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (2) | QSI-2026-50433 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
+| **role not determined** | ECDSA (7), ECDH (2), Ed25519 (2) | QSI-2026-50434, QSI-2026-50435, QSI-2026-50437 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -1318,51 +1354,52 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P2 | QSI-2026-44022 | Upgrade google.golang.org/grpc to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). | root-cause fix | Dependency scan no longer reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443). |
+| P2 | QSI-2026-50460 | Upgrade google.golang.org/grpc to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). | root-cause fix | Dependency scan no longer reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443). |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-43999 | Review each MD5 call site in common/deliverclient/orderers/connection.go; replace security-relevant ones with SHA-256 or a password hash. | root-cause fix | No security-relevant MD5 usage remains. |
-| P3 | QSI-2026-44011 | Triage GO-2026-5932; upgrade golang.org/x/crypto to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5932, or the triage is recorded. |
-| P3 | QSI-2026-44003 | Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded. |
-| P3 | QSI-2026-44004 | Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded. |
-| P3 | QSI-2026-44005 | Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded. |
-| P3 | QSI-2026-44006 | Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded. |
-| P3 | QSI-2026-44007 | Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded. |
-| P3 | QSI-2026-44008 | Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded. |
-| P3 | QSI-2026-44009 | Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded. |
-| P3 | QSI-2026-44010 | Triage GO-2026-6629 (CVE-2026-56851); upgrade golang.org/x/text to a fixed version (0.41.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6629 (CVE-2026-56851), or the triage is recorded. |
-| P3 | QSI-2026-44012 | Triage GO-2026-5942 (CVE-2026-46600); upgrade golang.org/x/net to a fixed version (0.56.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5942 (CVE-2026-46600), or the triage is recorded. |
-| P3 | QSI-2026-44013 | Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded. |
-| P3 | QSI-2026-44014 | Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded. |
-| P3 | QSI-2026-44015 | Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded. |
-| P3 | QSI-2026-44016 | Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded. |
-| P3 | QSI-2026-44017 | Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded. |
-| P3 | QSI-2026-44018 | Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded. |
-| P3 | QSI-2026-44019 | Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded. |
-| P3 | QSI-2026-44020 | Triage GO-2026-5970 (CVE-2026-56852); upgrade golang.org/x/text to a fixed version (0.39.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5970 (CVE-2026-56852), or the triage is recorded. |
-| P3 | QSI-2026-44021 | Triage GO-2026-6629 (CVE-2026-56851); upgrade golang.org/x/text to a fixed version (0.41.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6629 (CVE-2026-56851), or the triage is recorded. |
+| P3 | QSI-2026-50436 | Review each MD5 call site in common/deliverclient/orderers/connection.go; replace security-relevant ones with SHA-256 or a password hash. | root-cause fix | No security-relevant MD5 usage remains. |
+| P3 | QSI-2026-50451 | Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded. |
+| P3 | QSI-2026-50453 | Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded. |
+| P3 | QSI-2026-50454 | Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded. |
+| P3 | QSI-2026-50455 | Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded. |
+| P3 | QSI-2026-50448 | Triage GO-2026-5932; upgrade golang.org/x/crypto to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5932, or the triage is recorded. |
+| P3 | QSI-2026-50440 | Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded. |
+| P3 | QSI-2026-50441 | Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded. |
+| P3 | QSI-2026-50442 | Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded. |
+| P3 | QSI-2026-50443 | Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded. |
+| P3 | QSI-2026-50444 | Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded. |
+| P3 | QSI-2026-50445 | Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded. |
+| P3 | QSI-2026-50446 | Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded. |
+| P3 | QSI-2026-50447 | Triage GO-2026-6629 (CVE-2026-56851); upgrade golang.org/x/text to a fixed version (0.41.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6629 (CVE-2026-56851), or the triage is recorded. |
+| P3 | QSI-2026-50449 | Triage GO-2026-5026 (CVE-2026-39821); upgrade golang.org/x/net to a fixed version (0.57.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5026 (CVE-2026-39821), or the triage is recorded. |
+| P3 | QSI-2026-50450 | Triage GO-2026-5942 (CVE-2026-46600); upgrade golang.org/x/net to a fixed version (0.56.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5942 (CVE-2026-46600), or the triage is recorded. |
+| P3 | QSI-2026-50452 | Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded. |
+| P3 | QSI-2026-50456 | Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded. |
+| P3 | QSI-2026-50457 | Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded. |
+| P3 | QSI-2026-50458 | Triage GO-2026-5970 (CVE-2026-56852); upgrade golang.org/x/text to a fixed version (0.39.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5970 (CVE-2026-56852), or the triage is recorded. |
+| P3 | QSI-2026-50459 | Triage GO-2026-6629 (CVE-2026-56851); upgrade golang.org/x/text to a fixed version (0.41.0) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6629 (CVE-2026-56851), or the triage is recorded. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-43994 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43995 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43996 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43997 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43998 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44000 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44001 | Add ECDSA usages at certificate:ca.org1.example.com to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44002 | Add ECDSA usages at certificate:Org2-child1 to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-43994 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43995 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43996 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43997 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43998 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-44000 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44001 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-44002 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P3 | QSI-2026-50431 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50432 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50433 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50434 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50435 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50437 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50438 | Add ECDSA usages at certificate:ca.org1.example.com to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50439 | Add ECDSA usages at certificate:Org2-child1 to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-50431 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50432 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50433 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50434 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50435 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-50437 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50438 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-50439 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -1370,19 +1407,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -1410,20 +1448,21 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 21. NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths — NIST. <https://csrc.nist.gov/pubs/sp/800/131/a/r2/final> (final (2019))
 22. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 23. OSV advisory GHSA-2v4p-qf9q-27wj — OSV.dev. <https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj> (modified 2026-09-25T18:00:05.270054427Z)
-24. OSV advisory GO-2026-5932 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5932> (modified 2026-11-02T22:15:06.677088389Z)
-25. OSV advisory GO-2026-5942 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5942> (modified 2026-08-17T12:25:32.471119200Z)
-26. OSV advisory GO-2026-5970 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5970> (modified 2026-11-14T13:12:13.157756222Z)
-27. OSV advisory GO-2026-6603 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6603> (modified 2026-11-14T13:12:13.462737073Z)
-28. OSV advisory GO-2026-6610 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6610> (modified 2026-11-14T13:12:14.502576208Z)
-29. OSV advisory GO-2026-6611 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6611> (modified 2026-11-14T13:12:14.349122729Z)
-30. OSV advisory GO-2026-6612 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6612> (modified 2026-11-14T13:12:14.440833902Z)
-31. OSV advisory GO-2026-6617 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6617> (modified 2026-11-14T13:12:14.222191133Z)
-32. OSV advisory GO-2026-6629 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6629> (modified 2026-11-14T13:12:14.100810021Z)
-33. OSV advisory GO-2026-6860 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6860> (modified 2026-10-27T21:30:04.890809062Z)
-34. OSV advisory GO-2026-6866 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6866> (modified 2026-10-27T21:45:08.978077289Z)
-35. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-36. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-37. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+24. OSV advisory GO-2026-5026 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5026> (modified 2026-11-23T21:12:28.671130412Z)
+25. OSV advisory GO-2026-5932 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5932> (modified 2026-11-02T22:15:06.677088389Z)
+26. OSV advisory GO-2026-5942 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5942> (modified 2026-08-17T12:25:32.471119200Z)
+27. OSV advisory GO-2026-5970 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5970> (modified 2026-11-23T21:12:29.269820156Z)
+28. OSV advisory GO-2026-6603 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6603> (modified 2026-11-23T21:12:29.903950358Z)
+29. OSV advisory GO-2026-6610 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6610> (modified 2026-11-23T21:12:29.831892156Z)
+30. OSV advisory GO-2026-6611 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6611> (modified 2026-11-23T21:12:29.007257358Z)
+31. OSV advisory GO-2026-6612 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6612> (modified 2026-11-23T21:12:28.295006823Z)
+32. OSV advisory GO-2026-6617 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6617> (modified 2026-11-23T21:12:28.960393562Z)
+33. OSV advisory GO-2026-6629 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6629> (modified 2026-11-23T21:12:29.495073874Z)
+34. OSV advisory GO-2026-6860 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6860> (modified 2026-10-27T21:30:04.890809062Z)
+35. OSV advisory GO-2026-6866 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6866> (modified 2026-10-27T21:45:08.978077289Z)
+36. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+37. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+38. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Appendices: Cryptographic inventory
 

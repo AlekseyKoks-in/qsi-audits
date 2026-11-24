@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43711",
+            "qsiId": "QSI-2026-49623",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,7 +68,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-43713",
+            "qsiId": "QSI-2026-49625",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -86,7 +86,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-43712",
+            "qsiId": "QSI-2026-49624",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -95,13 +95,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/trezor-vendored-crypto @ 72489948b3c4/adc96479-47ec-4f04-b1ba-a6c206d3a690"
+        "id": "qsi/trezor-vendored-crypto @ 72489948b3c4/b6998e49-e0de-422c-82c3-e7e1e71a1ff7"
       },
       "properties": {
-        "qsiContentSha256": "9b69ef40818565677dd438852d5d830a74714b3fc1581aface0f8964c7725226",
+        "qsiContentSha256": "a8a4a4ee3674869449b4e7825689e0dedcad75a74eaf6b1995352b8b76855802",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:24:21.063398+00:00",
+        "qsiGeneratedAt": "2026-11-24T11:34:27.195848+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

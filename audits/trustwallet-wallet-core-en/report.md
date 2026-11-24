@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 13:25 UTC |
+| Report date | 2026-11-24 13:01 UTC |
 | Report version | 1 |
-| Audit run | 0a636fc6-9606-4902-a240-7190373d677b (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | 48878b72-1d66-4721-a0f9-12d031fd338b (Document audit) |
+| Analyzer engine | qsi-engine 1.20.1 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `6471225b628134fb8490f6ec942fc592843dc20dcb51bf9cd3178724e6c90ecc` |
+| Content SHA-256 | `aec19b7119f33f293289857d15508706b3663545e8df8e5795bac0f4de02613a` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -47,12 +47,14 @@ Repository: <https://github.com/trustwallet/wallet-core> @ `adf80f8bac989e18a4ef
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 1556 | include/TrustWalletCore/TWAES.h: 57 lines scanned with 16 rule patterns and 340 registry patterns; include/TrustWalletCore/TWAESPaddingMode.h: 18 lines scanned with 16 rule patterns and 340 registry patterns; include/TrustWalletCore/TWAccount.h: 77 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 1556 | include/TrustWalletCore/TWAES.h: 57 lines scanned with 17 rule patterns and 340 registry patterns; include/TrustWalletCore/TWAESPaddingMode.h: 18 lines scanned with 17 rule patterns and 340 registry patterns; include/TrustWalletCore/TWAccount.h: 77 lines scanned with 17 rule patterns and 340 registry patterns |
 | dependencies | checked | 47 | rust/Cargo.lock: 246 dependencies parsed (246 pinned); rust/Cargo.toml: 0 dependencies parsed (0 pinned); rust/chains/tw_aptos/Cargo.toml: 4 dependencies parsed (0 pinned) |
 | secrets | checked | 19 | rust/chains/tw_pactus/src/transaction/mod.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); rust/chains/tw_pactus/src/types/address.rs: value(s) at line(s) 334 (test_address_from_private_key) are declared inside a fixture and treated as test data, although the file itself is not test code; rust/chains/tw_pactus/src/types/address.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | chain_map | checked | 59 | rust/tw_cosmos_sdk/Protobuf/authz_tx.proto: Cosmos SDK chains; rust/tw_cosmos_sdk/Protobuf/bank_tx.proto: Cosmos SDK chains; rust/tw_cosmos_sdk/Protobuf/coin.proto: Cosmos SDK chains |
 | entropy | checked | 1 | random-number generation: 1555 code files read with 342 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| crediting | checked | 1 | payment crediting: 8 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| crediting | checked | 1 | payment crediting: 8 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node, 0 from fetched Solana transactions; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
+| govulncheck | checked | 1 | govulncheck: none of the 2 Go module(s) holds a product package, so there was no call graph to build; samples/go (no product packages in this module), samples/go/dev-console (no product packages in this module) |
 | osv_advisories | not checked | 1 | 1 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: move-core-types |
 | osv_advisories | checked | 1 | 245 pinned packages queried at OSV.dev; 15 affected (3 of them only in development or build dependencies) |
 
@@ -73,14 +75,14 @@ Static review of the source tree trustwallet-wallet-core-en at adf80f8bac989e18a
 
 ## 7. Detailed findings
 
-### QSI-2026-43724 — Transaction signing for 43 chain(s) relies on elliptic-curve signatures
+### QSI-2026-50561 — Transaction signing for 43 chain(s) relies on elliptic-curve signatures
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** True by construction and the headline row for this repository: the protobuf definitions cover 43 chains, every one of which authorizes transactions with ECDSA, Ed25519 or Schnorr. A wallet library cannot migrate any of them unilaterally — consensus decides — so the deliverable is a per-chain readiness map, and its ordering is the actual product. Nothing here is a defect in wallet-core.
 - Affected asset: `chain-map`
 - Data source: rust/tw_cosmos_sdk/Protobuf/authz_tx.proto
 - Detection method: Message definitions (.proto) matched to QSI's table of chain signature schemes.
-- Analyzer: chain_map 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: chain_map 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 56.8 / 100
 - CVSS v3.1: not applicable
 
@@ -222,14 +224,14 @@ package TW.Cardano.Proto;
 
 **Retest procedure.** Re-run when a chain activates a post-quantum signature scheme or the wallet adds one.
 
-### QSI-2026-43714 — Quantum-vulnerable ECDSA: transaction and message signing (84 file(s))
+### QSI-2026-50551 — Quantum-vulnerable ECDSA: transaction and message signing (84 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: include/TrustWalletCore/TWCurve.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -331,14 +333,14 @@ _file_excerpt · [rust/chains/tw_bitcoin/src/babylon/spending_info.rs](https://g
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43715 — Quantum-vulnerable Ed25519: transaction and message signing (38 file(s))
+### QSI-2026-50552 — Quantum-vulnerable Ed25519: transaction and message signing (38 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Affected asset: `source-code:Ed25519:transaction_signing`
 - Data source: rust/chains/tw_aptos/src/address.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -440,14 +442,14 @@ _file_excerpt · [rust/chains/tw_polymesh/src/entry.rs](https://github.com/trust
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43717 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (16 file(s))
+### QSI-2026-50554 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (16 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Affected asset: `source-code:Schnorr (BIP-340):transaction_signing`
 - Data source: rust/chains/tw_bitcoin/src/babylon/conditions.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -549,14 +551,14 @@ _file_excerpt · [rust/chains/tw_bitcoin/src/babylon/tx_builder/output.rs](https
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43716 — Quantum-vulnerable ECDSA: role not determined (22 file(s))
+### QSI-2026-50553 — Quantum-vulnerable ECDSA: role not determined (22 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Role resolved: the anchors are the keypair implementation itself — rust/tw_keypair/src/ecdsa/{mod.rs,nist256p1/private.rs,nist256p1/public.rs} and schnorr/public.rs — plus per-chain signature types (tw_binance/src/signature.rs, tw_internet_computer/src/protocol/principal.rs). This is the secp256k1 and NIST P-256 ECDSA that every chain crate signs through, so it is the same exposure as the transaction-signing rows reached one layer lower. Count it once: it is where the migration work lands, not an extra surface.
 - Affected asset: `source-code:ECDSA:general`
 - Data source: rust/chains/tw_binance/src/signature.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -657,14 +659,14 @@ _file_excerpt · [rust/tw_keypair/src/ecdsa/signature.rs](https://github.com/tru
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43718 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
+### QSI-2026-50555 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Affected asset: `source-code:ECDSA:authentication`
 - Data source: rust/chains/tw_internet_computer/src/protocol/identity.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -694,14 +696,14 @@ _file_excerpt · [rust/chains/tw_internet_computer/src/protocol/identity.rs](htt
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43719 — Quantum-vulnerable Ed25519: role not determined (24 file(s))
+### QSI-2026-50556 — Quantum-vulnerable Ed25519: role not determined (24 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Role resolved: rust/tw_keypair/src/tw/{private,public}.rs are the type-erased keypair wrappers, and the remaining anchors are per-chain compilers and request builders (tw_pactus, tw_ton). Transaction signing, reached through the generic keypair layer rather than named at the call site — which is exactly why the role came back undetermined.
 - Affected asset: `source-code:Ed25519:general`
 - Data source: rust/chains/tw_pactus/src/compiler.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -803,14 +805,14 @@ _file_excerpt · [rust/tw_keypair/src/ed25519/mod.rs](https://github.com/trustwa
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43721 — Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))
+### QSI-2026-50558 — Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code.
 - Affected asset: `source-code:Schnorr (BIP-340):general`
 - Data source: rust/tw_keypair/src/schnorr/mod.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -888,14 +890,14 @@ _file_excerpt · [rust/tw_keypair/src/schnorr/signature.rs](https://github.com/t
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43722 — Quantum-vulnerable ECDH: role not determined (1 file(s))
+### QSI-2026-50559 — Quantum-vulnerable ECDH: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Role resolved: trezor-crypto/crypto/bip32.c:710 is the vendored copy of trezor-crypto's hdnode_get_shared_key, the same ECDH-over-a-BIP-32-node function reviewed in trezor-firmware.yml. Session keys for identity and encryption features, so harvest-now-decrypt-later applies; one row, not a signing exposure.
 - Affected asset: `source-code:ECDH:general`
 - Data source: trezor-crypto/crypto/bip32.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -925,14 +927,14 @@ _file_excerpt · [trezor-crypto/crypto/bip32.c](https://github.com/trustwallet/w
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43723 — Quantum-vulnerable X25519: role not determined (3 file(s))
+### QSI-2026-50560 — Quantum-vulnerable X25519: role not determined (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Role resolved: all three anchors are the vendored trezor-crypto C library (trezor-crypto/crypto/bip32.c:504, crypto/ed25519-donna/ed25519.c, include/TrezorCrypto/ed25519.h) — the curve25519 public-key derivation layer underneath the Ed25519 signing rows, not an independent use. In the inventory because the derivation changes in any post-quantum scheme; not additional exposure on top of the signing rows.
 - Affected asset: `source-code:X25519:general`
 - Data source: trezor-crypto/crypto/bip32.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1002,18 +1004,18 @@ _file_excerpt · [trezor-crypto/include/TrezorCrypto/ed25519.h](https://github.c
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43729 — crypto-bigint 0.5.1 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-50566 — crypto-bigint 0.5.1 is affected by RUSTSEC-2026-0387 (no severity rating)
 
 - Severity: **Medium** · Classification: Confirmed technical vulnerability · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** crypto-bigint 0.5.1 (multiple timing variability issues in operations intended to be constant-time) is a hard, non-optional dependency of the signing path, so unlike in the BitBox02 firmware there is no feature flag to hide behind. rust/tw_keypair/Cargo.toml declares k256 0.13.0 with features ["ecdh", "ecdsa", "pkcs8", "schnorr", "std"] and p256 0.13.0 with ["ecdsa", "std"], both of which depend on elliptic-curve, which depends on crypto-bigint; starknet-crypto and starknet-ff reach it directly as well. Traced in rust/Cargo.lock: the workspace roots tw_tests and wallet_core_bin both reach it, by way of tw_keypair and therefore of every chain crate that signs. This is a library that signs on behalf of wallets on a host operating system, so timing variability in operations documented as constant-time is in scope rather than academic. No exploit is demonstrated and the attacker needs local measurement; medium, not high. Fixed in crypto-bigint 0.7.6, which is a breaking upgrade through elliptic-curve and will need k256/p256 to move first. _automated severity: Low._
 - Affected asset: `dependency:crates.io/crypto-bigint@0.5.1`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 27.7 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.1: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.1: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. No product source file imports crypto-bigint: it comes in through other dependencies, whose use of it was not traced. The advisory names no affected functions, so reachability was not determined.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -1031,20 +1033,20 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-43735 — serde_with 3.16.0 is affected by GHSA-7gcf-g7xr-8hxj
+### QSI-2026-50572 — serde_with 3.16.0 is affected by GHSA-7gcf-g7xr-8hxj
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** wallet-core uses serde_with only in tw_zcash (PCZT transparent bundle) as serde_as(as = "BTreeMap<[_; 33], _>"); KeyValueMap, the type whose serialization panics, is not referenced anywhere in the tree. _automated severity: Medium._
 - Affected asset: `dependency:crates.io/serde_with@3.16.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 35.2 / 100
 - CVSS v3.1: not applicable
 
@@ -1066,20 +1068,20 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-7gcf-g7xr-8hxj", "aliases": [], "modified": "2026-09-10T03:51:10.897685062Z", "summary": "serde_with: KeyValueMap serialization panics on empty sequence or map entries", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (3.21.0).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-43731 — keccak 0.1.3 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-50568 — keccak 0.1.3 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** keccak 0.1.3's unsoundness is in the opt-in ARMv8 assembly backend behind the asm Cargo feature, which is off by default and which no manifest in the audited tree enables; the advisory's own CVSS vector (AV:L/AC:H/AT:P, exploit maturity unproven) reflects that. keccak arrives through sha3 and tw_hash, both using the portable implementation. Upgrading to 0.1.6 is routine maintenance. _automated severity: Low._
 - Affected asset: `dependency:crates.io/keccak@0.1.3`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 26.4 / 100
 - CVSS v3.1: not applicable
 
@@ -1101,24 +1103,24 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3288-p39f-rqpv", "aliases": ["RUSTSEC-2026-0012"], "modified": "2026-09-10T03:50:59.332505686Z", "summary": "Unsoundness in opt-in ARMv8 assembly backend for `keccak`", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (0.1.6).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-43734 — rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+### QSI-2026-50571 — rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** rand 0.8.5 is unsound only when a custom global logger calls rand::rng() reentrantly. wallet-core installs no global logger; rand reaches the tree through secp256k1, ark-std, fixed-hash and move-core-types, none of which log from inside the generator. The affected functions rand::rng and rand::thread_rng are not named in the audited code. _automated severity: Low._
 - Affected asset: `dependency:crates.io/rand@0.8.5`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 26.4 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097) for crates.io package rand at version 0.8.5: Rand is unsound with a custom logger using rand::rng(). The audited code does not name the affected functions (rand::rng, rand::thread_rng); rand comes in through other dependencies, which may still call them.
+OSV.dev reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097) for crates.io package rand at version 0.8.5: Rand is unsound with a custom logger using rand::rng(). No product source file imports rand: it comes in through other dependencies, whose use of it was not traced. The audited code does not name the affected functions (rand::rng, rand::thread_rng); rand comes in through other dependencies, which may still call them.
 
 **Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
 
@@ -1136,24 +1138,24 @@ _tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-cq8v-f236-94qc", "aliases": ["RUSTSEC-2026-0097"], "modified": "2026-09-10T03:50:43.958966498Z", "summary": "Rand is unsound with a custom logger using rand::rng()", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (0.10.1, 0.8.6, 0.9.3).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-43736 — time 0.3.44 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+### QSI-2026-50573 — time 0.3.44 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** time 0.3.44 is pulled in only by serde_with (Cargo.lock), which wallet-core uses only for the BTreeMap adapter above; the affected RFC 2822 parsing functions are not reached. _automated severity: Medium._
 - Affected asset: `dependency:crates.io/time@0.3.44`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 26.4 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) for crates.io package time at version 0.3.44: time vulnerable to stack exhaustion Denial of Service attack. The audited code does not name the affected functions (time::Date::parse, time::OffsetDateTime::parse, time::PrimitiveDateTime::parse, time::Time::parse, time::UtcDateTime::parse, time::UtcOffset::parse …); time comes in through other dependencies, which may still call them.
+OSV.dev reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) for crates.io package time at version 0.3.44: time vulnerable to stack exhaustion Denial of Service attack. No product source file imports time: it comes in through other dependencies, whose use of it was not traced. The audited code does not name the affected functions (time::Date::parse, time::OffsetDateTime::parse, time::PrimitiveDateTime::parse, time::Time::parse, time::UtcDateTime::parse, time::UtcOffset::parse …); time comes in through other dependencies, which may still call them.
 
 **Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
 
@@ -1171,24 +1173,24 @@ _tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-r6v5-fh4h-64xc", "aliases": ["CVE-2026-25727", "RUSTSEC-2026-0009"], "modified": "2026-09-10T03:50:35.583241382Z", "summary": "time vulnerable to stack exhaustion Denial of Service attack", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:L/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Upgrade to a fixed version (0.3.47).
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-43726 — anyhow 1.0.75 is affected by RUSTSEC-2026-0190 (no severity rating)
+### QSI-2026-50563 — anyhow 1.0.75 is affected by RUSTSEC-2026-0190 (no severity rating)
 
 - Severity: **Info** · Classification: Known vulnerable component · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** anyhow 1.0.75 (unsoundness in Error::downcast_mut) arrives through move-core-types, so only the Aptos and Sui crates depend on it, and no audited file calls downcast_mut. Upgrading to 1.0.103 is routine maintenance rather than a fix for an exposure here. _automated severity: Low._
 - Affected asset: `dependency:crates.io/anyhow@1.0.75`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 20.9 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports RUSTSEC-2026-0190 for crates.io package anyhow at version 1.0.75: Unsoundness in `Error::downcast_mut()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (anyhow::Error::downcast_mut); anyhow comes in through other dependencies, which may still call them.
+OSV.dev reports RUSTSEC-2026-0190 for crates.io package anyhow at version 1.0.75: Unsoundness in `Error::downcast_mut()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. No product source file imports anyhow: it comes in through other dependencies, whose use of it was not traced. The audited code does not name the affected functions (anyhow::Error::downcast_mut); anyhow comes in through other dependencies, which may still call them.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -1206,20 +1208,20 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0190", "aliases": [], "modified": "2026-06-29T14:15:03.650725453Z", "summary": "Unsoundness in `Error::downcast_mut()`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (1.0.103) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-43727 — bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-50564 — bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: High
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Affected asset: `dependency:crates.io/bincode@1.3.3`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 19.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1247,14 +1249,14 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-43738 — 4 advisories in 3 development or build-only crates.io package(s)
+### QSI-2026-50575 — 4 advisories in 3 development or build-only crates.io package(s)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** Three advisories in two build-only crates (ansi_term 0.12.1 RUSTSEC-2021-0139; atty 0.2.14 GHSA-g98v-hv3f-hcfr and RUSTSEC-2024-0375), neither of which ships in a built artefact. They are worth updating during routine maintenance, and worth watching only insofar as they run in CI with credentials.
 - Affected asset: `dependencies:crates.io:non-runtime`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch lookup of exact versions; scope from devDependencies, package-lock.json dev flags, pnpm importers sections, the Cargo.lock graph rooted at the Cargo.toml tables, and — for yarn.lock, which records no scope — the lock graph walked from package.json. Where a runtime requirement cannot be resolved in a lock, that lock is left unclassified rather than risking a package being set aside wrongly.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 18.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1284,14 +1286,14 @@ humantime@1.3.0 [build]: RUSTSEC-2026-0542
 
 **Retest procedure.** Re-run the dependency scan after updating.
 
-### QSI-2026-43720 — SHA-1 offered by API functions (5 file(s))
+### QSI-2026-50557 — SHA-1 offered by API functions (5 file(s))
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Accurate as stated, and the reason it cannot simply be removed is worth recording. rust/tw_hash/src/sha1.rs defines sha1() and rust/tw_hash/src/ffi.rs:128 exports it over the C FFI; it is published through the library's public surface as TWHash (include/TrustWalletCore/TWHash.h, src/interface/TWHash.cpp, src/Hash.h, src/Hash.cpp). No in-tree security decision depends on it, which is exactly what the rule says. But src/Bitcoin/OpCodes.h references SHA-1 because Bitcoin Script defines OP_SHA1, so a wallet library that evaluates or builds scripts has to be able to compute it: this is a consensus-level requirement, not a choice the library can revisit. Correct disposition is therefore to keep it, document it as script-compatibility only, and ensure no new caller uses it for integrity — not to delete it.
 - Affected asset: `source-code:SHA-1:api`
 - Data source: rust/tw_hash/src/ffi.rs
 - Detection method: Regular-expression matching of language-specific API patterns; a match on a definition, a declaration or inside a function named after the algorithm counts as exposure.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: source_code 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 16.3 / 100
 - CVSS v3.1: not applicable
 
@@ -1385,14 +1387,14 @@ _file_excerpt · [src/interface/TWHash.cpp](https://github.com/trustwallet/walle
 
 **Retest procedure.** Re-scan the source after the review.
 
-### QSI-2026-43725 — No post-quantum capable cryptographic library detected
+### QSI-2026-50562 — No post-quantum capable cryptographic library detected
 
 - Severity: **Info** · Classification: Insufficient data · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Accurate: across 47 dependency manifests the declared cryptography is curve25519-dalek, ecdsa, k256, p256 and secp256k1, with nothing PQC-capable. For a library that signs for 43 chains this is not a dependency that can usefully be added yet — each chain's signature scheme is set by its own consensus, so until a chain defines a post-quantum scheme there is nothing for the wallet to implement against. The actionable part is the opposite direction: the library should be ready to carry two schemes per chain during a transition, which is an architectural question about tw_keypair rather than a missing crate.
 - Affected asset: `dependencies`
 - Data source: dependency manifests
 - Detection method: Dependency name matching.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 15.0 / 100
 - CVSS v3.1: not applicable
 
@@ -1420,14 +1422,14 @@ Crypto libraries: curve25519-dalek, ecdsa, k256, p256, secp256k1, starknet-crypt
 
 **Retest procedure.** Re-scan after upgrades.
 
-### QSI-2026-43728 — chrono 0.4.42: informational advisory RUSTSEC-2026-0543 (unmaintained)
+### QSI-2026-50565 — chrono 0.4.42: informational advisory RUSTSEC-2026-0543 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Affected asset: `dependency:crates.io/chrono@0.4.42`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1455,14 +1457,14 @@ _tool_output · [OSV.dev RUSTSEC-2026-0543](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-43730 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
+### QSI-2026-50567 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Affected asset: `dependency:crates.io/derivative@2.2.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1490,14 +1492,14 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-43732 — paste 1.0.11: informational advisory RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-50569 — paste 1.0.11: informational advisory RUSTSEC-2024-0436 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Affected asset: `dependency:crates.io/paste@1.0.11`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1525,14 +1527,14 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-43733 — proc-macro-error 1.0.4: informational advisory RUSTSEC-2024-0370 (unmaintained)
+### QSI-2026-50570 — proc-macro-error 1.0.4: informational advisory RUSTSEC-2024-0370 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Affected asset: `dependency:crates.io/proc-macro-error@1.0.4`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1560,14 +1562,14 @@ _tool_output · [OSV.dev RUSTSEC-2024-0370](https://osv.dev/vulnerability/RUSTSE
 
 **Retest procedure.** Re-run the dependency scan after the change.
 
-### QSI-2026-43737 — unsafe-libyaml 0.2.11: informational advisory RUSTSEC-2024-0449 (unmaintained)
+### QSI-2026-50574 — unsafe-libyaml 0.2.11: informational advisory RUSTSEC-2024-0449 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 > **Analyst review (QSI review, 2026-10-28): not applicable to this code.** Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for.
 - Affected asset: `dependency:crates.io/unsafe-libyaml@0.2.11`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 13:25 UTC
+- Analyzer: dependencies 1.20.1 · 2026-11-24 13:01 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -1628,9 +1630,9 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (143), Ed25519 (97), Schnorr (BIP-340) (75), BLS12-381 (59), sr25519 (59) | QSI-2026-43714, QSI-2026-43715, QSI-2026-43717, QSI-2026-43724 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1) | QSI-2026-43718 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | Ed25519 (24), ECDSA (22), Schnorr (BIP-340) (3), X25519 (3), ECDH (1) | QSI-2026-43716, QSI-2026-43719, QSI-2026-43721, QSI-2026-43722, QSI-2026-43723 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **transaction and message signing** | ECDSA (143), Ed25519 (97), Schnorr (BIP-340) (75), BLS12-381 (59), sr25519 (59) | QSI-2026-50551, QSI-2026-50552, QSI-2026-50554, QSI-2026-50561 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1) | QSI-2026-50555 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
+| **role not determined** | Ed25519 (24), ECDSA (22), Schnorr (BIP-340) (3), X25519 (3), ECDH (1) | QSI-2026-50553, QSI-2026-50556, QSI-2026-50558, QSI-2026-50559, QSI-2026-50560 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -1659,48 +1661,48 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P2 | QSI-2026-43735 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-43731 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
-| P2 | QSI-2026-43734 | Upgrade rand to a fixed version (0.10.1, 0.8.6, 0.9.3). | root-cause fix | Dependency scan no longer reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
-| P2 | QSI-2026-43736 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
+| P2 | QSI-2026-50572 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-50568 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P2 | QSI-2026-50571 | Upgrade rand to a fixed version (0.10.1, 0.8.6, 0.9.3). | root-cause fix | Dependency scan no longer reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-50573 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-43729 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-43726 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
+| P3 | QSI-2026-50566 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
+| P3 | QSI-2026-50563 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-43724 | Add BLS12-381, ECDSA, Ed25519, Schnorr (BIP-340), sr25519 usages at the wallet's transaction signing to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43714 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43715 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43717 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43716 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43718 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43719 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43721 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43722 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43723 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-43724 | Plan migration of BLS12-381, ECDSA, Ed25519, Schnorr (BIP-340), sr25519 to ? (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ? or a hybrid scheme in use. |
-| P4 | QSI-2026-43714 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43715 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43717 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-43716 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43718 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43719 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43721 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-43722 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-43723 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-43727 | Replace bincode with a maintained alternative or record why it stays. | root-cause fix | bincode replaced, or the decision recorded. |
-| P4 | QSI-2026-43738 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
-| P4 | QSI-2026-43720 | Document why SHA-1 is offered and review its callers. | root-cause fix | Callers reviewed; SHA-1 kept only where a protocol requires it. |
-| P4 | QSI-2026-43728 | Replace chrono with a maintained alternative or record why it stays. | root-cause fix | chrono replaced, or the decision recorded. |
-| P4 | QSI-2026-43730 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
-| P4 | QSI-2026-43732 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
-| P4 | QSI-2026-43733 | Replace proc-macro-error with a maintained alternative or record why it stays. | root-cause fix | proc-macro-error replaced, or the decision recorded. |
-| P4 | QSI-2026-43737 | Replace unsafe-libyaml with a maintained alternative or record why it stays. | root-cause fix | unsafe-libyaml replaced, or the decision recorded. |
+| P3 | QSI-2026-50561 | Add BLS12-381, ECDSA, Ed25519, Schnorr (BIP-340), sr25519 usages at the wallet's transaction signing to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50551 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50552 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50554 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50553 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50555 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50556 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50558 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50559 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50560 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-50561 | Plan migration of BLS12-381, ECDSA, Ed25519, Schnorr (BIP-340), sr25519 to ? (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ? or a hybrid scheme in use. |
+| P4 | QSI-2026-50551 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50552 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50554 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-50553 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50555 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50556 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50558 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-50559 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-50560 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-50564 | Replace bincode with a maintained alternative or record why it stays. | root-cause fix | bincode replaced, or the decision recorded. |
+| P4 | QSI-2026-50575 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
+| P4 | QSI-2026-50557 | Document why SHA-1 is offered and review its callers. | root-cause fix | Callers reviewed; SHA-1 kept only where a protocol requires it. |
+| P4 | QSI-2026-50565 | Replace chrono with a maintained alternative or record why it stays. | root-cause fix | chrono replaced, or the decision recorded. |
+| P4 | QSI-2026-50567 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
+| P4 | QSI-2026-50569 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
+| P4 | QSI-2026-50570 | Replace proc-macro-error with a maintained alternative or record why it stays. | root-cause fix | proc-macro-error replaced, or the decision recorded. |
+| P4 | QSI-2026-50574 | Replace unsafe-libyaml with a maintained alternative or record why it stays. | root-cause fix | unsafe-libyaml replaced, or the decision recorded. |
 
 ## 11. Tools used
 
@@ -1708,19 +1710,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.1
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.1
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -1797,8 +1800,8 @@ By origin: dependency manifests 15 (0 Shor-breakable) · own code 295 (242 Shor-
 | Crypto library | 0.3.0 | starknet-curve (starknet-rs) | n/a | acceptable | 1 | 1 | rust/Cargo.lock |
 | Crypto library | 0.5.1 | starknet-crypto (starknet-rs) | n/a | acceptable | 1 | 1 | rust/Cargo.lock |
 | Crypto library | 4.1.3 | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | rust/Cargo.lock |
-| Crypto library | 0.13.0 | k256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | rust/tw_keypair/Cargo.toml |
 | Crypto library | 0.13.0 | p256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | rust/tw_keypair/Cargo.toml |
+| Crypto library | 0.13.0 | k256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | rust/tw_keypair/Cargo.toml |
 | Crypto library | 0.5.0 | starknet-crypto (starknet-rs) | n/a | acceptable | 1 | 1 | rust/tw_keypair/Cargo.toml |
 | Crypto library | 4.1 | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | rust/tw_keypair/Cargo.toml |
 | BLS12-381 | BLS signatures |  | vulnerable (Shor) | acceptable | 1 | 1 | src/proto/Filecoin.proto:3 |

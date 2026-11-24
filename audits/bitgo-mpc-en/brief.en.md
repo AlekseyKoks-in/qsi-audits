@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: bitgo-mpc-en @ 3c892fd6a388
 
-*One-page brief* · Reviewed: 2026-11-23 12:13 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: BitGo — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-24 10:18 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: BitGo — public repository (passive review)
 
 Source: https://github.com/BitGo/BitGoJS/tree/3c892fd6a388da22a046a8470f0e1f35999e4ed4
 
@@ -12,13 +12,13 @@ Source: https://github.com/BitGo/BitGoJS/tree/3c892fd6a388da22a046a8470f0e1f3599
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable RSA: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-41741) · *confirmed by the analyst*\
+1. **Medium** · Quantum-vulnerable RSA: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-47683) · *confirmed by the analyst*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-2. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (2 file(s)) (QSI-2026-41735) · *confirmed by the analyst*\
+2. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (2 file(s)) (QSI-2026-47677) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (10 file(s)) (QSI-2026-41736) · *confirmed by the analyst*\
+3. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (10 file(s)) (QSI-2026-47678) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-4. **Medium** · Quantum-vulnerable ECDSA: threshold signing and MPC protocols (10 file(s)) (QSI-2026-41737) · *confirmed by the analyst*\
+4. **Medium** · Quantum-vulnerable ECDSA: threshold signing and MPC protocols (10 file(s)) (QSI-2026-47679) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
 
 6 more in the full report.
@@ -38,7 +38,7 @@ Analyst review: 10 confirmed, 0 not applicable, 0 dismissed as false positives. 
 
 Static review of source code and manifests; files analysed: 271. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `8eaa8a893fdc4854cd2247a79df324a5b140cd5d5161a3790795405c871ba735`
+Full report, content SHA-256: `10ff1388cb7f5aa79bbe40c980f7f406f34cdec0abab7a30fa3e4bf7a02013da`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -28,62 +28,12 @@
                 "security-severity": "9.5"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) для пакета PyPI certifi версии 2022.12.7: certifi bundles emSign root CAs with compromised intermediate CA keys. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2026.10.18). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) для пакета PyPI certifi версии 2022.12.7: certifi bundles emSign root CAs with compromised intermediate CA keys. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2026.10.18). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev сообщает GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) для пакета PyPI certifi версии 2022.12.7: certifi bundles emSign root CAs with compromised intermediate CA keys. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2026.10.18). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) для пакета PyPI certifi версии 2022.12.7: certifi bundles emSign root CAs with compromised intermediate CA keys. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (2026.10.18). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-6q48-6c7w-9gw2"
-            },
-            {
-              "id": "CODE-TLS-VERIFY-DISABLED",
-              "name": "CodeTlsVerifyDisabled",
-              "shortDescription": {
-                "text": "Проверка TLS-сертификата отключена в scripts/generate_version_headers.py"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "6.8"
-              },
-              "fullDescription": {
-                "text": "1 случаев отключения проверки (verify=False), первый — строка 230. Удалите отключение; используйте корректный набор УЦ или пиннинг. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "help": {
-                "text": "1 случаев отключения проверки (verify=False), первый — строка 230. Удалите отключение; используйте корректный набор УЦ или пиннинг. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
-            },
-            {
-              "id": "CODE-ECB-MODE",
-              "name": "CodeEcbMode",
-              "shortDescription": {
-                "text": "Режим ECB блочного шифра в external/samd51a-ds/include/component/aes.h"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "1 использований режима ECB (первое — строка 81). Используйте AEAD-режим (GCM) с уникальными nonce. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "help": {
-                "text": "1 использований режима ECB (первое — строка 81). Используйте AEAD-режим (GCM) с уникальными nonce. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
             },
             {
               "id": "CHAINMAP-QV",
@@ -178,10 +128,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
             },
@@ -209,6 +159,31 @@
                 "text": "«Math.random()» в строка 2 в строке, упоминающей key/token/secret/password/nonce. Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://csrc.nist.gov/pubs/sp/800/90/a/r1/final"
+            },
+            {
+              "id": "CODE-ECB-MODE",
+              "name": "CodeEcbMode",
+              "shortDescription": {
+                "text": "В стороннем коде в дереве: Режим ECB блочного шифра в external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "1 использований режима ECB (первое — строка 184). Используйте AEAD-режим (GCM) с уникальными nonce. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "1 использований режима ECB (первое — строка 184). Используйте AEAD-режим (GCM) с уникальными nonce. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
             },
             {
               "id": "DEP-NO-PQC-LIBRARY",
@@ -275,42 +250,12 @@
             "qsiFindingKey/v1": "b1137c114c5c0c76b2e77eadc7df4738"
           },
           "properties": {
-            "qsiId": "QSI-2026-41709",
+            "qsiId": "QSI-2026-47651",
             "severity": "critical",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "9.5"
           }
-        },
-        {
-          "ruleId": "CODE-TLS-VERIFY-DISABLED",
-          "ruleIndex": 1,
-          "level": "error",
-          "message": {
-            "text": "Проверка TLS-сертификата отключена в scripts/generate_version_headers.py"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "793b633732a7d544c47fd90d65831e74"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-41683",
-            "severity": "high",
-            "confidence": "high",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "6.8"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "scripts/generate_version_headers.py"
-                },
-                "region": {
-                  "startLine": 230
-                }
-              }
-            }
-          ]
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
@@ -323,7 +268,7 @@
             "qsiFindingKey/v1": "a01b43133d4eca70b09191737162b55a"
           },
           "properties": {
-            "qsiId": "QSI-2026-41710",
+            "qsiId": "QSI-2026-47652",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -341,7 +286,7 @@
             "qsiFindingKey/v1": "98f8f7dadd1b60c637a4583be22366ee"
           },
           "properties": {
-            "qsiId": "QSI-2026-41714",
+            "qsiId": "QSI-2026-47656",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -359,7 +304,7 @@
             "qsiFindingKey/v1": "fbb32152eaa6887385516b1ba2300035"
           },
           "properties": {
-            "qsiId": "QSI-2026-41717",
+            "qsiId": "QSI-2026-47659",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -377,7 +322,7 @@
             "qsiFindingKey/v1": "d0a5a18ba4e4fc7b689db30e5713f069"
           },
           "properties": {
-            "qsiId": "QSI-2026-41724",
+            "qsiId": "QSI-2026-47666",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -395,7 +340,7 @@
             "qsiFindingKey/v1": "698682edd225868254ff54993797a427"
           },
           "properties": {
-            "qsiId": "QSI-2026-41726",
+            "qsiId": "QSI-2026-47668",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -413,7 +358,7 @@
             "qsiFindingKey/v1": "acfbd97e64523186c99a98de9b095da1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41727",
+            "qsiId": "QSI-2026-47669",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -431,7 +376,7 @@
             "qsiFindingKey/v1": "47d3c6039146b195aaccfe10db35f167"
           },
           "properties": {
-            "qsiId": "QSI-2026-41729",
+            "qsiId": "QSI-2026-47671",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -449,7 +394,7 @@
             "qsiFindingKey/v1": "26bd5bb57229e9306a7d928ff46c2bb1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41733",
+            "qsiId": "QSI-2026-47675",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -457,38 +402,8 @@
           }
         },
         {
-          "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "Режим ECB блочного шифра в external/samd51a-ds/include/component/aes.h"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "4d8e100f3024c7b31a452c7cf88d5761"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-41655",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "external/samd51a-ds/include/component/aes.h"
-                },
-                "region": {
-                  "startLine": 81
-                }
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CHAINMAP-QV",
-          "ruleIndex": 3,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Подпись транзакций для сетей (3) основана на подписях на эллиптических кривых"
@@ -497,7 +412,7 @@
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-41699",
+            "qsiId": "QSI-2026-47641",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -506,7 +421,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/JuliusWiedemann.asc"
@@ -515,7 +430,7 @@
             "qsiFindingKey/v1": "2d852d2cd779179d1032172f948dcd41"
           },
           "properties": {
-            "qsiId": "QSI-2026-41657",
+            "qsiId": "QSI-2026-47600",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -524,7 +439,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/JunghoonLee.asc"
@@ -533,7 +448,7 @@
             "qsiFindingKey/v1": "c0a4eaaeb2cd2d0235008bf7b537448f"
           },
           "properties": {
-            "qsiId": "QSI-2026-41658",
+            "qsiId": "QSI-2026-47601",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -542,7 +457,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/My1.asc"
@@ -551,7 +466,7 @@
             "qsiFindingKey/v1": "c6053731007d10ca3d042647ab72fa57"
           },
           "properties": {
-            "qsiId": "QSI-2026-41659",
+            "qsiId": "QSI-2026-47602",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -560,7 +475,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/My1.asc"
@@ -569,7 +484,7 @@
             "qsiFindingKey/v1": "c6053731007d10ca3d042647ab72fa57"
           },
           "properties": {
-            "qsiId": "QSI-2026-41660",
+            "qsiId": "QSI-2026-47603",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -578,7 +493,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/TheCharlatan.asc"
@@ -587,7 +502,7 @@
             "qsiFindingKey/v1": "ce319c5d70c0e4491a0ce87dbd817a2e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41661",
+            "qsiId": "QSI-2026-47604",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -596,7 +511,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/beerosagos.asc"
@@ -605,7 +520,7 @@
             "qsiFindingKey/v1": "6184714ebc18658e1a35558a7d43c695"
           },
           "properties": {
-            "qsiId": "QSI-2026-41662",
+            "qsiId": "QSI-2026-47605",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -614,7 +529,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/benma.asc"
@@ -623,7 +538,7 @@
             "qsiFindingKey/v1": "f9def3b6e380290f642e4603a2fdf0b2"
           },
           "properties": {
-            "qsiId": "QSI-2026-41663",
+            "qsiId": "QSI-2026-47606",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -632,7 +547,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/brianddk.asc"
@@ -641,7 +556,7 @@
             "qsiFindingKey/v1": "6b838bcaf394d4fbc21e6968a211e56e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41664",
+            "qsiId": "QSI-2026-47607",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -650,7 +565,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/cstenglein.asc"
@@ -659,7 +574,7 @@
             "qsiFindingKey/v1": "7896331209a70b9d37da5c8bb545cf02"
           },
           "properties": {
-            "qsiId": "QSI-2026-41665",
+            "qsiId": "QSI-2026-47608",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -668,7 +583,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/frknakk.asc"
@@ -677,7 +592,7 @@
             "qsiFindingKey/v1": "9a1a12a485baf425ca953084db8dc654"
           },
           "properties": {
-            "qsiId": "QSI-2026-41666",
+            "qsiId": "QSI-2026-47609",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -686,7 +601,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/guggerf.asc"
@@ -695,7 +610,7 @@
             "qsiFindingKey/v1": "b0633337092cf105cfae16101dd768af"
           },
           "properties": {
-            "qsiId": "QSI-2026-41667",
+            "qsiId": "QSI-2026-47610",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -704,7 +619,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/jonathancross.asc"
@@ -713,7 +628,7 @@
             "qsiFindingKey/v1": "3b221fd5dc866e8ac68b720ff99e361e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41668",
+            "qsiId": "QSI-2026-47611",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -722,7 +637,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/jonathancross.asc"
@@ -731,7 +646,7 @@
             "qsiFindingKey/v1": "3b221fd5dc866e8ac68b720ff99e361e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41669",
+            "qsiId": "QSI-2026-47612",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -740,7 +655,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/nickez.asc"
@@ -749,7 +664,7 @@
             "qsiFindingKey/v1": "8da163ff11731e6b648db8974bdd42b9"
           },
           "properties": {
-            "qsiId": "QSI-2026-41670",
+            "qsiId": "QSI-2026-47613",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -758,7 +673,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/offbyn.asc"
@@ -767,7 +682,7 @@
             "qsiFindingKey/v1": "57c9748b99a019cbdc54f87b5ea9c873"
           },
           "properties": {
-            "qsiId": "QSI-2026-41671",
+            "qsiId": "QSI-2026-47614",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -776,7 +691,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в releases/pubkeys/psteiger.asc"
@@ -785,7 +700,7 @@
             "qsiFindingKey/v1": "c6906c14673bacd3b9391a263b79110b"
           },
           "properties": {
-            "qsiId": "QSI-2026-41672",
+            "qsiId": "QSI-2026-47615",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -794,7 +709,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/stadicus.asc"
@@ -803,7 +718,7 @@
             "qsiFindingKey/v1": "b16c487f64c4e2bebb464facf4b11ca6"
           },
           "properties": {
-            "qsiId": "QSI-2026-41673",
+            "qsiId": "QSI-2026-47616",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -812,7 +727,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/strnbrg.asc"
@@ -821,7 +736,7 @@
             "qsiFindingKey/v1": "c19a33201830ba9a8feaa6fcbc9eea57"
           },
           "properties": {
-            "qsiId": "QSI-2026-41674",
+            "qsiId": "QSI-2026-47617",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -830,7 +745,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/sutterseba.asc"
@@ -839,7 +754,7 @@
             "qsiFindingKey/v1": "a00ee903ada99a6e06501c9068f9649a"
           },
           "properties": {
-            "qsiId": "QSI-2026-41675",
+            "qsiId": "QSI-2026-47618",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -848,7 +763,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/tomasvrba.asc"
@@ -857,7 +772,7 @@
             "qsiFindingKey/v1": "edcf4c86b96247095fe9e3dff94ac78c"
           },
           "properties": {
-            "qsiId": "QSI-2026-41676",
+            "qsiId": "QSI-2026-47619",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -866,7 +781,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (3072-bit) в releases/pubkeys/userofreddit44.asc"
@@ -875,7 +790,7 @@
             "qsiFindingKey/v1": "2d81160c7d82f9e4ff2638cc21390a2e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41677",
+            "qsiId": "QSI-2026-47620",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -884,7 +799,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/x1ddos.asc"
@@ -893,7 +808,7 @@
             "qsiFindingKey/v1": "5aafba1f8d4d3bce880e0eb854a5d740"
           },
           "properties": {
-            "qsiId": "QSI-2026-41678",
+            "qsiId": "QSI-2026-47621",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -902,7 +817,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/x1ddos.asc"
@@ -911,7 +826,7 @@
             "qsiFindingKey/v1": "5aafba1f8d4d3bce880e0eb854a5d740"
           },
           "properties": {
-            "qsiId": "QSI-2026-41679",
+            "qsiId": "QSI-2026-47622",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -920,7 +835,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (3072-bit) в releases/pubkeys/x1ddos.asc"
@@ -929,7 +844,7 @@
             "qsiFindingKey/v1": "5aafba1f8d4d3bce880e0eb854a5d740"
           },
           "properties": {
-            "qsiId": "QSI-2026-41680",
+            "qsiId": "QSI-2026-47623",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -938,7 +853,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в releases/pubkeys/yaziza.asc"
@@ -947,7 +862,7 @@
             "qsiFindingKey/v1": "5cd0861142d55c6cd8502c6d0f0ba908"
           },
           "properties": {
-            "qsiId": "QSI-2026-41681",
+            "qsiId": "QSI-2026-47624",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -956,7 +871,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/yaziza.asc"
@@ -965,7 +880,7 @@
             "qsiFindingKey/v1": "5cd0861142d55c6cd8502c6d0f0ba908"
           },
           "properties": {
-            "qsiId": "QSI-2026-41682",
+            "qsiId": "QSI-2026-47625",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -983,7 +898,7 @@
             "qsiFindingKey/v1": "9d180846df82ba3e0ba4c5ce4571fdbd"
           },
           "properties": {
-            "qsiId": "QSI-2026-41711",
+            "qsiId": "QSI-2026-47653",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1001,7 +916,7 @@
             "qsiFindingKey/v1": "afcb357253b1e3a0c56ca70490eb5bb6"
           },
           "properties": {
-            "qsiId": "QSI-2026-41712",
+            "qsiId": "QSI-2026-47654",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1019,7 +934,7 @@
             "qsiFindingKey/v1": "13272a545807a9af124f1237ba274965"
           },
           "properties": {
-            "qsiId": "QSI-2026-41713",
+            "qsiId": "QSI-2026-47655",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1037,7 +952,7 @@
             "qsiFindingKey/v1": "d19587ff61e1811c0655dde49bd630a2"
           },
           "properties": {
-            "qsiId": "QSI-2026-41715",
+            "qsiId": "QSI-2026-47657",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1055,7 +970,7 @@
             "qsiFindingKey/v1": "accd194de94a1139ed0aded1445b0881"
           },
           "properties": {
-            "qsiId": "QSI-2026-41716",
+            "qsiId": "QSI-2026-47658",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1073,7 +988,7 @@
             "qsiFindingKey/v1": "70777d9e369a1cd504952277be027d2e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41719",
+            "qsiId": "QSI-2026-47661",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1091,7 +1006,7 @@
             "qsiFindingKey/v1": "ff4ac256000bfb3ad0ebb840ff8a21d1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41720",
+            "qsiId": "QSI-2026-47662",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1109,7 +1024,7 @@
             "qsiFindingKey/v1": "2655fbfb16d3a79630b9cce92cc096a7"
           },
           "properties": {
-            "qsiId": "QSI-2026-41721",
+            "qsiId": "QSI-2026-47663",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1127,7 +1042,7 @@
             "qsiFindingKey/v1": "7e53924d9b4b9ca1cb699e5a3188d13f"
           },
           "properties": {
-            "qsiId": "QSI-2026-41722",
+            "qsiId": "QSI-2026-47664",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1145,7 +1060,7 @@
             "qsiFindingKey/v1": "6208eeae2479658a2cd35c82c0d4b259"
           },
           "properties": {
-            "qsiId": "QSI-2026-41723",
+            "qsiId": "QSI-2026-47665",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1163,7 +1078,7 @@
             "qsiFindingKey/v1": "566999a0d1f37cd0e7f2ab0e84a861cc"
           },
           "properties": {
-            "qsiId": "QSI-2026-41725",
+            "qsiId": "QSI-2026-47667",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1181,7 +1096,7 @@
             "qsiFindingKey/v1": "09cee39bdfb353738f996dff7f7cf2eb"
           },
           "properties": {
-            "qsiId": "QSI-2026-41728",
+            "qsiId": "QSI-2026-47670",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1199,7 +1114,7 @@
             "qsiFindingKey/v1": "c05043c560949e34b43137ca14e00337"
           },
           "properties": {
-            "qsiId": "QSI-2026-41730",
+            "qsiId": "QSI-2026-47672",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1217,7 +1132,7 @@
             "qsiFindingKey/v1": "d4e92d46483333bc65c91ebe18abd36d"
           },
           "properties": {
-            "qsiId": "QSI-2026-41731",
+            "qsiId": "QSI-2026-47673",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1235,7 +1150,7 @@
             "qsiFindingKey/v1": "6a551023076f49b9ca91f15c6c05bb89"
           },
           "properties": {
-            "qsiId": "QSI-2026-41732",
+            "qsiId": "QSI-2026-47674",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1253,7 +1168,7 @@
             "qsiFindingKey/v1": "c7d4610e4869b79581a3597028ba6b74"
           },
           "properties": {
-            "qsiId": "QSI-2026-41734",
+            "qsiId": "QSI-2026-47676",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1262,7 +1177,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: проверка прошивки и загрузки (корень доверия) (3 файл(ов))"
@@ -1271,7 +1186,7 @@
             "qsiFindingKey/v1": "a40c69f2e897406891adf400d5d59cf8"
           },
           "properties": {
-            "qsiId": "QSI-2026-41684",
+            "qsiId": "QSI-2026-47626",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1280,7 +1195,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (1 файл(ов))"
@@ -1289,7 +1204,7 @@
             "qsiFindingKey/v1": "eea411a740e8c8ff6e16a6953594accc"
           },
           "properties": {
-            "qsiId": "QSI-2026-41687",
+            "qsiId": "QSI-2026-47629",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1298,7 +1213,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (16 файл(ов))"
@@ -1307,7 +1222,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41656",
+            "qsiId": "QSI-2026-47599",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1316,7 +1231,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (5 файл(ов))"
@@ -1325,7 +1240,7 @@
             "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
           },
           "properties": {
-            "qsiId": "QSI-2026-41686",
+            "qsiId": "QSI-2026-47628",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1334,7 +1249,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))"
@@ -1343,7 +1258,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-41689",
+            "qsiId": "QSI-2026-47631",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1352,7 +1267,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый Ed25519: подпись транзакций и сообщений (4 файл(ов))"
@@ -1361,7 +1276,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-41690",
+            "qsiId": "QSI-2026-47632",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1370,7 +1285,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: роль не определена (11 файл(ов))"
@@ -1379,7 +1294,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-41685",
+            "qsiId": "QSI-2026-47627",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1388,7 +1303,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый Ed25519: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))"
@@ -1397,7 +1312,7 @@
             "qsiFindingKey/v1": "0aba2e2bcd7b95bfa30682b0b2fddff5"
           },
           "properties": {
-            "qsiId": "QSI-2026-41688",
+            "qsiId": "QSI-2026-47630",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1415,7 +1330,7 @@
             "qsiFindingKey/v1": "6f42502cb5eeb8f316e35896e0476819"
           },
           "properties": {
-            "qsiId": "QSI-2026-41707",
+            "qsiId": "QSI-2026-47649",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1424,7 +1339,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 4,
           "level": "warning",
           "message": {
             "text": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности) (dependency: crates.io/crypto-bigint@0.5.5)"
@@ -1433,7 +1348,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-41703",
+            "qsiId": "QSI-2026-47645",
             "severity": "medium",
             "confidence": "low",
             "classification": "confirmed_vulnerability",
@@ -1442,7 +1357,7 @@
         },
         {
           "ruleId": "CODE-INSECURE-RANDOM",
-          "ruleIndex": 7,
+          "ruleIndex": 5,
           "level": "warning",
           "message": {
             "text": "Некриптографический ГСЧ рядом с чувствительными идентификаторами в external/lvgl/docs/src/_static/jquery.js"
@@ -1451,7 +1366,7 @@
             "qsiFindingKey/v1": "796beec272ad3c31533edd8e0c252c12"
           },
           "properties": {
-            "qsiId": "QSI-2026-41696",
+            "qsiId": "QSI-2026-47638",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -1481,7 +1396,7 @@
             "qsiFindingKey/v1": "416f073a6395ba8c0315c3f6fec96810"
           },
           "properties": {
-            "qsiId": "QSI-2026-41708",
+            "qsiId": "QSI-2026-47650",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1499,7 +1414,7 @@
             "qsiFindingKey/v1": "b8b921ce82f7599553657d3deb2986c9"
           },
           "properties": {
-            "qsiId": "QSI-2026-41718",
+            "qsiId": "QSI-2026-47660",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1508,7 +1423,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 4,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "В стороннем коде в дереве: Квантово-уязвимый ключ ECDSA (secp256r1) в external/cryptoauthlib/app/pkcs11/README.md"
@@ -1517,7 +1432,7 @@
             "qsiFindingKey/v1": "18325be3c2badee3d6a8f34f44a68726"
           },
           "properties": {
-            "qsiId": "QSI-2026-41691",
+            "qsiId": "QSI-2026-47633",
             "severity": "info",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -1535,7 +1450,7 @@
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-41704",
+            "qsiId": "QSI-2026-47646",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1553,7 +1468,7 @@
             "qsiFindingKey/v1": "2ac8c159371cd6957a4d2f0c1eb519e1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41705",
+            "qsiId": "QSI-2026-47647",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -1562,7 +1477,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "В стороннем коде в дереве: Квантово-уязвимый MQV: обёртка ключей и шифрование хранимых данных (1 файл(ов))"
@@ -1571,7 +1486,7 @@
             "qsiFindingKey/v1": "6474819685492d9d71269b6befdbd1a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-41694",
+            "qsiId": "QSI-2026-47636",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1580,7 +1495,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "В стороннем коде в дереве: Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (2 файл(ов))"
@@ -1589,7 +1504,7 @@
             "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
           },
           "properties": {
-            "qsiId": "QSI-2026-41695",
+            "qsiId": "QSI-2026-47637",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1598,7 +1513,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "В стороннем коде в дереве: Квантово-уязвимый ECDH: роль не определена (4 файл(ов))"
@@ -1607,7 +1522,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-41692",
+            "qsiId": "QSI-2026-47634",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1616,7 +1531,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "В стороннем коде в дереве: Квантово-уязвимый Finite-field Diffie-Hellman: роль не определена (1 файл(ов))"
@@ -1625,7 +1540,7 @@
             "qsiFindingKey/v1": "bc674daf034cfd15b449b56eada92826"
           },
           "properties": {
-            "qsiId": "QSI-2026-41693",
+            "qsiId": "QSI-2026-47635",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1634,7 +1549,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "В стороннем коде в дереве: Квантово-уязвимый X25519: роль не определена (6 файл(ов))"
@@ -1643,7 +1558,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-41697",
+            "qsiId": "QSI-2026-47639",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -1652,7 +1567,7 @@
         },
         {
           "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 2,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
             "text": "В стороннем коде в дереве: Режим ECB блочного шифра в external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h"
@@ -1661,7 +1576,7 @@
             "qsiFindingKey/v1": "8998a74e6b7e917173dd3e8b99c86802"
           },
           "properties": {
-            "qsiId": "QSI-2026-41698",
+            "qsiId": "QSI-2026-47640",
             "severity": "info",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -1682,7 +1597,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "anyhow 1.0.31 затронут RUSTSEC-2026-0190 (без оценки серьёзности) (dependency: crates.io/anyhow@1.0.31)"
@@ -1691,7 +1606,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41701",
+            "qsiId": "QSI-2026-47643",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1700,7 +1615,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 6,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "anyhow 1.0.75 затронут RUSTSEC-2026-0190 (без оценки серьёзности) (dependency: crates.io/anyhow@1.0.75)"
@@ -1709,7 +1624,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41706",
+            "qsiId": "QSI-2026-47648",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1718,7 +1633,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 8,
+          "ruleIndex": 7,
           "level": "note",
           "message": {
             "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
@@ -1727,7 +1642,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-41700",
+            "qsiId": "QSI-2026-47642",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -1736,7 +1651,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-INFORMATIONAL",
-          "ruleIndex": 9,
+          "ruleIndex": 8,
           "level": "note",
           "message": {
             "text": "bare-metal 0.2.5: информационный бюллетень RUSTSEC-2026-0110 (unmaintained) (dependency: crates.io/bare-metal@0.2.5)"
@@ -1745,7 +1660,7 @@
             "qsiFindingKey/v1": "7442b1c54fc03c4c83f5aba63caf750d"
           },
           "properties": {
-            "qsiId": "QSI-2026-41702",
+            "qsiId": "QSI-2026-47644",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -1754,13 +1669,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/bitbox02-firmware @ ae548ef4e40f/0708b213-a921-4ce6-b5db-a13bc23cad4d"
+        "id": "qsi/bitbox02-firmware @ ae548ef4e40f/11c5dd17-be13-49c1-ab08-ec5daa6bdec8"
       },
       "properties": {
-        "qsiContentSha256": "d70b70400b5df563a8d64aff055bbad3aa0ba4b26b441dc5e9756305cb1d8d28",
+        "qsiContentSha256": "3c15c332f111c3202a8391107187bbb143d90553a83e8304dba3b4059c69fb24",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T12:12:24.969108+00:00",
+        "qsiGeneratedAt": "2026-11-24T10:16:59.616699+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

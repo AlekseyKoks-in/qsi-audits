@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: aptos-core @ 81d89f428fe8
 
-*One-page brief* · Reviewed: 2026-11-23 13:49 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Aptos Labs — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-24 12:02 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Aptos Labs — public repository (passive review)
 
 Source: https://github.com/aptos-labs/aptos-core/tree/81d89f428fe8e4b69d53b4916993e9a930afc37c
 
@@ -12,13 +12,13 @@ Source: https://github.com/aptos-labs/aptos-core/tree/81d89f428fe8e4b69d53b49169
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-44065) · *preliminary*\
+1. **Medium** · Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-49977) · *preliminary*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-2. **Medium** · Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s)) (QSI-2026-44062) · *preliminary*\
+2. **Medium** · Quantum-vulnerable BLS12-381: transaction and message signing (4 file(s)) (QSI-2026-49974) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (10 file(s)) (QSI-2026-44063) · *preliminary*\
+3. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (10 file(s)) (QSI-2026-49975) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-4. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (3 file(s)) (QSI-2026-44066) · *preliminary*\
+4. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (3 file(s)) (QSI-2026-49978) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
 
 6 more in the full report.
@@ -36,7 +36,7 @@ Source: https://github.com/aptos-labs/aptos-core/tree/81d89f428fe8e4b69d53b49169
 
 Static review of source code and manifests; files analysed: 336. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `b7a7dc4c731404676151f2d73f6db5c6d0e609baf47398e68952c4d8896584ea`
+Full report, content SHA-256: `92a5d00f642106ef4521894ba02b2b0a048a6a1847f52c3f1848e345ec0e052b`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

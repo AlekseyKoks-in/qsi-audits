@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 14:10 UTC |
+| Report date | 2026-11-24 12:29 UTC |
 | Report version | 1 |
-| Audit run | c985c5c9-ede6-4e51-94c7-204dcc5b6410 (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | 208bd147-7985-4479-ba51-18a41bf67470 (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Web3 project |
-| Content SHA-256 | `6c80fbf6ef1fde2e9b4ec20bc59ab9c5a4d6c204de73c4f1183def1a8b838901` |
+| Content SHA-256 | `f8dff8a3487151c9960f43793e556d0c583460b867ea88dd687cdab0cacafcbb` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -50,10 +50,10 @@ Repository: <https://github.com/ripple/validator-keys-tool> @ `4c0fb75eec9601c71
 
 | Area | Status | Detail |
 |---|---|---|
-| source_code | checked | src/ValidatorKeys.cpp: 294 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | checked | src/ValidatorKeys.h: 162 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | checked | src/ValidatorKeysTool.cpp: 471 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | checked | src/ValidatorKeysTool.h: 30 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | src/ValidatorKeys.cpp: 294 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | checked | src/ValidatorKeys.h: 162 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | checked | src/ValidatorKeysTool.cpp: 471 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | checked | src/ValidatorKeysTool.h: 30 lines scanned with 17 rule patterns and 340 registry patterns |
 | entropy | checked | random-number generation: 4 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 
 ## 4. Assets examined and not examined
@@ -71,13 +71,13 @@ Static review of the source tree xrpl-validator-keys-tool at 4c0fb75eec9601c7116
 
 ## 7. Detailed findings
 
-### QSI-2026-44411 — Quantum-vulnerable ECDSA: role not determined (1 file(s))
+### QSI-2026-50324 — Quantum-vulnerable ECDSA: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: src/ValidatorKeys.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:29 UTC
 - Priority score: 31.7 / 100
 - CVSS v3.1: not applicable
 
@@ -107,13 +107,13 @@ _file_excerpt · [src/ValidatorKeys.h](https://github.com/ripple/validator-keys-
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44412 — Quantum-vulnerable Ed25519: role not determined (1 file(s))
+### QSI-2026-50325 — Quantum-vulnerable Ed25519: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: src/ValidatorKeysTool.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:10 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:29 UTC
 - Priority score: 31.7 / 100
 - CVSS v3.1: not applicable
 
@@ -176,7 +176,7 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **role not determined** | ECDSA (1), Ed25519 (1) | QSI-2026-44411, QSI-2026-44412 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **role not determined** | ECDSA (1), Ed25519 (1) | QSI-2026-50324, QSI-2026-50325 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -209,10 +209,10 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-44411 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44412 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-44411 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44412 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-50324 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50325 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-50324 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50325 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -220,19 +220,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents

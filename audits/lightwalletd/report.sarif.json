@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CERT-QV-KEY",
@@ -64,7 +64,7 @@
               "id": "DEP-ADVISORY-UNRATED",
               "name": "DepAdvisoryUnrated",
               "shortDescription": {
-                "text": "golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности)"
+                "text": "golang.org/x/net v0.58.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности)"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -78,12 +78,12 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.58.1-0.20261009181718-2f1f834330b2). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет…"
+                "text": "OSV.dev сообщает GO-2026-6603 (CVE-2026-78659) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. govulncheck проследил вызов из кода продукта до затронутого кода: github.com/zcash/lightwalletd/frontend.DarksideStreamer.StageTransactionsStream → golang.org/x/net/http2.duplicatePseudoHeaderError.Error. Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость определил govulncheck@v1.9.0 по базе уязвимостей Go от 2026-11-23: граф вызовов от пакетов продукта (без тестов, примеров и бенчмарков) через все зависимости до затронутых функций. Вызовы через рефлексию, unsafe-указатели и ассемблер не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.58.1-0.20261009181718-2f1f834330b2). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые."
+                "text": "OSV.dev сообщает GO-2026-6603 (CVE-2026-78659) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. govulncheck проследил вызов из кода продукта до затронутого кода: github.com/zcash/lightwalletd/frontend.DarksideStreamer.StageTransactionsStream → golang.org/x/net/http2.duplicatePseudoHeaderError.Error. Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость определил govulncheck@v1.9.0 по базе уязвимостей Go от 2026-11-23: граф вызовов от пакетов продукта (без тестов, примеров и бенчмарков) через все зависимости до затронутых функций. Вызовы через рефлексию, unsafe-указатели и ассемблер не прослеживаются."
               },
-              "helpUri": "https://osv.dev/vulnerability/GO-2026-5932"
+              "helpUri": "https://osv.dev/vulnerability/GO-2026-6603"
             },
             {
               "id": "KEY-PRIVATE-IN-INPUT",
@@ -125,7 +125,7 @@
             "qsiFindingKey/v1": "77376b17760f0bd734d35835f428f011"
           },
           "properties": {
-            "qsiId": "QSI-2026-42230",
+            "qsiId": "QSI-2026-48171",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -155,7 +155,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-42228",
+            "qsiId": "QSI-2026-48169",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -167,15 +167,15 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.55.0)"
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
-            "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
+            "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
           },
           "properties": {
-            "qsiId": "QSI-2026-42231",
+            "qsiId": "QSI-2026-48175",
             "severity": "low",
-            "confidence": "low",
+            "confidence": "high",
             "classification": "known_vulnerable_component",
             "security-severity": "3.0"
           },
@@ -186,7 +186,127 @@
                   "uri": "go.mod"
                 },
                 "region": {
-                  "startLine": 53
+                  "startLine": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-48176",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "go.mod"
+                },
+                "region": {
+                  "startLine": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-48177",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "go.mod"
+                },
+                "region": {
+                  "startLine": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-48178",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "go.mod"
+                },
+                "region": {
+                  "startLine": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-48179",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "go.mod"
+                },
+                "region": {
+                  "startLine": 54
                 }
               }
             }
@@ -203,7 +323,7 @@
             "qsiFindingKey/v1": "f820eb2fee5050a6c79b4f50f505762a"
           },
           "properties": {
-            "qsiId": "QSI-2026-42229",
+            "qsiId": "QSI-2026-48170",
             "severity": "info",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -227,13 +347,43 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
+            "text": "golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.55.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-48172",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "go.mod"
+                },
+                "region": {
+                  "startLine": 53
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
             "text": "golang.org/x/crypto v0.55.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.55.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "79a4e71ca0cc9cb4bf47ce78bf674bdc"
           },
           "properties": {
-            "qsiId": "QSI-2026-42232",
+            "qsiId": "QSI-2026-48173",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -263,7 +413,7 @@
             "qsiFindingKey/v1": "c8622f739268e0accd76421999e40824"
           },
           "properties": {
-            "qsiId": "QSI-2026-42233",
+            "qsiId": "QSI-2026-48174",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -287,163 +437,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-42234",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "go.mod"
-                },
-                "region": {
-                  "startLine": 54
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 2,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-42235",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "go.mod"
-                },
-                "region": {
-                  "startLine": 54
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 2,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-42236",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "go.mod"
-                },
-                "region": {
-                  "startLine": 54
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 2,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-42237",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "go.mod"
-                },
-                "region": {
-                  "startLine": 54
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 2,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-42238",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "go.mod"
-                },
-                "region": {
-                  "startLine": 54
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 2,
-          "level": "note",
-          "message": {
             "text": "golang.org/x/net v0.58.0 затронут GO-2026-6860 (CVE-2026-78661) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
           },
           "properties": {
-            "qsiId": "QSI-2026-42239",
+            "qsiId": "QSI-2026-48180",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -473,7 +473,7 @@
             "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
           },
           "properties": {
-            "qsiId": "QSI-2026-42240",
+            "qsiId": "QSI-2026-48181",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -494,13 +494,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/lightwalletd @ 4abfe9cd7b9b/9f3c222e-7158-477e-a5d7-5ee96c500016"
+        "id": "qsi/lightwalletd @ 4abfe9cd7b9b/de674d2a-55c9-4423-8d57-d272cf072cb5"
       },
       "properties": {
-        "qsiContentSha256": "abf16677352a939d2f90ad1645ffa1c55f71b533e3809f4f8d5d2f78929d576b",
+        "qsiContentSha256": "064501f87c2d15bd1548e3b6ba8a618beccb0153a68b8ec91f6e1ab286182dfb",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T12:39:01.335641+00:00",
+        "qsiGeneratedAt": "2026-11-24T10:43:55.355551+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

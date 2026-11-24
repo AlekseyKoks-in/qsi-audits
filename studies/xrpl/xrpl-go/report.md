@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 14:05 UTC |
+| Report date | 2026-11-24 12:23 UTC |
 | Report version | 1 |
-| Audit run | 1616e6a4-3b74-4e9d-a39a-f5059eddd2d3 (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | d0ec19fe-029d-4de5-b315-e8a92baf2623 (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Web3 project |
-| Content SHA-256 | `45a33e87c2d61c676a91f30558f03682a44b17a171ce8745b362e065e9c9ed89` |
+| Content SHA-256 | `f9db4079968b71a485ee3267c4405c7e7d0a37423da25741100e5100741b87e8` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -19,10 +19,10 @@
 - High: **0**
 - Medium: **4**
 - Low: **4**
-- Info: **2**
+- Info: **3**
 
 - Confirmed technical vulnerability: 0
-- Known vulnerable component: 1
+- Known vulnerable component: 2
 - Confirmed configuration error: 0
 - Potential cryptographic risk: 0
 - Long-term post-quantum risk: 7
@@ -45,11 +45,13 @@ Repository: <https://github.com/XRPLF/xrpl-go> @ `23275f007b4758e82809f51d1e4ec3
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 508 | .agents/skills/xrpl-standards/scripts/extract-spec.py: 316 lines scanned with 16 rule patterns and 340 registry patterns; .agents/skills/xrpl-standards/scripts/sync-xls-standards.py: 381 lines scanned with 16 rule patterns and 340 registry patterns; address-codec/address.go: 73 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 508 | .agents/skills/xrpl-standards/scripts/extract-spec.py: 316 lines scanned with 17 rule patterns and 340 registry patterns; .agents/skills/xrpl-standards/scripts/sync-xls-standards.py: 381 lines scanned with 17 rule patterns and 340 registry patterns; address-codec/address.go: 73 lines scanned with 17 rule patterns and 340 registry patterns |
 | dependencies | checked | 4 | confidential/go.mod: 17 dependencies parsed (17 pinned); docs/package.json: 12 dependencies parsed (0 pinned); docs/yarn.lock: 1205 dependencies parsed (1205 pinned) |
 | entropy | checked | 1 | random-number generation: 508 code files read with 42 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| crediting | checked | 1 | payment crediting: 120 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
-| osv_advisories | checked | 1 | 1225 pinned packages queried at OSV.dev; 2 affected (1 of them only in development or build dependencies) |
+| crediting | checked | 1 | payment crediting: 120 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node, 0 from fetched Solana transactions; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (a KMS, HSM or vault service is used); author warnings: 0 |
+| govulncheck | checked | 1 | govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: 2 of 2 Go module(s) scanned from their product packages |
+| osv_advisories | checked | 1 | 1225 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies) |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -68,13 +70,13 @@ Static review of the source tree xrpl-go at 23275f007b4758e82809f51d1e4ec3c5efb2
 
 ## 7. Detailed findings
 
-### QSI-2026-44366 — Quantum-vulnerable ECDSA: transaction and message signing (9 file(s))
+### QSI-2026-50278 — Quantum-vulnerable ECDSA: transaction and message signing (9 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: address-codec/codec.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 33.0 / 100
 - CVSS v3.1: not applicable
 
@@ -176,13 +178,13 @@ _file_excerpt · [confidential/builder/errors.go](https://github.com/XRPLF/xrpl-
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44368 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (5 file(s))
+### QSI-2026-50280 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (5 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Pedersen commitment:threshold_mpc`
 - Data source: confidential/commitment/commitment.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 33.0 / 100
 - CVSS v3.1: not applicable
 
@@ -268,13 +270,13 @@ _file_excerpt · [confidential/mptcrypto/mptcrypto_nocgo.go](https://github.com/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44367 — Quantum-vulnerable ECDSA: role not determined (6 file(s))
+### QSI-2026-50279 — Quantum-vulnerable ECDSA: role not determined (6 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: confidential/builder/convert.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 31.7 / 100
 - CVSS v3.1: not applicable
 
@@ -376,13 +378,13 @@ _file_excerpt · [confidential/deps/include/utility/mpt_utility.h](https://githu
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44371 — Quantum-vulnerable Ed25519: role not determined (1 file(s))
+### QSI-2026-50283 — Quantum-vulnerable Ed25519: role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Ed25519:general`
 - Data source: pkg/crypto/ed25519.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 31.7 / 100
 - CVSS v3.1: not applicable
 
@@ -428,13 +430,47 @@ _file_excerpt · [pkg/crypto/ed25519.go](https://github.com/XRPLF/xrpl-go/blob/2
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44369 — Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (4 file(s))
+### QSI-2026-50286 — github.com/gorilla/websocket v1.5.3 is affected by GO-2026-6278 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: High · _preliminary — requires further verification_
+- Affected asset: `dependency:Go/github.com/gorilla/websocket@v1.5.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:23 UTC
+- Priority score: 30.6 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GO-2026-6278 for Go package github.com/gorilla/websocket at version v1.5.3: Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key in github.com/gorilla/websocket. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: github.com/Peersyst/xrpl-go/xrpl/websocket.Connection.Connect → … → github.com/gorilla/websocket.Dialer.DialContext.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GO-2026-6278
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GO-2026-6278](https://osv.dev/vulnerability/GO-2026-6278) · line 16 · SHA-256 b256e646804db265695055ae8cfbaf2aff7c9b104af4ea0fce0ccd6cb16153e7_
+
+```
+{"id": "GO-2026-6278", "aliases": ["GHSA-w67g-5rqw-f597"], "modified": "2026-11-23T20:30:10.450913632Z", "summary": "Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key in github.com/gorilla/websocket", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (1.5.1, 1.5.4-0.20240701034025-d67f41855da4) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-50281 — Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (4 file(s))
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:EC-ElGamal:key_wrapping`
 - Data source: confidential/deps/include/bsgs_dlp.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 27.9 / 100
 - CVSS v3.1: not applicable
 
@@ -536,13 +572,13 @@ _file_excerpt · [confidential/mptcrypto/mptcrypto_cgo.go](https://github.com/XR
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44372 — Quantum-vulnerable ElGamal: key wrapping and data encryption at rest (1 file(s))
+### QSI-2026-50284 — Quantum-vulnerable ElGamal: key wrapping and data encryption at rest (1 file(s))
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ElGamal:key_wrapping`
 - Data source: xrpl/transaction/errors.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 27.9 / 100
 - CVSS v3.1: not applicable
 
@@ -588,13 +624,13 @@ _file_excerpt · [xrpl/transaction/errors.go](https://github.com/XRPLF/xrpl-go/b
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44370 — Quantum-vulnerable EC-ElGamal: role not determined (1 file(s))
+### QSI-2026-50282 — Quantum-vulnerable EC-ElGamal: role not determined (1 file(s))
 
 - Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:EC-ElGamal:general`
 - Data source: confidential/mptcrypto/sizes_cgo.go
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 25.2 / 100
 - CVSS v3.1: not applicable
 
@@ -624,17 +660,17 @@ _file_excerpt · [confidential/mptcrypto/sizes_cgo.go](https://github.com/XRPLF/
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-44374 — golang.org/x/crypto v0.56.0 is affected by GO-2026-5932 (no severity rating)
+### QSI-2026-50287 — golang.org/x/crypto v0.56.0 is affected by GO-2026-5932 (no severity rating)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
 - Affected asset: `dependency:Go/golang.org/x/crypto@v0.56.0`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 14:05 UTC
-- Priority score: 18.4 / 100
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:23 UTC
+- Priority score: 15.3 / 100
 - CVSS v3.1: not applicable
 
-OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.56.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.56.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The product's build includes golang.org/x/crypto, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code.
 
 **Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
 
@@ -646,25 +682,25 @@ curl -s https://api.osv.dev/v1/vulns/GO-2026-5932
 
 **Evidence.**
 
-_tool_output · [OSV.dev GO-2026-5932](https://osv.dev/vulnerability/GO-2026-5932) · line 24 · SHA-256 79b7a13fb7767fbace049b5199d913b96ffabce881fc497fd2222d40644da151_
+_tool_output · [OSV.dev GO-2026-5932](https://osv.dev/vulnerability/GO-2026-5932) · line 24 · SHA-256 7567598e736f75fe8f2c913606229875f197cdfc5e798ba52e2dfa3ab75088b4_
 
 ```
-{"id": "GO-2026-5932", "aliases": [], "modified": "2026-11-02T22:15:06.677088389Z", "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues", "severity": null, "declared_in_manifest": true}
+{"id": "GO-2026-5932", "aliases": [], "modified": "2026-11-02T22:15:06.677088389Z", "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones.
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed.
 
 **Recommendation.** Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies.
 
 **Retest procedure.** Re-run the dependency scan after upgrading.
 
-### QSI-2026-44375 — 1 advisories in 1 development or build-only npm package(s)
+### QSI-2026-50288 — 1 advisories in 1 development or build-only npm package(s)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `dependencies:npm:non-runtime`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch lookup of exact versions; scope from devDependencies, package-lock.json dev flags, pnpm importers sections, the Cargo.lock graph rooted at the Cargo.toml tables, and — for yarn.lock, which records no scope — the lock graph walked from package.json. Where a runtime requirement cannot be resolved in a lock, that lock is left unclassified rather than risking a package being set aside wrongly.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 13.7 / 100
 - CVSS v3.1: not applicable
 
@@ -692,13 +728,13 @@ webpack-dev-middleware@7.4.5 [build]: GHSA-g84c-rxfj-3j2c
 
 **Retest procedure.** Re-run the dependency scan after updating.
 
-### QSI-2026-44373 — No post-quantum capable cryptographic library detected
+### QSI-2026-50285 — No post-quantum capable cryptographic library detected
 
 - Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `dependencies`
 - Data source: dependency manifests
 - Detection method: Dependency name matching.
-- Analyzer: dependencies 1.16.2 · 2026-11-23 14:05 UTC
+- Analyzer: dependencies 1.20.0 · 2026-11-24 12:23 UTC
 - Priority score: 12.2 / 100
 - CVSS v3.1: not applicable
 
@@ -761,10 +797,10 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **key wrapping and data encryption at rest** | EC-ElGamal (4), ElGamal (1) | QSI-2026-44369, QSI-2026-44372 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **threshold signing and MPC protocols** | Pedersen commitment (5) | QSI-2026-44368 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
-| **transaction and message signing** | ECDSA (9) | QSI-2026-44366 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | ECDSA (6), EC-ElGamal (1), Ed25519 (1) | QSI-2026-44367, QSI-2026-44370, QSI-2026-44371 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | EC-ElGamal (4), ElGamal (1) | QSI-2026-50281, QSI-2026-50284 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **threshold signing and MPC protocols** | Pedersen commitment (5) | QSI-2026-50280 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
+| **transaction and message signing** | ECDSA (9) | QSI-2026-50278 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | ECDSA (6), EC-ElGamal (1), Ed25519 (1) | QSI-2026-50279, QSI-2026-50282, QSI-2026-50283 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -796,26 +832,27 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-44374 | Triage GO-2026-5932; upgrade golang.org/x/crypto to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5932, or the triage is recorded. |
+| P3 | QSI-2026-50286 | Triage GO-2026-6278; upgrade github.com/gorilla/websocket to a fixed version (1.5.1, 1.5.4-0.20240701034025-d67f41855da4) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-6278, or the triage is recorded. |
+| P3 | QSI-2026-50287 | Triage GO-2026-5932; upgrade golang.org/x/crypto to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-5932, or the triage is recorded. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-44366 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44368 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44367 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44371 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44369 | Add EC-ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44372 | Add ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-44370 | Add EC-ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-44366 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44368 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-44367 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44371 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-44369 | Plan migration of EC-ElGamal to NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use. |
-| P4 | QSI-2026-44372 | Plan migration of ElGamal to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-44370 | Plan migration of EC-ElGamal to NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use. |
-| P4 | QSI-2026-44375 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
+| P3 | QSI-2026-50278 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50280 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50279 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50283 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50281 | Add EC-ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50284 | Add ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-50282 | Add EC-ElGamal usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-50278 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50280 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-50279 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50283 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-50281 | Plan migration of EC-ElGamal to NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use. |
+| P4 | QSI-2026-50284 | Plan migration of ElGamal to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-50282 | Plan migration of EC-ElGamal to NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use. |
+| P4 | QSI-2026-50288 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
 
 ## 11. Tools used
 
@@ -823,19 +860,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -861,10 +899,11 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 21. OSV advisory GO-2026-5932 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-5932> (modified 2026-11-02T22:15:06.677088389Z)
-22. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-23. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-24. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-25. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+22. OSV advisory GO-2026-6278 — OSV.dev. <https://osv.dev/vulnerability/GO-2026-6278> (modified 2026-11-23T20:30:10.450913632Z)
+23. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+24. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+25. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+26. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Appendices: Cryptographic inventory
 

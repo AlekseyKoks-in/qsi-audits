@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -39,7 +39,7 @@
               "id": "DEP-ADVISORY-UNRATED",
               "name": "DepAdvisoryUnrated",
               "shortDescription": {
-                "text": "golang.org/x/crypto v0.56.0 is affected by GO-2026-5932 (no severity rating)"
+                "text": "github.com/gorilla/websocket v1.5.3 is affected by GO-2026-6278 (no severity rating)"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -53,12 +53,12 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.56.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package…"
+                "text": "OSV.dev reports GO-2026-6278 for Go package github.com/gorilla/websocket at version v1.5.3: Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key in github.com/gorilla/websocket. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: github.com/Peersyst/xrpl-go/xrpl/websocket.Connection.Connect → … → github.com/gorilla/websocket.Dialer.DialContext. Triage the advisory; upgrade to a fixed version (1.5.1, 1.5.4-0.20240701034025-d67f41855da4) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly ar…"
               },
               "help": {
-                "text": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.56.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.58.1-0.20261009181718-2f1f834330b2) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
+                "text": "OSV.dev reports GO-2026-6278 for Go package github.com/gorilla/websocket at version v1.5.3: Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key in github.com/gorilla/websocket. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. govulncheck traced a call from the product code to the affected code: github.com/Peersyst/xrpl-go/xrpl/websocket.Connection.Connect → … → github.com/gorilla/websocket.Dialer.DialContext. Triage the advisory; upgrade to a fixed version (1.5.1, 1.5.4-0.20240701034025-d67f41855da4) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
               },
-              "helpUri": "https://osv.dev/vulnerability/GO-2026-5932"
+              "helpUri": "https://osv.dev/vulnerability/GO-2026-6278"
             },
             {
               "id": "DEP-ADVISORY-DEV",
@@ -125,7 +125,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-44366",
+            "qsiId": "QSI-2026-50278",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -143,7 +143,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-44368",
+            "qsiId": "QSI-2026-50280",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -161,7 +161,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-44367",
+            "qsiId": "QSI-2026-50279",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -179,11 +179,29 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-44371",
+            "qsiId": "QSI-2026-50283",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
             "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "github.com/gorilla/websocket v1.5.3 is affected by GO-2026-6278 (no severity rating) (dependency: Go/github.com/gorilla/websocket@v1.5.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2fb782e656929b4310e5ca4cee28e71f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50286",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
           }
         },
         {
@@ -197,7 +215,7 @@
             "qsiFindingKey/v1": "efdc4d587b2d71d3dce86b3cee0780ad"
           },
           "properties": {
-            "qsiId": "QSI-2026-44369",
+            "qsiId": "QSI-2026-50281",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -215,7 +233,7 @@
             "qsiFindingKey/v1": "0904b31236bfd574348786617dde92ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-44372",
+            "qsiId": "QSI-2026-50284",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -233,7 +251,7 @@
             "qsiFindingKey/v1": "fa34198662ed4654d505a0eac8a789b5"
           },
           "properties": {
-            "qsiId": "QSI-2026-44370",
+            "qsiId": "QSI-2026-50282",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -251,11 +269,11 @@
             "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
           },
           "properties": {
-            "qsiId": "QSI-2026-44374",
-            "severity": "low",
+            "qsiId": "QSI-2026-50287",
+            "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
+            "security-severity": "1.0"
           }
         },
         {
@@ -269,7 +287,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-44375",
+            "qsiId": "QSI-2026-50288",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -296,7 +314,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-44373",
+            "qsiId": "QSI-2026-50285",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -305,13 +323,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/xrpl-go @ 23275f007b47/1616e6a4-3b74-4e9d-a39a-f5059eddd2d3"
+        "id": "qsi/xrpl-go @ 23275f007b47/d0ec19fe-029d-4de5-b315-e8a92baf2623"
       },
       "properties": {
-        "qsiContentSha256": "45a33e87c2d61c676a91f30558f03682a44b17a171ce8745b362e065e9c9ed89",
+        "qsiContentSha256": "f9db4079968b71a485ee3267c4405c7e7d0a37423da25741100e5100741b87e8",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "web3",
-        "qsiGeneratedAt": "2026-11-23T14:05:41.993972+00:00",
+        "qsiGeneratedAt": "2026-11-24T12:23:20.304880+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

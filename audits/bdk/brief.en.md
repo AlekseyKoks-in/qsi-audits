@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: bdk @ f2528da88b10
 
-*One-page brief* · Reviewed: 2026-11-23 12:00 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Bitcoin Dev Kit — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-24 10:03 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Bitcoin Dev Kit — public repository (passive review)
 
 Source: https://github.com/bitcoindevkit/bdk/tree/f2528da88b1041bdddf547d677511aea19ad3573
 
@@ -12,7 +12,7 @@ Source: https://github.com/bitcoindevkit/bdk/tree/f2528da88b1041bdddf547d677511a
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) (QSI-2026-41574) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) (QSI-2026-47520) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
 
 ## What the quantum-vulnerable cryptography protects
@@ -25,7 +25,7 @@ Source: https://github.com/bitcoindevkit/bdk/tree/f2528da88b1041bdddf547d677511a
 
 Static review of source code and manifests; files analysed: 44. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `ab91a0e5611b2bbae97e5f3303335fac69fc21d1bcadad4760c8cbfa6ea4d3c7`
+Full report, content SHA-256: `de46d3ef5f611b56a13238bd05e4f20503a57f6941cee9312cffa9d26aca213f`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-23 13:34 UTC |
+| Дата отчёта | 2026-11-24 11:44 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | ed889fb3-fb5b-45b5-ab8e-6df1a31f79de (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.16.2 |
+| Запуск аудита | 3dfe4541-dfa3-47ab-8edd-177bb9011c13 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.20.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `03f53100a07a22216c9664f39bf52e03303e0976ffa384d3447fdaf0781403b4` |
+| SHA-256 содержимого | `867d12a07101c2858aaa116a9f0acf3cac1a5dd6ec7173cdf9d24a18e52988b7` |
 | Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -45,10 +45,11 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 1599 | app/build.gradle.kts: 393 lines scanned with 16 rule patterns and 340 registry patterns; app/src/main/java/co/electriccoin/zcash/app/CoroutineApplication.kt: 21 lines scanned with 16 rule patterns and 340 registry patterns; app/src/main/java/co/electriccoin/zcash/app/ZcashApplication.kt: 167 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | 1599 | app/build.gradle.kts: 393 lines scanned with 17 rule patterns and 340 registry patterns; app/src/main/java/co/electriccoin/zcash/app/CoroutineApplication.kt: 21 lines scanned with 17 rule patterns and 340 registry patterns; app/src/main/java/co/electriccoin/zcash/app/ZcashApplication.kt: 167 lines scanned with 17 rule patterns and 340 registry patterns |
 | dependencies | проверено | 10 | build-conventions-secant/gradle.lockfile: 189 dependencies parsed (189 pinned); build-info-lib/gradle.lockfile: 49 dependencies parsed (49 pinned); buildSrc/buildscript-gradle.lockfile: 27 dependencies parsed (27 pinned) |
 | entropy | проверено | 1 | random-number generation: 1567 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
-| crediting | проверено | 1 | payment crediting: 0 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| crediting | проверено | 1 | payment crediting: 0 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node, 0 from fetched Solana transactions; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| key_storage | проверено | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (a KMS, HSM or vault service is used); author warnings: 0 |
 | osv_advisories | проверено | 1 | 340 pinned packages queried at OSV.dev; 16 affected (16 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -68,13 +69,13 @@ Static review of the source tree zodl-android at 229dd3bff7490ea90ca4d7d79f3c539
 
 ## 7. Подробное описание находок
 
-### QSI-2026-43945 — Квантово-уязвимый RedDSA: подпись транзакций и сообщений (3 файл(ов))
+### QSI-2026-49857 — Квантово-уязвимый RedDSA: подпись транзакций и сообщений (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RedDSA:transaction_signing`
 - Источник данных: feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.16.2 · 2026-11-23 13:34 UTC
+- Анализатор: source_code 1.20.0 · 2026-11-24 11:44 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -136,13 +137,13 @@ _file_excerpt · [feature-voting/src/main/java/co/electriccoin/zcash/ui/common/r
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-43947 — 53 бюллетеней в 16 пакет(ах) Maven, нужных только для разработки или сборки
+### QSI-2026-49859 — 53 бюллетеней в 16 пакет(ах) Maven, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:Maven:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 13:34 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 11:44 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -185,13 +186,13 @@ org.jetbrains.kotlin:kotlin-gradle-plugin@2.3.10 [build]: GHSA-r937-wjx7-w2jp
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-43946 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-49858 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 13:34 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 11:44 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -252,7 +253,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | RedDSA (3) | QSI-2026-43945 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **подпись транзакций и сообщений** | RedDSA (3) | QSI-2026-49857 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -287,9 +288,9 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-43945 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-43945 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-43947 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-49857 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-49857 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-49859 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -297,19 +298,20 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы

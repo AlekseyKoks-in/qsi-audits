@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "3333045da80f49858374182c3850b1c1"
           },
           "properties": {
-            "qsiId": "QSI-2026-43945",
+            "qsiId": "QSI-2026-49857",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "6f89f0407e6a493a1e36119717c018de"
           },
           "properties": {
-            "qsiId": "QSI-2026-43947",
+            "qsiId": "QSI-2026-49859",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -145,7 +145,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-43946",
+            "qsiId": "QSI-2026-49858",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -154,13 +154,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/zodl-android @ 229dd3bff749/ed889fb3-fb5b-45b5-ab8e-6df1a31f79de"
+        "id": "qsi/zodl-android @ 229dd3bff749/3dfe4541-dfa3-47ab-8edd-177bb9011c13"
       },
       "properties": {
-        "qsiContentSha256": "03f53100a07a22216c9664f39bf52e03303e0976ffa384d3447fdaf0781403b4",
+        "qsiContentSha256": "867d12a07101c2858aaa116a9f0acf3cac1a5dd6ec7173cdf9d24a18e52988b7",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:34:37.384133+00:00",
+        "qsiGeneratedAt": "2026-11-24T11:44:43.164416+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

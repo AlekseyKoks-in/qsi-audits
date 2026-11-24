@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
             {
               "id": "KEY-QV-PUBLIC",
@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "2d44bf907c8f8deae06fb74e8260bfca"
           },
           "properties": {
-            "qsiId": "QSI-2026-42115",
+            "qsiId": "QSI-2026-48056",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
           },
           "properties": {
-            "qsiId": "QSI-2026-42118",
+            "qsiId": "QSI-2026-48059",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -136,7 +136,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-42120",
+            "qsiId": "QSI-2026-48061",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -154,7 +154,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-42122",
+            "qsiId": "QSI-2026-48063",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -172,7 +172,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-42117",
+            "qsiId": "QSI-2026-48058",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -190,7 +190,7 @@
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-42119",
+            "qsiId": "QSI-2026-48060",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -208,7 +208,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-42121",
+            "qsiId": "QSI-2026-48062",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -226,7 +226,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-42116",
+            "qsiId": "QSI-2026-48057",
             "severity": "info",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -244,7 +244,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-42123",
+            "qsiId": "QSI-2026-48064",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -262,13 +262,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/libwally-core @ 374df231d054/93d9a3da-f135-48f1-b0b9-9fbabc435cdc"
+        "id": "qsi/libwally-core @ 374df231d054/e83a22db-c0a2-4894-82ac-ff3d3c079311"
       },
       "properties": {
-        "qsiContentSha256": "fe1856a10f4aead15595e62bf67a907c2508f02965a4e2fdc94fae3d7d5e13af",
+        "qsiContentSha256": "402a383f4f94b69039494b9526a783d421d4223ce959c54331bbfc6224a0a169",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T12:36:18.831328+00:00",
+        "qsiGeneratedAt": "2026-11-24T10:40:59.356229+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

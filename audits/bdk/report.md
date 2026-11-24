@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 12:00 UTC |
+| Report date | 2026-11-24 10:03 UTC |
 | Report version | 1 |
-| Audit run | 72746d51-9c60-462c-9f17-01be78ff10da (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | 4c2db004-a275-4d36-bf6f-48edb3b445d3 (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `ab91a0e5611b2bbae97e5f3303335fac69fc21d1bcadad4760c8cbfa6ea4d3c7` |
+| Content SHA-256 | `de46d3ef5f611b56a13238bd05e4f20503a57f6941cee9312cffa9d26aca213f` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -46,8 +46,9 @@ Repository: <https://github.com/bitcoindevkit/bdk> @ `f2528da88b1041bdddf547d677
 | Area | Status | Count | Examples |
 |---|---|---|---|
 | dependencies | checked | 7 | crates/bitcoind_rpc/Cargo.toml: 4 dependencies parsed (0 pinned); crates/chain/Cargo.toml: 9 dependencies parsed (0 pinned); crates/core/Cargo.toml: 5 dependencies parsed (0 pinned) |
-| source_code | checked | 37 | crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 340 registry patterns; crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 340 registry patterns; 137 lines in #[cfg(test)] modules ignored; crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 340 registry patterns; 38 lines in #[cfg(test)] modules ignored |
+| source_code | checked | 37 | crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 17 rule patterns and 340 registry patterns; crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 17 rule patterns and 340 registry patterns; 137 lines in #[cfg(test)] modules ignored; crates/chain/src/balance.rs: 105 lines scanned with 17 rule patterns and 340 registry patterns; 38 lines in #[cfg(test)] modules ignored |
 | entropy | checked | 1 | random-number generation: 37 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
 | osv_advisories | not checked | 1 | no exactly pinned versions to query |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -67,13 +68,13 @@ Static review of the source tree bdk at f2528da88b1041bdddf547d677511aea19ad3573
 
 ## 7. Detailed findings
 
-### QSI-2026-41574 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+### QSI-2026-47520 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: crates/chain/src/spk_iter.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 12:00 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 10:03 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -144,7 +145,7 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (1) | QSI-2026-41574 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **transaction and message signing** | ECDSA (1) | QSI-2026-47520 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -178,8 +179,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-41574 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-41574 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-47520 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-47520 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -187,19 +188,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents

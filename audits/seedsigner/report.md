@@ -4,34 +4,34 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 13:13 UTC |
+| Report date | 2026-11-24 11:22 UTC |
 | Report version | 1 |
-| Audit run | 62d5713a-9245-4a9d-86c5-448b32d6ebae (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | 647301d9-9755-4f93-ba26-5920588624da (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `8fc9b7bb7761544abdfc8a914eaf35ba015c777bfc500ed9d121ff65bb082bd3` |
+| Content SHA-256 | `56bf83fb5acdb1c11de32e15fb636ce9b74910de61615a8b421fbeb2a219fffc` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
-- High: **2**
+- High: **0**
 - Medium: **2**
 - Low: **0**
-- Info: **0**
+- Info: **1**
 
 - Confirmed technical vulnerability: 0
 - Known vulnerable component: 0
 - Confirmed configuration error: 0
-- Potential cryptographic risk: 2
+- Potential cryptographic risk: 1
 - Long-term post-quantum risk: 2
 - Improvement recommendation: 0
 - Insufficient data: 0
 
 Mosca's inequality (x + y > z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
 
-Analyst review: 1 confirmed, 0 not applicable, 0 dismissed as false positives.
+Analyst review: 1 confirmed, 1 not applicable, 1 dismissed as false positives.
 
 **Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
@@ -49,8 +49,9 @@ Repository: <https://github.com/SeedSigner/seedsigner> @ `ada81cde050e46c19cb6e3
 |---|---|---|---|
 | dependencies | checked | 5 | l10n/requirements-l10n.txt: 2 dependencies parsed (0 pinned); pyproject.toml: 0 dependencies parsed (0 pinned); requirements-raspi.txt: 4 dependencies parsed (4 pinned) |
 | certificates_and_keys | checked | 1 | seedsigner_pubkey.gpg: certificates/keys parsed |
-| source_code | checked | 70 | setup.py: 8 lines scanned with 16 rule patterns and 340 registry patterns; src/main.py: 53 lines scanned with 16 rule patterns and 340 registry patterns; src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 70 | setup.py: 8 lines scanned with 17 rule patterns and 340 registry patterns; src/main.py: 53 lines scanned with 17 rule patterns and 340 registry patterns; src/seedsigner/__init__.py: 0 lines scanned with 17 rule patterns and 340 registry patterns |
 | entropy | checked | 1 | random-number generation: 70 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 2 weak key-generation site(s) |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
 | osv_advisories | checked | 1 | 5 pinned packages queried at OSV.dev; 0 affected |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -65,77 +66,113 @@ Static review of the source tree seedsigner at ada81cde050e46c19cb6e3fa73872b739
 
 ## 6. Overall security posture
 
-- Indicative posture index: **86** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
+- Indicative posture index: **100** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
 - Quantum-vulnerable share of inventory: 33.3%
 
 ## 7. Detailed findings
 
-### QSI-2026-43603 — Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py
+### QSI-2026-49513 — Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg
 
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `src/seedsigner/views/seed_views.py:keygen`
-- Data source: src/seedsigner/views/seed_views.py
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: entropy 1.16.2 · 2026-11-23 13:13 UTC
-- Priority score: 38.8 / 100
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
+- Affected asset: `file:seedsigner_pubkey.gpg#line 1`
+- Data source: seedsigner_pubkey.gpg
+- Detection method: Public key parsing.
+- Analyzer: certificates 1.20.0 · 2026-11-24 11:22 UTC
+- Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
-'random.random(' at line 1284, within a few lines of 'mnemonic_list' (3 occurrence(s)).
+A RSA 3072-bit public key was found (line 1).
 
-**Potential impact.** Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.
+**Potential impact.** Long-term risk once a CRQC exists; for key exchange, recorded traffic could be decrypted retroactively.
 
 **Reproduction steps.**
 
 ```
-Open line 1284 in the supplied file src/seedsigner/views/seed_views.py and inspect the quoted lines (see evidence).
+Open line 1 in the supplied file seedsigner_pubkey.gpg and inspect the quoted lines (see evidence).
 ```
 
 **Evidence.**
 
-_file_excerpt · [src/seedsigner/views/seed_views.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1284) · line 1284 · SHA-256 d723de33db421cb83fece9c3e89e0ebba4d5ddc972fb2ae1e8abe90202b94cb8_
+_key · seedsigner_pubkey.gpg · line 1 · SHA-256 315636b2f7e00661811d8d8feee53223db00c9277ae1194dcaf9d4fb25bf6194_
 
 ```
- 1282 | 
- 1283 |         real_word = ButtonOptionWithoutTranslation(self.mnemonic_list[self.cur_index])
- 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
- 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
- 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+OpenPGP primary key: algorithm ID 1 (RSA) 3072-bit
 ```
 
-_file_excerpt · [src/seedsigner/views/seed_views.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1285) · line 1285 · SHA-256 caf93e3f449ccd2d13b25280a33505adffb00dc1fa21c1dc79755cf6ace9e077_
+_key · seedsigner_pubkey.gpg · line 1 · SHA-256 6ccbdce52e43463e8b282489a66bb4553923cec099cc342f213f584e97c81df4_
 
 ```
- 1283 |         real_word = ButtonOptionWithoutTranslation(self.mnemonic_list[self.cur_index])
- 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
- 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
- 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
- 1287 | 
+OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
 ```
 
-_file_excerpt · [src/seedsigner/views/seed_views.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1286) · line 1286 · SHA-256 4ecc0b33ab779205a0bf0403f83a00dd861f9c240c5b9828147db3879f503db7_
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability.
+
+**Recommendation.** Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Retest procedure.** Re-audit after migration.
+
+### QSI-2026-49514 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, and it is the only row of its kind because it is the only place SeedSigner touches the primitive itself: src/seedsigner/helpers/embit_utils.py:10, the wrapper around embit. Everything that signs is embit's, and embit is not in this tree. Three consequences worth stating rather than leaving implied. First, the honest reading of "1 Shor-breakable row" is "this repository delegates its signing", not "this device is nearly post-quantum". Second, the pin is exact and hash-locked (embit==0.8.0 with a sha256 --hash), so the audited exposure is a specific, reproducible artefact rather than a version range — which is what makes the delegation auditable at all, and is the opposite of a criticism. Third, the migration question for SeedSigner is therefore not "when will SeedSigner adopt a post-quantum signature" but "when will embit", and after that, "how fast can a hash-locked pin be moved" — which is a release away, not a redesign. Compare Krux, which pins the same library as a git submodule and so carries the same code inside its own tree: 98 rows and 64 Shor-breakable for the same cryptography, differing only in where it is kept.
+- Affected asset: `source-code:ECDSA:transaction_signing`
+- Data source: src/seedsigner/helpers/embit_utils.py
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:22 UTC
+- Priority score: 41.8 / 100
+- CVSS v3.1: not applicable
+
+3 reference(s) to ECDSA across 1 file(s), e.g. src/seedsigner/helpers/embit_utils.py:10. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
 
 ```
- 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
- 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
- 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
- 1287 | 
- 1288 |         button_data = [real_word, fake_word1, fake_word2, fake_word3]
+Open src/seedsigner/helpers/embit_utils.py:10 and inspect the quoted lines; the evidence lists further files.
 ```
 
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Evidence.**
 
-**Recommendation.** Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.
+_file_excerpt · [src/seedsigner/helpers/embit_utils.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L10) · line 10 · SHA-256 1e5604518dfe3ecc40df631b9df1ab8a9e5e838974ac1c814502658edc7d3fd3_
 
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+```
+    9 | from embit.networks import NETWORKS
+   10 | from embit.util import secp256k1
+   11 | 
+```
 
-### QSI-2026-43604 — Non-cryptographic generator next to key or seed generation in tools/mnemonic.py
+_file_excerpt · [src/seedsigner/helpers/embit_utils.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L204) · line 204 · SHA-256 1060384364a8c023d525064551aeed7ece6fd577f80394a1a55de0cce5980c19_
 
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
+```
+  203 |     prv = root.derive(derivation).key
+  204 |     sig = secp256k1.ecdsa_sign_recoverable(msghash, prv._secret)
+  205 |     flag = sig[64]
+```
+
+_file_excerpt · [src/seedsigner/helpers/embit_utils.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L209) · line 209 · SHA-256 1e4a07630105e8ba280ad6a4b597896533871c3bfe4f6dc7bdfcc27b6efb125e_
+
+```
+  208 |     flag = bytes([27 + flag + c])
+  209 |     ser = flag + secp256k1.ecdsa_signature_serialize_compact(sig._sig)
+  210 |     return b2a_base64(ser).strip().decode()
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-49516 — Non-cryptographic generator next to key or seed generation in tools/mnemonic.py
+
+- Severity: **Info** · Classification: Potential cryptographic risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-29): not applicable to this code.** tools/mnemonic.py is a developer command-line helper for cross-checking a mnemonic made from dice rolls or coin flips; it is not part of the device image (QSI review, 2026-11-23). _automated severity: High._
 - Affected asset: `tools/mnemonic.py:keygen`
 - Data source: tools/mnemonic.py
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: entropy 1.16.2 · 2026-11-23 13:13 UTC
-- Priority score: 38.8 / 100
+- Analyzer: entropy 1.20.0 · 2026-11-24 11:22 UTC
+- Priority score: 30.6 / 100
 - CVSS v3.1: not applicable
 
 'random.randint(' at line 84, within a few lines of 'mnemonic_generation' (4 occurrence(s)).
@@ -186,99 +223,13 @@ _file_excerpt · [tools/mnemonic.py](https://github.com/SeedSigner/seedsigner/bl
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-43601 — Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg
+### Dismissed after review
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
-- Affected asset: `file:seedsigner_pubkey.gpg#line 1`
-- Data source: seedsigner_pubkey.gpg
-- Detection method: Public key parsing.
-- Analyzer: certificates 1.16.2 · 2026-11-23 13:13 UTC
-- Priority score: 50.3 / 100
-- CVSS v3.1: not applicable
+_The analyst dismissed these findings as false positives; they are not counted in this report._
 
-A RSA 3072-bit public key was found (line 1).
-
-**Potential impact.** Long-term risk once a CRQC exists; for key exchange, recorded traffic could be decrypted retroactively.
-
-**Reproduction steps.**
-
-```
-Open line 1 in the supplied file seedsigner_pubkey.gpg and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_key · seedsigner_pubkey.gpg · line 1 · SHA-256 315636b2f7e00661811d8d8feee53223db00c9277ae1194dcaf9d4fb25bf6194_
-
-```
-OpenPGP primary key: algorithm ID 1 (RSA) 3072-bit
-```
-
-_key · seedsigner_pubkey.gpg · line 1 · SHA-256 6ccbdce52e43463e8b282489a66bb4553923cec099cc342f213f584e97c81df4_
-
-```
-OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability.
-
-**Recommendation.** Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
-
-**Retest procedure.** Re-audit after migration.
-
-### QSI-2026-43602 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, and it is the only row of its kind because it is the only place SeedSigner touches the primitive itself: src/seedsigner/helpers/embit_utils.py:10, the wrapper around embit. Everything that signs is embit's, and embit is not in this tree. Three consequences worth stating rather than leaving implied. First, the honest reading of "1 Shor-breakable row" is "this repository delegates its signing", not "this device is nearly post-quantum". Second, the pin is exact and hash-locked (embit==0.8.0 with a sha256 --hash), so the audited exposure is a specific, reproducible artefact rather than a version range — which is what makes the delegation auditable at all, and is the opposite of a criticism. Third, the migration question for SeedSigner is therefore not "when will SeedSigner adopt a post-quantum signature" but "when will embit", and after that, "how fast can a hash-locked pin be moved" — which is a release away, not a redesign. Compare Krux, which pins the same library as a git submodule and so carries the same code inside its own tree: 98 rows and 64 Shor-breakable for the same cryptography, differing only in where it is kept.
-- Affected asset: `source-code:ECDSA:transaction_signing`
-- Data source: src/seedsigner/helpers/embit_utils.py
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:13 UTC
-- Priority score: 41.8 / 100
-- CVSS v3.1: not applicable
-
-3 reference(s) to ECDSA across 1 file(s), e.g. src/seedsigner/helpers/embit_utils.py:10. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open src/seedsigner/helpers/embit_utils.py:10 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [src/seedsigner/helpers/embit_utils.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L10) · line 10 · SHA-256 1e5604518dfe3ecc40df631b9df1ab8a9e5e838974ac1c814502658edc7d3fd3_
-
-```
-    9 | from embit.networks import NETWORKS
-   10 | from embit.util import secp256k1
-   11 | 
-```
-
-_file_excerpt · [src/seedsigner/helpers/embit_utils.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L204) · line 204 · SHA-256 1060384364a8c023d525064551aeed7ece6fd577f80394a1a55de0cce5980c19_
-
-```
-  203 |     prv = root.derive(derivation).key
-  204 |     sig = secp256k1.ecdsa_sign_recoverable(msghash, prv._secret)
-  205 |     flag = sig[64]
-```
-
-_file_excerpt · [src/seedsigner/helpers/embit_utils.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L209) · line 209 · SHA-256 1e4a07630105e8ba280ad6a4b597896533871c3bfe4f6dc7bdfcc27b6efb125e_
-
-```
-  208 |     flag = bytes([27 + flag + c])
-  209 |     ser = flag + secp256k1.ecdsa_signature_serialize_compact(sig._sig)
-  210 |     return b2a_base64(ser).strip().decode()
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
+| ID | Detailed findings | Analyst review |
+|---|---|---|
+| QSI-2026-49515 | Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py | Not key generation: the "Verify Word #N" quiz picks decoy words to show beside the right one. The mnemonic already exists when the view runs; the random choice only decides which wrong answers are offered (QSI review, 2026-11-23). |
 
 ## 8. Post-quantum assessment
 
@@ -312,7 +263,7 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (1) | QSI-2026-43602 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **transaction and message signing** | ECDSA (1) | QSI-2026-49514 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -340,8 +291,6 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-43603 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P1 | QSI-2026-43604 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
@@ -350,10 +299,11 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-43601 | Add RSA usages at file:seedsigner_pubkey.gpg to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43602 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-43601 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-43602 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-49513 | Add RSA usages at file:seedsigner_pubkey.gpg to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49514 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-49513 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-49514 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49516 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
 
 ## 11. Tools used
 
@@ -361,19 +311,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents

@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:9d119c1c-260c-4f64-afcd-7384a8be0a97",
+  "serialNumber": "urn:uuid:be49d258-0bc1-4926-b91e-58dfccdfe3e0",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-23T13:34:57Z",
+    "timestamp": "2026-11-24T11:45:03Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.16.2"
+          "version": "1.20.0"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8b89c088-6667-40cb-b9d9-528f807a72b7",
+      "bom-ref": "1fe81c07-5b92-469a-9689-55715bf9c8ef",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -74,7 +74,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2d4ce1a1-efa5-43dd-ac4c-2dfcb6aab0be",
+      "bom-ref": "e6758947-c00f-477b-9266-d1a1565f434f",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -126,7 +126,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "49c5d92e-4bfc-4e57-88dc-fa3d805691fd",
+      "bom-ref": "8b8b695d-9835-4dd0-8788-d52c25722a24",
       "name": "Crypto library",
       "properties": [
         {
@@ -171,7 +171,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9c41e124-5347-4fd4-9327-e5e32b40b264",
+      "bom-ref": "e504dd1e-8c40-4c48-b127-c073d4efcf13",
       "name": "Crypto library",
       "properties": [
         {
@@ -216,7 +216,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5ccaa2ed-d6de-457c-abe1-10eaa0355395",
+      "bom-ref": "7309856b-5657-4dbc-8db9-768c76ef7c33",
       "name": "RedDSA",
       "properties": [
         {
@@ -266,7 +266,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "800f8519-baa1-4df1-9cf9-2f41b83d5215",
+      "bom-ref": "87cfdc3b-a119-4662-bca1-7480fa0fda25",
       "name": "RedDSA",
       "properties": [
         {
@@ -316,7 +316,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "811a6c03-ca8d-4f83-b32c-4d30c9ad0260",
+      "bom-ref": "7aae834e-8c1f-4953-b5b6-16a603666469",
       "name": "RedDSA",
       "properties": [
         {
@@ -366,7 +366,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "47c49b5d-c143-4d71-9f27-32de7f690172",
+      "bom-ref": "ca17153a-3fc3-4494-91ad-acfd95242a6d",
       "name": "SHA-2",
       "properties": [
         {

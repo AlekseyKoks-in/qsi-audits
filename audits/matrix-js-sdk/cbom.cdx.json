@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:f827cfd2-ffd8-40a6-9f35-5de8e6dca041",
+  "serialNumber": "urn:uuid:e2de6076-4e27-48f2-8b58-e2c1747704ff",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-23T12:39:54Z",
+    "timestamp": "2026-11-24T10:44:56Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.16.2"
+          "version": "1.20.0"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6588b3b9-4686-43c1-9256-a8ea140d1e7b",
+      "bom-ref": "b82e356a-5268-40ba-a220-c926257673ae",
       "name": "ECDH",
       "properties": [
         {
@@ -72,7 +72,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0001b5d1-6359-4ea6-a173-08b4a914cab2",
+      "bom-ref": "31368e07-35f6-4073-b84f-7fc6c7e128c0",
       "name": "HKDF",
       "properties": [
         {
@@ -121,7 +121,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "24394bac-1b93-4527-bab1-d0ccf8d5c206",
+      "bom-ref": "a24152ef-e301-4ee4-ab30-b00e253686e1",
       "name": "HMAC",
       "properties": [
         {
@@ -170,7 +170,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5accd2d6-222f-4099-a4bb-c6a0c2a65685",
+      "bom-ref": "c2615538-9c00-4984-96f8-347c0abb9516",
       "name": "HMAC",
       "properties": [
         {
@@ -219,7 +219,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c39e47be-aa5c-4bed-b346-ae28e448a5bf",
+      "bom-ref": "cdca06b6-0f2b-45da-a900-1fb590768dd5",
       "name": "HMAC",
       "properties": [
         {
@@ -268,7 +268,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7b85d704-12fc-4d1d-9615-ddd10f7d0028",
+      "bom-ref": "29e4fa2b-80e5-4d25-ac2c-f9ae0247cba0",
       "name": "PBKDF2",
       "properties": [
         {

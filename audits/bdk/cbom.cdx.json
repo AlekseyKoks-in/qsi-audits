@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:3800ad42-8097-43ed-a2da-d0ebc5189ef3",
+  "serialNumber": "urn:uuid:50b96843-fb9b-4299-9f52-fc0a07878f80",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-23T12:01:02Z",
+    "timestamp": "2026-11-24T10:04:02Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.16.2"
+          "version": "1.20.0"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c5036718-7dca-4ff9-84a2-c19e6d2ec3f4",
+      "bom-ref": "20ae4398-1a16-44aa-ac21-b82cc7b15b57",
       "name": "ECDSA",
       "properties": [
         {

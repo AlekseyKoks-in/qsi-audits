@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: xrpl-js @ 126168271b8c
 
-*One-page brief* · Reviewed: 2026-11-23 14:06 UTC · Risk profile: Web3 project · Client: XRPL Foundation — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-24 12:24 UTC · Risk profile: Web3 project · Client: XRPL Foundation — public repository (passive review)
 
 Source: https://github.com/XRPLF/xrpl.js/tree/126168271b8cbe784baf77fec05d2cd8c1837815
 
@@ -12,13 +12,13 @@ Source: https://github.com/XRPLF/xrpl.js/tree/126168271b8cbe784baf77fec05d2cd8c1
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s)) (QSI-2026-44378) · *preliminary*\
+1. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s)) (QSI-2026-50291) · *preliminary*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-2. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (8 file(s)) (QSI-2026-44380) · *preliminary*\
+2. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (8 file(s)) (QSI-2026-50293) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (1 file(s)) (QSI-2026-44382) · *preliminary*\
+3. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (1 file(s)) (QSI-2026-50295) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-4. **Medium** · Quantum-vulnerable ECDSA: role not determined (4 file(s)) (QSI-2026-44376) · *preliminary*\
+4. **Medium** · Quantum-vulnerable ECDSA: role not determined (4 file(s)) (QSI-2026-50289) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
 
 3 more in the full report.
@@ -36,7 +36,7 @@ Source: https://github.com/XRPLF/xrpl.js/tree/126168271b8cbe784baf77fec05d2cd8c1
 
 Static review of source code and manifests; files analysed: 377. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `fb68b22583eae87f45a54396ee016e42626be38e84c07e364adae962242556f8`
+Full report, content SHA-256: `2dee7faa79d4a251b5d562c2e1b4e650bb907ea86372d81825e28752ee2db94d`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

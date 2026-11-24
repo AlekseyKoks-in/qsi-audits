@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-23 12:00 UTC |
+| Дата отчёта | 2026-11-24 09:57 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 9517b8bf-09dc-46de-ada8-03335380c6ce (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.16.2 |
+| Запуск аудита | 2ad9e05c-c691-47c8-b3e3-7dbdca14969c (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.20.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `6bd6e8eafe68d867d344cdc3c3716c90701ef332b61341a70ba037b027c32a61` |
+| SHA-256 содержимого | `b69775959de671afa4d0b52605929331e002ace953d3bffea054377379f88163` |
 | Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -74,33 +74,34 @@
 | Область | Статус | Подробности |
 |---|---|---|
 | dependencies | проверено | Cargo.toml: 20 dependencies parsed (0 pinned) |
-| source_code | проверено | src/descriptor/checksum.rs: 89 lines scanned with 16 rule patterns and 340 registry patterns; 52 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/descriptor/dsl.rs: 1276 lines scanned with 16 rule patterns and 340 registry patterns; 460 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/descriptor/error.rs: 139 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | проверено | src/descriptor/mod.rs: 1049 lines scanned with 16 rule patterns and 340 registry patterns; 424 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/descriptor/policy.rs: 1956 lines scanned with 16 rule patterns and 340 registry patterns; 779 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/descriptor/template.rs: 1080 lines scanned with 16 rule patterns and 340 registry patterns; 445 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/keys/bip39.rs: 236 lines scanned with 16 rule patterns and 340 registry patterns; 84 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/keys/mod.rs: 1159 lines scanned with 16 rule patterns and 340 registry patterns; 112 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/lib.rs: 63 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | проверено | src/psbt/mod.rs: 170 lines scanned with 16 rule patterns and 340 registry patterns; 81 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/psbt/params.rs: 902 lines scanned with 16 rule patterns and 340 registry patterns; 231 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/types.rs: 295 lines scanned with 16 rule patterns and 340 registry patterns; 73 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/changeset.rs: 528 lines scanned with 16 rule patterns and 340 registry patterns; 101 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/coin_selection.rs: 1833 lines scanned with 16 rule patterns and 340 registry patterns; 1107 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/error.rs: 488 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | проверено | src/wallet/event.rs: 186 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | проверено | src/wallet/export.rs: 1122 lines scanned with 16 rule patterns and 340 registry patterns; 424 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/locked_outpoints.rs: 26 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | проверено | src/wallet/migration.rs: 227 lines scanned with 16 rule patterns and 340 registry patterns; 123 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/mod.rs: 4207 lines scanned with 16 rule patterns and 340 registry patterns; 247 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/params.rs: 373 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | проверено | src/wallet/persisted.rs: 432 lines scanned with 16 rule patterns and 340 registry patterns |
-| source_code | проверено | src/wallet/signer.rs: 1208 lines scanned with 16 rule patterns and 340 registry patterns; 228 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/wallet/tx_builder.rs: 1573 lines scanned with 16 rule patterns and 340 registry patterns; 560 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/checksum.rs: 89 lines scanned with 17 rule patterns and 340 registry patterns; 52 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/dsl.rs: 1276 lines scanned with 17 rule patterns and 340 registry patterns; 460 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/error.rs: 139 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | проверено | src/descriptor/mod.rs: 1049 lines scanned with 17 rule patterns and 340 registry patterns; 424 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/policy.rs: 1956 lines scanned with 17 rule patterns and 340 registry patterns; 779 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/descriptor/template.rs: 1080 lines scanned with 17 rule patterns and 340 registry patterns; 445 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/keys/bip39.rs: 236 lines scanned with 17 rule patterns and 340 registry patterns; 84 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/keys/mod.rs: 1159 lines scanned with 17 rule patterns and 340 registry patterns; 112 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/lib.rs: 63 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | проверено | src/psbt/mod.rs: 170 lines scanned with 17 rule patterns and 340 registry patterns; 81 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/psbt/params.rs: 902 lines scanned with 17 rule patterns and 340 registry patterns; 231 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/types.rs: 295 lines scanned with 17 rule patterns and 340 registry patterns; 73 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/changeset.rs: 528 lines scanned with 17 rule patterns and 340 registry patterns; 101 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/coin_selection.rs: 1833 lines scanned with 17 rule patterns and 340 registry patterns; 1107 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/error.rs: 488 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/event.rs: 186 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/export.rs: 1122 lines scanned with 17 rule patterns and 340 registry patterns; 424 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/locked_outpoints.rs: 26 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/migration.rs: 227 lines scanned with 17 rule patterns and 340 registry patterns; 123 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/mod.rs: 4207 lines scanned with 17 rule patterns and 340 registry patterns; 247 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/params.rs: 373 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/persisted.rs: 432 lines scanned with 17 rule patterns and 340 registry patterns |
+| source_code | проверено | src/wallet/signer.rs: 1208 lines scanned with 17 rule patterns and 340 registry patterns; 228 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/tx_builder.rs: 1573 lines scanned with 17 rule patterns and 340 registry patterns; 560 lines in #[cfg(test)] modules ignored |
 | secrets | проверено | src/wallet/tx_builder.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| source_code | проверено | src/wallet/utils.rs: 281 lines scanned with 16 rule patterns and 340 registry patterns; 115 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/wallet/utils.rs: 281 lines scanned with 17 rule patterns and 340 registry patterns; 115 lines in #[cfg(test)] modules ignored |
 | entropy | проверено | random-number generation: 25 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| key_storage | проверено | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
 | osv_advisories | не проверено | no exactly pinned versions to query |
 
 ## 4. Проверенные и непроверенные активы
@@ -118,13 +119,13 @@ Static review of the source tree bdk-wallet at 09c677305139e5478d57115a65e626320
 
 ## 7. Подробное описание находок
 
-### QSI-2026-41572 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (6 файл(ов))
+### QSI-2026-47516 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (6 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: src/descriptor/dsl.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.16.2 · 2026-11-23 12:00 UTC
+- Анализатор: source_code 1.20.0 · 2026-11-24 09:57 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -226,13 +227,13 @@ _file_excerpt · [src/wallet/mod.rs](https://github.com/bitcoindevkit/bdk_wallet
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-41573 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (4 файл(ов))
+### QSI-2026-47517 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
 - Источник данных: src/descriptor/mod.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.16.2 · 2026-11-23 12:00 UTC
+- Анализатор: source_code 1.20.0 · 2026-11-24 09:57 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -367,7 +368,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (6), Schnorr (BIP-340) (4) | QSI-2026-41572, QSI-2026-41573 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **подпись транзакций и сообщений** | ECDSA (6), Schnorr (BIP-340) (4) | QSI-2026-47516, QSI-2026-47517 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -403,10 +404,10 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-41572 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-41573 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-41572 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-41573 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P3 | QSI-2026-47516 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-47517 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-47516 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-47517 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
 
 ## 11. Использованные инструменты
 
@@ -414,19 +415,20 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы

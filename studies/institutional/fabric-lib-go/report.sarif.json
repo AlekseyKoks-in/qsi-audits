@@ -8,33 +8,8 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
-            {
-              "id": "DEP-KNOWN-ADVISORY",
-              "name": "DepKnownAdvisory",
-              "shortDescription": {
-                "text": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "dependencies",
-                  "known_vulnerable_component"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The advisory lists only unexported functions (google.golang.org/grpc/internal/transport.http2Server.HandleStreams, google.golang.org/grpc/internal/transport.http2Server.operateHeaders, google.golang.org/grpc/internal/xds/server.RouteAndProcess), which code outside the package cannot call by name, so reachability was not determined. Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against t…"
-              },
-              "help": {
-                "text": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The advisory lists only unexported functions (google.golang.org/grpc/internal/transport.http2Server.HandleStreams, google.golang.org/grpc/internal/transport.http2Server.operateHeaders, google.golang.org/grpc/internal/xds/server.RouteAndProcess), which code outside the package cannot call by name, so reachability was not determined. Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
-              },
-              "helpUri": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj"
-            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
@@ -61,6 +36,31 @@
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
             {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The product's build includes google.golang.org/grpc, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code. Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). Advisory data comes from OSV.dev at the recorded time. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
+              },
+              "help": {
+                "text": "OSV.dev reports GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) for Go package google.golang.org/grpc at version v1.83.1: gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers. The product's build includes google.golang.org/grpc, but govulncheck found none of its affected packages imported: the advisory does not apply to the shipped code. Upgrade to a fixed version (1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e). Advisory data comes from OSV.dev at the recorded time. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-2v4p-qf9q-27wj"
+            },
+            {
               "id": "DEP-ADVISORY-UNRATED",
               "name": "DepAdvisoryUnrated",
               "shortDescription": {
@@ -78,10 +78,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies). Triage the advisory; upgrade to a fixed version (0.60.0) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the…"
+                "text": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code. Triage the advisory; upgrade to a fixed version (0.60.0) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
               },
               "help": {
-                "text": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.ClientConn.Close, golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.ClientConn.RoundTrip, golang.org/x/net/http2.ClientConn.Shutdown, golang.org/x/net/http2.ConfigureServer, golang.org/x/net/http2.ConfigureTransport …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies). Triage the advisory; upgrade to a fixed version (0.60.0) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
+                "text": "OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. golang.org/x/net is not in the build of any product package (govulncheck): only tests or tools use it, so the advisory does not apply to the shipped code. Triage the advisory; upgrade to a fixed version (0.60.0) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability was decided by govulncheck@v1.9.0 with the Go vulnerability database of 2026-11-23: a call graph from the product's packages (tests, examples and benchmarks left out) through every dependency to the affected functions. Calls through reflection, unsafe pointers or assembly are not followed."
               },
               "helpUri": "https://osv.dev/vulnerability/GO-2026-6603"
             },
@@ -115,26 +115,8 @@
       },
       "results": [
         {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) (dependency: Go/google.golang.org/grpc@v1.83.1)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "10c9911f8c1c5b9e7f9e712538641295"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43986",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.5"
-          }
-        },
-        {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: role not determined (10 file(s))"
@@ -143,7 +125,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43982",
+            "qsiId": "QSI-2026-50419",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -152,7 +134,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Ed25519: role not determined (6 file(s))"
@@ -161,7 +143,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-43983",
+            "qsiId": "QSI-2026-50420",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -170,7 +152,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA: role not determined (6 file(s))"
@@ -179,11 +161,29 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-43984",
+            "qsiId": "QSI-2026-50421",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
             "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "google.golang.org/grpc v1.83.1 is affected by GHSA-2v4p-qf9q-27wj (CVE-2026-84445, GO-2026-6443) (dependency: Go/google.golang.org/grpc@v1.83.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "10c9911f8c1c5b9e7f9e712538641295"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-50423",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
           }
         },
         {
@@ -197,7 +197,7 @@
             "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
           },
           "properties": {
-            "qsiId": "QSI-2026-43987",
+            "qsiId": "QSI-2026-50424",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -215,7 +215,7 @@
             "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
           },
           "properties": {
-            "qsiId": "QSI-2026-43988",
+            "qsiId": "QSI-2026-50425",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -233,7 +233,7 @@
             "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
           },
           "properties": {
-            "qsiId": "QSI-2026-43989",
+            "qsiId": "QSI-2026-50426",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -251,7 +251,7 @@
             "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
           },
           "properties": {
-            "qsiId": "QSI-2026-43990",
+            "qsiId": "QSI-2026-50427",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -269,7 +269,7 @@
             "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
           },
           "properties": {
-            "qsiId": "QSI-2026-43991",
+            "qsiId": "QSI-2026-50428",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -287,7 +287,7 @@
             "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
           },
           "properties": {
-            "qsiId": "QSI-2026-43992",
+            "qsiId": "QSI-2026-50429",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -305,7 +305,7 @@
             "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
           },
           "properties": {
-            "qsiId": "QSI-2026-43993",
+            "qsiId": "QSI-2026-50430",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -323,7 +323,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-43985",
+            "qsiId": "QSI-2026-50422",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -332,13 +332,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/fabric-lib-go @ f8b4f4a833e4/93a63b4a-bd18-4f3b-806f-569b82b2740b"
+        "id": "qsi/fabric-lib-go @ f8b4f4a833e4/d9ae2ae2-ddf7-45d1-8d6d-eaacced67106"
       },
       "properties": {
-        "qsiContentSha256": "42392a7f34a043f31c37339e3a6ba66d1fb7d3a44403754864b1cb5117360fcb",
+        "qsiContentSha256": "984e17ce13c776af60b66152eeba8360455c2444552d42cef727c77044fd1213",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:44:44.047510+00:00",
+        "qsiGeneratedAt": "2026-11-24T12:38:43.818087+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

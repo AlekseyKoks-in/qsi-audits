@@ -8,33 +8,8 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
-            {
-              "id": "RNG-WEAK-KEYGEN",
-              "name": "RngWeakKeygen",
-              "shortDescription": {
-                "text": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "'random.randrange(' at line 374, within a few lines of 'generate_privkey' (1 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "'random.randrange(' at line 374, within a few lines of 'generate_privkey' (1 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
-            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
@@ -111,6 +86,31 @@
               "helpUri": "https://csrc.nist.gov/pubs/sp/800/132/final"
             },
             {
+              "id": "RNG-WEAK-KEYGEN",
+              "name": "RngWeakKeygen",
+              "shortDescription": {
+                "text": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "'random.randrange(' at line 374, within a few lines of 'generate_privkey' (1 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "'random.randrange(' at line 374, within a few lines of 'generate_privkey' (1 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
+            },
+            {
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
@@ -140,26 +140,8 @@
       },
       "results": [
         {
-          "ruleId": "RNG-WEAK-KEYGEN",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "2489d048adfe095e50872038083902bb"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-41999",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          }
-        },
-        {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))"
@@ -168,7 +150,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41993",
+            "qsiId": "QSI-2026-47934",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -177,7 +159,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (6 file(s))"
@@ -186,7 +168,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-41995",
+            "qsiId": "QSI-2026-47936",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -195,7 +177,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))"
@@ -204,7 +186,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-41996",
+            "qsiId": "QSI-2026-47937",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -213,7 +195,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: role not determined (5 file(s))"
@@ -222,7 +204,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-41991",
+            "qsiId": "QSI-2026-47932",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -231,7 +213,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDH: role not determined (4 file(s))"
@@ -240,7 +222,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-41994",
+            "qsiId": "QSI-2026-47935",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -249,7 +231,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))"
@@ -258,7 +240,7 @@
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-41998",
+            "qsiId": "QSI-2026-47939",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -267,7 +249,7 @@
         },
         {
           "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "ECB block-cipher mode used in src/krux/kef.py"
@@ -276,7 +258,7 @@
             "qsiFindingKey/v1": "31071d4a7b431ce46c8165938bc355d2"
           },
           "properties": {
-            "qsiId": "QSI-2026-41990",
+            "qsiId": "QSI-2026-47931",
             "severity": "medium",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -297,7 +279,7 @@
         },
         {
           "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "note",
           "message": {
             "text": "ECB block-cipher mode used in src/krux/krux_settings.py"
@@ -306,7 +288,7 @@
             "qsiFindingKey/v1": "e35ef95a522466c5cd2d6ec5edbfeca9"
           },
           "properties": {
-            "qsiId": "QSI-2026-41992",
+            "qsiId": "QSI-2026-47933",
             "severity": "info",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -327,7 +309,7 @@
         },
         {
           "ruleId": "CODE-WEAK-PBKDF2",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "Low PBKDF2 iteration count (2500) in vendor/embit/src/embit/slip39.py"
@@ -336,7 +318,7 @@
             "qsiFindingKey/v1": "854cceba3797609712e7f0d3b39a3975"
           },
           "properties": {
-            "qsiId": "QSI-2026-41997",
+            "qsiId": "QSI-2026-47938",
             "severity": "info",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -356,6 +338,24 @@
           ]
         },
         {
+          "ruleId": "RNG-WEAK-KEYGEN",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2489d048adfe095e50872038083902bb"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-47940",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "1.0"
+          }
+        },
+        {
           "ruleId": "DEP-ADVISORY-DEV",
           "ruleIndex": 4,
           "level": "note",
@@ -366,7 +366,7 @@
             "qsiFindingKey/v1": "090734ef78b1f0fda46107c2c0bb9ca1"
           },
           "properties": {
-            "qsiId": "QSI-2026-42000",
+            "qsiId": "QSI-2026-47941",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -384,13 +384,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/krux @ 9b3a4314a205/0256d618-7066-4b65-91ab-803256ebb3e9"
+        "id": "qsi/krux @ 9b3a4314a205/f55fca57-9790-4cb4-93ab-10d806c5e406"
       },
       "properties": {
-        "qsiContentSha256": "139e27fe2d07d820e625238652e268e21f8f9c94ea38a7b488ceebdbc82bd1c5",
+        "qsiContentSha256": "dc65ef561c161acd326a516f353691eb311ab17579a9832e55d8bc0b913ec915",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T12:31:50.634036+00:00",
+        "qsiGeneratedAt": "2026-11-24T10:35:46.442400+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

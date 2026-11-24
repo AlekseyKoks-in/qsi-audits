@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: trezor-firmware-en @ 72489948b3c4
 
-*One-page brief* · Reviewed: 2026-11-23 13:19 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: SatoshiLabs (Trezor) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-24 12:57 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: SatoshiLabs (Trezor) — public repository (passive review)
 
 Source: https://github.com/trezor/trezor-firmware/tree/72489948b3c44a37598de9da658be28e4fabb4ae
 
@@ -12,13 +12,13 @@ Source: https://github.com/trezor/trezor-firmware/tree/72489948b3c44a37598de9da6
 
 ## What matters most
 
-1. **Medium** · Transaction signing for 11 chain(s) relies on elliptic-curve signatures (QSI-2026-43699) · *confirmed by the analyst*\
+1. **Medium** · Transaction signing for 11 chain(s) relies on elliptic-curve signatures (QSI-2026-50539) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable Ed25519: firmware and boot verification (root of trust) (2 file(s)) (QSI-2026-43689) · *confirmed by the analyst*\
+2. **Medium** · Quantum-vulnerable Ed25519: firmware and boot verification (root of trust) (2 file(s)) (QSI-2026-50529) · *confirmed by the analyst*\
    What to do: Plan a hybrid firmware signature (the classical one plus ML-DSA or SLH-DSA, both required) and the path to ship the new keys in a…
-3. **Medium** · Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (3 file(s)) (QSI-2026-43691) · *confirmed by the analyst*\
+3. **Medium** · Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (3 file(s)) (QSI-2026-50531) · *confirmed by the analyst*\
    What to do: Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols).
-4. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (4 file(s)) (QSI-2026-43692) · *confirmed by the analyst*\
+4. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (4 file(s)) (QSI-2026-50532) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
 
 7 more in the full report.
@@ -38,7 +38,7 @@ Analyst review: 11 confirmed, 0 not applicable, 0 dismissed as false positives. 
 
 Static review of source code and manifests; files analysed: 411. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `cda6e20e7d88580bbd0cae39d8aaa69f706fe39d8ba933c153c5d3b99976c66c`
+Full report, content SHA-256: `dba64d5acfbdd16ce5d6451970706e765f3a3d24175f582ab3c1403825bb20d9`
 
 Full report signature (report.sig.json): Ed25519 key, then the ML-DSA-65 one where it co-signs, SHA-256 fingerprints `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

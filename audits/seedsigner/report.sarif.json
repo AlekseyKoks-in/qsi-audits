@@ -8,33 +8,8 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
-            {
-              "id": "RNG-WEAK-KEYGEN",
-              "name": "RngWeakKeygen",
-              "shortDescription": {
-                "text": "Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "'random.random(' at line 1284, within a few lines of 'mnemonic_list' (3 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "'random.random(' at line 1284, within a few lines of 'mnemonic_list' (3 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
-            },
             {
               "id": "KEY-QV-PUBLIC",
               "name": "KeyQvPublic",
@@ -84,50 +59,39 @@
                 "text": "3 reference(s) to ECDSA across 1 file(s), e.g. src/seedsigner/helpers/embit_utils.py:10. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "RNG-WEAK-KEYGEN",
+              "name": "RngWeakKeygen",
+              "shortDescription": {
+                "text": "Non-cryptographic generator next to key or seed generation in tools/mnemonic.py"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "'random.randint(' at line 84, within a few lines of 'mnemonic_generation' (4 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "'random.randint(' at line 84, within a few lines of 'mnemonic_generation' (4 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
             }
           ]
         }
       },
       "results": [
         {
-          "ruleId": "RNG-WEAK-KEYGEN",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "8ad74d5e91020d090855f54daded6d9a"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43603",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "RNG-WEAK-KEYGEN",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Non-cryptographic generator next to key or seed generation in tools/mnemonic.py"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "374e4ccd6278bca8118c7218de2c65d6"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43604",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          }
-        },
-        {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg"
@@ -136,7 +100,7 @@
             "qsiFindingKey/v1": "955da9092a51713c056a2bffa9f96e91"
           },
           "properties": {
-            "qsiId": "QSI-2026-43601",
+            "qsiId": "QSI-2026-49513",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -145,7 +109,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))"
@@ -154,22 +118,40 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43602",
+            "qsiId": "QSI-2026-49514",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
             "security-severity": "5.0"
           }
+        },
+        {
+          "ruleId": "RNG-WEAK-KEYGEN",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Non-cryptographic generator next to key or seed generation in tools/mnemonic.py"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "374e4ccd6278bca8118c7218de2c65d6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49516",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "1.0"
+          }
         }
       ],
       "automationDetails": {
-        "id": "qsi/seedsigner @ ada81cde050e/62d5713a-9245-4a9d-86c5-448b32d6ebae"
+        "id": "qsi/seedsigner @ ada81cde050e/647301d9-9755-4f93-ba26-5920588624da"
       },
       "properties": {
-        "qsiContentSha256": "8fc9b7bb7761544abdfc8a914eaf35ba015c777bfc500ed9d121ff65bb082bd3",
+        "qsiContentSha256": "56bf83fb5acdb1c11de32e15fb636ce9b74910de61615a8b421fbeb2a219fffc",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:13:16.878257+00:00",
+        "qsiGeneratedAt": "2026-11-24T11:22:22.834043+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

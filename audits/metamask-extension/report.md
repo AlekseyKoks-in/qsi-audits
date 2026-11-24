@@ -4,19 +4,19 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-11-23 12:44 UTC |
+| Дата отчёта | 2026-11-24 10:50 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 7a2366dc-edfd-4785-89ed-19c9212c3c61 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.16.2 |
+| Запуск аудита | 66bfd635-4d84-46ab-a395-1d1274193fa0 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.20.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `b0a22dca7397a1b5d36312851dbbe7eb91a4c84595f609898d15e02ca6516893` |
+| SHA-256 содержимого | `4baa2ac86ec45a3aa4817275d70bd135e0aadd3848d576a3fa796dd45470cea3` |
 | Ключ подписи (отпечаток SHA-256 ключа Ed25519, затем ML-DSA-65, если он подписывает вместе с ним; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **1**
-- Высокая: **32**
+- Высокая: **31**
 - Средняя: **56**
 - Низкая: **11**
 - Информационная: **2**
@@ -24,7 +24,7 @@
 - Подтверждённая техническая уязвимость: 0
 - Известная уязвимая версия компонента: 94
 - Подтверждённая ошибка конфигурации: 0
-- Потенциальный криптографический риск: 3
+- Потенциальный криптографический риск: 2
 - Долгосрочный постквантовый риск: 3
 - Рекомендация по улучшению: 1
 - Недостаточность данных: 1
@@ -39,18 +39,19 @@
 
 Репозиторий: <https://github.com/MetaMask/metamask-extension> @ `d2db7ee9a19b0322105618521370ab690911209f` — ссылки в доказательствах открывают строки на этом коммите.
 
-4870 файлов, всего 20084733 байт, редактирований: 18; список SHA-256 по файлам — в приложении C.
+4856 файлов, всего 19939794 байт, редактирований: 18; список SHA-256 по файлам — в приложении C.
 
 ## 3. Методология
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 4866 | .devcontainer/launch-firefox.ts: 10 lines scanned with 16 rule patterns and 340 registry patterns; .devcontainer/setup-browsers.ts: 27 lines scanned with 16 rule patterns and 340 registry patterns; .eslintrc.babel.js: 16 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | проверено | 4852 | .devcontainer/launch-firefox.ts: 10 lines scanned with 17 rule patterns and 340 registry patterns; .devcontainer/setup-browsers.ts: 27 lines scanned with 17 rule patterns and 340 registry patterns; .eslintrc.babel.js: 16 lines scanned with 17 rule patterns and 340 registry patterns |
 | secrets | проверено | 13 | app/scripts/constants/on-ramp.ts: value(s) at line(s) 1, 2, 3 are not reported as secrets because the source annotates them as published (publishable, search-only, safe to commit); that is the project's own decision, recorded here rather than raised against it; app/scripts/constants/on-ramp.ts: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); app/scripts/lib/money/pay/test-mocks.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | dependencies | проверено | 4 | development/generate-attributions/package.json: 3 dependencies parsed (0 pinned); development/generate-attributions/yarn.lock: 229 dependencies parsed (229 pinned); package.json: 506 dependencies parsed (29 pinned) |
-| entropy | проверено | 1 | random-number generation: 4866 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| entropy | проверено | 1 | random-number generation: 4852 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | hndl | проверено | 1 | public-key encryption next to a persistence sink: 0 file(s) |
-| crediting | проверено | 1 | payment crediting: 13 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 9 credit from a Tron or EVM node; 1 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| crediting | проверено | 1 | payment crediting: 12 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 8 credit from a Tron or EVM node, 0 from fetched Solana transactions; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| key_storage | проверено | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (a KMS, HSM or vault service is used); author warnings: 0 |
 | osv_advisories | проверено | 1 | 4643 pinned packages queried at OSV.dev; 54 affected (9 of them only in development or build dependencies) |
 | osv_advisories | Недостаточность данных | 1 | npm/electron@23.3.0: 48 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
@@ -62,7 +63,7 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree metamask-extension at d2db7ee9a19b0322105618521370ab690911209f. 4870 files analysed; of 10787 files, 4501 are test, fuzzing, benchmark or example code and were left out, 1413 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .browserslistrc, .cursor/BUGBOT.md, .cursor/commands/CODEBOT.md, .cursor/commands/add-non-evm-swaps-bridge-network.md, .depcheckrc.yml. 52 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree metamask-extension at d2db7ee9a19b0322105618521370ab690911209f. 4856 files analysed; of 10787 files, 4531 are test, fuzzing, benchmark or example code and were left out, 1397 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .browserslistrc, .cursor/BUGBOT.md, .cursor/commands/CODEBOT.md, .cursor/commands/add-non-evm-swaps-bridge-network.md, .depcheckrc.yml. 52 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -71,17 +72,17 @@ Static review of the source tree metamask-extension at d2db7ee9a19b0322105618521
 
 ## 7. Подробное описание находок
 
-### QSI-2026-42267 — bitcoinjs-lib 7.0.1 затронут GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846)
+### QSI-2026-48207 — bitcoinjs-lib 7.0.1 затронут GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/bitcoinjs-lib@7.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 40.6 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846) для пакета npm bitcoinjs-lib версии 7.0.1: bitcoinjs-lib: Undetected merkle node duplication in block root computation validates a forged transaction list. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846) для пакета npm bitcoinjs-lib версии 7.0.1: bitcoinjs-lib: Undetected merkle node duplication in block root computation validates a forged transaction list. Ни один исходный файл продукта не импортирует bitcoinjs-lib: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -99,19 +100,19 @@ _tool_output · [OSV.dev GHSA-8vv3-6qpc-gpw6](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-8vv3-6qpc-gpw6", "aliases": ["CVE-2026-107846"], "modified": "2026-11-10T16:15:05.948337489Z", "summary": "bitcoinjs-lib: Undetected merkle node duplication in block root computation validates a forged transaction list", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:H/VA:L/SC:N/SI:H/SA:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (5.2.1, 6.1.8, 7.0.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42323 — nanoid 2.1.11 затронут GHSA-xwg4-73v4-xw9w (CVE-2026-73086)
+### QSI-2026-48263 — nanoid 2.1.11 затронут GHSA-xwg4-73v4-xw9w (CVE-2026-73086)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/nanoid@2.1.11`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -133,19 +134,19 @@ _tool_output · [OSV.dev GHSA-xwg4-73v4-xw9w](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-xwg4-73v4-xw9w", "aliases": ["CVE-2026-73086"], "modified": "2026-09-01T19:30:08.615560716Z", "summary": "nanoid: Integer Overflow or Wraparound", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (3.3.12, 5.1.11).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42324 — postcss 7.0.39 затронут GHSA-6g55-p6wh-862q (CVE-2026-45623)
+### QSI-2026-48264 — postcss 7.0.39 затронут GHSA-6g55-p6wh-862q (CVE-2026-45623)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@7.0.39`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -167,19 +168,19 @@ _tool_output · [OSV.dev GHSA-6g55-p6wh-862q](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-6g55-p6wh-862q", "aliases": ["CVE-2026-45623"], "modified": "2026-09-10T03:51:10.752909750Z", "summary": "PostCSS: Arbitrary file read and information disclosure via attacker-controlled sourceMappingURL in CSS comments", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (8.5.12).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42328 — postcss 7.0.39 затронут GHSA-r28c-9q8g-f849 (CVE-2026-73646)
+### QSI-2026-48268 — postcss 7.0.39 затронут GHSA-r28c-9q8g-f849 (CVE-2026-73646)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@7.0.39`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -201,19 +202,19 @@ _tool_output · [OSV.dev GHSA-r28c-9q8g-f849](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-r28c-9q8g-f849", "aliases": ["CVE-2026-73646"], "modified": "2026-09-10T03:50:52.854537677Z", "summary": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (8.5.18).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42341 — uuid 11.0.3 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
+### QSI-2026-48281 — uuid 11.0.3 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/uuid@11.0.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -235,19 +236,19 @@ _tool_output · [OSV.dev GHSA-w5hq-g745-h8pq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w5hq-g745-h8pq", "aliases": ["CVE-2026-41907", "CVE-2026-41988"], "modified": "2026-09-10T03:51:03.663336650Z", "summary": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.1.1, 12.0.1, 13.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42342 — uuid 3.2.1 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
+### QSI-2026-48282 — uuid 3.2.1 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/uuid@3.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -269,19 +270,19 @@ _tool_output · [OSV.dev GHSA-w5hq-g745-h8pq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w5hq-g745-h8pq", "aliases": ["CVE-2026-41907", "CVE-2026-41988"], "modified": "2026-09-10T03:51:03.663336650Z", "summary": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.1.1, 12.0.1, 13.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42343 — uuid 8.3.2 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
+### QSI-2026-48283 — uuid 8.3.2 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/uuid@8.3.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -303,19 +304,19 @@ _tool_output · [OSV.dev GHSA-w5hq-g745-h8pq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w5hq-g745-h8pq", "aliases": ["CVE-2026-41907", "CVE-2026-41988"], "modified": "2026-09-10T03:51:03.663336650Z", "summary": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.1.1, 12.0.1, 13.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42344 — uuid 3.4.0 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
+### QSI-2026-48284 — uuid 3.4.0 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/uuid@3.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -337,19 +338,19 @@ _tool_output · [OSV.dev GHSA-w5hq-g745-h8pq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w5hq-g745-h8pq", "aliases": ["CVE-2026-41907", "CVE-2026-41988"], "modified": "2026-09-10T03:51:03.663336650Z", "summary": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.1.1, 12.0.1, 13.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42345 — uuid 9.0.1 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
+### QSI-2026-48285 — uuid 9.0.1 затронут GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/uuid@9.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -371,23 +372,23 @@ _tool_output · [OSV.dev GHSA-w5hq-g745-h8pq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w5hq-g745-h8pq", "aliases": ["CVE-2026-41907", "CVE-2026-41988"], "modified": "2026-09-10T03:51:03.663336650Z", "summary": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.1.1, 12.0.1, 13.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42264 — basic-ftp 5.3.1 затронут GHSA-c475-qrg2-pj4r (CVE-2026-102990)
+### QSI-2026-48204 — basic-ftp 5.3.1 затронут GHSA-c475-qrg2-pj4r (CVE-2026-102990)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/basic-ftp@5.3.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-c475-qrg2-pj4r (CVE-2026-102990) для пакета npm basic-ftp версии 5.3.1: basic-ftp: Quadratic-time CPU denial of service in Client.list() Unix directory-listing parser (RE_LINE backtracking). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-c475-qrg2-pj4r (CVE-2026-102990) для пакета npm basic-ftp версии 5.3.1: basic-ftp: Quadratic-time CPU denial of service in Client.list() Unix directory-listing parser (RE_LINE backtracking). Ни один исходный файл продукта не импортирует basic-ftp: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -405,23 +406,23 @@ _tool_output · [OSV.dev GHSA-c475-qrg2-pj4r](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-c475-qrg2-pj4r", "aliases": ["CVE-2026-102990"], "modified": "2026-10-01T15:00:04.517943812Z", "summary": "basic-ftp: Quadratic-time CPU denial of service in Client.list() Unix directory-listing parser (RE_LINE backtracking)", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.2.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42266 — bigint-buffer 1.1.5 затронут GHSA-3gc7-fjrx-p6mg (CVE-2025-3194)
+### QSI-2026-48206 — bigint-buffer 1.1.5 затронут GHSA-3gc7-fjrx-p6mg (CVE-2025-3194)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/bigint-buffer@1.1.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-3gc7-fjrx-p6mg (CVE-2025-3194) для пакета npm bigint-buffer версии 1.1.5: bigint-buffer Vulnerable to Buffer Overflow via toBigIntLE() Function. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-3gc7-fjrx-p6mg (CVE-2025-3194) для пакета npm bigint-buffer версии 1.1.5: bigint-buffer Vulnerable to Buffer Overflow via toBigIntLE() Function. Ни один исходный файл продукта не импортирует bigint-buffer: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -439,23 +440,23 @@ _tool_output · [OSV.dev GHSA-3gc7-fjrx-p6mg](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3gc7-fjrx-p6mg", "aliases": ["CVE-2025-3194"], "modified": "2025-04-04T19:27:20.290375Z", "summary": "bigint-buffer Vulnerable to Buffer Overflow via toBigIntLE() Function", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42268 — body-parser 1.20.6 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)
+### QSI-2026-48208 — body-parser 1.20.6 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/body-parser@1.20.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181) для пакета npm body-parser версии 1.20.6: body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181) для пакета npm body-parser версии 1.20.6: body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body. Ни один исходный файл продукта не импортирует body-parser: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -473,23 +474,23 @@ _tool_output · [OSV.dev GHSA-27r3-jxmh-p828](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-27r3-jxmh-p828", "aliases": ["CVE-2026-111181"], "modified": "2026-10-23T21:00:06.131613693Z", "summary": "body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (1.20.9, 2.4.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42269 — body-parser 2.3.0 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)
+### QSI-2026-48209 — body-parser 2.3.0 затронут GHSA-27r3-jxmh-p828 (CVE-2026-111181)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/body-parser@2.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181) для пакета npm body-parser версии 2.3.0: body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181) для пакета npm body-parser версии 2.3.0: body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body. Ни один исходный файл продукта не импортирует body-parser: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -507,23 +508,23 @@ _tool_output · [OSV.dev GHSA-27r3-jxmh-p828](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-27r3-jxmh-p828", "aliases": ["CVE-2026-111181"], "modified": "2026-10-23T21:00:06.131613693Z", "summary": "body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (1.20.9, 2.4.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42270 — braces 2.3.2 затронут GHSA-grv7-fg5c-xmjg (CVE-2024-4068)
+### QSI-2026-48210 — braces 2.3.2 затронут GHSA-grv7-fg5c-xmjg (CVE-2024-4068)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/braces@2.3.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-grv7-fg5c-xmjg (CVE-2024-4068) для пакета npm braces версии 2.3.2: Uncontrolled resource consumption in braces. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-grv7-fg5c-xmjg (CVE-2024-4068) для пакета npm braces версии 2.3.2: Uncontrolled resource consumption in braces. Ни один исходный файл продукта не импортирует braces: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -541,23 +542,23 @@ _tool_output · [OSV.dev GHSA-grv7-fg5c-xmjg](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-grv7-fg5c-xmjg", "aliases": ["CVE-2024-4068"], "modified": "2026-09-10T03:50:00.374713008Z", "summary": "Uncontrolled resource consumption in braces", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (3.0.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42272 — decode-uri-component 0.2.2 затронут GHSA-qr28-fpjm-wq7f (CVE-2026-118664)
+### QSI-2026-48212 — decode-uri-component 0.2.2 затронут GHSA-qr28-fpjm-wq7f (CVE-2026-118664)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/decode-uri-component@0.2.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-qr28-fpjm-wq7f (CVE-2026-118664) для пакета npm decode-uri-component версии 0.2.2: decode-uri-component vulnerable to denial of service via quadratic replacement of percent-encoded runs. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-qr28-fpjm-wq7f (CVE-2026-118664) для пакета npm decode-uri-component версии 0.2.2: decode-uri-component vulnerable to denial of service via quadratic replacement of percent-encoded runs. Ни один исходный файл продукта не импортирует decode-uri-component: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -575,23 +576,23 @@ _tool_output · [OSV.dev GHSA-qr28-fpjm-wq7f](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-qr28-fpjm-wq7f", "aliases": ["CVE-2026-118664"], "modified": "2026-10-29T17:00:04.168610583Z", "summary": "decode-uri-component vulnerable to denial of service via quadratic replacement of percent-encoded runs", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (0.5.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42279 — electron 23.3.0 затронут GHSA-532v-xpq5-8h95 (CVE-2026-34774)
+### QSI-2026-48219 — electron 23.3.0 затронут GHSA-532v-xpq5-8h95 (CVE-2026-34774)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
-OSV.dev сообщает GHSA-532v-xpq5-8h95 (CVE-2026-34774) для пакета npm electron версии 23.3.0: Electron: Use-after-free in offscreen child window paint callback. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-532v-xpq5-8h95 (CVE-2026-34774) для пакета npm electron версии 23.3.0: Electron: Use-after-free in offscreen child window paint callback. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -609,23 +610,23 @@ _tool_output · [OSV.dev GHSA-532v-xpq5-8h95](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-532v-xpq5-8h95", "aliases": ["CVE-2026-34774"], "modified": "2026-04-06T23:19:58.922968Z", "summary": "Electron: Use-after-free in offscreen child window paint callback", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (39.8.1, 40.7.0, 41.0.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42285 — electron 23.3.0 затронут GHSA-8337-3p73-46f4 (CVE-2026-34771)
+### QSI-2026-48225 — electron 23.3.0 затронут GHSA-8337-3p73-46f4 (CVE-2026-34771)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H`)
 
-OSV.dev сообщает GHSA-8337-3p73-46f4 (CVE-2026-34771) для пакета npm electron версии 23.3.0: Electron: Use-after-free in WebContents fullscreen, pointer-lock, and keyboard-lock permission callbacks. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-8337-3p73-46f4 (CVE-2026-34771) для пакета npm electron версии 23.3.0: Electron: Use-after-free in WebContents fullscreen, pointer-lock, and keyboard-lock permission callbacks. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -643,23 +644,23 @@ _tool_output · [OSV.dev GHSA-8337-3p73-46f4](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-8337-3p73-46f4", "aliases": ["CVE-2026-34771"], "modified": "2026-04-06T23:18:52.586490Z", "summary": "Electron: Use-after-free in WebContents fullscreen, pointer-lock, and keyboard-lock permission callbacks", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42289 — electron 23.3.0 затронут GHSA-9f4c-93c8-jc8g (CVE-2026-70608)
+### QSI-2026-48229 — electron 23.3.0 затронут GHSA-9f4c-93c8-jc8g (CVE-2026-70608)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.2 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N`)
 
-OSV.dev сообщает GHSA-9f4c-93c8-jc8g (CVE-2026-70608) для пакета npm electron версии 23.3.0: Electron: Sandboxed iframe can bypass the allow-popups restriction via the OpenURL navigation path. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-9f4c-93c8-jc8g (CVE-2026-70608) для пакета npm electron версии 23.3.0: Electron: Sandboxed iframe can bypass the allow-popups restriction via the OpenURL navigation path. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -677,23 +678,23 @@ _tool_output · [OSV.dev GHSA-9f4c-93c8-jc8g](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-9f4c-93c8-jc8g", "aliases": ["CVE-2026-70608"], "modified": "2026-08-20T05:15:07.151820521Z", "summary": "Electron: Sandboxed iframe can bypass the allow-popups restriction via the OpenURL navigation path", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (39.8.10, 41.10.3, 42.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42291 — electron 23.3.0 затронут GHSA-9qh4-3jw8-366w (CVE-2026-102676)
+### QSI-2026-48231 — electron 23.3.0 затронут GHSA-9qh4-3jw8-366w (CVE-2026-102676)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.3 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H`)
 
-OSV.dev сообщает GHSA-9qh4-3jw8-366w (CVE-2026-102676) для пакета npm electron версии 23.3.0: Electron: <webview> can enable Node.js integration in Web Workers despite embedder restrictions. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-9qh4-3jw8-366w (CVE-2026-102676) для пакета npm electron версии 23.3.0: Electron: <webview> can enable Node.js integration in Web Workers despite embedder restrictions. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -711,23 +712,23 @@ _tool_output · [OSV.dev GHSA-9qh4-3jw8-366w](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-9qh4-3jw8-366w", "aliases": ["CVE-2026-102676"], "modified": "2026-09-29T18:15:04.717504273Z", "summary": "Electron: <webview> can enable Node.js integration in Web Workers despite embedder restrictions", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (41.10.6, 42.9.2, 43.4.1, 44.0.0-beta.5).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42293 — electron 23.3.0 затронут GHSA-9wfr-w7mm-pc7f (CVE-2026-34769)
+### QSI-2026-48233 — electron 23.3.0 затронут GHSA-9wfr-w7mm-pc7f (CVE-2026-34769)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.7 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H`)
 
-OSV.dev сообщает GHSA-9wfr-w7mm-pc7f (CVE-2026-34769) для пакета npm electron версии 23.3.0: Electron: Renderer command-line switch injection via undocumented commandLineSwitches webPreference. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-9wfr-w7mm-pc7f (CVE-2026-34769) для пакета npm electron версии 23.3.0: Electron: Renderer command-line switch injection via undocumented commandLineSwitches webPreference. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -745,23 +746,23 @@ _tool_output · [OSV.dev GHSA-9wfr-w7mm-pc7f](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-9wfr-w7mm-pc7f", "aliases": ["CVE-2026-34769"], "modified": "2026-04-06T23:19:40.585044Z", "summary": "Electron: Renderer command-line switch injection via undocumented commandLineSwitches webPreference", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42295 — extract-zip 2.0.1 затронут GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693)
+### QSI-2026-48235 — extract-zip 2.0.1 затронут GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/extract-zip@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H`)
 
-OSV.dev сообщает GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693) для пакета npm extract-zip версии 2.0.1: extract-zip allows arbitrary file writes through symlink archive entries. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693) для пакета npm extract-zip версии 2.0.1: extract-zip allows arbitrary file writes through symlink archive entries. Ни один исходный файл продукта не импортирует extract-zip: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -779,23 +780,23 @@ _tool_output · [OSV.dev GHSA-7pqw-9j4j-h8q3](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-7pqw-9j4j-h8q3", "aliases": ["CVE-2026-19693"], "modified": "2026-09-08T21:10:57.608811Z", "summary": "extract-zip allows arbitrary file writes through symlink archive entries", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42296 — extract-zip 2.0.1 затронут GHSA-jmr9-qjv8-65gv (CVE-2026-56876)
+### QSI-2026-48236 — extract-zip 2.0.1 затронут GHSA-jmr9-qjv8-65gv (CVE-2026-56876)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/extract-zip@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
-OSV.dev сообщает GHSA-jmr9-qjv8-65gv (CVE-2026-56876) для пакета npm extract-zip версии 2.0.1: extract-zip unvalidated symlink path traversal. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-jmr9-qjv8-65gv (CVE-2026-56876) для пакета npm extract-zip версии 2.0.1: extract-zip unvalidated symlink path traversal. Ни один исходный файл продукта не импортирует extract-zip: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -813,23 +814,23 @@ _tool_output · [OSV.dev GHSA-jmr9-qjv8-65gv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-jmr9-qjv8-65gv", "aliases": ["CVE-2026-56876"], "modified": "2026-09-10T03:51:08.769710691Z", "summary": "extract-zip unvalidated symlink path traversal", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42312 — ip 1.1.8 затронут GHSA-2p57-rm9w-gvfp (CVE-2024-29415)
+### QSI-2026-48252 — ip 1.1.8 затронут GHSA-2p57-rm9w-gvfp (CVE-2024-29415)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip@1.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
-OSV.dev сообщает GHSA-2p57-rm9w-gvfp (CVE-2024-29415) для пакета npm ip версии 1.1.8: ip SSRF improper categorization in isPublic. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-2p57-rm9w-gvfp (CVE-2024-29415) для пакета npm ip версии 1.1.8: ip SSRF improper categorization in isPublic. Ни один исходный файл продукта не импортирует ip: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -847,23 +848,23 @@ _tool_output · [OSV.dev GHSA-2p57-rm9w-gvfp](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-2p57-rm9w-gvfp", "aliases": ["CVE-2024-29415"], "modified": "2026-09-10T03:50:14.802476879Z", "summary": "ip SSRF improper categorization in isPublic", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42314 — joi 17.13.8 затронут GHSA-4528-x5fx-h6hg (CVE-2026-118772)
+### QSI-2026-48254 — joi 17.13.8 затронут GHSA-4528-x5fx-h6hg (CVE-2026-118772)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/joi@17.13.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-4528-x5fx-h6hg (CVE-2026-118772) для пакета npm joi версии 17.13.8: joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-4528-x5fx-h6hg (CVE-2026-118772) для пакета npm joi версии 17.13.8: joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service. Ни один исходный файл продукта не импортирует joi: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -881,23 +882,23 @@ _tool_output · [OSV.dev GHSA-4528-x5fx-h6hg](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4528-x5fx-h6hg", "aliases": ["CVE-2026-118772"], "modified": "2026-10-30T23:15:07.273035332Z", "summary": "joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (17.13.9, 18.3.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42315 — joi 18.2.9 затронут GHSA-4528-x5fx-h6hg (CVE-2026-118772)
+### QSI-2026-48255 — joi 18.2.9 затронут GHSA-4528-x5fx-h6hg (CVE-2026-118772)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/joi@18.2.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-4528-x5fx-h6hg (CVE-2026-118772) для пакета npm joi версии 18.2.9: joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-4528-x5fx-h6hg (CVE-2026-118772) для пакета npm joi версии 18.2.9: joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service. Ни один исходный файл продукта не импортирует joi: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -915,23 +916,23 @@ _tool_output · [OSV.dev GHSA-4528-x5fx-h6hg](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4528-x5fx-h6hg", "aliases": ["CVE-2026-118772"], "modified": "2026-10-30T23:15:07.273035332Z", "summary": "joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (17.13.9, 18.3.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42333 — undici 7.30.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)
+### QSI-2026-48273 — undici 7.30.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
-OSV.dev сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383) для пакета npm undici версии 7.30.0: undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383) для пакета npm undici версии 7.30.0: undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent. Ни один исходный файл продукта не импортирует undici: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -949,23 +950,23 @@ _tool_output · [OSV.dev GHSA-2m5v-pch6-74hx](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-2m5v-pch6-74hx", "aliases": ["CVE-2026-109383"], "modified": "2026-10-27T19:15:22.407771210Z", "summary": "undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.29.1, 7.30.1, 8.12.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42335 — undici 7.30.0 затронут GHSA-4w7w-5xrc-9h26 (CVE-2026-109829)
+### QSI-2026-48275 — undici 7.30.0 затронут GHSA-4w7w-5xrc-9h26 (CVE-2026-109829)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
-OSV.dev сообщает GHSA-4w7w-5xrc-9h26 (CVE-2026-109829) для пакета npm undici версии 7.30.0: undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-4w7w-5xrc-9h26 (CVE-2026-109829) для пакета npm undici версии 7.30.0: undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects. Ни один исходный файл продукта не импортирует undici: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -983,23 +984,23 @@ _tool_output · [OSV.dev GHSA-4w7w-5xrc-9h26](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4w7w-5xrc-9h26", "aliases": ["CVE-2026-109829"], "modified": "2026-10-27T19:15:22.403656345Z", "summary": "undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (7.30.1, 8.12.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42339 — undici 7.30.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)
+### QSI-2026-48279 — undici 7.30.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018) для пакета npm undici версии 7.30.0: undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018) для пакета npm undici версии 7.30.0: undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation. Ни один исходный файл продукта не импортирует undici: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1017,23 +1018,23 @@ _tool_output · [OSV.dev GHSA-qrxm-fqhp-jwvm](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-qrxm-fqhp-jwvm", "aliases": ["CVE-2026-87018"], "modified": "2026-10-27T19:15:22.403573595Z", "summary": "undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.29.1, 7.30.1, 8.12.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42340 — undici 7.30.0 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869)
+### QSI-2026-48280 — undici 7.30.0 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869) для пакета npm undici версии 7.30.0: undici vulnerable to Denial of Service via unhandled error on excessive content-encodings. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869) для пакета npm undici версии 7.30.0: undici vulnerable to Denial of Service via unhandled error on excessive content-encodings. Ни один исходный файл продукта не импортирует undici: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1051,23 +1052,23 @@ _tool_output · [OSV.dev GHSA-xjj6-f33q-929c](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-xjj6-f33q-929c", "aliases": ["CVE-2026-109869"], "modified": "2026-10-23T22:30:05.007687918Z", "summary": "undici vulnerable to Denial of Service via unhandled error on excessive content-encodings", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.29.1, 7.30.1, 8.12.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42346 — zod 3.22.4 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-48286 — zod 3.22.4 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/zod@3.22.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 3.22.4: Zod can exhaust memory while validating oversized constrained collections. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 3.22.4: Zod can exhaust memory while validating oversized constrained collections. Ни один исходный файл продукта не импортирует zod: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1085,23 +1086,23 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-mrhx-c7xc-m3w5", "aliases": ["CVE-2023-54404"], "modified": "2026-10-23T18:30:09.376405885Z", "summary": "Zod can exhaust memory while validating oversized constrained collections", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.6.6).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42347 — zod 3.25.76 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-48287 — zod 3.25.76 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/zod@3.25.76`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 3.25.76: Zod can exhaust memory while validating oversized constrained collections. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 3.25.76: Zod can exhaust memory while validating oversized constrained collections. Ни один исходный файл продукта не импортирует zod: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1119,23 +1120,23 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-mrhx-c7xc-m3w5", "aliases": ["CVE-2023-54404"], "modified": "2026-10-23T18:30:09.376405885Z", "summary": "Zod can exhaust memory while validating oversized constrained collections", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.6.6).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42348 — zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-48288 — zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/zod@4.6.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 4.6.5: Zod can exhaust memory while validating oversized constrained collections. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 4.6.5: Zod can exhaust memory while validating oversized constrained collections. Ни один исходный файл продукта не импортирует zod: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1153,53 +1154,19 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-mrhx-c7xc-m3w5", "aliases": ["CVE-2023-54404"], "modified": "2026-10-23T18:30:09.376405885Z", "summary": "Zod can exhaust memory while validating oversized constrained collections", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.6.6).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42253 — Перевод токена читается из входных данных транзакции без квитанции (.storybook/test-data.js)
-
-- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `.storybook/test-data.js:725`
-- Источник данных: .storybook/test-data.js
-- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: crediting 1.16.2 · 2026-11-23 12:44 UTC
-- Балл приоритета: 35.4 / 100
-- CVSS v3.1: неприменимо
-
-строка 725 сопоставляет селектор transfer(address,uint256) во входных данных транзакции, и ничто в файле или его пакете не читает квитанцию или журналы Transfer.
-
-**Возможные последствия.** Входные данные — это то, о чём попросил отправитель. Откатившаяся транзакция попадает в блок с теми же данными; токен, возвращающий false вместо отката, оставляет успешную транзакцию без перевода; а перевод, сделанный контрактом (мультиподпись, пакетная выплата биржи), имеет другие входные данные и будет пропущен.
-
-**Шаги воспроизведения.**
-
-```
-Откройте строка 725 в предоставленном файле .storybook/test-data.js и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · .storybook/test-data.js · line 725 · SHA-256 bc3ab3a3e5128d7360e0b4a7c1ea19772eaa15270fea9a208dc1a9346b569de3_
-
-```
-  725 |               data: '0xa9059cbb0000000000000000000000004ef2d5a1d056e7c9e8bcdbf2bd9ac0df749a1c2900000000000000000000000000000000000000000000000029a2241af62c0000',
-```
-
-**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
-
-**Рекомендация.** Зачисляйте по журналу Transfer(address,address,uint256), испущенному адресом контракта самого токена, из квитанции со статусом 1, после числа подтверждений, требуемого вашей политикой рисков.
-
-**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
-
-### QSI-2026-42316 — micromatch 3.1.10 затронут GHSA-952p-6rrq-rcjv (CVE-2024-4067)
+### QSI-2026-48256 — micromatch 3.1.10 затронут GHSA-952p-6rrq-rcjv (CVE-2024-4067)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/micromatch@3.1.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -1221,19 +1188,19 @@ _tool_output · [OSV.dev GHSA-952p-6rrq-rcjv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-952p-6rrq-rcjv", "aliases": ["CVE-2024-4067"], "modified": "2026-09-10T03:50:13.524150483Z", "summary": "Regular Expression Denial of Service (ReDoS) in micromatch", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.0.8).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42320 — nanoid 2.1.11 затронут GHSA-28wg-ghj8-5hjv (CVE-2026-67214)
+### QSI-2026-48260 — nanoid 2.1.11 затронут GHSA-28wg-ghj8-5hjv (CVE-2026-67214)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/nanoid@2.1.11`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1255,19 +1222,19 @@ _tool_output · [OSV.dev GHSA-28wg-ghj8-5hjv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-28wg-ghj8-5hjv", "aliases": ["CVE-2026-67214"], "modified": "2026-09-10T03:50:51.191256883Z", "summary": "nanoid: non-secure generators can loop indefinitely with negative size", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (3.3.16, 5.1.16).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42321 — nanoid 2.1.11 затронут GHSA-2v37-7h3g-55p8 (CVE-2026-67213)
+### QSI-2026-48261 — nanoid 2.1.11 затронут GHSA-2v37-7h3g-55p8 (CVE-2026-67213)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/nanoid@2.1.11`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1289,19 +1256,19 @@ _tool_output · [OSV.dev GHSA-2v37-7h3g-55p8](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-2v37-7h3g-55p8", "aliases": ["CVE-2026-67213"], "modified": "2026-09-10T03:50:51.243328986Z", "summary": "nanoid: custom generators can loop indefinitely when size is zero", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (3.3.18, 5.1.6).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42322 — nanoid 2.1.11 затронут GHSA-mwcw-c2x4-8c55 (CVE-2024-55565)
+### QSI-2026-48262 — nanoid 2.1.11 затронут GHSA-mwcw-c2x4-8c55 (CVE-2024-55565)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/nanoid@2.1.11`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.3 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -1323,19 +1290,19 @@ _tool_output · [OSV.dev GHSA-mwcw-c2x4-8c55](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-mwcw-c2x4-8c55", "aliases": ["CVE-2024-55565"], "modified": "2026-09-10T03:50:21.666094798Z", "summary": "Predictable results in nanoid generation when given non-integer values", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (3.3.8, 5.0.9).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42325 — postcss 7.0.39 затронут GHSA-7fh5-64p2-3v2j (CVE-2023-44270)
+### QSI-2026-48265 — postcss 7.0.39 затронут GHSA-7fh5-64p2-3v2j (CVE-2023-44270)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@7.0.39`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -1357,19 +1324,19 @@ _tool_output · [OSV.dev GHSA-7fh5-64p2-3v2j](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-7fh5-64p2-3v2j", "aliases": ["CVE-2023-44270"], "modified": "2026-09-10T03:49:57.862104145Z", "summary": "PostCSS line return parsing error", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (8.4.31).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42326 — postcss 7.0.39 затронут GHSA-fxqj-rqcc-2cmp (CVE-2026-69153)
+### QSI-2026-48266 — postcss 7.0.39 затронут GHSA-fxqj-rqcc-2cmp (CVE-2026-69153)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@7.0.39`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1391,19 +1358,19 @@ _tool_output · [OSV.dev GHSA-fxqj-rqcc-2cmp](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-fxqj-rqcc-2cmp", "aliases": ["CVE-2026-69153"], "modified": "2026-09-10T03:50:53.572374167Z", "summary": "PostCSS: incomplete fix of GHSA-6g55-p6wh-862q — attacker-controlled sourceMappingURL reads arbitrary .map files when `from` is unset", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (8.5.23).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42327 — postcss 7.0.39 затронут GHSA-qx2v-qp2m-jg93 (CVE-2026-41305)
+### QSI-2026-48267 — postcss 7.0.39 затронут GHSA-qx2v-qp2m-jg93 (CVE-2026-41305)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/postcss@7.0.39`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
@@ -1425,19 +1392,19 @@ _tool_output · [OSV.dev GHSA-qx2v-qp2m-jg93](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-qx2v-qp2m-jg93", "aliases": ["CVE-2026-41305"], "modified": "2026-09-10T03:51:02.916463871Z", "summary": "PostCSS has XSS via Unescaped </style> in its CSS Stringify Output", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": true}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (8.5.10).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42250 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))
+### QSI-2026-48191 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: app/scripts/lib/offscreen-bridge/trezor-offscreen-bridge.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: source_code 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1467,13 +1434,13 @@ _file_excerpt · [app/scripts/lib/offscreen-bridge/trezor-offscreen-bridge.ts](h
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-42248 — Квантово-уязвимый ECDSA: роль не определена (10 файл(ов))
+### QSI-2026-48189 — Квантово-уязвимый ECDSA: роль не определена (10 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: app/offscreen/hardware-wallets/ledger-dmk-handler.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: source_code 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1575,13 +1542,13 @@ _file_excerpt · [shared/constants/offscreen-communication.ts](https://github.co
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-42249 — Квантово-уязвимый ECDH: роль не определена (1 файл(ов))
+### QSI-2026-48190 — Квантово-уязвимый ECDH: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDH:general`
 - Источник данных: app/scripts/controllers/qr-sync/key-manager.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: source_code 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1611,17 +1578,17 @@ _file_excerpt · [app/scripts/controllers/qr-sync/key-manager.ts](https://github
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-42255 — @hono/node-server 2.1.1 затронут GHSA-jpvv-r467-5p4w (CVE-2026-126210)
+### QSI-2026-48195 — @hono/node-server 2.1.1 затронут GHSA-jpvv-r467-5p4w (CVE-2026-126210)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@hono/node-server@2.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev сообщает GHSA-jpvv-r467-5p4w (CVE-2026-126210) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: Backslash in the request path is parsed as a path separator, bypassing path-based access control at a reverse proxy. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-jpvv-r467-5p4w (CVE-2026-126210) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: Backslash in the request path is parsed as a path separator, bypassing path-based access control at a reverse proxy. Ни один исходный файл продукта не импортирует @hono/node-server: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1639,23 +1606,23 @@ _tool_output · [OSV.dev GHSA-jpvv-r467-5p4w](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-jpvv-r467-5p4w", "aliases": ["CVE-2026-126210"], "modified": "2026-11-12T21:45:03.417268669Z", "summary": "@hono/node-server: Backslash in the request path is parsed as a path separator, bypassing path-based access control at a reverse proxy", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (1.19.18, 2.1.6).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42256 — @hono/node-server 2.1.1 затронут GHSA-qv5m-9pm6-hqp3 (CVE-2026-126343)
+### QSI-2026-48196 — @hono/node-server 2.1.1 затронут GHSA-qv5m-9pm6-hqp3 (CVE-2026-126343)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@hono/node-server@2.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev сообщает GHSA-qv5m-9pm6-hqp3 (CVE-2026-126343) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: Unhandled `ECONNRESET` on the socket during an asynchronous WebSocket upgrade crashes the process. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-qv5m-9pm6-hqp3 (CVE-2026-126343) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: Unhandled `ECONNRESET` on the socket during an asynchronous WebSocket upgrade crashes the process. Ни один исходный файл продукта не импортирует @hono/node-server: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1673,23 +1640,23 @@ _tool_output · [OSV.dev GHSA-qv5m-9pm6-hqp3](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-qv5m-9pm6-hqp3", "aliases": ["CVE-2026-126343"], "modified": "2026-11-12T21:45:03.406890390Z", "summary": "@hono/node-server: Unhandled `ECONNRESET` on the socket during an asynchronous WebSocket upgrade crashes the process", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (2.1.6).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42257 — @hono/node-server 2.1.1 затронут GHSA-rmxm-3fg6-px4f (CVE-2026-118663)
+### QSI-2026-48197 — @hono/node-server 2.1.1 затронут GHSA-rmxm-3fg6-px4f (CVE-2026-118663)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@hono/node-server@2.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: `serveStatic` decodes the request path a second time, leading to bypass of middleware on static paths. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: `serveStatic` decodes the request path a second time, leading to bypass of middleware on static paths. Ни один исходный файл продукта не импортирует @hono/node-server: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1707,23 +1674,23 @@ _tool_output · [OSV.dev GHSA-rmxm-3fg6-px4f](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-rmxm-3fg6-px4f", "aliases": ["CVE-2026-118663"], "modified": "2026-10-28T21:15:04.153052864Z", "summary": "@hono/node-server: `serveStatic` decodes the request path a second time, leading to bypass of middleware on static paths", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (2.1.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42258 — @opentelemetry/instrumentation-http 0.211.0 затронут GHSA-3v2p-hm54-8qcq (CVE-2026-128080)
+### QSI-2026-48198 — @opentelemetry/instrumentation-http 0.211.0 затронут GHSA-3v2p-hm54-8qcq (CVE-2026-128080)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@opentelemetry/instrumentation-http@0.211.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
-OSV.dev сообщает GHSA-3v2p-hm54-8qcq (CVE-2026-128080) для пакета npm @opentelemetry/instrumentation-http версии 0.211.0: OpenTelemetry JavaScript: Insertion of Sensitive Information into Log File and Exposure of Sensitive Information to an Unauthorized Actor in @opentelemetry/instrumentation-http. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-3v2p-hm54-8qcq (CVE-2026-128080) для пакета npm @opentelemetry/instrumentation-http версии 0.211.0: OpenTelemetry JavaScript: Insertion of Sensitive Information into Log File and Exposure of Sensitive Information to an Unauthorized Actor in @opentelemetry/instrumentation-http. Ни один исходный файл продукта не импортирует @opentelemetry/instrumentation-http: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1741,23 +1708,23 @@ _tool_output · [OSV.dev GHSA-3v2p-hm54-8qcq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3v2p-hm54-8qcq", "aliases": ["CVE-2026-128080"], "modified": "2026-11-13T19:45:03.811898272Z", "summary": "OpenTelemetry JavaScript: Insertion of Sensitive Information into Log File and Exposure of Sensitive Information to an Unauthorized Actor in @opentelemetry/instrumentation-http", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (0.222.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42261 — @vitest/mocker 3.2.4 затронут GHSA-82fw-gwwq-j7x9 (CVE-2026-84373)
+### QSI-2026-48201 — @vitest/mocker 3.2.4 затронут GHSA-82fw-gwwq-j7x9 (CVE-2026-84373)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@vitest/mocker@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
-OSV.dev сообщает GHSA-82fw-gwwq-j7x9 (CVE-2026-84373) для пакета npm @vitest/mocker версии 3.2.4: Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-82fw-gwwq-j7x9 (CVE-2026-84373) для пакета npm @vitest/mocker версии 3.2.4: Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock. Ни один исходный файл продукта не импортирует @vitest/mocker: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1775,23 +1742,23 @@ _tool_output · [OSV.dev GHSA-82fw-gwwq-j7x9](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-82fw-gwwq-j7x9", "aliases": ["CVE-2026-84373"], "modified": "2026-09-08T21:00:07.248611070Z", "summary": "Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.1.11, 5.0.0-rc.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42262 — @vitest/mocker 3.2.4 затронут GHSA-qxg6-89mg-rqv8 (CVE-2026-112949)
+### QSI-2026-48202 — @vitest/mocker 3.2.4 затронут GHSA-qxg6-89mg-rqv8 (CVE-2026-112949)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@vitest/mocker@3.2.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
-OSV.dev сообщает GHSA-qxg6-89mg-rqv8 (CVE-2026-112949) для пакета npm @vitest/mocker версии 3.2.4: Vitest: Code injection via unauthenticated manual mock registration. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-qxg6-89mg-rqv8 (CVE-2026-112949) для пакета npm @vitest/mocker версии 3.2.4: Vitest: Code injection via unauthenticated manual mock registration. Ни один исходный файл продукта не импортирует @vitest/mocker: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1809,23 +1776,23 @@ _tool_output · [OSV.dev GHSA-qxg6-89mg-rqv8](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-qxg6-89mg-rqv8", "aliases": ["CVE-2026-112949"], "modified": "2026-10-21T20:01:39.911013327Z", "summary": "Vitest: Code injection via unauthenticated manual mock registration", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.1.12, 5.0.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42263 — basic-ftp 5.3.1 затронут GHSA-5pm8-86m8-9m6r (CVE-2026-126345)
+### QSI-2026-48203 — basic-ftp 5.3.1 затронут GHSA-5pm8-86m8-9m6r (CVE-2026-126345)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/basic-ftp@5.3.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev сообщает GHSA-5pm8-86m8-9m6r (CVE-2026-126345) для пакета npm basic-ftp версии 5.3.1: basic-ftp: Uncaught TypeError in MLSD directory-listing parser via __proto__ fact name causes DoS in Client.list(). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-5pm8-86m8-9m6r (CVE-2026-126345) для пакета npm basic-ftp версии 5.3.1: basic-ftp: Uncaught TypeError in MLSD directory-listing parser via __proto__ fact name causes DoS in Client.list(). Ни один исходный файл продукта не импортирует basic-ftp: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1843,23 +1810,23 @@ _tool_output · [OSV.dev GHSA-5pm8-86m8-9m6r](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-5pm8-86m8-9m6r", "aliases": ["CVE-2026-126345"], "modified": "2026-11-12T21:45:03.430629333Z", "summary": "basic-ftp: Uncaught TypeError in MLSD directory-listing parser via __proto__ fact name causes DoS in Client.list()", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.2.4).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42265 — basic-ftp 5.3.1 затронут GHSA-r4jh-29pc-gfqr (CVE-2026-126346)
+### QSI-2026-48205 — basic-ftp 5.3.1 затронут GHSA-r4jh-29pc-gfqr (CVE-2026-126346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/basic-ftp@5.3.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-r4jh-29pc-gfqr (CVE-2026-126346) для пакета npm basic-ftp версии 5.3.1: basic-ftp: Uncaught exception crashes the Node.js process when a password (or resumed-download path) contains CR/LF. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-r4jh-29pc-gfqr (CVE-2026-126346) для пакета npm basic-ftp версии 5.3.1: basic-ftp: Uncaught exception crashes the Node.js process when a password (or resumed-download path) contains CR/LF. Ни один исходный файл продукта не импортирует basic-ftp: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1877,23 +1844,23 @@ _tool_output · [OSV.dev GHSA-r4jh-29pc-gfqr](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-r4jh-29pc-gfqr", "aliases": ["CVE-2026-126346"], "modified": "2026-11-12T22:30:03.983522899Z", "summary": "basic-ftp: Uncaught exception crashes the Node.js process when a password (or resumed-download path) contains CR/LF", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.2.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42271 — color-string 0.3.0 затронут GHSA-257v-vj4p-3w2h (CVE-2021-29060)
+### QSI-2026-48211 — color-string 0.3.0 затронут GHSA-257v-vj4p-3w2h (CVE-2021-29060)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/color-string@0.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev сообщает GHSA-257v-vj4p-3w2h (CVE-2021-29060) для пакета npm color-string версии 0.3.0: Regular Expression Denial of Service (ReDOS). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-257v-vj4p-3w2h (CVE-2021-29060) для пакета npm color-string версии 0.3.0: Regular Expression Denial of Service (ReDOS). Ни один исходный файл продукта не импортирует color-string: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1911,23 +1878,23 @@ _tool_output · [OSV.dev GHSA-257v-vj4p-3w2h](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-257v-vj4p-3w2h", "aliases": ["CVE-2021-29060"], "modified": "2023-11-08T04:05:32.674569Z", "summary": "Regular Expression Denial of Service (ReDOS)", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (1.5.5).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42273 — decode-uri-component 0.2.2 затронут GHSA-vcc3-ghjq-m6fr (CVE-2026-45822)
+### QSI-2026-48213 — decode-uri-component 0.2.2 затронут GHSA-vcc3-ghjq-m6fr (CVE-2026-45822)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/decode-uri-component@0.2.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-vcc3-ghjq-m6fr (CVE-2026-45822) для пакета npm decode-uri-component версии 0.2.2: decode-uri-component: Denial of service via exponential decoding of malformed percent-encoded input. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-vcc3-ghjq-m6fr (CVE-2026-45822) для пакета npm decode-uri-component версии 0.2.2: decode-uri-component: Denial of service via exponential decoding of malformed percent-encoded input. Ни один исходный файл продукта не импортирует decode-uri-component: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1945,23 +1912,23 @@ _tool_output · [OSV.dev GHSA-vcc3-ghjq-m6fr](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-vcc3-ghjq-m6fr", "aliases": ["CVE-2026-45822"], "modified": "2026-09-10T03:51:14.713899943Z", "summary": "decode-uri-component: Denial of service via exponential decoding of malformed percent-encoded input", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:U/S:N/AU:Y/R:U/V:D/RE:M/U:Amber"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (0.5.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42274 — electron 23.3.0 затронут GHSA-2p8c-gr87-2676 (CVE-2026-113796)
+### QSI-2026-48214 — electron 23.3.0 затронут GHSA-2p8c-gr87-2676 (CVE-2026-113796)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.2 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
-OSV.dev сообщает GHSA-2p8c-gr87-2676 (CVE-2026-113796) для пакета npm electron версии 23.3.0: Electron: SameSite cookie restrictions are not applied to windows opened from links. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-2p8c-gr87-2676 (CVE-2026-113796) для пакета npm electron версии 23.3.0: Electron: SameSite cookie restrictions are not applied to windows opened from links. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -1979,23 +1946,23 @@ _tool_output · [OSV.dev GHSA-2p8c-gr87-2676](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-2p8c-gr87-2676", "aliases": ["CVE-2026-113796"], "modified": "2026-10-22T17:00:04.178037719Z", "summary": "Electron: SameSite cookie restrictions are not applied to windows opened from links", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (42.11.3, 43.7.0, 44.3.0, 45.0.0-alpha.6).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42275 — electron 23.3.0 затронут GHSA-3c8v-cfp5-9885 (CVE-2026-34776)
+### QSI-2026-48215 — electron 23.3.0 затронут GHSA-3c8v-cfp5-9885 (CVE-2026-34776)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:L`)
 
-OSV.dev сообщает GHSA-3c8v-cfp5-9885 (CVE-2026-34776) для пакета npm electron версии 23.3.0: Electron: Out-of-bounds read in second-instance IPC on macOS and Linux. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-3c8v-cfp5-9885 (CVE-2026-34776) для пакета npm electron версии 23.3.0: Electron: Out-of-bounds read in second-instance IPC on macOS and Linux. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2013,23 +1980,23 @@ _tool_output · [OSV.dev GHSA-3c8v-cfp5-9885](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3c8v-cfp5-9885", "aliases": ["CVE-2026-34776"], "modified": "2026-04-06T23:20:11.001628Z", "summary": "Electron: Out-of-bounds read in second-instance IPC on macOS and Linux", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (38.8.6, 39.8.1, 40.8.1, 41.0.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42277 — electron 23.3.0 затронут GHSA-4f78-qhmw-8j8m (CVE-2026-70609)
+### QSI-2026-48217 — electron 23.3.0 затронут GHSA-4f78-qhmw-8j8m (CVE-2026-70609)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.7 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N`)
 
-OSV.dev сообщает GHSA-4f78-qhmw-8j8m (CVE-2026-70609) для пакета npm electron версии 23.3.0: Electron: DevTools JavaScript Injection via Unsanitized Dock State Parameter. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-4f78-qhmw-8j8m (CVE-2026-70609) для пакета npm electron версии 23.3.0: Electron: DevTools JavaScript Injection via Unsanitized Dock State Parameter. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2047,23 +2014,23 @@ _tool_output · [OSV.dev GHSA-4f78-qhmw-8j8m](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4f78-qhmw-8j8m", "aliases": ["CVE-2026-70609"], "modified": "2026-08-20T05:15:07.174743690Z", "summary": "Electron: DevTools JavaScript Injection via Unsanitized Dock State Parameter", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (39.8.7, 40.9.0, 41.2.0, 42.0.0-beta.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42278 — electron 23.3.0 затронут GHSA-4p4r-m79c-wq3v (CVE-2026-34767)
+### QSI-2026-48218 — electron 23.3.0 затронут GHSA-4p4r-m79c-wq3v (CVE-2026-34767)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:H/A:N`)
 
-OSV.dev сообщает GHSA-4p4r-m79c-wq3v (CVE-2026-34767) для пакета npm electron версии 23.3.0: Electron: HTTP Response Header Injection in custom protocol handlers and webRequest. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-4p4r-m79c-wq3v (CVE-2026-34767) для пакета npm electron версии 23.3.0: Electron: HTTP Response Header Injection in custom protocol handlers and webRequest. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2081,23 +2048,23 @@ _tool_output · [OSV.dev GHSA-4p4r-m79c-wq3v](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4p4r-m79c-wq3v", "aliases": ["CVE-2026-34767"], "modified": "2026-04-06T23:21:01.480605Z", "summary": "Electron: HTTP Response Header Injection in custom protocol handlers and webRequest", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:H/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (38.8.6, 39.8.3, 40.8.3, 41.0.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42280 — electron 23.3.0 затронут GHSA-5c9j-mhmv-5xgx (CVE-2026-70603)
+### QSI-2026-48220 — electron 23.3.0 затронут GHSA-5c9j-mhmv-5xgx (CVE-2026-70603)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.0 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:N`)
 
-OSV.dev сообщает GHSA-5c9j-mhmv-5xgx (CVE-2026-70603) для пакета npm electron версии 23.3.0: Electron: shell.openPath path validation bypass via embedded null byte. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-5c9j-mhmv-5xgx (CVE-2026-70603) для пакета npm electron версии 23.3.0: Electron: shell.openPath path validation bypass via embedded null byte. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2115,23 +2082,23 @@ _tool_output · [OSV.dev GHSA-5c9j-mhmv-5xgx](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-5c9j-mhmv-5xgx", "aliases": ["CVE-2026-70603"], "modified": "2026-08-05T16:11:06.665641Z", "summary": "Electron: shell.openPath path validation bypass via embedded null byte", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (39.8.6, 40.9.0, 41.1.1, 42.0.0-beta.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42281 — electron 23.3.0 затронут GHSA-5rqw-r77c-jp79 (CVE-2026-34779)
+### QSI-2026-48221 — electron 23.3.0 затронут GHSA-5rqw-r77c-jp79 (CVE-2026-34779)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:L`)
 
-OSV.dev сообщает GHSA-5rqw-r77c-jp79 (CVE-2026-34779) для пакета npm electron версии 23.3.0: Electron: AppleScript injection in app.moveToApplicationsFolder on macOS. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-5rqw-r77c-jp79 (CVE-2026-34779) для пакета npm electron версии 23.3.0: Electron: AppleScript injection in app.moveToApplicationsFolder on macOS. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2149,23 +2116,23 @@ _tool_output · [OSV.dev GHSA-5rqw-r77c-jp79](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-5rqw-r77c-jp79", "aliases": ["CVE-2026-34779"], "modified": "2026-04-06T23:20:07.571377Z", "summary": "Electron: AppleScript injection in app.moveToApplicationsFolder on macOS", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (38.8.6, 39.8.1, 40.8.0, 41.0.0-beta.8).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42282 — electron 23.3.0 затронут GHSA-6r2x-8pq8-9489 (CVE-2024-46993)
+### QSI-2026-48222 — electron 23.3.0 затронут GHSA-6r2x-8pq8-9489 (CVE-2024-46993)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-6r2x-8pq8-9489 (CVE-2024-46993) для пакета npm electron версии 23.3.0: Electron vulnerable to Heap Buffer Overflow in NativeImage. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-6r2x-8pq8-9489 (CVE-2024-46993) для пакета npm electron версии 23.3.0: Electron vulnerable to Heap Buffer Overflow in NativeImage. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2183,23 +2150,23 @@ _tool_output · [OSV.dev GHSA-6r2x-8pq8-9489](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-6r2x-8pq8-9489", "aliases": ["CVE-2024-46993"], "modified": "2025-07-01T13:13:25Z", "summary": "Electron vulnerable to Heap Buffer Overflow in NativeImage", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:H/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (28.3.2, 29.3.3, 30.0.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42283 — electron 23.3.0 затронут GHSA-7m48-wc93-9g85 (CVE-2023-44402)
+### QSI-2026-48223 — electron 23.3.0 затронут GHSA-7m48-wc93-9g85 (CVE-2023-44402)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:L`)
 
-OSV.dev сообщает GHSA-7m48-wc93-9g85 (CVE-2023-44402) для пакета npm electron версии 23.3.0: ASAR Integrity bypass via filetype confusion in electron. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-7m48-wc93-9g85 (CVE-2023-44402) для пакета npm electron версии 23.3.0: ASAR Integrity bypass via filetype confusion in electron. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2217,23 +2184,23 @@ _tool_output · [OSV.dev GHSA-7m48-wc93-9g85](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-7m48-wc93-9g85", "aliases": ["CVE-2023-44402"], "modified": "2026-09-10T03:49:59.555264356Z", "summary": "ASAR Integrity bypass via filetype confusion in electron", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (22.3.24, 24.8.3, 25.8.1, 26.2.1, 27.0.0-alpha.7).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42284 — electron 23.3.0 затронут GHSA-7x97-j373-85x5 (CVE-2023-39956)
+### QSI-2026-48224 — electron 23.3.0 затронут GHSA-7x97-j373-85x5 (CVE-2023-39956)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:L`)
 
-OSV.dev сообщает GHSA-7x97-j373-85x5 (CVE-2023-39956) для пакета npm electron версии 23.3.0: Electron vulnerable to out-of-package code execution when launched with arbitrary cwd. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-7x97-j373-85x5 (CVE-2023-39956) для пакета npm electron версии 23.3.0: Electron vulnerable to out-of-package code execution when launched with arbitrary cwd. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2251,23 +2218,23 @@ _tool_output · [OSV.dev GHSA-7x97-j373-85x5](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-7x97-j373-85x5", "aliases": ["CVE-2023-39956"], "modified": "2026-09-10T03:49:57.866467216Z", "summary": "Electron vulnerable to out-of-package code execution when launched with arbitrary cwd", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (22.3.19, 23.3.13, 24.7.1, 25.5.0, 26.0.0-beta.13).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42288 — electron 23.3.0 затронут GHSA-997q-gvvc-jwmx (CVE-2026-114121)
+### QSI-2026-48228 — electron 23.3.0 затронут GHSA-997q-gvvc-jwmx (CVE-2026-114121)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:N`)
 
-OSV.dev сообщает GHSA-997q-gvvc-jwmx (CVE-2026-114121) для пакета npm electron версии 23.3.0: Electron: openExternal permission requests can be attributed to the wrong origin. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-997q-gvvc-jwmx (CVE-2026-114121) для пакета npm electron версии 23.3.0: Electron: openExternal permission requests can be attributed to the wrong origin. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2285,23 +2252,23 @@ _tool_output · [OSV.dev GHSA-997q-gvvc-jwmx](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-997q-gvvc-jwmx", "aliases": ["CVE-2026-114121"], "modified": "2026-10-22T17:00:05.173770092Z", "summary": "Electron: openExternal permission requests can be attributed to the wrong origin", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (42.11.3, 43.7.0, 44.3.0, 45.0.0-alpha.5).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42290 — electron 23.3.0 затронут GHSA-9pf5-hg6p-4pwp (CVE-2026-70599)
+### QSI-2026-48230 — electron 23.3.0 затронут GHSA-9pf5-hg6p-4pwp (CVE-2026-70599)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
-OSV.dev сообщает GHSA-9pf5-hg6p-4pwp (CVE-2026-70599) для пакета npm electron версии 23.3.0: Electron: Permission Check Handler Receives Main Frame Origin Instead of Requesting Iframe Origin. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-9pf5-hg6p-4pwp (CVE-2026-70599) для пакета npm electron версии 23.3.0: Electron: Permission Check Handler Receives Main Frame Origin Instead of Requesting Iframe Origin. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2319,23 +2286,23 @@ _tool_output · [OSV.dev GHSA-9pf5-hg6p-4pwp](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-9pf5-hg6p-4pwp", "aliases": ["CVE-2026-70599"], "modified": "2026-08-05T15:56:01.262988Z", "summary": "Electron: Permission Check Handler Receives Main Frame Origin Instead of Requesting Iframe Origin", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (39.8.7, 40.9.0, 41.2.0, 42.0.0-beta.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42292 — electron 23.3.0 затронут GHSA-9w97-2464-8783 (CVE-2026-34772)
+### QSI-2026-48232 — electron 23.3.0 затронут GHSA-9w97-2464-8783 (CVE-2026-34772)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.8 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:L`)
 
-OSV.dev сообщает GHSA-9w97-2464-8783 (CVE-2026-34772) для пакета npm electron версии 23.3.0: Electron: Use-after-free in download save dialog callback. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-9w97-2464-8783 (CVE-2026-34772) для пакета npm electron версии 23.3.0: Electron: Use-after-free in download save dialog callback. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2353,23 +2320,23 @@ _tool_output · [OSV.dev GHSA-9w97-2464-8783](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-9w97-2464-8783", "aliases": ["CVE-2026-34772"], "modified": "2026-04-06T23:19:57.917173Z", "summary": "Electron: Use-after-free in download save dialog callback", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.7).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42294 — elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505)
+### QSI-2026-48234 — elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/elliptic@6.6.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.6 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L`)
 
-OSV.dev сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505) для пакета npm elliptic версии 6.6.1: Elliptic Uses a Cryptographic Primitive with a Risky Implementation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505) для пакета npm elliptic версии 6.6.1: Elliptic Uses a Cryptographic Primitive with a Risky Implementation. Ни один исходный файл продукта не импортирует elliptic: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2387,23 +2354,23 @@ _tool_output · [OSV.dev GHSA-848j-6mx2-7j84](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-848j-6mx2-7j84", "aliases": ["CVE-2025-14505"], "modified": "2026-09-10T03:50:32.794069999Z", "summary": "Elliptic Uses a Cryptographic Primitive with a Risky Implementation", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42298 — fast-uri 3.1.8 затронут GHSA-w74x-v6f9-j3xg (CVE-2026-110306)
+### QSI-2026-48238 — fast-uri 3.1.8 затронут GHSA-w74x-v6f9-j3xg (CVE-2026-110306)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-uri@3.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
-OSV.dev сообщает GHSA-w74x-v6f9-j3xg (CVE-2026-110306) для пакета npm fast-uri версии 3.1.8: fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-w74x-v6f9-j3xg (CVE-2026-110306) для пакета npm fast-uri версии 3.1.8: fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding. Ни один исходный файл продукта не импортирует fast-uri: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2421,23 +2388,23 @@ _tool_output · [OSV.dev GHSA-w74x-v6f9-j3xg](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w74x-v6f9-j3xg", "aliases": ["CVE-2026-110306"], "modified": "2026-10-23T21:45:04.896137439Z", "summary": "fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (2.4.8, 3.1.9, 4.2.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42299 — fast-uri 3.1.8 затронут GHSA-wjr9-j795-jxcr (CVE-2026-110180)
+### QSI-2026-48239 — fast-uri 3.1.8 затронут GHSA-wjr9-j795-jxcr (CVE-2026-110180)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-uri@3.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N`)
 
-OSV.dev сообщает GHSA-wjr9-j795-jxcr (CVE-2026-110180) для пакета npm fast-uri версии 3.1.8: fast-uri vulnerable to host confusion via unchecked WHATWG host canonicalization. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-wjr9-j795-jxcr (CVE-2026-110180) для пакета npm fast-uri версии 3.1.8: fast-uri vulnerable to host confusion via unchecked WHATWG host canonicalization. Ни один исходный файл продукта не импортирует fast-uri: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2455,23 +2422,23 @@ _tool_output · [OSV.dev GHSA-wjr9-j795-jxcr](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-wjr9-j795-jxcr", "aliases": ["CVE-2026-110180"], "modified": "2026-10-23T21:45:04.892054666Z", "summary": "fast-uri vulnerable to host confusion via unchecked WHATWG host canonicalization", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (2.4.8, 3.1.9, 4.2.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42302 — follow-redirects 1.16.1 затронут GHSA-mrwp-f3q8-3g9p (CVE-2026-116689)
+### QSI-2026-48242 — follow-redirects 1.16.1 затронут GHSA-mrwp-f3q8-3g9p (CVE-2026-116689)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/follow-redirects@1.16.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
-OSV.dev сообщает GHSA-mrwp-f3q8-3g9p (CVE-2026-116689) для пакета npm follow-redirects версии 1.16.1: follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirects. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-mrwp-f3q8-3g9p (CVE-2026-116689) для пакета npm follow-redirects версии 1.16.1: follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirects. Ни один исходный файл продукта не импортирует follow-redirects: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2489,23 +2456,23 @@ _tool_output · [OSV.dev GHSA-mrwp-f3q8-3g9p](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-mrwp-f3q8-3g9p", "aliases": ["CVE-2026-116689"], "modified": "2026-10-30T23:15:06.315251750Z", "summary": "follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirects", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (1.16.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42303 — glob 10.5.0 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+### QSI-2026-48243 — glob 10.5.0 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/glob@10.5.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) для пакета npm glob версии 10.5.0: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) для пакета npm glob версии 10.5.0: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal. Ни один исходный файл продукта не импортирует glob: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2523,23 +2490,23 @@ _tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3g3m-2fjr-6pw4", "aliases": ["CVE-2026-118773"], "modified": "2026-10-30T23:15:04.503965732Z", "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (14.0.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42304 — glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+### QSI-2026-48244 — glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/glob@13.0.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) для пакета npm glob версии 13.0.6: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) для пакета npm glob версии 13.0.6: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal. Ни один исходный файл продукта не импортирует glob: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2557,23 +2524,23 @@ _tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3g3m-2fjr-6pw4", "aliases": ["CVE-2026-118773"], "modified": "2026-10-30T23:15:04.503965732Z", "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (14.0.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42305 — got 6.7.1 затронут GHSA-pfrx-2q88-qq97 (CVE-2022-33987)
+### QSI-2026-48245 — got 6.7.1 затронут GHSA-pfrx-2q88-qq97 (CVE-2022-33987)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/got@6.7.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
-OSV.dev сообщает GHSA-pfrx-2q88-qq97 (CVE-2022-33987) для пакета npm got версии 6.7.1: Got allows a redirect to a UNIX socket. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-pfrx-2q88-qq97 (CVE-2022-33987) для пакета npm got версии 6.7.1: Got allows a redirect to a UNIX socket. Ни один исходный файл продукта не импортирует got: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2591,23 +2558,23 @@ _tool_output · [OSV.dev GHSA-pfrx-2q88-qq97](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-pfrx-2q88-qq97", "aliases": ["CVE-2022-33987"], "modified": "2026-09-10T03:49:55.225771209Z", "summary": "Got allows a redirect to a UNIX socket", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.8.5, 12.1.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42306 — got 9.6.0 затронут GHSA-pfrx-2q88-qq97 (CVE-2022-33987)
+### QSI-2026-48246 — got 9.6.0 затронут GHSA-pfrx-2q88-qq97 (CVE-2022-33987)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/got@9.6.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
-OSV.dev сообщает GHSA-pfrx-2q88-qq97 (CVE-2022-33987) для пакета npm got версии 9.6.0: Got allows a redirect to a UNIX socket. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-pfrx-2q88-qq97 (CVE-2022-33987) для пакета npm got версии 9.6.0: Got allows a redirect to a UNIX socket. Ни один исходный файл продукта не импортирует got: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2625,23 +2592,23 @@ _tool_output · [OSV.dev GHSA-pfrx-2q88-qq97](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-pfrx-2q88-qq97", "aliases": ["CVE-2022-33987"], "modified": "2026-09-10T03:49:55.225771209Z", "summary": "Got allows a redirect to a UNIX socket", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.8.5, 12.1.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42308 — hono 4.13.13 затронут GHSA-46wx-v44x-9hh2 (CVE-2026-126355)
+### QSI-2026-48248 — hono 4.13.13 затронут GHSA-46wx-v44x-9hh2 (CVE-2026-126355)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/hono@4.13.13`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N`)
 
-OSV.dev сообщает GHSA-46wx-v44x-9hh2 (CVE-2026-126355) для пакета npm hono версии 4.13.13: Hono: `csrf()` does not check requests sent by hyperlink auditing (`text/ping`). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-46wx-v44x-9hh2 (CVE-2026-126355) для пакета npm hono версии 4.13.13: Hono: `csrf()` does not check requests sent by hyperlink auditing (`text/ping`). Ни один исходный файл продукта не импортирует hono: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2659,23 +2626,23 @@ _tool_output · [OSV.dev GHSA-46wx-v44x-9hh2](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-46wx-v44x-9hh2", "aliases": ["CVE-2026-126355"], "modified": "2026-11-12T23:45:03.241008967Z", "summary": "Hono: `csrf()` does not check requests sent by hyperlink auditing (`text/ping`)", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.13.16).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42309 — hono 4.13.13 затронут GHSA-4h7h-rv7c-7m2v (CVE-2026-126356)
+### QSI-2026-48249 — hono 4.13.13 затронут GHSA-4h7h-rv7c-7m2v (CVE-2026-126356)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/hono@4.13.13`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
-OSV.dev сообщает GHSA-4h7h-rv7c-7m2v (CVE-2026-126356) для пакета npm hono версии 4.13.13: Hono: `validator('form')` skips validation for `multipart/form-data` requests with extra parameters. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-4h7h-rv7c-7m2v (CVE-2026-126356) для пакета npm hono версии 4.13.13: Hono: `validator('form')` skips validation for `multipart/form-data` requests with extra parameters. Ни один исходный файл продукта не импортирует hono: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2693,23 +2660,23 @@ _tool_output · [OSV.dev GHSA-4h7h-rv7c-7m2v](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4h7h-rv7c-7m2v", "aliases": ["CVE-2026-126356"], "modified": "2026-11-12T23:45:03.255833027Z", "summary": "Hono: `validator('form')` skips validation for `multipart/form-data` requests with extra parameters", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.13.16).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42310 — hono 4.13.13 затронут GHSA-4m76-xfj5-7975 (CVE-2026-126357)
+### QSI-2026-48250 — hono 4.13.13 затронут GHSA-4m76-xfj5-7975 (CVE-2026-126357)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/hono@4.13.13`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev сообщает GHSA-4m76-xfj5-7975 (CVE-2026-126357) для пакета npm hono версии 4.13.13: Hono: `mount()` and `app.mount()` can forward a path that bypasses middleware scoped inside the mount prefix. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-4m76-xfj5-7975 (CVE-2026-126357) для пакета npm hono версии 4.13.13: Hono: `mount()` and `app.mount()` can forward a path that bypasses middleware scoped inside the mount prefix. Ни один исходный файл продукта не импортирует hono: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2727,23 +2694,23 @@ _tool_output · [OSV.dev GHSA-4m76-xfj5-7975](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4m76-xfj5-7975", "aliases": ["CVE-2026-126357"], "modified": "2026-11-12T23:30:03.867783771Z", "summary": "Hono: `mount()` and `app.mount()` can forward a path that bypasses middleware scoped inside the mount prefix", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.13.16).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42311 — hono 4.13.13 затронут GHSA-h7mg-cq63-vhpq (CVE-2026-126358)
+### QSI-2026-48251 — hono 4.13.13 затронут GHSA-h7mg-cq63-vhpq (CVE-2026-126358)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/hono@4.13.13`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev сообщает GHSA-h7mg-cq63-vhpq (CVE-2026-126358) для пакета npm hono версии 4.13.13: Hono: RegExpRouter skips wildcard middleware for some route sets and for paths with an encoded line terminator. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-h7mg-cq63-vhpq (CVE-2026-126358) для пакета npm hono версии 4.13.13: Hono: RegExpRouter skips wildcard middleware for some route sets and for paths with an encoded line terminator. Ни один исходный файл продукта не импортирует hono: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2761,23 +2728,23 @@ _tool_output · [OSV.dev GHSA-h7mg-cq63-vhpq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-h7mg-cq63-vhpq", "aliases": ["CVE-2026-126358"], "modified": "2026-11-12T23:30:03.867508007Z", "summary": "Hono: RegExpRouter skips wildcard middleware for some route sets and for paths with an encoded line terminator", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.13.16).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42317 — minimatch 10.2.6 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
+### QSI-2026-48257 — minimatch 10.2.6 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@10.2.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 10.2.6: minimatch has potential denial of service via globparts amplification. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 10.2.6: minimatch has potential denial of service via globparts amplification. Ни один исходный файл продукта не импортирует minimatch: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2795,23 +2762,23 @@ _tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-g3hv-75wg-m249", "aliases": ["CVE-2026-118764"], "modified": "2026-11-04T17:01:25.850114200Z", "summary": "minimatch has potential denial of service via globparts amplification", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42318 — minimatch 7.4.9 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
+### QSI-2026-48258 — minimatch 7.4.9 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@7.4.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 7.4.9: minimatch has potential denial of service via globparts amplification. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 7.4.9: minimatch has potential denial of service via globparts amplification. Ни один исходный файл продукта не импортирует minimatch: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2829,23 +2796,23 @@ _tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-g3hv-75wg-m249", "aliases": ["CVE-2026-118764"], "modified": "2026-11-04T17:01:25.850114200Z", "summary": "minimatch has potential denial of service via globparts amplification", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42319 — minimatch 9.0.9 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
+### QSI-2026-48259 — minimatch 9.0.9 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 9.0.9: minimatch has potential denial of service via globparts amplification. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 9.0.9: minimatch has potential denial of service via globparts amplification. Ни один исходный файл продукта не импортирует minimatch: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2863,23 +2830,23 @@ _tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-g3hv-75wg-m249", "aliases": ["CVE-2026-118764"], "modified": "2026-11-04T17:01:25.850114200Z", "summary": "minimatch has potential denial of service via globparts amplification", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (11.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42329 — qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)
+### QSI-2026-48269 — qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/qs@6.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816) для пакета npm qs версии 6.16.0: qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816) для пакета npm qs версии 6.16.0: qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS). Ни один исходный файл продукта не импортирует qs: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2897,23 +2864,23 @@ _tool_output · [OSV.dev GHSA-6pq8-jhm2-2vcw](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-6pq8-jhm2-2vcw", "aliases": ["CVE-2026-110816"], "modified": "2026-10-27T16:15:05.324423680Z", "summary": "qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS)", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.16.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42330 — react-router 6.30.6 затронут GHSA-337j-9hxr-rhxg (CVE-2026-53666)
+### QSI-2026-48270 — react-router 6.30.6 затронут GHSA-337j-9hxr-rhxg (CVE-2026-53666)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/react-router@6.30.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N`)
 
-OSV.dev сообщает GHSA-337j-9hxr-rhxg (CVE-2026-53666) для пакета npm react-router версии 6.30.6: React Router: Arbitrary Constructor Injection via deserializeErrors() in React Router SSR Hydration. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-337j-9hxr-rhxg (CVE-2026-53666) для пакета npm react-router версии 6.30.6: React Router: Arbitrary Constructor Injection via deserializeErrors() in React Router SSR Hydration. Ни один исходный файл продукта не импортирует react-router: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2931,23 +2898,23 @@ _tool_output · [OSV.dev GHSA-337j-9hxr-rhxg](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-337j-9hxr-rhxg", "aliases": ["CVE-2026-53666"], "modified": "2026-09-10T03:50:51.309163082Z", "summary": "React Router: Arbitrary Constructor Injection via deserializeErrors() in React Router SSR Hydration", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (7.18.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42331 — react-router 6.30.6 затронут GHSA-wrjc-x8rr-h8h6 (CVE-2026-53669)
+### QSI-2026-48271 — react-router 6.30.6 затронут GHSA-wrjc-x8rr-h8h6 (CVE-2026-53669)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/react-router@6.30.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-wrjc-x8rr-h8h6 (CVE-2026-53669) для пакета npm react-router версии 6.30.6: React Router: Open redirect via backslash in <Link> and useNavigate (CVE-2025-68470 bypass). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-wrjc-x8rr-h8h6 (CVE-2026-53669) для пакета npm react-router версии 6.30.6: React Router: Open redirect via backslash in <Link> and useNavigate (CVE-2025-68470 bypass). Ни один исходный файл продукта не импортирует react-router: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2965,23 +2932,23 @@ _tool_output · [OSV.dev GHSA-wrjc-x8rr-h8h6](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-wrjc-x8rr-h8h6", "aliases": ["CVE-2026-53669"], "modified": "2026-09-10T03:51:12.418370518Z", "summary": "React Router: Open redirect via backslash in <Link> and useNavigate (CVE-2025-68470 bypass)", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:N/VI:L/VA:N/SC:L/SI:L/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (7.18.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42334 — undici 7.30.0 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924)
+### QSI-2026-48274 — undici 7.30.0 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924) для пакета npm undici версии 7.30.0: undici vulnerable to Denial of Service via unbounded memory in the EventSource parser. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924) для пакета npm undici версии 7.30.0: undici vulnerable to Denial of Service via unbounded memory in the EventSource parser. Ни один исходный файл продукта не импортирует undici: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2999,23 +2966,23 @@ _tool_output · [OSV.dev GHSA-4qv8-2p9j-2685](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4qv8-2p9j-2685", "aliases": ["CVE-2026-109924"], "modified": "2026-10-23T22:30:04.104974737Z", "summary": "undici vulnerable to Denial of Service via unbounded memory in the EventSource parser", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.29.1, 7.30.1, 8.12.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42336 — undici 7.30.0 затронут GHSA-55wc-3pg8-jfw6 (CVE-2026-87029)
+### QSI-2026-48276 — undici 7.30.0 затронут GHSA-55wc-3pg8-jfw6 (CVE-2026-87029)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-55wc-3pg8-jfw6 (CVE-2026-87029) для пакета npm undici версии 7.30.0: undici vulnerable to Denial of Service via unhandled exception in the decompress interceptor. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-55wc-3pg8-jfw6 (CVE-2026-87029) для пакета npm undici версии 7.30.0: undici vulnerable to Denial of Service via unhandled exception in the decompress interceptor. Ни один исходный файл продукта не импортирует undici: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3033,23 +3000,23 @@ _tool_output · [OSV.dev GHSA-55wc-3pg8-jfw6](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-55wc-3pg8-jfw6", "aliases": ["CVE-2026-87029"], "modified": "2026-10-27T19:15:22.392692308Z", "summary": "undici vulnerable to Denial of Service via unhandled exception in the decompress interceptor", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (7.30.1, 8.12.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42337 — undici 7.30.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)
+### QSI-2026-48277 — undici 7.30.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932) для пакета npm undici версии 7.30.0: undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932) для пакета npm undici версии 7.30.0: undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering. Ни один исходный файл продукта не импортирует undici: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3067,23 +3034,23 @@ _tool_output · [OSV.dev GHSA-9fm3-97px-rjf6](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-9fm3-97px-rjf6", "aliases": ["CVE-2026-109932"], "modified": "2026-10-27T19:15:22.400702743Z", "summary": "undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (6.29.1, 7.30.1, 8.12.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42338 — undici 7.30.0 затронут GHSA-f72v-6w45-q472 (CVE-2026-109841)
+### QSI-2026-48278 — undici 7.30.0 затронут GHSA-f72v-6w45-q472 (CVE-2026-109841)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@7.30.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
-OSV.dev сообщает GHSA-f72v-6w45-q472 (CVE-2026-109841) для пакета npm undici версии 7.30.0: undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-f72v-6w45-q472 (CVE-2026-109841) для пакета npm undici версии 7.30.0: undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens. Ни один исходный файл продукта не импортирует undici: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3101,19 +3068,19 @@ _tool_output · [OSV.dev GHSA-f72v-6w45-q472](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-f72v-6w45-q472", "aliases": ["CVE-2026-109841"], "modified": "2026-10-23T22:30:04.094314933Z", "summary": "undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (7.30.1, 8.12.2).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42251 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в app/scripts/sidepanel/background.ts
+### QSI-2026-48192 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в app/scripts/sidepanel/background.ts
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:app/scripts/sidepanel/background.ts`
 - Источник данных: app/scripts/sidepanel/background.ts
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: source_code 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 25.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -3145,13 +3112,13 @@ _file_excerpt · [app/scripts/sidepanel/background.ts](https://github.com/MetaMa
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-42252 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в shared/lib/delegation/delegation.ts
+### QSI-2026-48193 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в shared/lib/delegation/delegation.ts
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:shared/lib/delegation/delegation.ts`
 - Источник данных: shared/lib/delegation/delegation.ts
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: source_code 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 25.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -3183,17 +3150,17 @@ _file_excerpt · [shared/lib/delegation/delegation.ts](https://github.com/MetaMa
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-42259 — @tootallnate/once 1.1.2 затронут GHSA-vpq2-c234-7xj6 (CVE-2026-3449)
+### QSI-2026-48199 — @tootallnate/once 1.1.2 затронут GHSA-vpq2-c234-7xj6 (CVE-2026-3449)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@tootallnate/once@1.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.3 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev сообщает GHSA-vpq2-c234-7xj6 (CVE-2026-3449) для пакета npm @tootallnate/once версии 1.1.2: @tootallnate/once vulnerable to Incorrect Control Flow Scoping. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-vpq2-c234-7xj6 (CVE-2026-3449) для пакета npm @tootallnate/once версии 1.1.2: @tootallnate/once vulnerable to Incorrect Control Flow Scoping. Ни один исходный файл продукта не импортирует @tootallnate/once: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3211,23 +3178,23 @@ _tool_output · [OSV.dev GHSA-vpq2-c234-7xj6](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-vpq2-c234-7xj6", "aliases": ["CVE-2026-3449"], "modified": "2026-09-10T03:51:00.790088103Z", "summary": "@tootallnate/once vulnerable to Incorrect Control Flow Scoping", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (2.0.1, 3.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42260 — @tootallnate/once 2.0.0 затронут GHSA-vpq2-c234-7xj6 (CVE-2026-3449)
+### QSI-2026-48200 — @tootallnate/once 2.0.0 затронут GHSA-vpq2-c234-7xj6 (CVE-2026-3449)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@tootallnate/once@2.0.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.3 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev сообщает GHSA-vpq2-c234-7xj6 (CVE-2026-3449) для пакета npm @tootallnate/once версии 2.0.0: @tootallnate/once vulnerable to Incorrect Control Flow Scoping. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-vpq2-c234-7xj6 (CVE-2026-3449) для пакета npm @tootallnate/once версии 2.0.0: @tootallnate/once vulnerable to Incorrect Control Flow Scoping. Ни один исходный файл продукта не импортирует @tootallnate/once: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3245,23 +3212,23 @@ _tool_output · [OSV.dev GHSA-vpq2-c234-7xj6](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-vpq2-c234-7xj6", "aliases": ["CVE-2026-3449"], "modified": "2026-09-10T03:51:00.790088103Z", "summary": "@tootallnate/once vulnerable to Incorrect Control Flow Scoping", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (2.0.1, 3.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42276 — electron 23.3.0 затронут GHSA-3qxv-5xgr-q7w9 (CVE-2026-114122)
+### QSI-2026-48216 — electron 23.3.0 затронут GHSA-3qxv-5xgr-q7w9 (CVE-2026-114122)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.9 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:L`)
 
-OSV.dev сообщает GHSA-3qxv-5xgr-q7w9 (CVE-2026-114122) для пакета npm electron версии 23.3.0: Electron: Frame subscription trusts GPU-supplied frame geometry. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-3qxv-5xgr-q7w9 (CVE-2026-114122) для пакета npm electron версии 23.3.0: Electron: Frame subscription trusts GPU-supplied frame geometry. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3279,23 +3246,23 @@ _tool_output · [OSV.dev GHSA-3qxv-5xgr-q7w9](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3qxv-5xgr-q7w9", "aliases": ["CVE-2026-114122"], "modified": "2026-10-22T17:00:05.166832387Z", "summary": "Electron: Frame subscription trusts GPU-supplied frame geometry", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (42.11.6, 43.7.3, 44.4.3, 45.0.0-alpha.9).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42286 — electron 23.3.0 затронут GHSA-9899-m83m-qhpj (CVE-2026-34766)
+### QSI-2026-48226 — electron 23.3.0 затронут GHSA-9899-m83m-qhpj (CVE-2026-34766)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.3 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N`)
 
-OSV.dev сообщает GHSA-9899-m83m-qhpj (CVE-2026-34766) для пакета npm electron версии 23.3.0: Electron: USB device selection not validated against filtered device list. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-9899-m83m-qhpj (CVE-2026-34766) для пакета npm electron версии 23.3.0: Electron: USB device selection not validated against filtered device list. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3313,23 +3280,23 @@ _tool_output · [OSV.dev GHSA-9899-m83m-qhpj](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-9899-m83m-qhpj", "aliases": ["CVE-2026-34766"], "modified": "2026-04-06T23:18:50.163821Z", "summary": "Electron: USB device selection not validated against filtered device list", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42287 — electron 23.3.0 затронут GHSA-98mx-cjp9-gchm (CVE-2026-113797)
+### QSI-2026-48227 — electron 23.3.0 затронут GHSA-98mx-cjp9-gchm (CVE-2026-113797)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/electron@23.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N`)
 
-OSV.dev сообщает GHSA-98mx-cjp9-gchm (CVE-2026-113797) для пакета npm electron версии 23.3.0: Electron: Extension tabs.query returns tab URLs and titles without the tabs permission. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-98mx-cjp9-gchm (CVE-2026-113797) для пакета npm electron версии 23.3.0: Electron: Extension tabs.query returns tab URLs and titles without the tabs permission. Ни один исходный файл продукта не импортирует electron: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3347,23 +3314,23 @@ _tool_output · [OSV.dev GHSA-98mx-cjp9-gchm](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-98mx-cjp9-gchm", "aliases": ["CVE-2026-113797"], "modified": "2026-10-22T17:00:04.179486447Z", "summary": "Electron: Extension tabs.query returns tab URLs and titles without the tabs permission", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (42.11.1, 43.5.1, 44.1.1, 45.0.0-alpha.4).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42297 — fast-uri 3.1.8 затронут GHSA-333x-w4r6-6crp (CVE-2026-110725)
+### QSI-2026-48237 — fast-uri 3.1.8 затронут GHSA-333x-w4r6-6crp (CVE-2026-110725)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-uri@3.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
-OSV.dev сообщает GHSA-333x-w4r6-6crp (CVE-2026-110725) для пакета npm fast-uri версии 3.1.8: fast-uri vulnerable to scheme injection via an unescaped first-segment colon in suffix references. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-333x-w4r6-6crp (CVE-2026-110725) для пакета npm fast-uri версии 3.1.8: fast-uri vulnerable to scheme injection via an unescaped first-segment colon in suffix references. Ни один исходный файл продукта не импортирует fast-uri: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3381,23 +3348,23 @@ _tool_output · [OSV.dev GHSA-333x-w4r6-6crp](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-333x-w4r6-6crp", "aliases": ["CVE-2026-110725"], "modified": "2026-10-23T21:45:04.900311356Z", "summary": "fast-uri vulnerable to scheme injection via an unescaped first-segment colon in suffix references", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (2.4.8, 3.1.9, 4.2.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42300 — fast-uri 3.1.8 затронут GHSA-xhq7-xmqj-769h (CVE-2026-110095)
+### QSI-2026-48240 — fast-uri 3.1.8 затронут GHSA-xhq7-xmqj-769h (CVE-2026-110095)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-uri@3.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
-OSV.dev сообщает GHSA-xhq7-xmqj-769h (CVE-2026-110095) для пакета npm fast-uri версии 3.1.8: fast-uri vulnerable to improper path equivalence in relative reference normalization. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-xhq7-xmqj-769h (CVE-2026-110095) для пакета npm fast-uri версии 3.1.8: fast-uri vulnerable to improper path equivalence in relative reference normalization. Ни один исходный файл продукта не импортирует fast-uri: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3415,23 +3382,23 @@ _tool_output · [OSV.dev GHSA-xhq7-xmqj-769h](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-xhq7-xmqj-769h", "aliases": ["CVE-2026-110095"], "modified": "2026-10-23T21:45:04.902389903Z", "summary": "fast-uri vulnerable to improper path equivalence in relative reference normalization", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (2.4.8, 3.1.9, 4.2.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42301 — fast-xml-parser 5.7.3 затронут GHSA-474x-hrwr-fgx4 (CVE-2026-126066)
+### QSI-2026-48241 — fast-xml-parser 5.7.3 затронут GHSA-474x-hrwr-fgx4 (CVE-2026-126066)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/fast-xml-parser@5.7.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev сообщает GHSA-474x-hrwr-fgx4 (CVE-2026-126066) для пакета npm fast-xml-parser версии 5.7.3: fast-xml-parser: Quadratic CPU consumption scanning unterminated stop-node tags. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-474x-hrwr-fgx4 (CVE-2026-126066) для пакета npm fast-xml-parser версии 5.7.3: fast-xml-parser: Quadratic CPU consumption scanning unterminated stop-node tags. Ни один исходный файл продукта не импортирует fast-xml-parser: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3449,23 +3416,23 @@ _tool_output · [OSV.dev GHSA-474x-hrwr-fgx4](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-474x-hrwr-fgx4", "aliases": ["CVE-2026-126066"], "modified": "2026-11-10T21:15:03.074649810Z", "summary": "fast-xml-parser: Quadratic CPU consumption scanning unterminated stop-node tags", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (5.12.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42307 — hono 4.13.13 затронут GHSA-3gg2-335m-rxc6 (CVE-2026-126359)
+### QSI-2026-48247 — hono 4.13.13 затронут GHSA-3gg2-335m-rxc6 (CVE-2026-126359)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/hono@4.13.13`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N`)
 
-OSV.dev сообщает GHSA-3gg2-335m-rxc6 (CVE-2026-126359) для пакета npm hono версии 4.13.13: Hono: `css` helper does not escape a closing tag split between the template and an interpolated value, allowing HTML injection. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-3gg2-335m-rxc6 (CVE-2026-126359) для пакета npm hono версии 4.13.13: Hono: `css` helper does not escape a closing tag split between the template and an interpolated value, allowing HTML injection. Ни один исходный файл продукта не импортирует hono: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3483,23 +3450,23 @@ _tool_output · [OSV.dev GHSA-3gg2-335m-rxc6](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3gg2-335m-rxc6", "aliases": ["CVE-2026-126359"], "modified": "2026-11-12T23:30:03.858972167Z", "summary": "Hono: `css` helper does not escape a closing tag split between the template and an interpolated value, allowing HTML injection", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (4.13.16).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42313 — ip 1.1.8 затронут GHSA-78xj-cgh5-2h22 (CVE-2023-42282)
+### QSI-2026-48253 — ip 1.1.8 затронут GHSA-78xj-cgh5-2h22 (CVE-2023-42282)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip@1.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-78xj-cgh5-2h22 (CVE-2023-42282) для пакета npm ip версии 1.1.8: NPM IP package incorrectly identifies some private IP addresses as public. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-78xj-cgh5-2h22 (CVE-2023-42282) для пакета npm ip версии 1.1.8: NPM IP package incorrectly identifies some private IP addresses as public. Ни один исходный файл продукта не импортирует ip: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3517,23 +3484,23 @@ _tool_output · [OSV.dev GHSA-78xj-cgh5-2h22](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-78xj-cgh5-2h22", "aliases": ["CVE-2023-42282"], "modified": "2026-09-10T03:50:09.794882940Z", "summary": "NPM IP package incorrectly identifies some private IP addresses as public", "severity": null, "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (1.1.9, 2.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42332 — serialize-javascript 7.0.5 затронут GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897)
+### QSI-2026-48272 — serialize-javascript 7.0.5 затронут GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/serialize-javascript@7.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897) для пакета npm serialize-javascript версии 7.0.5: Serialize JavaScript: Cross-site scripting (XSS) via unescaped </script at the end of a serialized function body. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897) для пакета npm serialize-javascript версии 7.0.5: Serialize JavaScript: Cross-site scripting (XSS) via unescaped </script at the end of a serialized function body. Ни один исходный файл продукта не импортирует serialize-javascript: он приходит через другие зависимости, и как они его используют, не прослеживалось. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -3551,19 +3518,19 @@ _tool_output · [OSV.dev GHSA-m5mm-p8h7-m29v](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-m5mm-p8h7-m29v", "aliases": ["CVE-2026-115754", "CVE-2026-115897"], "modified": "2026-10-24T02:55:55.507718062Z", "summary": "Serialize JavaScript: Cross-site scripting (XSS) via unescaped </script at the end of a serialized function body", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:P/PR:L/UI:P/VC:L/VI:L/VA:N/SC:L/SI:L/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: импортирует ли проверенный код продукта пакет вообще (пути импорта Go, import и require в JavaScript, имена крейтов Rust), затронутые функции из бюллетеня — по идентификаторам этого кода, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
 **Рекомендация.** Обновите до исправленной версии (7.1.3).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42349 — 47 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-48289 — 47 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -3599,13 +3566,13 @@ tar@6.2.1 [dev]: GHSA-23hp-3jrh-7fpw, GHSA-34x7-hfp2-rc4v, GHSA-83g3-92jg-28cx, 
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-42254 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-48194 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.16.2 · 2026-11-23 12:44 UTC
+- Анализатор: dependencies 1.20.0 · 2026-11-24 10:50 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3666,8 +3633,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (1) | QSI-2026-42250 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (10), ECDH (1) | QSI-2026-42248, QSI-2026-42249 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (1) | QSI-2026-48191 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDSA (10), ECDH (1) | QSI-2026-48189, QSI-2026-48190 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -3695,118 +3662,117 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-42253 | В .storybook/test-data.js замените разбор входных данных журналами Transfer контракта токена из квитанции. | устранение первопричины | Тестовый депозит описанного вида отклоняется, и это закреплено регрессионным тестом. |
-| P2 | QSI-2026-42267 | Обновите bitcoinjs-lib до исправленной версии (5.2.1, 6.1.8, 7.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846). |
-| P2 | QSI-2026-42323 | Обновите nanoid до исправленной версии (3.3.12, 5.1.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwg4-73v4-xw9w (CVE-2026-73086). |
-| P2 | QSI-2026-42324 | Обновите postcss до исправленной версии (8.5.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6g55-p6wh-862q (CVE-2026-45623). |
-| P2 | QSI-2026-42328 | Обновите postcss до исправленной версии (8.5.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r28c-9q8g-f849 (CVE-2026-73646). |
-| P2 | QSI-2026-42341 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
-| P2 | QSI-2026-42342 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
-| P2 | QSI-2026-42343 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
-| P2 | QSI-2026-42344 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
-| P2 | QSI-2026-42345 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
-| P2 | QSI-2026-42264 | Обновите basic-ftp до исправленной версии (6.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c475-qrg2-pj4r (CVE-2026-102990). |
-| P2 | QSI-2026-42266 | Обновите bigint-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gc7-fjrx-p6mg (CVE-2025-3194). |
-| P2 | QSI-2026-42268 | Обновите body-parser до исправленной версии (1.20.9, 2.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181). |
-| P2 | QSI-2026-42269 | Обновите body-parser до исправленной версии (1.20.9, 2.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181). |
-| P2 | QSI-2026-42270 | Обновите braces до исправленной версии (3.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-grv7-fg5c-xmjg (CVE-2024-4068). |
-| P2 | QSI-2026-42272 | Обновите decode-uri-component до исправленной версии (0.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qr28-fpjm-wq7f (CVE-2026-118664). |
-| P2 | QSI-2026-42279 | Обновите electron до исправленной версии (39.8.1, 40.7.0, 41.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-532v-xpq5-8h95 (CVE-2026-34774). |
-| P2 | QSI-2026-42285 | Обновите electron до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8337-3p73-46f4 (CVE-2026-34771). |
-| P2 | QSI-2026-42289 | Обновите electron до исправленной версии (39.8.10, 41.10.3, 42.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9f4c-93c8-jc8g (CVE-2026-70608). |
-| P2 | QSI-2026-42291 | Обновите electron до исправленной версии (41.10.6, 42.9.2, 43.4.1, 44.0.0-beta.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9qh4-3jw8-366w (CVE-2026-102676). |
-| P2 | QSI-2026-42293 | Обновите electron до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9wfr-w7mm-pc7f (CVE-2026-34769). |
-| P2 | QSI-2026-42295 | Обновите extract-zip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693). |
-| P2 | QSI-2026-42296 | Обновите extract-zip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jmr9-qjv8-65gv (CVE-2026-56876). |
-| P2 | QSI-2026-42312 | Обновите ip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2p57-rm9w-gvfp (CVE-2024-29415). |
-| P2 | QSI-2026-42314 | Обновите joi до исправленной версии (17.13.9, 18.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4528-x5fx-h6hg (CVE-2026-118772). |
-| P2 | QSI-2026-42315 | Обновите joi до исправленной версии (17.13.9, 18.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4528-x5fx-h6hg (CVE-2026-118772). |
-| P2 | QSI-2026-42333 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383). |
-| P2 | QSI-2026-42335 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4w7w-5xrc-9h26 (CVE-2026-109829). |
-| P2 | QSI-2026-42339 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018). |
-| P2 | QSI-2026-42340 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869). |
-| P2 | QSI-2026-42346 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-42347 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-42348 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-42316 | Обновите micromatch до исправленной версии (4.0.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-952p-6rrq-rcjv (CVE-2024-4067). |
-| P2 | QSI-2026-42320 | Обновите nanoid до исправленной версии (3.3.16, 5.1.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-28wg-ghj8-5hjv (CVE-2026-67214). |
-| P2 | QSI-2026-42321 | Обновите nanoid до исправленной версии (3.3.18, 5.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2v37-7h3g-55p8 (CVE-2026-67213). |
-| P2 | QSI-2026-42322 | Обновите nanoid до исправленной версии (3.3.8, 5.0.9). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mwcw-c2x4-8c55 (CVE-2024-55565). |
-| P2 | QSI-2026-42325 | Обновите postcss до исправленной версии (8.4.31). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7fh5-64p2-3v2j (CVE-2023-44270). |
-| P2 | QSI-2026-42326 | Обновите postcss до исправленной версии (8.5.23). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fxqj-rqcc-2cmp (CVE-2026-69153). |
-| P2 | QSI-2026-42327 | Обновите postcss до исправленной версии (8.5.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qx2v-qp2m-jg93 (CVE-2026-41305). |
-| P2 | QSI-2026-42255 | Обновите @hono/node-server до исправленной версии (1.19.18, 2.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jpvv-r467-5p4w (CVE-2026-126210). |
-| P2 | QSI-2026-42256 | Обновите @hono/node-server до исправленной версии (2.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qv5m-9pm6-hqp3 (CVE-2026-126343). |
-| P2 | QSI-2026-42257 | Обновите @hono/node-server до исправленной версии (2.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663). |
-| P2 | QSI-2026-42258 | Обновите @opentelemetry/instrumentation-http до исправленной версии (0.222.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3v2p-hm54-8qcq (CVE-2026-128080). |
-| P2 | QSI-2026-42261 | Обновите @vitest/mocker до исправленной версии (4.1.11, 5.0.0-rc.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82fw-gwwq-j7x9 (CVE-2026-84373). |
-| P2 | QSI-2026-42262 | Обновите @vitest/mocker до исправленной версии (4.1.12, 5.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qxg6-89mg-rqv8 (CVE-2026-112949). |
-| P2 | QSI-2026-42263 | Обновите basic-ftp до исправленной версии (6.2.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5pm8-86m8-9m6r (CVE-2026-126345). |
-| P2 | QSI-2026-42265 | Обновите basic-ftp до исправленной версии (6.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r4jh-29pc-gfqr (CVE-2026-126346). |
-| P2 | QSI-2026-42271 | Обновите color-string до исправленной версии (1.5.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-257v-vj4p-3w2h (CVE-2021-29060). |
-| P2 | QSI-2026-42273 | Обновите decode-uri-component до исправленной версии (0.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vcc3-ghjq-m6fr (CVE-2026-45822). |
-| P2 | QSI-2026-42274 | Обновите electron до исправленной версии (42.11.3, 43.7.0, 44.3.0, 45.0.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2p8c-gr87-2676 (CVE-2026-113796). |
-| P2 | QSI-2026-42275 | Обновите electron до исправленной версии (38.8.6, 39.8.1, 40.8.1, 41.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3c8v-cfp5-9885 (CVE-2026-34776). |
-| P2 | QSI-2026-42277 | Обновите electron до исправленной версии (39.8.7, 40.9.0, 41.2.0, 42.0.0-beta.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4f78-qhmw-8j8m (CVE-2026-70609). |
-| P2 | QSI-2026-42278 | Обновите electron до исправленной версии (38.8.6, 39.8.3, 40.8.3, 41.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4p4r-m79c-wq3v (CVE-2026-34767). |
-| P2 | QSI-2026-42280 | Обновите electron до исправленной версии (39.8.6, 40.9.0, 41.1.1, 42.0.0-beta.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5c9j-mhmv-5xgx (CVE-2026-70603). |
-| P2 | QSI-2026-42281 | Обновите electron до исправленной версии (38.8.6, 39.8.1, 40.8.0, 41.0.0-beta.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5rqw-r77c-jp79 (CVE-2026-34779). |
-| P2 | QSI-2026-42282 | Обновите electron до исправленной версии (28.3.2, 29.3.3, 30.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6r2x-8pq8-9489 (CVE-2024-46993). |
-| P2 | QSI-2026-42283 | Обновите electron до исправленной версии (22.3.24, 24.8.3, 25.8.1, 26.2.1, 27.0.0-alpha.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7m48-wc93-9g85 (CVE-2023-44402). |
-| P2 | QSI-2026-42284 | Обновите electron до исправленной версии (22.3.19, 23.3.13, 24.7.1, 25.5.0, 26.0.0-beta.13). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7x97-j373-85x5 (CVE-2023-39956). |
-| P2 | QSI-2026-42288 | Обновите electron до исправленной версии (42.11.3, 43.7.0, 44.3.0, 45.0.0-alpha.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-997q-gvvc-jwmx (CVE-2026-114121). |
-| P2 | QSI-2026-42290 | Обновите electron до исправленной версии (39.8.7, 40.9.0, 41.2.0, 42.0.0-beta.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9pf5-hg6p-4pwp (CVE-2026-70599). |
-| P2 | QSI-2026-42292 | Обновите electron до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9w97-2464-8783 (CVE-2026-34772). |
-| P2 | QSI-2026-42294 | Обновите elliptic до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505). |
-| P2 | QSI-2026-42298 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w74x-v6f9-j3xg (CVE-2026-110306). |
-| P2 | QSI-2026-42299 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wjr9-j795-jxcr (CVE-2026-110180). |
-| P2 | QSI-2026-42302 | Обновите follow-redirects до исправленной версии (1.16.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrwp-f3q8-3g9p (CVE-2026-116689). |
-| P2 | QSI-2026-42303 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
-| P2 | QSI-2026-42304 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
-| P2 | QSI-2026-42305 | Обновите got до исправленной версии (11.8.5, 12.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pfrx-2q88-qq97 (CVE-2022-33987). |
-| P2 | QSI-2026-42306 | Обновите got до исправленной версии (11.8.5, 12.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pfrx-2q88-qq97 (CVE-2022-33987). |
-| P2 | QSI-2026-42308 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-46wx-v44x-9hh2 (CVE-2026-126355). |
-| P2 | QSI-2026-42309 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4h7h-rv7c-7m2v (CVE-2026-126356). |
-| P2 | QSI-2026-42310 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4m76-xfj5-7975 (CVE-2026-126357). |
-| P2 | QSI-2026-42311 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h7mg-cq63-vhpq (CVE-2026-126358). |
-| P2 | QSI-2026-42317 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
-| P2 | QSI-2026-42318 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
-| P2 | QSI-2026-42319 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
-| P2 | QSI-2026-42329 | Обновите qs до исправленной версии (6.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816). |
-| P2 | QSI-2026-42330 | Обновите react-router до исправленной версии (7.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-337j-9hxr-rhxg (CVE-2026-53666). |
-| P2 | QSI-2026-42331 | Обновите react-router до исправленной версии (7.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wrjc-x8rr-h8h6 (CVE-2026-53669). |
-| P2 | QSI-2026-42334 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924). |
-| P2 | QSI-2026-42336 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-55wc-3pg8-jfw6 (CVE-2026-87029). |
-| P2 | QSI-2026-42337 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932). |
-| P2 | QSI-2026-42338 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f72v-6w45-q472 (CVE-2026-109841). |
-| P2 | QSI-2026-42259 | Обновите @tootallnate/once до исправленной версии (2.0.1, 3.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vpq2-c234-7xj6 (CVE-2026-3449). |
-| P2 | QSI-2026-42260 | Обновите @tootallnate/once до исправленной версии (2.0.1, 3.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vpq2-c234-7xj6 (CVE-2026-3449). |
-| P2 | QSI-2026-42276 | Обновите electron до исправленной версии (42.11.6, 43.7.3, 44.4.3, 45.0.0-alpha.9). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3qxv-5xgr-q7w9 (CVE-2026-114122). |
-| P2 | QSI-2026-42286 | Обновите electron до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9899-m83m-qhpj (CVE-2026-34766). |
-| P2 | QSI-2026-42287 | Обновите electron до исправленной версии (42.11.1, 43.5.1, 44.1.1, 45.0.0-alpha.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-98mx-cjp9-gchm (CVE-2026-113797). |
-| P2 | QSI-2026-42297 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-333x-w4r6-6crp (CVE-2026-110725). |
-| P2 | QSI-2026-42300 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xhq7-xmqj-769h (CVE-2026-110095). |
-| P2 | QSI-2026-42301 | Обновите fast-xml-parser до исправленной версии (5.12.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-474x-hrwr-fgx4 (CVE-2026-126066). |
-| P2 | QSI-2026-42307 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gg2-335m-rxc6 (CVE-2026-126359). |
-| P2 | QSI-2026-42313 | Обновите ip до исправленной версии (1.1.9, 2.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-78xj-cgh5-2h22 (CVE-2023-42282). |
-| P2 | QSI-2026-42332 | Обновите serialize-javascript до исправленной версии (7.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897). |
+| P2 | QSI-2026-48207 | Обновите bitcoinjs-lib до исправленной версии (5.2.1, 6.1.8, 7.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8vv3-6qpc-gpw6 (CVE-2026-107846). |
+| P2 | QSI-2026-48263 | Обновите nanoid до исправленной версии (3.3.12, 5.1.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwg4-73v4-xw9w (CVE-2026-73086). |
+| P2 | QSI-2026-48264 | Обновите postcss до исправленной версии (8.5.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6g55-p6wh-862q (CVE-2026-45623). |
+| P2 | QSI-2026-48268 | Обновите postcss до исправленной версии (8.5.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r28c-9q8g-f849 (CVE-2026-73646). |
+| P2 | QSI-2026-48281 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
+| P2 | QSI-2026-48282 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
+| P2 | QSI-2026-48283 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
+| P2 | QSI-2026-48284 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
+| P2 | QSI-2026-48285 | Обновите uuid до исправленной версии (11.1.1, 12.0.1, 13.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5hq-g745-h8pq (CVE-2026-41907, CVE-2026-41988). |
+| P2 | QSI-2026-48204 | Обновите basic-ftp до исправленной версии (6.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c475-qrg2-pj4r (CVE-2026-102990). |
+| P2 | QSI-2026-48206 | Обновите bigint-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gc7-fjrx-p6mg (CVE-2025-3194). |
+| P2 | QSI-2026-48208 | Обновите body-parser до исправленной версии (1.20.9, 2.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181). |
+| P2 | QSI-2026-48209 | Обновите body-parser до исправленной версии (1.20.9, 2.4.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27r3-jxmh-p828 (CVE-2026-111181). |
+| P2 | QSI-2026-48210 | Обновите braces до исправленной версии (3.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-grv7-fg5c-xmjg (CVE-2024-4068). |
+| P2 | QSI-2026-48212 | Обновите decode-uri-component до исправленной версии (0.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qr28-fpjm-wq7f (CVE-2026-118664). |
+| P2 | QSI-2026-48219 | Обновите electron до исправленной версии (39.8.1, 40.7.0, 41.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-532v-xpq5-8h95 (CVE-2026-34774). |
+| P2 | QSI-2026-48225 | Обновите electron до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8337-3p73-46f4 (CVE-2026-34771). |
+| P2 | QSI-2026-48229 | Обновите electron до исправленной версии (39.8.10, 41.10.3, 42.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9f4c-93c8-jc8g (CVE-2026-70608). |
+| P2 | QSI-2026-48231 | Обновите electron до исправленной версии (41.10.6, 42.9.2, 43.4.1, 44.0.0-beta.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9qh4-3jw8-366w (CVE-2026-102676). |
+| P2 | QSI-2026-48233 | Обновите electron до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9wfr-w7mm-pc7f (CVE-2026-34769). |
+| P2 | QSI-2026-48235 | Обновите extract-zip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7pqw-9j4j-h8q3 (CVE-2026-19693). |
+| P2 | QSI-2026-48236 | Обновите extract-zip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jmr9-qjv8-65gv (CVE-2026-56876). |
+| P2 | QSI-2026-48252 | Обновите ip до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2p57-rm9w-gvfp (CVE-2024-29415). |
+| P2 | QSI-2026-48254 | Обновите joi до исправленной версии (17.13.9, 18.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4528-x5fx-h6hg (CVE-2026-118772). |
+| P2 | QSI-2026-48255 | Обновите joi до исправленной версии (17.13.9, 18.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4528-x5fx-h6hg (CVE-2026-118772). |
+| P2 | QSI-2026-48273 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383). |
+| P2 | QSI-2026-48275 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4w7w-5xrc-9h26 (CVE-2026-109829). |
+| P2 | QSI-2026-48279 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018). |
+| P2 | QSI-2026-48280 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869). |
+| P2 | QSI-2026-48286 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-48287 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-48288 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-48256 | Обновите micromatch до исправленной версии (4.0.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-952p-6rrq-rcjv (CVE-2024-4067). |
+| P2 | QSI-2026-48260 | Обновите nanoid до исправленной версии (3.3.16, 5.1.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-28wg-ghj8-5hjv (CVE-2026-67214). |
+| P2 | QSI-2026-48261 | Обновите nanoid до исправленной версии (3.3.18, 5.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2v37-7h3g-55p8 (CVE-2026-67213). |
+| P2 | QSI-2026-48262 | Обновите nanoid до исправленной версии (3.3.8, 5.0.9). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mwcw-c2x4-8c55 (CVE-2024-55565). |
+| P2 | QSI-2026-48265 | Обновите postcss до исправленной версии (8.4.31). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7fh5-64p2-3v2j (CVE-2023-44270). |
+| P2 | QSI-2026-48266 | Обновите postcss до исправленной версии (8.5.23). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fxqj-rqcc-2cmp (CVE-2026-69153). |
+| P2 | QSI-2026-48267 | Обновите postcss до исправленной версии (8.5.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qx2v-qp2m-jg93 (CVE-2026-41305). |
+| P2 | QSI-2026-48195 | Обновите @hono/node-server до исправленной версии (1.19.18, 2.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jpvv-r467-5p4w (CVE-2026-126210). |
+| P2 | QSI-2026-48196 | Обновите @hono/node-server до исправленной версии (2.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qv5m-9pm6-hqp3 (CVE-2026-126343). |
+| P2 | QSI-2026-48197 | Обновите @hono/node-server до исправленной версии (2.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663). |
+| P2 | QSI-2026-48198 | Обновите @opentelemetry/instrumentation-http до исправленной версии (0.222.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3v2p-hm54-8qcq (CVE-2026-128080). |
+| P2 | QSI-2026-48201 | Обновите @vitest/mocker до исправленной версии (4.1.11, 5.0.0-rc.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82fw-gwwq-j7x9 (CVE-2026-84373). |
+| P2 | QSI-2026-48202 | Обновите @vitest/mocker до исправленной версии (4.1.12, 5.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qxg6-89mg-rqv8 (CVE-2026-112949). |
+| P2 | QSI-2026-48203 | Обновите basic-ftp до исправленной версии (6.2.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5pm8-86m8-9m6r (CVE-2026-126345). |
+| P2 | QSI-2026-48205 | Обновите basic-ftp до исправленной версии (6.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r4jh-29pc-gfqr (CVE-2026-126346). |
+| P2 | QSI-2026-48211 | Обновите color-string до исправленной версии (1.5.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-257v-vj4p-3w2h (CVE-2021-29060). |
+| P2 | QSI-2026-48213 | Обновите decode-uri-component до исправленной версии (0.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vcc3-ghjq-m6fr (CVE-2026-45822). |
+| P2 | QSI-2026-48214 | Обновите electron до исправленной версии (42.11.3, 43.7.0, 44.3.0, 45.0.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2p8c-gr87-2676 (CVE-2026-113796). |
+| P2 | QSI-2026-48215 | Обновите electron до исправленной версии (38.8.6, 39.8.1, 40.8.1, 41.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3c8v-cfp5-9885 (CVE-2026-34776). |
+| P2 | QSI-2026-48217 | Обновите electron до исправленной версии (39.8.7, 40.9.0, 41.2.0, 42.0.0-beta.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4f78-qhmw-8j8m (CVE-2026-70609). |
+| P2 | QSI-2026-48218 | Обновите electron до исправленной версии (38.8.6, 39.8.3, 40.8.3, 41.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4p4r-m79c-wq3v (CVE-2026-34767). |
+| P2 | QSI-2026-48220 | Обновите electron до исправленной версии (39.8.6, 40.9.0, 41.1.1, 42.0.0-beta.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5c9j-mhmv-5xgx (CVE-2026-70603). |
+| P2 | QSI-2026-48221 | Обновите electron до исправленной версии (38.8.6, 39.8.1, 40.8.0, 41.0.0-beta.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5rqw-r77c-jp79 (CVE-2026-34779). |
+| P2 | QSI-2026-48222 | Обновите electron до исправленной версии (28.3.2, 29.3.3, 30.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6r2x-8pq8-9489 (CVE-2024-46993). |
+| P2 | QSI-2026-48223 | Обновите electron до исправленной версии (22.3.24, 24.8.3, 25.8.1, 26.2.1, 27.0.0-alpha.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7m48-wc93-9g85 (CVE-2023-44402). |
+| P2 | QSI-2026-48224 | Обновите electron до исправленной версии (22.3.19, 23.3.13, 24.7.1, 25.5.0, 26.0.0-beta.13). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7x97-j373-85x5 (CVE-2023-39956). |
+| P2 | QSI-2026-48228 | Обновите electron до исправленной версии (42.11.3, 43.7.0, 44.3.0, 45.0.0-alpha.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-997q-gvvc-jwmx (CVE-2026-114121). |
+| P2 | QSI-2026-48230 | Обновите electron до исправленной версии (39.8.7, 40.9.0, 41.2.0, 42.0.0-beta.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9pf5-hg6p-4pwp (CVE-2026-70599). |
+| P2 | QSI-2026-48232 | Обновите electron до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9w97-2464-8783 (CVE-2026-34772). |
+| P2 | QSI-2026-48234 | Обновите elliptic до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505). |
+| P2 | QSI-2026-48238 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w74x-v6f9-j3xg (CVE-2026-110306). |
+| P2 | QSI-2026-48239 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wjr9-j795-jxcr (CVE-2026-110180). |
+| P2 | QSI-2026-48242 | Обновите follow-redirects до исправленной версии (1.16.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrwp-f3q8-3g9p (CVE-2026-116689). |
+| P2 | QSI-2026-48243 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-48244 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-48245 | Обновите got до исправленной версии (11.8.5, 12.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pfrx-2q88-qq97 (CVE-2022-33987). |
+| P2 | QSI-2026-48246 | Обновите got до исправленной версии (11.8.5, 12.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pfrx-2q88-qq97 (CVE-2022-33987). |
+| P2 | QSI-2026-48248 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-46wx-v44x-9hh2 (CVE-2026-126355). |
+| P2 | QSI-2026-48249 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4h7h-rv7c-7m2v (CVE-2026-126356). |
+| P2 | QSI-2026-48250 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4m76-xfj5-7975 (CVE-2026-126357). |
+| P2 | QSI-2026-48251 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h7mg-cq63-vhpq (CVE-2026-126358). |
+| P2 | QSI-2026-48257 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-48258 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-48259 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-48269 | Обновите qs до исправленной версии (6.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816). |
+| P2 | QSI-2026-48270 | Обновите react-router до исправленной версии (7.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-337j-9hxr-rhxg (CVE-2026-53666). |
+| P2 | QSI-2026-48271 | Обновите react-router до исправленной версии (7.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-wrjc-x8rr-h8h6 (CVE-2026-53669). |
+| P2 | QSI-2026-48274 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924). |
+| P2 | QSI-2026-48276 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-55wc-3pg8-jfw6 (CVE-2026-87029). |
+| P2 | QSI-2026-48277 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932). |
+| P2 | QSI-2026-48278 | Обновите undici до исправленной версии (7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f72v-6w45-q472 (CVE-2026-109841). |
+| P2 | QSI-2026-48199 | Обновите @tootallnate/once до исправленной версии (2.0.1, 3.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vpq2-c234-7xj6 (CVE-2026-3449). |
+| P2 | QSI-2026-48200 | Обновите @tootallnate/once до исправленной версии (2.0.1, 3.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vpq2-c234-7xj6 (CVE-2026-3449). |
+| P2 | QSI-2026-48216 | Обновите electron до исправленной версии (42.11.6, 43.7.3, 44.4.3, 45.0.0-alpha.9). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3qxv-5xgr-q7w9 (CVE-2026-114122). |
+| P2 | QSI-2026-48226 | Обновите electron до исправленной версии (38.8.6, 39.8.0, 40.7.0, 41.0.0-beta.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9899-m83m-qhpj (CVE-2026-34766). |
+| P2 | QSI-2026-48227 | Обновите electron до исправленной версии (42.11.1, 43.5.1, 44.1.1, 45.0.0-alpha.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-98mx-cjp9-gchm (CVE-2026-113797). |
+| P2 | QSI-2026-48237 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-333x-w4r6-6crp (CVE-2026-110725). |
+| P2 | QSI-2026-48240 | Обновите fast-uri до исправленной версии (2.4.8, 3.1.9, 4.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xhq7-xmqj-769h (CVE-2026-110095). |
+| P2 | QSI-2026-48241 | Обновите fast-xml-parser до исправленной версии (5.12.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-474x-hrwr-fgx4 (CVE-2026-126066). |
+| P2 | QSI-2026-48247 | Обновите hono до исправленной версии (4.13.16). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3gg2-335m-rxc6 (CVE-2026-126359). |
+| P2 | QSI-2026-48253 | Обновите ip до исправленной версии (1.1.9, 2.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-78xj-cgh5-2h22 (CVE-2023-42282). |
+| P2 | QSI-2026-48272 | Обновите serialize-javascript до исправленной версии (7.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m5mm-p8h7-m29v (CVE-2026-115754, CVE-2026-115897). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-42251 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
-| P2 | QSI-2026-42252 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P2 | QSI-2026-48192 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P2 | QSI-2026-48193 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-42250 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-42248 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-42249 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-42250 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-42248 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-42249 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-42349 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-48191 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-48189 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-48190 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-48191 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-48189 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-48190 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-48289 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -3814,19 +3780,20 @@ _Действие: взламывает — алгоритм нужно заме
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -3834,110 +3801,108 @@ _Действие: взламывает — алгоритм нужно заме
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
 3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-4. CWE-252 — Unchecked Return Value — MITRE. <https://cwe.mitre.org/data/definitions/252.html> (weakness catalogue entry: the result of an operation is not examined — here the outcome of the transaction a payment is credited from)
-5. CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) — MITRE. <https://cwe.mitre.org/data/definitions/338.html> (weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable)
-6. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-7. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-8. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-9. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-10. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-11. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-12. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-13. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-14. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-15. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-16. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-17. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-18. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
-20. NIST SP 800-90A Rev. 1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators — NIST. <https://csrc.nist.gov/pubs/sp/800/90/a/r1/final> (final (June 2015; supersedes SP 800-90A of 2012): which constructions count as a cryptographically secure generator, and why a general-purpose PRNG does not)
-21. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-22. OSV advisory GHSA-257v-vj4p-3w2h — OSV.dev. <https://osv.dev/vulnerability/GHSA-257v-vj4p-3w2h> (modified 2023-11-08T04:05:32.674569Z)
-23. OSV advisory GHSA-27r3-jxmh-p828 — OSV.dev. <https://osv.dev/vulnerability/GHSA-27r3-jxmh-p828> (modified 2026-10-23T21:00:06.131613693Z)
-24. OSV advisory GHSA-28wg-ghj8-5hjv — OSV.dev. <https://osv.dev/vulnerability/GHSA-28wg-ghj8-5hjv> (modified 2026-09-10T03:50:51.191256883Z)
-25. OSV advisory GHSA-2m5v-pch6-74hx — OSV.dev. <https://osv.dev/vulnerability/GHSA-2m5v-pch6-74hx> (modified 2026-10-27T19:15:22.407771210Z)
-26. OSV advisory GHSA-2p57-rm9w-gvfp — OSV.dev. <https://osv.dev/vulnerability/GHSA-2p57-rm9w-gvfp> (modified 2026-09-10T03:50:14.802476879Z)
-27. OSV advisory GHSA-2p8c-gr87-2676 — OSV.dev. <https://osv.dev/vulnerability/GHSA-2p8c-gr87-2676> (modified 2026-10-22T17:00:04.178037719Z)
-28. OSV advisory GHSA-2v37-7h3g-55p8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-2v37-7h3g-55p8> (modified 2026-09-10T03:50:51.243328986Z)
-29. OSV advisory GHSA-333x-w4r6-6crp — OSV.dev. <https://osv.dev/vulnerability/GHSA-333x-w4r6-6crp> (modified 2026-10-23T21:45:04.900311356Z)
-30. OSV advisory GHSA-337j-9hxr-rhxg — OSV.dev. <https://osv.dev/vulnerability/GHSA-337j-9hxr-rhxg> (modified 2026-09-10T03:50:51.309163082Z)
-31. OSV advisory GHSA-3c8v-cfp5-9885 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3c8v-cfp5-9885> (modified 2026-04-06T23:20:11.001628Z)
-32. OSV advisory GHSA-3g3m-2fjr-6pw4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4> (modified 2026-10-30T23:15:04.503965732Z)
-33. OSV advisory GHSA-3gc7-fjrx-p6mg — OSV.dev. <https://osv.dev/vulnerability/GHSA-3gc7-fjrx-p6mg> (modified 2025-04-04T19:27:20.290375Z)
-34. OSV advisory GHSA-3gg2-335m-rxc6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3gg2-335m-rxc6> (modified 2026-11-12T23:30:03.858972167Z)
-35. OSV advisory GHSA-3qxv-5xgr-q7w9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3qxv-5xgr-q7w9> (modified 2026-10-22T17:00:05.166832387Z)
-36. OSV advisory GHSA-3v2p-hm54-8qcq — OSV.dev. <https://osv.dev/vulnerability/GHSA-3v2p-hm54-8qcq> (modified 2026-11-13T19:45:03.811898272Z)
-37. OSV advisory GHSA-4528-x5fx-h6hg — OSV.dev. <https://osv.dev/vulnerability/GHSA-4528-x5fx-h6hg> (modified 2026-10-30T23:15:07.273035332Z)
-38. OSV advisory GHSA-46wx-v44x-9hh2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-46wx-v44x-9hh2> (modified 2026-11-12T23:45:03.241008967Z)
-39. OSV advisory GHSA-474x-hrwr-fgx4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-474x-hrwr-fgx4> (modified 2026-11-10T21:15:03.074649810Z)
-40. OSV advisory GHSA-4f78-qhmw-8j8m — OSV.dev. <https://osv.dev/vulnerability/GHSA-4f78-qhmw-8j8m> (modified 2026-08-20T05:15:07.174743690Z)
-41. OSV advisory GHSA-4h7h-rv7c-7m2v — OSV.dev. <https://osv.dev/vulnerability/GHSA-4h7h-rv7c-7m2v> (modified 2026-11-12T23:45:03.255833027Z)
-42. OSV advisory GHSA-4m76-xfj5-7975 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4m76-xfj5-7975> (modified 2026-11-12T23:30:03.867783771Z)
-43. OSV advisory GHSA-4p4r-m79c-wq3v — OSV.dev. <https://osv.dev/vulnerability/GHSA-4p4r-m79c-wq3v> (modified 2026-04-06T23:21:01.480605Z)
-44. OSV advisory GHSA-4qv8-2p9j-2685 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4qv8-2p9j-2685> (modified 2026-10-23T22:30:04.104974737Z)
-45. OSV advisory GHSA-4w7w-5xrc-9h26 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4w7w-5xrc-9h26> (modified 2026-10-27T19:15:22.403656345Z)
-46. OSV advisory GHSA-532v-xpq5-8h95 — OSV.dev. <https://osv.dev/vulnerability/GHSA-532v-xpq5-8h95> (modified 2026-04-06T23:19:58.922968Z)
-47. OSV advisory GHSA-55wc-3pg8-jfw6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-55wc-3pg8-jfw6> (modified 2026-10-27T19:15:22.392692308Z)
-48. OSV advisory GHSA-5c9j-mhmv-5xgx — OSV.dev. <https://osv.dev/vulnerability/GHSA-5c9j-mhmv-5xgx> (modified 2026-08-05T16:11:06.665641Z)
-49. OSV advisory GHSA-5pm8-86m8-9m6r — OSV.dev. <https://osv.dev/vulnerability/GHSA-5pm8-86m8-9m6r> (modified 2026-11-12T21:45:03.430629333Z)
-50. OSV advisory GHSA-5rqw-r77c-jp79 — OSV.dev. <https://osv.dev/vulnerability/GHSA-5rqw-r77c-jp79> (modified 2026-04-06T23:20:07.571377Z)
-51. OSV advisory GHSA-6g55-p6wh-862q — OSV.dev. <https://osv.dev/vulnerability/GHSA-6g55-p6wh-862q> (modified 2026-09-10T03:51:10.752909750Z)
-52. OSV advisory GHSA-6pq8-jhm2-2vcw — OSV.dev. <https://osv.dev/vulnerability/GHSA-6pq8-jhm2-2vcw> (modified 2026-10-27T16:15:05.324423680Z)
-53. OSV advisory GHSA-6r2x-8pq8-9489 — OSV.dev. <https://osv.dev/vulnerability/GHSA-6r2x-8pq8-9489> (modified 2025-07-01T13:13:25Z)
-54. OSV advisory GHSA-78xj-cgh5-2h22 — OSV.dev. <https://osv.dev/vulnerability/GHSA-78xj-cgh5-2h22> (modified 2026-09-10T03:50:09.794882940Z)
-55. OSV advisory GHSA-7fh5-64p2-3v2j — OSV.dev. <https://osv.dev/vulnerability/GHSA-7fh5-64p2-3v2j> (modified 2026-09-10T03:49:57.862104145Z)
-56. OSV advisory GHSA-7m48-wc93-9g85 — OSV.dev. <https://osv.dev/vulnerability/GHSA-7m48-wc93-9g85> (modified 2026-09-10T03:49:59.555264356Z)
-57. OSV advisory GHSA-7pqw-9j4j-h8q3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-7pqw-9j4j-h8q3> (modified 2026-09-08T21:10:57.608811Z)
-58. OSV advisory GHSA-7x97-j373-85x5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-7x97-j373-85x5> (modified 2026-09-10T03:49:57.866467216Z)
-59. OSV advisory GHSA-82fw-gwwq-j7x9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-82fw-gwwq-j7x9> (modified 2026-09-08T21:00:07.248611070Z)
-60. OSV advisory GHSA-8337-3p73-46f4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8337-3p73-46f4> (modified 2026-04-06T23:18:52.586490Z)
-61. OSV advisory GHSA-848j-6mx2-7j84 — OSV.dev. <https://osv.dev/vulnerability/GHSA-848j-6mx2-7j84> (modified 2026-09-10T03:50:32.794069999Z)
-62. OSV advisory GHSA-8vv3-6qpc-gpw6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8vv3-6qpc-gpw6> (modified 2026-11-10T16:15:05.948337489Z)
-63. OSV advisory GHSA-952p-6rrq-rcjv — OSV.dev. <https://osv.dev/vulnerability/GHSA-952p-6rrq-rcjv> (modified 2026-09-10T03:50:13.524150483Z)
-64. OSV advisory GHSA-9899-m83m-qhpj — OSV.dev. <https://osv.dev/vulnerability/GHSA-9899-m83m-qhpj> (modified 2026-04-06T23:18:50.163821Z)
-65. OSV advisory GHSA-98mx-cjp9-gchm — OSV.dev. <https://osv.dev/vulnerability/GHSA-98mx-cjp9-gchm> (modified 2026-10-22T17:00:04.179486447Z)
-66. OSV advisory GHSA-997q-gvvc-jwmx — OSV.dev. <https://osv.dev/vulnerability/GHSA-997q-gvvc-jwmx> (modified 2026-10-22T17:00:05.173770092Z)
-67. OSV advisory GHSA-9f4c-93c8-jc8g — OSV.dev. <https://osv.dev/vulnerability/GHSA-9f4c-93c8-jc8g> (modified 2026-08-20T05:15:07.151820521Z)
-68. OSV advisory GHSA-9fm3-97px-rjf6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9fm3-97px-rjf6> (modified 2026-10-27T19:15:22.400702743Z)
-69. OSV advisory GHSA-9pf5-hg6p-4pwp — OSV.dev. <https://osv.dev/vulnerability/GHSA-9pf5-hg6p-4pwp> (modified 2026-08-05T15:56:01.262988Z)
-70. OSV advisory GHSA-9qh4-3jw8-366w — OSV.dev. <https://osv.dev/vulnerability/GHSA-9qh4-3jw8-366w> (modified 2026-09-29T18:15:04.717504273Z)
-71. OSV advisory GHSA-9w97-2464-8783 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9w97-2464-8783> (modified 2026-04-06T23:19:57.917173Z)
-72. OSV advisory GHSA-9wfr-w7mm-pc7f — OSV.dev. <https://osv.dev/vulnerability/GHSA-9wfr-w7mm-pc7f> (modified 2026-04-06T23:19:40.585044Z)
-73. OSV advisory GHSA-c475-qrg2-pj4r — OSV.dev. <https://osv.dev/vulnerability/GHSA-c475-qrg2-pj4r> (modified 2026-10-01T15:00:04.517943812Z)
-74. OSV advisory GHSA-f72v-6w45-q472 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f72v-6w45-q472> (modified 2026-10-23T22:30:04.094314933Z)
-75. OSV advisory GHSA-fxqj-rqcc-2cmp — OSV.dev. <https://osv.dev/vulnerability/GHSA-fxqj-rqcc-2cmp> (modified 2026-09-10T03:50:53.572374167Z)
-76. OSV advisory GHSA-g3hv-75wg-m249 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249> (modified 2026-11-04T17:01:25.850114200Z)
-77. OSV advisory GHSA-grv7-fg5c-xmjg — OSV.dev. <https://osv.dev/vulnerability/GHSA-grv7-fg5c-xmjg> (modified 2026-09-10T03:50:00.374713008Z)
-78. OSV advisory GHSA-h7mg-cq63-vhpq — OSV.dev. <https://osv.dev/vulnerability/GHSA-h7mg-cq63-vhpq> (modified 2026-11-12T23:30:03.867508007Z)
-79. OSV advisory GHSA-jmr9-qjv8-65gv — OSV.dev. <https://osv.dev/vulnerability/GHSA-jmr9-qjv8-65gv> (modified 2026-09-10T03:51:08.769710691Z)
-80. OSV advisory GHSA-jpvv-r467-5p4w — OSV.dev. <https://osv.dev/vulnerability/GHSA-jpvv-r467-5p4w> (modified 2026-11-12T21:45:03.417268669Z)
-81. OSV advisory GHSA-m5mm-p8h7-m29v — OSV.dev. <https://osv.dev/vulnerability/GHSA-m5mm-p8h7-m29v> (modified 2026-10-24T02:55:55.507718062Z)
-82. OSV advisory GHSA-mrhx-c7xc-m3w5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5> (modified 2026-10-23T18:30:09.376405885Z)
-83. OSV advisory GHSA-mrwp-f3q8-3g9p — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrwp-f3q8-3g9p> (modified 2026-10-30T23:15:06.315251750Z)
-84. OSV advisory GHSA-mwcw-c2x4-8c55 — OSV.dev. <https://osv.dev/vulnerability/GHSA-mwcw-c2x4-8c55> (modified 2026-09-10T03:50:21.666094798Z)
-85. OSV advisory GHSA-pfrx-2q88-qq97 — OSV.dev. <https://osv.dev/vulnerability/GHSA-pfrx-2q88-qq97> (modified 2026-09-10T03:49:55.225771209Z)
-86. OSV advisory GHSA-qr28-fpjm-wq7f — OSV.dev. <https://osv.dev/vulnerability/GHSA-qr28-fpjm-wq7f> (modified 2026-10-29T17:00:04.168610583Z)
-87. OSV advisory GHSA-qrxm-fqhp-jwvm — OSV.dev. <https://osv.dev/vulnerability/GHSA-qrxm-fqhp-jwvm> (modified 2026-10-27T19:15:22.403573595Z)
-88. OSV advisory GHSA-qv5m-9pm6-hqp3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qv5m-9pm6-hqp3> (modified 2026-11-12T21:45:03.406890390Z)
-89. OSV advisory GHSA-qx2v-qp2m-jg93 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qx2v-qp2m-jg93> (modified 2026-09-10T03:51:02.916463871Z)
-90. OSV advisory GHSA-qxg6-89mg-rqv8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qxg6-89mg-rqv8> (modified 2026-10-21T20:01:39.911013327Z)
-91. OSV advisory GHSA-r28c-9q8g-f849 — OSV.dev. <https://osv.dev/vulnerability/GHSA-r28c-9q8g-f849> (modified 2026-09-10T03:50:52.854537677Z)
-92. OSV advisory GHSA-r4jh-29pc-gfqr — OSV.dev. <https://osv.dev/vulnerability/GHSA-r4jh-29pc-gfqr> (modified 2026-11-12T22:30:03.983522899Z)
-93. OSV advisory GHSA-rmxm-3fg6-px4f — OSV.dev. <https://osv.dev/vulnerability/GHSA-rmxm-3fg6-px4f> (modified 2026-10-28T21:15:04.153052864Z)
-94. OSV advisory GHSA-vcc3-ghjq-m6fr — OSV.dev. <https://osv.dev/vulnerability/GHSA-vcc3-ghjq-m6fr> (modified 2026-09-10T03:51:14.713899943Z)
-95. OSV advisory GHSA-vpq2-c234-7xj6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-vpq2-c234-7xj6> (modified 2026-09-10T03:51:00.790088103Z)
-96. OSV advisory GHSA-w5hq-g745-h8pq — OSV.dev. <https://osv.dev/vulnerability/GHSA-w5hq-g745-h8pq> (modified 2026-09-10T03:51:03.663336650Z)
-97. OSV advisory GHSA-w74x-v6f9-j3xg — OSV.dev. <https://osv.dev/vulnerability/GHSA-w74x-v6f9-j3xg> (modified 2026-10-23T21:45:04.896137439Z)
-98. OSV advisory GHSA-wjr9-j795-jxcr — OSV.dev. <https://osv.dev/vulnerability/GHSA-wjr9-j795-jxcr> (modified 2026-10-23T21:45:04.892054666Z)
-99. OSV advisory GHSA-wrjc-x8rr-h8h6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-wrjc-x8rr-h8h6> (modified 2026-09-10T03:51:12.418370518Z)
-100. OSV advisory GHSA-xhq7-xmqj-769h — OSV.dev. <https://osv.dev/vulnerability/GHSA-xhq7-xmqj-769h> (modified 2026-10-23T21:45:04.902389903Z)
-101. OSV advisory GHSA-xjj6-f33q-929c — OSV.dev. <https://osv.dev/vulnerability/GHSA-xjj6-f33q-929c> (modified 2026-10-23T22:30:05.007687918Z)
-102. OSV advisory GHSA-xwg4-73v4-xw9w — OSV.dev. <https://osv.dev/vulnerability/GHSA-xwg4-73v4-xw9w> (modified 2026-09-01T19:30:08.615560716Z)
-103. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-104. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-105. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-106. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
-107. SlowMist — The Red Alert about the ETH New False Top-up Vulnerability for Exchanges — SlowMist. <https://slowmist.medium.com/the-red-alert-about-the-new-false-top-up-vulnerability-76a870423ecb> (security advisory (2020): deposits credited from transactions whose execution failed or reverted; the class applies to every chain where a failed transaction is still recorded)
+4. CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) — MITRE. <https://cwe.mitre.org/data/definitions/338.html> (weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable)
+5. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+6. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+7. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+8. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+9. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+10. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+11. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+12. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+13. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+14. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+15. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+16. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+17. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+18. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+19. NIST SP 800-90A Rev. 1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators — NIST. <https://csrc.nist.gov/pubs/sp/800/90/a/r1/final> (final (June 2015; supersedes SP 800-90A of 2012): which constructions count as a cryptographically secure generator, and why a general-purpose PRNG does not)
+20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+21. OSV advisory GHSA-257v-vj4p-3w2h — OSV.dev. <https://osv.dev/vulnerability/GHSA-257v-vj4p-3w2h> (modified 2023-11-08T04:05:32.674569Z)
+22. OSV advisory GHSA-27r3-jxmh-p828 — OSV.dev. <https://osv.dev/vulnerability/GHSA-27r3-jxmh-p828> (modified 2026-10-23T21:00:06.131613693Z)
+23. OSV advisory GHSA-28wg-ghj8-5hjv — OSV.dev. <https://osv.dev/vulnerability/GHSA-28wg-ghj8-5hjv> (modified 2026-09-10T03:50:51.191256883Z)
+24. OSV advisory GHSA-2m5v-pch6-74hx — OSV.dev. <https://osv.dev/vulnerability/GHSA-2m5v-pch6-74hx> (modified 2026-10-27T19:15:22.407771210Z)
+25. OSV advisory GHSA-2p57-rm9w-gvfp — OSV.dev. <https://osv.dev/vulnerability/GHSA-2p57-rm9w-gvfp> (modified 2026-09-10T03:50:14.802476879Z)
+26. OSV advisory GHSA-2p8c-gr87-2676 — OSV.dev. <https://osv.dev/vulnerability/GHSA-2p8c-gr87-2676> (modified 2026-10-22T17:00:04.178037719Z)
+27. OSV advisory GHSA-2v37-7h3g-55p8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-2v37-7h3g-55p8> (modified 2026-09-10T03:50:51.243328986Z)
+28. OSV advisory GHSA-333x-w4r6-6crp — OSV.dev. <https://osv.dev/vulnerability/GHSA-333x-w4r6-6crp> (modified 2026-10-23T21:45:04.900311356Z)
+29. OSV advisory GHSA-337j-9hxr-rhxg — OSV.dev. <https://osv.dev/vulnerability/GHSA-337j-9hxr-rhxg> (modified 2026-09-10T03:50:51.309163082Z)
+30. OSV advisory GHSA-3c8v-cfp5-9885 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3c8v-cfp5-9885> (modified 2026-04-06T23:20:11.001628Z)
+31. OSV advisory GHSA-3g3m-2fjr-6pw4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4> (modified 2026-10-30T23:15:04.503965732Z)
+32. OSV advisory GHSA-3gc7-fjrx-p6mg — OSV.dev. <https://osv.dev/vulnerability/GHSA-3gc7-fjrx-p6mg> (modified 2025-04-04T19:27:20.290375Z)
+33. OSV advisory GHSA-3gg2-335m-rxc6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3gg2-335m-rxc6> (modified 2026-11-12T23:30:03.858972167Z)
+34. OSV advisory GHSA-3qxv-5xgr-q7w9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3qxv-5xgr-q7w9> (modified 2026-10-22T17:00:05.166832387Z)
+35. OSV advisory GHSA-3v2p-hm54-8qcq — OSV.dev. <https://osv.dev/vulnerability/GHSA-3v2p-hm54-8qcq> (modified 2026-11-13T19:45:03.811898272Z)
+36. OSV advisory GHSA-4528-x5fx-h6hg — OSV.dev. <https://osv.dev/vulnerability/GHSA-4528-x5fx-h6hg> (modified 2026-10-30T23:15:07.273035332Z)
+37. OSV advisory GHSA-46wx-v44x-9hh2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-46wx-v44x-9hh2> (modified 2026-11-12T23:45:03.241008967Z)
+38. OSV advisory GHSA-474x-hrwr-fgx4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-474x-hrwr-fgx4> (modified 2026-11-10T21:15:03.074649810Z)
+39. OSV advisory GHSA-4f78-qhmw-8j8m — OSV.dev. <https://osv.dev/vulnerability/GHSA-4f78-qhmw-8j8m> (modified 2026-08-20T05:15:07.174743690Z)
+40. OSV advisory GHSA-4h7h-rv7c-7m2v — OSV.dev. <https://osv.dev/vulnerability/GHSA-4h7h-rv7c-7m2v> (modified 2026-11-12T23:45:03.255833027Z)
+41. OSV advisory GHSA-4m76-xfj5-7975 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4m76-xfj5-7975> (modified 2026-11-12T23:30:03.867783771Z)
+42. OSV advisory GHSA-4p4r-m79c-wq3v — OSV.dev. <https://osv.dev/vulnerability/GHSA-4p4r-m79c-wq3v> (modified 2026-04-06T23:21:01.480605Z)
+43. OSV advisory GHSA-4qv8-2p9j-2685 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4qv8-2p9j-2685> (modified 2026-10-23T22:30:04.104974737Z)
+44. OSV advisory GHSA-4w7w-5xrc-9h26 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4w7w-5xrc-9h26> (modified 2026-10-27T19:15:22.403656345Z)
+45. OSV advisory GHSA-532v-xpq5-8h95 — OSV.dev. <https://osv.dev/vulnerability/GHSA-532v-xpq5-8h95> (modified 2026-04-06T23:19:58.922968Z)
+46. OSV advisory GHSA-55wc-3pg8-jfw6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-55wc-3pg8-jfw6> (modified 2026-10-27T19:15:22.392692308Z)
+47. OSV advisory GHSA-5c9j-mhmv-5xgx — OSV.dev. <https://osv.dev/vulnerability/GHSA-5c9j-mhmv-5xgx> (modified 2026-08-05T16:11:06.665641Z)
+48. OSV advisory GHSA-5pm8-86m8-9m6r — OSV.dev. <https://osv.dev/vulnerability/GHSA-5pm8-86m8-9m6r> (modified 2026-11-12T21:45:03.430629333Z)
+49. OSV advisory GHSA-5rqw-r77c-jp79 — OSV.dev. <https://osv.dev/vulnerability/GHSA-5rqw-r77c-jp79> (modified 2026-04-06T23:20:07.571377Z)
+50. OSV advisory GHSA-6g55-p6wh-862q — OSV.dev. <https://osv.dev/vulnerability/GHSA-6g55-p6wh-862q> (modified 2026-09-10T03:51:10.752909750Z)
+51. OSV advisory GHSA-6pq8-jhm2-2vcw — OSV.dev. <https://osv.dev/vulnerability/GHSA-6pq8-jhm2-2vcw> (modified 2026-10-27T16:15:05.324423680Z)
+52. OSV advisory GHSA-6r2x-8pq8-9489 — OSV.dev. <https://osv.dev/vulnerability/GHSA-6r2x-8pq8-9489> (modified 2025-07-01T13:13:25Z)
+53. OSV advisory GHSA-78xj-cgh5-2h22 — OSV.dev. <https://osv.dev/vulnerability/GHSA-78xj-cgh5-2h22> (modified 2026-09-10T03:50:09.794882940Z)
+54. OSV advisory GHSA-7fh5-64p2-3v2j — OSV.dev. <https://osv.dev/vulnerability/GHSA-7fh5-64p2-3v2j> (modified 2026-09-10T03:49:57.862104145Z)
+55. OSV advisory GHSA-7m48-wc93-9g85 — OSV.dev. <https://osv.dev/vulnerability/GHSA-7m48-wc93-9g85> (modified 2026-09-10T03:49:59.555264356Z)
+56. OSV advisory GHSA-7pqw-9j4j-h8q3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-7pqw-9j4j-h8q3> (modified 2026-09-08T21:10:57.608811Z)
+57. OSV advisory GHSA-7x97-j373-85x5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-7x97-j373-85x5> (modified 2026-09-10T03:49:57.866467216Z)
+58. OSV advisory GHSA-82fw-gwwq-j7x9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-82fw-gwwq-j7x9> (modified 2026-09-08T21:00:07.248611070Z)
+59. OSV advisory GHSA-8337-3p73-46f4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8337-3p73-46f4> (modified 2026-04-06T23:18:52.586490Z)
+60. OSV advisory GHSA-848j-6mx2-7j84 — OSV.dev. <https://osv.dev/vulnerability/GHSA-848j-6mx2-7j84> (modified 2026-09-10T03:50:32.794069999Z)
+61. OSV advisory GHSA-8vv3-6qpc-gpw6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8vv3-6qpc-gpw6> (modified 2026-11-10T16:15:05.948337489Z)
+62. OSV advisory GHSA-952p-6rrq-rcjv — OSV.dev. <https://osv.dev/vulnerability/GHSA-952p-6rrq-rcjv> (modified 2026-09-10T03:50:13.524150483Z)
+63. OSV advisory GHSA-9899-m83m-qhpj — OSV.dev. <https://osv.dev/vulnerability/GHSA-9899-m83m-qhpj> (modified 2026-04-06T23:18:50.163821Z)
+64. OSV advisory GHSA-98mx-cjp9-gchm — OSV.dev. <https://osv.dev/vulnerability/GHSA-98mx-cjp9-gchm> (modified 2026-10-22T17:00:04.179486447Z)
+65. OSV advisory GHSA-997q-gvvc-jwmx — OSV.dev. <https://osv.dev/vulnerability/GHSA-997q-gvvc-jwmx> (modified 2026-10-22T17:00:05.173770092Z)
+66. OSV advisory GHSA-9f4c-93c8-jc8g — OSV.dev. <https://osv.dev/vulnerability/GHSA-9f4c-93c8-jc8g> (modified 2026-08-20T05:15:07.151820521Z)
+67. OSV advisory GHSA-9fm3-97px-rjf6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9fm3-97px-rjf6> (modified 2026-10-27T19:15:22.400702743Z)
+68. OSV advisory GHSA-9pf5-hg6p-4pwp — OSV.dev. <https://osv.dev/vulnerability/GHSA-9pf5-hg6p-4pwp> (modified 2026-08-05T15:56:01.262988Z)
+69. OSV advisory GHSA-9qh4-3jw8-366w — OSV.dev. <https://osv.dev/vulnerability/GHSA-9qh4-3jw8-366w> (modified 2026-09-29T18:15:04.717504273Z)
+70. OSV advisory GHSA-9w97-2464-8783 — OSV.dev. <https://osv.dev/vulnerability/GHSA-9w97-2464-8783> (modified 2026-04-06T23:19:57.917173Z)
+71. OSV advisory GHSA-9wfr-w7mm-pc7f — OSV.dev. <https://osv.dev/vulnerability/GHSA-9wfr-w7mm-pc7f> (modified 2026-04-06T23:19:40.585044Z)
+72. OSV advisory GHSA-c475-qrg2-pj4r — OSV.dev. <https://osv.dev/vulnerability/GHSA-c475-qrg2-pj4r> (modified 2026-10-01T15:00:04.517943812Z)
+73. OSV advisory GHSA-f72v-6w45-q472 — OSV.dev. <https://osv.dev/vulnerability/GHSA-f72v-6w45-q472> (modified 2026-10-23T22:30:04.094314933Z)
+74. OSV advisory GHSA-fxqj-rqcc-2cmp — OSV.dev. <https://osv.dev/vulnerability/GHSA-fxqj-rqcc-2cmp> (modified 2026-09-10T03:50:53.572374167Z)
+75. OSV advisory GHSA-g3hv-75wg-m249 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249> (modified 2026-11-04T17:01:25.850114200Z)
+76. OSV advisory GHSA-grv7-fg5c-xmjg — OSV.dev. <https://osv.dev/vulnerability/GHSA-grv7-fg5c-xmjg> (modified 2026-09-10T03:50:00.374713008Z)
+77. OSV advisory GHSA-h7mg-cq63-vhpq — OSV.dev. <https://osv.dev/vulnerability/GHSA-h7mg-cq63-vhpq> (modified 2026-11-12T23:30:03.867508007Z)
+78. OSV advisory GHSA-jmr9-qjv8-65gv — OSV.dev. <https://osv.dev/vulnerability/GHSA-jmr9-qjv8-65gv> (modified 2026-09-10T03:51:08.769710691Z)
+79. OSV advisory GHSA-jpvv-r467-5p4w — OSV.dev. <https://osv.dev/vulnerability/GHSA-jpvv-r467-5p4w> (modified 2026-11-12T21:45:03.417268669Z)
+80. OSV advisory GHSA-m5mm-p8h7-m29v — OSV.dev. <https://osv.dev/vulnerability/GHSA-m5mm-p8h7-m29v> (modified 2026-10-24T02:55:55.507718062Z)
+81. OSV advisory GHSA-mrhx-c7xc-m3w5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5> (modified 2026-10-23T18:30:09.376405885Z)
+82. OSV advisory GHSA-mrwp-f3q8-3g9p — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrwp-f3q8-3g9p> (modified 2026-10-30T23:15:06.315251750Z)
+83. OSV advisory GHSA-mwcw-c2x4-8c55 — OSV.dev. <https://osv.dev/vulnerability/GHSA-mwcw-c2x4-8c55> (modified 2026-09-10T03:50:21.666094798Z)
+84. OSV advisory GHSA-pfrx-2q88-qq97 — OSV.dev. <https://osv.dev/vulnerability/GHSA-pfrx-2q88-qq97> (modified 2026-09-10T03:49:55.225771209Z)
+85. OSV advisory GHSA-qr28-fpjm-wq7f — OSV.dev. <https://osv.dev/vulnerability/GHSA-qr28-fpjm-wq7f> (modified 2026-10-29T17:00:04.168610583Z)
+86. OSV advisory GHSA-qrxm-fqhp-jwvm — OSV.dev. <https://osv.dev/vulnerability/GHSA-qrxm-fqhp-jwvm> (modified 2026-10-27T19:15:22.403573595Z)
+87. OSV advisory GHSA-qv5m-9pm6-hqp3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qv5m-9pm6-hqp3> (modified 2026-11-12T21:45:03.406890390Z)
+88. OSV advisory GHSA-qx2v-qp2m-jg93 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qx2v-qp2m-jg93> (modified 2026-09-10T03:51:02.916463871Z)
+89. OSV advisory GHSA-qxg6-89mg-rqv8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qxg6-89mg-rqv8> (modified 2026-10-21T20:01:39.911013327Z)
+90. OSV advisory GHSA-r28c-9q8g-f849 — OSV.dev. <https://osv.dev/vulnerability/GHSA-r28c-9q8g-f849> (modified 2026-09-10T03:50:52.854537677Z)
+91. OSV advisory GHSA-r4jh-29pc-gfqr — OSV.dev. <https://osv.dev/vulnerability/GHSA-r4jh-29pc-gfqr> (modified 2026-11-12T22:30:03.983522899Z)
+92. OSV advisory GHSA-rmxm-3fg6-px4f — OSV.dev. <https://osv.dev/vulnerability/GHSA-rmxm-3fg6-px4f> (modified 2026-10-28T21:15:04.153052864Z)
+93. OSV advisory GHSA-vcc3-ghjq-m6fr — OSV.dev. <https://osv.dev/vulnerability/GHSA-vcc3-ghjq-m6fr> (modified 2026-09-10T03:51:14.713899943Z)
+94. OSV advisory GHSA-vpq2-c234-7xj6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-vpq2-c234-7xj6> (modified 2026-09-10T03:51:00.790088103Z)
+95. OSV advisory GHSA-w5hq-g745-h8pq — OSV.dev. <https://osv.dev/vulnerability/GHSA-w5hq-g745-h8pq> (modified 2026-09-10T03:51:03.663336650Z)
+96. OSV advisory GHSA-w74x-v6f9-j3xg — OSV.dev. <https://osv.dev/vulnerability/GHSA-w74x-v6f9-j3xg> (modified 2026-10-23T21:45:04.896137439Z)
+97. OSV advisory GHSA-wjr9-j795-jxcr — OSV.dev. <https://osv.dev/vulnerability/GHSA-wjr9-j795-jxcr> (modified 2026-10-23T21:45:04.892054666Z)
+98. OSV advisory GHSA-wrjc-x8rr-h8h6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-wrjc-x8rr-h8h6> (modified 2026-09-10T03:51:12.418370518Z)
+99. OSV advisory GHSA-xhq7-xmqj-769h — OSV.dev. <https://osv.dev/vulnerability/GHSA-xhq7-xmqj-769h> (modified 2026-10-23T21:45:04.902389903Z)
+100. OSV advisory GHSA-xjj6-f33q-929c — OSV.dev. <https://osv.dev/vulnerability/GHSA-xjj6-f33q-929c> (modified 2026-10-23T22:30:05.007687918Z)
+101. OSV advisory GHSA-xwg4-73v4-xw9w — OSV.dev. <https://osv.dev/vulnerability/GHSA-xwg4-73v4-xw9w> (modified 2026-09-01T19:30:08.615560716Z)
+102. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+103. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+104. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+105. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -4002,20 +3967,6 @@ _Длинные списки здесь сгруппированы; полный
 | .eslintrc.node.js | 1147 | `b4a9054c9d68050df342375e5cc3cf8dae87c7028205de692a49686222d7c02d` | 0 |
 | .eslintrc.typescript-compat.js | 177 | `6afd9d3cca6e3a0b5bb409d911911db15eeca88d1730fcb0d0cf16d113dbb829` | 0 |
 | .mocharc.js | 164 | `116798246e2bd9a964d0cbf9ee600e11351032d7faa7b534c2ba027c8089d8f3` | 0 |
-| .storybook/actions/sb-send-action.js | 197 | `67e3be8556c73031056a9f8ca949c732e427944a0e6924a05b808de474ef73e2` | 0 |
-| .storybook/i18n.js | 720 | `30d06f7691fa5f447d9aa8f213ff021ac74052a72f68158cc9a49cc6a47246c3` | 0 |
-| .storybook/initial-states/approval-screens/add-suggested-token.js | 2535 | `1a60c15cdef7b56f3f0d9b7f906f2708c7116c82d52800938fbc572531925d62` | 0 |
-| .storybook/initial-states/approval-screens/add-token.js | 1747 | `156a4d3032f6fbf9e203c87641ded299a1d2401c4d455f6678296ea2bf352c3a` | 0 |
-| .storybook/initial-states/approval-screens/token-approval.js | 1685 | `2f221da26831c6707ae1aa02165669f50d3be06b2e8f2dc005b193312153a0ba` | 0 |
-| .storybook/initial-states/transactions.js | 63732 | `d3dfffc75bfa9b830644780c41a1a896ce2e8bd805af8ac0fd5550870ea77d35` | 0 |
-| .storybook/locales.js | 3409 | `173c809ee1190bcde7117a1095567ae6033a7918b1c7bf35142871889de1513b` | 0 |
-| .storybook/main.js | 5435 | `70b4a358ec41a497f35abaccf19934d8b51bee32693d3171a49a1974ba3e3e68` | 0 |
-| .storybook/metamask-storybook-theme.js | 208 | `6fc00559ec4c17288cb1f49a631e16a49e7a4fa0e90d748b6b921db4803c1d3c` | 0 |
-| .storybook/metametrics.js | 254 | `224aba76dfd66dcb30f7c009a36a8e5200bcb00fae8193133374b1d0e3214dbf` | 0 |
-| .storybook/preview.js | 5966 | `98457ba3d872c75c4ec5bffb2e56f50a8ccc651e8821e6cce3a6f1b757ff797d` | 0 |
-| .storybook/reducers/sb-history-reducer.js | 221 | `0c896fd130a7c34c07209a56a58fa431772ecd0c99cf40f658dd53241d704dfc` | 0 |
-| .storybook/shims/scure-bip39-english.js | 336 | `bf4fb0647ff2b78e45403e7d924ae1395cc8f22ea0c4a2b0045839c6f0f60b2a` | 0 |
-| .storybook/test-data.js | 58494 | `2010d1d5a947aec46dca11530600505eed63b9bb33c1c01ad99b7a09a11d6293` | 0 |
 | app/offscreen/connectivity.ts | 1189 | `9b75f4dafaa3f53a2b6bb6eff76192ab594d229bdb1e7f37d2fd3f30f2921761` | 0 |
 | app/offscreen/hardware-wallets/lattice.ts | 3293 | `bcb7b228813e9a4dcbb99376b385c57744e80630bc5fa76ba0e2fc5a4be3c2c2` | 0 |
 | app/offscreen/hardware-wallets/ledger-dmk-handler.ts | 33447 | `699c1877f852a0e5e051aee333ba4e60beb7a0b856a21bc519c3e2b3ec95146b` | 0 |

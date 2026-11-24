@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.1",
           "rules": [
             {
               "id": "CHAINMAP-QV",
@@ -78,10 +78,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.1: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.1: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. No product source file imports crypto-bigint: it comes in through other dependencies, whose use of it was not traced. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms…"
               },
               "help": {
-                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.1: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.1: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. No product source file imports crypto-bigint: it comes in through other dependencies, whose use of it was not traced. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
               },
               "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
             },
@@ -103,10 +103,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports GHSA-7gcf-g7xr-8hxj for crates.io package serde_with at version 3.16.0: serde_with: KeyValueMap serialization panics on empty sequence or map entries. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (3.21.0). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev reports GHSA-7gcf-g7xr-8hxj for crates.io package serde_with at version 3.16.0: serde_with: KeyValueMap serialization panics on empty sequence or map entries. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (3.21.0). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
               },
               "help": {
-                "text": "OSV.dev reports GHSA-7gcf-g7xr-8hxj for crates.io package serde_with at version 3.16.0: serde_with: KeyValueMap serialization panics on empty sequence or map entries. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (3.21.0). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev reports GHSA-7gcf-g7xr-8hxj for crates.io package serde_with at version 3.16.0: serde_with: KeyValueMap serialization panics on empty sequence or map entries. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (3.21.0). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: whether the audited product code imports the package at all (Go import paths, JavaScript import and require, Rust crate names), the affected functions the advisory lists against the identifiers in that code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-7gcf-g7xr-8hxj"
             },
@@ -225,7 +225,7 @@
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-43724",
+            "qsiId": "QSI-2026-50561",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -243,7 +243,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43714",
+            "qsiId": "QSI-2026-50551",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -261,7 +261,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-43715",
+            "qsiId": "QSI-2026-50552",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -279,7 +279,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-43717",
+            "qsiId": "QSI-2026-50554",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -297,7 +297,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-43716",
+            "qsiId": "QSI-2026-50553",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -315,7 +315,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-43718",
+            "qsiId": "QSI-2026-50555",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -333,7 +333,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-43719",
+            "qsiId": "QSI-2026-50556",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -351,7 +351,7 @@
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-43721",
+            "qsiId": "QSI-2026-50558",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -369,7 +369,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-43722",
+            "qsiId": "QSI-2026-50559",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -387,7 +387,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-43723",
+            "qsiId": "QSI-2026-50560",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -405,7 +405,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-43729",
+            "qsiId": "QSI-2026-50566",
             "severity": "medium",
             "confidence": "low",
             "classification": "confirmed_vulnerability",
@@ -432,7 +432,7 @@
             "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
           },
           "properties": {
-            "qsiId": "QSI-2026-43735",
+            "qsiId": "QSI-2026-50572",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -459,7 +459,7 @@
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-43731",
+            "qsiId": "QSI-2026-50568",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -486,7 +486,7 @@
             "qsiFindingKey/v1": "de9d6880ad9a2af6ca3b69562ca270b4"
           },
           "properties": {
-            "qsiId": "QSI-2026-43734",
+            "qsiId": "QSI-2026-50571",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -513,7 +513,7 @@
             "qsiFindingKey/v1": "2ac8c159371cd6957a4d2f0c1eb519e1"
           },
           "properties": {
-            "qsiId": "QSI-2026-43736",
+            "qsiId": "QSI-2026-50573",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -540,7 +540,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-43726",
+            "qsiId": "QSI-2026-50563",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -567,7 +567,7 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-43727",
+            "qsiId": "QSI-2026-50564",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -594,7 +594,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-43738",
+            "qsiId": "QSI-2026-50575",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -621,7 +621,7 @@
             "qsiFindingKey/v1": "8a3c37d485fca34e4a6435a7e905d9f1"
           },
           "properties": {
-            "qsiId": "QSI-2026-43720",
+            "qsiId": "QSI-2026-50557",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -639,7 +639,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-43725",
+            "qsiId": "QSI-2026-50562",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -657,7 +657,7 @@
             "qsiFindingKey/v1": "7439bae337a673be840331b9becf8856"
           },
           "properties": {
-            "qsiId": "QSI-2026-43728",
+            "qsiId": "QSI-2026-50565",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -684,7 +684,7 @@
             "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
           },
           "properties": {
-            "qsiId": "QSI-2026-43730",
+            "qsiId": "QSI-2026-50567",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -711,7 +711,7 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-43732",
+            "qsiId": "QSI-2026-50569",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -738,7 +738,7 @@
             "qsiFindingKey/v1": "2b6fa4b2f9c2e028a075e66fb8c40d56"
           },
           "properties": {
-            "qsiId": "QSI-2026-43733",
+            "qsiId": "QSI-2026-50570",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -765,7 +765,7 @@
             "qsiFindingKey/v1": "af089dcbba7dfa68eca6e4460004633a"
           },
           "properties": {
-            "qsiId": "QSI-2026-43737",
+            "qsiId": "QSI-2026-50574",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -783,13 +783,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/trustwallet-wallet-core-en @ adf80f8bac98/0a636fc6-9606-4902-a240-7190373d677b"
+        "id": "qsi/trustwallet-wallet-core-en @ adf80f8bac98/48878b72-1d66-4721-a0f9-12d031fd338b"
       },
       "properties": {
-        "qsiContentSha256": "6471225b628134fb8490f6ec942fc592843dc20dcb51bf9cd3178724e6c90ecc",
+        "qsiContentSha256": "aec19b7119f33f293289857d15508706b3663545e8df8e5795bac0f4de02613a",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:25:44.820388+00:00",
+        "qsiGeneratedAt": "2026-11-24T13:01:39.483785+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

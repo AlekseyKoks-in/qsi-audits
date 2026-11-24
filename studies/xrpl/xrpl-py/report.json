@@ -1,8 +1,8 @@
 {
-  "content_sha256": "e10b7694243366a25db9dcb7510f8bdb2f6b4f4877941eef9ce81fc845fc1320",
+  "content_sha256": "c91e464cf94d2366ee05acf3e9e4a5a217f414f5df12257dc888ce322792a095",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-23T14:07:40.252799+00:00",
+  "generated_at": "2026-11-24T12:25:35.723283+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "bee15ec0-32dd-4874-98ca-03c5eb8c1790",
+    "id": "11d1cfe9-e969-43d0-9424-0f2f216cec78",
     "mode": "document",
     "title": "Document audit: xrpl-py",
     "status": "completed",
-    "engine_version": "1.16.2",
-    "started_at": "2026-11-23T14:07:29.493983+00:00",
-    "finished_at": "2026-11-23T14:07:40.146275+00:00",
+    "engine_version": "1.20.0",
+    "started_at": "2026-11-24T12:25:22.612453+00:00",
+    "finished_at": "2026-11-24T12:25:35.622200+00:00",
     "risk_profile": "web3",
     "risk_profile_name": "Web3 project",
     "parameters": {
@@ -1817,7 +1817,7 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": "docs/conf.py: 60 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "docs/conf.py: 60 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -1827,7 +1827,7 @@
     },
     {
       "area": "source_code",
-      "detail": "packaging/confidential/setup.py: 14 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "packaging/confidential/setup.py: 14 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -2212,1452 +2212,1452 @@
     },
     {
       "area": "source_code",
-      "detail": "tools/generate_definitions.py: 376 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "tools/generate_definitions.py: 376 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/generate_tx_models.py: 204 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "tools/generate_tx_models.py: 204 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/__init__.py: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/__init__.py: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/account/__init__.py: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/account/__init__.py: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/account/main.py: 90 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/account/main.py: 90 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/account/transaction_history.py: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/account/transaction_history.py: 24 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/__init__.py: 5 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/__init__.py: 5 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/account/__init__.py: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/account/__init__.py: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/account/main.py: 119 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/account/main.py: 119 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/account/transaction_history.py: 31 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/account/transaction_history.py: 31 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/__init__.py: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/__init__.py: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/async_client.py: 29 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/async_client.py: 29 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/async_json_rpc_client.py: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/async_json_rpc_client.py: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/async_websocket_client.py: 289 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/async_websocket_client.py: 289 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/client.py: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/client.py: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/exceptions.py: 38 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/exceptions.py: 38 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/json_rpc_base.py: 56 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/json_rpc_base.py: 56 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/utils.py: 91 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/utils.py: 91 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/clients/websocket_base.py: 251 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/clients/websocket_base.py: 251 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/ledger/__init__.py: 13 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/ledger/__init__.py: 13 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/ledger/main.py: 118 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/ledger/main.py: 118 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/ledger/utils.py: 72 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/ledger/utils.py: 72 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/transaction/__init__.py: 29 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/transaction/__init__.py: 29 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/transaction/main.py: 759 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/transaction/main.py: 759 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/transaction/reliable_submission.py: 253 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/transaction/reliable_submission.py: 253 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/wallet/__init__.py: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/wallet/__init__.py: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/asyncio/wallet/wallet_generation.py: 236 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/asyncio/wallet/wallet_generation.py: 236 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/clients/__init__.py: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/clients/__init__.py: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/clients/json_rpc_client.py: 10 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/clients/json_rpc_client.py: 10 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/clients/sync_client.py: 31 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/clients/sync_client.py: 31 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/clients/websocket_client.py: 243 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/clients/websocket_client.py: 243 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/constants.py: 83 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/constants.py: 83 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/__init__.py: 5 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/__init__.py: 5 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/addresscodec/__init__.py: 41 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/addresscodec/__init__.py: 41 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/addresscodec/codec.py: 226 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/addresscodec/codec.py: 226 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/addresscodec/exceptions.py: 9 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/addresscodec/exceptions.py: 9 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/addresscodec/main.py: 187 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/addresscodec/main.py: 187 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/addresscodec/utils.py: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/addresscodec/utils.py: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/__init__.py: 32 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/__init__.py: 32 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/binary_wrappers/__init__.py: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/binary_wrappers/__init__.py: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/binary_wrappers/binary_parser.py: 261 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/binary_wrappers/binary_parser.py: 261 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/binary_wrappers/binary_serializer.py: 120 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/binary_wrappers/binary_serializer.py: 120 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/definitions/__init__.py: 37 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/definitions/__init__.py: 37 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/definitions/definitions.py: 312 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/definitions/definitions.py: 312 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/definitions/field_header.py: 57 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/definitions/field_header.py: 57 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/definitions/field_info.py: 35 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/definitions/field_info.py: 35 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/definitions/field_instance.py: 62 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/definitions/field_instance.py: 62 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/exceptions.py: 9 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/exceptions.py: 9 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/field_id_codec.py: 112 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/field_id_codec.py: 112 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/main.py: 274 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/main.py: 274 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/__init__.py: 49 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/__init__.py: 49 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/account_id.py: 89 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/account_id.py: 89 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/amount.py: 486 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/amount.py: 486 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/blob.py: 64 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/blob.py: 64 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/currency.py: 131 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/currency.py: 131 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/hash.py: 85 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/hash.py: 85 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/hash128.py: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/hash128.py: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/hash160.py: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/hash160.py: 24 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/hash192.py: 26 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/hash192.py: 26 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/hash256.py: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/hash256.py: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/int.py: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/int.py: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/int32.py: 78 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/int32.py: 78 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/issue.py: 179 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/issue.py: 179 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/number.py: 374 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/number.py: 374 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/path_set.py: 284 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/path_set.py: 284 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/serialized_type.py: 100 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/serialized_type.py: 100 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/st_array.py: 106 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/st_array.py: 106 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/st_object.py: 253 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/st_object.py: 253 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/uint.py: 91 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/uint.py: 91 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/uint16.py: 66 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/uint16.py: 66 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/uint32.py: 71 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/uint32.py: 71 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/uint64.py: 109 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/uint64.py: 109 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/uint8.py: 68 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/uint8.py: 68 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/vector256.py: 83 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/vector256.py: 83 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/binarycodec/types/xchain_bridge.py: 100 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/binarycodec/types/xchain_bridge.py: 100 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/keypairs/__init__.py: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/keypairs/__init__.py: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/keypairs/crypto_implementation.py: 51 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/keypairs/crypto_implementation.py: 51 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/keypairs/ed25519.py: 102 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/keypairs/ed25519.py: 102 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/keypairs/exceptions.py: 9 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/keypairs/exceptions.py: 9 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/keypairs/helpers.py: 34 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/keypairs/helpers.py: 34 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/keypairs/main.py: 148 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/keypairs/main.py: 148 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/core/keypairs/secp256k1.py: 208 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/core/keypairs/secp256k1.py: 208 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/__init__.py: 130 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/__init__.py: 130 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/build_mpt_crypto.py: 345 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/build_mpt_crypto.py: 345 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/commitments.py: 196 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/commitments.py: 196 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/context.py: 332 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/context.py: 332 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/crypto_bindings.py: 131 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/crypto_bindings.py: 131 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/encryption.py: 134 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/encryption.py: 134 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/homomorphic.py: 110 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/homomorphic.py: 110 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/include/mpt_protocol.h: 50 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/include/mpt_protocol.h: 50 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/include/secp256k1.h: 894 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/include/secp256k1.h: 894 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/include/secp256k1_mpt.h: 454 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/include/secp256k1_mpt.h: 454 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/include/utility/mpt_utility.h: 486 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/include/utility/mpt_utility.h: 486 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/keypair.py: 130 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/keypair.py: 130 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/main.py: 555 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/main.py: 555 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ext/confidential/transaction_builders.py: 1654 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ext/confidential/transaction_builders.py: 1654 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ledger/__init__.py: 13 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ledger/__init__.py: 13 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/ledger/main.py: 70 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/ledger/main.py: 70 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/__init__.py: 34 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/__init__.py: 34 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/amounts/__init__.py: 27 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/amounts/__init__.py: 27 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/amounts/amount.py: 75 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/amounts/amount.py: 75 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/amounts/clawback_amount.py: 12 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/amounts/clawback_amount.py: 12 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/amounts/issued_currency_amount.py: 49 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/amounts/issued_currency_amount.py: 49 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/amounts/mpt_amount.py: 49 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/amounts/mpt_amount.py: 49 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/auth_account.py: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/auth_account.py: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/base_model.py: 453 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/base_model.py: 453 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/currencies/__init__.py: 16 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/currencies/__init__.py: 16 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/currencies/currency.py: 13 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/currencies/currency.py: 13 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/currencies/issued_currency.py: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/currencies/issued_currency.py: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/currencies/mpt_currency.py: 61 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/currencies/mpt_currency.py: 61 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/currencies/xrp.py: 89 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/currencies/xrp.py: 89 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/exceptions.py: 9 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/exceptions.py: 9 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/flags.py: 113 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/flags.py: 113 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/mptoken_metadata.py: 162 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/mptoken_metadata.py: 162 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/nested_model.py: 72 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/nested_model.py: 72 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/path.py: 67 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/path.py: 67 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/__init__.py: 115 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/__init__.py: 115 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/account_channels.py: 42 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/account_channels.py: 42 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/account_currencies.py: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/account_currencies.py: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/account_info.py: 37 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/account_info.py: 37 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/account_lines.py: 38 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/account_lines.py: 38 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/account_nfts.py: 35 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/account_nfts.py: 35 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/account_objects.py: 73 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/account_objects.py: 73 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/account_offers.py: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/account_offers.py: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/account_tx.py: 39 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/account_tx.py: 39 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/amm_info.py: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/amm_info.py: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/book_offers.py: 38 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/book_offers.py: 38 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/channel_authorize.py: 83 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/channel_authorize.py: 83 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/channel_verify.py: 48 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/channel_verify.py: 48 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/deposit_authorized.py: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/deposit_authorized.py: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/feature.py: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/feature.py: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/fee.py: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/fee.py: 24 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/gateway_balances.py: 33 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/gateway_balances.py: 33 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/generic_request.py: 97 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/generic_request.py: 97 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/get_aggregate_price.py: 50 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/get_aggregate_price.py: 50 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/ledger.py: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/ledger.py: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/ledger_closed.py: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/ledger_closed.py: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/ledger_current.py: 22 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/ledger_current.py: 22 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/ledger_data.py: 32 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/ledger_data.py: 32 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/ledger_entry.py: 426 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/ledger_entry.py: 426 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/manifest.py: 29 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/manifest.py: 29 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/nft_buy_offers.py: 26 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/nft_buy_offers.py: 26 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/nft_history.py: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/nft_history.py: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/nft_info.py: 26 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/nft_info.py: 26 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/nft_sell_offers.py: 26 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/nft_sell_offers.py: 26 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/nfts_by_issuer.py: 31 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/nfts_by_issuer.py: 31 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/no_ripple_check.py: 50 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/no_ripple_check.py: 50 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/path_find.py: 113 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/path_find.py: 113 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/ping.py: 18 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/ping.py: 18 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/random.py: 18 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/random.py: 18 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/request.py: 226 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/request.py: 226 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/ripple_path_find.py: 64 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/ripple_path_find.py: 64 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/server_definitions.py: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/server_definitions.py: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/server_info.py: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/server_info.py: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/server_state.py: 30 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/server_state.py: 30 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/sign.py: 120 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/sign.py: 120 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/sign_and_submit.py: 128 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/sign_and_submit.py: 128 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/sign_for.py: 110 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/sign_for.py: 110 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/simulate.py: 98 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/simulate.py: 98 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/submit.py: 82 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/submit.py: 82 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/submit_multisigned.py: 70 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/submit_multisigned.py: 70 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/submit_only.py: 61 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/submit_only.py: 61 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/subscribe.py: 81 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/subscribe.py: 81 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/transaction_entry.py: 33 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/transaction_entry.py: 33 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/tx.py: 85 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/tx.py: 85 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/unsubscribe.py: 56 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/unsubscribe.py: 56 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/requests/vault_info.py: 48 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/requests/vault_info.py: 48 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/required.py: 11 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/required.py: 11 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/response.py: 121 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/response.py: 121 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/__init__.py: 299 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/__init__.py: 299 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/account_delete.py: 56 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/account_delete.py: 56 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/account_set.py: 305 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/account_set.py: 305 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/amm_bid.py: 84 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/amm_bid.py: 84 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/amm_clawback.py: 106 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/amm_clawback.py: 106 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/amm_create.py: 77 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/amm_create.py: 77 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/amm_delete.py: 42 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/amm_delete.py: 42 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/amm_deposit.py: 105 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/amm_deposit.py: 105 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/amm_vote.py: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/amm_vote.py: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/amm_withdraw.py: 100 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/amm_withdraw.py: 100 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/batch.py: 179 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/batch.py: 179 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/check_cancel.py: 32 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/check_cancel.py: 32 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/check_cash.py: 59 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/check_cash.py: 59 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/check_create.py: 62 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/check_create.py: 62 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/clawback.py: 59 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/clawback.py: 59 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/confidential_mpt_clawback.py: 95 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/confidential_mpt_clawback.py: 95 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/confidential_mpt_constants.py: 145 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/confidential_mpt_constants.py: 145 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/confidential_mpt_convert.py: 191 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/confidential_mpt_convert.py: 191 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/confidential_mpt_convert_back.py: 154 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/confidential_mpt_convert_back.py: 154 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/confidential_mpt_merge_inbox.py: 56 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/confidential_mpt_merge_inbox.py: 56 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/confidential_mpt_send.py: 177 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/confidential_mpt_send.py: 177 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/credential_accept.py: 47 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/credential_accept.py: 47 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/credential_create.py: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/credential_create.py: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/credential_delete.py: 48 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/credential_delete.py: 48 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/delegate_set.py: 139 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/delegate_set.py: 139 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/deposit_preauth.py: 128 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/deposit_preauth.py: 128 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/did_delete.py: 18 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/did_delete.py: 18 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/did_set.py: 76 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/did_set.py: 76 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/escrow_cancel.py: 36 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/escrow_cancel.py: 36 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/escrow_create.py: 88 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/escrow_create.py: 88 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/escrow_finish.py: 73 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/escrow_finish.py: 73 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_broker_cover_clawback.py: 66 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_broker_cover_clawback.py: 66 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_broker_cover_deposit.py: 30 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_broker_cover_deposit.py: 30 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_broker_cover_withdraw.py: 58 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_broker_cover_withdraw.py: 58 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_broker_delete.py: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_broker_delete.py: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_broker_set.py: 111 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_broker_set.py: 111 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_delete.py: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_delete.py: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_manage.py: 61 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_manage.py: 61 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_pay.py: 87 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_pay.py: 87 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/loan_set.py: 241 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/loan_set.py: 241 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/metadata.py: 137 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/metadata.py: 137 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/mptoken_authorize.py: 61 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/mptoken_authorize.py: 61 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/mptoken_issuance_create.py: 229 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/mptoken_issuance_create.py: 229 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/mptoken_issuance_destroy.py: 28 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/mptoken_issuance_destroy.py: 28 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/mptoken_issuance_set.py: 314 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/mptoken_issuance_set.py: 314 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/nftoken_accept_offer.py: 111 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/nftoken_accept_offer.py: 111 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/nftoken_burn.py: 51 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/nftoken_burn.py: 51 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/nftoken_cancel_offer.py: 59 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/nftoken_cancel_offer.py: 59 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/nftoken_create_offer.py: 134 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/nftoken_create_offer.py: 134 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/nftoken_mint.py: 192 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/nftoken_mint.py: 192 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/nftoken_modify.py: 71 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/nftoken_modify.py: 71 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/offer_cancel.py: 29 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/offer_cancel.py: 29 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/offer_create.py: 139 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/offer_create.py: 139 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/oracle_delete.py: 25 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/oracle_delete.py: 25 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/oracle_set.py: 175 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/oracle_set.py: 175 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/payment.py: 232 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/payment.py: 232 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/payment_channel_claim.py: 116 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/payment_channel_claim.py: 116 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/payment_channel_create.py: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/payment_channel_create.py: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/payment_channel_fund.py: 48 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/payment_channel_fund.py: 48 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/permissioned_domain_delete.py: 42 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/permissioned_domain_delete.py: 42 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/permissioned_domain_set.py: 51 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/permissioned_domain_set.py: 51 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/pseudo_transactions/__init__.py: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/pseudo_transactions/__init__.py: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/pseudo_transactions/enable_amendment.py: 108 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/pseudo_transactions/enable_amendment.py: 108 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/pseudo_transactions/pseudo_transaction.py: 29 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/pseudo_transactions/pseudo_transaction.py: 29 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/pseudo_transactions/set_fee.py: 94 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/pseudo_transactions/set_fee.py: 94 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/pseudo_transactions/unl_modify.py: 71 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/pseudo_transactions/unl_modify.py: 71 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/set_regular_key.py: 28 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/set_regular_key.py: 28 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/signer_list_set.py: 153 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/signer_list_set.py: 153 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/sponsorship_set.py: 254 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/sponsorship_set.py: 254 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/sponsorship_transfer.py: 130 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/sponsorship_transfer.py: 130 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/ticket_create.py: 28 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/ticket_create.py: 28 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/transaction.py: 712 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/transaction.py: 712 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/trust_set.py: 97 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/trust_set.py: 97 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/types/__init__.py: 6 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/types/__init__.py: 6 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/types/pseudo_transaction_type.py: 11 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/types/pseudo_transaction_type.py: 11 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/types/transaction_type.py: 86 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/types/transaction_type.py: 86 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/vault_clawback.py: 39 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/vault_clawback.py: 39 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/vault_create.py: 280 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/vault_create.py: 280 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/vault_delete.py: 46 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/vault_delete.py: 46 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/vault_deposit.py: 24 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/vault_deposit.py: 24 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/vault_set.py: 60 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/vault_set.py: 60 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/vault_withdraw.py: 58 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/vault_withdraw.py: 58 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/xchain_account_create_commit.py: 71 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/xchain_account_create_commit.py: 71 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/xchain_add_account_create_attestation.py: 116 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/xchain_add_account_create_attestation.py: 116 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/xchain_add_claim_attestation.py: 107 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/xchain_add_claim_attestation.py: 107 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/xchain_claim.py: 97 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/xchain_claim.py: 97 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/xchain_commit.py: 63 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/xchain_commit.py: 63 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/xchain_create_bridge.py: 95 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/xchain_create_bridge.py: 95 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/xchain_create_claim_id.py: 68 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/xchain_create_claim_id.py: 68 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/transactions/xchain_modify_bridge.py: 112 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/transactions/xchain_modify_bridge.py: 112 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/types.py: 23 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/types.py: 23 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/utils.py: 120 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/utils.py: 120 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/models/xchain_bridge.py: 37 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/models/xchain_bridge.py: 37 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/transaction/__init__.py: 46 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/transaction/__init__.py: 46 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/transaction/batch_signers.py: 257 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/transaction/batch_signers.py: 257 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/transaction/counterparty_signer.py: 332 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/transaction/counterparty_signer.py: 332 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/transaction/main.py: 186 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/transaction/main.py: 186 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/transaction/multisign.py: 35 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/transaction/multisign.py: 35 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/transaction/reliable_submission.py: 65 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/transaction/reliable_submission.py: 65 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/transaction/sponsor_signer.py: 338 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/transaction/sponsor_signer.py: 338 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/__init__.py: 46 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/__init__.py: 46 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/get_nftoken_id.py: 128 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/get_nftoken_id.py: 128 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/get_xchain_claim_id.py: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/get_xchain_claim_id.py: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/mptoken_metadata.py: 397 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/mptoken_metadata.py: 397 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/parse_nftoken_id.py: 100 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/parse_nftoken_id.py: 100 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/str_conversions.py: 31 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/str_conversions.py: 31 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/time_conversions.py: 135 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/time_conversions.py: 135 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/__init__.py: 7 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/__init__.py: 7 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/get_balance_changes.py: 56 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/get_balance_changes.py: 56 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/get_final_balances.py: 52 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/get_final_balances.py: 52 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/get_order_book_changes.py: 20 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/get_order_book_changes.py: 20 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/utils/__init__.py: 17 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/utils/__init__.py: 17 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/utils/balance_parser.py: 170 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/utils/balance_parser.py: 170 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/utils/nodes.py: 78 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/utils/nodes.py: 78 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/utils/order_book_parser.py: 188 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/utils/order_book_parser.py: 188 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/utils/parser.py: 47 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/utils/parser.py: 47 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/txn_parser/utils/types.py: 66 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/txn_parser/utils/types.py: 66 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/utils/xrp_conversions.py: 106 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/utils/xrp_conversions.py: 106 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/wallet/__init__.py: 7 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/wallet/__init__.py: 7 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/wallet/main.py: 287 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/wallet/main.py: 287 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "xrpl/wallet/wallet_generation.py: 43 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "xrpl/wallet/wallet_generation.py: 43 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -3667,7 +3667,12 @@
     },
     {
       "area": "crediting",
-      "detail": "payment crediting: 56 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked",
+      "detail": "payment crediting: 56 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node, 0 from fetched Solana transactions; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked",
+      "status": "checked"
+    },
+    {
+      "area": "key_storage",
+      "detail": "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0",
       "status": "checked"
     },
     {
@@ -3683,9 +3688,9 @@
       "count": 292,
       "rows": 292,
       "examples": [
-        "docs/conf.py: 60 lines scanned with 16 rule patterns and 340 registry patterns",
-        "packaging/confidential/setup.py: 14 lines scanned with 16 rule patterns and 340 registry patterns",
-        "tools/generate_definitions.py: 376 lines scanned with 16 rule patterns and 340 registry patterns"
+        "docs/conf.py: 60 lines scanned with 17 rule patterns and 340 registry patterns",
+        "packaging/confidential/setup.py: 14 lines scanned with 17 rule patterns and 340 registry patterns",
+        "tools/generate_definitions.py: 376 lines scanned with 17 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -3734,7 +3739,16 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "payment crediting: 56 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked"
+        "payment crediting: 56 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 0 credit from a Tron or EVM node, 0 from fetched Solana transactions; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked"
+      ]
+    },
+    {
+      "area": "key_storage",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0"
       ]
     },
     {
@@ -4134,6 +4148,7 @@
     "examined_inputs": [
       "73 pinned packages queried at OSV.dev; 0 affected",
       "docs/conf.py",
+      "key settings with a fallback in the code",
       "packaging/confidential/pyproject.toml",
       "packaging/confidential/setup.py",
       "payment crediting",
@@ -4475,8 +4490,8 @@
   },
   "findings": [
     {
-      "id": "ccac2022-605b-4166-8cf5-e9ec23c6fa44",
-      "public_id": "QSI-2026-44390",
+      "id": "a8d19af4-0f36-43fb-a416-8a7d3d566ee7",
+      "public_id": "QSI-2026-50303",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: transaction and message signing (5 file(s))",
       "description": "27 reference(s) to ECDSA across 5 file(s), e.g. xrpl/core/keypairs/secp256k1.py:1. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -4495,8 +4510,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "xrpl/core/keypairs/secp256k1.py",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T14:07:40.074297+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:25:35.547027+00:00",
       "risk_score": 33.0,
       "risk_breakdown": {
         "mosca": {
@@ -4592,8 +4607,8 @@
           "content": "    1 | \"\"\"secp256k1 elliptic curve cryptography interface.\"\"\"\n    2 | ",
           "content_sha256": "ad17ce0087216bf5bd474b4e38f269553a5cb51c85184d951778526432e7b8b5",
           "source_sha256": "5c05922dc4ec7ba5bda6bd37c3b10ff047bf081a3842b5eb5fc404a71aae5af9",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.092989+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566835+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/secp256k1.py#L1"
         },
         {
@@ -4603,8 +4618,8 @@
           "content": "   20 | \n   21 | _CURVE: Final[Curve] = Curve.get_curve(\"secp256k1\")\n   22 | _GROUP_ORDER: Final[int] = _CURVE.order",
           "content_sha256": "816b4f2fc15a578f996488d0e4930970141d6563bc101134f6f6fdf917229edc",
           "source_sha256": "5c05922dc4ec7ba5bda6bd37c3b10ff047bf081a3842b5eb5fc404a71aae5af9",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.092997+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566844+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/secp256k1.py#L21"
         },
         {
@@ -4614,8 +4629,8 @@
           "content": "   43 |     \"\"\"\n   44 |     Methods for using the ECDSA cryptographic system with the secp256k1\n   45 |     elliptic curve.",
           "content_sha256": "076fdde40abf3ebbbd87720a542b6a9e188e3499017afa0b07f73762b45b1ee2",
           "source_sha256": "5c05922dc4ec7ba5bda6bd37c3b10ff047bf081a3842b5eb5fc404a71aae5af9",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.093002+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566849+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/secp256k1.py#L44"
         },
         {
@@ -4625,8 +4640,8 @@
           "content": "   79 |  */\n   80 | typedef struct secp256k1_ecdsa_signature {\n   81 |     unsigned char data[64];",
           "content_sha256": "42167c95481f0ec667afe584926da67ba267ebabfdb19e05a7ad7e9be4e8fed6",
           "source_sha256": "8ba347fedd24e0a9df2cfe9c58aa68f82ccac6a8737a5053add13254c62ffe65",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.093007+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566854+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1.h#L80"
         },
         {
@@ -4636,8 +4651,8 @@
           "content": "   81 |     unsigned char data[64];\n   82 | } secp256k1_ecdsa_signature;\n   83 | ",
           "content_sha256": "cdc23e614da912f23027127abfb94599623f7f2a871a313ad6ed750216b9c3bf",
           "source_sha256": "8ba347fedd24e0a9df2cfe9c58aa68f82ccac6a8737a5053add13254c62ffe65",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.093012+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566859+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1.h#L82"
         },
         {
@@ -4647,8 +4662,8 @@
           "content": "  500 |  */\n  501 | SECP256K1_API int secp256k1_ecdsa_signature_parse_compact(\n  502 |     const secp256k1_context *ctx,",
           "content_sha256": "e6f24a8cc5a4511593d19ae7ed906bcd86fa9220a4b3e53183d5f428a55f9a7f",
           "source_sha256": "8ba347fedd24e0a9df2cfe9c58aa68f82ccac6a8737a5053add13254c62ffe65",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.093016+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566863+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1.h#L501"
         },
         {
@@ -4658,8 +4673,8 @@
           "content": "    4 | #include \"mpt_protocol.h\"\n    5 | #include <secp256k1.h>\n    6 | #include <stdint.h>",
           "content_sha256": "f6ef645d793b3aaed24e4d8730a5b857973e8dd66babfcc3739998ea5530bc25",
           "source_sha256": "ee1a061db0bae3c1b9259aee21a989ff2a5df3e15f5267eb8f54ff6eba054a03",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.093021+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566868+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1_mpt.h#L5"
         },
         {
@@ -4669,8 +4684,8 @@
           "content": "   77 | # ──────────────────────────────────────────────────────────────────────────────\n   78 | _PUBKEY_HEX_LEN = 66  # 33-byte compressed secp256k1 public key\n   79 | ",
           "content_sha256": "9b4acdedcd5c1ef2cb8ae58e692284757563158806be75f271aabf591e431141",
           "source_sha256": "3314d09109ce311b08c392c093145682f1f4c487c64cefbdf10b7e3dfe3beca8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.093025+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566872+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/transaction_builders.py#L78"
         },
         {
@@ -4680,8 +4695,8 @@
           "content": "  284 |     Uses mpt_generate_blinding_factor, which validates the scalar against the\n  285 |     secp256k1 curve order (unlike raw random bytes).\n  286 | ",
           "content_sha256": "78460974ed6f685c3533cbb3c8b580e52fae8bab58fd80ea3e2d410701469d1d",
           "source_sha256": "3314d09109ce311b08c392c093145682f1f4c487c64cefbdf10b7e3dfe3beca8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.093030+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566877+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/transaction_builders.py#L285"
         },
         {
@@ -4691,8 +4706,8 @@
           "content": "   51 |     claims against this  channel, as hexadecimal. This can be any valid\n   52 |     secp256k1 or Ed25519 public key. This field is required.\n   53 | ",
           "content_sha256": "f29c5f0d80eeaa3228aa29af6ba699e9efd7d99d12cc28c85833bff806638662",
           "source_sha256": "e5045ccea43196ef8ebb73af11db40f77b97e4bbf5a3645073be32765fac0e9c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.093034+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.566882+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/payment_channel_create.py#L52"
         }
       ],
@@ -4730,8 +4745,8 @@
       ]
     },
     {
-      "id": "dbc57177-b62d-43f5-b2c7-5f010bfb95b7",
-      "public_id": "QSI-2026-44392",
+      "id": "3a9f0e0c-a763-4227-9894-825368bec8aa",
+      "public_id": "QSI-2026-50305",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (6 file(s))",
       "description": "14 reference(s) to Pedersen commitment across 6 file(s), e.g. xrpl/ext/confidential/build_mpt_crypto.py:79. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -4750,8 +4765,8 @@
       "triage": null,
       "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
       "data_source": "xrpl/ext/confidential/build_mpt_crypto.py",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T14:07:40.101427+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:25:35.575272+00:00",
       "risk_score": 33.0,
       "risk_breakdown": {
         "mosca": {
@@ -4847,8 +4862,8 @@
           "content": "   78 |     typedef struct {\n   79 |         uint8_t pedersen_commitment[33];\n   80 |         uint64_t amount;",
           "content_sha256": "1f3bdfa0d4a4b13a7bd043f12fab8ab7e74f2572df2aa81fed01e1d935891cfc",
           "source_sha256": "484ad4b5ee8991339b0ca71b8e6d93bd1a1f9457a5b37b25602fb366ed69bcdd",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114678+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588659+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L79"
         },
         {
@@ -4858,8 +4873,8 @@
           "content": "  118 |     );\n  119 |     int mpt_get_pedersen_commitment(\n  120 |         uint64_t amount,",
           "content_sha256": "2e21eae3911af7c5e54a3123b586138b37cb29ca03295ed7d3d44751af7602c6",
           "source_sha256": "484ad4b5ee8991339b0ca71b8e6d93bd1a1f9457a5b37b25602fb366ed69bcdd",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114686+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588667+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L119"
         },
         {
@@ -4869,8 +4884,8 @@
           "content": "   21 | \n   22 | def create_pedersen_commitment(amount: int, blinding_factor: str) -> str:\n   23 |     \"\"\"",
           "content_sha256": "8d238aa63ba4f324ee8e9052568301960e0ee80680e870493f492edadb488178",
           "source_sha256": "b0ff6cae2f70b730d9f9e477018e3cdc868fa3ccbaf151257bea1182f907f1bb",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114691+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588672+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/commitments.py#L22"
         },
         {
@@ -4880,8 +4895,8 @@
           "content": "   39 |     commitment = ffi.new(\"uint8_t[]\", 33)\n   40 |     result = lib.mpt_get_pedersen_commitment(amount, blinding_bytes, commitment)\n   41 |     if result != 0:",
           "content_sha256": "b3634f4c5606c53512e130a7b308495f9674b00bd0324dfe55c78b796f60fb22",
           "source_sha256": "b0ff6cae2f70b730d9f9e477018e3cdc868fa3ccbaf151257bea1182f907f1bb",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114695+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588678+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/commitments.py#L40"
         },
         {
@@ -4891,8 +4906,8 @@
           "content": "  230 | int\n  231 | secp256k1_mpt_pedersen_commit(\n  232 |     secp256k1_context const* ctx,",
           "content_sha256": "d14025fc0f9047dce1e628444687577a59ac742a045f92182192614f0caf0e69",
           "source_sha256": "ee1a061db0bae3c1b9259aee21a989ff2a5df3e15f5267eb8f54ff6eba054a03",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114700+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588684+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1_mpt.h#L231"
         },
         {
@@ -4902,8 +4917,8 @@
           "content": "   53 | {\n   54 |     uint8_t pedersen_commitment[kMPT_PEDERSEN_COMMIT_SIZE];\n   55 |     uint64_t amount;",
           "content_sha256": "e92263be3776aafe4d9bcfe1246553afc691e09d4dfcd504c1478e903b5b903a",
           "source_sha256": "909a063bb3643ceef2ffdc988fc112a4b99d46e32223b865dd58302ffe413fc3",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114704+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588690+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/utility/mpt_utility.h#L54"
         },
         {
@@ -4913,8 +4928,8 @@
           "content": "  224 | int\n  225 | mpt_get_pedersen_commitment(\n  226 |     uint64_t amount,",
           "content_sha256": "ee42899e04fd6668b6a7f270ecc73cd9b6b72c34ee1f8a26a9c452bf418793d1",
           "source_sha256": "909a063bb3643ceef2ffdc988fc112a4b99d46e32223b865dd58302ffe413fc3",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114709+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588695+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/utility/mpt_utility.h#L225"
         },
         {
@@ -4924,8 +4939,8 @@
           "content": "  131 |     # Commitments and Bulletproofs\n  132 |     def create_pedersen_commitment(\n  133 |         self: Self, amount: int, blinding_factor: str",
           "content_sha256": "89b1bc0ff933312246133107fb4f385becb565f6d3967b359129a2fa93a62fc5",
           "source_sha256": "dbf2a9ab17518c61536f2c278fd64f5035a5300cf8da1250a299a73f93ca3ac1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114714+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588700+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L132"
         },
         {
@@ -4935,8 +4950,8 @@
           "content": "  135 |         \"\"\"Create a Pedersen commitment: PC = amount*G + blinding_factor*H\"\"\"\n  136 |         return commitments.create_pedersen_commitment(amount, blinding_factor)\n  137 | ",
           "content_sha256": "50c90f4b7835ae6299ebc2e2c9d1498155f13c893678aa6d08d05508aa6aa3d6",
           "source_sha256": "dbf2a9ab17518c61536f2c278fd64f5035a5300cf8da1250a299a73f93ca3ac1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114718+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588705+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L136"
         },
         {
@@ -4946,8 +4961,8 @@
           "content": "  365 |         ffi.memmove(\n  366 |             balance_params.pedersen_commitment,\n  367 |             _hex_to_fixed_bytes(balance_commitment, 33, \"balance_commitment\"),",
           "content_sha256": "863df3efb124d3d395e94c4de9336a2feb1f3d8d00b3cb0a6b80aac253e503bb",
           "source_sha256": "dbf2a9ab17518c61536f2c278fd64f5035a5300cf8da1250a299a73f93ca3ac1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.114723+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.588709+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L366"
         }
       ],
@@ -4985,8 +5000,8 @@
       ]
     },
     {
-      "id": "24f650b0-d0b8-4f01-8d6c-4df888f4fe79",
-      "public_id": "QSI-2026-44389",
+      "id": "ea249607-c04c-4e4d-a9f7-949e0a464728",
+      "public_id": "QSI-2026-50302",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: role not determined (7 file(s))",
       "description": "8 reference(s) to ECDSA across 7 file(s), e.g. xrpl/constants.py:15. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5005,8 +5020,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "xrpl/constants.py",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T14:07:40.065430+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:25:35.538826+00:00",
       "risk_score": 31.7,
       "risk_breakdown": {
         "mosca": {
@@ -5102,8 +5117,8 @@
           "content": "   14 |     ED25519 = \"ed25519\"\n   15 |     SECP256K1 = \"secp256k1\"\n   16 | ",
           "content_sha256": "0476f98819d00936217e14afb5895ac5e8cda70ffc9d56bfcf178ad6338f4ee0",
           "source_sha256": "8ca50f0823ddf5fba6d4de092e8177a92031cba00b9fdf1e8e4ce723dadbad56",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.077791+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.550657+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/constants.py#L15"
         },
         {
@@ -5113,8 +5128,8 @@
           "content": "   14 | from xrpl.core.keypairs.helpers import get_account_id\n   15 | from xrpl.core.keypairs.secp256k1 import SECP256K1\n   16 | ",
           "content_sha256": "f6551be801defa68f608582f4f35a8344c9acd8ef313d52b36a772c2b255132e",
           "source_sha256": "cbbf8a4720afe6bb2ea4f70ce5abc9383e53e38d64a170f01a55a17a51b080cd",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.077800+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.550666+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/core/keypairs/main.py#L15"
         },
         {
@@ -5124,8 +5139,8 @@
           "content": "  310 |        against the actual library ABI. mpt_utility.h pulls in secp256k1_mpt.h,\n  311 |        mpt_protocol.h, secp256k1.h, stdbool.h and stddef.h. */\n  312 |     #include <stdint.h>",
           "content_sha256": "119d8ed595c2ec5bd15f9bcc0da41cfd88b266fb8999cd27ce60cbb86593ad19",
           "source_sha256": "484ad4b5ee8991339b0ca71b8e6d93bd1a1f9457a5b37b25602fb366ed69bcdd",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.077805+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.550671+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L311"
         },
         {
@@ -5135,8 +5150,8 @@
           "content": "    7 | create_bulletproof / verify_bulletproof are available on every platform:\n    8 | mpt-crypto (including secp256k1) is statically linked into the extension, so\n    9 | secp256k1_ec_pubkey_parse is bound directly everywhere (the old Windows DLL did",
           "content_sha256": "46e9d6d9844e2c6d8144b3269b0292f8f1a572aef0a51087e107c5947b4c5277",
           "source_sha256": "b0ff6cae2f70b730d9f9e477018e3cdc868fa3ccbaf151257bea1182f907f1bb",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.077809+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.550676+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/commitments.py#L8"
         },
         {
@@ -5146,8 +5161,8 @@
           "content": "    6 | \n    7 | The mpt-crypto C code (with secp256k1 and OpenSSL) is statically linked INTO\n    8 | the CFFI extension (_mpt_crypto) at build time, so the compiled extension is",
           "content_sha256": "89faa6fb76e06804323efc16306d552c24566db17a6fb6425e0bc2b85293bf0d",
           "source_sha256": "07050fefaf3c229d0b0867bc4229ef4c96a0808e237b64f922cae7c8c219e346",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.077814+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.550681+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/crypto_bindings.py#L7"
         },
         {
@@ -5157,8 +5172,8 @@
           "content": "    4 | #include <mpt_protocol.h>\n    5 | #include <secp256k1.h>\n    6 | #include <secp256k1_mpt.h>",
           "content_sha256": "308d3e70f8eba79c098cdc39235abd5d05a95f5718c61c02060e9faf7543c0cb",
           "source_sha256": "909a063bb3643ceef2ffdc988fc112a4b99d46e32223b865dd58302ffe413fc3",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.077818+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.550686+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/utility/mpt_utility.h#L5"
         },
         {
@@ -5168,8 +5183,8 @@
           "content": "   72 |     def __init__(self: Self) -> None:\n   73 |         \"\"\"Initialize with mpt-crypto's globally shared secp256k1 context.\"\"\"\n   74 |         # Use the context owned by mpt-crypto rather than creating our own:",
           "content_sha256": "8438a059ea62f124fd825162d3ed5588482761baf11ede88f3740eb307e93e57",
           "source_sha256": "dbf2a9ab17518c61536f2c278fd64f5035a5300cf8da1250a299a73f93ca3ac1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.077823+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.550690+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L73"
         },
         {
@@ -5179,8 +5194,8 @@
           "content": "   80 |         if self.ctx == ffi.NULL:\n   81 |             raise RuntimeError(\"Failed to obtain mpt-crypto secp256k1 context\")\n   82 | ",
           "content_sha256": "c487ff44a0b600ae8611b7afce30440380fffaf04367a4e33cb1dc4e00f164c6",
           "source_sha256": "dbf2a9ab17518c61536f2c278fd64f5035a5300cf8da1250a299a73f93ca3ac1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.077828+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.550695+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L81"
         }
       ],
@@ -5218,8 +5233,8 @@
       ]
     },
     {
-      "id": "3d06b9b4-7f8e-45fa-98c1-4d43525c800b",
-      "public_id": "QSI-2026-44391",
+      "id": "868bde5d-33d1-42c5-93bd-35cab29cd10d",
+      "public_id": "QSI-2026-50304",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (5 file(s))",
       "description": "43 reference(s) to EC-ElGamal across 5 file(s), e.g. xrpl/ext/confidential/build_mpt_crypto.py:63. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later).",
@@ -5238,8 +5253,8 @@
       "triage": null,
       "affected_asset": "source-code:EC-ElGamal:key_wrapping",
       "data_source": "xrpl/ext/confidential/build_mpt_crypto.py",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T14:07:40.090383+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:25:35.564334+00:00",
       "risk_score": 27.9,
       "risk_breakdown": {
         "mosca": {
@@ -5335,8 +5350,8 @@
           "content": "   62 |     );\n   63 |     int secp256k1_mpt_get_generator_vector(\n   64 |         const secp256k1_context* ctx,",
           "content_sha256": "a190cc938dc5874cf9439579c4eec258d9c9ea67657905b73d8b5ca6088a1ba6",
           "source_sha256": "484ad4b5ee8991339b0ca71b8e6d93bd1a1f9457a5b37b25602fb366ed69bcdd",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103957+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577799+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L63"
         },
         {
@@ -5346,8 +5361,8 @@
           "content": "  103 |     // ---- Keys / encryption / commitment ----\n  104 |     int mpt_generate_keypair(uint8_t* out_privkey, uint8_t* out_pubkey);\n  105 |     int mpt_generate_blinding_factor(uint8_t out_factor[32]);",
           "content_sha256": "72e4d7b80df678ca6ae5e8cb5066174424dad17098f5b5c4c1be34f4a2d7bf42",
           "source_sha256": "484ad4b5ee8991339b0ca71b8e6d93bd1a1f9457a5b37b25602fb366ed69bcdd",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103966+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577807+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L104"
         },
         {
@@ -5357,8 +5372,8 @@
           "content": "  105 |     int mpt_generate_blinding_factor(uint8_t out_factor[32]);\n  106 |     int mpt_encrypt_amount(\n  107 |         uint64_t amount,",
           "content_sha256": "8688f57ad9a7d96f0fc57d7761fa1f7d6a4582c2c28173197da1e77a6a6ae16d",
           "source_sha256": "484ad4b5ee8991339b0ca71b8e6d93bd1a1f9457a5b37b25602fb366ed69bcdd",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103970+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577812+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/build_mpt_crypto.py#L106"
         },
         {
@@ -5368,8 +5383,8 @@
           "content": "    1 | \"\"\"\n    2 | ElGamal encryption and decryption functions.\n    3 | ",
           "content_sha256": "25b870e010354969fdffcc2b627d16cd5274ea1e396dece2df5ae8cc4e7abe1f",
           "source_sha256": "0b325bc3b9f6169ed22deca5781b4da2186cd2c13ef701f7fd72505a13b08af1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103975+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577816+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/encryption.py#L2"
         },
         {
@@ -5379,8 +5394,8 @@
           "content": "    4 | This module provides functions for encrypting and decrypting amounts\n    5 | using ElGamal encryption.\n    6 | \"\"\"",
           "content_sha256": "1e3b3f9946e2125116f2a6e96a221c4185e7b1496db6f9cc4c3d3f4eabf2d9f3",
           "source_sha256": "0b325bc3b9f6169ed22deca5781b4da2186cd2c13ef701f7fd72505a13b08af1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103980+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577821+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/encryption.py#L5"
         },
         {
@@ -5390,8 +5405,8 @@
           "content": "   28 |     \"\"\"\n   29 |     Encrypt an amount using ElGamal encryption via the utility layer.\n   30 | ",
           "content_sha256": "74511517b9c81de1a6e5e78453b1636abf8d6e39a893d4e023ecf48571ececbb",
           "source_sha256": "0b325bc3b9f6169ed22deca5781b4da2186cd2c13ef701f7fd72505a13b08af1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103984+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577826+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/encryption.py#L29"
         },
         {
@@ -5401,8 +5416,8 @@
           "content": "    1 | \"\"\"\n    2 | Homomorphic operations on EC-ElGamal ciphertexts.\n    3 | ",
           "content_sha256": "7b2a64b448bbf11ef1c5a8d9b6153917c6d260157edd7167d158e22ce924abd5",
           "source_sha256": "fbcb34d5721f58b4e0b47c0063a49ef003ed1404b31e2fec0763b48d2735b7f1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103989+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577830+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/homomorphic.py#L2"
         },
         {
@@ -5412,8 +5427,8 @@
           "content": "    3 | \n    4 | ElGamal is additively homomorphic: ``Enc(a) +/- Enc(b) = Enc(a +/- b)`` when both\n    5 | ciphertexts are encrypted under the same public key. These wrap mpt-crypto's",
           "content_sha256": "7f5fc24f1a5a3073aa3b34d7c69ddf1829a414874e6406f8fa03e2b6f9c03c4a",
           "source_sha256": "fbcb34d5721f58b4e0b47c0063a49ef003ed1404b31e2fec0763b48d2735b7f1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103993+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577835+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/homomorphic.py#L4"
         },
         {
@@ -5423,8 +5438,8 @@
           "content": "    5 | ciphertexts are encrypted under the same public key. These wrap mpt-crypto's\n    6 | ``secp256k1_elgamal_add`` / ``secp256k1_elgamal_subtract``.\n    7 | ",
           "content_sha256": "04bd5729da3dfdab9b423dafc6a5a78dd2463e4bf8b14710e518e83565795fb6",
           "source_sha256": "fbcb34d5721f58b4e0b47c0063a49ef003ed1404b31e2fec0763b48d2735b7f1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.103998+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577839+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/homomorphic.py#L6"
         },
         {
@@ -5434,8 +5449,8 @@
           "content": "   15 | SECP256K1_API int\n   16 | secp256k1_elgamal_generate_keypair(\n   17 |     secp256k1_context const* ctx,",
           "content_sha256": "2fe0678af4d255c60ea8a39b55985920c55d42ba3f09a6a4eb9f1088aa6016e5",
           "source_sha256": "ee1a061db0bae3c1b9259aee21a989ff2a5df3e15f5267eb8f54ff6eba054a03",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.104002+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.577844+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/include/secp256k1_mpt.h#L16"
         }
       ],
@@ -5473,8 +5488,8 @@
       ]
     },
     {
-      "id": "31551931-816b-4990-a2d1-c0cf7cbe070e",
-      "public_id": "QSI-2026-44394",
+      "id": "28be81c2-5d37-41ce-8058-e54740fc5c27",
+      "public_id": "QSI-2026-50307",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ElGamal: key wrapping and data encryption at rest (3 file(s))",
       "description": "14 reference(s) to ElGamal across 3 file(s), e.g. xrpl/ext/confidential/main.py:85. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later).",
@@ -5493,8 +5508,8 @@
       "triage": null,
       "affected_asset": "source-code:ElGamal:key_wrapping",
       "data_source": "xrpl/ext/confidential/main.py",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T14:07:40.121871+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:25:35.595966+00:00",
       "risk_score": 27.9,
       "risk_breakdown": {
         "mosca": {
@@ -5590,8 +5605,8 @@
           "content": "   84 |     def generate_keypair(self: Self) -> Tuple[str, str]:\n   85 |         \"\"\"Generate an ElGamal keypair.\"\"\"\n   86 |         return keypair.generate_keypair()",
           "content_sha256": "0d0bd3bdd8639f549a3273f2d20f541de3fb61e674e02e49b75c296ddf0b153c",
           "source_sha256": "dbf2a9ab17518c61536f2c278fd64f5035a5300cf8da1250a299a73f93ca3ac1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133277+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608077+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L85"
         },
         {
@@ -5601,8 +5616,8 @@
           "content": "   90 |     ) -> Tuple[str, str, str]:\n   91 |         \"\"\"Generate an ElGamal keypair with a Schnorr proof of knowledge.\"\"\"\n   92 |         return keypair.generate_keypair_with_pok(context_id)",
           "content_sha256": "846bc3e46c9c81631a230f42f99ffb71e9550933885c484db5809426830d4cce",
           "source_sha256": "dbf2a9ab17518c61536f2c278fd64f5035a5300cf8da1250a299a73f93ca3ac1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133285+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608085+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L91"
         },
         {
@@ -5612,8 +5627,8 @@
           "content": "  112 |     ) -> Tuple[str, str, str]:\n  113 |         \"\"\"Encrypt an amount using ElGamal encryption.\"\"\"\n  114 |         return encryption.encrypt(pubkey_uncompressed, amount, blinding_factor)",
           "content_sha256": "0b53c3aa6fe1d897640db31ed30125c438d5ac469ed32e86512171a68bbe1bd4",
           "source_sha256": "dbf2a9ab17518c61536f2c278fd64f5035a5300cf8da1250a299a73f93ca3ac1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133290+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608090+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/main.py#L113"
         },
         {
@@ -5623,8 +5638,8 @@
           "content": "  239 | ) -> int:\n  240 |     \"\"\"Decrypt an on-ledger ElGamal balance blob to its plaintext amount.\n  241 | ",
           "content_sha256": "2675ea955a3c9c0b205530637d1e03fd1d2ad7f932a8485fd15a7af2a74f972b",
           "source_sha256": "3314d09109ce311b08c392c093145682f1f4c487c64cefbdf10b7e3dfe3beca8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133295+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608095+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/transaction_builders.py#L240"
         },
         {
@@ -5634,8 +5649,8 @@
           "content": "  252 |     Args:\n  253 |         balance_hex: 132-char hex ElGamal ciphertext (``c1 || c2``). An empty\n  254 |             string (no confidential balance yet) returns 0.",
           "content_sha256": "f15d56d8b6c63560e6a2b65b025dda90273f53a95be682e852d30b6df7401935",
           "source_sha256": "3314d09109ce311b08c392c093145682f1f4c487c64cefbdf10b7e3dfe3beca8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133299+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608099+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/transaction_builders.py#L253"
         },
         {
@@ -5645,8 +5660,8 @@
           "content": "  271 |             f\"balance_hex must be {CIPHERTEXT_LENGTH} hex characters \"\n  272 |             f\"({CIPHERTEXT_LENGTH // 2}-byte c1||c2 ElGamal ciphertext)\"\n  273 |         )",
           "content_sha256": "369b883dd8d14b41e577df5184512206c33de556329ac47d23575a5e9992891a",
           "source_sha256": "3314d09109ce311b08c392c093145682f1f4c487c64cefbdf10b7e3dfe3beca8",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133304+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608104+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/transaction_builders.py#L272"
         },
         {
@@ -5656,8 +5671,8 @@
           "content": "   75 |     holder_encrypted_amount: str = REQUIRED\n   76 |     \"\"\"ElGamal ciphertext credited to the holder's CB_IN.\"\"\"\n   77 | ",
           "content_sha256": "47b8909c810b7d192e1894124758d107f0cc35e56b2c34db97ef6c4ed4842223",
           "source_sha256": "9d093c52de7c23dcc3401de8af658fa90c13eff5efdb913a04a9d8b56a082a4e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133309+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608109+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/confidential_mpt_convert.py#L76"
         },
         {
@@ -5667,8 +5682,8 @@
           "content": "   78 |     issuer_encrypted_amount: str = REQUIRED\n   79 |     \"\"\"ElGamal ciphertext credited to the issuer's mirror balance.\"\"\"\n   80 | ",
           "content_sha256": "04a95027286e26ef4db072051f903a5f150ff65d57b4d3200e5169ff37c68409",
           "source_sha256": "9d093c52de7c23dcc3401de8af658fa90c13eff5efdb913a04a9d8b56a082a4e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133313+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608113+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/confidential_mpt_convert.py#L79"
         },
         {
@@ -5678,8 +5693,8 @@
           "content": "   88 |     \"\"\"\n   89 |     The holder's ElGamal public key. Mandatory if the account has not yet\n   90 |     registered a key (initialization). Forbidden if a key is already registered.",
           "content_sha256": "cae6d051ebd252b2295a7d354416b51d7ae6c6189a2dec52a27e822206a8330d",
           "source_sha256": "9d093c52de7c23dcc3401de8af658fa90c13eff5efdb913a04a9d8b56a082a4e",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.133318+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.608118+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/confidential_mpt_convert.py#L89"
         }
       ],
@@ -5717,8 +5732,8 @@
       ]
     },
     {
-      "id": "ca2d360d-9d96-4a30-b70e-2bb98abef465",
-      "public_id": "QSI-2026-44393",
+      "id": "7a6738f9-d647-48e6-8b4f-5593685432ec",
+      "public_id": "QSI-2026-50306",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable EC-ElGamal: role not determined (3 file(s))",
       "description": "8 reference(s) to EC-ElGamal across 3 file(s), e.g. xrpl/ext/confidential/commitments.py:171. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5737,8 +5752,8 @@
       "triage": null,
       "affected_asset": "source-code:EC-ElGamal:general",
       "data_source": "xrpl/ext/confidential/commitments.py",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T14:07:40.112080+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:25:35.586098+00:00",
       "risk_score": 25.2,
       "risk_breakdown": {
         "mosca": {
@@ -5834,8 +5849,8 @@
           "content": "  170 | \n  171 |     result = lib.secp256k1_mpt_get_generator_vector(ctx, G_vec, n, b\"G\", 1)\n  172 |     if result != 1:",
           "content_sha256": "0eea2150fc41585b4881146be315699eb2766047119cc3b83bed5b867fb89304",
           "source_sha256": "b0ff6cae2f70b730d9f9e477018e3cdc868fa3ccbaf151257bea1182f907f1bb",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.124408+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.598670+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/commitments.py#L171"
         },
         {
@@ -5845,8 +5860,8 @@
           "content": "  174 | \n  175 |     result = lib.secp256k1_mpt_get_generator_vector(ctx, H_vec, n, b\"H\", 1)\n  176 |     if result != 1:",
           "content_sha256": "01ec6df50b6217d3b5d03c1bdfb4613466317f5c783402db47c8dfc506f41c66",
           "source_sha256": "b0ff6cae2f70b730d9f9e477018e3cdc868fa3ccbaf151257bea1182f907f1bb",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.124417+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.598679+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/commitments.py#L175"
         },
         {
@@ -5856,8 +5871,8 @@
           "content": "    3 | \n    4 | This module provides functions for generating ElGamal keypairs and\n    5 | creating/verifying Schnorr proofs of knowledge.",
           "content_sha256": "77051da554a2f18c492507b0e6f3427228396184330d3b80798075aff937b745",
           "source_sha256": "f956be13be45e4eb7120b663de09083382bbc6e137a28a51c5cee477c7f61d27",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.124422+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.598684+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/keypair.py#L4"
         },
         {
@@ -5867,8 +5882,8 @@
           "content": "   21 |     \"\"\"\n   22 |     Generate an ElGamal keypair using the utility layer.\n   23 | ",
           "content_sha256": "44d610e3560217d5e2ff4dcdb8d5491e4543ea54fa4d14188ae613ab7ab9216a",
           "source_sha256": "f956be13be45e4eb7120b663de09083382bbc6e137a28a51c5cee477c7f61d27",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.124427+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.598689+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/keypair.py#L22"
         },
         {
@@ -5878,8 +5893,8 @@
           "content": "   32 | \n   33 |     result = lib.mpt_generate_keypair(privkey, pubkey)\n   34 |     if result != 0:",
           "content_sha256": "791ce3b68dd48595a9d511ded3ab65c8956a4c8a0159390ef6a7b908617330d6",
           "source_sha256": "f956be13be45e4eb7120b663de09083382bbc6e137a28a51c5cee477c7f61d27",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.124431+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.598693+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/ext/confidential/keypair.py#L33"
         },
         {
@@ -5889,8 +5904,8 @@
           "content": "  147 |     \"\"\"\n  148 |     The 33-byte EC-ElGamal public key used for the issuer's mirror balances.\n  149 |     \"\"\"",
           "content_sha256": "abd045428e6e337cf6ba59f6d5c4164eeae301007674feeeda2ad00343e2f380",
           "source_sha256": "87e63e92b1d3d989879e2f997b67436eb997605f2896eb7737ac1dc61945ed0f",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.124436+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.598698+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/mptoken_issuance_set.py#L148"
         },
         {
@@ -5900,8 +5915,8 @@
           "content": "  152 |     \"\"\"\n  153 |     The 33-byte EC-ElGamal public key used for regulatory oversight (if applicable).\n  154 |     \"\"\"",
           "content_sha256": "10b9554e5a04c4ee9545565e1e3d2d65edd831b61e87b52cfe5f86a592dc30f6",
           "source_sha256": "87e63e92b1d3d989879e2f997b67436eb997605f2896eb7737ac1dc61945ed0f",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.124440+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.598702+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/mptoken_issuance_set.py#L153"
         }
       ],
@@ -5939,8 +5954,8 @@
       ]
     },
     {
-      "id": "f0218c3e-2246-4af0-9011-dfff96054da0",
-      "public_id": "QSI-2026-44395",
+      "id": "00d87aab-d741-44ba-a231-db623fa11d2d",
+      "public_id": "QSI-2026-50308",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ElGamal: role not determined (2 file(s))",
       "description": "2 reference(s) to ElGamal across 2 file(s), e.g. xrpl/models/base_model.py:41. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5959,8 +5974,8 @@
       "triage": null,
       "affected_asset": "source-code:ElGamal:general",
       "data_source": "xrpl/models/base_model.py",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T14:07:40.131269+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T12:25:35.605931+00:00",
       "risk_score": 25.2,
       "risk_breakdown": {
         "mosca": {
@@ -6056,8 +6071,8 @@
           "content": "   40 |     \"did\": \"DID\",\n   41 |     \"elgamal\": \"ElGamal\",\n   42 |     \"id\": \"ID\",",
           "content_sha256": "28031f663f883590dcfeb6f591ebf565599382a3647ee2e6d842bde6d59f3b5f",
           "source_sha256": "621595716a19459f0f2d4ab6d7a7afe7f06e8c76d8554bbe04cd268d4a4cd46c",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.140836+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.616274+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/base_model.py#L41"
         },
         {
@@ -6067,8 +6082,8 @@
           "content": "   27 |     account. This action is fundamentally incompatible with standard confidential\n   28 |     transfers, as the issuer does not possess the holder's private ElGamal key\n   29 |     and therefore cannot generate the required ZKPs for a normal ConfidentialSend.",
           "content_sha256": "1e4e257f50c1659303ea51ba742faa7367f7657384dc43d49e1e5b3a82e0f626",
           "source_sha256": "23d05ef9071f23f1446cd04d438927442ee5bbb31358e4133d9d6a4067390b84",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.140844+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.616283+00:00",
           "url": "https://github.com/XRPLF/xrpl-py/blob/d15d5a0f42b2c57a800dc8ad2c802ec3a899450f/xrpl/models/transactions/confidential_mpt_clawback.py#L28"
         }
       ],
@@ -6106,8 +6121,8 @@
       ]
     },
     {
-      "id": "9a357031-94e5-4647-b78a-e8689557635a",
-      "public_id": "QSI-2026-44396",
+      "id": "39c28031-60e1-4288-a185-e5c6a091920b",
+      "public_id": "QSI-2026-50309",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "No post-quantum capable cryptographic library detected",
       "description": "Across 3 dependency manifests, QSI found crypto libraries (pycryptodome, xrpl-py) but none from its PQC-capable list.",
@@ -6126,8 +6141,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.16.2",
-      "detected_at": "2026-11-23T14:07:40.139465+00:00",
+      "analyzer": "dependencies 1.20.0",
+      "detected_at": "2026-11-24T12:25:35.614665+00:00",
       "risk_score": 12.2,
       "risk_breakdown": {
         "score": 12.2,
@@ -6189,8 +6204,8 @@
           "content": "Crypto libraries: pycryptodome, xrpl-py",
           "content_sha256": "571f5c3b2d3bb8455fa49046948cdad270089d6f96db814d36befd31e0c98df7",
           "source_sha256": null,
-          "collector": "dependencies 1.16.2",
-          "collected_at": "2026-11-23T14:07:40.172243+00:00",
+          "collector": "dependencies 1.20.0",
+          "collected_at": "2026-11-24T12:25:35.647218+00:00",
           "url": null
         }
       ],
@@ -6218,13 +6233,13 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Web3 project”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-44390",
-      "QSI-2026-44392",
-      "QSI-2026-44389",
-      "QSI-2026-44391",
-      "QSI-2026-44394",
-      "QSI-2026-44393",
-      "QSI-2026-44395"
+      "QSI-2026-50303",
+      "QSI-2026-50305",
+      "QSI-2026-50302",
+      "QSI-2026-50304",
+      "QSI-2026-50307",
+      "QSI-2026-50306",
+      "QSI-2026-50308"
     ],
     "roles": [
       {
@@ -6244,8 +6259,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-44391",
-          "QSI-2026-44394"
+          "QSI-2026-50304",
+          "QSI-2026-50307"
         ],
         "files": 8
       },
@@ -6262,7 +6277,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-44392"
+          "QSI-2026-50305"
         ],
         "files": 6
       },
@@ -6279,7 +6294,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-44390"
+          "QSI-2026-50303"
         ],
         "files": 5
       },
@@ -6304,9 +6319,9 @@
           }
         ],
         "findings": [
-          "QSI-2026-44389",
-          "QSI-2026-44393",
-          "QSI-2026-44395"
+          "QSI-2026-50302",
+          "QSI-2026-50306",
+          "QSI-2026-50308"
         ],
         "files": 12
       }
@@ -6482,7 +6497,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44390",
+        "finding": "QSI-2026-50303",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (5 file(s))",
         "severity": "medium"
       },
@@ -6500,7 +6515,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44392",
+        "finding": "QSI-2026-50305",
         "finding_title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (6 file(s))",
         "severity": "medium"
       },
@@ -6518,7 +6533,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44389",
+        "finding": "QSI-2026-50302",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (7 file(s))",
         "severity": "medium"
       },
@@ -6536,7 +6551,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44391",
+        "finding": "QSI-2026-50304",
         "finding_title": "Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (5 file(s))",
         "severity": "low"
       },
@@ -6554,7 +6569,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44394",
+        "finding": "QSI-2026-50307",
         "finding_title": "Quantum-vulnerable ElGamal: key wrapping and data encryption at rest (3 file(s))",
         "severity": "low"
       },
@@ -6572,7 +6587,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44393",
+        "finding": "QSI-2026-50306",
         "finding_title": "Quantum-vulnerable EC-ElGamal: role not determined (3 file(s))",
         "severity": "low"
       },
@@ -6590,7 +6605,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-44395",
+        "finding": "QSI-2026-50308",
         "finding_title": "Quantum-vulnerable ElGamal: role not determined (2 file(s))",
         "severity": "low"
       },
@@ -6608,7 +6623,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44390",
+        "finding": "QSI-2026-50303",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (5 file(s))",
         "severity": "medium"
       },
@@ -6626,7 +6641,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44392",
+        "finding": "QSI-2026-50305",
         "finding_title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (6 file(s))",
         "severity": "medium"
       },
@@ -6644,7 +6659,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44389",
+        "finding": "QSI-2026-50302",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (7 file(s))",
         "severity": "medium"
       },
@@ -6662,7 +6677,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44391",
+        "finding": "QSI-2026-50304",
         "finding_title": "Quantum-vulnerable EC-ElGamal: key wrapping and data encryption at rest (5 file(s))",
         "severity": "low"
       },
@@ -6680,7 +6695,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44394",
+        "finding": "QSI-2026-50307",
         "finding_title": "Quantum-vulnerable ElGamal: key wrapping and data encryption at rest (3 file(s))",
         "severity": "low"
       },
@@ -6698,7 +6713,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows NIST's post-quantum standards cover key encapsulation and signatures; none covers additively homomorphic encryption. Treat amounts encrypted this way as eventually public, and limit what a design must store on-ledger; lattice-based homomorphic schemes are the research direction or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44393",
+        "finding": "QSI-2026-50306",
         "finding_title": "Quantum-vulnerable EC-ElGamal: role not determined (3 file(s))",
         "severity": "low"
       },
@@ -6716,7 +6731,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-44395",
+        "finding": "QSI-2026-50308",
         "finding_title": "Quantum-vulnerable ElGamal: role not determined (2 file(s))",
         "severity": "low"
       }
@@ -6741,11 +6756,11 @@
     },
     {
       "name": "crediting",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "dependencies",
-      "version": "1.4.4"
+      "version": "1.6.0"
     },
     {
       "name": "hndl",
@@ -6754,6 +6769,10 @@
     {
       "name": "inventory_document",
       "version": "1.1.0"
+    },
+    {
+      "name": "key_storage",
+      "version": "1.0.0"
     },
     {
       "name": "mpc",
@@ -6765,7 +6784,7 @@
     },
     {
       "name": "source_code",
-      "version": "1.10.2"
+      "version": "1.11.0"
     },
     {
       "name": "tls_code",
@@ -6789,7 +6808,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.16.2"
+      "version": "1.20.0"
     },
     {
       "name": "OSV.dev API",

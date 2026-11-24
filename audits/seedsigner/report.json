@@ -1,8 +1,8 @@
 {
-  "content_sha256": "8fc9b7bb7761544abdfc8a914eaf35ba015c777bfc500ed9d121ff65bb082bd3",
+  "content_sha256": "56bf83fb5acdb1c11de32e15fb636ce9b74910de61615a8b421fbeb2a219fffc",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-23T13:13:16.878257+00:00",
+  "generated_at": "2026-11-24T11:22:22.834043+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "62d5713a-9245-4a9d-86c5-448b32d6ebae",
+    "id": "647301d9-9755-4f93-ba26-5920588624da",
     "mode": "document",
     "title": "Document audit: seedsigner",
     "status": "completed",
-    "engine_version": "1.16.2",
-    "started_at": "2026-11-23T13:13:10.723737+00:00",
-    "finished_at": "2026-11-23T13:13:16.800099+00:00",
+    "engine_version": "1.20.0",
+    "started_at": "2026-11-24T11:22:14.652190+00:00",
+    "finished_at": "2026-11-24T11:22:22.757635+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Crypto exchange, custodian or wallet",
     "parameters": {
@@ -40,6 +40,22 @@
               "algorithm": "ECDSA"
             },
             "decision": "confirmed"
+          },
+          {
+            "note": "Not key generation: the \"Verify Word #N\" quiz picks decoy words to show beside the right one. The mnemonic already exists when the view runs; the random choice only decides which wrong answers are offered (QSI review, 2026-11-23).",
+            "match": {
+              "rule": "RNG-WEAK-KEYGEN",
+              "asset": "src/seedsigner/views/seed_views.py:keygen"
+            },
+            "decision": "false_positive"
+          },
+          {
+            "note": "tools/mnemonic.py is a developer command-line helper for cross-checking a mnemonic made from dice rolls or coin flips; it is not part of the device image (QSI review, 2026-11-23).",
+            "match": {
+              "rule": "RNG-WEAK-KEYGEN",
+              "asset": "tools/mnemonic.py:keygen"
+            },
+            "decision": "not_applicable"
           }
         ]
       },
@@ -545,352 +561,352 @@
     },
     {
       "area": "source_code",
-      "detail": "setup.py: 8 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "setup.py: 8 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/main.py: 53 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/main.py: 53 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/__init__.py: 0 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/controller.py: 482 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/controller.py: 482 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/__init__.py: 1 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/__init__.py: 1 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/components.py: 2011 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/components.py: 2011 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/keyboard.py: 666 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/keyboard.py: 666 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/renderer.py: 126 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/renderer.py: 126 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/screens/__init__.py: 1 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/screens/__init__.py: 1 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/screens/psbt_screens.py: 807 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/screens/psbt_screens.py: 807 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/screens/scan_screens.py: 266 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/screens/scan_screens.py: 266 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/screens/screen.py: 1330 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/screens/screen.py: 1330 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/screens/seed_screens.py: 1677 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/screens/seed_screens.py: 1677 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/screens/settings_screens.py: 451 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/screens/settings_screens.py: 451 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/screens/tools_screens.py: 675 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/screens/tools_screens.py: 675 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/gui/toast.py: 341 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/gui/toast.py: 341 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/__init__.py: 0 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/__init__.py: 0 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/buttons.py: 205 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/buttons.py: 205 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/camera.py: 100 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/camera.py: 100 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/displays/ST7789.py: 180 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/displays/ST7789.py: 180 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/displays/__init__.py: 0 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/displays/__init__.py: 0 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/displays/display_driver.py: 92 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/displays/display_driver.py: 92 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/displays/ili9341.py: 369 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/displays/ili9341.py: 369 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/displays/st7789_mpy.py: 1033 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/displays/st7789_mpy.py: 1033 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/microsd.py: 75 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/microsd.py: 75 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/hardware/pivideostream.py: 65 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/hardware/pivideostream.py: 65 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/__init__.py: 0 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/__init__.py: 0 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/embit_utils.py: 210 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/embit_utils.py: 210 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/l10n.py: 3 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/l10n.py: 3 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/mnemonic_generation.py: 112 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/mnemonic_generation.py: 112 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/qr.py: 107 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/qr.py: 107 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/__init__.py: 0 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/__init__.py: 0 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/bytewords.py: 140 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/bytewords.py: 140 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/cbor_lite.py: 316 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/cbor_lite.py: 316 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/constants.py: 9 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/constants.py: 9 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/crc32.py: 40 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/crc32.py: 40 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/fountain_decoder.py: 341 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/fountain_decoder.py: 341 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/fountain_encoder.py: 163 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/fountain_encoder.py: 163 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/fountain_utils.py: 55 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/fountain_utils.py: 55 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/random_sampler.py: 65 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/random_sampler.py: 65 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/ur.py: 26 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/ur.py: 26 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/ur_decoder.py: 176 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/ur_decoder.py: 176 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/ur_encoder.py: 72 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/ur_encoder.py: 72 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/utils.py: 73 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/utils.py: 73 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/ur2/xoshiro256.py: 169 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/ur2/xoshiro256.py: 169 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/helpers/version.py: 901 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/helpers/version.py: 901 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/__init__.py: 0 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/__init__.py: 0 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/decode_qr.py: 1174 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/decode_qr.py: 1174 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/encode_qr.py: 406 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/encode_qr.py: 406 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/psbt_parser.py: 1646 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/psbt_parser.py: 1646 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/qr_type.py: 35 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/qr_type.py: 35 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/seed.py: 241 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/seed.py: 241 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/seed_storage.py: 103 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/seed_storage.py: 103 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/settings.py: 314 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/settings.py: 314 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/settings_definition.py: 816 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/settings_definition.py: 816 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/singleton.py: 33 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/singleton.py: 33 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/models/threads.py: 46 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/models/threads.py: 46 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/views/__init__.py: 1 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/views/__init__.py: 1 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/views/psbt_views.py: 1030 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/views/psbt_views.py: 1030 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/views/scan_views.py: 229 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/views/scan_views.py: 229 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/views/screensaver.py: 260 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/views/screensaver.py: 260 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/views/seed_views.py: 2270 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/views/seed_views.py: 2270 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/views/settings_views.py: 387 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/views/settings_views.py: 387 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/views/tools_views.py: 775 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/views/tools_views.py: 775 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/views/view.py: 476 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/views/view.py: 476 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/mnemonic.py: 169 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "tools/mnemonic.py: 169 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/seed_phrase_to_qr.py: 44 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "tools/seed_phrase_to_qr.py: 44 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/write_versionfile.py: 47 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "tools/write_versionfile.py: 47 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/resources/seedsigner-translations/.github/diff_report/diff_screenshots.py: 138 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/resources/seedsigner-translations/.github/diff_report/diff_screenshots.py: 138 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/seedsigner/resources/seedsigner-translations/tools/extract_characters_from_babel_mo.py: 74 lines scanned with 16 rule patterns and 340 registry patterns",
+      "detail": "src/seedsigner/resources/seedsigner-translations/tools/extract_characters_from_babel_mo.py: 74 lines scanned with 17 rule patterns and 340 registry patterns",
       "status": "checked"
     },
     {
@@ -901,6 +917,11 @@
     {
       "area": "entropy",
       "detail": "random-number generation: 70 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 2 weak key-generation site(s)",
+      "status": "checked"
+    },
+    {
+      "area": "key_storage",
+      "detail": "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0",
       "status": "checked"
     },
     {
@@ -936,9 +957,9 @@
       "count": 70,
       "rows": 70,
       "examples": [
-        "setup.py: 8 lines scanned with 16 rule patterns and 340 registry patterns",
-        "src/main.py: 53 lines scanned with 16 rule patterns and 340 registry patterns",
-        "src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 340 registry patterns"
+        "setup.py: 8 lines scanned with 17 rule patterns and 340 registry patterns",
+        "src/main.py: 53 lines scanned with 17 rule patterns and 340 registry patterns",
+        "src/seedsigner/__init__.py: 0 lines scanned with 17 rule patterns and 340 registry patterns"
       ]
     },
     {
@@ -948,6 +969,15 @@
       "rows": 1,
       "examples": [
         "random-number generation: 70 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 2 weak key-generation site(s)"
+      ]
+    },
+    {
+      "area": "key_storage",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0"
       ]
     },
     {
@@ -968,6 +998,7 @@
     "registered": [],
     "examined_inputs": [
       "5 pinned packages queried at OSV.dev; 0 affected",
+      "key settings with a fallback in the code",
       "l10n/requirements-l10n.txt",
       "pyproject.toml",
       "random-number generation",
@@ -1047,35 +1078,43 @@
       "tools/write_versionfile.py"
     ]
   },
-  "dismissed": [],
+  "dismissed": [
+    {
+      "public_id": "QSI-2026-49515",
+      "rule_id": "RNG-WEAK-KEYGEN",
+      "title": "Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py",
+      "note": "Not key generation: the \"Verify Word #N\" quiz picks decoy words to show beside the right one. The mnemonic already exists when the view runs; the random choice only decides which wrong answers are offered (QSI review, 2026-11-23).",
+      "analyst": "QSI review, 2026-10-29"
+    }
+  ],
   "triage": {
     "analyst": "QSI review, 2026-10-29",
     "counts": {
       "confirmed": 1,
-      "not_applicable": 0,
-      "false_positive": 0
+      "not_applicable": 1,
+      "false_positive": 1
     },
-    "text": "Analyst review: 1 confirmed, 0 not applicable, 0 dismissed as false positives."
+    "text": "Analyst review: 1 confirmed, 1 not applicable, 1 dismissed as false positives."
   },
   "summary": {
     "by_severity": {
       "critical": 0,
-      "high": 2,
+      "high": 0,
       "medium": 2,
       "low": 0,
-      "info": 0
+      "info": 1
     },
     "by_classification": {
       "confirmed_vulnerability": 0,
       "known_vulnerable_component": 0,
       "confirmed_misconfiguration": 0,
-      "potential_crypto_risk": 2,
+      "potential_crypto_risk": 1,
       "pq_long_term_risk": 2,
       "improvement": 0,
       "insufficient_data": 0
     },
-    "total": 4,
-    "posture_index": 86,
+    "total": 3,
+    "posture_index": 100,
     "pq_vulnerable_share": 33.3,
     "inventory_total": 9,
     "inventory_by_quantum_status": {
@@ -1096,280 +1135,8 @@
   },
   "findings": [
     {
-      "id": "0310723c-1aa7-40bd-b9aa-cfcac8aeef93",
-      "public_id": "QSI-2026-43603",
-      "rule_id": "RNG-WEAK-KEYGEN",
-      "title": "Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py",
-      "description": "'random.random(' at line 1284, within a few lines of 'mnemonic_list' (3 occurrence(s)).",
-      "impact": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
-      "recommendation": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
-      "retest": "Re-scan the source and review the call sites listed in the evidence.",
-      "limitations": "Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
-      "method": "Regular-expression matching of language-specific API patterns.",
-      "repro": "Open line 1284 in the supplied file src/seedsigner/views/seed_views.py and inspect the quoted lines (see evidence).",
-      "category": "source_code",
-      "classification": "potential_crypto_risk",
-      "severity": "high",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "src/seedsigner/views/seed_views.py:keygen",
-      "data_source": "src/seedsigner/views/seed_views.py",
-      "analyzer": "entropy 1.16.2",
-      "detected_at": "2026-11-23T13:13:16.785659+00:00",
-      "risk_score": 38.8,
-      "risk_breakdown": {
-        "score": 38.8,
-        "factors": {
-          "ease": 0.6,
-          "asset": 0.6,
-          "impact": 0.35,
-          "urgency": 1.0,
-          "exposure": 0.4,
-          "severity": 0.8,
-          "exploitability": 0.4
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 57.0,
-        "references": [],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 7.0,
-          "urgency": 10.0,
-          "exposure": 6.0,
-          "severity": 20.0,
-          "exploitability": 8.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "CWE-338",
-          "url": "https://cwe.mitre.org/data/definitions/338.html",
-          "title": "CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)",
-          "status": "weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable",
-          "publisher": "MITRE"
-        },
-        {
-          "key": "CVE-2023-39910",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39910",
-          "title": "CVE-2023-39910 — Libbitcoin Explorer 'bx seed' entropy (Milk Sad): mt19937 limits it to 32 bits",
-          "status": "published 2023-08-09; Libbitcoin Explorer 3.0.0-3.6.0, exploited in the wild in 2023",
-          "publisher": "NIST NVD"
-        },
-        {
-          "key": "CVE-2023-31290",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-31290",
-          "title": "CVE-2023-31290 — Trust Wallet Core: 32 bits of mnemonic entropy (mt19937 seeded with one 32-bit value)",
-          "status": "published 2023-04-27; Trust Wallet Core before 3.1.1 (browser extension 0.0.172-0.0.182), exploited in the wild in December 2022 and March 2023: only about four billion possible mnemonics",
-          "publisher": "NIST NVD"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "src/seedsigner/views/seed_views.py",
-          "location": "line 1284",
-          "content": " 1282 | \n 1283 |         real_word = ButtonOptionWithoutTranslation(self.mnemonic_list[self.cur_index])\n 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])\n 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])\n 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])",
-          "content_sha256": "d723de33db421cb83fece9c3e89e0ebba4d5ddc972fb2ae1e8abe90202b94cb8",
-          "source_sha256": "4c977bac0dbf3e893b0e58b7fabdf0ab89b141f32717e038de659a097e470d4c",
-          "collector": "entropy 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.794747+00:00",
-          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1284"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/seedsigner/views/seed_views.py",
-          "location": "line 1285",
-          "content": " 1283 |         real_word = ButtonOptionWithoutTranslation(self.mnemonic_list[self.cur_index])\n 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])\n 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])\n 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])\n 1287 | ",
-          "content_sha256": "caf93e3f449ccd2d13b25280a33505adffb00dc1fa21c1dc79755cf6ace9e077",
-          "source_sha256": "4c977bac0dbf3e893b0e58b7fabdf0ab89b141f32717e038de659a097e470d4c",
-          "collector": "entropy 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.794756+00:00",
-          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1285"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/seedsigner/views/seed_views.py",
-          "location": "line 1286",
-          "content": " 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])\n 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])\n 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])\n 1287 | \n 1288 |         button_data = [real_word, fake_word1, fake_word2, fake_word3]",
-          "content_sha256": "4ecc0b33ab779205a0bf0403f83a00dd861f9c240c5b9828147db3879f503db7",
-          "source_sha256": "4c977bac0dbf3e893b0e58b7fabdf0ab89b141f32717e038de659a097e470d4c",
-          "collector": "entropy 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.794761+00:00",
-          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1286"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "root_cause",
-          "action": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
-          "rationale": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
-          "expected_outcome": "Re-scan the source and review the call sites listed in the evidence.",
-          "priority": "P1",
-          "horizon_days": 30,
-          "complexity": "medium",
-          "dependencies": "",
-          "side_effects": "",
-          "pre_tests": "Open line 1284 in the supplied file src/seedsigner/views/seed_views.py and inspect the quoted lines (see evidence).",
-          "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
-          "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "e6787022-3e2f-49fc-a122-e648bf36cea4",
-      "public_id": "QSI-2026-43604",
-      "rule_id": "RNG-WEAK-KEYGEN",
-      "title": "Non-cryptographic generator next to key or seed generation in tools/mnemonic.py",
-      "description": "'random.randint(' at line 84, within a few lines of 'mnemonic_generation' (4 occurrence(s)).",
-      "impact": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
-      "recommendation": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
-      "retest": "Re-scan the source and review the call sites listed in the evidence.",
-      "limitations": "Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
-      "method": "Regular-expression matching of language-specific API patterns.",
-      "repro": "Open line 84 in the supplied file tools/mnemonic.py and inspect the quoted lines (see evidence).",
-      "category": "source_code",
-      "classification": "potential_crypto_risk",
-      "severity": "high",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "tools/mnemonic.py:keygen",
-      "data_source": "tools/mnemonic.py",
-      "analyzer": "entropy 1.16.2",
-      "detected_at": "2026-11-23T13:13:16.792946+00:00",
-      "risk_score": 38.8,
-      "risk_breakdown": {
-        "score": 38.8,
-        "factors": {
-          "ease": 0.6,
-          "asset": 0.6,
-          "impact": 0.35,
-          "urgency": 1.0,
-          "exposure": 0.4,
-          "severity": 0.8,
-          "exploitability": 0.4
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 57.0,
-        "references": [],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 7.0,
-          "urgency": 10.0,
-          "exposure": 6.0,
-          "severity": 20.0,
-          "exploitability": 8.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "CWE-338",
-          "url": "https://cwe.mitre.org/data/definitions/338.html",
-          "title": "CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)",
-          "status": "weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable",
-          "publisher": "MITRE"
-        },
-        {
-          "key": "CVE-2023-39910",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39910",
-          "title": "CVE-2023-39910 — Libbitcoin Explorer 'bx seed' entropy (Milk Sad): mt19937 limits it to 32 bits",
-          "status": "published 2023-08-09; Libbitcoin Explorer 3.0.0-3.6.0, exploited in the wild in 2023",
-          "publisher": "NIST NVD"
-        },
-        {
-          "key": "CVE-2023-31290",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-31290",
-          "title": "CVE-2023-31290 — Trust Wallet Core: 32 bits of mnemonic entropy (mt19937 seeded with one 32-bit value)",
-          "status": "published 2023-04-27; Trust Wallet Core before 3.1.1 (browser extension 0.0.172-0.0.182), exploited in the wild in December 2022 and March 2023: only about four billion possible mnemonics",
-          "publisher": "NIST NVD"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "tools/mnemonic.py",
-          "location": "line 84",
-          "content": "   82 |     if method == 'dice':\n   83 |         if zero_indexed_dice:\n   84 |             entropy = ''.join([str(random.randint(0, 5)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])\n   85 |         else:\n   86 |             entropy = ''.join([str(random.randint(1, 6)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])",
-          "content_sha256": "81554da16391deb1865464a4df4ebb0a2b7e3b8ad2020319c7c6e0dc836cce93",
-          "source_sha256": "92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60",
-          "collector": "entropy 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.810292+00:00",
-          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L84"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "tools/mnemonic.py",
-          "location": "line 86",
-          "content": "   84 |             entropy = ''.join([str(random.randint(0, 5)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])\n   85 |         else:\n   86 |             entropy = ''.join([str(random.randint(1, 6)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])\n   87 | \n   88 |     elif method == 'coins':",
-          "content_sha256": "1a73f1c331308a7e40d04099df3a3eed3986396f4951026ee1a73b191c8a3444",
-          "source_sha256": "92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60",
-          "collector": "entropy 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.810300+00:00",
-          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L86"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "tools/mnemonic.py",
-          "location": "line 89",
-          "content": "   87 | \n   88 |     elif method == 'coins':\n   89 |         entropy = ''.join([str(random.randint(0, 1)) for i in range(128 if mnemonic_length == 12 else 256)])\n   90 | \n   91 |     elif method == 'final_word':",
-          "content_sha256": "c781ae848a2442a4d4da68c06d6cebc1b94de618065507f33f9975fe6d87ac02",
-          "source_sha256": "92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60",
-          "collector": "entropy 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.810305+00:00",
-          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L89"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "root_cause",
-          "action": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
-          "rationale": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
-          "expected_outcome": "Re-scan the source and review the call sites listed in the evidence.",
-          "priority": "P1",
-          "horizon_days": 30,
-          "complexity": "medium",
-          "dependencies": "",
-          "side_effects": "",
-          "pre_tests": "Open line 84 in the supplied file tools/mnemonic.py and inspect the quoted lines (see evidence).",
-          "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
-          "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "7ca515cc-8c56-4a18-86d8-0b948c458c82",
-      "public_id": "QSI-2026-43601",
+      "id": "56374c1a-9379-4607-8739-31e97c784697",
+      "public_id": "QSI-2026-49513",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg",
       "description": "A RSA 3072-bit public key was found (line 1).",
@@ -1388,8 +1155,8 @@
       "triage": null,
       "affected_asset": "file:seedsigner_pubkey.gpg#line 1",
       "data_source": "seedsigner_pubkey.gpg",
-      "analyzer": "certificates 1.16.2",
-      "detected_at": "2026-11-23T13:13:16.766560+00:00",
+      "analyzer": "certificates 1.20.0",
+      "detected_at": "2026-11-24T11:22:22.721042+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -1478,8 +1245,8 @@
           "content": "OpenPGP primary key: algorithm ID 1 (RSA) 3072-bit",
           "content_sha256": "315636b2f7e00661811d8d8feee53223db00c9277ae1194dcaf9d4fb25bf6194",
           "source_sha256": "cb7d694d3c7f3c655d9d2e7a30a45b60fd6d8fb30e37afc53440eb156df9e57a",
-          "collector": "certificates 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.776669+00:00",
+          "collector": "certificates 1.20.0",
+          "collected_at": "2026-11-24T11:22:22.731207+00:00",
           "url": null
         },
         {
@@ -1489,8 +1256,8 @@
           "content": "OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit",
           "content_sha256": "6ccbdce52e43463e8b282489a66bb4553923cec099cc342f213f584e97c81df4",
           "source_sha256": "cb7d694d3c7f3c655d9d2e7a30a45b60fd6d8fb30e37afc53440eb156df9e57a",
-          "collector": "certificates 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.776679+00:00",
+          "collector": "certificates 1.20.0",
+          "collected_at": "2026-11-24T11:22:22.731215+00:00",
           "url": null
         }
       ],
@@ -1528,8 +1295,8 @@
       ]
     },
     {
-      "id": "95dfd9dc-1567-406d-927c-3dc99ba93622",
-      "public_id": "QSI-2026-43602",
+      "id": "289c2366-d2c1-42ba-96d2-e1f6f600b281",
+      "public_id": "QSI-2026-49514",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
       "description": "3 reference(s) to ECDSA across 1 file(s), e.g. src/seedsigner/helpers/embit_utils.py:10. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -1553,8 +1320,8 @@
       },
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "src/seedsigner/helpers/embit_utils.py",
-      "analyzer": "source_code 1.16.2",
-      "detected_at": "2026-11-23T13:13:16.773056+00:00",
+      "analyzer": "source_code 1.20.0",
+      "detected_at": "2026-11-24T11:22:22.727676+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -1650,8 +1417,8 @@
           "content": "    9 | from embit.networks import NETWORKS\n   10 | from embit.util import secp256k1\n   11 | ",
           "content_sha256": "1e5604518dfe3ecc40df631b9df1ab8a9e5e838974ac1c814502658edc7d3fd3",
           "source_sha256": "c087d1932303317654685fd24b3753429964a5b4f63c5d927f1663bc9b18c3d1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.787681+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:22:22.742982+00:00",
           "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L10"
         },
         {
@@ -1661,8 +1428,8 @@
           "content": "  203 |     prv = root.derive(derivation).key\n  204 |     sig = secp256k1.ecdsa_sign_recoverable(msghash, prv._secret)\n  205 |     flag = sig[64]",
           "content_sha256": "1060384364a8c023d525064551aeed7ece6fd577f80394a1a55de0cce5980c19",
           "source_sha256": "c087d1932303317654685fd24b3753429964a5b4f63c5d927f1663bc9b18c3d1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.787691+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:22:22.742991+00:00",
           "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L204"
         },
         {
@@ -1672,8 +1439,8 @@
           "content": "  208 |     flag = bytes([27 + flag + c])\n  209 |     ser = flag + secp256k1.ecdsa_signature_serialize_compact(sig._sig)\n  210 |     return b2a_base64(ser).strip().decode()",
           "content_sha256": "1e4a07630105e8ba280ad6a4b597896533871c3bfe4f6dc7bdfcc27b6efb125e",
           "source_sha256": "c087d1932303317654685fd24b3753429964a5b4f63c5d927f1663bc9b18c3d1",
-          "collector": "source_code 1.16.2",
-          "collected_at": "2026-11-23T13:13:16.787696+00:00",
+          "collector": "source_code 1.20.0",
+          "collected_at": "2026-11-24T11:22:22.742996+00:00",
           "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L209"
         }
       ],
@@ -1709,6 +1476,147 @@
           "status": "todo"
         }
       ]
+    },
+    {
+      "id": "e7deaab3-1b54-4127-af3e-92494f95e36e",
+      "public_id": "QSI-2026-49516",
+      "rule_id": "RNG-WEAK-KEYGEN",
+      "title": "Non-cryptographic generator next to key or seed generation in tools/mnemonic.py",
+      "description": "'random.randint(' at line 84, within a few lines of 'mnemonic_generation' (4 occurrence(s)).",
+      "impact": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
+      "recommendation": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
+      "retest": "Re-scan the source and review the call sites listed in the evidence.",
+      "limitations": "Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of language-specific API patterns.",
+      "repro": "Open line 84 in the supplied file tools/mnemonic.py and inspect the quoted lines (see evidence).",
+      "category": "source_code",
+      "classification": "potential_crypto_risk",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": false,
+      "status": "open",
+      "triage": {
+        "note": "tools/mnemonic.py is a developer command-line helper for cross-checking a mnemonic made from dice rolls or coin flips; it is not part of the device image (QSI review, 2026-11-23).",
+        "analyst": "QSI review, 2026-10-29",
+        "decision": "not_applicable",
+        "severity_before": "high"
+      },
+      "affected_asset": "tools/mnemonic.py:keygen",
+      "data_source": "tools/mnemonic.py",
+      "analyzer": "entropy 1.20.0",
+      "detected_at": "2026-11-24T11:22:22.749689+00:00",
+      "risk_score": 30.6,
+      "risk_breakdown": {
+        "score": 30.6,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.35,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.05,
+          "exploitability": 0.4
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 38.25,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 7.0,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 1.25,
+          "exploitability": 8.0
+        },
+        "confidence_multiplier": 0.8
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "CWE-338",
+          "url": "https://cwe.mitre.org/data/definitions/338.html",
+          "title": "CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)",
+          "status": "weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable",
+          "publisher": "MITRE"
+        },
+        {
+          "key": "CVE-2023-39910",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39910",
+          "title": "CVE-2023-39910 — Libbitcoin Explorer 'bx seed' entropy (Milk Sad): mt19937 limits it to 32 bits",
+          "status": "published 2023-08-09; Libbitcoin Explorer 3.0.0-3.6.0, exploited in the wild in 2023",
+          "publisher": "NIST NVD"
+        },
+        {
+          "key": "CVE-2023-31290",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-31290",
+          "title": "CVE-2023-31290 — Trust Wallet Core: 32 bits of mnemonic entropy (mt19937 seeded with one 32-bit value)",
+          "status": "published 2023-04-27; Trust Wallet Core before 3.1.1 (browser extension 0.0.172-0.0.182), exploited in the wild in December 2022 and March 2023: only about four billion possible mnemonics",
+          "publisher": "NIST NVD"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "tools/mnemonic.py",
+          "location": "line 84",
+          "content": "   82 |     if method == 'dice':\n   83 |         if zero_indexed_dice:\n   84 |             entropy = ''.join([str(random.randint(0, 5)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])\n   85 |         else:\n   86 |             entropy = ''.join([str(random.randint(1, 6)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])",
+          "content_sha256": "81554da16391deb1865464a4df4ebb0a2b7e3b8ad2020319c7c6e0dc836cce93",
+          "source_sha256": "92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60",
+          "collector": "entropy 1.20.0",
+          "collected_at": "2026-11-24T11:22:22.769972+00:00",
+          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L84"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "tools/mnemonic.py",
+          "location": "line 86",
+          "content": "   84 |             entropy = ''.join([str(random.randint(0, 5)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])\n   85 |         else:\n   86 |             entropy = ''.join([str(random.randint(1, 6)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])\n   87 | \n   88 |     elif method == 'coins':",
+          "content_sha256": "1a73f1c331308a7e40d04099df3a3eed3986396f4951026ee1a73b191c8a3444",
+          "source_sha256": "92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60",
+          "collector": "entropy 1.20.0",
+          "collected_at": "2026-11-24T11:22:22.769981+00:00",
+          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L86"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "tools/mnemonic.py",
+          "location": "line 89",
+          "content": "   87 | \n   88 |     elif method == 'coins':\n   89 |         entropy = ''.join([str(random.randint(0, 1)) for i in range(128 if mnemonic_length == 12 else 256)])\n   90 | \n   91 |     elif method == 'final_word':",
+          "content_sha256": "c781ae848a2442a4d4da68c06d6cebc1b94de618065507f33f9975fe6d87ac02",
+          "source_sha256": "92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60",
+          "collector": "entropy 1.20.0",
+          "collected_at": "2026-11-24T11:22:22.769986+00:00",
+          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L89"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
+          "rationale": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
+          "expected_outcome": "Re-scan the source and review the call sites listed in the evidence.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "Open line 84 in the supplied file tools/mnemonic.py and inspect the quoted lines (see evidence).",
+          "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
+          "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
+          "status": "todo"
+        }
+      ]
     }
   ],
   "pq": {
@@ -1732,8 +1640,8 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-43601",
-      "QSI-2026-43602"
+      "QSI-2026-49513",
+      "QSI-2026-49514"
     ],
     "roles": [
       {
@@ -1749,7 +1657,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-43602"
+          "QSI-2026-49514"
         ],
         "files": 1
       }
@@ -1891,44 +1799,7 @@
     "readiness": null
   },
   "plan": {
-    "30": [
-      {
-        "kind": "root_cause",
-        "action": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
-        "rationale": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
-        "expected_outcome": "Re-scan the source and review the call sites listed in the evidence.",
-        "priority": "P1",
-        "horizon_days": 30,
-        "complexity": "medium",
-        "dependencies": "",
-        "side_effects": "",
-        "pre_tests": "Open line 1284 in the supplied file src/seedsigner/views/seed_views.py and inspect the quoted lines (see evidence).",
-        "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
-        "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
-        "status": "todo",
-        "finding": "QSI-2026-43603",
-        "finding_title": "Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py",
-        "severity": "high"
-      },
-      {
-        "kind": "root_cause",
-        "action": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
-        "rationale": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
-        "expected_outcome": "Re-scan the source and review the call sites listed in the evidence.",
-        "priority": "P1",
-        "horizon_days": 30,
-        "complexity": "medium",
-        "dependencies": "",
-        "side_effects": "",
-        "pre_tests": "Open line 84 in the supplied file tools/mnemonic.py and inspect the quoted lines (see evidence).",
-        "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
-        "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
-        "status": "todo",
-        "finding": "QSI-2026-43604",
-        "finding_title": "Non-cryptographic generator next to key or seed generation in tools/mnemonic.py",
-        "severity": "high"
-      }
-    ],
+    "30": [],
     "60": [],
     "90": [
       {
@@ -1945,7 +1816,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-43601",
+        "finding": "QSI-2026-49513",
         "finding_title": "Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg",
         "severity": "medium"
       },
@@ -1963,7 +1834,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-43602",
+        "finding": "QSI-2026-49514",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -1981,7 +1852,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-43601",
+        "finding": "QSI-2026-49513",
         "finding_title": "Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg",
         "severity": "medium"
       },
@@ -1999,9 +1870,27 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-43602",
+        "finding": "QSI-2026-49514",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
         "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.",
+        "rationale": "Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.",
+        "expected_outcome": "Re-scan the source and review the call sites listed in the evidence.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "Open line 84 in the supplied file tools/mnemonic.py and inspect the quoted lines (see evidence).",
+        "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
+        "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
+        "status": "todo",
+        "finding": "QSI-2026-49516",
+        "finding_title": "Non-cryptographic generator next to key or seed generation in tools/mnemonic.py",
+        "severity": "info"
       }
     ]
   },
@@ -2024,11 +1913,11 @@
     },
     {
       "name": "crediting",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "dependencies",
-      "version": "1.4.4"
+      "version": "1.6.0"
     },
     {
       "name": "hndl",
@@ -2037,6 +1926,10 @@
     {
       "name": "inventory_document",
       "version": "1.1.0"
+    },
+    {
+      "name": "key_storage",
+      "version": "1.0.0"
     },
     {
       "name": "mpc",
@@ -2048,7 +1941,7 @@
     },
     {
       "name": "source_code",
-      "version": "1.10.2"
+      "version": "1.11.0"
     },
     {
       "name": "tls_code",
@@ -2072,7 +1965,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.16.2"
+      "version": "1.20.0"
     },
     {
       "name": "OSV.dev API",
@@ -2360,7 +2253,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "3072-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "seedsigner_pubkey.gpg (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -2373,7 +2266,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "3072-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "seedsigner_pubkey.gpg (line 1)",
       "quantum_status": "vulnerable_shor",

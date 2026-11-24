@@ -8,33 +8,8 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
-            {
-              "id": "RNG-WEAK-KEYGEN",
-              "name": "RngWeakKeygen",
-              "shortDescription": {
-                "text": "Некриптографический генератор рядом с генерацией ключа или сида в src/embit/util/key.py"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "«random.randrange(» в строка 374, в нескольких строках от «generate_privkey» (1 мест). Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "help": {
-                "text": "«random.randrange(» в строка 374, в нескольких строках от «generate_privkey» (1 мест). Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
-            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
@@ -59,6 +34,31 @@
                 "text": "277 упоминаний ECDSA в 31 файл(ах), например src/embit/bip32.py:3. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "RNG-WEAK-KEYGEN",
+              "name": "RngWeakKeygen",
+              "shortDescription": {
+                "text": "Некриптографический генератор рядом с генерацией ключа или сида в src/embit/util/key.py"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "«random.randrange(» в строка 374, в нескольких строках от «generate_privkey» (1 мест). Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "«random.randrange(» в строка 374, в нескольких строках от «generate_privkey» (1 мест). Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
             },
             {
               "id": "DEP-ADVISORY-DEV",
@@ -90,26 +90,8 @@
       },
       "results": [
         {
-          "ruleId": "RNG-WEAK-KEYGEN",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Некриптографический генератор рядом с генерацией ключа или сида в src/embit/util/key.py"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "3442216275c794c45c425b65b8687b25"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-41863",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "potential_crypto_risk",
-            "security-severity": "7.5"
-          }
-        },
-        {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (31 файл(ов))"
@@ -118,7 +100,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-41856",
+            "qsiId": "QSI-2026-47798",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -127,7 +109,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (6 файл(ов))"
@@ -136,7 +118,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-41858",
+            "qsiId": "QSI-2026-47800",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -145,7 +127,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))"
@@ -154,7 +136,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-41861",
+            "qsiId": "QSI-2026-47803",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -163,7 +145,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))"
@@ -172,7 +154,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-41857",
+            "qsiId": "QSI-2026-47799",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -181,7 +163,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDH: роль не определена (4 файл(ов))"
@@ -190,7 +172,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-41860",
+            "qsiId": "QSI-2026-47802",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -199,7 +181,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))"
@@ -208,11 +190,29 @@
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-41862",
+            "qsiId": "QSI-2026-47804",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
             "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "RNG-WEAK-KEYGEN",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "Некриптографический генератор рядом с генерацией ключа или сида в src/embit/util/key.py"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3442216275c794c45c425b65b8687b25"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-47805",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "3.0"
           }
         },
         {
@@ -226,7 +226,7 @@
             "qsiFindingKey/v1": "090734ef78b1f0fda46107c2c0bb9ca1"
           },
           "properties": {
-            "qsiId": "QSI-2026-41864",
+            "qsiId": "QSI-2026-47806",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -244,13 +244,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/embit @ 2b375a33bd89/2407556a-f2a7-48fb-bae8-4d80a91f4aa4"
+        "id": "qsi/embit @ 2b375a33bd89/4c03808b-313c-4f9c-9501-fb733fcf3c70"
       },
       "properties": {
-        "qsiContentSha256": "25ad3b93d23d333d8f689e069b5a28a90feac3768ce23ffdee163062b486a672",
+        "qsiContentSha256": "5ac94f6748ced4fee286199eef8003ea3ecea8d742560b701c7e3f91059f3bf1",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T12:21:11.120540+00:00",
+        "qsiGeneratedAt": "2026-11-24T10:26:43.482893+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

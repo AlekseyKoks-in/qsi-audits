@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-23 13:39 UTC |
+| Report date | 2026-11-24 11:49 UTC |
 | Report version | 1 |
-| Audit run | a3d7e4ce-b1ad-4994-8f6a-1c7b85a09185 (Document audit) |
-| Analyzer engine | qsi-engine 1.16.2 |
+| Audit run | 6d0a8daf-7b00-4cf8-9321-f61e8af349f1 (Document audit) |
+| Analyzer engine | qsi-engine 1.20.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `f95bff7eaf4820eb0cab0c7e4fd0115ed36f053f3a00550f325410c82d5c0eb5` |
+| Content SHA-256 | `9adb562cc1a4687efcb07f6ad5ecae8dbcd070d3ec4d23beb3dcb72380e56550` |
 | Signature key (Ed25519 SHA-256 fingerprint, then the ML-DSA-65 one where it co-signs; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e · ML-DSA-65 dbd4e297b3213d1d7577a565e76de14cc5ad0e409f1dc68291c67266fc95066a` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -45,13 +45,14 @@ Repository: <https://github.com/besu-eth/besu> @ `1f1ebc2573e187a1339887fbc2a859
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 2927 | .github/scripts/verifyArtifacts.py: 55 lines scanned with 16 rule patterns and 340 registry patterns; app/build.gradle: 121 lines scanned with 16 rule patterns and 340 registry patterns; app/src/main/java/org/hyperledger/besu/Besu.java: 108 lines scanned with 16 rule patterns and 340 registry patterns |
+| source_code | checked | 2927 | .github/scripts/verifyArtifacts.py: 55 lines scanned with 17 rule patterns and 340 registry patterns; app/build.gradle: 121 lines scanned with 17 rule patterns and 340 registry patterns; app/src/main/java/org/hyperledger/besu/Besu.java: 108 lines scanned with 17 rule patterns and 340 registry patterns |
 | secrets | checked | 1 | ethereum/api/src/main/java/org/hyperledger/besu/ethereum/api/jsonrpc/authentication/DefaultAuthenticationService.java: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | keys | error (not checked) | 1 | ethereum/api/src/main/java/org/hyperledger/besu/ethereum/api/jsonrpc/authentication/JWTAuthOptionsFactory.java line 118: public key could not be parsed (ValueError) |
 | certificates_and_keys | checked | 1 | ethereum/api/src/main/java/org/hyperledger/besu/ethereum/api/jsonrpc/authentication/JWTAuthOptionsFactory.java: certificates/keys parsed |
 | entropy | checked | 1 | random-number generation: 2867 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | hndl | checked | 1 | public-key encryption next to a persistence sink: 0 file(s) |
-| crediting | checked | 1 | payment crediting: 0 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 16 credit from a Tron or EVM node; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| crediting | checked | 1 | payment crediting: 0 file(s) read incoming transfers on TON, the XRP Ledger (Xaman sign requests included), Tron or an EVM chain, 16 credit from a Tron or EVM node, 0 from fetched Solana transactions; 0 lead(s). A wait for confirmations or finality is recognised by its words, not traced; reorganisations and duplicate crediting are not checked |
+| key_storage | checked | 1 | key settings with a fallback in the code: 0; decryption fallbacks: 0; derived nonces: 0; key columns: 0 (no KMS, HSM or vault service found); author warnings: 0 |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -70,13 +71,13 @@ Static review of the source tree besu at 1f1ebc2573e187a1339887fbc2a859f095029f2
 
 ## 7. Detailed findings
 
-### QSI-2026-43954 — Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s))
+### QSI-2026-49866 — Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDH:key_wrapping`
 - Data source: ethereum/p2p/src/main/java/org/hyperledger/besu/ethereum/p2p/rlpx/handshake/ecies/ECIESHandshaker.java
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:39 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:49 UTC
 - Priority score: 36.9 / 100
 - CVSS v3.1: not applicable
 
@@ -122,13 +123,13 @@ _file_excerpt · [ethereum/p2p/src/main/java/org/hyperledger/besu/ethereum/p2p/r
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43951 — Quantum-vulnerable ECDSA: transaction and message signing (6 file(s))
+### QSI-2026-49863 — Quantum-vulnerable ECDSA: transaction and message signing (6 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: crypto/algorithms/src/main/java/org/hyperledger/besu/crypto/SECP256K1.java
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:39 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:49 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -230,13 +231,13 @@ _file_excerpt · [evm/src/main/java/org/hyperledger/besu/evm/precompile/ECRECPre
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43952 — Quantum-vulnerable BLS12-381: transaction and message signing (11 file(s))
+### QSI-2026-49864 — Quantum-vulnerable BLS12-381: transaction and message signing (11 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:BLS12-381:transaction_signing`
 - Data source: datatypes/src/main/java/org/hyperledger/besu/datatypes/Address.java
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:39 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:49 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -338,13 +339,13 @@ _file_excerpt · [evm/src/main/java/org/hyperledger/besu/evm/precompile/BLS12G2A
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43953 — Quantum-vulnerable RSA: transaction and message signing (1 file(s))
+### QSI-2026-49865 — Quantum-vulnerable RSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:RSA:transaction_signing`
 - Data source: ethereum/api/src/main/java/org/hyperledger/besu/ethereum/api/jsonrpc/authentication/JWTAuthOptionsFactory.java
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:39 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:49 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -374,13 +375,13 @@ _file_excerpt · [ethereum/api/src/main/java/org/hyperledger/besu/ethereum/api/j
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43948 — Quantum-vulnerable ECDSA: role not determined (11 file(s))
+### QSI-2026-49860 — Quantum-vulnerable ECDSA: role not determined (11 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: app/src/main/java/org/hyperledger/besu/cli/BesuCommand.java
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:39 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:49 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -482,13 +483,13 @@ _file_excerpt · [crypto/algorithms/src/main/java/org/hyperledger/besu/crypto/Ab
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43949 — Quantum-vulnerable BN254 (alt_bn128): role not determined (1 file(s))
+### QSI-2026-49861 — Quantum-vulnerable BN254 (alt_bn128): role not determined (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:BN254 (alt_bn128):general`
 - Data source: app/src/main/java/org/hyperledger/besu/cli/config/NativeRequirement.java
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:39 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:49 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -526,13 +527,13 @@ _file_excerpt · [app/src/main/java/org/hyperledger/besu/cli/config/NativeRequir
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-43950 — Quantum-vulnerable ECDH: role not determined (4 file(s))
+### QSI-2026-49862 — Quantum-vulnerable ECDH: role not determined (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDH:general`
 - Data source: crypto/algorithms/src/main/java/org/hyperledger/besu/crypto/AbstractSECP256.java
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.16.2 · 2026-11-23 13:39 UTC
+- Analyzer: source_code 1.20.0 · 2026-11-24 11:49 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -636,9 +637,9 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **key wrapping and data encryption at rest** | ECDH (1) | QSI-2026-43954 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
-| **transaction and message signing** | BLS12-381 (11), ECDSA (6), RSA (1) | QSI-2026-43951, QSI-2026-43952, QSI-2026-43953 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | ECDSA (11), ECDH (4), BN254 (alt_bn128) (1) | QSI-2026-43948, QSI-2026-43949, QSI-2026-43950 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **key wrapping and data encryption at rest** | ECDH (1) | QSI-2026-49866 | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment |
+| **transaction and message signing** | BLS12-381 (11), ECDSA (6), RSA (1) | QSI-2026-49863, QSI-2026-49864, QSI-2026-49865 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | ECDSA (11), ECDH (4), BN254 (alt_bn128) (1) | QSI-2026-49860, QSI-2026-49861, QSI-2026-49862 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -676,20 +677,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-43954 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43951 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43952 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43953 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43948 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43949 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-43950 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-43954 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-43951 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43952 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-43953 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43948 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-43949 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-43950 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P3 | QSI-2026-49866 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49863 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49864 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49865 | Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49860 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49861 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-49862 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-49866 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-49863 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49864 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-49865 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49860 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-49861 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-49862 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -697,19 +698,20 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- crediting 1.3.0
-- dependencies 1.4.4
+- crediting 1.4.0
+- dependencies 1.6.0
 - hndl 1.0.0
 - inventory_document 1.1.0
+- key_storage 1.0.0
 - mpc 1.0.0
 - solidity 1.8.1
-- source_code 1.10.2
+- source_code 1.11.0
 - tls_code 1.1.0
 - tls_live 1.0.0
 - ton_contracts 1.0.0
 - validator_keys 1.2.0
 - wallet_login 1.0.0
-- qsi-engine 1.16.2
+- qsi-engine 1.20.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents

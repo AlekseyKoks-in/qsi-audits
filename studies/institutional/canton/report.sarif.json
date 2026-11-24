@@ -8,58 +8,8 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.16.2",
+          "version": "1.20.0",
           "rules": [
-            {
-              "id": "KEY-PRIVATE-IN-INPUT",
-              "name": "KeyPrivateInInput",
-              "shortDescription": {
-                "text": "Private key material present in performance/src/main/console/tls/participant.pem"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "secrets",
-                  "confirmed_vulnerability"
-                ],
-                "security-severity": "8.1"
-              },
-              "fullDescription": {
-                "text": "A 'PRIVATE KEY' block was found at line 1 of performance/src/main/console/tls/participant.pem. QSI redacted the key before storage; the original file still contains it. Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets manager/HSM. QSI cannot determine whether this key is in production use. The key value was not retained."
-              },
-              "help": {
-                "text": "A 'PRIVATE KEY' block was found at line 1 of performance/src/main/console/tls/participant.pem. QSI redacted the key before storage; the original file still contains it. Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets manager/HSM. QSI cannot determine whether this key is in production use. The key value was not retained."
-              },
-              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
-            },
-            {
-              "id": "CERT-EXPIRED",
-              "name": "CertExpired",
-              "shortDescription": {
-                "text": "Certificate has expired (localhost)"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "certificates",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "The X.509 certificate with subject localhost expired on 2024-01-11 (1046 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
-              },
-              "help": {
-                "text": "The X.509 certificate with subject localhost expired on 2024-01-11 (1046 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
-            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
@@ -134,15 +84,299 @@
                 "text": "The end-entity certificate is valid for 730 days. Publicly trusted TLS certificates are limited to 398 days today, and CA/Browser Forum rules are reducing this further. Use shorter validity with automated renewal. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256. Private-PKI certificates may intentionally use other policies."
               },
               "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
+            },
+            {
+              "id": "KEY-PRIVATE-IN-INPUT",
+              "name": "KeyPrivateInInput",
+              "shortDescription": {
+                "text": "Private key material present in performance/src/main/console/tls/participant.pem"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "secrets",
+                  "confirmed_vulnerability"
+                ],
+                "security-severity": "8.1"
+              },
+              "fullDescription": {
+                "text": "A 'PRIVATE KEY' block was found at line 1 of performance/src/main/console/tls/participant.pem. QSI redacted the key before storage; the original file still contains it. Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets manager/HSM. QSI cannot determine whether this key is in production use. The key value was not retained."
+              },
+              "help": {
+                "text": "A 'PRIVATE KEY' block was found at line 1 of performance/src/main/console/tls/participant.pem. QSI redacted the key before storage; the original file still contains it. Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets manager/HSM. QSI cannot determine whether this key is in production use. The key value was not retained."
+              },
+              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
+              "id": "CERT-EXPIRED",
+              "name": "CertExpired",
+              "shortDescription": {
+                "text": "Certificate has expired (localhost)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "certificates",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "The X.509 certificate with subject localhost expired on 2024-01-11 (1047 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
+              },
+              "help": {
+                "text": "The X.509 certificate with subject localhost expired on 2024-01-11 (1047 days ago). Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring. Document-based analysis: only the supplied file was examined. Deployed configuration may differ; the result reflects the file content at the recorded SHA-256."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
             }
           ]
         }
       },
       "results": [
         {
-          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleId": "CODE-QV-ASYMMETRIC",
           "ruleIndex": 0,
-          "level": "error",
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDH: key wrapping and data encryption at rest (10 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49872",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable RSA: transaction and message signing (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4197449254ae9407e0d6f48a6adc865"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49868",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49869",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49870",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: role not determined (8 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49867",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b302032650de6c165e0e74b7d843d367"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49871",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable RSA: role not determined (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49873",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49874",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0aba2e2bcd7b95bfa30682b0b2fddff5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49875",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CERT-QV-KEY",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable RSA key in certificate (localhost)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4bd6e1c17a3acae2db7d2b7d30a7777b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49877",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-QV-KEY",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable RSA key in certificate (localhost)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4bd6e1c17a3acae2db7d2b7d30a7777b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49881",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-LONG-VALIDITY",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Leaf certificate validity of 730 days (localhost)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "734b288cb1743c98e382f9edee4506d2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49878",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-LONG-VALIDITY",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Leaf certificate validity of 730 days (localhost)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "734b288cb1743c98e382f9edee4506d2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-49882",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 3,
+          "level": "note",
           "message": {
             "text": "Private key material present in performance/src/main/console/tls/participant.pem"
           },
@@ -150,8 +384,8 @@
             "qsiFindingKey/v1": "711c43778147b2bee4f6d5209b74e1ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-43967",
-            "severity": "high",
+            "qsiId": "QSI-2026-49879",
+            "severity": "info",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
             "security-severity": "8.1"
@@ -171,8 +405,8 @@
         },
         {
           "ruleId": "KEY-PRIVATE-IN-INPUT",
-          "ruleIndex": 0,
-          "level": "error",
+          "ruleIndex": 3,
+          "level": "note",
           "message": {
             "text": "Private key material present in performance/src/main/console/tls/synchronizer.pem"
           },
@@ -180,8 +414,8 @@
             "qsiFindingKey/v1": "dc7875b62245eeb6bfd808e64473f492"
           },
           "properties": {
-            "qsiId": "QSI-2026-43971",
-            "severity": "high",
+            "qsiId": "QSI-2026-49883",
+            "severity": "info",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
             "security-severity": "8.1"
@@ -201,8 +435,8 @@
         },
         {
           "ruleId": "CERT-EXPIRED",
-          "ruleIndex": 1,
-          "level": "error",
+          "ruleIndex": 4,
+          "level": "note",
           "message": {
             "text": "Certificate has expired (localhost)"
           },
@@ -210,17 +444,17 @@
             "qsiFindingKey/v1": "b21c1a030979dd904f316c8c6a79bc2d"
           },
           "properties": {
-            "qsiId": "QSI-2026-43964",
-            "severity": "high",
+            "qsiId": "QSI-2026-49876",
+            "severity": "info",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
+            "security-severity": "1.0"
           }
         },
         {
           "ruleId": "CERT-EXPIRED",
-          "ruleIndex": 1,
-          "level": "error",
+          "ruleIndex": 4,
+          "level": "note",
           "message": {
             "text": "Certificate has expired (localhost)"
           },
@@ -228,256 +462,22 @@
             "qsiFindingKey/v1": "b21c1a030979dd904f316c8c6a79bc2d"
           },
           "properties": {
-            "qsiId": "QSI-2026-43968",
-            "severity": "high",
+            "qsiId": "QSI-2026-49880",
+            "severity": "info",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDH: key wrapping and data encryption at rest (10 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43960",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable RSA: transaction and message signing (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "e4197449254ae9407e0d6f48a6adc865"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43956",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43957",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43958",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDSA: role not determined (8 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43955",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable RSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b302032650de6c165e0e74b7d843d367"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43959",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable RSA: role not determined (2 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43961",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43962",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Ed25519: authentication and identity (certificates, tokens, device attestation) (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "0aba2e2bcd7b95bfa30682b0b2fddff5"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43963",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 3,
-          "level": "note",
-          "message": {
-            "text": "Quantum-vulnerable RSA key in certificate (localhost)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "4bd6e1c17a3acae2db7d2b7d30a7777b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43965",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "pq_long_term_risk",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 3,
-          "level": "note",
-          "message": {
-            "text": "Quantum-vulnerable RSA key in certificate (localhost)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "4bd6e1c17a3acae2db7d2b7d30a7777b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43969",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "pq_long_term_risk",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "CERT-LONG-VALIDITY",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "Leaf certificate validity of 730 days (localhost)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "734b288cb1743c98e382f9edee4506d2"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43966",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
-          }
-        },
-        {
-          "ruleId": "CERT-LONG-VALIDITY",
-          "ruleIndex": 4,
-          "level": "note",
-          "message": {
-            "text": "Leaf certificate validity of 730 days (localhost)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "734b288cb1743c98e382f9edee4506d2"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-43970",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "improvement",
-            "security-severity": "3.0"
+            "security-severity": "1.0"
           }
         }
       ],
       "automationDetails": {
-        "id": "qsi/canton @ 4eab7a047040/e49e1aa7-e9b8-4f60-954d-4a831684b8c6"
+        "id": "qsi/canton @ 4eab7a047040/60149455-d756-4fae-b005-0222417ff078"
       },
       "properties": {
-        "qsiContentSha256": "8aeca169ea3f993d780daa97f55cb234220cd42a6aebae9d6929605879f666e3",
+        "qsiContentSha256": "a3022d675db4507885eafda80ccb312cec929c7f1cb8fb6535eaf1a9e4579994",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-23T13:42:16.882679+00:00",
+        "qsiGeneratedAt": "2026-11-24T11:53:19.346133+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [
